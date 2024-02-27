@@ -377,26 +377,24 @@
                 
                    {% if request.user.is_authenticated %}
                    <h4 class="margin">Uživatel:</h4>
+                    <form action="user_logout/" method="post">
                         <div id="logout" class="box">
-                            {{ request.user.username }}<br><input id="logout-submit" class="my-button" type="submit" value="Odhlásit" />
-                            <form id="logout_form" action="/accounts/logout/" method="post">
-                                {% csrf_token %}
-                                <a href="javascript:{}" onclick="document.getElementById('logout_form').submit(); return false;">Logout</a>
-                            </form>
-                        </div>
-                   </form>
-                   {% else %}
-                   <h4 class="margin">Přihlášení:</h4>
-                    <form action="Dispatcher" method="post">
-                        <input type="hidden" name="page" value="login" />
-                        <div id="login" class="box">
-                            <p><label id="login-label" for="login-name">Jméno</label> <input id="login-input" type="text" name="login" size="10" /></p>
-                            <p><label id="password-label" for="login-password">Heslo</label> <input id="password-input" type="password" name="password" size="10" /></p>
-                            <p><input id="login-submit" class="my-button" type="submit" value="Přihlásit" /></p>
-                            <p><a href="Dispatcher?page=lostPassword">Zapomněli jste heslo?</a></p>
+                            {% csrf_token %}
+                            {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}<br><input id="logout-submit" class="my-button" type="submit" value="Odhlásit" />
                         </div>
                     </form>
-                   {% endif %}  
+                    {% else %}
+                    <h4 class="margin">Přihlášení:</h4>
+                        <form action="user_login/" method="post">
+                            <div id="login" class="box">
+                                {% csrf_token %}
+                                <p><label id="login-label" for="login-name">Jméno</label> <input id="login-input" type="text" name="username" size="10" /></p>
+                                <p><label id="password-label" for="login-password">Heslo</label> <input id="password-input" type="password" name="password" size="10" /></p>
+                                <p><input id="login-submit" class="my-button" type="submit" value="Přihlásit" /></p>
+                                <p><a href="Dispatcher?page=lostPassword">Zapomněli jste heslo?</a></p>
+                            </div>
+                        </form>
+                    {% endif %}  
                 
 
             </div> <!-- /padding -->
