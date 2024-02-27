@@ -1,14 +1,10 @@
 <!-- Tray -->
 <div id="tray">
     <ul class="box">
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="/">Články</a>
-        </li>
-        {% if request.user.is_authenticated %}
-        <li>
-            <a href="{% url 'redaction_view' %}">Redakce</a>
-        </li>
+        {% if tray_menu_items %}
+        {% for obj in tray_menu_items %}
+        <li {% if obj.active %}id="tray-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
+        {% endfor %}
         {% endif %}
     </ul>
 <hr class="noscreen" />
