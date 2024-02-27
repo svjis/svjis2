@@ -1,0 +1,241 @@
+/* ----------------------------------------------------------------------------------------------------------
+
+    Output device: screen, projection
+
+    Author:     Nuvio (www.nuvio.cz)
+    Update:     2008-07-16, 19:25 GMT+1
+    Version:    2.2.6 (2008-07-13, 14:28 GMT+1)
+
+    Structure:
+        display; position; z-index; float; clear; width; height; overflow; margin; padding; border; background; align; font;
+
+    Content:
+    
+        1) HTML tags
+        2) HTML styles
+        3) Layout
+        4-1) Page: Homepage
+        5) Others
+
+---------------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------------
+1) HTML tags
+---------------------------------------------------------------------------------------------------------- */
+
+body {background:url("../design/bg.gif") 50% 0 repeat-y; font:0.8em/1.5 "arial", sans-serif;}
+
+a {color:#00F;}
+a:hover {color:#F00;}
+
+h1, h2, h3, h4, h5, h6, p, address, blockquote, table, dl, fieldset {margin:15px 0;}
+
+h1 {font-size: large;}
+h2 {font-size: medium;}
+h3 {font-size: small;}
+
+
+/* ----------------------------------------------------------------------------------------------------------
+2) HTML styles
+---------------------------------------------------------------------------------------------------------- */
+
+
+/* ----------------------------------------------------------------------------------------------------------
+3) Layout
+---------------------------------------------------------------------------------------------------------- */
+
+#main {width:940px; margin:0 auto; overflow:hidden;}
+
+	#header {width:940px; height:95px; overflow:hidden; background:url("../design/header.gif") 0 0 no-repeat;}
+
+        #logo {position:relative; float: left; width:940px; height:94px; overflow:hidden; margin:0px 0px 0px 0px; padding:0; font-size:300%;}
+        #logo span {display:block; position:absolute; top:0; left:0; z-index:1; width:100%; height:100%; margin:0; padding:0; cursor:pointer;}
+        #company_name {position:relative; float: right; width:940px; height:94px; overflow:hidden; margin:25px 0px 0px 0px; padding:0; font-size:160%; text-align: center;}
+    #tray {padding:10px 0 15px 10px; background:url("../design/tray.gif") 0 100% no-repeat;}
+    
+        #tray ul {margin:0; list-style:none;}
+        #tray ul li {display:inline;}
+        #tray ul li a {display:block; float:left; padding:0 15px 0 10px; background:url("../design/tray-separator.gif") 100% 50% no-repeat; text-decoration:underline;}
+        #tray ul li a:hover {text-decoration:none;}
+        #tray ul li#tray-active a {font-weight:bold; text-decoration:none;}
+
+    #cols {position:relative; margin:10px 0; background:url("../design/cols.gif") 0 0 repeat-y;}
+    
+        #content-width {float:left; width:940px; overflow:hidden;}
+            #content-width-in {padding:0 10px;}
+        
+    	#content {float:right; width:740px; overflow:hidden;}
+        
+            #content-main {float:left; width:740px;}
+            #content-main-in {padding:0 10px;}
+    	
+            #content-left {float:left; width:470px;}
+            #content-left-in {padding:0 10px;}
+            
+            #content-right {float:right; width:260px;}
+
+    	#aside {float:left; width:190px; overflow:hidden;}
+        #aside-top {width:190px; height:5px; background:url("../design/aside-top.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+        #aside-bottom {position:absolute; bottom:0; left:0; width:190px; height:5px; background:url("../design/aside-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+        
+            .nav {margin:0; list-style:none;}
+            .nav li {display:inline;}
+            .nav li a {display:block; padding:7px 10px 7px 30px; background:url("../design/nav-link.gif") 15px 13px no-repeat;}
+            .nav li#nav-active a {background:url("../design/nav-active.gif") 15px 13px no-repeat; text-decoration:none; font-weight:bold;}
+            .nav #nav-active ul li a {padding-left:45px; background:url("../design/nav-sub.gif") 30px 10px no-repeat;}
+            .nav a:hover {text-decoration:none;}
+
+            #search {position:relative; height:22px; margin:0 -15px; padding:15px; text-align:center;}
+            #search-input {position:absolute; top:15px; left:15px; width:100px; height:22px; border:0;}
+            #search-submit {position:absolute; top:15px; left:115px; width:60px; height:22px; border:0;}
+            #search-input, #search-submit {font-size:100%; font-family:"arial",sans-serif;}
+            
+            #login {position:relative; height:150px; margin:0 -15px; padding:15px; text-align:center;}
+            #logout {position:relative; height:50px; margin:0 -15px; padding:15px; text-align:center;}
+            #login-label, #password-label {width: 4em; float: left; text-align: right; margin-right: 0.5em; display: block}
+            #login-input, #password-input {width:100px; height:22px; border:0;}
+            #login-submit, #logout-submit {width:100px; height:22px; border:0;}
+            #login-label, #password-label, #login-input, #password-input, #login-submit, #logout-submit {font-size:100%; font-family:"arial",sans-serif;}
+
+            .common-label {width: 14em; float: left; text-align: right; margin-right: 0.5em; display: block;}
+            .common-input {color: #000000; background: #ffffff; height:22px; border: 1px solid #e5e5e5;}
+            .common-textarea {color: #000000; background: #ffffff; height:150px; border: 1px solid #e5e5e5;}
+            .common-submit input {margin-left: 15em;} 
+            
+            fieldset {border: 1px solid #e5e5e5; width: 50em; padding: 15px}
+            legend {color: #000000; background: #d0d0d0; border: 1px solid #d0d0d0; padding: 2px 6px;} 
+            .hidden-legend {display: none;}
+            
+            #aside h4 {font-size:100%;}
+            #aside h4.margin {margin:15px 0 5px 0;}
+
+	#footer {clear:both; padding:20px 0; background:url("../design/footer.gif") 0 0 repeat-x; font-size:85%;}
+	#footer p {margin:0;}
+	#footer a:hover {text-decoration:none;}
+
+/* ----------------------------------------------------------------------------------------------------------
+4-1) Page: Homepage
+---------------------------------------------------------------------------------------------------------- */
+
+#topstory-top {width:470px; height:5px; background:url("../design/topstory-top.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+#topstory-bottom {width:470px; height:5px; background:url("../design/topstory-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+#topstory {padding:5px 10px 10px 10px;}
+
+    #topstory-img {float:left; width:180px;}
+    #topstory-img img {display:block;}
+    #topstory-desc {float:right; width:255px;}
+    
+        #topstory-desc h2 {margin:0; font-size:140%; font-weight:normal;}
+        #topstory-desc .info {margin:0; font-size:85%;}
+
+#topstory-list {padding:10px 0 5px 10px; overflow:hidden}
+#topstory-list img {display:block; float:left; padding-right:10px;}
+#topstory-list img.last {margin-right:0;}
+
+.article {margin-bottom:10px; padding-bottom:10px; background:url("../design/dot.gif") 0 100% repeat-x;}
+.article .article-desc {float:left; width:435px;}
+
+/* .article .article-desc h3, .article-detail .article-desc h3 {margin:0; font-size:140%; font-weight:normal;} */
+/* h3.article-desc {margin:0; font-size:140%; font-weight:normal;} */
+h1.article-title-list {margin:0; font-weight:normal;}
+h1.article-title {margin:0; padding:10px 10px 0px 0px; font-weight:normal;}
+h2.article-title {margin:0; padding:10px 10px 10px 0px; font-weight:normal;}
+.article .article-desc .info {margin:0; font-size:85%;}
+.article-detail .article-desc .info {margin:0; padding:0px 10px 10px 0px; font-size:85%;}
+.article .article-desc p {margin-top:8px; text-align:justify; margin-bottom:0 !important;}
+/* .article-detail .article-desc p {margin-top:8px; text-align:justify;} */
+.article-desc ul,.article-desc ol {padding-left:10px; margin-left:10px;}
+.article-desc li {padding-left:10px; margin-left:10px;}
+
+    
+.box-01-top {width:260px; height:5px; background:url("../design/box-01-top.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+.box-01-top-b {padding:5px 10px 15px 10px; background:url("../design/box-01-top-b.gif") 0 100% no-repeat;}
+.box-01-top-b .f-left {text-transform:uppercase;}
+.box-01-top-b .f-right {padding-top:2px; font-size:85%;}
+.box-01-bottom {width:260px; height:11px; margin-bottom:10px; background:url("../design/box-01-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+.box-01 {padding:5px; background:url("../design/box-01.gif") 0 0 repeat-y;}
+.box-01 .bg {margin:10px 0; padding:10px 0;}
+
+    .news {margin:0;}
+    .news dt {display:block; float:left; width:50px; font-weight:bold; text-align:center; line-height:1.2;}
+    .news dt span {font-size:140%;}
+    .news dd {display:block; float:left; width:190px; font-size:85%; line-height:1.6;}
+
+.box-02-top {width:260px; height:5px; background:url("../design/box-02-top.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+.box-02-top-b {padding:5px 10px 15px 10px; background:url("../design/box-02-top-b.gif") 0 100% no-repeat; text-transform:uppercase;}
+.box-02-bottom {width:260px; height:11px; margin-bottom:10px; background:url("../design/box-02-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+.box-02 {padding:5px 15px; background:url("../design/box-02.gif") 0 0 repeat-y;}
+
+    .mostreaded {margin:0; list-style:none;}
+    .mostreaded span {font-size:85%;}
+
+/* ----------------------------------------------------------------------------------------------------------
+5) Others
+---------------------------------------------------------------------------------------------------------- */
+
+#aside .padding {padding:10px 15px;}
+
+.more {padding-right:15px; background:url("../design/arrow.gif") 100% 50% no-repeat;}
+
+.rss {padding-left:22px; background:url("../design/rss.gif") 0 50% no-repeat;}
+
+
+table.list
+{
+border:1px solid #c3c3c3;
+border-collapse:collapse;
+}
+
+table.list th
+{
+background-color:#f2f3f4;
+border:1px solid #c3c3c3;
+padding:3px;
+vertical-align:top;
+text-align:left;
+}
+
+table.list td 
+{
+background-color:#ffffff;
+border:1px solid #c3c3c3;
+padding:3px;
+vertical-align:top;
+text-align:left;
+}
+
+/* https://stackoverflow.com/questions/702181/replace-html-table-with-divs */
+
+.container
+{
+    display: table;
+}
+.row  
+{
+    display: table-row;
+}
+.left
+{
+    display: table-cell;
+    padding-right: 20px;
+}
+.right
+{
+    display: table-cell;
+    padding-left: 20px;
+}
+.middle 
+{
+    display: table-cell;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.left p, .right p, .middle p 
+{
+    margin: 1px 1px;
+}
+
+#advert {padding:10px 10px 10px 15px; border-radius: 5px;}
+#advert-desc {float:left; width:100%}
+#advert-desc h2 {margin:0; font-size:140%; font-weight:normal;}
+#advert-desc .info {margin:0; font-size:85%;}
