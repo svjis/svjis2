@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block sitecontent %}
+
+    <!-- Columns -->
+    <div id="cols" class="box">
+
+        <!-- Content -->
+        <div id="content">
+            {% block content %}
+
+            {% endblock %}
+        </div> <!-- /content -->
+
+        {% include 'aside-menu.html' %}
+
+    </div> <!-- /cols -->
+
+{% endblock %}

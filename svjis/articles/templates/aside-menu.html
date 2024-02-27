@@ -4,22 +4,15 @@
 
     <!-- Categories -->
     <div class="padding">
-        <h4 class="nom">Články:</h4>
+        <h4 class="nom">{{ aside_menu_name }}</h4>
     </div> <!-- /padding -->
 
     <ul class="nav">
-        <li  id="nav-active"><a href="Dispatcher?page=articleList">Všechny články</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=4">Dokumenty</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=12">Dotazy a návody</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=6">English texts</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=15">Nápady a připomínky</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=5">Reklamace</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=3">Smlouvy</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=16">Údržba, opravy, technické otázky</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=7">Úklid</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=1">Vývěska</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=2">Zápisy</a></li>
-        <li ><a href="Dispatcher?page=articleList&section=14">Zpravodaj</a></li>
+        {% if aside_menu_items %}
+        {% for obj in aside_menu_items %}
+        <li {% if obj.active %}id="nav-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
+        {% endfor %}
+        {% endif %}
     </ul>
 
     <div class="padding">

@@ -3,36 +3,13 @@
     <ul class="box">
         <!-- <li id="tray-active"> -->
         <li>
-            <a href="Dispatcher?page=articleList">Články</a>
+            <a href="/">Články</a>
         </li>
-        <!-- <li id="tray-active"> -->
+        {% if request.user.is_authenticated %}
         <li>
-            <a href="Dispatcher?page=contact">Kontakt</a>
+            <a href="{% url 'redaction_view' %}">Redakce</a>
         </li>
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="Dispatcher?page=myBuildingUnitList">Jednotky</a>
-        </li>
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="Dispatcher?page=psUserDetail">Osobní nastavení</a>
-        </li>
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="Dispatcher?page=redactionArticleList">Redakce</a>
-        </li>
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="Dispatcher?page=faultReportingList">Hlášení závad</a>
-        </li>
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="Dispatcher?page=advertList">Inzeráty</a>
-        </li>
-        <!-- <li id="tray-active"> -->
-        <li>
-            <a href="Dispatcher?page=companyDetail">Administrace</a>
-        </li>
+        {% endif %}
     </ul>
 <hr class="noscreen" />
 </div> <!-- /tray -->

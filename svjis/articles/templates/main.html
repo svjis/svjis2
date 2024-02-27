@@ -1,52 +1,40 @@
-{% extends "base.html" %}
+{% extends "base-with-aside-menu.html" %}
 
-{% block sitecontent %}
+{% block content %}
 
-    {% include 'tray-menu.html' %}    
+    <div id="content-left">
+        <div id="content-left-in">
 
-    <!-- Columns -->
-    <div id="cols" class="box">
+            <!-- Recent Articles -->
+            <h1 class="article-page-title">Všechny články</h1>
 
-        <!-- Content -->
-        <div id="content">
-            <div id="content-left">
-                <div id="content-left-in">
+            <!-- Article -->
+            <div class="article box">
+                <div class="article-desc">
+                    <h1 class="article-title-list"><a href="Dispatcher?page=articleDetail&id=792">Neakceptovatelné chování majitele psa v Rižské 4</a></h1>
+                    <p class="info">
+                        <a href="Dispatcher?page=articleList&section=1">Vývěska</a>:
+                        <strong>26.02.2024</strong>,
+                        Autor: <strong>Antal&nbsp;Szentesi</strong>
+                        , Komentáře: <strong>2</strong></p>
+                    <p>Vchod A1 byl znečištěn pravděpodobně zvratky (nebo výkaly) zvířete. Pravděpodobně se jedná o domácího mazlíčka některého vlastníka nebo nájemnmíka - asi z 3. patra. </p>
+                </div>
+            </div> <!-- /article -->
 
-                    <!-- Recent Articles -->
-                    <h1 class="article-page-title">Všechny články</h1>
-                        
-                    <!-- Article -->
-                    <div class="article box">
-                        <div class="article-desc">
-                            <h1 class="article-title-list"><a href="Dispatcher?page=articleDetail&id=792">Neakceptovatelné chování majitele psa v Rižské 4</a></h1>
-                            <p class="info">
-                                <a href="Dispatcher?page=articleList&section=1">Vývěska</a>:
-                                <strong>26.02.2024</strong>,
-                                Autor: <strong>Antal&nbsp;Szentesi</strong>
-                                , Komentáře: <strong>2</strong></p> 
-                            <p>Vchod A1 byl znečištěn pravděpodobně zvratky (nebo výkaly) zvířete. Pravděpodobně se jedná o domácího mazlíčka některého vlastníka nebo nájemnmíka - asi z 3. patra. </p>
-                        </div>
-                    </div> <!-- /article -->
+            {% include 'paginator.html' %}
 
-                    {% include 'paginator.html' %}    
+        </div> <!-- /content-left-in -->
+    </div> <!-- /content-left -->
 
-                </div> <!-- /content-left-in -->
-            </div> <!-- /content-left -->
+    <hr class="noscreen" />
 
-            <hr class="noscreen" />
+    <div id="content-right">
 
-            <div id="content-right">
+        {% include 'box-01.html' %}
+        {% include 'box-02.html' %}
 
-                {% include 'box-01.html' %}
-                {% include 'box-02.html' %}
+    </div> <!-- /content-right -->
 
-            </div> <!-- /content-right -->
-
-        <hr class="noscreen" />
-        </div> <!-- /content -->
-        
-        {% include 'aside-menu.html' %}
-        
-    </div> <!-- /cols -->
+    <hr class="noscreen" />
 
 {% endblock %}

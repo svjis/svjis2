@@ -3,8 +3,14 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def main_view(request):
-    # write your view processing logics here
-    return render(request, "main.html", {})
+    return render(request, "main.html", {
+        'aside_menu_name': 'Články',
+        'aside_menu_items': [
+            {'description': 'Všechny články', 'link': '/', 'active': True},
+            {'description': 'Dokumenty', 'link': '/', 'active': False},
+            {'description': 'Smlouvy', 'link': '/', 'active': False},
+        ],
+    })
 
 
 def user_login(request):
@@ -20,3 +26,12 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(main_view)
+
+
+def redaction_view(request):
+    return render(request, "redaction.html", {
+        'aside_menu_name': 'Redakce',
+        'aside_menu_items': [
+            {'description': 'Články', 'link': '/', 'active': True},
+        ],
+    })
