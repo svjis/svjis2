@@ -1,6 +1,6 @@
 # SVJIS PY
 
-Experimental version of SVJIS on Django
+Experimental version of SVJIS in Django
 
 ## Installation
 
