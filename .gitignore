@@ -1,0 +1,15 @@
+# General
+venv/
+*~
+
+# Django
+__pycache__/
+*.log
+*.pot
+*.pyc
+
+# Project
+db.sqlite3
+media/
+local_settings.py
+*.mo
