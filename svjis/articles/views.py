@@ -65,7 +65,7 @@ def redaction_menu_save_view(request):
         if form.is_valid():
             pk = int(request.POST['pk'])
             description = request.POST.get('description', '')
-            hide = request.POST.get('hide', False)
+            hide = request.POST.get('hide', False) == 'on'
             if pk == 0:
                  print("Creating")
                  models.ArticleMenu.objects.create(description=description, hide=hide)
