@@ -1,5 +1,5 @@
 from . import utils, models, forms
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -48,10 +48,16 @@ def redaction_menu_view(request):
 
 
 def redaction_menu_edit_view(request, pk):
+    if pk > 0:
+        am = get_object_or_404(models.ArticleMenu, pk=pk)
+        form = forms.ArticleMenuForm(instance=am)
+    else:
+        form = forms.ArticleMenuForm
+
     ctx = {
         'aside_menu_name': 'Redakce',
     }
-    ctx['form'] = forms.ArticleMenu
+    ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_menu_view)
     ctx['tray_menu_items'] = utils.get_tray_menu(redaction_menu_view)
@@ -61,12 +67,14 @@ def redaction_menu_edit_view(request, pk):
 
 def redaction_menu_save_view(request):
     if request.method == "POST":
-        form = forms.ArticleMenu(request.POST)
+        form = forms.ArticleMenuForm(request.POST)
         if form.is_valid():
             pk = int(request.POST['pk'])
             description = request.POST.get('description', '')
             hide = request.POST.get('hide', False) == 'on'
+            parent = request.POST['parent']
             if pk == 0:
-                 print("Creating")
-                 models.ArticleMenu.objects.create(description=description, hide=hide)
+                models.ArticleMenu.objects.create(description=description, hide=hide, parent=parent)
+            else:
+                models.ArticleMenu.objects.filter(id=pk).update(description=description, hide=hide, parent=parent)
     return redirect(redaction_menu_view)

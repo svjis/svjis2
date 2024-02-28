@@ -11,6 +11,7 @@
             <tr>
                 <th class="list" scope="col">Název položky menu</th>
                 <th class="list" scope="col">Hide</th>
+                <th class="list" scope="col">Parent</th>
                 <th class="list" scope="col">&nbsp;</th>
                 <th class="list" scope="col">&nbsp;</th>
             </tr>
@@ -20,6 +21,7 @@
             <tr>
             <td class="list" style="">{{ obj.description }}</td>
             <td class="list" style="">{{ obj.hide }}</td>
+            <td class="list" style="">{{ obj.parent.description }}</td>
             <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="Editovat"></a></td>
             </tr>
             {% endfor %}
