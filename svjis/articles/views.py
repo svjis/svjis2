@@ -12,7 +12,7 @@ def main_view(request):
     ctx['tray_menu_items'] = utils.get_tray_menu(main_view)
     return render(request, "main.html", ctx)
 
-
+# Login
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -28,6 +28,7 @@ def user_logout(request):
     return redirect(main_view)
 
 
+# Redaction
 def redaction_view(request):
     ctx = {
         'aside_menu_name': 'Redakce',
@@ -37,6 +38,7 @@ def redaction_view(request):
     return render(request, "redaction.html", ctx)
 
 
+# Redaction - Article Menu
 def redaction_menu_view(request):
     ctx = {
         'aside_menu_name': 'Redakce',
@@ -48,7 +50,7 @@ def redaction_menu_view(request):
 
 
 def redaction_menu_edit_view(request, pk):
-    if pk > 0:
+    if pk != 0:
         am = get_object_or_404(models.ArticleMenu, pk=pk)
         form = forms.ArticleMenuForm(instance=am)
     else:
