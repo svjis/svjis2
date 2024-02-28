@@ -7,12 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 def main_view(request):
     ctx = {
         'aside_menu_name': 'Články',
-        'aside_menu_items': [
-            {'description': 'Všechny články', 'link': '/', 'active': True},
-            {'description': 'Dokumenty', 'link': '/', 'active': False},
-            {'description': 'Smlouvy', 'link': '/', 'active': False},
-        ],
     }
+    ctx['aside_menu_items'] = utils.get_aside_menu(main_view)
     ctx['tray_menu_items'] = utils.get_tray_menu(main_view)
     return render(request, "main.html", ctx)
 
@@ -35,9 +31,7 @@ def user_logout(request):
 def redaction_view(request):
     ctx = {
         'aside_menu_name': 'Redakce',
-        'aside_menu_items': [
-            {'description': 'Články', 'link': '/', 'active': True},
-        ],
     }
+    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_view)
     ctx['tray_menu_items'] = utils.get_tray_menu(redaction_view)
     return render(request, "redaction.html", ctx)
