@@ -14,11 +14,12 @@ def get_aside_menu(view):
     result = []
 
     if path == '/':
-        result.append({'description': 'Všechny články', 'link': '/', 'active': True})
-        result.append({'description': 'Dokumenty', 'link': '/', 'active': False})
-        result.append({'description': 'Smlouvy', 'link': '/', 'active': False})
+        result.append({'description': 'Všechny články', 'link': reverse(views.main_view), 'active': True})
+        result.append({'description': 'Dokumenty', 'link': reverse(views.main_view), 'active': False})
+        result.append({'description': 'Smlouvy', 'link': reverse(views.main_view), 'active': False})
 
     if path.startswith('/redaction'):
-        result.append({'description': 'Články', 'link': '/', 'active': True})
+        result.append({'description': 'Články', 'link': reverse(views.redaction_view), 'active': True if path == reverse(views.redaction_view) else False})
+        result.append({'description': 'Menu', 'link': reverse(views.redaction_menu_view), 'active': True if path.startswith('/redaction_menu') else False})
 
     return result

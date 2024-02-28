@@ -42,3 +42,17 @@ class ArticleAsset(models.Model):
 
     class Meta:
         ordering = ['-id']
+
+
+class ArticleMenu(models.Model):
+    id = models.AutoField(primary_key=True)
+    description = models.CharField(_("Description"), max_length=100)
+    hide = models.BooleanField(_("Hide"), default=False)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f"ArticleMenu: {self.description}"
+
+    @property
+    def assets(self):
+        return self.asset_set.all()
