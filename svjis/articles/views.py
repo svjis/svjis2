@@ -73,8 +73,18 @@ def redaction_menu_save_view(request):
             description = request.POST.get('description', '')
             hide = request.POST.get('hide', False) == 'on'
             parent = request.POST['parent']
+            if parent == '':
+                parent = None
+            else:
+                parent = get_object_or_404(models.ArticleMenu, pk=int(parent))
             if pk == 0:
                 models.ArticleMenu.objects.create(description=description, hide=hide, parent=parent)
             else:
                 models.ArticleMenu.objects.filter(id=pk).update(description=description, hide=hide, parent=parent)
+    return redirect(redaction_menu_view)
+
+
+def redaction_menu_delete_view(request, pk):
+    obj = get_object_or_404(models.ArticleMenu, pk=pk)
+    obj.delete()
     return redirect(redaction_menu_view)

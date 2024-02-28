@@ -23,6 +23,7 @@
             <td class="list" style="">{{ obj.hide }}</td>
             <td class="list" style="">{{ obj.parent.description }}</td>
             <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="Editovat"></a></td>
+            <td class="list"><a href="{% url 'redaction_menu_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="Smazat"></a></td>
             </tr>
             {% endfor %}
             {% endif %}

@@ -1,4 +1,4 @@
-from . import views
+from . import views, models
 from django.urls import reverse
 
 
@@ -9,14 +9,17 @@ def get_tray_menu(view):
     result.append({'description': 'Redakce', 'link': reverse(views.redaction_view), 'active': True if path.startswith('/redaction') else False})
     return  result
 
+
 def get_aside_menu(view):
     path = reverse(view)
     result = []
 
     if path == '/':
-        result.append({'description': 'Všechny články', 'link': reverse(views.main_view), 'active': True})
-        result.append({'description': 'Dokumenty', 'link': reverse(views.main_view), 'active': False})
-        result.append({'description': 'Smlouvy', 'link': reverse(views.main_view), 'active': False})
+        result.append({'description': 'Všechy články', 'link': reverse(views.main_view), 'active': True})
+        menu_items = models.ArticleMenu.objects.filter(hide=False).all()
+        for obj in menu_items:
+            result.append({'description': obj.description, 'link': reverse(views.main_view), 'active': False})
+
 
     if path.startswith('/redaction'):
         result.append({'description': 'Články', 'link': reverse(views.redaction_view), 'active': True if path == reverse(views.redaction_view) else False})
