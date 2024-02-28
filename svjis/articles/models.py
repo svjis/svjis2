@@ -11,6 +11,7 @@ class Article(models.Model):
     published = models.BooleanField(_("Published"), default=False)
     perex = models.TextField(_("Perex (markdown)"))
     body = models.TextField(_("Body (markdown)"))
+    menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
 
     def __str__(self):
         return f"Article: {self.header}"

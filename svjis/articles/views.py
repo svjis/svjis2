@@ -28,16 +28,6 @@ def user_logout(request):
     return redirect(main_view)
 
 
-# Redaction
-def redaction_view(request):
-    ctx = {
-        'aside_menu_name': 'Redakce',
-    }
-    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_view)
-    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_view)
-    return render(request, "redaction.html", ctx)
-
-
 # Redaction - Article Menu
 def redaction_menu_view(request):
     ctx = {
@@ -63,7 +53,6 @@ def redaction_menu_edit_view(request, pk):
     ctx['pk'] = pk
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_menu_view)
     ctx['tray_menu_items'] = utils.get_tray_menu(redaction_menu_view)
-    ctx['object_list'] = models.ArticleMenu.objects.all()
     return render(request, "redaction_menu_edit.html", ctx)
 
 
@@ -90,3 +79,55 @@ def redaction_menu_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleMenu, pk=pk)
     obj.delete()
     return redirect(redaction_menu_view)
+
+
+# Redaction - Article
+def redaction_article_view(request):
+    ctx = {
+        'aside_menu_name': 'Redakce',
+    }
+    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view)
+    ctx['object_list'] = models.Article.objects.all()
+    return render(request, "redaction_article.html", ctx)
+
+
+def redaction_article_edit_view(request, pk):
+    if pk != 0:
+        a = get_object_or_404(models.Article, pk=pk)
+        form = forms.ArticleForm(instance=a)
+    else:
+        form = forms.ArticleForm
+
+    ctx = {
+        'aside_menu_name': 'Redakce',
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view)
+    return render(request, "redaction_article_edit.html", ctx)
+
+
+def redaction_article_save_view(request):
+    if request.method == "POST":
+        form = forms.ArticleForm(request.POST)
+        if form.is_valid():
+            pk = int(request.POST['pk'])
+            header = request.POST.get('header', '')
+            perex = request.POST.get('perex', '')
+            body = request.POST.get('body', '')
+            published = request.POST.get('published', False) == 'on'
+            author = request.user
+            menu = get_object_or_404(models.ArticleMenu, pk=int(request.POST['menu']))
+            if pk == 0:
+                models.Article.objects.create(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
+            else:
+                models.Article.objects.filter(id=pk).update(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
+    return redirect(redaction_article_view)
+
+
+def redaction_article_delete_view(request, pk):
+    obj = get_object_or_404(models.Article, pk=pk)
+    obj.delete()
+    return redirect(redaction_article_view)

@@ -11,3 +11,9 @@ class ArticleMenuForm(forms.ModelForm):
     class Meta:
         model = models.ArticleMenu
         fields = ("description", "hide", "parent")
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = models.Article
+        fields = ("header", "perex", "body", "menu", "published")
