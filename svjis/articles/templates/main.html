@@ -1,5 +1,8 @@
 {% extends "base-with-aside-menu.html" %}
 
+{% load markdown_extras %}
+{% load i18n %}
+
 {% block cnt %}
 
     <div id="content-left">
@@ -17,9 +20,9 @@
                     <p class="info">
                         <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
                         <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
-                        Autor: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
-                        , Komentáře: <strong>2</strong></p>
-                    <p>{{ obj.perex }}</p>
+                        {% trans 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
+                        , {% trans 'Comments' %}: <strong>2</strong></p>
+                    <p>{{ obj.perex | markdown | safe }}</p>
                 </div>
             </div> <!-- /article -->
             {% endfor %}

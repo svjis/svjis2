@@ -1,16 +1,18 @@
 {% extends "base-with-aside-menu-content.html" %}
 
+{% load i18n %}
+
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">Article</h1>
-[<a href="{% url 'redaction_article_edit' pk=0 %}">Přidat nový článek</a>]
+<h1 class="page-title" id="tbl-desc">{% trans 'Article' %}</h1>
+[<a href="{% url 'redaction_article_edit' pk=0 %}">{% trans 'Create new article' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" scope="col">Článek</th>
-        <th class="list" scope="col">Datum</th>
-        <th class="list" scope="col">Autor</th>
-        <th class="list" scope="col">Publikován</th>
+        <th class="list" scope="col">{% trans 'Article' %}</th>
+        <th class="list" scope="col">{% trans 'Date' %}</th>
+        <th class="list" scope="col">{% trans 'Author' %}</th>
+        <th class="list" scope="col">{% trans 'Published' %}</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
     </tr>
@@ -22,8 +24,8 @@
     <td class="list" style="">{{ obj.created_date|date:"d.m.Y" }}</td>
     <td class="list" style="">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
     <td class="list" style="">{{ obj.published }}</td>
-    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="Editovat"></a></td>
-    <td class="list"><a href="{% url 'redaction_article_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="Smazat"></a></td>
+    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+    <td class="list"><a href="{% url 'redaction_article_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}

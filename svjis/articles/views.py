@@ -1,6 +1,7 @@
 from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import gettext_lazy as _
 
 
 
@@ -10,30 +11,30 @@ def main_view(request):
 
 def main_filtered_view(request, menu):
     article_list = models.Article.objects.filter(published=True)
-    header = "Všechny články"
+    header = _("All articles")
     if menu is not None:
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
         header = article_menu.description
     ctx = {
-        'aside_menu_name': 'Články',
+        'aside_menu_name': _("Articles"),
     }
     ctx['header'] = header
     ctx['article_list'] = article_list
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(main_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(main_view, request.user)
     return render(request, "main.html", ctx)
 
 
 def article_view(request, pk):
     article = get_object_or_404(models.Article, pk=pk)
     ctx = {
-        'aside_menu_name': 'Články',
+        'aside_menu_name': _("Articles"),
     }
     ctx['header'] = article.menu.description
     ctx['obj'] = article
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(main_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(main_view, request.user)
     return render(request, "article.html", ctx)
 
 
@@ -56,10 +57,10 @@ def user_logout(request):
 # Redaction - Article Menu
 def redaction_menu_view(request):
     ctx = {
-        'aside_menu_name': 'Redakce',
+        'aside_menu_name': _("Redaction"),
     }
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_menu_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_menu_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_menu_view, request.user)
     ctx['object_list'] = models.ArticleMenu.objects.all()
     return render(request, "redaction_menu.html", ctx)
 
@@ -72,12 +73,12 @@ def redaction_menu_edit_view(request, pk):
         form = forms.ArticleMenuForm
 
     ctx = {
-        'aside_menu_name': 'Redakce',
+        'aside_menu_name': _("Redaction"),
     }
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_menu_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_menu_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_menu_view, request.user)
     return render(request, "redaction_menu_edit.html", ctx)
 
 
@@ -109,10 +110,10 @@ def redaction_menu_delete_view(request, pk):
 # Redaction - Article
 def redaction_article_view(request):
     ctx = {
-        'aside_menu_name': 'Redakce',
+        'aside_menu_name': _("Redaction"),
     }
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view, request.user)
     ctx['object_list'] = models.Article.objects.all()
     return render(request, "redaction_article.html", ctx)
 
@@ -125,12 +126,12 @@ def redaction_article_edit_view(request, pk):
         form = forms.ArticleForm
 
     ctx = {
-        'aside_menu_name': 'Redakce',
+        'aside_menu_name': _("Redaction"),
     }
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view, request.user)
     return render(request, "redaction_article_edit.html", ctx)
 
 

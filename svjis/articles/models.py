@@ -27,6 +27,7 @@ class Article(models.Model):
 def article_directory_path(instance, filename):
     return 'assets/{0}/{1}'.format(instance.article.id, filename)
 
+
 class ArticleAsset(models.Model):
     description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=article_directory_path)

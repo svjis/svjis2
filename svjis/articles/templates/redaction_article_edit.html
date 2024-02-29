@@ -1,18 +1,20 @@
 {% extends "base-with-aside-menu-content.html" %}
 
+{% load i18n %}
+
 {% block content %}
 
-<h1 class="page-title">Article</h1>
+<h1 class="page-title">{% trans 'Article' %}</h1>
 <form action="{% url 'redaction_article_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
-        <legend>Article</legend>
+        <legend>{% trans 'Article' %}</legend>
         {{ form.as_p }}
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="Uložit" />
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
     </p>
 </form>
 
