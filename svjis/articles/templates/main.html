@@ -6,7 +6,7 @@
         <div id="content-left-in">
 
             <!-- Recent Articles -->
-            <h1 class="article-page-title">Všechny články</h1>
+            <h1 class="article-page-title">{{ header }}</h1>
 
             {% if article_list %}
             {% for obj in article_list %}
@@ -15,7 +15,7 @@
                 <div class="article-desc">
                     <h1 class="article-title-list"><a href="{% url 'article' pk=obj.id %}">{{ obj.header }}</a></h1>
                     <p class="info">
-                        <a href="Dispatcher?page=articleList&section=1">{{ obj.menu.description }}</a>:
+                        <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
                         <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
                         Autor: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
                         , Komentáře: <strong>2</strong></p>

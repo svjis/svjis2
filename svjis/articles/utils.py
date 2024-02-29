@@ -10,15 +10,16 @@ def get_tray_menu(view):
     return  result
 
 
-def get_aside_menu(view):
+def get_aside_menu(view, ctx):
     path = reverse(view)
     result = []
 
     if path == '/':
-        result.append({'description': 'Všechy články', 'link': reverse(views.main_view), 'active': True})
+        header = ctx.get('header', None)
+        result.append({'description': 'Všechny články', 'link': reverse(views.main_view), 'active': True if header == 'Všechny články' else False})
         menu_items = models.ArticleMenu.objects.filter(hide=False).all()
         for obj in menu_items:
-            result.append({'description': obj.description, 'link': reverse(views.main_view), 'active': False})
+            result.append({'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': True if header == obj.description else False})
 
 
     if path.startswith('/redaction'):
