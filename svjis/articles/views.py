@@ -5,12 +5,26 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def main_view(request):
+    article_list = models.Article.objects.filter(published=True).all()
     ctx = {
         'aside_menu_name': 'Články',
     }
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view)
     ctx['tray_menu_items'] = utils.get_tray_menu(main_view)
+    ctx['article_list'] = article_list
     return render(request, "main.html", ctx)
+
+
+def article_view(request, pk):
+    article = get_object_or_404(models.Article, pk=pk)
+    ctx = {
+        'aside_menu_name': 'Články',
+    }
+    ctx['obj'] = article
+    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view)
+    return render(request, "article.html", ctx)
+
 
 # Login
 def user_login(request):

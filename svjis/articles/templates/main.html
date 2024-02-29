@@ -8,18 +8,22 @@
             <!-- Recent Articles -->
             <h1 class="article-page-title">Všechny články</h1>
 
+            {% if article_list %}
+            {% for obj in article_list %}
             <!-- Article -->
             <div class="article box">
                 <div class="article-desc">
-                    <h1 class="article-title-list"><a href="Dispatcher?page=articleDetail&id=792">Neakceptovatelné chování majitele psa v Rižské 4</a></h1>
+                    <h1 class="article-title-list"><a href="{% url 'article' pk=obj.id %}">{{ obj.header }}</a></h1>
                     <p class="info">
-                        <a href="Dispatcher?page=articleList&section=1">Vývěska</a>:
-                        <strong>26.02.2024</strong>,
-                        Autor: <strong>Antal&nbsp;Szentesi</strong>
+                        <a href="Dispatcher?page=articleList&section=1">{{ obj.menu.description }}</a>:
+                        <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
+                        Autor: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
                         , Komentáře: <strong>2</strong></p>
-                    <p>Vchod A1 byl znečištěn pravděpodobně zvratky (nebo výkaly) zvířete. Pravděpodobně se jedná o domácího mazlíčka některého vlastníka nebo nájemnmíka - asi z 3. patra. </p>
+                    <p>{{ obj.perex }}</p>
                 </div>
             </div> <!-- /article -->
+            {% endfor %}
+            {% endif %}
 
             {% include 'paginator.html' %}
 

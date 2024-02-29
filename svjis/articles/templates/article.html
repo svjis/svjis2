@@ -1,0 +1,23 @@
+{% extends "base-with-aside-menu.html" %}
+
+{% block content %}
+
+<div id="content-main">
+    <div id="content-main-in">
+
+        <div class="article-detail">
+            <div class="article-desc">
+                <h1 class="article-title" id="tbl-desc">{{ obj.header }}</h1>
+                <p class="info">
+                    <a href="Dispatcher?page=articleList&section=1">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, Autor: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>, Komentáře: <strong>2</strong>
+                </p>
+                <p>{{ obj.perex }}</p>
+                <p>{{ obj.body }}</p>
+            </div>
+        </div>
+
+</div> <!-- /content-main-in -->
+</div> <!-- /content-main -->
+<hr class="noscreen" />
+
+{% endblock %}
