@@ -1,25 +1,19 @@
-{% extends "base-with-aside-menu.html" %}
+{% extends "base-with-aside-menu-content.html" %}
 
 {% block content %}
-<div id="content-main">
-    <div id="content-main-in">
 
-        <h1 class="page-title">Article</h1>
-        <form action="{% url 'redaction_article_save' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="pk" value="{{ pk }}">
+<h1 class="page-title">Article</h1>
+<form action="{% url 'redaction_article_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
 
-            <fieldset>
-                <legend>Article</legend>
-                {{ form.as_p }}
-            </fieldset>
-            <p>
-                <input class="my-button" id="submit" type="submit" value="Uložit" />
-            </p>
-        </form>
+    <fieldset>
+        <legend>Article</legend>
+        {{ form.as_p }}
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="Uložit" />
+    </p>
+</form>
 
-
-    </div> <!-- /content-main-in -->
-</div> <!-- /content-main -->
-<hr class="noscreen" />
 {% endblock %}

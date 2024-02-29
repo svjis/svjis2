@@ -21,8 +21,8 @@ def article_view(request, pk):
         'aside_menu_name': 'Články',
     }
     ctx['obj'] = article
-    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view)
-    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view)
+    ctx['aside_menu_items'] = utils.get_aside_menu(main_view)
+    ctx['tray_menu_items'] = utils.get_tray_menu(main_view)
     return render(request, "article.html", ctx)
 
 

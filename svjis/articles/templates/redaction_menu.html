@@ -1,35 +1,30 @@
-{% extends "base-with-aside-menu.html" %}
+{% extends "base-with-aside-menu-content.html" %}
 
 {% block content %}
-<div id="content-main">
-    <div id="content-main-in">
 
-        <h1 class="page-title" id="tbl-desc">Menu</h1>
-        [<a href="{% url 'redaction_menu_edit' pk=0 %}">Přidat novou položku menu</a>]
+<h1 class="page-title" id="tbl-desc">Menu</h1>
+[<a href="{% url 'redaction_menu_edit' pk=0 %}">Přidat novou položku menu</a>]
 
-        <table class="list" aria-describedby="tbl-desc">
-            <tr>
-                <th class="list" scope="col">Název položky menu</th>
-                <th class="list" scope="col">Hide</th>
-                <th class="list" scope="col">Parent</th>
-                <th class="list" scope="col">&nbsp;</th>
-                <th class="list" scope="col">&nbsp;</th>
-            </tr>
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">Název položky menu</th>
+        <th class="list" scope="col">Hide</th>
+        <th class="list" scope="col">Parent</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
 
-            {% if object_list %}
-            {% for obj in object_list %}
-            <tr>
-            <td class="list" style="">{{ obj.description }}</td>
-            <td class="list" style="">{{ obj.hide }}</td>
-            <td class="list" style="">{{ obj.parent.description }}</td>
-            <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="Editovat"></a></td>
-            <td class="list"><a href="{% url 'redaction_menu_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="Smazat"></a></td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-        </table>
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+    <td class="list" style="">{{ obj.description }}</td>
+    <td class="list" style="">{{ obj.hide }}</td>
+    <td class="list" style="">{{ obj.parent.description }}</td>
+    <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="Editovat"></a></td>
+    <td class="list"><a href="{% url 'redaction_menu_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="Smazat"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
 
-    </div> <!-- /content-main-in -->
-</div> <!-- /content-main -->
-<hr class="noscreen" />
 {% endblock %}
