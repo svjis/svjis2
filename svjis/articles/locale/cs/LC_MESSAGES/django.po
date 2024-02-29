@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-29 22:19+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+#: articles/models.py:8
+msgid "Header"
+msgstr "Nadpis"
+
+#: articles/models.py:11 articles/templates/redaction_article.html:15
+msgid "Published"
+msgstr "Publikován"
+
+#: articles/models.py:12
+msgid "Perex (markdown)"
+msgstr "Perex (markdown)"
+
+#: articles/models.py:13
+msgid "Body (markdown)"
+msgstr "Tělo (markdown)"
+
+#: articles/models.py:32 articles/models.py:51
+msgid "Description"
+msgstr "Popis"
+
+#: articles/models.py:33
+msgid "File"
+msgstr "Soubor"
+
+#: articles/models.py:34 articles/templates/redaction_article.html:7
+#: articles/templates/redaction_article.html:12
+#: articles/templates/redaction_article_edit.html:7
+#: articles/templates/redaction_article_edit.html:13
+msgid "Article"
+msgstr "Článek"
+
+#: articles/models.py:52 articles/templates/redaction_menu.html:13
+msgid "Hide"
+msgstr "Skrýt"
+
+#: articles/templates/article.html:12 articles/templates/main.html:23
+#: articles/templates/redaction_article.html:14
+msgid "Author"
+msgstr "Autor"
+
+#: articles/templates/article.html:12 articles/templates/main.html:24
+msgid "Comments"
+msgstr "Komentáře"
+
+#: articles/templates/box-01.html:8
+msgid "News"
+msgstr "Novinky"
+
+#: articles/templates/box-02.html:6
+msgid "Top articles"
+msgstr "Nejčtenější články"
+
+#: articles/templates/login.html:4
+msgid "User"
+msgstr "Uživatel"
+
+#: articles/templates/login.html:8
+msgid "Logout"
+msgstr "Odhlásit"
+
+#: articles/templates/login.html:12
+msgid "Login"
+msgstr "Přihlásit"
+
+#: articles/templates/login.html:16
+msgid "Username"
+msgstr "Uživatel"
+
+#: articles/templates/login.html:17
+msgid "Passwod"
+msgstr "Heslo"
+
+#: articles/templates/login.html:18
+msgid "Sign in"
+msgstr "Přihlásit"
+
+#: articles/templates/login.html:19
+msgid "Lost passwod"
+msgstr "Zapomenuté heslo"
+
+#: articles/templates/redaction_article.html:8
+msgid "Create new article"
+msgstr "Vytvořit nový článek"
+
+#: articles/templates/redaction_article.html:13
+msgid "Date"
+msgstr "Datum"
+
+#: articles/templates/redaction_article.html:27
+#: articles/templates/redaction_menu.html:25
+msgid "Edit"
+msgstr "Editovat"
+
+#: articles/templates/redaction_article.html:28
+#: articles/templates/redaction_menu.html:26
+msgid "Delete"
+msgstr "Smazat"
+
+#: articles/templates/redaction_article_edit.html:17
+#: articles/templates/redaction_menu_edit.html:17
+msgid "Save"
+msgstr "Uložit"
+
+#: articles/templates/redaction_menu.html:7
+#: articles/templates/redaction_menu_edit.html:7 articles/utils.py:29
+msgid "Menu"
+msgstr "Menu"
+
+#: articles/templates/redaction_menu.html:8
+msgid "Create new menu entry"
+msgstr "Vytvořit novou položku menu"
+
+#: articles/templates/redaction_menu.html:12
+msgid "Name"
+msgstr "Název"
+
+#: articles/templates/redaction_menu.html:14
+msgid "Parent"
+msgstr "Rodič"
+
+#: articles/templates/redaction_menu_edit.html:13
+msgid "Menu entry"
+msgstr "Položka menu"
+
+#: articles/templates/search.html:3 articles/templates/search.html:8
+msgid "Search"
+msgstr "Vyhledat"
+
+#: articles/utils.py:9 articles/utils.py:28 articles/views.py:20
+#: articles/views.py:32
+msgid "Articles"
+msgstr "Články"
+
+#: articles/utils.py:11 articles/views.py:60 articles/views.py:76
+#: articles/views.py:113 articles/views.py:129
+msgid "Redaction"
+msgstr "Redakce"
+
+#: articles/utils.py:21 articles/views.py:14
+msgid "All articles"
+msgstr "Všechny články"
