@@ -47,7 +47,6 @@ class ArticleAsset(models.Model):
 
 
 class ArticleMenu(models.Model):
-    id = models.AutoField(primary_key=True)
     description = models.CharField(_("Description"), max_length=100)
     hide = models.BooleanField(_("Hide"), default=False)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)

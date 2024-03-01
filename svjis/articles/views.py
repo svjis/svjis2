@@ -115,7 +115,7 @@ def redaction_menu_save_view(request):
             if pk == 0:
                 models.ArticleMenu.objects.create(description=description, hide=hide, parent=parent)
             else:
-                models.ArticleMenu.objects.filter(id=pk).update(description=description, hide=hide, parent=parent)
+                models.ArticleMenu.objects.filter(pk=pk).update(description=description, hide=hide, parent=parent)
     return redirect(redaction_menu_view)
 
 
@@ -201,3 +201,24 @@ def admin_user_view(request):
     ctx['tray_menu_items'] = utils.get_tray_menu(admin_user_view, request.user)
     ctx['object_list'] = user_list
     return render(request, "admin_user.html", ctx)
+
+
+def admin_user_edit_view(request, pk):
+    if pk != 0:
+        a = get_object_or_404(get_user_model(), pk=pk)
+        form = forms.UserForm(instance=a)
+    else:
+        form = forms.UserForm
+
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = utils.get_aside_menu(admin_user_view, ctx)
+    ctx['tray_menu_items'] = utils.get_tray_menu(admin_user_view, request.user)
+    return render(request, "admin_user_edit.html", ctx)
+
+
+def admin_user_save_view(request):
+    return redirect(admin_user_view)

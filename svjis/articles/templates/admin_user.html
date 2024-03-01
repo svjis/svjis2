@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 class="page-title" id="tbl-desc">{% trans 'User' %}</h1>
-[<a href="{% url 'redaction_article_edit' pk=0 %}">{% trans 'Create new user' %}</a>]
+[<a href="{% url 'admin_user_edit' pk=0 %}">{% trans 'Create new user' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
@@ -25,7 +25,7 @@
     <td class="list" style="">{{ obj.email }}</td>
     <td class="list" style="">{{ obj.is_active }}</td>
     <td class="list" style="">{{ obj.last_login }}</td>
-    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+    <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}

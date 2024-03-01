@@ -19,6 +19,8 @@ urlpatterns = [
     path('redaction_article_save/', views.redaction_article_save_view, name='redaction_article_save'),
     path('redaction_article_delete/<int:pk>/', views.redaction_article_delete_view, name='redaction_article_delete'),
     path('admin_user/', views.admin_user_view, name='admin_user'),
+    path('admin_user_edit/<int:pk>/', views.admin_user_edit_view, name='admin_user_edit'),
+    path('admin_user_save/', views.admin_user_save_view, name='admin_user_save'),
 ]
 
 if settings.DEBUG:
