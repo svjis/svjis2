@@ -1,6 +1,8 @@
 from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 
@@ -16,9 +18,22 @@ def main_filtered_view(request, menu):
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
         header = article_menu.description
+    search = request.POST.get('search_field')
+    if search is not None and len(search) < 3:
+        messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
+        search = None
+    if search is not None and len(search) > 100:
+            messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
+            search = None
+    if search is not None:
+        article_list = article_list.filter(Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        header = _("Search results") + f": {search}"
+    else:
+        search = ''
     ctx = {
         'aside_menu_name': _("Articles"),
     }
+    ctx['search'] = search
     ctx['header'] = header
     ctx['article_list'] = article_list
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
@@ -31,6 +46,7 @@ def article_view(request, pk):
     ctx = {
         'aside_menu_name': _("Articles"),
     }
+    ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)

@@ -1,6 +1,6 @@
 {% extends "base-with-aside-menu.html" %}
 
-{% load markdown_extras %}
+{% load article_filters %}
 {% load i18n %}
 
 {% block cnt %}
@@ -16,13 +16,13 @@
             <!-- Article -->
             <div class="article box">
                 <div class="article-desc">
-                    <h1 class="article-title-list"><a href="{% url 'article' pk=obj.id %}">{{ obj.header }}</a></h1>
+                    <h1 class="article-title-list"><a {% if search != '' %} href="{% url 'article' pk=obj.id %}?search={{ search }}" {% else %} href="{% url 'article' pk=obj.id %}" {% endif %}>{{ obj.header | highlight:search | safe }}</a></h1>
                     <p class="info">
                         <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
                         <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
                         {% trans 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
                         , {% trans 'Comments' %}: <strong>2</strong></p>
-                    <p>{{ obj.perex | markdown | safe }}</p>
+                    <p>{{ obj.perex | highlight:search | markdown | safe }}</p>
                 </div>
             </div> <!-- /article -->
             {% endfor %}
