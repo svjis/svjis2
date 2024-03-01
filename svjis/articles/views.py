@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Q
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -33,6 +34,7 @@ def main_filtered_view(request, menu):
     ctx = {
         'aside_menu_name': _("Articles"),
     }
+    ctx['search_endpoint'] = reverse(main_view)
     ctx['search'] = search
     ctx['header'] = header
     ctx['article_list'] = article_list
@@ -125,12 +127,26 @@ def redaction_menu_delete_view(request, pk):
 
 # Redaction - Article
 def redaction_article_view(request):
+    article_list = models.Article.objects.all()
+    search = request.POST.get('search_field')
+    if search is not None and len(search) < 3:
+        messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
+        search = None
+    if search is not None and len(search) > 100:
+            messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
+            search = None
+    if search is not None:
+        article_list = article_list.filter(Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+    else:
+        search = ''
     ctx = {
         'aside_menu_name': _("Redaction"),
     }
+    ctx['search_endpoint'] = reverse(redaction_article_view)
+    ctx['search'] = search
     ctx['aside_menu_items'] = utils.get_aside_menu(redaction_article_view, ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu(redaction_article_view, request.user)
-    ctx['object_list'] = models.Article.objects.all()
+    ctx['object_list'] = article_list
     return render(request, "redaction_article.html", ctx)
 
 

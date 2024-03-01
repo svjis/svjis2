@@ -1,6 +1,7 @@
 {% extends "base-with-aside-menu-content.html" %}
 
 {% load i18n %}
+{% load article_filters %}
 
 {% block content %}
 
@@ -20,7 +21,7 @@
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list" style="">{{ obj.header }}</td>
+    <td class="list" style="">{{ obj.header | highlight:search | safe }}</td>
     <td class="list" style="">{{ obj.created_date|date:"d.m.Y" }}</td>
     <td class="list" style="">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
     <td class="list" style="">{{ obj.published }}</td>

@@ -1,10 +1,12 @@
 {% load i18n %}
 
+{% if search_endpoint %}
 <h4 class="margin">{% trans 'Search' %}:</h4>
 
-<form action="/" method="post">
+<form action="{{ search_endpoint }}" method="post">
     {% csrf_token %}
     <div id="search" class="box">
         <input type="text" size="20" id="search-input" name="search_field" value="" /><input class="my-button" type="submit" id="search-submit" value="{% trans 'Search' %}" />
     </div> <!-- /search -->
 </form>
+{% endif %}
