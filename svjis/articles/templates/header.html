@@ -1,9 +1,11 @@
+{% load article_filters %}
+
 <!-- Header -->
 <div id="header">
 
     <!-- <div id="logo"><a href="/" title="[Přejít na domovskou stránku]"><span style="background:url('static/gfx/Header_1.jpg') 0 0 no-repeat;"></span></a></div> -->
 
-    <div id="company_name">Společenství vlastníků domu Polní, Praha 10</div>
+    <div id="company_name">{% settings_value "SVJIS_TITLE" %}</div>
     <hr class="noscreen" />
 
 </div> <!-- /header -->

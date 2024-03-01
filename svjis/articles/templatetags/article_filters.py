@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
+from django.conf import settings
 import markdown as md
 from re import IGNORECASE, compile, escape as rescape
 
@@ -24,3 +25,8 @@ def highlight(text, search):
         )
     # highlighted = text.replace(search, '<b style="color:black;background-color:#ffff66">{}</b>'.format(search))
     return mark_safe(highlighted)
+
+# settings value
+@register.simple_tag
+def settings_value(name):
+    return mark_safe(getattr(settings, name, ""))
