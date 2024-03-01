@@ -1,0 +1,34 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'User' %}</h1>
+[<a href="{% url 'redaction_article_edit' pk=0 %}">{% trans 'Create new user' %}</a>]
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">{% trans 'First name' %}</th>
+        <th class="list" scope="col">{% trans 'Last name' %}</th>
+        <th class="list" scope="col">{% trans 'E-Mail' %}</th>
+        <th class="list" scope="col">{% trans 'Active' %}</th>
+        <th class="list" scope="col">{% trans 'Last login' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+    <td class="list" style="">{{ obj.first_name }}</td>
+    <td class="list" style="">{{ obj.last_name }}</td>
+    <td class="list" style="">{{ obj.email }}</td>
+    <td class="list" style="">{{ obj.is_active }}</td>
+    <td class="list" style="">{{ obj.last_login }}</td>
+    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

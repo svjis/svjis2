@@ -1,11 +1,11 @@
 from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.db.models import Q
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-
 
 
 def main_view(request):
@@ -189,3 +189,15 @@ def redaction_article_delete_view(request, pk):
     obj = get_object_or_404(models.Article, pk=pk)
     obj.delete()
     return redirect(redaction_article_view)
+
+
+# Administration - User
+def admin_user_view(request):
+    user_list = get_user_model().objects.all()
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = utils.get_aside_menu(admin_user_view, ctx)
+    ctx['tray_menu_items'] = utils.get_tray_menu(admin_user_view, request.user)
+    ctx['object_list'] = user_list
+    return render(request, "admin_user.html", ctx)

@@ -9,6 +9,7 @@ def get_tray_menu(view, user):
     result.append({'description': _("Articles"), 'link': reverse(views.main_view), 'active': True if path == '/' else False})
     if user.is_active:
             result.append({'description': _("Redaction"), 'link': reverse(views.redaction_article_view), 'active': True if path.startswith('/redaction') else False})
+            result.append({'description': _("Administration"), 'link': reverse(views.admin_user_view), 'active': True if path.startswith('/admin') else False})
     return  result
 
 
@@ -27,5 +28,10 @@ def get_aside_menu(view, ctx):
     if path.startswith('/redaction'):
         result.append({'description': _("Articles"), 'link': reverse(views.redaction_article_view), 'active': True if path == reverse(views.redaction_article_view) else False})
         result.append({'description': _("Menu"), 'link': reverse(views.redaction_menu_view), 'active': True if path.startswith('/redaction_menu') else False})
+
+
+    if path.startswith('/admin'):
+        result.append({'description': _("Users"), 'link': reverse(views.admin_user_view), 'active': True if path == reverse(views.admin_user_view) else False})
+
 
     return result
