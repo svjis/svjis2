@@ -205,15 +205,17 @@ def admin_user_view(request):
 
 def admin_user_edit_view(request, pk):
     if pk != 0:
-        a = get_object_or_404(get_user_model(), pk=pk)
-        form = forms.UserEditForm(instance=a)
+        i = get_object_or_404(get_user_model(), pk=pk)
+        form = forms.UserEditForm(instance=i)
     else:
+        i = get_user_model()
         form = forms.UserCreateForm
 
     ctx = {
         'aside_menu_name': _("Administration"),
     }
     ctx['form'] = form
+    ctx['instance'] = i
     ctx['pk'] = pk
     ctx['aside_menu_items'] = utils.get_aside_menu(admin_user_view, ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu(admin_user_view, request.user)
@@ -230,6 +232,24 @@ def admin_user_save_view(request):
             form = forms.UserEditForm(request.POST, instance=instance)
         if form.is_valid:
             form.save()
+            username = request.POST.get('username', '')
+            password = request.POST.get('password', '')
+            active = request.POST.get('active', False) == 'on'
+            staff = request.POST.get('staff', False) == 'on'
+            superuser = request.POST.get('superuser', False) == 'on'
+
+            if pk == 0:
+                instance = get_object_or_404(get_user_model().objects.filter(username=username))
+            else:
+                instance = get_object_or_404(get_user_model(), pk=pk)
+
+            if password != '':
+                instance.set_password(password)
+
+            instance.is_active = active
+            instance.is_staff = staff
+            instance.is_superuser = superuser
+            instance.save()
         else:
             messages.error(request, _("Invalid form input"))
     return redirect(admin_user_view)
