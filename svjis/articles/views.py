@@ -181,7 +181,7 @@ def redaction_article_save_view(request):
             if pk == 0:
                 models.Article.objects.create(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
             else:
-                models.Article.objects.filter(id=pk).update(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
+                models.Article.objects.filter(pk=pk).update(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
     return redirect(redaction_article_view)
 
 
@@ -206,9 +206,9 @@ def admin_user_view(request):
 def admin_user_edit_view(request, pk):
     if pk != 0:
         a = get_object_or_404(get_user_model(), pk=pk)
-        form = forms.UserForm(instance=a)
+        form = forms.UserEditForm(instance=a)
     else:
-        form = forms.UserForm
+        form = forms.UserCreateForm
 
     ctx = {
         'aside_menu_name': _("Administration"),
@@ -221,4 +221,15 @@ def admin_user_edit_view(request, pk):
 
 
 def admin_user_save_view(request):
+    if request.method == "POST":
+        pk = int(request.POST['pk'])
+        if pk == 0:
+            form = forms.UserCreateForm(request.POST)
+        else:
+            instance = get_object_or_404(get_user_model(), pk=pk)
+            form = forms.UserEditForm(request.POST, instance=instance)
+        if form.is_valid:
+            form.save()
+        else:
+            messages.error(request, _("Invalid form input"))
     return redirect(admin_user_view)

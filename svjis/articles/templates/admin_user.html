@@ -9,6 +9,7 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
+        <th class="list" scope="col">{% trans 'Username' %}</th>
         <th class="list" scope="col">{% trans 'First name' %}</th>
         <th class="list" scope="col">{% trans 'Last name' %}</th>
         <th class="list" scope="col">{% trans 'E-Mail' %}</th>
@@ -20,11 +21,12 @@
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list" style="">{{ obj.first_name }}</td>
-    <td class="list" style="">{{ obj.last_name }}</td>
-    <td class="list" style="">{{ obj.email }}</td>
-    <td class="list" style="">{{ obj.is_active }}</td>
-    <td class="list" style="">{{ obj.last_login }}</td>
+    <td class="list">{{ obj.username }}</td>
+    <td class="list">{{ obj.first_name }}</td>
+    <td class="list">{{ obj.last_name }}</td>
+    <td class="list">{{ obj.email }}</td>
+    <td class="list">{{ obj.is_active }}</td>
+    <td class="list">{{ obj.last_login }}</td>
     <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
     </tr>
     {% endfor %}

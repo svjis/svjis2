@@ -20,7 +20,13 @@ class ArticleForm(forms.ModelForm):
         fields = ("header", "perex", "body", "menu", "published")
 
 
-class UserForm(forms.ModelForm):
+class UserCreateForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ("first_name", "last_name", "email", "username", "is_active", "is_staff", "is_superuser")
+        fields = ("first_name", "last_name", "email", "username")
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ("first_name", "last_name", "email")
