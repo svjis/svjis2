@@ -56,17 +56,12 @@ def admin_user_save_view(request):
             instance = get_object_or_404(get_user_model(), pk=pk)
             form = forms.UserEditForm(request.POST, instance=instance)
         if form.is_valid:
-            form.save()
-            username = request.POST.get('username', '')
+            instance = form.save()
+
             password = request.POST.get('password', '')
             active = request.POST.get('active', False) == 'on'
             staff = request.POST.get('staff', False) == 'on'
             superuser = request.POST.get('superuser', False) == 'on'
-
-            if pk == 0:
-                instance = get_object_or_404(get_user_model().objects.filter(username=username))
-            else:
-                instance = get_object_or_404(get_user_model(), pk=pk)
 
             if password != '':
                 instance.set_password(password)
