@@ -7,8 +7,9 @@ def get_tray_menu(view, user):
     path = reverse(view)
     result = []
     result.append({'description': _("Articles"), 'link': reverse(views.main_view), 'active': True if path == '/' else False})
-    if user.is_active:
+    if user.is_staff:
             result.append({'description': _("Redaction"), 'link': reverse(views.redaction_article_view), 'active': True if path.startswith('/redaction') else False})
+    if user.is_superuser:
             result.append({'description': _("Administration"), 'link': reverse(views.admin_user_view), 'active': True if path.startswith('/admin') else False})
     return  result
 

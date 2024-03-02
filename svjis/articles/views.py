@@ -74,6 +74,9 @@ def user_logout(request):
 
 # Redaction - Article Menu
 def redaction_menu_view(request):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     ctx = {
         'aside_menu_name': _("Redaction"),
     }
@@ -84,6 +87,9 @@ def redaction_menu_view(request):
 
 
 def redaction_menu_edit_view(request, pk):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     if pk != 0:
         am = get_object_or_404(models.ArticleMenu, pk=pk)
         form = forms.ArticleMenuForm(instance=am)
@@ -101,6 +107,9 @@ def redaction_menu_edit_view(request, pk):
 
 
 def redaction_menu_save_view(request):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     if request.method == "POST":
         form = forms.ArticleMenuForm(request.POST)
         if form.is_valid():
@@ -120,6 +129,9 @@ def redaction_menu_save_view(request):
 
 
 def redaction_menu_delete_view(request, pk):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     obj = get_object_or_404(models.ArticleMenu, pk=pk)
     obj.delete()
     return redirect(redaction_menu_view)
@@ -127,6 +139,9 @@ def redaction_menu_delete_view(request, pk):
 
 # Redaction - Article
 def redaction_article_view(request):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     article_list = models.Article.objects.all()
     search = request.POST.get('search_field')
     if search is not None and len(search) < 3:
@@ -151,6 +166,9 @@ def redaction_article_view(request):
 
 
 def redaction_article_edit_view(request, pk):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     if pk != 0:
         a = get_object_or_404(models.Article, pk=pk)
         form = forms.ArticleForm(instance=a)
@@ -168,6 +186,9 @@ def redaction_article_edit_view(request, pk):
 
 
 def redaction_article_save_view(request):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     if request.method == "POST":
         form = forms.ArticleForm(request.POST)
         if form.is_valid():
@@ -186,6 +207,9 @@ def redaction_article_save_view(request):
 
 
 def redaction_article_delete_view(request, pk):
+    if not request.user.is_staff:
+        return redirect(main_view)
+
     obj = get_object_or_404(models.Article, pk=pk)
     obj.delete()
     return redirect(redaction_article_view)
@@ -193,6 +217,9 @@ def redaction_article_delete_view(request, pk):
 
 # Administration - User
 def admin_user_view(request):
+    if not request.user.is_superuser:
+        return redirect(main_view)
+
     user_list = get_user_model().objects.all()
     ctx = {
         'aside_menu_name': _("Administration"),
@@ -204,6 +231,9 @@ def admin_user_view(request):
 
 
 def admin_user_edit_view(request, pk):
+    if not request.user.is_superuser:
+        return redirect(main_view)
+
     if pk != 0:
         i = get_object_or_404(get_user_model(), pk=pk)
         form = forms.UserEditForm(instance=i)
@@ -223,6 +253,9 @@ def admin_user_edit_view(request, pk):
 
 
 def admin_user_save_view(request):
+    if not request.user.is_superuser:
+        return redirect(main_view)
+
     if request.method == "POST":
         pk = int(request.POST['pk'])
         if pk == 0:
