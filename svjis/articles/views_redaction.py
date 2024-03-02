@@ -45,20 +45,18 @@ def redaction_menu_save_view(request):
         return redirect(views.main_view)
 
     if request.method == "POST":
-        form = forms.ArticleMenuForm(request.POST)
+        pk = int(request.POST['pk'])
+        if pk == 0:
+            form = forms.ArticleMenuForm(request.POST)
+        else:
+            instance = get_object_or_404(models.ArticleMenu, pk=pk)
+            form = forms.ArticleMenuForm(request.POST, instance=instance)
+
         if form.is_valid():
-            pk = int(request.POST['pk'])
-            description = request.POST.get('description', '')
-            hide = request.POST.get('hide', False) == 'on'
-            parent = request.POST['parent']
-            if parent == '':
-                parent = None
-            else:
-                parent = get_object_or_404(models.ArticleMenu, pk=int(parent))
-            if pk == 0:
-                models.ArticleMenu.objects.create(description=description, hide=hide, parent=parent)
-            else:
-                models.ArticleMenu.objects.filter(pk=pk).update(description=description, hide=hide, parent=parent)
+            form.save()
+        else:
+            messages.error(request, _("Invalid form input"))
+
     return redirect(redaction_menu_view)
 
 
@@ -124,19 +122,22 @@ def redaction_article_save_view(request):
         return redirect(views.main_view)
 
     if request.method == "POST":
-        form = forms.ArticleForm(request.POST)
+        pk = int(request.POST['pk'])
+        if pk == 0:
+            form = forms.ArticleForm(request.POST)
+        else:
+            instance = get_object_or_404(models.Article, pk=pk)
+            form = forms.ArticleForm(request.POST, instance=instance)
+
         if form.is_valid():
-            pk = int(request.POST['pk'])
-            header = request.POST.get('header', '')
-            perex = request.POST.get('perex', '')
-            body = request.POST.get('body', '')
-            published = request.POST.get('published', False) == 'on'
-            author = request.user
-            menu = get_object_or_404(models.ArticleMenu, pk=int(request.POST['menu']))
+            obj = form.save(commit=False)
             if pk == 0:
-                models.Article.objects.create(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
-            else:
-                models.Article.objects.filter(pk=pk).update(header=header, perex=perex, body=body, menu=menu, published=published, author=author)
+                obj.author = request.user
+            obj.save()
+        else:
+            for error in form.errors:
+                messages.error(request, error)
+
     return redirect(redaction_article_view)
 
 
