@@ -143,3 +143,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SVJIS values
 
 SVJIS_TITLE = 'SVJIS-PY'
+SVJIS_ARTICLE_PAGE_SIZE = 10

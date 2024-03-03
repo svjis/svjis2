@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q
+from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -19,6 +20,8 @@ def main_filtered_view(request, menu):
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
         header = article_menu.description
+
+    # Search
     search = request.POST.get('search')
     if search is None:
         search = request.GET.get('search')
@@ -35,8 +38,9 @@ def main_filtered_view(request, menu):
         search = ''
 
     # Paginator
+    is_paginated = len(article_list) > getattr(settings, 'SVJIS_ARTICLE_PAGE_SIZE', 10)
     page = request.GET.get('page', 1)
-    paginator = Paginator(article_list, per_page=2)
+    paginator = Paginator(article_list, per_page=getattr(settings, 'SVJIS_ARTICLE_PAGE_SIZE', 10))
     page_obj = paginator.get_page(page)
     try:
         article_list = paginator.page(page)
@@ -44,11 +48,10 @@ def main_filtered_view(request, menu):
         article_list = paginator.page(paginator.num_pages)
     page_parameter = '' if search == '' else f"search={search}"
 
-
     ctx = {
         'aside_menu_name': _("Articles"),
     }
-    ctx['is_paginated'] = True
+    ctx['is_paginated'] = is_paginated
     ctx['page_obj'] = page_obj
     ctx['page_parameter'] = page_parameter
     ctx['search_endpoint'] = reverse(main_view)

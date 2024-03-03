@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Article' %}</h1>
+<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 [<a href="{% url 'redaction_article_edit' pk=0 %}">{% trans 'Create new article' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
