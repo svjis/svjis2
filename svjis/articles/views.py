@@ -1,8 +1,8 @@
-from . import utils, models, forms
+from . import utils, models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -19,7 +19,9 @@ def main_filtered_view(request, menu):
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
         header = article_menu.description
-    search = request.POST.get('search_field')
+    search = request.POST.get('search')
+    if search is None:
+        search = request.GET.get('search')
     if search is not None and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
@@ -31,9 +33,24 @@ def main_filtered_view(request, menu):
         header = _("Search results") + f": {search}"
     else:
         search = ''
+
+    # Paginator
+    page = request.GET.get('page', 1)
+    paginator = Paginator(article_list, per_page=2)
+    page_obj = paginator.get_page(page)
+    try:
+        article_list = paginator.page(page)
+    except InvalidPage:
+        article_list = paginator.page(paginator.num_pages)
+    page_parameter = '' if search == '' else f"search={search}"
+
+
     ctx = {
         'aside_menu_name': _("Articles"),
     }
+    ctx['is_paginated'] = True
+    ctx['page_obj'] = page_obj
+    ctx['page_parameter'] = page_parameter
     ctx['search_endpoint'] = reverse(main_view)
     ctx['search'] = search
     ctx['header'] = header

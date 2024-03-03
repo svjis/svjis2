@@ -1,3 +1,39 @@
+{% load i18n %}
+
+
+{% if is_paginated %}
+<!-- pagination starts -->
 <p class="t-center">
-    <a href="Dispatcher?page=articleList&section=0&pageNo=1">&lt;&lt;</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=1">&lt;</a>&nbsp;&nbsp;<b>1</b>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=2">2</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=3">3</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=4">4</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=5">5</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=6">6</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=7">7</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=8">8</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=9">9</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=10">10</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=2">&gt;</a>&nbsp;&nbsp;<a href="Dispatcher?page=articleList&section=0&pageNo=66">&gt;&gt;</a>&nbsp;&nbsp;
+    {% if page_obj.has_previous %}
+        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}&{{page_parameter}}">{% trans 'Previous' %}</a>&nbsp;
+    {% endif %}
+
+    {% if page_obj.number > 3 %}
+        <a href="{{ request.path }}?page=1&{{page_parameter}}">1</a>
+    {% endif %}
+
+    {% if page_obj.number > 4 %}
+        <span>....</span>
+    {% endif %}
+
+    {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+            <b>{{ i }}</b>
+        {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+            <a href="{{ request.path }}?page={{ i }}&{{page_parameter}}">{{ i }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+            <span>....</span>
+            <a href="?page={{ page_obj.paginator.num_pages }}&{{page_parameter}}">{{ page_obj.paginator.num_pages }}</a>
+        {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+            <a href="?page={{ page_obj.paginator.num_pages }}&{{page_parameter}}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+
+        &nbsp;<a href="?page={{ page_obj.next_page_number }}&{{page_parameter}}">{% trans 'Next' %}</a>
+    {% endif %}
 </p>
+<!-- pagination end -->
+{% endif %}

@@ -75,7 +75,7 @@ def redaction_article_view(request):
         return redirect(views.main_view)
 
     article_list = models.Article.objects.all()
-    search = request.POST.get('search_field')
+    search = request.POST.get('search')
     if search is not None and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
