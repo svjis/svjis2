@@ -60,3 +60,16 @@ class ArticleMenu(models.Model):
 
     class Meta:
         ordering = ['description']
+
+
+class News(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(_("Published"), default=False)
+    body = models.TextField(_("Body (markdown)"))
+
+    def __str__(self):
+        return f"MiniNews: {self.body}"
+
+    class Meta:
+        ordering = ['-id']

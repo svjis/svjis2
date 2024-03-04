@@ -172,3 +172,86 @@ def redaction_article_delete_view(request, pk):
     obj = get_object_or_404(models.Article, pk=pk)
     obj.delete()
     return redirect(redaction_article_view)
+
+
+# Redaction - MiniNews
+def redaction_news_view(request):
+    if not request.user.is_staff:
+        return redirect(views.main_view)
+
+    news_list = models.News.objects.all()
+    header = _("News")
+
+    # Paginator
+    is_paginated = len(news_list) > getattr(settings, 'SVJIS_NEWS_PAGE_SIZE', 10)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(news_list, per_page=getattr(settings, 'SVJIS_NEWS_PAGE_SIZE', 10))
+    page_obj = paginator.get_page(page)
+    try:
+        news_list = paginator.page(page)
+    except InvalidPage:
+        news_list = paginator.page(paginator.num_pages)
+
+    ctx = {
+        'aside_menu_name': _("Redaction"),
+    }
+    ctx['is_paginated'] = is_paginated
+    ctx['page_obj'] = page_obj
+    ctx['header'] = header
+    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_news_view, ctx)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_news_view, request.user)
+    ctx['object_list'] = news_list
+    return render(request, "redaction_news.html", ctx)
+
+
+def redaction_news_edit_view(request, pk):
+    if not request.user.is_staff:
+        return redirect(views.main_view)
+
+    if pk != 0:
+        a = get_object_or_404(models.News, pk=pk)
+        form = forms.NewsForm(instance=a)
+    else:
+        form = forms.NewsForm
+
+    ctx = {
+        'aside_menu_name': _("Redaction"),
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = utils.get_aside_menu(redaction_news_view, ctx)
+    ctx['tray_menu_items'] = utils.get_tray_menu(redaction_news_view, request.user)
+    return render(request, "redaction_news_edit.html", ctx)
+
+
+def redaction_news_save_view(request):
+    if not request.user.is_staff:
+        return redirect(views.main_view)
+
+    if request.method == "POST":
+        pk = int(request.POST['pk'])
+        if pk == 0:
+            form = forms.NewsForm(request.POST)
+        else:
+            instance = get_object_or_404(models.News, pk=pk)
+            form = forms.NewsForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            obj = form.save(commit=False)
+            if pk == 0:
+                obj.author = request.user
+            obj.save()
+        else:
+            for error in form.errors:
+                messages.error(request, error)
+
+    return redirect(redaction_news_view)
+
+
+def redaction_news_delete_view(request, pk):
+    if not request.user.is_staff:
+        return redirect(views.main_view)
+
+    obj = get_object_or_404(models.News, pk=pk)
+    obj.delete()
+    return redirect(redaction_news_view)

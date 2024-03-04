@@ -15,6 +15,12 @@ class ArticleForm(forms.ModelForm):
         fields = ("header", "perex", "body", "menu", "published")
 
 
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = models.News
+        fields = ("body", "published")
+
+
 class UserCreateForm(forms.ModelForm):
     class Meta:
         model = get_user_model()

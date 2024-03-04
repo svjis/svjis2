@@ -28,6 +28,7 @@ def get_aside_menu(view, ctx):
 
     if path.startswith('/redaction'):
         result.append({'description': _("Articles"), 'link': reverse(views_redaction.redaction_article_view), 'active': True if path == reverse(views_redaction.redaction_article_view) else False})
+        result.append({'description': _("News"), 'link': reverse(views_redaction.redaction_news_view), 'active': True if path == reverse(views_redaction.redaction_news_view) else False})
         result.append({'description': _("Menu"), 'link': reverse(views_redaction.redaction_menu_view), 'active': True if path.startswith('/redaction_menu') else False})
 
 
