@@ -1,4 +1,4 @@
-from . import utils, models
+from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q, Count
 from django.conf import settings
 from django.urls import reverse
+from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
 
@@ -96,9 +97,30 @@ def article_view(request, pk):
     ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
+    ctx['comment_form'] = forms.ArticleCommentForm
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "article.html", ctx)
+
+
+def article_comment_save_view(request):
+    if request.method == "POST":
+        article_pk = int(request.POST.get('article_pk'))
+        article = get_object_or_404(models.Article, pk=article_pk)
+
+        if not request.user.is_active or not article.allow_comments:
+            raise Http404
+
+        form = forms.ArticleCommentForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.article = article
+            obj.author = request.user
+            obj.save()
+        else:
+            for error in form.errors:
+                messages.error(request, error)
+    return redirect(article_view, pk=article_pk)
 
 
 # Login

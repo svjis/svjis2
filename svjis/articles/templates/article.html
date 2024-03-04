@@ -9,11 +9,32 @@
     <div class="article-desc">
         <h1 class="article-title" id="tbl-desc">{{ obj.header | highlight:search | safe }}</h1>
         <p class="info">
-            <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% trans 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>, {% trans 'Comments' %}: <strong>2</strong>
+            <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date | date:"d.m.Y" }}</strong>, {% trans 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>{% if obj.comments %}, {% trans 'Comments' %}: <strong>{{ obj.comments | length }}</strong>{% endif %}
         </p>
         <p>{{ obj.perex | highlight:search | markdown | safe }}</p>
         <p>{{ obj.body | highlight:search | markdown | safe }}</p>
     </div>
 </div>
+
+{% if obj.comments %}
+<h2 class="article-title">Komentáře:</h2>
+{% for comment in obj.comments %}
+<div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date | date:"d.m.Y H:i" }}</strong>
+    <br>{{ comment.body | linebreaks | safe }}
+</div>
+{% endfor %}
+{% endif %}
+
+
+{% if user.is_active and obj.allow_comments %}
+<form action="{% url 'article_comment_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="article_pk" value="{{ obj.pk }}">
+    {{ comment_form.as_p }}
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Insert comment' %}" name="submit">
+    </p>
+</form>
+{% endif %}
 
 {% endblock %}

@@ -12,6 +12,7 @@ class Article(models.Model):
     perex = models.TextField(_("Perex (markdown)"))
     body = models.TextField(_("Body (markdown)"))
     menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
+    allow_comments = models.BooleanField(_("Allow comments"), default=False)
 
     def __str__(self):
         return f"Article: {self.header}"
@@ -19,6 +20,10 @@ class Article(models.Model):
     @property
     def assets(self):
         return self.articleasset_set.all()
+
+    @property
+    def comments(self):
+        return self.articlecomment_set.all()
 
     class Meta:
         ordering = ['-id']
@@ -50,6 +55,19 @@ class ArticleAsset(models.Model):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
         super(ArticleAsset, self).delete(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-id']
+
+
+class ArticleComment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name=_("Article"))
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(_("Body"))
+
+    def __str__(self):
+        return f"ArticleComment: {self.description}"
 
     class Meta:
         ordering = ['-id']
