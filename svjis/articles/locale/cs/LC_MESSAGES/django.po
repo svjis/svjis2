@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 22:19+0100\n"
+"POT-Creation-Date: 2024-03-04 18:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
 #: articles/models.py:8
 msgid "Header"
 msgstr "Nadpis"
 
-#: articles/models.py:11 articles/templates/redaction_article.html:15
+#: articles/models.py:11 articles/models.py:95
+#: articles/templates/redaction_article.html:16
+#: articles/templates/redaction_news.html:15
 msgid "Published"
 msgstr "Publikován"
 
@@ -34,27 +37,101 @@ msgstr "Perex (markdown)"
 msgid "Body (markdown)"
 msgstr "Tělo (markdown)"
 
-#: articles/models.py:32 articles/models.py:51
+#: articles/models.py:15
+msgid "Allow comments"
+msgstr "Povolit komentáře"
+
+#: articles/models.py:46 articles/models.py:77
 msgid "Description"
 msgstr "Popis"
 
-#: articles/models.py:33
+#: articles/models.py:47
 msgid "File"
 msgstr "Soubor"
 
-#: articles/models.py:34 articles/templates/redaction_article.html:7
-#: articles/templates/redaction_article.html:12
+#: articles/models.py:48 articles/models.py:64
+#: articles/templates/redaction_article.html:13
 #: articles/templates/redaction_article_edit.html:7
 #: articles/templates/redaction_article_edit.html:13
+#: articles/views_redaction.py:105
 msgid "Article"
 msgstr "Článek"
 
-#: articles/models.py:52 articles/templates/redaction_menu.html:13
+#: articles/models.py:67 articles/models.py:96
+#: articles/templates/redaction_news.html:16
+msgid "Body"
+msgstr "Tělo"
+
+#: articles/models.py:78 articles/templates/redaction_menu.html:13
 msgid "Hide"
 msgstr "Skrýt"
 
+#: articles/templates/admin_user.html:7
+#: articles/templates/admin_user_edit.html:7
+#: articles/templates/admin_user_edit.html:13 articles/templates/login.html:4
+msgid "User"
+msgstr "Uživatel"
+
+#: articles/templates/admin_user.html:8
+msgid "Create new user"
+msgstr "Vytvořit nového uživatele"
+
+#: articles/templates/admin_user.html:12 articles/templates/login.html:16
+msgid "Username"
+msgstr "Uživatel"
+
+#: articles/templates/admin_user.html:13
+msgid "First name"
+msgstr "Křestní jméno"
+
+#: articles/templates/admin_user.html:14
+msgid "Last name"
+msgstr "Příjmení"
+
+#: articles/templates/admin_user.html:15
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: articles/templates/admin_user.html:16
+#: articles/templates/admin_user_edit.html:20
+msgid "Active"
+msgstr "Aktivní"
+
+#: articles/templates/admin_user.html:17
+#: articles/templates/admin_user_edit.html:24
+msgid "Staff"
+msgstr "Zaměstnanec"
+
+#: articles/templates/admin_user.html:18
+#: articles/templates/admin_user_edit.html:28
+msgid "Superuser"
+msgstr "Superuser"
+
+#: articles/templates/admin_user.html:19
+msgid "Last login"
+msgstr "Poslední přihlášení"
+
+#: articles/templates/admin_user.html:34
+#: articles/templates/redaction_article.html:28
+#: articles/templates/redaction_menu.html:25
+#: articles/templates/redaction_news.html:28
+msgid "Edit"
+msgstr "Editovat"
+
+#: articles/templates/admin_user_edit.html:16
+msgid "Password"
+msgstr "Heslo"
+
+#: articles/templates/admin_user_edit.html:33
+#: articles/templates/redaction_article_edit.html:17
+#: articles/templates/redaction_menu_edit.html:17
+#: articles/templates/redaction_news_edit.html:17
+msgid "Save"
+msgstr "Uložit"
+
 #: articles/templates/article.html:12 articles/templates/main.html:23
-#: articles/templates/redaction_article.html:14
+#: articles/templates/redaction_article.html:15
+#: articles/templates/redaction_news.html:14
 msgid "Author"
 msgstr "Autor"
 
@@ -62,17 +139,20 @@ msgstr "Autor"
 msgid "Comments"
 msgstr "Komentáře"
 
-#: articles/templates/box-01.html:8
+#: articles/templates/article.html:42
+msgid "Insert comment"
+msgstr "Vložit komentář"
+
+#: articles/templates/box-01.html:9
+#: articles/templates/redaction_news_edit.html:7
+#: articles/templates/redaction_news_edit.html:13
+#: articles/views_redaction.py:15 articles/views_redaction.py:223
 msgid "News"
 msgstr "Novinky"
 
-#: articles/templates/box-02.html:6
+#: articles/templates/box-02.html:7
 msgid "Top articles"
 msgstr "Nejčtenější články"
-
-#: articles/templates/login.html:4
-msgid "User"
-msgstr "Uživatel"
 
 #: articles/templates/login.html:8
 msgid "Logout"
@@ -81,10 +161,6 @@ msgstr "Odhlásit"
 #: articles/templates/login.html:12
 msgid "Login"
 msgstr "Přihlásit"
-
-#: articles/templates/login.html:16
-msgid "Username"
-msgstr "Uživatel"
 
 #: articles/templates/login.html:17
 msgid "Passwod"
@@ -98,41 +174,63 @@ msgstr "Přihlásit"
 msgid "Lost passwod"
 msgstr "Zapomenuté heslo"
 
-#: articles/templates/redaction_article.html:8
+#: articles/templates/paginator.html:8
+msgid "Previous"
+msgstr "Předchozí"
+
+#: articles/templates/paginator.html:35
+msgid "Next"
+msgstr "Následující"
+
+#: articles/templates/redaction_article.html:9
 msgid "Create new article"
 msgstr "Vytvořit nový článek"
 
-#: articles/templates/redaction_article.html:13
+#: articles/templates/redaction_article.html:14
+#: articles/templates/redaction_news.html:13
 msgid "Date"
 msgstr "Datum"
 
-#: articles/templates/redaction_article.html:27
-#: articles/templates/redaction_menu.html:25
-msgid "Edit"
-msgstr "Editovat"
-
-#: articles/templates/redaction_article.html:28
+#: articles/templates/redaction_article.html:29
+#: articles/templates/redaction_article_edit.html:38
 #: articles/templates/redaction_menu.html:26
+#: articles/templates/redaction_news.html:29
 msgid "Delete"
 msgstr "Smazat"
 
-#: articles/templates/redaction_article_edit.html:17
-#: articles/templates/redaction_menu_edit.html:17
-msgid "Save"
-msgstr "Uložit"
+#: articles/templates/redaction_article_edit.html:23
+msgid "Assets"
+msgstr "Přílohy"
+
+#: articles/templates/redaction_article_edit.html:26
+#: articles/templates/redaction_menu.html:12
+msgid "Name"
+msgstr "Název"
+
+#: articles/templates/redaction_article_edit.html:27
+msgid "Insert as Link"
+msgstr "Vložit jako link"
+
+#: articles/templates/redaction_article_edit.html:28
+msgid "Insert as Picture"
+msgstr "Vložit jako obrázek"
+
+#: articles/templates/redaction_article_edit.html:49
+msgid "Article asset"
+msgstr "Příloha článku"
+
+#: articles/templates/redaction_article_edit.html:53
+msgid "Upload"
+msgstr "Upload"
 
 #: articles/templates/redaction_menu.html:7
-#: articles/templates/redaction_menu_edit.html:7 articles/utils.py:29
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:16
 msgid "Menu"
 msgstr "Menu"
 
 #: articles/templates/redaction_menu.html:8
 msgid "Create new menu entry"
 msgstr "Vytvořit novou položku menu"
-
-#: articles/templates/redaction_menu.html:12
-msgid "Name"
-msgstr "Název"
 
 #: articles/templates/redaction_menu.html:14
 msgid "Parent"
@@ -142,20 +240,50 @@ msgstr "Rodič"
 msgid "Menu entry"
 msgstr "Položka menu"
 
-#: articles/templates/search.html:3 articles/templates/search.html:8
+#: articles/templates/redaction_news.html:9
+msgid "Create new news"
+msgstr "Vytvořit novinku"
+
+#: articles/templates/search.html:4 articles/templates/search.html:9
 msgid "Search"
 msgstr "Vyhledat"
 
-#: articles/utils.py:9 articles/utils.py:28 articles/views.py:20
-#: articles/views.py:32
+#: articles/utils.py:8 articles/views.py:72 articles/views.py:95
+#: articles/views_redaction.py:14
 msgid "Articles"
 msgstr "Články"
 
-#: articles/utils.py:11 articles/views.py:60 articles/views.py:76
-#: articles/views.py:113 articles/views.py:129
+#: articles/utils.py:10 articles/views_redaction.py:26
+#: articles/views_redaction.py:45 articles/views_redaction.py:119
+#: articles/views_redaction.py:144 articles/views_redaction.py:236
+#: articles/views_redaction.py:258
 msgid "Redaction"
 msgstr "Redakce"
 
-#: articles/utils.py:21 articles/views.py:14
+#: articles/utils.py:12 articles/views_admin.py:23 articles/views_admin.py:43
+msgid "Administration"
+msgstr "Administrace"
+
+#: articles/views.py:16 articles/views.py:30
 msgid "All articles"
 msgstr "Všechny články"
+
+#: articles/views.py:41 articles/views_redaction.py:95
+msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
+msgstr "Vyhledat: Klíčové slovo '{}' je příliš krátké. Zadejte alespoň 3 znaky."
+
+#: articles/views.py:44 articles/views_redaction.py:98
+msgid "Search: Keyword is too long. Type maximum of 100 characters."
+msgstr "Vyhledat: Klíčové slovo je příliš dlouhé. Zadejte maximálně 100 znaků."
+
+#: articles/views.py:48 articles/views_redaction.py:102
+msgid "Search results"
+msgstr "Výsledky hledání"
+
+#: articles/views_admin.py:12
+msgid "Users"
+msgstr "Uživatel"
+
+#: articles/views_admin.py:80 articles/views_redaction.py:69
+msgid "Invalid form input"
+msgstr "Neplatný vstup z formuláře"

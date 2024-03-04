@@ -103,10 +103,10 @@ def article_view(request, pk):
 
 
 def article_comment_save_view(request):
+    article_pk = int(request.POST.get('article_pk'))
     if request.method == "POST":
         body = request.POST.get('body', '')
         if body != '':
-            article_pk = int(request.POST.get('article_pk'))
             article = get_object_or_404(models.Article, pk=article_pk)
 
             if not request.user.is_active or not article.allow_comments:
