@@ -14,6 +14,7 @@ def main_view(request):
 
 
 def main_filtered_view(request, menu):
+    # Articles
     article_list = models.Article.objects.filter(published=True)
     header = _("All articles")
     if menu is not None:
@@ -48,6 +49,9 @@ def main_filtered_view(request, menu):
         article_list = paginator.page(paginator.num_pages)
     page_parameter = '' if search == '' else f"search={search}"
 
+    # News
+    news_list = models.News.objects.filter(published=True)
+
     ctx = {
         'aside_menu_name': _("Articles"),
     }
@@ -58,6 +62,7 @@ def main_filtered_view(request, menu):
     ctx['search'] = search
     ctx['header'] = header
     ctx['article_list'] = article_list
+    ctx['news_list'] = news_list
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu(main_view, request.user)
     return render(request, "main.html", ctx)

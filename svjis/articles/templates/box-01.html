@@ -1,5 +1,6 @@
 {% load i18n %}
 
+{% if news_list %}
 <!-- News -->
 <div class="box-01-top"></div>
 
@@ -10,28 +11,19 @@
 
 <div class="box-01">
 
-    <dl class="news box">
-        <dt>
-            SRP<br /><span>31</span>
-        </dt>
-        <dd>
-            <span>@ 15:00</span><br /><a href="/Dispatcher?page=articleDetail&id=40"><strong>Důležité kontakty</strong></a>
-        </dd>
-    </dl>
-
-    <div class="bg">
-
-        <dl class="news box">
-            <dt>
-                SRP<br /><span>21</span>
-            </dt>
-            <dd>
-                <span>@ 12:00</span><br /><a href="Dispatcher?page=articleDetail&id=395">Práva a povinnosti vlastníka jednotky</a> vyplývající z Občanského zákoníku (ve znění platném od 1.1.2014)
-                <br/>
-                <a href="Dispatcher?page=articleDetail&id=396">Práva a povinnosti vlastníka jednotky</a> dle stanov Společenství vlastníků Rižská 1491
-            </dd>
-        </dl>
-    </div> <!-- /bg -->
+    {% for news in news_list %}
+        {% if forloop.counter|divisibleby:2 %}<div class="bg">{% endif %}
+            <dl class="news box">
+                <dt>
+                    {{ news.created_date|date:"M"|upper }}<br /><span>{{ news.created_date|date:"d" }}</span>
+                </dt>
+                <dd>
+                    <span>@ {{ news.created_date|date:"H:i" }}</span><br />{{ news.body }}
+                </dd>
+            </dl>
+        {% if forloop.counter|divisibleby:2 %}</div> <!-- /bg -->{% endif %}
+    {% endfor %}
 
 </div> <!-- /box-01 -->
 <div class="box-01-bottom"></div>
+{% endif %}
