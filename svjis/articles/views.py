@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -52,6 +52,11 @@ def main_filtered_view(request, menu):
     # News
     news_list = models.News.objects.filter(published=True)
 
+    # Top 5 Articles
+    top_articles = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')[:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
+    for ta in top_articles:
+        ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
+
     ctx = {
         'aside_menu_name': _("Articles"),
     }
@@ -63,6 +68,7 @@ def main_filtered_view(request, menu):
     ctx['header'] = header
     ctx['article_list'] = article_list
     ctx['news_list'] = news_list
+    ctx['top_articles'] = top_articles
     ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu(main_view, request.user)
     return render(request, "main.html", ctx)
@@ -70,6 +76,10 @@ def main_filtered_view(request, menu):
 
 def article_view(request, pk):
     article = get_object_or_404(models.Article, pk=pk)
+    user = request.user
+    if user.is_anonymous:
+        user = None
+    models.ArticleLog.objects.create(article=article, user=user)
     ctx = {
         'aside_menu_name': _("Articles"),
     }

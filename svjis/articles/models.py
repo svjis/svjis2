@@ -24,6 +24,15 @@ class Article(models.Model):
         ordering = ['-id']
 
 
+class ArticleLog(models.Model):
+    entry_time = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"ArticleLog: {self.header}"
+
+
 def article_directory_path(instance, filename):
     return 'assets/{0}/{1}'.format(instance.article.id, filename)
 
