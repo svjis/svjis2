@@ -30,7 +30,14 @@
 <form action="{% url 'article_comment_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="article_pk" value="{{ obj.pk }}">
-    {{ comment_form.as_p }}
+    <p>
+        <textarea
+           id="body"
+           name="body"
+           rows=5 cols=50
+           wrap
+        ></textarea>
+    </p>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Insert comment' %}" name="submit">
     </p>

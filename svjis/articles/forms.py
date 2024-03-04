@@ -21,12 +21,6 @@ class ArticleAssetForm(forms.ModelForm):
         fields = ("description", "file",)
 
 
-class ArticleCommentForm(forms.ModelForm):
-    class Meta:
-        model = models.ArticleComment
-        fields = ("body",)
-
-
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
