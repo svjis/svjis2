@@ -1,6 +1,6 @@
 # SVJIS PY
 
-Tento repozitář obsahuje pokus o reimplementaci SVJIS do Django.
+Tento repozitář obsahuje pokus o reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/).
 
 ## Instalace
 Předpokládá se, že máte na počítači nainstalovaný python verze 3.10 a nebo vyšší.
@@ -30,6 +30,10 @@ pip install -r requirements.txt
 cd svjis
 python manage.py migrate
 python manage.py createsuperuser
+```
+
+Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
+```
 python manage.py compilemessages
 ```
 
@@ -38,3 +42,7 @@ python manage.py compilemessages
 ```
 python manage.py runserver
 ```
+
+## Spolupráce
+
+Jakákoliv forma spolupráce je vítána. :octocat:
