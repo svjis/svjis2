@@ -144,6 +144,7 @@ def redaction_article_edit_view(request, pk):
         'aside_menu_name': _("Redaction"),
     }
     ctx['form'] = form
+    ctx['asset_form'] = forms.ArticleAssetForm
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('article')
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
@@ -181,6 +182,36 @@ def redaction_article_delete_view(request, pk):
     obj = get_object_or_404(models.Article, pk=pk)
     obj.delete()
     return redirect(redaction_article_view)
+
+
+# Redaction - ArticleAsset
+def redaction_article_asset_save_view(request):
+    if not request.user.is_staff:
+        raise Http404
+
+    article_pk = int(request.POST.get('article_pk'))
+    article = get_object_or_404(models.Article, pk=article_pk)
+    if request.method == "POST":
+        form = forms.ArticleAssetForm(request.POST, request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.article = article
+            obj.save()
+        else:
+            for error in form.errors:
+                messages.error(request, error)
+
+    return redirect(redaction_article_edit_view, pk=article_pk)
+
+
+def redaction_article_asset_delete_view(request, pk):
+    if not request.user.is_staff:
+        raise Http404
+
+    obj = get_object_or_404(models.ArticleAsset, pk=pk)
+    article_pk = obj.article.pk
+    obj.delete()
+    return redirect(redaction_article_edit_view, pk=article_pk)
 
 
 # Redaction - MiniNews

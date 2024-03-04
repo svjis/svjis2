@@ -15,6 +15,13 @@ class ArticleForm(forms.ModelForm):
         fields = ("header", "perex", "body", "menu", "published")
 
 
+class ArticleAssetForm(forms.ModelForm):
+
+    class Meta:
+        model = models.ArticleAsset
+        fields = ('description', 'file')
+
+
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
