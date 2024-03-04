@@ -97,7 +97,7 @@ def article_view(request, pk):
     ctx['header'] = article.menu.description
     ctx['obj'] = article
     ctx['aside_menu_items'] = get_side_menu(ctx)
-    ctx['tray_menu_items'] = (main_view, request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "article.html", ctx)
 
 
