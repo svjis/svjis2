@@ -9,6 +9,16 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
+def get_side_menu(ctx):
+    result = []
+    header = ctx.get('header', None)
+    result.append({'description': _("All articles"), 'link': reverse(main_view), 'active': True if header == _("All articles") else False})
+    menu_items = models.ArticleMenu.objects.filter(hide=False).all()
+    for obj in menu_items:
+        result.append({'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': True if header == obj.description else False})
+    return result
+
+
 def main_view(request):
     return main_filtered_view(request, None)
 
@@ -69,8 +79,8 @@ def main_filtered_view(request, menu):
     ctx['article_list'] = article_list
     ctx['news_list'] = news_list
     ctx['top_articles'] = top_articles
-    ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(main_view, request.user)
+    ctx['aside_menu_items'] = get_side_menu(ctx)
+    ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "main.html", ctx)
 
 
@@ -86,8 +96,8 @@ def article_view(request, pk):
     ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
-    ctx['aside_menu_items'] = utils.get_aside_menu(main_view, ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu(main_view, request.user)
+    ctx['aside_menu_items'] = get_side_menu(ctx)
+    ctx['tray_menu_items'] = (main_view, request.user)
     return render(request, "article.html", ctx)
 
 
