@@ -1,0 +1,58 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Article' %}</h1>
+<form action="{% url 'redaction_article_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'Article' %}</legend>
+        {{ form.as_p }}
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+
+{% if pk != 0 %}
+<h2 class="page-title">{% trans 'Assets' %}</h2>
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">{% trans 'Name' %}</th>
+        <th class="list" scope="col">{% trans 'Insert as Link' %}</th>
+        <th class="list" scope="col">{% trans 'Insert as Picture' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if form.instance.assets %}
+    {% for obj in form.instance.assets %}
+    <tr>
+    <td class="list">{{ obj.description }}</td>
+    <td class="list">[{{ obj.description }}](/media/{{ obj.file }})</td>
+    <td class="list">![{{ obj.description }}](/media/{{ obj.file }})</td>
+    <td class="list"><a href="{% url 'redaction_article_asset_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+<form action="{% url 'redaction_article_asset_save' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="article_pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'Article asset' %}</legend>
+        {{ asset_form.as_p }}
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit2" type="submit" value="{% trans 'Upload' %}" />
+    </p>
+</form>
+{% endif %}
+
+{% endblock %}

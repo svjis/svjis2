@@ -1,0 +1,22 @@
+{% load i18n %}
+
+{% if request.user.is_authenticated %}
+<h4 class="margin">{% trans 'User' %}:</h4>
+<form action="{% url 'user_logout' %}" method="post">
+    <div id="logout" class="box">
+        {% csrf_token %}
+        {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}<br><input id="logout-submit" class="my-button" type="submit" value="{% trans 'Logout' %}" />
+    </div>
+</form>
+{% else %}
+<h4 class="margin">{% trans 'Login' %}:</h4>
+    <form action="{% url 'user_login' %}" method="post">
+        <div id="login" class="box">
+            {% csrf_token %}
+            <p><label id="login-label" for="login-name">{% trans 'Username' %}</label> <input id="login-input" type="text" name="username" size="10" /></p>
+            <p><label id="password-label" for="login-password">{% trans 'Passwod' %}</label> <input id="password-input" type="password" name="password" size="10" /></p>
+            <p><input id="login-submit" class="my-button" type="submit" value="{% trans 'Sign in' %}" /></p>
+            <p><a href="">{% trans 'Lost passwod' %}</a></p>
+        </div>
+    </form>
+{% endif %}

@@ -1,0 +1,26 @@
+<!-- Aside -->
+<div id="aside">
+    <div id="aside-top"></div>
+
+    <!-- Categories -->
+    <div class="padding">
+        <h4 class="nom">{{ aside_menu_name }}</h4>
+    </div> <!-- /padding -->
+
+    <ul class="nav">
+        {% if aside_menu_items %}
+        {% for obj in aside_menu_items %}
+        <li {% if obj.active %}id="nav-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+
+    <div class="padding">
+        {% include 'search.html' %}
+        {% include 'login.html' %}
+    </div> <!-- /padding -->
+
+    <hr class="noscreen" />
+</div> <!-- /aside -->
+
+<div id="aside-bottom"></div>

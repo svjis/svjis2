@@ -1,0 +1,288 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-04 18:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: articles/models.py:8
+msgid "Header"
+msgstr "Header"
+
+#: articles/models.py:11 articles/models.py:95
+#: articles/templates/redaction_article.html:16
+#: articles/templates/redaction_news.html:15
+msgid "Published"
+msgstr "Published"
+
+#: articles/models.py:12
+msgid "Perex (markdown)"
+msgstr "Perex (markdown)"
+
+#: articles/models.py:13
+msgid "Body (markdown)"
+msgstr "Body (markdown)"
+
+#: articles/models.py:15
+msgid "Allow comments"
+msgstr "Allow comments"
+
+#: articles/models.py:46 articles/models.py:77
+msgid "Description"
+msgstr "Description"
+
+#: articles/models.py:47
+msgid "File"
+msgstr "File"
+
+#: articles/models.py:48 articles/models.py:64
+#: articles/templates/redaction_article.html:13
+#: articles/templates/redaction_article_edit.html:7
+#: articles/templates/redaction_article_edit.html:13
+#: articles/views_redaction.py:105
+msgid "Article"
+msgstr "Article"
+
+#: articles/models.py:67 articles/models.py:96
+#: articles/templates/redaction_news.html:16
+msgid "Body"
+msgstr "Body"
+
+#: articles/models.py:78 articles/templates/redaction_menu.html:13
+msgid "Hide"
+msgstr "Hide"
+
+#: articles/templates/admin_user.html:7
+#: articles/templates/admin_user_edit.html:7
+#: articles/templates/admin_user_edit.html:13 articles/templates/login.html:4
+msgid "User"
+msgstr "User"
+
+#: articles/templates/admin_user.html:8
+msgid "Create new user"
+msgstr "Create new user"
+
+#: articles/templates/admin_user.html:12 articles/templates/login.html:16
+msgid "Username"
+msgstr "Username"
+
+#: articles/templates/admin_user.html:13
+msgid "First name"
+msgstr "First name"
+
+#: articles/templates/admin_user.html:14
+msgid "Last name"
+msgstr "Last name"
+
+#: articles/templates/admin_user.html:15
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: articles/templates/admin_user.html:16
+#: articles/templates/admin_user_edit.html:20
+msgid "Active"
+msgstr "Active"
+
+#: articles/templates/admin_user.html:17
+#: articles/templates/admin_user_edit.html:24
+msgid "Staff"
+msgstr "Staff"
+
+#: articles/templates/admin_user.html:18
+#: articles/templates/admin_user_edit.html:28
+msgid "Superuser"
+msgstr "Superuser"
+
+#: articles/templates/admin_user.html:19
+msgid "Last login"
+msgstr "Last login"
+
+#: articles/templates/admin_user.html:34
+#: articles/templates/redaction_article.html:28
+#: articles/templates/redaction_menu.html:25
+#: articles/templates/redaction_news.html:28
+msgid "Edit"
+msgstr "Edit"
+
+#: articles/templates/admin_user_edit.html:16
+msgid "Password"
+msgstr "Passwod"
+
+#: articles/templates/admin_user_edit.html:33
+#: articles/templates/redaction_article_edit.html:17
+#: articles/templates/redaction_menu_edit.html:17
+#: articles/templates/redaction_news_edit.html:17
+msgid "Save"
+msgstr "Save"
+
+#: articles/templates/article.html:12 articles/templates/main.html:23
+#: articles/templates/redaction_article.html:15
+#: articles/templates/redaction_news.html:14
+msgid "Author"
+msgstr "Author"
+
+#: articles/templates/article.html:12 articles/templates/main.html:24
+msgid "Comments"
+msgstr "Comments"
+
+#: articles/templates/article.html:42
+msgid "Insert comment"
+msgstr "Insert comment"
+
+#: articles/templates/box-01.html:9
+#: articles/templates/redaction_news_edit.html:7
+#: articles/templates/redaction_news_edit.html:13
+#: articles/views_redaction.py:15 articles/views_redaction.py:223
+msgid "News"
+msgstr "News"
+
+#: articles/templates/box-02.html:7
+msgid "Top articles"
+msgstr "Top articles"
+
+#: articles/templates/login.html:8
+msgid "Logout"
+msgstr "Logout"
+
+#: articles/templates/login.html:12
+msgid "Login"
+msgstr "Login"
+
+#: articles/templates/login.html:17
+msgid "Passwod"
+msgstr "Passwod"
+
+#: articles/templates/login.html:18
+msgid "Sign in"
+msgstr "Sign in"
+
+#: articles/templates/login.html:19
+msgid "Lost passwod"
+msgstr "Lost passwod"
+
+#: articles/templates/paginator.html:8
+msgid "Previous"
+msgstr "Previous"
+
+#: articles/templates/paginator.html:35
+msgid "Next"
+msgstr "Next"
+
+#: articles/templates/redaction_article.html:9
+msgid "Create new article"
+msgstr "Create new article"
+
+#: articles/templates/redaction_article.html:14
+#: articles/templates/redaction_news.html:13
+msgid "Date"
+msgstr "Date"
+
+#: articles/templates/redaction_article.html:29
+#: articles/templates/redaction_article_edit.html:38
+#: articles/templates/redaction_menu.html:26
+#: articles/templates/redaction_news.html:29
+msgid "Delete"
+msgstr "Delete"
+
+#: articles/templates/redaction_article_edit.html:23
+msgid "Assets"
+msgstr "Assets"
+
+#: articles/templates/redaction_article_edit.html:26
+#: articles/templates/redaction_menu.html:12
+msgid "Name"
+msgstr "Name"
+
+#: articles/templates/redaction_article_edit.html:27
+msgid "Insert as Link"
+msgstr "Insert as Link"
+
+#: articles/templates/redaction_article_edit.html:28
+msgid "Insert as Picture"
+msgstr "Insert as Picture"
+
+#: articles/templates/redaction_article_edit.html:49
+msgid "Article asset"
+msgstr "Article asset"
+
+#: articles/templates/redaction_article_edit.html:53
+msgid "Upload"
+msgstr "Upload"
+
+#: articles/templates/redaction_menu.html:7
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:16
+msgid "Menu"
+msgstr "Menu"
+
+#: articles/templates/redaction_menu.html:8
+msgid "Create new menu entry"
+msgstr "Create new menu entry"
+
+#: articles/templates/redaction_menu.html:14
+msgid "Parent"
+msgstr "Parent"
+
+#: articles/templates/redaction_menu_edit.html:13
+msgid "Menu entry"
+msgstr "Menu entry"
+
+#: articles/templates/redaction_news.html:9
+msgid "Create new news"
+msgstr "Create new news"
+
+#: articles/templates/search.html:4 articles/templates/search.html:9
+msgid "Search"
+msgstr "Search"
+
+#: articles/utils.py:8 articles/views.py:72 articles/views.py:95
+#: articles/views_redaction.py:14
+msgid "Articles"
+msgstr "Articles"
+
+#: articles/utils.py:10 articles/views_redaction.py:26
+#: articles/views_redaction.py:45 articles/views_redaction.py:119
+#: articles/views_redaction.py:144 articles/views_redaction.py:236
+#: articles/views_redaction.py:258
+msgid "Redaction"
+msgstr "Redaction"
+
+#: articles/utils.py:12 articles/views_admin.py:23 articles/views_admin.py:43
+msgid "Administration"
+msgstr "Administration"
+
+#: articles/views.py:16 articles/views.py:30
+msgid "All articles"
+msgstr "All articles"
+
+#: articles/views.py:41 articles/views_redaction.py:95
+msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
+msgstr "Search: Keyword '{}' is too short. Type at least 3 characters."
+
+#: articles/views.py:44 articles/views_redaction.py:98
+msgid "Search: Keyword is too long. Type maximum of 100 characters."
+msgstr "Search: Keyword is too long. Type maximum of 100 characters."
+
+#: articles/views.py:48 articles/views_redaction.py:102
+msgid "Search results"
+msgstr "Search results"
+
+#: articles/views_admin.py:12
+msgid "Users"
+msgstr "User"
+
+#: articles/views_admin.py:80 articles/views_redaction.py:69
+msgid "Invalid form input"
+msgstr "Invalid form input"

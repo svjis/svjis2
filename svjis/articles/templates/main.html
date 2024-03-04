@@ -1,0 +1,47 @@
+{% extends "base-with-aside-menu.html" %}
+
+{% load article_filters %}
+{% load i18n %}
+
+{% block cnt %}
+
+    <div id="content-left">
+        <div id="content-left-in">
+
+            <!-- Recent Articles -->
+            <h1 class="article-page-title">{{ header }}</h1>
+
+            {% if article_list %}
+            {% for obj in article_list %}
+            <!-- Article -->
+            <div class="article box">
+                <div class="article-desc">
+                    <h1 class="article-title-list"><a {% if search != '' %} href="{% url 'article' pk=obj.id %}?search={{ search }}" {% else %} href="{% url 'article' pk=obj.id %}" {% endif %}>{{ obj.header | highlight:search | safe }}</a></h1>
+                    <p class="info">
+                        <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
+                        <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
+                        {% trans 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
+                        {% if obj.comments %}, {% trans 'Comments' %}: <strong>{{ obj.comments | length }}</strong>{% endif %}</p>
+                    <p>{{ obj.perex | highlight:search | markdown | safe }}</p>
+                </div>
+            </div> <!-- /article -->
+            {% endfor %}
+            {% endif %}
+
+            {% include 'paginator.html' %}
+
+        </div> <!-- /content-left-in -->
+    </div> <!-- /content-left -->
+
+    <hr class="noscreen" />
+
+    <div id="content-right">
+
+        {% include 'box-01.html' %}
+        {% include 'box-02.html' %}
+
+    </div> <!-- /content-right -->
+
+    <hr class="noscreen" />
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'User' %}</h1>
+<form action="{% url 'admin_user_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'User' %}</legend>
+        {{ form.as_p }}
+        <p>
+            <label for="id_password">{% trans 'Password' %}:</label>
+            <input id="id_password" name="password" type="password" value="" />
+        </p>
+        <p>
+            <label for="id_active">{% trans 'Active' %}:</label>
+            <input type="checkbox" name="active" id="id_active" {% if instance.is_active %}checked{% endif %}>
+        </p>
+        <p>
+            <label for="id_staff">{% trans 'Staff' %}:</label>
+            <input type="checkbox" name="staff" id="id_staff" {% if instance.is_staff %}checked{% endif %}>
+        </p>
+        <p>
+            <label for="id_superuser">{% trans 'Superuser' %}:</label>
+            <input type="checkbox" name="superuser" id="id_superuser" {% if instance.is_superuser %}checked{% endif %}>
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}
