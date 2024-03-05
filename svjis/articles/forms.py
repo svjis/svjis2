@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User, Group
 from . import models
 
 
@@ -29,11 +29,16 @@ class NewsForm(forms.ModelForm):
 
 class UserCreateForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ("first_name", "last_name", "email", "username",)
 
 
 class UserEditForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ("first_name", "last_name", "email",)
+
+class GroupEditForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = ("name",)

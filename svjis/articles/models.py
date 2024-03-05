@@ -102,21 +102,6 @@ class News(models.Model):
         ordering = ['-id']
 
 
-class UserPermission(models.Model):
-    description = models.CharField(_("Description"), max_length=50, blank=False)
-
-    def __str__(self):
-        return f"UserPermission: {self.description}"
-
-
-class UserRole(models.Model):
-    description = models.CharField(_("Description"), max_length=50, blank=False)
-    permissions = models.ManyToManyField(UserPermission)
-
-    def __str__(self):
-        return f"UserRole: {self.description}"
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     salutation = models.CharField(_("Salutation"), max_length=30, blank=True)
@@ -127,7 +112,6 @@ class UserProfile(models.Model):
     phone = models.CharField(_("Phone"),max_length=30, blank=True)
     show_in_phonelist = models.BooleanField(_("Show in phonelist"), default=False)
     internal_note = models.CharField(_("Internal note"),max_length=250, blank=True)
-    roles = models.ManyToManyField(UserRole)
 
     def __str__(self):
         return f"UserProfile: {self.user.username}"

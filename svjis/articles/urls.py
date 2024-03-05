@@ -30,6 +30,10 @@ urlpatterns = [
     path('admin_user/', views_admin.admin_user_view, name='admin_user'),
     path('admin_user_edit/<int:pk>/', views_admin.admin_user_edit_view, name='admin_user_edit'),
     path('admin_user_save/', views_admin.admin_user_save_view, name='admin_user_save'),
+    path('admin_group/', views_admin.admin_group_view, name='admin_group'),
+    path('admin_group_edit/<int:pk>/', views_admin.admin_group_edit_view, name='admin_group_edit'),
+    path('admin_group_save/', views_admin.admin_group_save_view, name='admin_group_save'),
+    path('admin_group_delete/<int:pk>/', views_admin.admin_group_delete_view, name='admin_group_delete'),
 ]
 
 if settings.DEBUG:
