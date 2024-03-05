@@ -30,7 +30,7 @@
     <td class="list">{{ obj.is_active }}</td>
     <td class="list">{{ obj.is_staff }}</td>
     <td class="list">{{ obj.is_superuser }}</td>
-    <td class="list">{{ obj.last_login }}</td>
+    <td class="list">{{ obj.last_login | date:"d.m.Y H:i"}}</td>
     <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
     </tr>
     {% endfor %}
