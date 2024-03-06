@@ -29,6 +29,18 @@
             <input type="checkbox" name="superuser" id="id_superuser" {% if instance.is_superuser %}checked{% endif %}>
         </p>
     </fieldset>
+
+    <fieldset>
+        <legend>{% trans 'Groups' %}</legend>
+        {% if group_list %}
+        {% for obj in group_list %}
+        <p>
+            <label class="common-label" id="{{ obj.name }}-label" for="{{ obj.name }}-input">{{ obj.name }}</label>
+            <input class="common-input" id="{{ obj.name }}-input" type="checkbox" name="{{ obj.name }}" {% if obj.checked %}checked{% endif %}/>
+        </p>
+        {% endfor %}
+        {% endif %}
+    </fieldset>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
     </p>

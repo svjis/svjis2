@@ -40,11 +40,20 @@ def admin_user_edit_view(request, pk):
         i = User
         form = forms.UserCreateForm
 
+    group_list = []
+    user_group_list = []
+    if pk != 0:
+        user_group_list = Group.objects.filter(user__id=i.id)
+    for g in Group.objects.all():
+        item = {'name': g.name, 'checked': g in user_group_list}
+        group_list.append(item)
+
     ctx = {
         'aside_menu_name': _("Administration"),
     }
     ctx['form'] = form
     ctx['instance'] = i
+    ctx['group_list'] = group_list
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('users')
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
@@ -77,6 +86,15 @@ def admin_user_save_view(request):
             instance.is_staff = staff
             instance.is_superuser = superuser
             instance.save()
+
+            # Set groups
+            user_group_list = Group.objects.filter(user__id=instance.id)
+            for g in Group.objects.all():
+                group_set = request.POST.get(g.name, False) == 'on'
+                if group_set and g not in user_group_list:
+                    instance.groups.add(g)
+                if not group_set and g in user_group_list:
+                    instance.groups.remove(g)
         else:
             messages.error(request, _("Invalid form input"))
     return redirect(admin_user_view)
@@ -143,6 +161,7 @@ def admin_group_save_view(request):
         if form.is_valid:
             instance = form.save()
 
+            # Set permissions
             group_perm_list = Permission.objects.filter(group__id=instance.id)
             for p in Permission.objects.all():
                 if p.codename.startswith('svjis_'):
