@@ -32,7 +32,7 @@ python manage.py migrate
 python manage.py setup_svjis
 ```
 
-Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
+Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext` - vyzkoušejte `gettext --version`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
 ```
 python manage.py compilemessages
 ```
