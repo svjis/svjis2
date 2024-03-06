@@ -5,6 +5,14 @@ from django.conf import settings
 from django.db import migrations, models
 
 
+def populate_groups(apps, schema_editor):
+    names = ["Vlastník", "Člen výboru", "Dodavatel", "Redaktor",]
+    group = apps.get_model("auth", "Group")
+    for name in names:
+        obj = group(name=name)
+        obj.save()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -28,4 +36,5 @@ class Migration(migrations.Migration):
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
+        migrations.RunPython(populate_groups),
     ]
