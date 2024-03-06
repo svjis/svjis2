@@ -282,7 +282,7 @@ msgstr "Výsledky hledání"
 
 #: articles/views_admin.py:12
 msgid "Users"
-msgstr "Uživatel"
+msgstr "Uživatelé"
 
 #: articles/views_admin.py:80 articles/views_redaction.py:69
 msgid "Invalid form input"
