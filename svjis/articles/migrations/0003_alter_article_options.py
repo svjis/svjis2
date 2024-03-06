@@ -8,14 +8,14 @@ from articles.models import ArticleMenu
 def populate_groups(apps, schema_editor):
         names = [
              {'name': 'Administrator', 'perms': [
-                            'articles.svjis_view_redaction_menu',
-                            'articles.svjis_edit_article',
-                            'articles.svjis_add_article_comment',
-                            'articles.svjis_edit_article_menu',
-                            'articles.svjis_edit_article_news',
-                            'articles.svjis_view_admin_menu',
-                            'articles.svjis_edit_admin_users',
-                            'articles.svjis_edit_admin_groups',
+                            'svjis_view_redaction_menu',
+                            'svjis_edit_article',
+                            'svjis_add_article_comment',
+                            'svjis_edit_article_menu',
+                            'svjis_edit_article_news',
+                            'svjis_view_admin_menu',
+                            'svjis_edit_admin_users',
+                            'svjis_edit_admin_groups',
             ]},
              {'name': 'Vlastník', 'perms': [
                             'svjis_add_article_comment',
