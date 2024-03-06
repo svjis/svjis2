@@ -29,7 +29,6 @@ Nainstalujte závislosti a vytvoře konfiguraci
 pip install -r requirements.txt
 cd svjis
 python manage.py migrate
-python manage.py createsuperuser
 ```
 
 Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
@@ -42,6 +41,8 @@ python manage.py compilemessages
 ```
 python manage.py runserver
 ```
+
+Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Administrace - Uživatelé**.
 
 ## Spolupráce
 
