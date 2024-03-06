@@ -1,6 +1,6 @@
 from . import utils, forms
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.http import Http404
@@ -108,11 +108,21 @@ def admin_group_edit_view(request, pk):
         i = Group
         form = forms.GroupEditForm
 
+    permission_list = []
+    group_perm_list = []
+    if pk != 0:
+        group_perm_list = Permission.objects.filter(group__id=i.id)
+    for p in Permission.objects.all():
+        if p.codename.startswith('svjis_'):
+            item = {'name': p.codename, 'checked': p in group_perm_list}
+            permission_list.append(item)
+
     ctx = {
         'aside_menu_name': _("Administration"),
     }
     ctx['form'] = form
     ctx['instance'] = i
+    ctx['permission_list'] = permission_list
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('groups')
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
@@ -131,9 +141,19 @@ def admin_group_save_view(request):
             instance = get_object_or_404(Group, pk=pk)
             form = forms.GroupEditForm(request.POST, instance=instance)
         if form.is_valid:
-            form.save()
+            instance = form.save()
+
+            group_perm_list = Permission.objects.filter(group__id=instance.id)
+            for p in Permission.objects.all():
+                if p.codename.startswith('svjis_'):
+                    perm_set = request.POST.get(p.codename, False) == 'on'
+                    if perm_set and p not in group_perm_list:
+                        instance.permissions.add(p)
+                    if not perm_set and p in group_perm_list:
+                        instance.permissions.remove(p)
         else:
             messages.error(request, _("Invalid form input"))
+
     return redirect(admin_group_view)
 
 

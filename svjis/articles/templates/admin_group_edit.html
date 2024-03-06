@@ -13,6 +13,18 @@
         <legend>{% trans 'Group' %}</legend>
         {{ form.as_p }}
     </fieldset>
+
+    <fieldset>
+        <legend>{% trans 'Permissions' %}</legend>
+        {% if permission_list %}
+        {% for obj in permission_list %}
+        <p>
+            <label class="common-label" id="{{ obj.name }}-label" for="{{ obj.name }}-input">{{ obj.name }}</label>
+            <input class="common-input" id="{{ obj.name }}-input" type="checkbox" name="{{ obj.name }}" {% if obj.checked %}checked{% endif %}/>
+        </p>
+        {% endfor %}
+        {% endif %}
+    </fieldset>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
     </p>
