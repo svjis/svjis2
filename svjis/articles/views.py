@@ -1,12 +1,12 @@
 from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q, Count
 from django.conf import settings
 from django.urls import reverse
-from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
 
@@ -101,17 +101,13 @@ def article_view(request, pk):
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "article.html", ctx)
 
-
+@permission_required("articles.svjis_add_article_comment")
 def article_comment_save_view(request):
     article_pk = int(request.POST.get('article_pk'))
     if request.method == "POST":
         body = request.POST.get('body', '')
         if body != '':
             article = get_object_or_404(models.Article, pk=article_pk)
-
-            if not request.user.is_active or not article.allow_comments:
-                raise Http404
-
             models.ArticleComment.objects.create(body=body, article=article, author=request.user)
     return redirect(article_view, pk=article_pk)
 

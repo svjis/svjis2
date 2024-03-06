@@ -1,40 +1,39 @@
 from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import permission_required
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q
 from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.http import Http404
 
 
-def get_side_menu(active_item):
+def get_side_menu(active_item, user):
     result = []
-    result.append({'description': _("Articles"), 'link': reverse(redaction_article_view), 'active': True if active_item == 'article' else False})
-    result.append({'description': _("News"), 'link': reverse(redaction_news_view), 'active': True if active_item == 'news' else False})
-    result.append({'description': _("Menu"), 'link': reverse(redaction_menu_view), 'active': True if active_item == 'menu' else False})
+    if user.has_perm('articles.svjis_edit_article'):
+        result.append({'description': _("Articles"), 'link': reverse(redaction_article_view), 'active': True if active_item == 'article' else False})
+    if user.has_perm('articles.svjis_edit_article_news'):
+        result.append({'description': _("News"), 'link': reverse(redaction_news_view), 'active': True if active_item == 'news' else False})
+    if user.has_perm('articles.svjis_edit_article_menu'):
+        result.append({'description': _("Menu"), 'link': reverse(redaction_menu_view), 'active': True if active_item == 'menu' else False})
     return result
 
 
 # Redaction - Article Menu
+@permission_required("articles.svjis_edit_article_menu")
 def redaction_menu_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     ctx = {
         'aside_menu_name': _("Redaction"),
     }
-    ctx['aside_menu_items'] = get_side_menu('menu')
+    ctx['aside_menu_items'] = get_side_menu('menu', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     ctx['object_list'] = models.ArticleMenu.objects.all()
     return render(request, "redaction_menu.html", ctx)
 
 
+@permission_required("articles.svjis_edit_article_menu")
 def redaction_menu_edit_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     if pk != 0:
         am = get_object_or_404(models.ArticleMenu, pk=pk)
         form = forms.ArticleMenuForm(instance=am)
@@ -46,15 +45,13 @@ def redaction_menu_edit_view(request, pk):
     }
     ctx['form'] = form
     ctx['pk'] = pk
-    ctx['aside_menu_items'] = get_side_menu('menu')
+    ctx['aside_menu_items'] = get_side_menu('menu', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_menu_edit.html", ctx)
 
 
+@permission_required("articles.svjis_edit_article_menu")
 def redaction_menu_save_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     if request.method == "POST":
         pk = int(request.POST['pk'])
         if pk == 0:
@@ -71,20 +68,16 @@ def redaction_menu_save_view(request):
     return redirect(redaction_menu_view)
 
 
+@permission_required("articles.svjis_edit_article_menu")
 def redaction_menu_delete_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     obj = get_object_or_404(models.ArticleMenu, pk=pk)
     obj.delete()
     return redirect(redaction_menu_view)
 
 
 # Redaction - Article
+@permission_required("articles.svjis_edit_article")
 def redaction_article_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     article_list = models.Article.objects.all()
 
     # Search
@@ -124,16 +117,14 @@ def redaction_article_view(request):
     ctx['search_endpoint'] = reverse(redaction_article_view)
     ctx['search'] = search
     ctx['header'] = header
-    ctx['aside_menu_items'] = get_side_menu('article')
+    ctx['aside_menu_items'] = get_side_menu('article', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     ctx['object_list'] = article_list
     return render(request, "redaction_article.html", ctx)
 
 
+@permission_required("articles.svjis_edit_article")
 def redaction_article_edit_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     if pk != 0:
         a = get_object_or_404(models.Article, pk=pk)
         form = forms.ArticleForm(instance=a)
@@ -146,15 +137,13 @@ def redaction_article_edit_view(request, pk):
     ctx['form'] = form
     ctx['asset_form'] = forms.ArticleAssetForm
     ctx['pk'] = pk
-    ctx['aside_menu_items'] = get_side_menu('article')
+    ctx['aside_menu_items'] = get_side_menu('article', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_article_edit.html", ctx)
 
 
+@permission_required("articles.svjis_edit_article")
 def redaction_article_save_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     if request.method == "POST":
         pk = int(request.POST['pk'])
         if pk == 0:
@@ -175,20 +164,16 @@ def redaction_article_save_view(request):
     return redirect(redaction_article_view)
 
 
+@permission_required("articles.svjis_edit_article")
 def redaction_article_delete_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     obj = get_object_or_404(models.Article, pk=pk)
     obj.delete()
     return redirect(redaction_article_view)
 
 
 # Redaction - ArticleAsset
+@permission_required("articles.svjis_edit_article")
 def redaction_article_asset_save_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     article_pk = int(request.POST.get('article_pk'))
     article = get_object_or_404(models.Article, pk=article_pk)
     if request.method == "POST":
@@ -204,10 +189,8 @@ def redaction_article_asset_save_view(request):
     return redirect(redaction_article_edit_view, pk=article_pk)
 
 
+@permission_required("articles.svjis_edit_article")
 def redaction_article_asset_delete_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     obj = get_object_or_404(models.ArticleAsset, pk=pk)
     article_pk = obj.article.pk
     obj.delete()
@@ -215,10 +198,8 @@ def redaction_article_asset_delete_view(request, pk):
 
 
 # Redaction - MiniNews
+@permission_required("articles.svjis_edit_article_news")
 def redaction_news_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     news_list = models.News.objects.all()
     header = _("News")
 
@@ -238,16 +219,14 @@ def redaction_news_view(request):
     ctx['is_paginated'] = is_paginated
     ctx['page_obj'] = page_obj
     ctx['header'] = header
-    ctx['aside_menu_items'] = get_side_menu('news')
+    ctx['aside_menu_items'] = get_side_menu('news', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     ctx['object_list'] = news_list
     return render(request, "redaction_news.html", ctx)
 
 
+@permission_required("articles.svjis_edit_article_news")
 def redaction_news_edit_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     if pk != 0:
         a = get_object_or_404(models.News, pk=pk)
         form = forms.NewsForm(instance=a)
@@ -259,15 +238,13 @@ def redaction_news_edit_view(request, pk):
     }
     ctx['form'] = form
     ctx['pk'] = pk
-    ctx['aside_menu_items'] = get_side_menu('news')
+    ctx['aside_menu_items'] = get_side_menu('news', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_news_edit.html", ctx)
 
 
+@permission_required("articles.svjis_edit_article_news")
 def redaction_news_save_view(request):
-    if not request.user.is_staff:
-        raise Http404
-
     if request.method == "POST":
         pk = int(request.POST['pk'])
         if pk == 0:
@@ -288,10 +265,8 @@ def redaction_news_save_view(request):
     return redirect(redaction_news_view)
 
 
+@permission_required("articles.svjis_edit_article_news")
 def redaction_news_delete_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     obj = get_object_or_404(models.News, pk=pk)
     obj.delete()
     return redirect(redaction_news_view)

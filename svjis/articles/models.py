@@ -138,5 +138,5 @@ class UserProfile(models.Model):
         permissions = (
             ("svjis_view_admin_menu", "Can view Administration menu"),
             ("svjis_edit_admin_users", "Can edit Users"),
-            ("svjis_edit_admin_groups_news", "Can edit Groups"),
+            ("svjis_edit_admin_groups", "Can edit Groups"),
         )

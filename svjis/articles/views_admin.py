@@ -1,38 +1,36 @@
 from . import utils, forms
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from django.http import Http404
 from django.urls import reverse
 
 
-def get_side_menu(active_item):
+def get_side_menu(active_item, user):
     result = []
-    result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
-    result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
+    if user.has_perm('articles.svjis_edit_admin_users'):
+        result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
+    if user.has_perm('articles.svjis_edit_admin_groups'):
+        result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
     return result
 
 
 # Administration - User
+@permission_required("articles.svjis_edit_admin_users")
 def admin_user_view(request):
-    if not request.user.is_superuser:
-        raise Http404
-
     user_list = User.objects.all()
     ctx = {
         'aside_menu_name': _("Administration"),
     }
-    ctx['aside_menu_items'] = get_side_menu('users')
+    ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = user_list
     return render(request, "admin_user.html", ctx)
 
 
+@permission_required("articles.svjis_edit_admin_users")
 def admin_user_edit_view(request, pk):
-    if not request.user.is_superuser:
-        raise Http404
-
     if pk != 0:
         i = get_object_or_404(User, pk=pk)
         form = forms.UserEditForm(instance=i)
@@ -55,15 +53,13 @@ def admin_user_edit_view(request, pk):
     ctx['instance'] = i
     ctx['group_list'] = group_list
     ctx['pk'] = pk
-    ctx['aside_menu_items'] = get_side_menu('users')
+    ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     return render(request, "admin_user_edit.html", ctx)
 
 
+@permission_required("articles.svjis_edit_admin_users")
 def admin_user_save_view(request):
-    if not request.user.is_superuser:
-        raise Http404
-
     if request.method == "POST":
         pk = int(request.POST['pk'])
         if pk == 0:
@@ -101,24 +97,20 @@ def admin_user_save_view(request):
 
 
 # Administration - Group
+@permission_required("articles.svjis_edit_admin_groups")
 def admin_group_view(request):
-    if not request.user.is_superuser:
-        raise Http404
-
     group_list = Group.objects.all()
     ctx = {
         'aside_menu_name': _("Administration"),
     }
-    ctx['aside_menu_items'] = get_side_menu('groups')
+    ctx['aside_menu_items'] = get_side_menu('groups', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = group_list
     return render(request, "admin_group.html", ctx)
 
 
+@permission_required("articles.svjis_edit_admin_groups")
 def admin_group_edit_view(request, pk):
-    if not request.user.is_superuser:
-        raise Http404
-
     if pk != 0:
         i = get_object_or_404(Group, pk=pk)
         form = forms.GroupEditForm(instance=i)
@@ -142,15 +134,13 @@ def admin_group_edit_view(request, pk):
     ctx['instance'] = i
     ctx['permission_list'] = permission_list
     ctx['pk'] = pk
-    ctx['aside_menu_items'] = get_side_menu('groups')
+    ctx['aside_menu_items'] = get_side_menu('groups', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     return render(request, "admin_group_edit.html", ctx)
 
 
+@permission_required("articles.svjis_edit_admin_groups")
 def admin_group_save_view(request):
-    if not request.user.is_superuser:
-        raise Http404
-
     if request.method == "POST":
         pk = int(request.POST['pk'])
         if pk == 0:
@@ -176,10 +166,8 @@ def admin_group_save_view(request):
     return redirect(admin_group_view)
 
 
+@permission_required("articles.svjis_edit_admin_groups")
 def admin_group_delete_view(request, pk):
-    if not request.user.is_staff:
-        raise Http404
-
     obj = get_object_or_404(Group, pk=pk)
     obj.delete()
     return redirect(admin_group_view)
