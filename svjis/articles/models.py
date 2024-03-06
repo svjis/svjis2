@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 
+# Article / Redaction
+#####################
+
 class Article(models.Model):
     header = models.CharField(_("Header"), max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -27,6 +30,10 @@ class Article(models.Model):
 
     class Meta:
         ordering = ['-id']
+        permissions = (
+            ("svjis_view_redaction_menu", "Can view Redaction menu"),
+            ("svjis_edit_article", "Can edit Article"),
+        )
 
 
 class ArticleLog(models.Model):
@@ -71,6 +78,9 @@ class ArticleComment(models.Model):
 
     class Meta:
         ordering = ['-id']
+        permissions = (
+            ("svjis_add_article_comment", "Can add Article comment"),
+        )
 
 
 class ArticleMenu(models.Model):
@@ -87,6 +97,9 @@ class ArticleMenu(models.Model):
 
     class Meta:
         ordering = ['description']
+        permissions = (
+            ("svjis_edit_article_menu", "Can edit Menu"),
+        )
 
 
 class News(models.Model):
@@ -100,7 +113,12 @@ class News(models.Model):
 
     class Meta:
         ordering = ['-id']
+        permissions = (
+            ("svjis_edit_article_news", "Can edit News"),
+        )
 
+# Administration
+#####################
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -115,3 +133,10 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"UserProfile: {self.user.username}"
+
+    class Meta:
+        permissions = (
+            ("svjis_view_admin_menu", "Can view Administration menu"),
+            ("svjis_edit_admin_users", "Can edit Users"),
+            ("svjis_edit_admin_groups_news", "Can edit Groups"),
+        )
