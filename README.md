@@ -29,6 +29,7 @@ Nainstalujte závislosti a vytvoře konfiguraci
 pip install -r requirements.txt
 cd svjis
 python manage.py migrate
+python manage.py setup_svjis
 ```
 
 Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
