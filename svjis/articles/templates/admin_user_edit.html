@@ -10,28 +10,83 @@
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
-        <legend>{% trans 'User' %}</legend>
-        {{ form.as_p }}
+        <legend>{% trans 'Person' %}</legend>
         <p>
-            <label for="id_password">{% trans 'Password' %}:</label>
-            <input id="id_password" name="password" type="password" value="" />
+            <label class="common-label" id="salutation-label" for="salutation-input">{% trans 'Salutation' %}</label>
+            <input class="common-input" id="salutation-input" type="text" name="salutation" maxlength="30" size="50" value="{{ profile_i.salutation }}" />
         </p>
         <p>
-            <label for="id_active">{% trans 'Active' %}:</label>
-            <input type="checkbox" name="active" id="id_active" {% if instance.is_active %}checked{% endif %}>
+            <label class="common-label" id="firstname-label" for="firstname-input">{% trans 'First Name' %}</label>
+            <input class="common-input" id="firstname-input" type="text" name="firstName" maxlength="30" size="50" value="{{ user_i.first_name }}" />
         </p>
         <p>
-            <label for="id_staff">{% trans 'Staff' %}:</label>
-            <input type="checkbox" name="staff" id="id_staff" {% if instance.is_staff %}checked{% endif %}>
+            <label class="common-label" id="lastname-label" for="lastname-input">{% trans 'Last Name' %}</label>
+            <input class="common-input" id="lastname-input" type="text" name="lastName" maxlength="30" size="50" value="{{ user_i.last_name }}" />
         </p>
         <p>
-            <label for="id_superuser">{% trans 'Superuser' %}:</label>
-            <input type="checkbox" name="superuser" id="id_superuser" {% if instance.is_superuser %}checked{% endif %}>
+            <label class="common-label" id="common-label" for="common-input">{% trans 'Internal Note' %}</label>
+            <textarea
+             class="common-textarea"
+             id="note-textarea"
+             name="internalNote"
+             rows=5 cols=40
+             wrap maxlength="250"
+             >{{ profile_i.internal_note }}</textarea>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>{% trans 'Contact information' %}</legend>
+        <p>
+            <label class="common-label" id="address-label" for="address-input">{% trans 'Address' %}</label>
+            <input class="common-input" id="address-input" type="text" name="address" maxlength="50" size="50" value="{{ profile_i.address }}" />
+        </p>
+        <p>
+            <label class="common-label" id="city-label" for="city-input">{% trans 'City' %}</label>
+            <input class="common-input" id="city-input" type="text" name="city" maxlength="50" size="50" value="{{ profile_i.city }}" />
+        </p>
+        <p>
+            <label class="common-label" id="postcode-label" for="postcode-input">{% trans 'Post Code' %}</label>
+            <input class="common-input" id="postcode-input" type="text" name="postCode" maxlength="10" size="50" value="{{ profile_i.post_code }}" />
+        </p>
+        <p>
+            <label class="common-label" id="country-label" for="country-input">{% trans 'Country' %}</label>
+            <input class="common-input" id="country-input" type="text" name="country" maxlength="50" size="50" value="{{ profile_i.country }}" />
+        </p>
+        <p>
+            <label class="common-label" id="fphone-label" for="fphone-input">{% trans 'Phone' %}</label>
+            <input class="common-input" id="fphone-input" type="text" name="phone" maxlength="30" size="50" value="{{ profile_i.phone }}" />
+        </p>
+        <p>
+            <label class="common-label" id="email-label" for="email-input">{% trans 'E-Mail' %}</label>
+            <input class="common-input" id="email-input" type="text" name="email" maxlength="50" size="50" value="{{ user_i.email }}" />
+        </p>
+        <p>
+            <label class="common-label" id="show-label" for="show-input">{% trans 'Show in contacts' %}</label>
+            <input class="common-input" id="show-input" type="checkbox" name="phoneList" {% if profile_i.show_in_phonelist %}checked{% endif %} />
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>{% trans 'Login information' %}</legend>
+        <p>
+            <label class="common-label" id="lname-label" for="lname-input">{% trans 'Username' %}</label>
+            <input class="common-input" id="lname-input" type="text" name="username" maxlength="50" size="30" value="{{ user_i.username }}" />
+        </p>
+        <p>
+            <label class="common-label" id="lpass-label" for="lpass-input">{% trans 'Password' %}</label>
+            <input class="common-input" id="lpass-input" type="password" name="password" maxlength="20" size="30" value="" />
+        </p>
+        <p>
+            <label class="common-label" id="sendc-label" for="sendc-input">{% trans 'Send Credentials By E-Mail' %}</label>
+            <input class="common-input" id="sendc-input" type="checkbox" name="sendCredentials"  />
+        </p>
+        <p>
+            <label class="common-label" id="enabled-label" for="enabled-input">{% trans 'Active' %}</label>
+            <input class="common-input" id="enabled-input" type="checkbox" name="active" {% if user_i.is_active %}checked{% endif %}/>
         </p>
     </fieldset>
 
     <fieldset>
-        <legend>{% trans 'Groups' %}</legend>
+        <legend>{% trans 'Member of' %}</legend>
         {% if group_list %}
         {% for obj in group_list %}
         <p>

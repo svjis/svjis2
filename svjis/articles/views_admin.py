@@ -1,7 +1,8 @@
-from . import utils, forms
+from . import utils, forms, models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -32,16 +33,16 @@ def admin_user_view(request):
 @permission_required("articles.svjis_edit_admin_users")
 def admin_user_edit_view(request, pk):
     if pk != 0:
-        i = get_object_or_404(User, pk=pk)
-        form = forms.UserEditForm(instance=i)
+        user_i = get_object_or_404(User, pk=pk)
+        profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
     else:
-        i = User
-        form = forms.UserCreateForm
+        user_i = User
+        profile_i = models.UserProfile
 
     group_list = []
     user_group_list = []
     if pk != 0:
-        user_group_list = Group.objects.filter(user__id=i.id)
+        user_group_list = Group.objects.filter(user__id=user_i.id)
     for g in Group.objects.all():
         item = {'name': g.name, 'checked': g in user_group_list}
         group_list.append(item)
@@ -49,8 +50,8 @@ def admin_user_edit_view(request, pk):
     ctx = {
         'aside_menu_name': _("Administration"),
     }
-    ctx['form'] = form
-    ctx['instance'] = i
+    ctx['user_i'] = user_i
+    ctx['profile_i'] = profile_i
     ctx['group_list'] = group_list
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
@@ -62,37 +63,44 @@ def admin_user_edit_view(request, pk):
 def admin_user_save_view(request):
     if request.method == "POST":
         pk = int(request.POST['pk'])
-        if pk == 0:
-            form = forms.UserCreateForm(request.POST)
+        if pk != 0:
+            user_i = get_object_or_404(User, pk=pk)
+            profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
         else:
-            instance = get_object_or_404(User, pk=pk)
-            form = forms.UserEditForm(request.POST, instance=instance)
-        if form.is_valid:
-            instance = form.save()
+            user_i = User.objects.create(
+                            username=request.POST.get('username', ''),
+                            password=make_password(request.POST.get('password', '')))
+            profile_i = models.UserProfile.objects.create(user=user_i)
 
-            password = request.POST.get('password', '')
-            active = request.POST.get('active', False) == 'on'
-            staff = request.POST.get('staff', False) == 'on'
-            superuser = request.POST.get('superuser', False) == 'on'
+        profile_i.salutation = request.POST.get('salutation', '')
+        user_i.first_name = request.POST.get('firstName', '')
+        user_i.last_name = request.POST.get('lastName', '')
+        profile_i.internal_note = request.POST.get('internalNote', '')
+        profile_i.address = request.POST.get('address', '')
+        profile_i.city = request.POST.get('city', '')
+        profile_i.post_code = request.POST.get('postCode', '')
+        profile_i.country = request.POST.get('country', '')
+        profile_i.phone = request.POST.get('phone', '')
+        user_i.email = request.POST.get('email', '')
+        profile_i.show_in_phonelist = request.POST.get('phoneList', False) == 'on'
+        password = request.POST.get('password', '')
+        user_i.is_active = request.POST.get('active', False) == 'on'
 
-            if password != '':
-                instance.set_password(password)
+        if password != '':
+            user_i.password = make_password(password)
 
-            instance.is_active = active
-            instance.is_staff = staff
-            instance.is_superuser = superuser
-            instance.save()
+        user_i.save()
+        profile_i.save()
 
-            # Set groups
-            user_group_list = Group.objects.filter(user__id=instance.id)
-            for g in Group.objects.all():
-                group_set = request.POST.get(g.name, False) == 'on'
-                if group_set and g not in user_group_list:
-                    instance.groups.add(g)
-                if not group_set and g in user_group_list:
-                    instance.groups.remove(g)
-        else:
-            messages.error(request, _("Invalid form input"))
+        # Set groups
+        user_group_list = Group.objects.filter(user__id=user_i.id)
+        for g in Group.objects.all():
+            group_set = request.POST.get(g.name, False) == 'on'
+            if group_set and g not in user_group_list:
+                user_i.groups.add(g)
+            if not group_set and g in user_group_list:
+                user_i.groups.remove(g)
+
     return redirect(admin_user_view)
 
 
