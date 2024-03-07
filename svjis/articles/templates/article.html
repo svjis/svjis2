@@ -26,7 +26,7 @@
 {% endif %}
 
 
-{% if user.is_active and obj.allow_comments %}
+{% if perms.articles.svjis_add_article_comment and obj.allow_comments %}
 <form action="{% url 'article_comment_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="article_pk" value="{{ obj.pk }}">

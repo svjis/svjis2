@@ -1,0 +1,28 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Group' %}</h1>
+[<a href="{% url 'admin_group_edit' pk=0 %}">{% trans 'Create new group' %}</a>]
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">{% trans 'Name' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+    <td class="list">{{ obj.name }}</td>
+    <td class="list"><a href="{% url 'admin_group_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+    <td class="list"><a href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

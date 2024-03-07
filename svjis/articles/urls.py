@@ -1,6 +1,4 @@
-from . import views
-from . import views_redaction
-from . import views_admin
+from . import views, views_personal_settings, views_redaction, views_admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -13,6 +11,10 @@ urlpatterns = [
     path('article_comment_save/', views.article_comment_save_view, name='article_comment_save'),
     path('user_login/', views.user_login, name='user_login'),
     path('user_logout/', views.user_logout, name='user_logout'),
+    path('personal_settings_edit/', views_personal_settings.personal_settings_edit_view, name='personal_settings_edit'),
+    path('personal_settings_save/', views_personal_settings.personal_settings_save_view, name='personal_settings_save'),
+    path('personal_settings_password/', views_personal_settings.personal_settings_password_view, name='personal_settings_password'),
+    path('personal_settings_password_save/', views_personal_settings.personal_settings_password_save_view, name='personal_settings_password_save'),
     path('redaction_menu/', views_redaction.redaction_menu_view, name='redaction_menu'),
     path('redaction_menu_edit/<int:pk>/', views_redaction.redaction_menu_edit_view, name='redaction_menu_edit'),
     path('redaction_menu_save/', views_redaction.redaction_menu_save_view, name='redaction_menu_save'),
@@ -30,6 +32,10 @@ urlpatterns = [
     path('admin_user/', views_admin.admin_user_view, name='admin_user'),
     path('admin_user_edit/<int:pk>/', views_admin.admin_user_edit_view, name='admin_user_edit'),
     path('admin_user_save/', views_admin.admin_user_save_view, name='admin_user_save'),
+    path('admin_group/', views_admin.admin_group_view, name='admin_group'),
+    path('admin_group_edit/<int:pk>/', views_admin.admin_group_edit_view, name='admin_group_edit'),
+    path('admin_group_save/', views_admin.admin_group_save_view, name='admin_group_save'),
+    path('admin_group_delete/<int:pk>/', views_admin.admin_group_delete_view, name='admin_group_delete'),
 ]
 
 if settings.DEBUG:
