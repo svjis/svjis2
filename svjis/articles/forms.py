@@ -58,6 +58,18 @@ class UserProfileForm(forms.ModelForm):
     }
 
 
+class PersonalUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email")
+
+
+class PersonalUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = models.UserProfile
+        fields = ("salutation", "address", "city", "post_code", "country", "phone", "show_in_phonelist")
+
+
 class GroupEditForm(forms.ModelForm):
     class Meta:
         model = Group

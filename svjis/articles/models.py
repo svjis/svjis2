@@ -139,4 +139,5 @@ class UserProfile(models.Model):
             ("svjis_view_admin_menu", "Can view Administration menu"),
             ("svjis_edit_admin_users", "Can edit Users"),
             ("svjis_edit_admin_groups", "Can edit Groups"),
+            ("svjis_view_personal_menu", "Can view Personal settings menu"),
         )

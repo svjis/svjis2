@@ -16,9 +16,11 @@ def create_groups():
                         'svjis_view_admin_menu',
                         'svjis_edit_admin_users',
                         'svjis_edit_admin_groups',
+                        'svjis_view_personal_menu',
         ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',
+                        'svjis_view_personal_menu',
         ]},
             {'name': 'Člen výboru', 'perms': [
                         'svjis_view_redaction_menu',
@@ -26,15 +28,18 @@ def create_groups():
                         'svjis_add_article_comment',
                         'svjis_edit_article_menu',
                         'svjis_edit_article_news',
+                        'svjis_view_personal_menu',
         ]},
             {'name': 'Dodavatel', 'perms': [
                         'svjis_add_article_comment',
+                        'svjis_view_personal_menu',
         ]},
             {'name': 'Redaktor', 'perms': [
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
                         'svjis_add_article_comment',
                         'svjis_edit_article_news',
+                        'svjis_view_personal_menu',
         ]},
     ]
 

@@ -1,0 +1,62 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{{ user.first_name }}&nbsp;{{ user.last_name }}</h1>
+<form action="{% url 'personal_settings_save' %}" method="post">
+    {% csrf_token %}
+
+    <fieldset>
+        <legend>{% trans 'Person' %}</legend>
+        <p>
+            <label class="common-label" id="salutation-label" for="salutation-input">{% trans 'Salutation' %}</label>
+            <input class="common-input" id="salutation-input" type="text" name="salutation" maxlength="30" size="50" value="{{ user.userprofile.salutation }}" />
+        </p>
+        <p>
+            <label class="common-label" id="firstname-label" for="firstname-input">{% trans 'First Name' %}</label>
+            <input class="common-input" id="firstname-input" type="text" name="first_name" maxlength="30" size="50" value="{{ user.first_name }}" />
+        </p>
+        <p>
+            <label class="common-label" id="lastname-label" for="lastname-input">{% trans 'Last Name' %}</label>
+            <input class="common-input" id="lastname-input" type="text" name="last_name" maxlength="30" size="50" value="{{ user.last_name }}" />
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>{% trans 'Contact information' %}</legend>
+        <p>
+            <label class="common-label" id="address-label" for="address-input">{% trans 'Address' %}</label>
+            <input class="common-input" id="address-input" type="text" name="address" maxlength="50" size="50" value="{{ user.userprofile.address }}" />
+        </p>
+        <p>
+            <label class="common-label" id="city-label" for="city-input">{% trans 'City' %}</label>
+            <input class="common-input" id="city-input" type="text" name="city" maxlength="50" size="50" value="{{ user.userprofile.city }}" />
+        </p>
+        <p>
+            <label class="common-label" id="postcode-label" for="postcode-input">{% trans 'Post Code' %}</label>
+            <input class="common-input" id="postcode-input" type="text" name="post_code" maxlength="10" size="50" value="{{ user.userprofile.post_code }}" />
+        </p>
+        <p>
+            <label class="common-label" id="country-label" for="country-input">{% trans 'Country' %}</label>
+            <input class="common-input" id="country-input" type="text" name="country" maxlength="50" size="50" value="{{ user.userprofile.country }}" />
+        </p>
+        <p>
+            <label class="common-label" id="fphone-label" for="fphone-input">{% trans 'Phone' %}</label>
+            <input class="common-input" id="fphone-input" type="text" name="phone" maxlength="30" size="50" value="{{ user.userprofile.phone }}" />
+        </p>
+        <p>
+            <label class="common-label" id="email-label" for="email-input">{% trans 'E-Mail' %}</label>
+            <input class="common-input" id="email-input" type="text" name="email" maxlength="50" size="50" value="{{ user.email }}" />
+        </p>
+        <p>
+            <label class="common-label" id="show-label" for="show-input">{% trans 'Show in contacts' %}</label>
+            <input class="common-input" id="show-input" type="checkbox" name="show_in_phonelist" {% if user.userprofile.show_in_phonelist %}checked{% endif %} />
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}
