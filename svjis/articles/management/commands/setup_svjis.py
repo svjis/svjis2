@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group, Permission
 from articles.models import ArticleMenu
 
 
-def populate_groups():
+def create_groups():
     names = [
             {'name': 'Administrator', 'perms': [
                         'svjis_view_redaction_menu',
@@ -38,6 +38,7 @@ def populate_groups():
         ]},
     ]
 
+    print("Creating groups...")
     for g in names:
         gobj = Group(name=g['name'])
         gobj.save()
@@ -47,9 +48,11 @@ def populate_groups():
                 gobj.permissions.add(pobj)
             except:
                 print(f"Permission {p} doesnt exist")
+    print("Done")
 
 
 def create_admin():
+    print("Creating admin user...")
     u = User.objects.create(username='admin',
                             email='admin@test.cz',
                             password=make_password('masterkey'),
@@ -60,12 +63,15 @@ def create_admin():
     u.save()
     g = Group.objects.get(name='Administrator')
     u.groups.add(g)
+    print("Done")
 
 
 def create_article_menu():
-     menu = ['Vývěska', 'Dotazy a návody' ,'Smlouvy' ,'Zápisy']
-     for m in menu:
-          ArticleMenu.objects.create(description=m)
+    print("Creating article menu...")
+    menu = ['Vývěska', 'Dotazy a návody' ,'Smlouvy' ,'Zápisy']
+    for m in menu:
+        ArticleMenu.objects.create(description=m)
+    print("Done")
 
 
 class Command(BaseCommand):
@@ -73,5 +79,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         create_article_menu()
-        populate_groups()
+        create_groups()
         create_admin()
