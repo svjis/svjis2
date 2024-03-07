@@ -65,41 +65,37 @@ def admin_user_save_view(request):
         pk = int(request.POST['pk'])
         if pk != 0:
             user_i = get_object_or_404(User, pk=pk)
-            profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
+            user_form = forms.UserForm(request.POST, instance=user_i)
+            user_profile_form = forms.UserProfileForm(request.POST, instance=user_i.userprofile)
         else:
-            user_i = User.objects.create(
-                            username=request.POST.get('username', ''),
-                            password=make_password(request.POST.get('password', '')))
-            profile_i = models.UserProfile.objects.create(user=user_i)
+            user_form = forms.UserForm(request.POST)
+            user_profile_form = forms.UserProfileForm(request.POST)
 
-        profile_i.salutation = request.POST.get('salutation', '')
-        user_i.first_name = request.POST.get('firstName', '')
-        user_i.last_name = request.POST.get('lastName', '')
-        profile_i.internal_note = request.POST.get('internalNote', '')
-        profile_i.address = request.POST.get('address', '')
-        profile_i.city = request.POST.get('city', '')
-        profile_i.post_code = request.POST.get('postCode', '')
-        profile_i.country = request.POST.get('country', '')
-        profile_i.phone = request.POST.get('phone', '')
-        user_i.email = request.POST.get('email', '')
-        profile_i.show_in_phonelist = request.POST.get('phoneList', False) == 'on'
-        password = request.POST.get('password', '')
-        user_i.is_active = request.POST.get('active', False) == 'on'
+        if user_form.is_valid() and user_profile_form.is_valid():
+            u = user_form.save()
+            u.userprofile = user_profile_form.instance
+            u.userprofile.save()
 
-        if password != '':
-            user_i.password = make_password(password)
+            password = request.POST.get('password', '')
+            if password != '':
+                u.password = make_password(password)
+                u.save()
 
-        user_i.save()
-        profile_i.save()
+            # Set groups
+            user_group_list = Group.objects.filter(user__id=u.id)
+            for g in Group.objects.all():
+                group_set = request.POST.get(g.name, False) == 'on'
+                if group_set and g not in user_group_list:
+                    u.groups.add(g)
+                if not group_set and g in user_group_list:
+                    u.groups.remove(g)
 
-        # Set groups
-        user_group_list = Group.objects.filter(user__id=user_i.id)
-        for g in Group.objects.all():
-            group_set = request.POST.get(g.name, False) == 'on'
-            if group_set and g not in user_group_list:
-                user_i.groups.add(g)
-            if not group_set and g in user_group_list:
-                user_i.groups.remove(g)
+        else:
+            for error in user_form.errors:
+                messages.error(request, error)
+            for error in user_profile_form.errors:
+                messages.error(request, error)
+            return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
 
     return redirect(admin_user_view)
 

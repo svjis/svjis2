@@ -17,18 +17,18 @@
         </p>
         <p>
             <label class="common-label" id="firstname-label" for="firstname-input">{% trans 'First Name' %}</label>
-            <input class="common-input" id="firstname-input" type="text" name="firstName" maxlength="30" size="50" value="{{ user_i.first_name }}" />
+            <input class="common-input" id="firstname-input" type="text" name="first_name" maxlength="30" size="50" value="{{ user_i.first_name }}" />
         </p>
         <p>
             <label class="common-label" id="lastname-label" for="lastname-input">{% trans 'Last Name' %}</label>
-            <input class="common-input" id="lastname-input" type="text" name="lastName" maxlength="30" size="50" value="{{ user_i.last_name }}" />
+            <input class="common-input" id="lastname-input" type="text" name="last_name" maxlength="30" size="50" value="{{ user_i.last_name }}" />
         </p>
         <p>
             <label class="common-label" id="common-label" for="common-input">{% trans 'Internal Note' %}</label>
             <textarea
              class="common-textarea"
              id="note-textarea"
-             name="internalNote"
+             name="internal_note"
              rows=5 cols=40
              wrap maxlength="250"
              >{{ profile_i.internal_note }}</textarea>
@@ -46,7 +46,7 @@
         </p>
         <p>
             <label class="common-label" id="postcode-label" for="postcode-input">{% trans 'Post Code' %}</label>
-            <input class="common-input" id="postcode-input" type="text" name="postCode" maxlength="10" size="50" value="{{ profile_i.post_code }}" />
+            <input class="common-input" id="postcode-input" type="text" name="post_code" maxlength="10" size="50" value="{{ profile_i.post_code }}" />
         </p>
         <p>
             <label class="common-label" id="country-label" for="country-input">{% trans 'Country' %}</label>
@@ -62,7 +62,7 @@
         </p>
         <p>
             <label class="common-label" id="show-label" for="show-input">{% trans 'Show in contacts' %}</label>
-            <input class="common-input" id="show-input" type="checkbox" name="phoneList" {% if profile_i.show_in_phonelist %}checked{% endif %} />
+            <input class="common-input" id="show-input" type="checkbox" name="show_in_phonelist" {% if profile_i.show_in_phonelist %}checked{% endif %} />
         </p>
     </fieldset>
     <fieldset>
@@ -81,7 +81,7 @@
         </p>
         <p>
             <label class="common-label" id="enabled-label" for="enabled-input">{% trans 'Active' %}</label>
-            <input class="common-input" id="enabled-input" type="checkbox" name="active" {% if user_i.is_active %}checked{% endif %}/>
+            <input class="common-input" id="enabled-input" type="checkbox" name="is_active" {% if user_i.is_active %}checked{% endif %}/>
         </p>
     </fieldset>
 

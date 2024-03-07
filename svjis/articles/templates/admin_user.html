@@ -9,29 +9,25 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" scope="col">{% trans 'Username' %}</th>
-        <th class="list" scope="col">{% trans 'First name' %}</th>
-        <th class="list" scope="col">{% trans 'Last name' %}</th>
-        <th class="list" scope="col">{% trans 'E-Mail' %}</th>
-        <th class="list" scope="col">{% trans 'Active' %}</th>
-        <th class="list" scope="col">{% trans 'Staff' %}</th>
-        <th class="list" scope="col">{% trans 'Superuser' %}</th>
-        <th class="list" scope="col">{% trans 'Last login' %}</th>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Last name' %}</th>
+        <th class="list" scope="col">{% trans 'First name' %}</th>
+        <th class="list" scope="col">{% trans 'Active' %}</th>
+        <th class="list" scope="col">{% trans 'E-Mail' %}</th>
+        <th class="list" scope="col">{% trans 'Last login' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list">{{ obj.username }}</td>
-    <td class="list">{{ obj.first_name }}</td>
-    <td class="list">{{ obj.last_name }}</td>
-    <td class="list">{{ obj.email }}</td>
-    <td class="list">{{ obj.is_active }}</td>
-    <td class="list">{{ obj.is_staff }}</td>
-    <td class="list">{{ obj.is_superuser }}</td>
-    <td class="list">{{ obj.last_login | date:"d.m.Y H:i"}}</td>
-    <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+        <td class="list">{{ obj.last_name }}</td>
+        <td class="list">{{ obj.first_name }}</td>
+        <td class="list">{{ obj.is_active }}</td>
+        <td class="list">{{ obj.email }}</td>
+        <td class="list">{{ obj.last_login | date:"d.m.Y H:i"}}</td>
     </tr>
     {% endfor %}
     {% endif %}
