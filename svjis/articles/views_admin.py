@@ -92,9 +92,9 @@ def admin_user_save_view(request):
 
         else:
             for error in user_form.errors:
-                messages.error(request, error)
+                messages.error(request, f"{_('Form validation error')}: {error}")
             for error in user_profile_form.errors:
-                messages.error(request, error)
+                messages.error(request, f"{_('Form validation error')}: {error}")
             return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
 
     return redirect(admin_user_view)
@@ -165,7 +165,8 @@ def admin_group_save_view(request):
                     if not perm_set and p in group_perm_list:
                         instance.permissions.remove(p)
         else:
-            messages.error(request, _("Invalid form input"))
+            for error in form.errors:
+                messages.error(request, f"{_('Form validation error')}: {error}")
 
     return redirect(admin_group_view)
 

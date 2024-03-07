@@ -63,7 +63,8 @@ def redaction_menu_save_view(request):
         if form.is_valid():
             form.save()
         else:
-            messages.error(request, _("Invalid form input"))
+            for error in form.errors:
+                messages.error(request, f"{_('Form validation error')}: {error}")
 
     return redirect(redaction_menu_view)
 
