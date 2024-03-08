@@ -58,9 +58,9 @@ class GroupEditForm(forms.ModelForm):
 
 
 class ApplicationSetupForm(forms.ModelForm):
-    key = forms.CharField()
+    key = forms.CharField(max_length=50)
     key.widget.attrs.update({'class': 'common-input', 'id': 'key-input'})
-    value = forms.CharField()
+    value = forms.CharField(max_length=1000)
     value.widget.attrs.update({'class': 'common-input', 'id': 'key-input'})
 
     class Meta:
