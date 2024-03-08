@@ -44,7 +44,6 @@ def personal_settings_save_view(request):
                 messages.error(request, f"{_('Form validation error')}: {error}")
             for error in user_profile_form.errors:
                 messages.error(request, f"{_('Form validation error')}: {error}")
-            return redirect((personal_settings_edit_view))
 
     return redirect(personal_settings_edit_view)
 
