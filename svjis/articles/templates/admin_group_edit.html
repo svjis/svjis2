@@ -11,7 +11,10 @@
 
     <fieldset>
         <legend>{% trans 'Group' %}</legend>
-        {{ form.as_p }}
+        <p>
+            <label class="common-label" id="name-label" for="name-input">{% trans 'Name' %}</label>
+            {{ form.name }}
+        </p>
     </fieldset>
 
     <fieldset>

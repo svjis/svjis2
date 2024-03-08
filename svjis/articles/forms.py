@@ -55,6 +55,9 @@ class GroupEditForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ("name",)
+        widgets = {
+            'name': forms.widgets.TextInput(attrs={'class': 'common-input', 'id': 'name-input'}),
+        }
 
 
 class ApplicationSetupForm(forms.ModelForm):
