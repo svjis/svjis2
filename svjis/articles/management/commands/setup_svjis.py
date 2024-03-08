@@ -17,6 +17,9 @@ def create_groups():
                         'svjis_edit_admin_users',
                         'svjis_edit_admin_groups',
                         'svjis_view_personal_menu',
+                        'svjis_edit_admin_properties',
+                        'svjis_edit_admin_company',
+                        'svjis_edit_admin_building',
         ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',

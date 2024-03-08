@@ -151,13 +151,14 @@ class MessageQueue(models.Model):
     sending_time = models.DateTimeField(null=True)
     status = models.SmallIntegerField(null=False)
 
-    def __str__(self):
-        return f"MessageQueue: {self.email} - {self.subject}"
-
 
 class ApplicationSetup(models.Model):
     key = models.CharField(_("Key"), max_length=50, blank=False, null=False)
     value = models.CharField(_("Value"), max_length=1000, null=False)
+    class Meta:
+        permissions = (
+            ("svjis_edit_admin_properties", "Can edit Properties"),
+        )
 
 
 class Company(models.Model):
@@ -170,6 +171,10 @@ class Company(models.Model):
     registration_no = models.CharField(_("Registration no."), max_length=20)
     vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20)
     internet_domain = models.CharField(_("VAT Registration no."), max_length=50)
+    class Meta:
+        permissions = (
+            ("svjis_edit_admin_company", "Can edit Company"),
+        )
 
 
 class Buliding(models.Model):
@@ -177,3 +182,7 @@ class Buliding(models.Model):
     city = models.CharField(_("City"), max_length=50)
     post_code = models.CharField(_("Post code"), max_length=10)
     registration_no = models.CharField(_("Registration no."), max_length=50)
+    class Meta:
+        permissions = (
+            ("svjis_edit_admin_building", "Can edit Building"),
+        )

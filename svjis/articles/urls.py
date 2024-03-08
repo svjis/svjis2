@@ -36,6 +36,10 @@ urlpatterns = [
     path('admin_group_edit/<int:pk>/', views_admin.admin_group_edit_view, name='admin_group_edit'),
     path('admin_group_save/', views_admin.admin_group_save_view, name='admin_group_save'),
     path('admin_group_delete/<int:pk>/', views_admin.admin_group_delete_view, name='admin_group_delete'),
+    path('admin_property/', views_admin.admin_property_view, name='admin_property'),
+    path('admin_property_edit/<int:pk>/', views_admin.admin_property_edit_view, name='admin_property_edit'),
+    path('admin_property_save/', views_admin.admin_property_save_view, name='admin_property_save'),
+    path('admin_property_delete/<int:pk>/', views_admin.admin_property_delete_view, name='admin_property_delete'),
     path('admin_messages/', views_admin.admin_messages_view, name='admin_messages'),
 ]
 

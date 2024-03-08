@@ -74,3 +74,9 @@ class GroupEditForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ("name",)
+
+
+class ApplicationSetupForm(forms.ModelForm):
+    class Meta:
+        model = models.ApplicationSetup
+        fields = ("key", "value",)

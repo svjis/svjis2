@@ -15,7 +15,9 @@ def get_side_menu(active_item, user):
         result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
         result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
-    if user.has_perm('articles.svjis_edit_admin_groups'):
+    if user.has_perm('articles.svjis_edit_admin_properties'):
+        result.append({'description': _("Properties"), 'link': reverse(admin_property_view), 'active': True if active_item == 'properties' else False})
+    if user.has_perm('articles.svjis_view_admin_menu'):
         result.append({'description': _("Waiting messages"), 'link': reverse(admin_messages_view), 'active': True if active_item == 'messages' else False})
     return result
 
@@ -39,7 +41,7 @@ def admin_user_view(request):
 def admin_user_edit_view(request, pk):
     if pk != 0:
         user_i = get_object_or_404(User, pk=pk)
-        profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
+        profile_i, _ = models.UserProfile.objects.get_or_create(user=user_i)
     else:
         user_i = User
         profile_i = models.UserProfile
@@ -186,8 +188,66 @@ def admin_group_delete_view(request, pk):
     return redirect(admin_group_view)
 
 
+# Administration - Properties
+@permission_required("articles.svjis_edit_admin_properties")
+@require_GET
+def admin_property_view(request):
+    property_list = models.ApplicationSetup.objects.all()
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('properties', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['object_list'] = property_list
+    return render(request, "admin_property.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_properties")
+@require_GET
+def admin_property_edit_view(request, pk):
+    if pk != 0:
+        i = get_object_or_404(models.ApplicationSetup, pk=pk)
+        form = forms.ApplicationSetupForm(instance=i)
+    else:
+        form = forms.ApplicationSetupForm
+
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = get_side_menu('properties', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_property_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_properties")
+@require_POST
+def admin_property_save_view(request):
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.ApplicationSetupForm(request.POST)
+    else:
+        instance = get_object_or_404(models.ApplicationSetup , pk=pk)
+        form = forms.ApplicationSetupForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_property_view)
+
+
+@permission_required("articles.svjis_edit_admin_properties")
+@require_GET
+def admin_property_delete_view(request, pk):
+    obj = get_object_or_404(models.ApplicationSetup, pk=pk)
+    obj.delete()
+    return redirect(admin_property_view)
+
+
 # Administration - Waiting messages
-@permission_required("articles.svjis_edit_admin_groups")
+@permission_required("articles.svjis_view_admin_menu")
 @require_GET
 def admin_messages_view(request):
     message_list = models.MessageQueue.objects.filter(status=0)

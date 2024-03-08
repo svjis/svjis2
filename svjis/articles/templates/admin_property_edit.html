@@ -1,0 +1,28 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Property' %}</h1>
+<form action="{% url 'admin_property_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'Property' %}</legend>
+        <p>
+            <label class="common-label" id="key-label" for="key-input">{% trans 'Key' %}</label>
+            <input class="common-input" id="key-input" type="text" name="key" maxlength="50" value="{{ form.instance.key }}" />
+        </p>
+        <p>
+            <label class="common-label" id="value-label" for="value-input">{% trans 'Value' %}</label>
+            <input class="common-input" id="value-input" type="text" name="value" maxlength="1000" value="{{ form.instance.value }}" />
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}
