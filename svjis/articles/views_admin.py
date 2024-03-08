@@ -14,6 +14,8 @@ def get_side_menu(active_item, user):
         result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
         result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
+    if user.has_perm('articles.svjis_edit_admin_groups'):
+        result.append({'description': _("Waiting messages"), 'link': reverse(admin_messages_view), 'active': True if active_item == 'messages' else False})
     return result
 
 
@@ -176,3 +178,16 @@ def admin_group_delete_view(request, pk):
     obj = get_object_or_404(Group, pk=pk)
     obj.delete()
     return redirect(admin_group_view)
+
+
+# Administration - Waiting messages
+@permission_required("articles.svjis_edit_admin_groups")
+def admin_messages_view(request):
+    message_list = models.MessageQueue.objects.filter(status=0)
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('messages', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['object_list'] = message_list
+    return render(request, "admin_messages.html", ctx)
