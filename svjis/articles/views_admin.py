@@ -41,7 +41,7 @@ def admin_user_view(request):
 def admin_user_edit_view(request, pk):
     if pk != 0:
         user_i = get_object_or_404(User, pk=pk)
-        profile_i, _ = models.UserProfile.objects.get_or_create(user=user_i)
+        profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
     else:
         user_i = User
         profile_i = models.UserProfile
