@@ -107,7 +107,7 @@ msgstr "Interní poznámka"
 #: articles/templates/admin_group_edit.html:7
 #: articles/templates/admin_group_edit.html:13
 msgid "Group"
-msgstr "Skupuba"
+msgstr "Skupina"
 
 #: articles/templates/admin_group.html:8
 msgid "Create new group"

@@ -38,14 +38,13 @@ def personal_settings_save_view(request):
 
         if user_form.is_valid() and user_profile_form.is_valid():
             u = user_form.save()
-            # u.userprofile = user_profile_form.instance
             u.userprofile.save()
         else:
             for error in user_form.errors:
                 messages.error(request, f"{_('Form validation error')}: {error}")
             for error in user_profile_form.errors:
                 messages.error(request, f"{_('Form validation error')}: {error}")
-            return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
+            return redirect((personal_settings_edit_view))
 
     return redirect(personal_settings_edit_view)
 
