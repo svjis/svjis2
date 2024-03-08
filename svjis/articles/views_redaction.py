@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.http import require_GET, require_POST
 
 
 def get_side_menu(active_item, user):
@@ -22,6 +23,7 @@ def get_side_menu(active_item, user):
 
 # Redaction - Article Menu
 @permission_required("articles.svjis_edit_article_menu")
+@require_GET
 def redaction_menu_view(request):
     ctx = {
         'aside_menu_name': _("Redaction"),
@@ -33,6 +35,7 @@ def redaction_menu_view(request):
 
 
 @permission_required("articles.svjis_edit_article_menu")
+@require_GET
 def redaction_menu_edit_view(request, pk):
     if pk != 0:
         am = get_object_or_404(models.ArticleMenu, pk=pk)
@@ -51,25 +54,26 @@ def redaction_menu_edit_view(request, pk):
 
 
 @permission_required("articles.svjis_edit_article_menu")
+@require_POST
 def redaction_menu_save_view(request):
-    if request.method == "POST":
-        pk = int(request.POST['pk'])
-        if pk == 0:
-            form = forms.ArticleMenuForm(request.POST)
-        else:
-            instance = get_object_or_404(models.ArticleMenu, pk=pk)
-            form = forms.ArticleMenuForm(request.POST, instance=instance)
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.ArticleMenuForm(request.POST)
+    else:
+        instance = get_object_or_404(models.ArticleMenu, pk=pk)
+        form = forms.ArticleMenuForm(request.POST, instance=instance)
 
-        if form.is_valid():
-            form.save()
-        else:
-            for error in form.errors:
-                messages.error(request, f"{_('Form validation error')}: {error}")
+    if form.is_valid():
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
 
     return redirect(redaction_menu_view)
 
 
 @permission_required("articles.svjis_edit_article_menu")
+@require_GET
 def redaction_menu_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleMenu, pk=pk)
     obj.delete()
@@ -78,13 +82,12 @@ def redaction_menu_delete_view(request, pk):
 
 # Redaction - Article
 @permission_required("articles.svjis_edit_article")
+@require_GET
 def redaction_article_view(request):
     article_list = models.Article.objects.all()
 
     # Search
-    search = request.POST.get('search')
-    if search is None:
-        search = request.GET.get('search')
+    search = request.GET.get('search')
     if search is not None and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
@@ -125,6 +128,7 @@ def redaction_article_view(request):
 
 
 @permission_required("articles.svjis_edit_article")
+@require_GET
 def redaction_article_edit_view(request, pk):
     if pk != 0:
         a = get_object_or_404(models.Article, pk=pk)
@@ -144,28 +148,29 @@ def redaction_article_edit_view(request, pk):
 
 
 @permission_required("articles.svjis_edit_article")
+@require_POST
 def redaction_article_save_view(request):
-    if request.method == "POST":
-        pk = int(request.POST['pk'])
-        if pk == 0:
-            form = forms.ArticleForm(request.POST)
-        else:
-            instance = get_object_or_404(models.Article, pk=pk)
-            form = forms.ArticleForm(request.POST, instance=instance)
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.ArticleForm(request.POST)
+    else:
+        instance = get_object_or_404(models.Article, pk=pk)
+        form = forms.ArticleForm(request.POST, instance=instance)
 
-        if form.is_valid():
-            obj = form.save(commit=False)
-            if pk == 0:
-                obj.author = request.user
-            obj.save()
-        else:
-            for error in form.errors:
-                messages.error(request, error)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        if pk == 0:
+            obj.author = request.user
+        obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
 
     return redirect(redaction_article_view)
 
 
 @permission_required("articles.svjis_edit_article")
+@require_GET
 def redaction_article_delete_view(request, pk):
     obj = get_object_or_404(models.Article, pk=pk)
     obj.delete()
@@ -174,23 +179,23 @@ def redaction_article_delete_view(request, pk):
 
 # Redaction - ArticleAsset
 @permission_required("articles.svjis_edit_article")
+@require_POST
 def redaction_article_asset_save_view(request):
     article_pk = int(request.POST.get('article_pk'))
     article = get_object_or_404(models.Article, pk=article_pk)
-    if request.method == "POST":
-        form = forms.ArticleAssetForm(request.POST, request.FILES)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.article = article
-            obj.save()
-        else:
-            for error in form.errors:
-                messages.error(request, error)
-
+    form = forms.ArticleAssetForm(request.POST, request.FILES)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.article = article
+        obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
     return redirect(redaction_article_edit_view, pk=article_pk)
 
 
 @permission_required("articles.svjis_edit_article")
+@require_GET
 def redaction_article_asset_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleAsset, pk=pk)
     article_pk = obj.article.pk
@@ -200,6 +205,7 @@ def redaction_article_asset_delete_view(request, pk):
 
 # Redaction - MiniNews
 @permission_required("articles.svjis_edit_article_news")
+@require_GET
 def redaction_news_view(request):
     news_list = models.News.objects.all()
     header = _("News")
@@ -227,6 +233,7 @@ def redaction_news_view(request):
 
 
 @permission_required("articles.svjis_edit_article_news")
+@require_GET
 def redaction_news_edit_view(request, pk):
     if pk != 0:
         a = get_object_or_404(models.News, pk=pk)
@@ -245,28 +252,28 @@ def redaction_news_edit_view(request, pk):
 
 
 @permission_required("articles.svjis_edit_article_news")
+@require_POST
 def redaction_news_save_view(request):
-    if request.method == "POST":
-        pk = int(request.POST['pk'])
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.NewsForm(request.POST)
+    else:
+        instance = get_object_or_404(models.News, pk=pk)
+        form = forms.NewsForm(request.POST, instance=instance)
+
+    if form.is_valid():
+        obj = form.save(commit=False)
         if pk == 0:
-            form = forms.NewsForm(request.POST)
-        else:
-            instance = get_object_or_404(models.News, pk=pk)
-            form = forms.NewsForm(request.POST, instance=instance)
-
-        if form.is_valid():
-            obj = form.save(commit=False)
-            if pk == 0:
-                obj.author = request.user
-            obj.save()
-        else:
-            for error in form.errors:
-                messages.error(request, error)
-
+            obj.author = request.user
+        obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
     return redirect(redaction_news_view)
 
 
 @permission_required("articles.svjis_edit_article_news")
+@require_GET
 def redaction_news_delete_view(request, pk):
     obj = get_object_or_404(models.News, pk=pk)
     obj.delete()
