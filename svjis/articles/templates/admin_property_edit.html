@@ -7,17 +7,20 @@
 <h1 class="page-title">{% trans 'Property' %}</h1>
 <form action="{% url 'admin_property_save' %}" method="post">
     {% csrf_token %}
+    {{ form.non_field_errors }}
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
         <legend>{% trans 'Property' %}</legend>
         <p>
+            {{ form.key.errors }}
             <label class="common-label" id="key-label" for="key-input">{% trans 'Key' %}</label>
-            <input class="common-input" id="key-input" type="text" name="key" maxlength="50" value="{{ form.instance.key }}" />
+            {{ form.key }}
         </p>
         <p>
+            {{ form.value.errors }}
             <label class="common-label" id="value-label" for="value-input">{% trans 'Value' %}</label>
-            <input class="common-input" id="value-input" type="text" name="value" maxlength="1000" value="{{ form.instance.value }}" />
+            {{ form.value }}
         </p>
     </fieldset>
     <p>
