@@ -141,3 +141,39 @@ class UserProfile(models.Model):
             ("svjis_edit_admin_groups", "Can edit Groups"),
             ("svjis_view_personal_menu", "Can view Personal settings menu"),
         )
+
+
+class MessageQueue(models.Model):
+    email = models.CharField(_("E-Mail"), max_length=50, blank=False)
+    subject = models.CharField(_("Subject"),max_length=100, blank=False)
+    body = models.TextField(_("Body"))
+    creation_time = models.DateTimeField(auto_now_add=True)
+    sending_time = models.DateTimeField(null=True)
+    status = models.SmallIntegerField(null=False)
+
+    def __str__(self):
+        return f"MessageQueue: {self.email} - {self.subject}"
+
+
+class ApplicationSetup(models.Model):
+    key = models.CharField(_("Key"), max_length=50, blank=False, null=False)
+    value = models.CharField(_("Value"), max_length=1000, null=False)
+
+
+class Company(models.Model):
+    name = models.CharField(_("Name"), max_length=50)
+    address = models.CharField(_("Address"), max_length=50)
+    city = models.CharField(_("City"), max_length=50)
+    post_code = models.CharField(_("Post code"), max_length=10)
+    phone = models.CharField(_("Phone"), max_length=30)
+    email = models.CharField(_("E-Mail"), max_length=50)
+    registration_no = models.CharField(_("Registration no."), max_length=20)
+    vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20)
+    internet_domain = models.CharField(_("VAT Registration no."), max_length=50)
+
+
+class Buliding(models.Model):
+    address = models.CharField(_("Address"), max_length=50)
+    city = models.CharField(_("City"), max_length=50)
+    post_code = models.CharField(_("Post code"), max_length=10)
+    registration_no = models.CharField(_("Registration no."), max_length=50)
