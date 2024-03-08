@@ -14,12 +14,12 @@
         <legend>{% trans 'Property' %}</legend>
         <p>
             {{ form.key.errors }}
-            <label class="common-label" id="key-label" for="key-input">{% trans 'Key' %}</label>
+            <label class="common-label" for="{{ form.key.auto_id }}">{{ form.key.label }}</label>
             {{ form.key }}
         </p>
         <p>
             {{ form.value.errors }}
-            <label class="common-label" id="value-label" for="value-input">{% trans 'Value' %}</label>
+            <label class="common-label" for="{{ form.value.auto_id }}">{{ form.value.label }}</label>
             {{ form.value }}
         </p>
     </fieldset>

@@ -56,7 +56,7 @@ class GroupEditForm(forms.ModelForm):
         model = Group
         fields = ("name",)
         widgets = {
-            'name': forms.widgets.TextInput(attrs={'class': 'common-input', 'id': 'name-input'}),
+            'name': forms.widgets.TextInput(attrs={'class': 'common-input'}),
         }
 
 
@@ -65,6 +65,6 @@ class ApplicationSetupForm(forms.ModelForm):
         model = models.ApplicationSetup
         fields = ("key", "value",)
         widgets = {
-            'key': forms.widgets.TextInput(attrs={'class': 'common-input', 'id': 'key-input'}),
-            'value': forms.widgets.TextInput(attrs={'class': 'common-input', 'id': 'value-input'}),
+            'key': forms.widgets.TextInput(attrs={'class': 'common-input'}),
+            'value': forms.widgets.TextInput(attrs={'class': 'common-input'}),
         }
