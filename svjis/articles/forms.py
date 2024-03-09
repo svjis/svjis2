@@ -7,24 +7,45 @@ class ArticleMenuForm(forms.ModelForm):
     class Meta:
         model = models.ArticleMenu
         fields = ("description", "hide", "parent",)
+        widgets = {
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'hide': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'parent': forms.widgets.Select(attrs={'class': 'common-input'}),
+        }
 
 
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = models.Article
         fields = ("header", "perex", "body", "menu", "allow_comments", "published",)
+        widgets = {
+            'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'perex': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '10', 'cols': '80', 'wrap': True}),
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '20', 'cols': '80', 'wrap': True}),
+            'menu': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'allow_comments': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+        }
 
 
 class ArticleAssetForm(forms.ModelForm):
     class Meta:
         model = models.ArticleAsset
         fields = ("description", "file",)
+        widgets = {
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'file': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
 
 
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
         fields = ("body", "published",)
+        widgets = {
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '20', 'cols': '80', 'wrap': True}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+        }
 
 
 class UserForm(forms.ModelForm):
@@ -36,7 +57,7 @@ class UserForm(forms.ModelForm):
             'last_name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
             'username': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
         }
 
 
@@ -51,7 +72,7 @@ class UserProfileForm(forms.ModelForm):
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'country': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
             'internal_note': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '40', 'wrap': True}),
         }
 

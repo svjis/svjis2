@@ -11,7 +11,18 @@
 
     <fieldset>
         <legend>{% trans 'Menu entry' %}</legend>
-        {{ form.as_p }}
+        <p>
+            <label class="common-label" for="{{ form.description.auto_id }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.parent.auto_id }}">{{ form.parent.label }}</label>
+            {{ form.parent }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.hide.auto_id }}">{{ form.hide.label }}</label>
+            {{ form.hide }}
+        </p>
     </fieldset>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
