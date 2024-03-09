@@ -80,8 +80,20 @@ class CompanyForm(forms.ModelForm):
             'city': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'email': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
             'registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'vat_registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'internet_domain': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
+class BuildingForm(forms.ModelForm):
+    class Meta:
+        model = models.Buliding
+        fields = ("address", "city", "post_code", "land_registry_no")
+        widgets = {
+            'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'city': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'land_registry_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
         }

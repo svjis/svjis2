@@ -13,6 +13,8 @@ def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_edit_admin_company'):
         result.append({'description': _("Company"), 'link': reverse(admin_company_edit_view), 'active': True if active_item == 'company' else False})
+    if user.has_perm('articles.svjis_edit_admin_building'):
+        result.append({'description': _("Building"), 'link': reverse(admin_building_edit_view), 'active': True if active_item == 'building' else False})
     if user.has_perm('articles.svjis_edit_admin_users'):
         result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
@@ -50,6 +52,34 @@ def admin_company_save_view(request):
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
     return redirect(admin_company_edit_view)
+
+
+# Administration - Building
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_building_edit_view(request):
+    instance, created = models.Buliding.objects.get_or_create(pk=1)
+    form = forms.BuildingForm(instance=instance)
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['aside_menu_items'] = get_side_menu('building', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_building_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_POST
+def admin_building_save_view(request):
+    instance, created = models.Buliding.objects.get_or_create(pk=1)
+    form = forms.BuildingForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_building_edit_view)
 
 
 # Administration - User

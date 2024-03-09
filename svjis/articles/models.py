@@ -178,10 +178,10 @@ class Company(models.Model):
 
 
 class Buliding(models.Model):
-    address = models.CharField(_("Address"), max_length=50)
-    city = models.CharField(_("City"), max_length=50)
-    post_code = models.CharField(_("Post code"), max_length=10)
-    registration_no = models.CharField(_("Registration no."), max_length=50)
+    address = models.CharField(_("Address"), max_length=50, blank=True)
+    city = models.CharField(_("City"), max_length=50, blank=True)
+    post_code = models.CharField(_("Post code"), max_length=10, blank=True)
+    land_registry_no = models.CharField(_("Land Registration no."), max_length=50, blank=True)
     class Meta:
         permissions = (
             ("svjis_edit_admin_building", "Can edit Building"),
