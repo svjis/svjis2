@@ -19,8 +19,8 @@ def get_side_menu(active_item, user):
         result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
         result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
-    if user.has_perm('articles.svjis_edit_admin_properties'):
-        result.append({'description': _("Properties"), 'link': reverse(admin_property_view), 'active': True if active_item == 'properties' else False})
+    if user.has_perm('articles.svjis_edit_admin_preferences'):
+        result.append({'description': _("Preferences"), 'link': reverse(admin_preferences_view), 'active': True if active_item == 'preferences' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
         result.append({'description': _("Waiting messages"), 'link': reverse(admin_messages_view), 'active': True if active_item == 'messages' else False})
     return result
@@ -248,62 +248,62 @@ def admin_group_delete_view(request, pk):
     return redirect(admin_group_view)
 
 
-# Administration - Properties
-@permission_required("articles.svjis_edit_admin_properties")
+# Administration - Preferences
+@permission_required("articles.svjis_edit_admin_preferences")
 @require_GET
-def admin_property_view(request):
-    property_list = models.ApplicationSetup.objects.all()
+def admin_preferences_view(request):
+    property_list = models.Preferences.objects.all()
     ctx = {
         'aside_menu_name': _("Administration"),
     }
-    ctx['aside_menu_items'] = get_side_menu('properties', request.user)
+    ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = property_list
-    return render(request, "admin_property.html", ctx)
+    return render(request, "admin_preferences.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_properties")
+@permission_required("articles.svjis_edit_admin_preferences")
 @require_GET
-def admin_property_edit_view(request, pk):
+def admin_preferences_edit_view(request, pk):
     if pk != 0:
-        i = get_object_or_404(models.ApplicationSetup, pk=pk)
-        form = forms.ApplicationSetupForm(instance=i)
+        i = get_object_or_404(models.Preferences, pk=pk)
+        form = forms.PreferencesForm(instance=i)
     else:
-        form = forms.ApplicationSetupForm
+        form = forms.PreferencesForm
 
     ctx = {
         'aside_menu_name': _("Administration"),
     }
     ctx['form'] = form
     ctx['pk'] = pk
-    ctx['aside_menu_items'] = get_side_menu('properties', request.user)
+    ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    return render(request, "admin_property_edit.html", ctx)
+    return render(request, "admin_preferences_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_properties")
+@permission_required("articles.svjis_edit_admin_preferences")
 @require_POST
-def admin_property_save_view(request):
+def admin_preferences_save_view(request):
     pk = int(request.POST['pk'])
     if pk == 0:
-        form = forms.ApplicationSetupForm(request.POST)
+        form = forms.PreferencesForm(request.POST)
     else:
-        instance = get_object_or_404(models.ApplicationSetup , pk=pk)
-        form = forms.ApplicationSetupForm(request.POST, instance=instance)
+        instance = get_object_or_404(models.Preferences , pk=pk)
+        form = forms.PreferencesForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
-    return redirect(admin_property_view)
+    return redirect(admin_preferences_view)
 
 
-@permission_required("articles.svjis_edit_admin_properties")
+@permission_required("articles.svjis_edit_admin_preferences")
 @require_GET
-def admin_property_delete_view(request, pk):
-    obj = get_object_or_404(models.ApplicationSetup, pk=pk)
+def admin_preferences_delete_view(request, pk):
+    obj = get_object_or_404(models.Preferences, pk=pk)
     obj.delete()
-    return redirect(admin_property_view)
+    return redirect(admin_preferences_view)
 
 
 # Administration - Waiting messages

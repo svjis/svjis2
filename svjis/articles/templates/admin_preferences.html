@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'List of properties' %}</h1>
-[<a href="{% url 'admin_property_edit' pk=0 %}">{% trans 'Create new property' %}</a>]
+<h1 class="page-title" id="tbl-desc">{% trans 'Preferences' %}</h1>
+[<a href="{% url 'admin_preferences_edit' pk=0 %}">{% trans 'Create new entry' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
@@ -20,8 +20,8 @@
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_property_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_property_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
         <td class="list">{{ obj.key }}</td>
         <td class="list">{{ obj.value }}</td>
     </tr>

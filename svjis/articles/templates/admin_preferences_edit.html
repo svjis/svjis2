@@ -4,14 +4,14 @@
 
 {% block content %}
 
-<h1 class="page-title">{% trans 'Property' %}</h1>
-<form action="{% url 'admin_property_save' %}" method="post">
+<h1 class="page-title">{% trans 'Preferences' %}</h1>
+<form action="{% url 'admin_preferences_save' %}" method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
-        <legend>{% trans 'Property' %}</legend>
+        <legend>{% trans 'Preferences' %}</legend>
         <p>
             {{ form.key.errors }}
             <label class="common-label" for="{{ form.key.auto_id }}">{{ form.key.label }}</label>

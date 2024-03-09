@@ -152,12 +152,12 @@ class MessageQueue(models.Model):
     status = models.SmallIntegerField(null=False)
 
 
-class ApplicationSetup(models.Model):
+class Preferences(models.Model):
     key = models.CharField(_("Key"), max_length=50, blank=False, null=False)
     value = models.CharField(_("Value"), max_length=1000, null=False)
     class Meta:
         permissions = (
-            ("svjis_edit_admin_properties", "Can edit Properties"),
+            ("svjis_edit_admin_preferences", "Can edit Preferences"),
         )
 
 

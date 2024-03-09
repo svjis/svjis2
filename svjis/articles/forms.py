@@ -60,13 +60,13 @@ class GroupEditForm(forms.ModelForm):
         }
 
 
-class ApplicationSetupForm(forms.ModelForm):
+class PreferencesForm(forms.ModelForm):
     class Meta:
-        model = models.ApplicationSetup
+        model = models.Preferences
         fields = ("key", "value",)
         widgets = {
-            'key': forms.widgets.TextInput(attrs={'class': 'common-input'}),
-            'value': forms.widgets.TextInput(attrs={'class': 'common-input'}),
+            'key': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'value': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
         }
 
 
