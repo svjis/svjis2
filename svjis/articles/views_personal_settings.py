@@ -24,7 +24,8 @@ def get_side_menu(active_item, user):
 @require_GET
 def personal_settings_edit_view(request):
     uform = forms.PersonalUserForm(instance=request.user)
-    pform = forms.PersonalUserProfileForm(instance=request.user.userprofile)
+    pinstance, created = models.UserProfile.objects.get_or_create(user=request.user)
+    pform = forms.PersonalUserProfileForm(instance=pinstance)
     ctx = {
         'aside_menu_name': _("Personal settings"),
     }

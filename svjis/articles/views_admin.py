@@ -100,16 +100,19 @@ def admin_user_view(request):
 @require_GET
 def admin_user_edit_view(request, pk):
     if pk != 0:
-        user_i = get_object_or_404(User, pk=pk)
-        profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
+        instance = get_object_or_404(User, pk=pk)
+        uform = forms.UserForm(instance=instance)
+        pinstance, created = models.UserProfile.objects.get_or_create(user=instance)
+        pform = forms.UserProfileForm(instance=pinstance)
     else:
-        user_i = User
-        profile_i = models.UserProfile
+        instance = User
+        uform = forms.UserForm()
+        pform = forms.UserProfileForm()
 
     group_list = []
     user_group_list = []
     if pk != 0:
-        user_group_list = Group.objects.filter(user__id=user_i.id)
+        user_group_list = Group.objects.filter(user__id=instance.id)
     for g in Group.objects.all():
         item = {'name': g.name, 'checked': g in user_group_list}
         group_list.append(item)
@@ -117,8 +120,8 @@ def admin_user_edit_view(request, pk):
     ctx = {
         'aside_menu_name': _("Administration"),
     }
-    ctx['user_i'] = user_i
-    ctx['profile_i'] = profile_i
+    ctx['uform'] = uform
+    ctx['pform'] = pform
     ctx['group_list'] = group_list
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('users', request.user)

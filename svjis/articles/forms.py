@@ -31,12 +31,29 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("first_name", "last_name", "email", "username", "is_active")
+        widgets = {
+            'first_name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'last_name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
+            'username': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = models.UserProfile
         fields = ("salutation", "address", "city", "post_code", "country", "phone", "show_in_phonelist", "internal_note")
+        widgets = {
+            'salutation': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'city': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'country': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'internal_note': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '40', 'wrap': True}),
+        }
 
 
 class PersonalUserForm(forms.ModelForm):
