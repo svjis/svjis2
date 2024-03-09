@@ -11,47 +11,47 @@
     <fieldset>
         <legend>{% trans 'Person' %}</legend>
         <p>
-            <label class="common-label" id="salutation-label" for="salutation-input">{% trans 'Salutation' %}</label>
-            <input class="common-input" id="salutation-input" type="text" name="salutation" maxlength="30" size="50" value="{{ user.userprofile.salutation }}" />
+            <label class="common-label" for="{{ pform.salutation.auto_id }}">{{ pform.salutation.label }}</label>
+            {{ pform.salutation }}
         </p>
         <p>
-            <label class="common-label" id="firstname-label" for="firstname-input">{% trans 'First Name' %}</label>
-            <input class="common-input" id="firstname-input" type="text" name="first_name" maxlength="30" size="50" value="{{ user.first_name }}" />
+            <label class="common-label" for="{{ uform.first_name.auto_id }}">{{ uform.first_name.label }}</label>
+            {{ uform.first_name }}
         </p>
         <p>
-            <label class="common-label" id="lastname-label" for="lastname-input">{% trans 'Last Name' %}</label>
-            <input class="common-input" id="lastname-input" type="text" name="last_name" maxlength="30" size="50" value="{{ user.last_name }}" />
+            <label class="common-label" for="{{ uform.last_name.auto_id }}">{{ uform.last_name.label }}</label>
+            {{ uform.last_name }}
         </p>
     </fieldset>
     <fieldset>
         <legend>{% trans 'Contact information' %}</legend>
         <p>
-            <label class="common-label" id="address-label" for="address-input">{% trans 'Address' %}</label>
-            <input class="common-input" id="address-input" type="text" name="address" maxlength="50" size="50" value="{{ user.userprofile.address }}" />
+            <label class="common-label" for="{{ pform.address.auto_id }}">{{ pform.address.label }}</label>
+            {{ pform.address }}
         </p>
         <p>
-            <label class="common-label" id="city-label" for="city-input">{% trans 'City' %}</label>
-            <input class="common-input" id="city-input" type="text" name="city" maxlength="50" size="50" value="{{ user.userprofile.city }}" />
+            <label class="common-label" for="{{ pform.city.auto_id }}">{{ pform.city.label }}</label>
+            {{ pform.city }}
         </p>
         <p>
-            <label class="common-label" id="postcode-label" for="postcode-input">{% trans 'Post Code' %}</label>
-            <input class="common-input" id="postcode-input" type="text" name="post_code" maxlength="10" size="50" value="{{ user.userprofile.post_code }}" />
+            <label class="common-label" for="{{ pform.post_code.auto_id }}">{{ pform.post_code.label }}</label>
+            {{ pform.post_code }}
         </p>
         <p>
-            <label class="common-label" id="country-label" for="country-input">{% trans 'Country' %}</label>
-            <input class="common-input" id="country-input" type="text" name="country" maxlength="50" size="50" value="{{ user.userprofile.country }}" />
+            <label class="common-label" for="{{ pform.country.auto_id }}">{{ pform.country.label }}</label>
+            {{ pform.country }}
         </p>
         <p>
-            <label class="common-label" id="fphone-label" for="fphone-input">{% trans 'Phone' %}</label>
-            <input class="common-input" id="fphone-input" type="text" name="phone" maxlength="30" size="50" value="{{ user.userprofile.phone }}" />
+            <label class="common-label" for="{{ pform.phone.auto_id }}">{{ pform.phone.label }}</label>
+            {{ pform.phone }}
         </p>
         <p>
-            <label class="common-label" id="email-label" for="email-input">{% trans 'E-Mail' %}</label>
-            <input class="common-input" id="email-input" type="text" name="email" maxlength="50" size="50" value="{{ user.email }}" />
+            <label class="common-label" for="{{ uform.email.auto_id }}">{{ uform.email.label }}</label>
+            {{ uform.email }}
         </p>
         <p>
-            <label class="common-label" id="show-label" for="show-input">{% trans 'Show in contacts' %}</label>
-            <input class="common-input" id="show-input" type="checkbox" name="show_in_phonelist" {% if user.userprofile.show_in_phonelist %}checked{% endif %} />
+            <label class="common-label" for="{{ pform.show_in_phonelist.auto_id }}">{{ pform.show_in_phonelist.label }}</label>
+            {{ pform.show_in_phonelist }}
         </p>
     </fieldset>
     <p>
