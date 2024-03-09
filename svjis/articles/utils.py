@@ -11,5 +11,5 @@ def get_tray_menu(active_item, user):
     if user.has_perm('articles.svjis_view_redaction_menu'):
             result.append({'description': _("Redaction"), 'link': reverse(views_redaction.redaction_article_view), 'active': True if active_item == 'redaction' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
-            result.append({'description': _("Administration"), 'link': reverse(views_admin.admin_user_view), 'active': True if active_item == 'admin' else False})
+            result.append({'description': _("Administration"), 'link': reverse(views_admin.admin_company_edit_view), 'active': True if active_item == 'admin' else False})
     return  result

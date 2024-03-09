@@ -398,7 +398,7 @@ msgstr "Search results"
 
 #: articles/views_admin.py:14
 msgid "Users"
-msgstr "User"
+msgstr "Users"
 
 #: articles/views_admin.py:16
 msgid "Groups"

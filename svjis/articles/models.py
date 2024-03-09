@@ -46,7 +46,7 @@ class ArticleLog(models.Model):
 
 
 def article_directory_path(instance, filename):
-    return 'assets/{0}/{1}'.format(instance.article.id, filename)
+    return 'articles/{0}/{1}'.format(instance.article.id, filename)
 
 
 class ArticleAsset(models.Model):
@@ -162,15 +162,15 @@ class ApplicationSetup(models.Model):
 
 
 class Company(models.Model):
-    name = models.CharField(_("Name"), max_length=50)
-    address = models.CharField(_("Address"), max_length=50)
-    city = models.CharField(_("City"), max_length=50)
-    post_code = models.CharField(_("Post code"), max_length=10)
-    phone = models.CharField(_("Phone"), max_length=30)
-    email = models.CharField(_("E-Mail"), max_length=50)
-    registration_no = models.CharField(_("Registration no."), max_length=20)
-    vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20)
-    internet_domain = models.CharField(_("VAT Registration no."), max_length=50)
+    name = models.CharField(_("Name"), max_length=50, blank=True)
+    address = models.CharField(_("Address"), max_length=50, blank=True)
+    city = models.CharField(_("City"), max_length=50, blank=True)
+    post_code = models.CharField(_("Post code"), max_length=10, blank=True)
+    phone = models.CharField(_("Phone"), max_length=30, blank=True)
+    email = models.CharField(_("E-Mail"), max_length=50, blank=True)
+    registration_no = models.CharField(_("Registration no."), max_length=20, blank=True)
+    vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
+    internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
     class Meta:
         permissions = (
             ("svjis_edit_admin_company", "Can edit Company"),

@@ -11,6 +11,8 @@ from django.views.decorators.http import require_GET, require_POST
 
 def get_side_menu(active_item, user):
     result = []
+    if user.has_perm('articles.svjis_edit_admin_company'):
+        result.append({'description': _("Company"), 'link': reverse(admin_company_edit_view), 'active': True if active_item == 'company' else False})
     if user.has_perm('articles.svjis_edit_admin_users'):
         result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
@@ -20,6 +22,34 @@ def get_side_menu(active_item, user):
     if user.has_perm('articles.svjis_view_admin_menu'):
         result.append({'description': _("Waiting messages"), 'link': reverse(admin_messages_view), 'active': True if active_item == 'messages' else False})
     return result
+
+
+# Administration - Company
+@permission_required("articles.svjis_edit_admin_company")
+@require_GET
+def admin_company_edit_view(request):
+    instance, created = models.Company.objects.get_or_create(pk=1)
+    form = forms.CompanyForm(instance=instance)
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['aside_menu_items'] = get_side_menu('company', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_company_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_company")
+@require_POST
+def admin_company_save_view(request):
+    instance, created = models.Company.objects.get_or_create(pk=1)
+    form = forms.CompanyForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_company_edit_view)
 
 
 # Administration - User
