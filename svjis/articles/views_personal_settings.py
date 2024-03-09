@@ -2,7 +2,7 @@ from . import utils, forms, models
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import permission_required
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -107,7 +107,8 @@ def lost_password_send_view(request):
         return redirect(lost_password_view)
     u = User.objects.filter(email=email)
     if u is not None:
-        utils.send_mails([email], 'Lost password', 'test', False)
+        for user in u:
+            utils.send_new_password(user)
     messages.info(request, "Credentials has been sent to your e-mail")
     return redirect('/')
 
