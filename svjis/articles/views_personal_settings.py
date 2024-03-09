@@ -90,3 +90,24 @@ def personal_settings_password_save_view(request):
     user.password = make_password(npwd1)
     user.save()
     return redirect(personal_settings_password_view)
+
+
+@require_GET
+def lost_password_view(request):
+    ctx = {}
+    ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
+    return render(request, "send_lost_password.html", ctx)
+
+
+@require_POST
+def lost_password_send_view(request):
+    email = request.POST.get("email")
+    if not utils.validate_email_address(email):
+        messages.error(request, f"Not valid e-mail: {email}")
+        return redirect(lost_password_view)
+    u = User.objects.filter(email=email)
+    if u is not None:
+        utils.send_mails([email], 'Lost password', 'test', False)
+    messages.info(request, "Credentials has been sent to your e-mail")
+    return redirect('/')
+

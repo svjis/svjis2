@@ -45,6 +45,8 @@ urlpatterns = [
     path('admin_preferences_save/', views_admin.admin_preferences_save_view, name='admin_preferences_save'),
     path('admin_preferences_delete/<int:pk>/', views_admin.admin_preferences_delete_view, name='admin_preferences_delete'),
     path('admin_messages/', views_admin.admin_messages_view, name='admin_messages'),
+    path('lost_password/', views_personal_settings.lost_password_view, name='lost_password'),
+    path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
 ]
 
 if settings.DEBUG:

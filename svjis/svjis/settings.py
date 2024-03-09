@@ -117,7 +117,8 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'articles', 'locale'),
 ]
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Prague'
 
 USE_I18N = True
 
@@ -143,9 +144,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/'
 LOGOUT_URL = '/'
 
+# EMAIL values
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = ''
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_RECIPIENT = ''
+
+
 # SVJIS values
 
 SVJIS_TITLE = 'SVJIS-PY'
 SVJIS_ARTICLE_PAGE_SIZE = 10
 SVJIS_TOP_ARTICLES_LIST_SIZE = 5
 SVJIS_NEWS_PAGE_SIZE = 10
+
+# Load local settings if exists
+try:
+    from .local_settings import *
+except ImportError as e:
+    pass
