@@ -23,7 +23,7 @@ def get_side_menu(active_item, user):
             'active': True if active_item == 'building' else False})
     if user.has_perm('articles.svjis_edit_admin_users'):
         result.append({
-            'description': f'{_("Users")} ({User.objects.filter(is_active=True).count()})',
+            'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
             'link': reverse(admin_user_view),
             'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
@@ -38,7 +38,7 @@ def get_side_menu(active_item, user):
             'active': True if active_item == 'preferences' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
         result.append({
-            'description': f'{_("Waiting messages")} ({models.MessageQueue.objects.filter(status=0).count()})',
+            'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
             'link': reverse(admin_messages_view),
             'active': True if active_item == 'messages' else False})
     return result

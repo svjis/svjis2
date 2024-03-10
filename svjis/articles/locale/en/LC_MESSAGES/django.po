@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 10:07+0100\n"
+"POT-Creation-Date: 2024-03-10 15:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,7 +190,7 @@ msgstr "Delete"
 msgid "Permissions"
 msgstr "Permissions"
 
-#: articles/templates/admin_messages.html:7
+#: articles/templates/admin_messages.html:7 articles/views_admin.py:41
 msgid "Waiting messages"
 msgstr "Waiting messages"
 
@@ -449,6 +449,10 @@ msgstr "Search: Keyword is too long. Type maximum of 100 characters."
 #: articles/views.py:49 articles/views_redaction.py:99
 msgid "Search results"
 msgstr "Search results"
+
+#: articles/views_admin.py:26
+msgid "Users"
+msgstr "Users"
 
 #: articles/views_admin.py:31
 msgid "Groups"

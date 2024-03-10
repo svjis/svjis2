@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 10:07+0100\n"
+"POT-Creation-Date: 2024-03-10 15:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +191,7 @@ msgstr "Smazat"
 msgid "Permissions"
 msgstr "Oprávnění"
 
-#: articles/templates/admin_messages.html:7
+#: articles/templates/admin_messages.html:7 articles/views_admin.py:41
 msgid "Waiting messages"
 msgstr "Čekající zprávy"
 
@@ -451,6 +451,10 @@ msgstr "Vyhledat: Klíčové slovo je příliš dlouhé. Zadejte maximálně 100
 #: articles/views.py:49 articles/views_redaction.py:99
 msgid "Search results"
 msgstr "Výsledky hledání"
+
+#: articles/views_admin.py:26
+msgid "Users"
+msgstr "Uživatelé"
 
 #: articles/views_admin.py:31
 msgid "Groups"
