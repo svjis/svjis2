@@ -22,8 +22,8 @@
         <td class="list">{{ forloop.counter }}</td>
         <td class="list">{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
         <td class="list">{{ obj.position }}</td>
-        <td class="list"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}></a></td>
     </tr>
     {% endfor %}
     {% endif %}
