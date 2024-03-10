@@ -1,0 +1,54 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Company' %}</h1>
+<form action="{% url 'admin_company_save' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>{% trans 'Company' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
+            {{ form.name }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.address.auto_id }}">{{ form.address.label }}</label>
+            {{ form.address }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.city.auto_id }}">{{ form.city.label }}</label>
+            {{ form.city }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.post_code.auto_id }}">{{ form.post_code.label }}</label>
+            {{ form.post_code }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>
+            {{ form.phone }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.email.auto_id }}">{{ form.email.label }}</label>
+            {{ form.email }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.registration_no.auto_id }}">{{ form.registration_no.label }}</label>
+            {{ form.registration_no }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.vat_registration_no.auto_id }}">{{ form.vat_registration_no.label }}</label>
+            {{ form.vat_registration_no }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.internet_domain.auto_id }}">{{ form.internet_domain.label }}</label>
+            {{ form.internet_domain }}
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

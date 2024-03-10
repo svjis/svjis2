@@ -1,0 +1,31 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Preferences' %}</h1>
+<form action="{% url 'admin_preferences_save' %}" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'Preferences' %}</legend>
+        <p>
+            {{ form.key.errors }}
+            <label class="common-label" for="{{ form.key.auto_id }}">{{ form.key.label }}</label>
+            {{ form.key }}
+        </p>
+        <p>
+            {{ form.value.errors }}
+            <label class="common-label" for="{{ form.value.auto_id }}">{{ form.value.label }}</label>
+            {{ form.value }}
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

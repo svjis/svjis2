@@ -29,6 +29,10 @@ urlpatterns = [
     path('redaction_news_edit/<int:pk>/', views_redaction.redaction_news_edit_view, name='redaction_news_edit'),
     path('redaction_news_save/', views_redaction.redaction_news_save_view, name='redaction_news_save'),
     path('redaction_news_delete/<int:pk>/', views_redaction.redaction_news_delete_view, name='redaction_news_delete'),
+    path('admin_company_edit/', views_admin.admin_company_edit_view, name='admin_company_edit'),
+    path('admin_company_save/', views_admin.admin_company_save_view, name='admin_company_save'),
+    path('admin_building_edit/', views_admin.admin_building_edit_view, name='admin_building_edit'),
+    path('admin_building_save/', views_admin.admin_building_save_view, name='admin_building_save'),
     path('admin_user/', views_admin.admin_user_view, name='admin_user'),
     path('admin_user_edit/<int:pk>/', views_admin.admin_user_edit_view, name='admin_user_edit'),
     path('admin_user_save/', views_admin.admin_user_save_view, name='admin_user_save'),
@@ -36,6 +40,13 @@ urlpatterns = [
     path('admin_group_edit/<int:pk>/', views_admin.admin_group_edit_view, name='admin_group_edit'),
     path('admin_group_save/', views_admin.admin_group_save_view, name='admin_group_save'),
     path('admin_group_delete/<int:pk>/', views_admin.admin_group_delete_view, name='admin_group_delete'),
+    path('admin_preferences/', views_admin.admin_preferences_view, name='admin_preferences'),
+    path('admin_preferences_edit/<int:pk>/', views_admin.admin_preferences_edit_view, name='admin_preferences_edit'),
+    path('admin_preferences_save/', views_admin.admin_preferences_save_view, name='admin_preferences_save'),
+    path('admin_preferences_delete/<int:pk>/', views_admin.admin_preferences_delete_view, name='admin_preferences_delete'),
+    path('admin_messages/', views_admin.admin_messages_view, name='admin_messages'),
+    path('lost_password/', views_personal_settings.lost_password_view, name='lost_password'),
+    path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
 ]
 
 if settings.DEBUG:

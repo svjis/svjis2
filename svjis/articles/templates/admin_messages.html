@@ -1,0 +1,29 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Waiting messages' %}</h1>
+
+<table class="list" width="100%" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Recipient' %}</th>
+        <th class="list" scope="col">{% trans 'Subject' %}</th>
+        <th class="list" scope="col">{% trans 'Creation time' %}</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ obj.email }}</td>
+        <td class="list">{{ obj.subject }}</td>
+        <td class="list">{{ obj.creation_time | date:"d.m.Y H:i" }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

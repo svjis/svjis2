@@ -29,7 +29,7 @@ Nainstalujte závislosti a vytvoře konfiguraci
 pip install -r requirements.txt
 cd svjis
 python manage.py migrate
-python manage.py setup_svjis
+python manage.py svjis_setup
 ```
 
 Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext` - vyzkoušejte `gettext --version`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
@@ -44,6 +44,38 @@ python manage.py runserver
 ```
 
 Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Administrace - Uživatelé**.
+
+## Parametrizace
+
+### Údaje o SVJ
+
+Nastavení údajů o SVJ je v sekci Administrace
+
+### Nastavení odesílání e-mailů
+
+Systém SVJIS při různých událostech používá odesílání emailů, proto je správné nastavení e-mailového rozhraní pro funkci aplikace podstatné.
+
+Vytvořte nový soubor `svjis/svjis/local_settings.py` a v něm vytvořte následující konfiguraci
+
+```
+TIME_ZONE = 'Europe/Prague'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'vas smtp server'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'username k vasemu smtp serveru'
+EMAIL_HOST_PASSWORD = 'heslo k vasemu smtp serveru'
+```
+
+Odesílání e-mailů se děje na pozadí - systém ukládá e-maily do fronty k odeslání, viz `Administrace - čekající zprávy`. Pro odeslání zprávy je třeba spustit následující příkaz:
+
+```
+python manage.py svjis_send_messages
+```
+
+Při testování aplikace ho můžete spouštět ručně. Při produkčním nastavení je potřeba nastavit plánovač systému (například cron) aby ho spoštěl v určitých itervalech (třeba každých 5 minut).
 
 ## Spolupráce
 

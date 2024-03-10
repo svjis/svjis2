@@ -32,7 +32,7 @@ jobs:
         source venv/bin/activate
         cd svjis
         python manage.py migrate
-        python manage.py setup_svjis
+        python manage.py svjis_setup
     - name: Run Tests
       run: |
         source venv/bin/activate

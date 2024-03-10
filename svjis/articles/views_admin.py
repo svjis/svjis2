@@ -6,19 +6,103 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.views.decorators.http import require_GET, require_POST
 
 
 def get_side_menu(active_item, user):
     result = []
+    if user.has_perm('articles.svjis_edit_admin_company'):
+        result.append({
+            'description': _("Company"),
+            'link': reverse(admin_company_edit_view),
+            'active': True if active_item == 'company' else False})
+    if user.has_perm('articles.svjis_edit_admin_building'):
+        result.append({
+            'description': _("Building"),
+            'link': reverse(admin_building_edit_view),
+            'active': True if active_item == 'building' else False})
     if user.has_perm('articles.svjis_edit_admin_users'):
-        result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
+        result.append({
+            'description': f'{_("Users")} ({User.objects.filter(is_active=True).count()})',
+            'link': reverse(admin_user_view),
+            'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
-        result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
+        result.append({
+            'description': _("Groups"),
+            'link': reverse(admin_group_view),
+            'active': True if active_item == 'groups' else False})
+    if user.has_perm('articles.svjis_edit_admin_preferences'):
+        result.append({
+            'description': _("Preferences"),
+            'link': reverse(admin_preferences_view),
+            'active': True if active_item == 'preferences' else False})
+    if user.has_perm('articles.svjis_view_admin_menu'):
+        result.append({
+            'description': f'{_("Waiting messages")} ({models.MessageQueue.objects.filter(status=0).count()})',
+            'link': reverse(admin_messages_view),
+            'active': True if active_item == 'messages' else False})
     return result
+
+
+# Administration - Company
+@permission_required("articles.svjis_edit_admin_company")
+@require_GET
+def admin_company_edit_view(request):
+    instance, created = models.Company.objects.get_or_create(pk=1)
+    form = forms.CompanyForm(instance=instance)
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['aside_menu_items'] = get_side_menu('company', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_company_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_company")
+@require_POST
+def admin_company_save_view(request):
+    instance, created = models.Company.objects.get_or_create(pk=1)
+    form = forms.CompanyForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_company_edit_view)
+
+
+# Administration - Building
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_building_edit_view(request):
+    instance, created = models.Buliding.objects.get_or_create(pk=1)
+    form = forms.BuildingForm(instance=instance)
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['aside_menu_items'] = get_side_menu('building', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_building_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_POST
+def admin_building_save_view(request):
+    instance, created = models.Buliding.objects.get_or_create(pk=1)
+    form = forms.BuildingForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_building_edit_view)
 
 
 # Administration - User
 @permission_required("articles.svjis_edit_admin_users")
+@require_GET
 def admin_user_view(request):
     user_list = User.objects.all()
     ctx = {
@@ -31,18 +115,22 @@ def admin_user_view(request):
 
 
 @permission_required("articles.svjis_edit_admin_users")
+@require_GET
 def admin_user_edit_view(request, pk):
     if pk != 0:
-        user_i = get_object_or_404(User, pk=pk)
-        profile_i, created = models.UserProfile.objects.get_or_create(user=user_i)
+        instance = get_object_or_404(User, pk=pk)
+        uform = forms.UserForm(instance=instance)
+        pinstance, created = models.UserProfile.objects.get_or_create(user=instance)
+        pform = forms.UserProfileForm(instance=pinstance)
     else:
-        user_i = User
-        profile_i = models.UserProfile
+        instance = User
+        uform = forms.UserForm()
+        pform = forms.UserProfileForm()
 
     group_list = []
     user_group_list = []
     if pk != 0:
-        user_group_list = Group.objects.filter(user__id=user_i.id)
+        user_group_list = Group.objects.filter(user__id=instance.id)
     for g in Group.objects.all():
         item = {'name': g.name, 'checked': g in user_group_list}
         group_list.append(item)
@@ -50,8 +138,8 @@ def admin_user_edit_view(request, pk):
     ctx = {
         'aside_menu_name': _("Administration"),
     }
-    ctx['user_i'] = user_i
-    ctx['profile_i'] = profile_i
+    ctx['uform'] = uform
+    ctx['pform'] = pform
     ctx['group_list'] = group_list
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
@@ -60,48 +148,53 @@ def admin_user_edit_view(request, pk):
 
 
 @permission_required("articles.svjis_edit_admin_users")
+@require_POST
 def admin_user_save_view(request):
-    if request.method == "POST":
-        pk = int(request.POST['pk'])
-        if pk != 0:
-            user_i = get_object_or_404(User, pk=pk)
-            user_form = forms.UserForm(request.POST, instance=user_i)
-            user_profile_form = forms.UserProfileForm(request.POST, instance=user_i.userprofile)
-        else:
-            user_form = forms.UserForm(request.POST)
-            user_profile_form = forms.UserProfileForm(request.POST)
+    pk = int(request.POST['pk'])
+    if pk != 0:
+        user_i = get_object_or_404(User, pk=pk)
+        user_form = forms.UserForm(request.POST, instance=user_i)
+        user_profile_form = forms.UserProfileForm(request.POST, instance=user_i.userprofile)
+    else:
+        user_form = forms.UserForm(request.POST)
+        user_profile_form = forms.UserProfileForm(request.POST)
 
-        if user_form.is_valid() and user_profile_form.is_valid():
-            u = user_form.save()
-            u.userprofile = user_profile_form.instance
-            u.userprofile.save()
+    if user_form.is_valid() and user_profile_form.is_valid():
+        u = user_form.save()
+        u.userprofile = user_profile_form.instance
+        u.userprofile.save()
 
-            password = request.POST.get('password', '')
-            if password != '':
-                u.password = make_password(password)
-                u.save()
+        password = request.POST.get('password', '')
+        if password != '':
+            u.password = make_password(password)
+            u.save()
 
-            # Set groups
-            user_group_list = Group.objects.filter(user__id=u.id)
-            for g in Group.objects.all():
-                group_set = request.POST.get(g.name, False) == 'on'
-                if group_set and g not in user_group_list:
-                    u.groups.add(g)
-                if not group_set and g in user_group_list:
-                    u.groups.remove(g)
+        send_credentials = request.POST.get('send_credentials', False) == 'on'
+        if send_credentials:
+            utils.send_new_password(u)
 
-        else:
-            for error in user_form.errors:
-                messages.error(request, f"{_('Form validation error')}: {error}")
-            for error in user_profile_form.errors:
-                messages.error(request, f"{_('Form validation error')}: {error}")
-            return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
+        # Set groups
+        user_group_list = Group.objects.filter(user__id=u.id)
+        for g in Group.objects.all():
+            group_set = request.POST.get(g.name, False) == 'on'
+            if group_set and g not in user_group_list:
+                u.groups.add(g)
+            if not group_set and g in user_group_list:
+                u.groups.remove(g)
+
+    else:
+        for error in user_form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+        for error in user_profile_form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+        return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
 
     return redirect(admin_user_view)
 
 
 # Administration - Group
 @permission_required("articles.svjis_edit_admin_groups")
+@require_GET
 def admin_group_view(request):
     group_list = Group.objects.all()
     ctx = {
@@ -114,6 +207,7 @@ def admin_group_view(request):
 
 
 @permission_required("articles.svjis_edit_admin_groups")
+@require_GET
 def admin_group_edit_view(request, pk):
     if pk != 0:
         i = get_object_or_404(Group, pk=pk)
@@ -144,35 +238,108 @@ def admin_group_edit_view(request, pk):
 
 
 @permission_required("articles.svjis_edit_admin_groups")
+@require_POST
 def admin_group_save_view(request):
-    if request.method == "POST":
-        pk = int(request.POST['pk'])
-        if pk == 0:
-            form = forms.GroupEditForm(request.POST)
-        else:
-            instance = get_object_or_404(Group, pk=pk)
-            form = forms.GroupEditForm(request.POST, instance=instance)
-        if form.is_valid:
-            instance = form.save()
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.GroupEditForm(request.POST)
+    else:
+        instance = get_object_or_404(Group, pk=pk)
+        form = forms.GroupEditForm(request.POST, instance=instance)
+    if form.is_valid:
+        instance = form.save()
 
-            # Set permissions
-            group_perm_list = Permission.objects.filter(group__id=instance.id)
-            for p in Permission.objects.all():
-                if p.codename.startswith('svjis_'):
-                    perm_set = request.POST.get(p.codename, False) == 'on'
-                    if perm_set and p not in group_perm_list:
-                        instance.permissions.add(p)
-                    if not perm_set and p in group_perm_list:
-                        instance.permissions.remove(p)
-        else:
-            for error in form.errors:
-                messages.error(request, f"{_('Form validation error')}: {error}")
+        # Set permissions
+        group_perm_list = Permission.objects.filter(group__id=instance.id)
+        for p in Permission.objects.all():
+            if p.codename.startswith('svjis_'):
+                perm_set = request.POST.get(p.codename, False) == 'on'
+                if perm_set and p not in group_perm_list:
+                    instance.permissions.add(p)
+                if not perm_set and p in group_perm_list:
+                    instance.permissions.remove(p)
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
 
     return redirect(admin_group_view)
 
 
 @permission_required("articles.svjis_edit_admin_groups")
+@require_GET
 def admin_group_delete_view(request, pk):
     obj = get_object_or_404(Group, pk=pk)
     obj.delete()
     return redirect(admin_group_view)
+
+
+# Administration - Preferences
+@permission_required("articles.svjis_edit_admin_preferences")
+@require_GET
+def admin_preferences_view(request):
+    property_list = models.Preferences.objects.all()
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['object_list'] = property_list
+    return render(request, "admin_preferences.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_preferences")
+@require_GET
+def admin_preferences_edit_view(request, pk):
+    if pk != 0:
+        i = get_object_or_404(models.Preferences, pk=pk)
+        form = forms.PreferencesForm(instance=i)
+    else:
+        form = forms.PreferencesForm
+
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_preferences_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_preferences")
+@require_POST
+def admin_preferences_save_view(request):
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.PreferencesForm(request.POST)
+    else:
+        instance = get_object_or_404(models.Preferences , pk=pk)
+        form = forms.PreferencesForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_preferences_view)
+
+
+@permission_required("articles.svjis_edit_admin_preferences")
+@require_GET
+def admin_preferences_delete_view(request, pk):
+    obj = get_object_or_404(models.Preferences, pk=pk)
+    obj.delete()
+    return redirect(admin_preferences_view)
+
+
+# Administration - Waiting messages
+@permission_required("articles.svjis_view_admin_menu")
+@require_GET
+def admin_messages_view(request):
+    message_list = models.MessageQueue.objects.filter(status=0)
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('messages', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['object_list'] = message_list
+    return render(request, "admin_messages.html", ctx)

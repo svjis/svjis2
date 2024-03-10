@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group, Permission
-from articles.models import ArticleMenu
+from articles.models import ArticleMenu, Preferences
 
 
 def create_groups():
@@ -17,6 +17,9 @@ def create_groups():
                         'svjis_edit_admin_users',
                         'svjis_edit_admin_groups',
                         'svjis_view_personal_menu',
+                        'svjis_edit_admin_preferences',
+                        'svjis_edit_admin_company',
+                        'svjis_edit_admin_building',
         ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',
@@ -56,7 +59,7 @@ def create_groups():
     print("Done")
 
 
-def create_admin():
+def create_admin_user():
     print("Creating admin user...")
     u = User.objects.create(username='admin',
                             email='admin@test.cz',
@@ -79,10 +82,24 @@ def create_article_menu():
     print("Done")
 
 
+def create_preferences():
+    print("Creating preferences...")
+    preferences = [
+        {
+            'key': 'mail.template.lost.password',
+            'value': '<html><body>Dobrý den,<br>Vaše přihlašovací údaje jsou:<br><br>{}<br>Heslo si můžete změnit v menu <b>Osobní nastavení - Změna hesla</b><br><br>Web SVJ</body></html>'
+        },
+    ]
+    for p in preferences:
+        Preferences.objects.create(key=p['key'], value=p['value'])
+    print("Done")
+
+
 class Command(BaseCommand):
     help = "Populate database with initial data"
 
     def handle(self, *args, **options):
         create_article_menu()
         create_groups()
-        create_admin()
+        create_preferences()
+        create_admin_user()

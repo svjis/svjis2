@@ -46,7 +46,7 @@ class ArticleLog(models.Model):
 
 
 def article_directory_path(instance, filename):
-    return 'assets/{0}/{1}'.format(instance.article.id, filename)
+    return 'articles/{0}/{1}'.format(instance.article.id, filename)
 
 
 class ArticleAsset(models.Model):
@@ -140,4 +140,49 @@ class UserProfile(models.Model):
             ("svjis_edit_admin_users", "Can edit Users"),
             ("svjis_edit_admin_groups", "Can edit Groups"),
             ("svjis_view_personal_menu", "Can view Personal settings menu"),
+        )
+
+
+class MessageQueue(models.Model):
+    email = models.CharField(_("E-Mail"), max_length=50, blank=False)
+    subject = models.CharField(_("Subject"),max_length=100, blank=False)
+    body = models.TextField(_("Body"))
+    creation_time = models.DateTimeField(auto_now_add=True)
+    sending_time = models.DateTimeField(null=True)
+    status = models.SmallIntegerField(null=False)
+
+
+class Preferences(models.Model):
+    key = models.CharField(_("Key"), max_length=50, blank=False, null=False)
+    value = models.CharField(_("Value"), max_length=1000, null=False)
+    class Meta:
+        permissions = (
+            ("svjis_edit_admin_preferences", "Can edit Preferences"),
+        )
+
+
+class Company(models.Model):
+    name = models.CharField(_("Name"), max_length=50, blank=True)
+    address = models.CharField(_("Address"), max_length=50, blank=True)
+    city = models.CharField(_("City"), max_length=50, blank=True)
+    post_code = models.CharField(_("Post code"), max_length=10, blank=True)
+    phone = models.CharField(_("Phone"), max_length=30, blank=True)
+    email = models.CharField(_("E-Mail"), max_length=50, blank=True)
+    registration_no = models.CharField(_("Registration no."), max_length=20, blank=True)
+    vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
+    internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
+    class Meta:
+        permissions = (
+            ("svjis_edit_admin_company", "Can edit Company"),
+        )
+
+
+class Buliding(models.Model):
+    address = models.CharField(_("Address"), max_length=50, blank=True)
+    city = models.CharField(_("City"), max_length=50, blank=True)
+    post_code = models.CharField(_("Post code"), max_length=10, blank=True)
+    land_registry_no = models.CharField(_("Land Registration no."), max_length=50, blank=True)
+    class Meta:
+        permissions = (
+            ("svjis_edit_admin_building", "Can edit Building"),
         )

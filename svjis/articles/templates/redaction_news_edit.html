@@ -8,10 +8,16 @@
 <form action="{% url 'redaction_news_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}">
-
+    <p>
+        {{ form.body.label }}<br>
+        {{ form.body }}
+    </p>
     <fieldset>
-        <legend>{% trans 'News' %}</legend>
-        {{ form.as_p }}
+        <legend>{% trans 'Properties' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.published.auto_id }}">{{ form.published.label }}</label>
+            {{ form.published }}
+        </p>
     </fieldset>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />

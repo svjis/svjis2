@@ -8,6 +8,7 @@ from django.db.models import Q, Count
 from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.http import require_GET, require_POST
 
 
 def get_side_menu(ctx):
@@ -20,10 +21,12 @@ def get_side_menu(ctx):
     return result
 
 
+@require_GET
 def main_view(request):
     return main_filtered_view(request, None)
 
 
+@require_GET
 def main_filtered_view(request, menu):
     # Articles
     article_list = models.Article.objects.filter(published=True)
@@ -34,9 +37,7 @@ def main_filtered_view(request, menu):
         header = article_menu.description
 
     # Search
-    search = request.POST.get('search')
-    if search is None:
-        search = request.GET.get('search')
+    search = request.GET.get('search')
     if search is not None and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
@@ -85,6 +86,7 @@ def main_filtered_view(request, menu):
     return render(request, "main.html", ctx)
 
 
+@require_GET
 def article_view(request, pk):
     article = get_object_or_404(models.Article, pk=pk)
     user = request.user
@@ -101,18 +103,20 @@ def article_view(request, pk):
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "article.html", ctx)
 
+
 @permission_required("articles.svjis_add_article_comment")
+@require_POST
 def article_comment_save_view(request):
     article_pk = int(request.POST.get('article_pk'))
-    if request.method == "POST":
-        body = request.POST.get('body', '')
-        if body != '':
-            article = get_object_or_404(models.Article, pk=article_pk)
-            models.ArticleComment.objects.create(body=body, article=article, author=request.user)
+    body = request.POST.get('body', '')
+    if body != '':
+        article = get_object_or_404(models.Article, pk=article_pk)
+        models.ArticleComment.objects.create(body=body, article=article, author=request.user)
     return redirect(article_view, pk=article_pk)
 
 
 # Login
+@require_POST
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -123,6 +127,7 @@ def user_login(request):
     return redirect(main_view)
 
 
+@require_POST
 def user_logout(request):
     logout(request)
     return redirect(main_view)
