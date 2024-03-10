@@ -20,8 +20,8 @@
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
         <td class="list">{{ obj.key }}</td>
         <td class="list">{{ obj.value }}</td>
     </tr>
