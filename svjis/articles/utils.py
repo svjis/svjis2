@@ -52,6 +52,14 @@ def send_mails(recipient_list: list, subject: str, html_body: str, immediately: 
                 models.MessageQueue.objects.create(email=r, subject=subject, body=html_body, status=0)
 
 
+def send_message_queue():
+     messages = models.MessageQueue.objects.filter(status=0)
+     for m in messages:
+          send_mails([m.email], m.subject, m.body, True)
+          m.status = 1
+          m.save()
+
+
 def send_new_password(user):
     template_key = 'mail.template.lost.password'
     template = models.Preferences.objects.get(key=template_key)
@@ -62,4 +70,5 @@ def send_new_password(user):
     user.password = make_password(password)
     user.save()
     msg = f"Username: {user.username}<br>Password: {password}<br>"
-    send_mails([user.email], "Lost password", template.value.format(msg), False)
+    subj = models.Company.objects.get(pk=1).name
+    send_mails([user.email], f'{subj} - {_("Credentials")}', template.value.format(msg), False)

@@ -12,17 +12,35 @@ from django.views.decorators.http import require_GET, require_POST
 def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_edit_admin_company'):
-        result.append({'description': _("Company"), 'link': reverse(admin_company_edit_view), 'active': True if active_item == 'company' else False})
+        result.append({
+            'description': _("Company"),
+            'link': reverse(admin_company_edit_view),
+            'active': True if active_item == 'company' else False})
     if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append({'description': _("Building"), 'link': reverse(admin_building_edit_view), 'active': True if active_item == 'building' else False})
+        result.append({
+            'description': _("Building"),
+            'link': reverse(admin_building_edit_view),
+            'active': True if active_item == 'building' else False})
     if user.has_perm('articles.svjis_edit_admin_users'):
-        result.append({'description': _("Users"), 'link': reverse(admin_user_view), 'active': True if active_item == 'users' else False})
+        result.append({
+            'description': f'{_("Users")} ({User.objects.filter(is_active=True).count()})',
+            'link': reverse(admin_user_view),
+            'active': True if active_item == 'users' else False})
     if user.has_perm('articles.svjis_edit_admin_groups'):
-        result.append({'description': _("Groups"), 'link': reverse(admin_group_view), 'active': True if active_item == 'groups' else False})
+        result.append({
+            'description': _("Groups"),
+            'link': reverse(admin_group_view),
+            'active': True if active_item == 'groups' else False})
     if user.has_perm('articles.svjis_edit_admin_preferences'):
-        result.append({'description': _("Preferences"), 'link': reverse(admin_preferences_view), 'active': True if active_item == 'preferences' else False})
+        result.append({
+            'description': _("Preferences"),
+            'link': reverse(admin_preferences_view),
+            'active': True if active_item == 'preferences' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
-        result.append({'description': _("Waiting messages"), 'link': reverse(admin_messages_view), 'active': True if active_item == 'messages' else False})
+        result.append({
+            'description': f'{_("Waiting messages")} ({models.MessageQueue.objects.filter(status=0).count()})',
+            'link': reverse(admin_messages_view),
+            'active': True if active_item == 'messages' else False})
     return result
 
 
@@ -150,6 +168,10 @@ def admin_user_save_view(request):
         if password != '':
             u.password = make_password(password)
             u.save()
+
+        send_credentials = request.POST.get('send_credentials', False) == 'on'
+        if send_credentials:
+            utils.send_new_password(u)
 
         # Set groups
         user_group_list = Group.objects.filter(user__id=u.id)
