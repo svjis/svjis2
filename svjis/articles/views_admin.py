@@ -16,6 +16,11 @@ def get_side_menu(active_item, user):
             'description': _("Company"),
             'link': reverse(admin_company_edit_view),
             'active': True if active_item == 'company' else False})
+    if user.has_perm('articles.svjis_edit_admin_company'):
+        result.append({
+            'description': _("Board"),
+            'link': reverse(admin_board_view),
+            'active': True if active_item == 'board' else False})
     if user.has_perm('articles.svjis_edit_admin_building'):
         result.append({
             'description': _("Building"),
@@ -70,6 +75,64 @@ def admin_company_save_view(request):
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
     return redirect(admin_company_edit_view)
+
+
+# Administration - Board
+
+@permission_required("articles.svjis_edit_admin_company")
+@require_GET
+def admin_board_view(request):
+    board_list = models.Board.objects.all()
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('board', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['object_list'] = board_list
+    return render(request, "admin_board.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_company")
+def admin_board_edit_view(request, pk):
+    if pk != 0:
+        i = get_object_or_404(models.Board, pk=pk)
+        form = forms.BoardForm(instance=i)
+    else:
+        form = forms.BoardForm
+
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = get_side_menu('board', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_board_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_company")
+@require_POST
+def admin_board_save_view(request):
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.BoardForm(request.POST)
+    else:
+        instance = get_object_or_404(models.Board, pk=pk)
+        form = forms.BoardForm(request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+    return redirect(admin_board_view)
+
+
+@permission_required("articles.svjis_edit_admin_company")
+@require_GET
+def admin_board_delete_view(request, pk):
+    obj = get_object_or_404(models.Board, pk=pk)
+    obj.delete()
+    return redirect(admin_board_view)
 
 
 # Administration - Building
@@ -313,7 +376,7 @@ def admin_preferences_save_view(request):
     if pk == 0:
         form = forms.PreferencesForm(request.POST)
     else:
-        instance = get_object_or_404(models.Preferences , pk=pk)
+        instance = get_object_or_404(models.Preferences, pk=pk)
         form = forms.PreferencesForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()

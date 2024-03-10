@@ -139,6 +139,23 @@ class CompanyForm(forms.ModelForm):
         }
 
 
+class MemberModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.first_name} {obj.last_name} ({obj.username})"
+
+
+class BoardForm(forms.ModelForm):
+    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True))
+    class Meta:
+        model = models.Board
+        fields = ("order", "member", "position")
+        widgets = {
+            'order': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
+            'member': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'position': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
 class BuildingForm(forms.ModelForm):
     class Meta:
         model = models.Buliding

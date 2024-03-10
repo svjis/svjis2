@@ -186,3 +186,11 @@ class Buliding(models.Model):
         permissions = (
             ("svjis_edit_admin_building", "Can edit Building"),
         )
+
+
+class Board(models.Model):
+    order = models.SmallIntegerField(_("Order"), blank=False)
+    member = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+    position = models.CharField(_("Position"), max_length=30, blank=False)
+    class Meta:
+            ordering = ['order']
