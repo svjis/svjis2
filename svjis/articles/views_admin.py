@@ -93,6 +93,7 @@ def admin_board_view(request):
 
 
 @permission_required("articles.svjis_edit_admin_company")
+@require_GET
 def admin_board_edit_view(request, pk):
     if pk != 0:
         i = get_object_or_404(models.Board, pk=pk)
