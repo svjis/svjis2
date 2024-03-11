@@ -18,7 +18,7 @@ def get_side_menu(active_item, user):
             'active': True if active_item == 'company' else False})
     if user.has_perm('articles.svjis_edit_admin_company'):
         result.append({
-            'description': _("Board"),
+            'description': _("Board") + f' ({models.Board.objects.count()})',
             'link': reverse(admin_board_view),
             'active': True if active_item == 'board' else False})
     if user.has_perm('articles.svjis_edit_admin_building'):
@@ -26,6 +26,11 @@ def get_side_menu(active_item, user):
             'description': _("Building"),
             'link': reverse(admin_building_edit_view),
             'active': True if active_item == 'building' else False})
+    if user.has_perm('articles.svjis_edit_admin_building'):
+        result.append({
+            'description': _("Entrances") + f' ({models.BuildingEntrance.objects.count()})',
+            'link': reverse(admin_entrance_view),
+            'active': True if active_item == 'entrances' else False})
     if user.has_perm('articles.svjis_edit_admin_users'):
         result.append({
             'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
@@ -164,6 +169,69 @@ def admin_building_save_view(request):
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
     return redirect(admin_building_edit_view)
+
+
+# Administration - BuildingEntrance
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_entrance_view(request):
+    entrance_list = models.BuildingEntrance.objects.all()
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('entrances', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['object_list'] = entrance_list
+    return render(request, "admin_entrance.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_entrance_edit_view(request, pk):
+    if pk != 0:
+        i = get_object_or_404(models.BuildingEntrance, pk=pk)
+        form = forms.BuildingEntranceForm(instance=i)
+    else:
+        i = models.BuildingEntrance
+        form = forms.BuildingEntranceForm
+
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = get_side_menu('entrances', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_entrance_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_POST
+def admin_entrance_save_view(request):
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.BuildingEntranceForm(request.POST)
+    else:
+        instance = get_object_or_404(models.BuildingEntrance, pk=pk)
+        form = forms.BuildingEntranceForm(request.POST, instance=instance)
+    if form.is_valid:
+        obj = form.save(commit=False)
+        obj.building, created = models.Building.objects.get_or_create(pk=1)
+        obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, f"{_('Form validation error')}: {error}")
+
+    return redirect(admin_entrance_view)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_entrance_delete_view(request, pk):
+    obj = get_object_or_404(models.BuildingEntrance, pk=pk)
+    obj.delete()
+    return redirect(admin_entrance_view)
 
 
 # Administration - User

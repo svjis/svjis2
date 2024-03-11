@@ -166,3 +166,13 @@ class BuildingForm(forms.ModelForm):
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'land_registry_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
         }
+
+
+class BuildingEntranceForm(forms.ModelForm):
+    class Meta:
+        model = models.BuildingEntrance
+        fields = ("description", "address")
+        widgets = {
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
