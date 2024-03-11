@@ -193,7 +193,6 @@ def admin_entrance_edit_view(request, pk):
         i = get_object_or_404(models.BuildingEntrance, pk=pk)
         form = forms.BuildingEntranceForm(instance=i)
     else:
-        i = models.BuildingEntrance
         form = forms.BuildingEntranceForm
 
     ctx = {
