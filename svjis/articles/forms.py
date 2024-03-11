@@ -141,11 +141,11 @@ class CompanyForm(forms.ModelForm):
 
 class MemberModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"{obj.first_name} {obj.last_name} ({obj.username})"
+        return f"{obj.last_name} {obj.first_name} ({obj.username})"
 
 
 class BoardForm(forms.ModelForm):
-    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True))
+    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True).order_by('last_name'))
     class Meta:
         model = models.Board
         fields = ("order", "member", "position")

@@ -37,7 +37,7 @@ def contact_view(request):
 @permission_required("articles.svjis_view_phonelist")
 @require_GET
 def phonelist_view(request):
-    phone_list = User.objects.filter(is_active=True, userprofile__show_in_phonelist=True)
+    phone_list = User.objects.filter(is_active=True, userprofile__show_in_phonelist=True).order_by('last_name')
     ctx = {
         'aside_menu_name': _("Contact"),
     }

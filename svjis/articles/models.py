@@ -194,4 +194,4 @@ class Board(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     position = models.CharField(_("Position"), max_length=30, blank=False)
     class Meta:
-            ordering = ['order']
+        ordering = ['order']
