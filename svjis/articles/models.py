@@ -91,10 +91,6 @@ class ArticleMenu(models.Model):
     def __str__(self):
         return f"ArticleMenu: {self.description}"
 
-    @property
-    def assets(self):
-        return self.asset_set.all()
-
     class Meta:
         ordering = ['description']
         permissions = (
@@ -172,13 +168,17 @@ class Company(models.Model):
     registration_no = models.CharField(_("Registration no."), max_length=20, blank=True)
     vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
     internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
+
+    @property
+    def board(self):
+        return self.board_set.all()
     class Meta:
         permissions = (
             ("svjis_edit_admin_company", "Can edit Company"),
         )
 
 
-class Buliding(models.Model):
+class Building(models.Model):
     address = models.CharField(_("Address"), max_length=50, blank=True)
     city = models.CharField(_("City"), max_length=50, blank=True)
     post_code = models.CharField(_("Post code"), max_length=10, blank=True)
@@ -190,8 +190,17 @@ class Buliding(models.Model):
 
 
 class Board(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name=_("Company"))
     order = models.SmallIntegerField(_("Order"), blank=False)
     member = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     position = models.CharField(_("Position"), max_length=30, blank=False)
     class Meta:
         ordering = ['order']
+
+
+class BuildingEntrance(models.Model):
+    building = models.ForeignKey(Building, on_delete=models.CASCADE, verbose_name=_("Building"))
+    description = models.CharField(_("Description"), max_length=50, blank=False)
+    address = models.CharField(_("Address"), max_length=50, blank=False)
+    class Meta:
+        ordering = ['description']

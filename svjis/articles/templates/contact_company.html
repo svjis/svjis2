@@ -57,12 +57,12 @@
     {% endif %}
 </table>
 
-{% if board_list %}
+{% if company.board %}
 <table border="0" aria-describedby="tbl-desc">
     <tr>
         <th scope="col" style="text-align: left" colspan="3">Výbor:&nbsp;</th>
     </tr>
-    {% for obj in board_list %}
+    {% for obj in company.board %}
     <tr>
         <td>{{ obj.member.userprofile.salutation }}&nbsp;</td>
         <td>{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}&nbsp;&nbsp;</td>

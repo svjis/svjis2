@@ -158,7 +158,7 @@ class BoardForm(forms.ModelForm):
 
 class BuildingForm(forms.ModelForm):
     class Meta:
-        model = models.Buliding
+        model = models.Building
         fields = ("address", "city", "post_code", "land_registry_no")
         widgets = {
             'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),

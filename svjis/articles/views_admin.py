@@ -121,7 +121,9 @@ def admin_board_save_view(request):
         instance = get_object_or_404(models.Board, pk=pk)
         form = forms.BoardForm(request.POST, instance=instance)
     if form.is_valid:
-        form.save()
+        obj = form.save(commit=False)
+        obj.company = models.Company.objects.get(pk=1)
+        obj.save()
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -140,7 +142,7 @@ def admin_board_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_edit_view(request):
-    instance, created = models.Buliding.objects.get_or_create(pk=1)
+    instance, created = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(instance=instance)
     ctx = {
         'aside_menu_name': _("Administration"),
@@ -154,7 +156,7 @@ def admin_building_edit_view(request):
 @permission_required("articles.svjis_edit_admin_building")
 @require_POST
 def admin_building_save_view(request):
-    instance, created = models.Buliding.objects.get_or_create(pk=1)
+    instance, created = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
