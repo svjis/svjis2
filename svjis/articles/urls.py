@@ -1,4 +1,4 @@
-from . import views, views_personal_settings, views_redaction, views_admin
+from . import views, views_contact, views_personal_settings, views_redaction, views_admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -11,6 +11,8 @@ urlpatterns = [
     path('article_comment_save/', views.article_comment_save_view, name='article_comment_save'),
     path('user_login/', views.user_login, name='user_login'),
     path('user_logout/', views.user_logout, name='user_logout'),
+    path('contact_company/', views_contact.contact_view, name='contact_company'),
+    path('contact_phonelist/', views_contact.phonelist_view, name='contact_phonelist'),
     path('personal_settings_edit/', views_personal_settings.personal_settings_edit_view, name='personal_settings_edit'),
     path('personal_settings_save/', views_personal_settings.personal_settings_save_view, name='personal_settings_save'),
     path('personal_settings_password/', views_personal_settings.personal_settings_password_view, name='personal_settings_password'),

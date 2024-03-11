@@ -2,7 +2,7 @@ import logging
 import re
 import secrets
 import string
-from . import views, views_personal_settings, views_redaction, views_admin, models
+from . import views, views_contact, views_personal_settings, views_redaction, views_admin, models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 def get_tray_menu(active_item: str, user) -> list:
     result = []
     result.append({'description': _("Articles"), 'link': reverse(views.main_view), 'active': True if active_item == 'articles' else False})
+    result.append({'description': _("Contact"), 'link': reverse(views_contact.contact_view), 'active': True if active_item == 'contact' else False})
     if user.has_perm('articles.svjis_view_personal_menu'):
             result.append({'description': _("Personal settings"), 'link': reverse(views_personal_settings.personal_settings_edit_view), 'active': True if active_item == 'personal_settings' else False})
     if user.has_perm('articles.svjis_view_redaction_menu'):

@@ -1,0 +1,47 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ company.name }}</h1>
+
+<table border="0" aria-describedby="tbl-desc">
+    <tr>
+        <th scope="row" style="text-align: left">{% trans 'Address' %}:&nbsp;</th>
+        <td>{{ company.address }}</td>
+    </tr>
+    <tr>
+        <th scope="row" style="text-align: left">{% trans 'City' %}:&nbsp;</th>
+        <td>{{ company.city }}</td>
+    </tr>
+    <tr>
+        <th scope="row" style="text-align: left">{% trans 'Post code' %}:&nbsp;</th>
+        <td>{{ company.post_code }}</td>
+    </tr>
+    <tr>
+        <th scope="row" style="text-align: left">{% trans 'E-Mail' %}:&nbsp;</th>
+        <td><a href="{{ company.email }}">{{ company.email }}</a></td>
+    </tr>
+    <tr>
+        <th scope="row" style="text-align: left">{% trans 'Registration No.' %}:&nbsp;</th>
+        <td>{{ company.registration_no }}</td>
+    </tr>
+</table>
+
+{% if board_list %}
+<table border="0" aria-describedby="tbl-desc">
+    <tr>
+        <th scope="col" style="text-align: left" colspan="3">Výbor:&nbsp;</th>
+    </tr>
+    {% for obj in board_list %}
+    <tr>
+        <td>{{ obj.member.userprofile.salutation }}&nbsp;</td>
+        <td>{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}&nbsp;&nbsp;</td>
+        <td>{{ obj.position }}&nbsp;</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

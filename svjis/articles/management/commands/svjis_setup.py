@@ -20,10 +20,12 @@ def create_groups():
                         'svjis_edit_admin_preferences',
                         'svjis_edit_admin_company',
                         'svjis_edit_admin_building',
+                        'svjis_view_phonelist',
         ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',
                         'svjis_view_personal_menu',
+                        'svjis_view_phonelist',
         ]},
             {'name': 'Člen výboru', 'perms': [
                         'svjis_view_redaction_menu',
@@ -32,6 +34,7 @@ def create_groups():
                         'svjis_edit_article_menu',
                         'svjis_edit_article_news',
                         'svjis_view_personal_menu',
+                        'svjis_view_phonelist',
         ]},
             {'name': 'Dodavatel', 'perms': [
                         'svjis_add_article_comment',
