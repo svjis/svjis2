@@ -65,9 +65,8 @@ def get_side_menu(active_item, user):
 def admin_company_edit_view(request):
     instance, created = models.Company.objects.get_or_create(pk=1)
     form = forms.CompanyForm(instance=instance)
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['aside_menu_items'] = get_side_menu('company', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
@@ -78,7 +77,7 @@ def admin_company_edit_view(request):
 @require_POST
 def admin_company_save_view(request):
     instance, created = models.Company.objects.get_or_create(pk=1)
-    form = forms.CompanyForm(request.POST, instance=instance)
+    form = forms.CompanyForm(request.POST, request.FILES, instance=instance)
     if form.is_valid:
         form.save()
     else:
@@ -93,9 +92,8 @@ def admin_company_save_view(request):
 @require_GET
 def admin_board_view(request):
     board_list = models.Board.objects.all()
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('board', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = board_list
@@ -111,9 +109,8 @@ def admin_board_edit_view(request, pk):
     else:
         form = forms.BoardForm
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('board', request.user)
@@ -154,9 +151,8 @@ def admin_board_delete_view(request, pk):
 def admin_building_edit_view(request):
     instance, created = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(instance=instance)
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['aside_menu_items'] = get_side_menu('building', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
@@ -181,9 +177,8 @@ def admin_building_save_view(request):
 @require_GET
 def admin_entrance_view(request):
     entrance_list = models.BuildingEntrance.objects.all()
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('entrances', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = entrance_list
@@ -199,9 +194,8 @@ def admin_entrance_edit_view(request, pk):
     else:
         form = forms.BuildingEntranceForm
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('entrances', request.user)
@@ -242,9 +236,8 @@ def admin_entrance_delete_view(request, pk):
 @require_GET
 def admin_building_unit_view(request):
     unit_list = models.BuildingUnit.objects.all()
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = unit_list
@@ -260,9 +253,8 @@ def admin_building_unit_edit_view(request, pk):
     else:
         form = forms.BuildingUnitForm
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
@@ -304,9 +296,8 @@ def admin_building_unit_owners_view(request, pk):
     bu = get_object_or_404(models.BuildingUnit, pk=pk)
     user_list = [ u for u in User.objects.filter(is_active=True).order_by('last_name') if u not in bu.owners.all()]
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['bu'] = bu
     ctx['pk'] = pk
     ctx['user_list'] = user_list
@@ -343,9 +334,8 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
 @require_GET
 def admin_user_view(request):
     user_list = User.objects.all()
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = user_list
@@ -373,9 +363,8 @@ def admin_user_edit_view(request, pk):
         item = {'name': g.name, 'checked': g in user_group_list}
         group_list.append(item)
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['uform'] = uform
     ctx['pform'] = pform
     ctx['group_list'] = group_list
@@ -435,9 +424,8 @@ def admin_user_save_view(request):
 def admin_user_owns_view(request, pk):
     u = get_object_or_404(User, pk=pk)
     bu_list = [ bu for bu in models.BuildingUnit.objects.all().order_by('description') if bu not in u.buildingunit_set.all()]
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['u'] = u
     ctx['pk'] = pk
     ctx['bu_list'] = bu_list
@@ -474,9 +462,8 @@ def admin_user_owns_delete_view(request, pk, owner):
 @require_GET
 def admin_group_view(request):
     group_list = Group.objects.all()
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('groups', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = group_list
@@ -502,9 +489,8 @@ def admin_group_edit_view(request, pk):
             item = {'name': p.codename, 'checked': p in group_perm_list}
             permission_list.append(item)
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['instance'] = i
     ctx['permission_list'] = permission_list
@@ -555,9 +541,8 @@ def admin_group_delete_view(request, pk):
 @require_GET
 def admin_preferences_view(request):
     property_list = models.Preferences.objects.all()
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = property_list
@@ -573,9 +558,8 @@ def admin_preferences_edit_view(request, pk):
     else:
         form = forms.PreferencesForm
 
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
@@ -613,9 +597,8 @@ def admin_preferences_delete_view(request, pk):
 @require_GET
 def admin_messages_view(request):
     message_list = models.MessageQueue.objects.filter(status=0)
-    ctx = {
-        'aside_menu_name': _("Administration"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('messages', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = message_list

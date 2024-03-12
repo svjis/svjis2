@@ -69,9 +69,8 @@ def main_filtered_view(request, menu):
     for ta in top_articles:
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
-    ctx = {
-        'aside_menu_name': _("Articles"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Articles")
     ctx['is_paginated'] = is_paginated
     ctx['page_obj'] = page_obj
     ctx['page_parameter'] = page_parameter
@@ -93,12 +92,12 @@ def article_view(request, pk):
     if user.is_anonymous:
         user = None
     models.ArticleLog.objects.create(article=article, user=user)
-    ctx = {
-        'aside_menu_name': _("Articles"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Articles")
     ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
+    ctx['web_title'] = article.header
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "article.html", ctx)

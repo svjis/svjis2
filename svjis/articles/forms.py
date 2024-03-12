@@ -126,7 +126,7 @@ class PreferencesForm(forms.ModelForm):
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = models.Company
-        fields = ("name", "address", "city", "post_code", "phone", "email", "registration_no", "vat_registration_no", "internet_domain")
+        fields = ("name", "address", "city", "post_code", "phone", "email", "registration_no", "vat_registration_no", "internet_domain", "header_picture")
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
@@ -137,6 +137,7 @@ class CompanyForm(forms.ModelForm):
             'registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'vat_registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'internet_domain': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'header_picture': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
         }
 
 

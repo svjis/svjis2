@@ -22,9 +22,8 @@ def get_side_menu(active_item, user):
 @require_GET
 def contact_view(request):
     instance, created = models.Company.objects.get_or_create(pk=1)
-    ctx = {
-        'aside_menu_name': _("Contact"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Contact")
     ctx['company'] = instance
     ctx['aside_menu_items'] = get_side_menu('company', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('contact', request.user)
@@ -36,9 +35,8 @@ def contact_view(request):
 @require_GET
 def phonelist_view(request):
     phone_list = User.objects.filter(is_active=True, userprofile__show_in_phonelist=True).order_by('last_name')
-    ctx = {
-        'aside_menu_name': _("Contact"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Contact")
     ctx['object_list'] = phone_list
     ctx['aside_menu_items'] = get_side_menu('phonelist', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('contact', request.user)

@@ -13,6 +13,16 @@ from django.contrib.auth.hashers import make_password
 logger = logging.getLogger(__name__)
 
 
+def get_context():
+     ctx = {}
+     company, created = models.Company.objects.get_or_create(pk=1)
+     if company is not None:
+          ctx['company_picture'] = company.header_picture
+          ctx['company_name'] = company.name
+          ctx['web_title'] = company.name
+     return ctx
+
+
 def get_tray_menu(active_item: str, user) -> list:
     result = []
     result.append({'description': _("Articles"), 'link': reverse(views.main_view), 'active': True if active_item == 'articles' else False})

@@ -28,9 +28,8 @@ def personal_settings_edit_view(request):
     uform = forms.PersonalUserForm(instance=request.user)
     pinstance, created = models.UserProfile.objects.get_or_create(user=request.user)
     pform = forms.PersonalUserProfileForm(instance=pinstance)
-    ctx = {
-        'aside_menu_name': _("Personal settings"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Personal settings")
     ctx['uform'] = uform
     ctx['pform'] = pform
     ctx['aside_menu_items'] = get_side_menu('settings', request.user)
@@ -60,9 +59,8 @@ def personal_settings_save_view(request):
 @permission_required("articles.svjis_view_personal_menu")
 @require_GET
 def personal_my_units_view(request):
-    ctx = {
-        'aside_menu_name': _("Personal settings"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Personal settings")
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('personal_settings', request.user)
     return render(request, "personal_my_units.html", ctx)
@@ -72,9 +70,8 @@ def personal_my_units_view(request):
 @permission_required("articles.svjis_view_personal_menu")
 @require_GET
 def personal_settings_password_view(request):
-    ctx = {
-        'aside_menu_name': _("Personal settings"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Personal settings")
     ctx['aside_menu_items'] = get_side_menu('password', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('personal_settings', request.user)
     return render(request, "personal_settings_password.html", ctx)
@@ -108,7 +105,7 @@ def personal_settings_password_save_view(request):
 
 @require_GET
 def lost_password_view(request):
-    ctx = {}
+    ctx = utils.get_context()
     ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
     return render(request, "send_lost_password.html", ctx)
 
