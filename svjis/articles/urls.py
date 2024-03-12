@@ -15,6 +15,7 @@ urlpatterns = [
     path('contact_phonelist/', views_contact.phonelist_view, name='contact_phonelist'),
     path('personal_settings_edit/', views_personal_settings.personal_settings_edit_view, name='personal_settings_edit'),
     path('personal_settings_save/', views_personal_settings.personal_settings_save_view, name='personal_settings_save'),
+    path('personal_my_units/', views_personal_settings.personal_my_units_view, name='personal_my_units'),
     path('personal_settings_password/', views_personal_settings.personal_settings_password_view, name='personal_settings_password'),
     path('personal_settings_password_save/', views_personal_settings.personal_settings_password_save_view, name='personal_settings_password_save'),
     path('redaction_menu/', views_redaction.redaction_menu_view, name='redaction_menu'),

@@ -15,6 +15,8 @@ def get_side_menu(active_item, user):
     if user.has_perm('articles.svjis_view_personal_menu'):
         result.append({'description': _("Personal settings"), 'link': reverse(personal_settings_edit_view), 'active': True if active_item == 'settings' else False})
     if user.has_perm('articles.svjis_view_personal_menu'):
+        result.append({'description': _("My units"), 'link': reverse(personal_my_units_view), 'active': True if active_item == 'units' else False})
+    if user.has_perm('articles.svjis_view_personal_menu'):
         result.append({'description': _("Password change"), 'link': reverse(personal_settings_password_view), 'active': True if active_item == 'password' else False})
     return result
 
@@ -52,6 +54,18 @@ def personal_settings_save_view(request):
             messages.error(request, f"{_('Form validation error')}: {error}")
 
     return redirect(personal_settings_edit_view)
+
+
+# Personal settings - my building units
+@permission_required("articles.svjis_view_personal_menu")
+@require_GET
+def personal_my_units_view(request):
+    ctx = {
+        'aside_menu_name': _("Personal settings"),
+    }
+    ctx['aside_menu_items'] = get_side_menu('units', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('personal_settings', request.user)
+    return render(request, "personal_my_units.html", ctx)
 
 
 # Personal settings - password

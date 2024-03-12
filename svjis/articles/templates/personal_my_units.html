@@ -1,0 +1,29 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ user.first_name }} {{ user.last_name }}</h1>
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Type' %}</th>
+        <th class="list" scope="col">{% trans 'Registration Id' %}</th>
+        <th class="list" scope="col">{% trans 'Description' %}</th>
+    </tr>
+
+    {% if user.buildingunit_set.all %}
+    {% for obj in user.buildingunit_set.all %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ obj.type.description }}</td>
+        <td class="list">{{ obj.registration_id }}</td>
+        <td class="list">{{ obj.description }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}
