@@ -298,6 +298,46 @@ def admin_building_unit_delete_view(request, pk):
     return redirect(admin_building_unit_view)
 
 
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_building_unit_owners_view(request, pk):
+    bu = get_object_or_404(models.BuildingUnit, pk=pk)
+    user_list = [ u for u in User.objects.filter(is_active=True).order_by('last_name') if u not in bu.owners.all()]
+
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['bu'] = bu
+    ctx['pk'] = pk
+    ctx['user_list'] = user_list
+    ctx['aside_menu_items'] = get_side_menu('units', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_building_unit_owners_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_POST
+def admin_building_unit_owners_save_view(request):
+    pk = int(request.POST['pk'])
+    owner_id = int(request.POST['owner_id'])
+
+    if owner_id > 0:
+        bu = get_object_or_404(models.BuildingUnit, pk=pk)
+        u = get_object_or_404(User, pk=owner_id)
+        bu.owners.add(u)
+
+    return redirect(admin_building_unit_owners_view, pk=pk)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_building_unit_owners_delete_view(request, pk, owner):
+    bu = get_object_or_404(models.BuildingUnit, pk=pk)
+    u = get_object_or_404(User, pk=owner)
+    bu.owners.remove(u)
+    return redirect(admin_building_unit_owners_view, pk=pk)
+
+
 # Administration - User
 @permission_required("articles.svjis_edit_admin_users")
 @require_GET
@@ -388,6 +428,45 @@ def admin_user_save_view(request):
         return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
 
     return redirect(admin_user_view)
+
+
+@permission_required("articles.svjis_edit_admin_users")
+@require_GET
+def admin_user_owns_view(request, pk):
+    u = get_object_or_404(User, pk=pk)
+    bu_list = [ bu for bu in models.BuildingUnit.objects.all().order_by('description') if bu not in u.buildingunit_set.all()]
+    ctx = {
+        'aside_menu_name': _("Administration"),
+    }
+    ctx['u'] = u
+    ctx['pk'] = pk
+    ctx['bu_list'] = bu_list
+    ctx['aside_menu_items'] = get_side_menu('users', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_user_ownes_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_admin_users")
+@require_POST
+def admin_user_owns_save_view(request):
+    pk = int(request.POST['pk'])
+    owner_id = int(request.POST['owner_id'])
+
+    if owner_id > 0:
+        u = get_object_or_404(User, pk=pk)
+        bu = get_object_or_404(models.BuildingUnit, pk=owner_id)
+        u.buildingunit_set.add(bu)
+
+    return redirect(admin_user_owns_view, pk=pk)
+
+
+@permission_required("articles.svjis_edit_admin_users")
+@require_GET
+def admin_user_owns_delete_view(request, pk, owner):
+    u = get_object_or_404(User, pk=pk)
+    bu = get_object_or_404(models.BuildingUnit, pk=owner)
+    u.buildingunit_set.remove(bu)
+    return redirect(admin_user_owns_view, pk=pk)
 
 
 # Administration - Group

@@ -220,5 +220,6 @@ class BuildingUnit(models.Model):
     description = models.CharField(_("Description"), max_length=50, blank=False)
     numerator = models.IntegerField(_("Numerator"), blank=False)
     denominator = models.IntegerField(_("Denominator"), blank=False)
+    owners = models.ManyToManyField(User)
     class Meta:
         ordering = ['description']

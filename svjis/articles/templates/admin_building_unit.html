@@ -18,6 +18,7 @@
         <th class="list" scope="col">{% trans 'Denominator' %}</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
@@ -30,6 +31,7 @@
         <td class="list">{{ obj.description }}</td>
         <td class="list">{{ obj.numerator }}</td>
         <td class="list">{{ obj.denominator }}</td>
+        <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" border="0" title="{% trans 'Owners' %}" alt="{% trans 'Owners' %}"></a></td>
         <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
     </tr>
