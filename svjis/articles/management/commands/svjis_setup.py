@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group, Permission
-from articles.models import ArticleMenu, Preferences
+from articles.models import ArticleMenu, Preferences, BuildingUnitType
 
 
 def create_groups():
@@ -98,11 +98,19 @@ def create_preferences():
     print("Done")
 
 
+def create_building_unit_types():
+    print("Creating building unit types...")
+    types = ['Byt', 'Sklep', 'Komerční prostor', 'Garáž']
+    for t in types:
+        BuildingUnitType.objects.create(description=t)
+    print("Done")
+
 class Command(BaseCommand):
     help = "Populate database with initial data"
 
     def handle(self, *args, **options):
         create_article_menu()
+        create_building_unit_types()
         create_groups()
         create_preferences()
         create_admin_user()

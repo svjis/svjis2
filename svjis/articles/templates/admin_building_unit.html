@@ -1,0 +1,40 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Building units' %}</h1>
+[<a href="{% url 'admin_building_unit_edit' pk=0 %}">{% trans 'Add new unit' %}</a>]
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Type' %}</th>
+        <th class="list" scope="col">{% trans 'Entrance' %}</th>
+        <th class="list" scope="col">{% trans 'Registration Id' %}</th>
+        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">{% trans 'Numerator' %}</th>
+        <th class="list" scope="col">{% trans 'Denominator' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ obj.type.description }}</td>
+        <td class="list">{{ obj.entrance.description }}</td>
+        <td class="list">{{ obj.registration_id }}</td>
+        <td class="list">{{ obj.description }}</td>
+        <td class="list">{{ obj.numerator }}</td>
+        <td class="list">{{ obj.denominator }}</td>
+        <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

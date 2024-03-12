@@ -215,7 +215,7 @@ class BuildingUnitType(models.Model):
 class BuildingUnit(models.Model):
     building = models.ForeignKey(Building, on_delete=models.CASCADE, verbose_name=_("Building"), null=False, blank=False)
     type = models.ForeignKey(BuildingUnitType, on_delete=models.CASCADE, verbose_name=_("Type"), null=False, blank=False)
-    entrance = models.ForeignKey(BuildingEntrance, on_delete=models.CASCADE, verbose_name=_("Entrance"), blank=True)
+    entrance = models.ForeignKey(BuildingEntrance, on_delete=models.CASCADE, verbose_name=_("Entrance"), null=True, blank=True)
     registration_id = models.CharField(_("Registration Id"), max_length=50, blank=False)
     description = models.CharField(_("Description"), max_length=50, blank=False)
     numerator = models.IntegerField(_("Numerator"), blank=False)

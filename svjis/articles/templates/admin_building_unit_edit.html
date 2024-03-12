@@ -1,0 +1,45 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Building unit' %}</h1>
+<form action="{% url 'admin_building_unit_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'Building unit' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.type.auto_id }}">{{ form.type.label }}</label>
+            {{ form.type }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.entrance.auto_id }}">{{ form.entrance.label }}</label>
+            {{ form.entrance }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.registration_id.auto_id }}">{{ form.registration_id.label }}</label>
+            {{ form.registration_id }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.description.auto_id }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.numerator.auto_id }}">{{ form.numerator.label }}</label>
+            {{ form.numerator }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.denominator.auto_id }}">{{ form.denominator.label }}</label>
+            {{ form.denominator }}
+        </p>
+    </fieldset>
+
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

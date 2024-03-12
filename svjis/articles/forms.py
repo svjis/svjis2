@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
+from django.utils.translation import gettext_lazy as _
 from . import models
 
 
@@ -175,4 +176,35 @@ class BuildingEntranceForm(forms.ModelForm):
         widgets = {
             'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
+class BuildingUnitTypeModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.description}"
+
+
+class BuildingEntranceChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.description}, {obj.address}"
+
+
+class BuildingUnitForm(forms.ModelForm):
+    type = BuildingUnitTypeModelChoiceField(queryset=models.BuildingUnitType.objects.all().order_by('description'))
+    entrance = BuildingEntranceChoiceField(
+        queryset=models.BuildingEntrance.objects.all().order_by('description'),
+        required=False,
+        help_text=_("Select the entrnance (if does it make sense)")
+        )
+    class Meta:
+        model = models.BuildingUnit
+        fields = ("type", "entrance", "registration_id", "description", "numerator", "denominator")
+        widgets = {
+            'type': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'registration_id': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'numerator': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
+            'denominator': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
         }
