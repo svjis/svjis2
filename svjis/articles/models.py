@@ -91,10 +91,6 @@ class ArticleMenu(models.Model):
     def __str__(self):
         return f"ArticleMenu: {self.description}"
 
-    @property
-    def assets(self):
-        return self.asset_set.all()
-
     class Meta:
         ordering = ['description']
         permissions = (
@@ -140,6 +136,7 @@ class UserProfile(models.Model):
             ("svjis_edit_admin_users", "Can edit Users"),
             ("svjis_edit_admin_groups", "Can edit Groups"),
             ("svjis_view_personal_menu", "Can view Personal settings menu"),
+            ("svjis_view_phonelist", "Can view Phonelist"),
         )
 
 
@@ -161,6 +158,10 @@ class Preferences(models.Model):
         )
 
 
+def company_directory_path(instance, filename):
+    return 'company/{0}'.format(filename)
+
+
 class Company(models.Model):
     name = models.CharField(_("Name"), max_length=50, blank=True)
     address = models.CharField(_("Address"), max_length=50, blank=True)
@@ -171,13 +172,18 @@ class Company(models.Model):
     registration_no = models.CharField(_("Registration no."), max_length=20, blank=True)
     vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
     internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
+    header_picture = models.FileField(_("Header picture (940 x 94)"), upload_to=company_directory_path, null=True, blank=True)
+
+    @property
+    def board(self):
+        return self.board_set.all()
     class Meta:
         permissions = (
             ("svjis_edit_admin_company", "Can edit Company"),
         )
 
 
-class Buliding(models.Model):
+class Building(models.Model):
     address = models.CharField(_("Address"), max_length=50, blank=True)
     city = models.CharField(_("City"), max_length=50, blank=True)
     post_code = models.CharField(_("Post code"), max_length=10, blank=True)
@@ -186,3 +192,39 @@ class Buliding(models.Model):
         permissions = (
             ("svjis_edit_admin_building", "Can edit Building"),
         )
+
+
+class Board(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name=_("Company"), null=False, blank=False)
+    order = models.SmallIntegerField(_("Order"), blank=False)
+    member = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+    position = models.CharField(_("Position"), max_length=30, blank=False)
+    class Meta:
+        ordering = ['order']
+
+
+class BuildingEntrance(models.Model):
+    building = models.ForeignKey(Building, on_delete=models.CASCADE, verbose_name=_("Building"), null=False, blank=False)
+    description = models.CharField(_("Description"), max_length=50, blank=False)
+    address = models.CharField(_("Address"), max_length=50, blank=False)
+    class Meta:
+        ordering = ['description']
+
+
+class BuildingUnitType(models.Model):
+    description = models.CharField(_("Description"), max_length=50, blank=False)
+    class Meta:
+        ordering = ['description']
+
+
+class BuildingUnit(models.Model):
+    building = models.ForeignKey(Building, on_delete=models.CASCADE, verbose_name=_("Building"), null=False, blank=False)
+    type = models.ForeignKey(BuildingUnitType, on_delete=models.CASCADE, verbose_name=_("Type"), null=False, blank=False)
+    entrance = models.ForeignKey(BuildingEntrance, on_delete=models.CASCADE, verbose_name=_("Entrance"), null=True, blank=True)
+    registration_id = models.CharField(_("Registration Id"), max_length=50, blank=False)
+    description = models.CharField(_("Description"), max_length=50, blank=False)
+    numerator = models.IntegerField(_("Numerator"), blank=False)
+    denominator = models.IntegerField(_("Denominator"), blank=False)
+    owners = models.ManyToManyField(User)
+    class Meta:
+        ordering = ['description']

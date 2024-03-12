@@ -9,5 +9,6 @@ class ArticleListTest(TestCase):
         response = self.client.get(reverse('main'))
         response_tray_menu = response.context['tray_menu_items']
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response_tray_menu), 1)
+        self.assertEqual(len(response_tray_menu), 2)
         self.assertEqual(response_tray_menu[0]['description'], 'Articles')
+        self.assertEqual(response_tray_menu[1]['description'], 'Contact')

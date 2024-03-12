@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group, Permission
-from articles.models import ArticleMenu, Preferences
+from articles.models import ArticleMenu, Preferences, BuildingUnitType
 
 
 def create_groups():
@@ -20,10 +20,12 @@ def create_groups():
                         'svjis_edit_admin_preferences',
                         'svjis_edit_admin_company',
                         'svjis_edit_admin_building',
+                        'svjis_view_phonelist',
         ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',
                         'svjis_view_personal_menu',
+                        'svjis_view_phonelist',
         ]},
             {'name': 'Člen výboru', 'perms': [
                         'svjis_view_redaction_menu',
@@ -32,6 +34,7 @@ def create_groups():
                         'svjis_edit_article_menu',
                         'svjis_edit_article_news',
                         'svjis_view_personal_menu',
+                        'svjis_view_phonelist',
         ]},
             {'name': 'Dodavatel', 'perms': [
                         'svjis_add_article_comment',
@@ -95,11 +98,19 @@ def create_preferences():
     print("Done")
 
 
+def create_building_unit_types():
+    print("Creating building unit types...")
+    types = ['Byt', 'Sklep', 'Komerční prostor', 'Garáž']
+    for t in types:
+        BuildingUnitType.objects.create(description=t)
+    print("Done")
+
 class Command(BaseCommand):
     help = "Populate database with initial data"
 
     def handle(self, *args, **options):
         create_article_menu()
+        create_building_unit_types()
         create_groups()
         create_preferences()
         create_admin_user()

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
+from django.utils.translation import gettext_lazy as _
 from . import models
 
 
@@ -125,7 +126,7 @@ class PreferencesForm(forms.ModelForm):
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = models.Company
-        fields = ("name", "address", "city", "post_code", "phone", "email", "registration_no", "vat_registration_no", "internet_domain")
+        fields = ("name", "address", "city", "post_code", "phone", "email", "registration_no", "vat_registration_no", "internet_domain", "header_picture")
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
@@ -136,16 +137,75 @@ class CompanyForm(forms.ModelForm):
             'registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'vat_registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'internet_domain': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'header_picture': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
+class MemberModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.last_name} {obj.first_name} ({obj.username})"
+
+
+class BoardForm(forms.ModelForm):
+    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True).order_by('last_name'))
+    class Meta:
+        model = models.Board
+        fields = ("order", "member", "position")
+        widgets = {
+            'order': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
+            'member': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'position': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
         }
 
 
 class BuildingForm(forms.ModelForm):
     class Meta:
-        model = models.Buliding
+        model = models.Building
         fields = ("address", "city", "post_code", "land_registry_no")
         widgets = {
             'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'city': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'land_registry_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
+class BuildingEntranceForm(forms.ModelForm):
+    class Meta:
+        model = models.BuildingEntrance
+        fields = ("description", "address")
+        widgets = {
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
+class BuildingUnitTypeModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.description}"
+
+
+class BuildingEntranceChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.description}, {obj.address}"
+
+
+class BuildingUnitForm(forms.ModelForm):
+    type = BuildingUnitTypeModelChoiceField(queryset=models.BuildingUnitType.objects.all().order_by('description'))
+    entrance = BuildingEntranceChoiceField(
+        queryset=models.BuildingEntrance.objects.all().order_by('description'),
+        required=False,
+        help_text=_("Select the entrnance (if does it make sense)")
+        )
+    class Meta:
+        model = models.BuildingUnit
+        fields = ("type", "entrance", "registration_id", "description", "numerator", "denominator")
+        widgets = {
+            'type': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'registration_id': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'numerator': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
+            'denominator': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
         }

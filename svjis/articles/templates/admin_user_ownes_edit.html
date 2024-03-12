@@ -1,0 +1,45 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ u.first_name }} {{ u.last_name }}</h1>
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Type' %}</th>
+        <th class="list" scope="col">{% trans 'Registration Id' %}</th>
+        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if u.buildingunit_set.all %}
+    {% for obj in u.buildingunit_set.all %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ obj.type.description }}</td>
+        <td class="list">{{ obj.registration_id }}</td>
+        <td class="list">{{ obj.description }}</td>
+        <td class="list"><a href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% if bu_list %}
+<form action="{% url 'admin_user_owns_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}" />
+    <select class="common-input" id="owner-input" name="owner_id">
+        <option value="0">------</option>
+        {% for bu in bu_list %}
+        <option value="{{ bu.id }}">{{ bu.type.description }} - {{ bu.registration_id }} - {{ bu.description }}</option>
+        {% endfor %}
+    </select>
+    <input id="submit" type="submit" value="{% trans 'Add' %}" />
+</form>
+{% endif %}
+
+{% endblock %}

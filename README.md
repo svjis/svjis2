@@ -2,7 +2,7 @@
 
 Tento repozitář obsahuje pokus o reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/).
 
-## Instalace
+## 1 Instalace
 Předpokládá se, že máte na počítači nainstalovaný python verze 3.10 a nebo vyšší.
 
 ```
@@ -37,7 +37,7 @@ Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `g
 python manage.py compilemessages
 ```
 
-## Spuštění
+## 2 Spuštění
 
 ```
 python manage.py runserver
@@ -45,13 +45,13 @@ python manage.py runserver
 
 Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Administrace - Uživatelé**.
 
-## Parametrizace
+## 3 Parametrizace
 
-### Údaje o SVJ
+### 3.1 Údaje o SVJ
 
-Nastavení údajů o SVJ je v sekci Administrace
+Nastavení údajů o SVJ je v aplikaci v sekci `Administrace`
 
-### Nastavení odesílání e-mailů
+### 3.2 Nastavení odesílání e-mailů
 
 Systém SVJIS při různých událostech používá odesílání emailů, proto je správné nastavení e-mailového rozhraní pro funkci aplikace podstatné.
 
@@ -77,6 +77,6 @@ python manage.py svjis_send_messages
 
 Při testování aplikace ho můžete spouštět ručně. Při produkčním nastavení je potřeba nastavit plánovač systému (například cron) aby ho spoštěl v určitých itervalech (třeba každých 5 minut).
 
-## Spolupráce
+## 4 Spolupráce
 
 Jakákoliv forma spolupráce je vítána. :octocat:

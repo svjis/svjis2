@@ -13,7 +13,7 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="/static/css/style.css" />
     <link rel="stylesheet" media="print" type="text/css" href="/static/css/print.css" />
 
-    <title>{% settings_value "SVJIS_TITLE" %}</title>
+    <title>{{ web_title|default:"SVJIS-PY" }}</title>
 </head>
 
 <body>

@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 class="page-title">{% trans 'Company' %}</h1>
-<form action="{% url 'admin_company_save' %}" method="post">
+<form action="{% url 'admin_company_save' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <fieldset>
         <legend>{% trans 'Company' %}</legend>
@@ -44,6 +44,10 @@
         <p>
             <label class="common-label" for="{{ form.internet_domain.auto_id }}">{{ form.internet_domain.label }}</label>
             {{ form.internet_domain }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.header_picture.auto_id }}">{{ form.header_picture.label }}</label>
+            {{ form.header_picture }}
         </p>
     </fieldset>
     <p>

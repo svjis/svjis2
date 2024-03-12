@@ -1,0 +1,43 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ bu.type.description }} - {{ bu.registration_id }} - {{ bu.description }}</h1>
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'First Name' %}</th>
+        <th class="list" scope="col">{% trans 'Last Name' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if bu.owners.all %}
+    {% for obj in bu.owners.all %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ obj.first_name }}</td>
+        <td class="list">{{ obj.last_name }}</td>
+        <td class="list"><a href="{% url 'admin_building_unit_owners_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% if user_list %}
+<form action="{% url 'admin_building_unit_owners_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}" />
+    <select class="common-input" id="owner-input" name="owner_id">
+        <option value="0">------</option>
+        {% for u in user_list %}
+        <option value="{{ u.id }}">{{ u.last_name }} {{ u.first_name }}</option>
+        {% endfor %}
+    </select>
+    <input id="submit" type="submit" value="{% trans 'Add' %}" />
+</form>
+{% endif %}
+
+{% endblock %}

@@ -25,9 +25,8 @@ def get_side_menu(active_item, user):
 @permission_required("articles.svjis_edit_article_menu")
 @require_GET
 def redaction_menu_view(request):
-    ctx = {
-        'aside_menu_name': _("Redaction"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
     ctx['aside_menu_items'] = get_side_menu('menu', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     ctx['object_list'] = models.ArticleMenu.objects.all()
@@ -43,9 +42,8 @@ def redaction_menu_edit_view(request, pk):
     else:
         form = forms.ArticleMenuForm
 
-    ctx = {
-        'aside_menu_name': _("Redaction"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('menu', request.user)
@@ -112,9 +110,8 @@ def redaction_article_view(request):
         article_list = paginator.page(paginator.num_pages)
     page_parameter = '' if search == '' else f"search={search}"
 
-    ctx = {
-        'aside_menu_name': _("Redaction"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
     ctx['is_paginated'] = is_paginated
     ctx['page_obj'] = page_obj
     ctx['page_parameter'] = page_parameter
@@ -136,9 +133,8 @@ def redaction_article_edit_view(request, pk):
     else:
         form = forms.ArticleForm
 
-    ctx = {
-        'aside_menu_name': _("Redaction"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
     ctx['form'] = form
     ctx['asset_form'] = forms.ArticleAssetForm
     ctx['pk'] = pk
@@ -220,9 +216,8 @@ def redaction_news_view(request):
     except InvalidPage:
         news_list = paginator.page(paginator.num_pages)
 
-    ctx = {
-        'aside_menu_name': _("Redaction"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
     ctx['is_paginated'] = is_paginated
     ctx['page_obj'] = page_obj
     ctx['header'] = header
@@ -241,9 +236,8 @@ def redaction_news_edit_view(request, pk):
     else:
         form = forms.NewsForm
 
-    ctx = {
-        'aside_menu_name': _("Redaction"),
-    }
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
     ctx['form'] = form
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('news', request.user)

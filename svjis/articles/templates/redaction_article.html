@@ -25,8 +25,8 @@
     <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
     <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
     <td class="list">{{ obj.published }}</td>
-    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
-    <td class="list"><a href="{% url 'redaction_article_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+    <td class="list"><a href="{% url 'redaction_article_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}

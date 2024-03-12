@@ -1,0 +1,29 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Entrances' %}</h1>
+<form action="{% url 'admin_entrance_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <fieldset>
+        <legend>{% trans 'Entrance' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.description.auto_id }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.address.auto_id }}">{{ form.address.label }}</label>
+            {{ form.address }}
+        </p>
+    </fieldset>
+
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

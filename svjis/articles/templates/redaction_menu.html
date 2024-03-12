@@ -22,8 +22,8 @@
     <td class="list" style="">{{ obj.description }}</td>
     <td class="list" style="">{{ obj.hide }}</td>
     <td class="list" style="">{{ obj.parent.description }}</td>
-    <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}"></a></td>
-    <td class="list"><a href="{% url 'redaction_menu_delete' pk=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}"></a></td>
+    <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+    <td class="list"><a href="{% url 'redaction_menu_delete' pk=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}
