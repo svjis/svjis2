@@ -80,7 +80,9 @@ def main_filtered_view(request, menu):
     news_list = models.News.objects.filter(published=True)
 
     # Top 5 Articles
-    top_articles = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')[:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
+    top_articles = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
+    users_articles = [a.id for a in article_list]
+    top_articles = [a for a in top_articles if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
     for ta in top_articles:
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
