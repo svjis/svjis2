@@ -2,10 +2,12 @@ from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q, Count
 from django.conf import settings
+from django.http import Http404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
@@ -21,6 +23,14 @@ def get_side_menu(ctx):
     return result
 
 
+def get_article_filter(user):
+    q1 = Q(published=True)
+    q2 = Q(visible_for_all=True)
+    # https://stackoverflow.com/questions/4507893/django-filter-many-to-many-with-contains
+    groups = Group.objects.filter(user__id=user.id)
+    q3 = Q(visible_for_group__in=groups)
+    return Q(q1 & (q2 | q3))
+
 @require_GET
 def main_view(request):
     return main_filtered_view(request, None)
@@ -28,13 +38,15 @@ def main_view(request):
 
 @require_GET
 def main_filtered_view(request, menu):
-    # Articles
-    article_list = models.Article.objects.filter(published=True)
+    # Menu
     header = _("All articles")
     if menu is not None:
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
         header = article_menu.description
+
+    # Articles
+    q = get_article_filter(request.user)
 
     # Search
     search = request.GET.get('search')
@@ -45,10 +57,13 @@ def main_filtered_view(request, menu):
             messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
             search = None
     if search is not None:
-        article_list = article_list.filter(Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        qs = (Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        q = Q(q & qs)
         header = _("Search results") + f": {search}"
     else:
         search = ''
+
+    article_list = models.Article.objects.filter(q).distinct()
 
     # Paginator
     is_paginated = len(article_list) > getattr(settings, 'SVJIS_ARTICLE_PAGE_SIZE', 10)
@@ -87,10 +102,17 @@ def main_filtered_view(request, menu):
 
 @require_GET
 def article_view(request, pk):
-    article = get_object_or_404(models.Article, pk=pk)
+    q = get_article_filter(request.user)
+    article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
+    if len(article_qs) == 0:
+        raise Http404
+    else:
+        article = article_qs[0]
+
     user = request.user
     if user.is_anonymous:
         user = None
+
     models.ArticleLog.objects.create(article=article, user=user)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
