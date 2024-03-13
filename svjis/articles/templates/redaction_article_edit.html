@@ -35,6 +35,21 @@
             {{ form.published }}
         </p>
     </fieldset>
+    <fieldset>
+        <legend>{% trans 'Visible for' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.visible_for_all.auto_id }}">{{ form.visible_for_all.label }}</label>
+            {{ form.visible_for_all }}
+        </p>
+        {% if group_list %}
+        {% for obj in group_list %}
+        <p>
+            <label class="common-label" id="{{ obj.name }}-label" for="{{ obj.name }}-input">{{ obj.name }}</label>
+            <input class="common-input" id="{{ obj.name }}-input" type="checkbox" name="{{ obj.name }}" {% if obj.checked %}checked{% endif %}/>
+        </p>
+        {% endfor %}
+        {% endif %}
+    </fieldset>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
     </p>

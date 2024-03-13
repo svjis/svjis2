@@ -2,6 +2,7 @@ from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q
 from django.conf import settings
@@ -133,9 +134,15 @@ def redaction_article_edit_view(request, pk):
     else:
         form = forms.ArticleForm
 
+    group_list = []
+    for g in Group.objects.all():
+        item = {'name': g.name, 'checked': g in form.instance.visible_for_group.all() if pk != 0 else False}
+        group_list.append(item)
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['form'] = form
+    ctx['group_list'] = group_list
     ctx['asset_form'] = forms.ArticleAssetForm
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('article', request.user)
@@ -158,6 +165,15 @@ def redaction_article_save_view(request):
         if pk == 0:
             obj.author = request.user
         obj.save()
+
+        # Set groups
+        group_list = obj.visible_for_group.all()
+        for g in Group.objects.all():
+            gr_set = request.POST.get(g.name, False) == 'on'
+            if gr_set and g not in group_list:
+                obj.visible_for_group.add(g)
+            if not gr_set and g in group_list:
+                obj.visible_for_group.remove(g)
     else:
         for error in form.errors:
             messages.error(request, error)
