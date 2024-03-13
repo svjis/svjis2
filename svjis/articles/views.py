@@ -29,7 +29,7 @@ def get_article_filter(user):
     # https://stackoverflow.com/questions/4507893/django-filter-many-to-many-with-contains
     groups = Group.objects.filter(user__id=user.id)
     q3 = Q(visible_for_group__in=groups)
-    return Q(q1 & (q2 | q3))
+    return Q(q1 & (q2 | q3)) if not user.is_anonymous else Q(q1 & q2)
 
 @require_GET
 def main_view(request):
@@ -38,15 +38,16 @@ def main_view(request):
 
 @require_GET
 def main_filtered_view(request, menu):
+    # Articles
+    q = get_article_filter(request.user)
+    article_list = models.Article.objects.filter(q).distinct()
+
     # Menu
     header = _("All articles")
     if menu is not None:
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
         header = article_menu.description
-
-    # Articles
-    q = get_article_filter(request.user)
 
     # Search
     search = request.GET.get('search')
@@ -58,12 +59,10 @@ def main_filtered_view(request, menu):
             search = None
     if search is not None:
         qs = (Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
-        q = Q(q & qs)
+        article_list = article_list.filter(qs)
         header = _("Search results") + f": {search}"
     else:
         search = ''
-
-    article_list = models.Article.objects.filter(q).distinct()
 
     # Paginator
     is_paginated = len(article_list) > getattr(settings, 'SVJIS_ARTICLE_PAGE_SIZE', 10)
