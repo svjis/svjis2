@@ -217,8 +217,7 @@ def redaction_article_notifications_send_view(request):
     i = 0
     for u in users:
         if request.POST.get(f"u_{u.pk}", False) == 'on':
-            print(request.scheme)
-            utils.send_article_notification(u, request.scheme + "://" + request.get_host(), article)
+            utils.send_article_notification(u, f"{request.scheme}://{request.get_host()}", article)
             i += 1
 
     ctx = utils.get_context()
