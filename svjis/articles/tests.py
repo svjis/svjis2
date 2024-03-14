@@ -129,8 +129,6 @@ class ArticleListTest(TestCase):
         # Article for Board
         response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
-        self.assertEqual(response.status_code, 200)
 
         # Main page
         response = self.client.get(reverse('main'))
@@ -144,14 +142,6 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
         self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
         self.assertEqual(res_tray_menu[4]['description'], 'Administration')
-
-        # Top Articles
-        res_top = response.context['top_articles']
-        self.assertEqual(len(res_top), 2)
-        self.assertEqual(res_top[0]['article_id'], self.article_for_board.pk)
-        self.assertEqual(res_top[0]['total'], 2)
-        self.assertEqual(res_top[1]['article_id'], self.article_for_all.pk)
-        self.assertEqual(res_top[1]['total'], 1)
 
         # List of Articles
         res_articles = response.context['article_list']
@@ -295,3 +285,58 @@ class ArticleListTest(TestCase):
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 1)
         self.assertEqual(res_articles[0].header, 'For All')
+
+
+    def test_top_articles(self):
+        # Login board user
+        logged_in = self.client.login(username='jiri', password=users['jiri']['password'])
+        self.assertEqual(logged_in, True)
+
+        # Article for all
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Board
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Main page
+        response = self.client.get(reverse('main'))
+        self.assertEqual(response.status_code, 200)
+
+        # Top Articles
+        res_top = response.context['top_articles']
+        self.assertEqual(len(res_top), 2)
+        self.assertEqual(res_top[0]['article_id'], self.article_for_board.pk)
+        self.assertEqual(res_top[0]['total'], 2)
+        self.assertEqual(res_top[1]['article_id'], self.article_for_all.pk)
+        self.assertEqual(res_top[1]['total'], 1)
+
+        # Login owner user
+        logged_in = self.client.login(username='petr', password=users['petr']['password'])
+        self.assertEqual(logged_in, True)
+
+        # Main page
+        response = self.client.get(reverse('main'))
+        self.assertEqual(response.status_code, 200)
+
+        # Top Articles
+        res_top = response.context['top_articles']
+        self.assertEqual(len(res_top), 1)
+        self.assertEqual(res_top[0]['article_id'], self.article_for_all.pk)
+        self.assertEqual(res_top[0]['total'], 1)
+
+        # Logout user
+        self.client.logout()
+
+        # Main page
+        response = self.client.get(reverse('main'))
+        self.assertEqual(response.status_code, 200)
+
+        # Top Articles
+        res_top = response.context['top_articles']
+        self.assertEqual(len(res_top), 1)
+        self.assertEqual(res_top[0]['article_id'], self.article_for_all.pk)
+        self.assertEqual(res_top[0]['total'], 1)
