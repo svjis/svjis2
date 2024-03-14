@@ -6,9 +6,39 @@ from django.contrib.auth.models import User, Group, Permission
 
 
 groups = {
-    'owner': ['svjis_add_article_comment', 'svjis_view_personal_menu', 'svjis_view_phonelist',],
-    'board_member': ['svjis_view_redaction_menu','svjis_edit_article','svjis_add_article_comment','svjis_edit_article_menu','svjis_edit_article_news','svjis_view_personal_menu','svjis_view_phonelist',],
-    'vendor': ['svjis_add_article_comment','svjis_view_personal_menu',],
+    'owner': [
+        'svjis_add_article_comment',
+        'svjis_view_personal_menu',
+        'svjis_view_phonelist',
+    ],
+    'board_member': [
+        'svjis_view_redaction_menu',
+        'svjis_edit_article',
+        'svjis_add_article_comment',
+        'svjis_edit_article_menu',
+        'svjis_edit_article_news',
+        'svjis_view_personal_menu',
+        'svjis_view_phonelist',
+    ],
+    'vendor': [
+        'svjis_add_article_comment',
+        'svjis_view_personal_menu',
+    ],
+    'admin': [
+        'svjis_view_redaction_menu',
+        'svjis_edit_article',
+        'svjis_add_article_comment',
+        'svjis_edit_article_menu',
+        'svjis_edit_article_news',
+        'svjis_view_admin_menu',
+        'svjis_edit_admin_users',
+        'svjis_edit_admin_groups',
+        'svjis_view_personal_menu',
+        'svjis_edit_admin_preferences',
+        'svjis_edit_admin_company',
+        'svjis_edit_admin_building',
+        'svjis_view_phonelist',
+    ],
 }
 
 users = {
@@ -29,6 +59,12 @@ users = {
          'last_name': 'Lukáš',
          'password': 'karel',
          'email': 'karel@test.cz',
+    },
+    'jarda': {
+         'first_name': 'Jaroslav',
+         'last_name': 'Beran',
+         'password': 'jarda',
+         'email': 'jarda@test.cz',
     },
 }
 
@@ -63,58 +99,88 @@ class ArticleListTest(TestCase):
         cls.g_owner = create_group('owner')
         cls.g_board_member = create_group('board_member')
         cls.g_vendor = create_group('vendor')
+        cls.g_admin = create_group('admin')
 
         cls.u_jiri = create_user('jiri', [cls.g_owner, cls.g_board_member])
         cls.u_petr = create_user('petr', [cls.g_owner])
         cls.u_karel = create_user('karel', [cls.g_vendor])
+        cls.u_jarda = create_user('jarda', [cls.g_owner, cls.g_board_member, cls.g_admin])
 
         cls.menu_docs = ArticleMenu.objects.create(description='Documents')
 
+        cls.article_not_published = Article.objects.create(header='Not Published', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=False, visible_for_all=True)
+        cls.article_for_no_one = Article.objects.create(header='For no one', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
         cls.article_for_all = Article.objects.create(header='For All', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=True)
         cls.article_for_owners = Article.objects.create(header='For Owners', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
         cls.article_for_owners.visible_for_group.add(cls.g_owner)
         cls.article_for_board = Article.objects.create(header='For Board', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
-        cls.article_for_owners.visible_for_group.add(cls.g_board_member)
+        cls.article_for_board.visible_for_group.add(cls.g_board_member)
 
 
-    def test_anonymous_user(self):
-        response = self.client.get(reverse('main'))
-        self.assertEqual(response.status_code, 200)
-
-        res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 2)
-        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
-        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
-
-        res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 1)
-        self.assertEqual(res_articles[0].header, 'For All')
-
-
-    def test_owner_user(self):
-        logged_in = self.client.login(username='petr', password=users['petr']['password'])
+    def test_admin_user(self):
+        # Login user
+        logged_in = self.client.login(username='jarda', password=users['jarda']['password'])
         self.assertEqual(logged_in, True)
+
+        # Article for all
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Board
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Main page
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
 
+        # Menu
         res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 3)
+        self.assertEqual(len(res_tray_menu), 5)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
         self.assertEqual(res_tray_menu[1]['description'], 'Contact')
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
+        self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
+        self.assertEqual(res_tray_menu[4]['description'], 'Administration')
 
+        # Top Articles
+        res_top = response.context['top_articles']
+        self.assertEqual(len(res_top), 2)
+        self.assertEqual(res_top[0]['article_id'], self.article_for_board.pk)
+        self.assertEqual(res_top[0]['total'], 2)
+        self.assertEqual(res_top[1]['article_id'], self.article_for_all.pk)
+        self.assertEqual(res_top[1]['total'], 1)
+
+        # List of Articles
         res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 2)
-        self.assertEqual(res_articles[0].header, 'For Owners')
-        self.assertEqual(res_articles[1].header, 'For All')
+        self.assertEqual(len(res_articles), 3)
+        self.assertEqual(res_articles[0].header, 'For Board')
+        self.assertEqual(res_articles[1].header, 'For Owners')
+        self.assertEqual(res_articles[2].header, 'For All')
 
 
     def test_board_user(self):
+        # Login user
         logged_in = self.client.login(username='jiri', password=users['jiri']['password'])
         self.assertEqual(logged_in, True)
+
+        # Article for all
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Board
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Main page
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
 
+        # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 4)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
@@ -122,6 +188,43 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
         self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
 
+        # List of Articles
+        res_articles = response.context['article_list']
+        self.assertEqual(len(res_articles), 3)
+        self.assertEqual(res_articles[0].header, 'For Board')
+        self.assertEqual(res_articles[1].header, 'For Owners')
+        self.assertEqual(res_articles[2].header, 'For All')
+
+
+    def test_owner_user(self):
+        # Login user
+        logged_in = self.client.login(username='petr', password=users['petr']['password'])
+        self.assertEqual(logged_in, True)
+
+        # Article for all
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Owners
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_owners.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Board
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 404)
+
+        # Main page
+        response = self.client.get(reverse('main'))
+        self.assertEqual(response.status_code, 200)
+
+        # Menu
+        res_tray_menu = response.context['tray_menu_items']
+        self.assertEqual(len(res_tray_menu), 3)
+        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
+        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
+        self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
+
+        # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 2)
         self.assertEqual(res_articles[0].header, 'For Owners')
@@ -129,17 +232,66 @@ class ArticleListTest(TestCase):
 
 
     def test_vendor_user(self):
+        # Login user
         logged_in = self.client.login(username='karel', password=users['karel']['password'])
         self.assertEqual(logged_in, True)
+
+        # Article for all
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Owners
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_owners.pk}))
+        self.assertEqual(response.status_code, 404)
+
+        # Article for Board
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 404)
+
+        # Main page
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
 
+        # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 3)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
         self.assertEqual(res_tray_menu[1]['description'], 'Contact')
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
 
+        # List of Articles
+        res_articles = response.context['article_list']
+        self.assertEqual(len(res_articles), 1)
+        self.assertEqual(res_articles[0].header, 'For All')
+
+
+    def test_anonymous_user(self):
+        # Logout user
+        self.client.logout()
+
+        # Article for all
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Article for Owners
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_owners.pk}))
+        self.assertEqual(response.status_code, 404)
+
+        # Article for Board
+        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 404)
+
+        # Main page
+        response = self.client.get(reverse('main'))
+        self.assertEqual(response.status_code, 200)
+
+        # Menu
+        res_tray_menu = response.context['tray_menu_items']
+        self.assertEqual(len(res_tray_menu), 2)
+        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
+        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
+
+        # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 1)
         self.assertEqual(res_articles[0].header, 'For All')
