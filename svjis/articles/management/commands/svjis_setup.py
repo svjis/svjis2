@@ -92,6 +92,10 @@ def create_preferences():
             'key': 'mail.template.lost.password',
             'value': '<html><body>Dobrý den,<br>Vaše přihlašovací údaje jsou:<br><br>{}<br>Heslo si můžete změnit v menu <b>Osobní nastavení - Změna hesla</b><br><br>Web SVJ</body></html>'
         },
+        {
+            'key': 'mail.template.article.notification',
+            'value': 'Dobrý den,<br><br>rádi bychom Vás upozornili na následující článek na stránkách SVJ.<br><br>{}<br><br>S pozdravem,<br>Výbor SVJ'
+        },
     ]
     for p in preferences:
         Preferences.objects.create(key=p['key'], value=p['value'])

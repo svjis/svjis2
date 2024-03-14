@@ -1,0 +1,41 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+{% load article_filters %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Send notifications' %} - {{ article.header }}</h1>
+
+
+<form action="{% url 'redaction_article_notifications_send' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ article.pk }}">
+
+    <table class="list" aria-describedby="tbl-desc" id="recipient-list">
+        <tr>
+            <th class="list" scope="col"><input id="check-all" type="checkbox" checked onchange="checkAll();"/></th>
+            <th class="list" scope="col">{% trans 'Last Name' %}</th>
+            <th class="list" scope="col">{% trans 'First Name' %}</th>
+            <th class="list" scope="col">{% trans 'E-Mail' %}</th>
+        </tr>
+
+        {% if object_list %}
+        {% for obj in object_list %}
+        <tr>
+            <td class="list"><input type="checkbox" name="u_{{ obj.pk }}" checked /></td>
+            <td class="list">{{ obj.last_name }}</td>
+            <td class="list">{{ obj.first_name }}</td>
+            <td class="list"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <p>
+        <input id="submit" class="my-button" type="submit" value="{% trans 'Submit' %}" />
+    </p>
+</form>
+
+<script src="/static/js/Redaction_ArticleSendNotifications.js"></script>
+
+{% endblock %}

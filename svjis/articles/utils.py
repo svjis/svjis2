@@ -83,3 +83,15 @@ def send_new_password(user):
     msg = f"Username: {user.username}<br>Password: {password}<br>"
     subj = models.Company.objects.get(pk=1).name
     send_mails([user.email], f'{subj} - {_("Credentials")}', template.value.format(msg), False)
+
+
+def send_article_notification(user, host, article):
+    template_key = 'mail.template.article.notification'
+    template = models.Preferences.objects.get(key=template_key)
+    if template == None:
+        logger.error(f"Error: Missing template {template_key}")
+        return
+
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='https://{host}/article/{article.pk}/'>{article.header}</a>"
+    send_mails([user.email], f'{subj} - {article.header}', template.value.format(link), False)

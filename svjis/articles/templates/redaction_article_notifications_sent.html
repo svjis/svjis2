@@ -1,0 +1,13 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+{% load article_filters %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Send notifications' %} - {{ article.header }}</h1>
+
+<p>{{num_of_recipients}} {% trans 'notifications has been send' %}</p>
+<p><a href="{% url 'redaction_article' %}">{% trans 'Continue here' %}</a></p>
+
+{% endblock %}
