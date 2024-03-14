@@ -340,3 +340,48 @@ class ArticleListTest(TestCase):
         self.assertEqual(len(res_top), 1)
         self.assertEqual(res_top[0]['article_id'], self.article_for_all.pk)
         self.assertEqual(res_top[0]['total'], 1)
+
+
+    def test_send_article_notifications(self):
+        # Login board user
+        logged_in = self.client.login(username='jiri', password=users['jiri']['password'])
+        self.assertEqual(logged_in, True)
+
+        # Send notifications for article not published
+        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_not_published.pk}))
+        self.assertEqual(response.status_code, 200)
+        res_recipients = response.context['object_list']
+        self.assertEqual(len(res_recipients), 0)
+
+        # Send notifications for no one
+        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_no_one.pk}))
+        self.assertEqual(response.status_code, 200)
+        res_recipients = response.context['object_list']
+        self.assertEqual(len(res_recipients), 0)
+
+        # Send notifications for all
+        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_all.pk}))
+        self.assertEqual(response.status_code, 200)
+        res_recipients = response.context['object_list']
+        self.assertEqual(len(res_recipients), 4)
+        self.assertEqual(res_recipients[0].last_name, 'Beran')
+        self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
+        self.assertEqual(res_recipients[2].last_name, 'Lukáš')
+        self.assertEqual(res_recipients[3].last_name, 'Nebus')
+
+        # Send notifications for owners
+        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_owners.pk}))
+        self.assertEqual(response.status_code, 200)
+        res_recipients = response.context['object_list']
+        self.assertEqual(len(res_recipients), 3)
+        self.assertEqual(res_recipients[0].last_name, 'Beran')
+        self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
+        self.assertEqual(res_recipients[2].last_name, 'Nebus')
+
+        # Send notifications for board
+        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_board.pk}))
+        self.assertEqual(response.status_code, 200)
+        res_recipients = response.context['object_list']
+        self.assertEqual(len(res_recipients), 2)
+        self.assertEqual(res_recipients[0].last_name, 'Beran')
+        self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
