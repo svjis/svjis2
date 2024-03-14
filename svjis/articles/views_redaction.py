@@ -184,7 +184,7 @@ def redaction_article_save_view(request):
 def get_users_for_notification(article):
     users = []
     if article.published:
-        users = User.objects.filter(is_active=True).exclude(email='').order_by('last_name')
+        users = User.objects.filter(is_active=True).exclude(email='').distinct().order_by('last_name')
         if not article.visible_for_all:
             groups = article.visible_for_group.all()
             q = Q(groups__in=groups)

@@ -113,6 +113,9 @@ class ArticleListTest(TestCase):
         cls.article_for_all = Article.objects.create(header='For All', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=True)
         cls.article_for_owners = Article.objects.create(header='For Owners', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
         cls.article_for_owners.visible_for_group.add(cls.g_owner)
+        cls.article_for_owners_and_board = Article.objects.create(header='For Owners and Board', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
+        cls.article_for_owners_and_board.visible_for_group.add(cls.g_owner)
+        cls.article_for_owners_and_board.visible_for_group.add(cls.g_board_member)
         cls.article_for_board = Article.objects.create(header='For Board', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
         cls.article_for_board.visible_for_group.add(cls.g_board_member)
 
@@ -145,10 +148,11 @@ class ArticleListTest(TestCase):
 
         # List of Articles
         res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 3)
+        self.assertEqual(len(res_articles), 4)
         self.assertEqual(res_articles[0].header, 'For Board')
-        self.assertEqual(res_articles[1].header, 'For Owners')
-        self.assertEqual(res_articles[2].header, 'For All')
+        self.assertEqual(res_articles[1].header, 'For Owners and Board')
+        self.assertEqual(res_articles[2].header, 'For Owners')
+        self.assertEqual(res_articles[3].header, 'For All')
 
 
     def test_board_user(self):
@@ -180,10 +184,11 @@ class ArticleListTest(TestCase):
 
         # List of Articles
         res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 3)
+        self.assertEqual(len(res_articles), 4)
         self.assertEqual(res_articles[0].header, 'For Board')
-        self.assertEqual(res_articles[1].header, 'For Owners')
-        self.assertEqual(res_articles[2].header, 'For All')
+        self.assertEqual(res_articles[1].header, 'For Owners and Board')
+        self.assertEqual(res_articles[2].header, 'For Owners')
+        self.assertEqual(res_articles[3].header, 'For All')
 
 
     def test_owner_user(self):
@@ -216,9 +221,10 @@ class ArticleListTest(TestCase):
 
         # List of Articles
         res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 2)
-        self.assertEqual(res_articles[0].header, 'For Owners')
-        self.assertEqual(res_articles[1].header, 'For All')
+        self.assertEqual(len(res_articles), 3)
+        self.assertEqual(res_articles[0].header, 'For Owners and Board')
+        self.assertEqual(res_articles[1].header, 'For Owners')
+        self.assertEqual(res_articles[2].header, 'For All')
 
 
     def test_vendor_user(self):
@@ -385,3 +391,12 @@ class ArticleListTest(TestCase):
         self.assertEqual(len(res_recipients), 2)
         self.assertEqual(res_recipients[0].last_name, 'Beran')
         self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
+
+        # Send notifications for board
+        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_owners_and_board.pk}))
+        self.assertEqual(response.status_code, 200)
+        res_recipients = response.context['object_list']
+        self.assertEqual(len(res_recipients), 3)
+        self.assertEqual(res_recipients[0].last_name, 'Beran')
+        self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
+        self.assertEqual(res_recipients[2].last_name, 'Nebus')

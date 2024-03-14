@@ -16,6 +16,7 @@ class Article(models.Model):
     body = models.TextField(_("Body (markdown)"))
     menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
     allow_comments = models.BooleanField(_("Allow comments"), default=False)
+    watching_users = models.ManyToManyField(User, related_name='watching_article_set')
     visible_for_all = models.BooleanField(_("Visible for all"), default=False)
     visible_for_group = models.ManyToManyField(Group)
 
