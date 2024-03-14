@@ -93,5 +93,5 @@ def send_article_notification(user, host, article):
         return
 
     subj = models.Company.objects.get(pk=1).name
-    link = f"<a href='https://{host}/article/{article.pk}/'>{article.header}</a>"
+    link = f"<a href='{host}/article/{article.pk}/'>{article.header}</a>"
     send_mails([user.email], f'{subj} - {article.header}', template.value.format(link), False)
