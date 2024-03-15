@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 19:23+0100\n"
+"POT-Creation-Date: 2024-03-15 21:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -410,8 +410,8 @@ msgid "Stop watching discussion"
 msgstr "Stop watching discussion"
 
 #: articles/templates/article.html:34
-msgid "Watch discussion"
-msgstr "Watch discussion"
+msgid "Start watching discussion"
+msgstr "Start watching discussion"
 
 #: articles/templates/article.html:49
 msgid "Insert comment"

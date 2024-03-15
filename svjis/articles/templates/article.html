@@ -31,7 +31,7 @@
     {% if user in obj.watching_users.all %}
     [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=0">{% trans 'Stop watching discussion' %}</a>]
     {% else %}
-    [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% trans 'Watch discussion' %}</a>]
+    [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% trans 'Start watching discussion' %}</a>]
     {% endif %}
 
 <form action="{% url 'article_comment_save' %}" method="post">
