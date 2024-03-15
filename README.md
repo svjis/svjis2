@@ -44,7 +44,7 @@ python manage.py compilemessages
 python manage.py runserver
 ```
 
-Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Administrace - Uživatelé**.
+Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Osobní nastavení - Změna hesla**.
 
 ## 3 Parametrizace
 
