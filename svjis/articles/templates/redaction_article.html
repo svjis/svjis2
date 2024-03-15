@@ -10,23 +10,25 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% trans 'Article' %}</th>
-        <th class="list" scope="col">{% trans 'Date' %}</th>
+        <th class="list" scope="col">{% trans 'Menu' %}</th>
         <th class="list" scope="col">{% trans 'Author' %}</th>
+        <th class="list" scope="col">{% trans 'Date' %}</th>
         <th class="list" scope="col">{% trans 'Published' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list">{{ obj.header | highlight:search | safe }}</td>
-    <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
-    <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
-    <td class="list">{{ obj.published }}</td>
-    <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-    <td class="list"><a href="{% url 'redaction_article_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_article_notifications' pk=obj.id %}"><img src="/static/gfx/email_open_image.png" border="0" title="{% trans 'Send notifications' %}" alt="{% trans 'Send notifications' %}"></a></td>
+        <td class="list">{{ obj.header | highlight:search | safe }}</td>
+        <td class="list">{{ obj.menu.description }}</td>
+        <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
+        <td class="list">{{ obj.published }}</td>
     </tr>
     {% endfor %}
     {% endif %}

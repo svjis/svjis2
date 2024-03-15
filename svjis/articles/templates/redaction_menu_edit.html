@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title">{% trans 'Menu' %}</h1>
+<h1 class="page-title">{% trans 'Menu' %} {{ form.instance.description }}</h1>
 <form action="{% url 'redaction_menu_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}">

@@ -9,9 +9,17 @@
 
     <ul class="nav">
         {% if aside_menu_items %}
-        {% for obj in aside_menu_items %}
-        <li {% if obj.active %}id="nav-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
-        {% endfor %}
+            {% for obj in aside_menu_items %}
+                <li {% if obj.active %}id="nav-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a>
+                {% if obj.submenu %}
+                    <ul>
+                    {% for obj1 in obj.submenu %}
+                    <li><a href="{{ obj1.link }}">{{ obj1.description }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
+            {% endfor %}
         {% endif %}
     </ul>
 

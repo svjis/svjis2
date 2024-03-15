@@ -1,6 +1,6 @@
 import os
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils.translation import gettext_lazy as _
 
 
@@ -16,6 +16,9 @@ class Article(models.Model):
     body = models.TextField(_("Body (markdown)"))
     menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
     allow_comments = models.BooleanField(_("Allow comments"), default=False)
+    watching_users = models.ManyToManyField(User, related_name='watching_article_set')
+    visible_for_all = models.BooleanField(_("Visible for all"), default=False)
+    visible_for_group = models.ManyToManyField(Group)
 
     def __str__(self):
         return f"Article: {self.header}"
@@ -89,7 +92,11 @@ class ArticleMenu(models.Model):
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"ArticleMenu: {self.description}"
+        return self.description
+
+    @property
+    def articles(self):
+        return self.article_set.all()
 
     class Meta:
         ordering = ['description']

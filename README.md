@@ -1,6 +1,7 @@
 # SVJIS PY
 
-Tento repozitář obsahuje pokus o reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/).
+Tento repozitář obsahuje reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/). Na reimplementaci se stále pracuje...
+
 
 ## 1 Instalace
 Předpokládá se, že máte na počítači nainstalovaný python verze 3.10 a nebo vyšší.
@@ -43,7 +44,7 @@ python manage.py compilemessages
 python manage.py runserver
 ```
 
-Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Administrace - Uživatelé**.
+Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Osobní nastavení - Změna hesla**.
 
 ## 3 Parametrizace
 

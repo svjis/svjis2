@@ -2,10 +2,12 @@ from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q, Count
 from django.conf import settings
+from django.http import Http404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
@@ -17,9 +19,35 @@ def get_side_menu(ctx):
     result.append({'description': _("All articles"), 'link': reverse(main_view), 'active': True if header == _("All articles") else False})
     menu_items = models.ArticleMenu.objects.filter(hide=False).all()
     for obj in menu_items:
-        result.append({'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': True if header == obj.description else False})
+        if obj.parent == None:
+            active = True if header == obj.description else False
+            node = {'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': active}
+            submenu = get_side_submenu(obj, menu_items, header, active)
+            if submenu is not None:
+                node['active'] = True
+                node['submenu'] = submenu
+            result.append(node)
     return result
 
+
+def get_side_submenu(parent, menu_items, active_header, active):
+    result = []
+    for obj in menu_items:
+        if obj.parent == parent:
+            node = {'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': False}
+            if active_header == obj.description:
+                active = True
+            result.append(node)
+    return result if active else None
+
+
+def get_article_filter(user):
+    q1 = Q(published=True)
+    q2 = Q(visible_for_all=True)
+    # https://stackoverflow.com/questions/4507893/django-filter-many-to-many-with-contains
+    groups = Group.objects.filter(user__id=user.id)
+    q3 = Q(visible_for_group__in=groups)
+    return Q(q1 & (q2 | q3)) if not user.is_anonymous else Q(q1 & q2)
 
 @require_GET
 def main_view(request):
@@ -29,7 +57,10 @@ def main_view(request):
 @require_GET
 def main_filtered_view(request, menu):
     # Articles
-    article_list = models.Article.objects.filter(published=True)
+    q = get_article_filter(request.user)
+    article_list = models.Article.objects.filter(q).distinct()
+
+    # Menu
     header = _("All articles")
     if menu is not None:
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
@@ -45,7 +76,8 @@ def main_filtered_view(request, menu):
             messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
             search = None
     if search is not None:
-        article_list = article_list.filter(Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        qs = (Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        article_list = article_list.filter(qs)
         header = _("Search results") + f": {search}"
     else:
         search = ''
@@ -65,7 +97,9 @@ def main_filtered_view(request, menu):
     news_list = models.News.objects.filter(published=True)
 
     # Top 5 Articles
-    top_articles = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')[:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
+    top_articles = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
+    users_articles = [a.id for a in article_list]
+    top_articles = [a for a in top_articles if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
     for ta in top_articles:
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
@@ -87,10 +121,17 @@ def main_filtered_view(request, menu):
 
 @require_GET
 def article_view(request, pk):
-    article = get_object_or_404(models.Article, pk=pk)
+    q = get_article_filter(request.user)
+    article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
+    if len(article_qs) == 0:
+        raise Http404
+    else:
+        article = article_qs[0]
+
     user = request.user
     if user.is_anonymous:
         user = None
+
     models.ArticleLog.objects.create(article=article, user=user)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
@@ -110,8 +151,37 @@ def article_comment_save_view(request):
     body = request.POST.get('body', '')
     if body != '':
         article = get_object_or_404(models.Article, pk=article_pk)
-        models.ArticleComment.objects.create(body=body, article=article, author=request.user)
-    return redirect(article_view, pk=article_pk)
+        comment = models.ArticleComment.objects.create(body=body, article=article, author=request.user)
+
+        for u in article.watching_users.all():
+            if u.pk != request.user.pk:
+                utils.send_article_comment_notification(u, f"{request.scheme}://{request.get_host()}", article, comment)
+
+    return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
+
+
+@permission_required("articles.svjis_add_article_comment")
+@require_GET
+def article_watch_view(request):
+    try:
+        pk = int(request.GET.get('id'))
+        watch = int(request.GET.get('watch'))
+    except:
+        raise Http404
+
+    q = get_article_filter(request.user)
+    article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
+    if len(article_qs) == 0:
+        raise Http404
+    else:
+        article = article_qs[0]
+
+    if watch == 0:
+        article.watching_users.remove(request.user)
+    else:
+        article.watching_users.add(request.user)
+
+    return redirect(article_view, pk=pk)
 
 
 # Login

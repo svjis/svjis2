@@ -2,6 +2,7 @@ from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group, User
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q
 from django.conf import settings
@@ -22,6 +23,28 @@ def get_side_menu(active_item, user):
 
 
 # Redaction - Article Menu
+def get_article_menu():
+    result = []
+    menu_items = models.ArticleMenu.objects.all()
+    level = 0
+    for i in menu_items:
+        if i.parent is None:
+            node = {'item': i, 'level': level, 'articles': i.articles.count()}
+            result.append(node)
+            result.extend(get_article_submenu(i, menu_items, level + 1))
+    return result
+
+
+def get_article_submenu(parent, menu_items, level):
+    result = []
+    for i in menu_items:
+        if i.parent == parent:
+            node = {'item': i, 'level': level, 'articles': i.articles.count()}
+            result.append(node)
+            result.extend(get_article_submenu(i, menu_items, level + 1))
+    return result
+
+
 @permission_required("articles.svjis_edit_article_menu")
 @require_GET
 def redaction_menu_view(request):
@@ -29,7 +52,7 @@ def redaction_menu_view(request):
     ctx['aside_menu_name'] = _("Redaction")
     ctx['aside_menu_items'] = get_side_menu('menu', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
-    ctx['object_list'] = models.ArticleMenu.objects.all()
+    ctx['object_list'] = get_article_menu()
     return render(request, "redaction_menu.html", ctx)
 
 
@@ -133,9 +156,15 @@ def redaction_article_edit_view(request, pk):
     else:
         form = forms.ArticleForm
 
+    group_list = []
+    for g in Group.objects.all():
+        item = {'name': g.name, 'checked': g in form.instance.visible_for_group.all() if pk != 0 else False}
+        group_list.append(item)
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['form'] = form
+    ctx['group_list'] = group_list
     ctx['asset_form'] = forms.ArticleAssetForm
     ctx['pk'] = pk
     ctx['aside_menu_items'] = get_side_menu('article', request.user)
@@ -158,6 +187,15 @@ def redaction_article_save_view(request):
         if pk == 0:
             obj.author = request.user
         obj.save()
+
+        # Set groups
+        group_list = obj.visible_for_group.all()
+        for g in Group.objects.all():
+            gr_set = request.POST.get(g.name, False) == 'on'
+            if gr_set and g not in group_list:
+                obj.visible_for_group.add(g)
+            if not gr_set and g in group_list:
+                obj.visible_for_group.remove(g)
     else:
         for error in form.errors:
             messages.error(request, error)
@@ -165,12 +203,52 @@ def redaction_article_save_view(request):
     return redirect(redaction_article_view)
 
 
+def get_users_for_notification(article):
+    users = []
+    if article.published:
+        users = User.objects.filter(is_active=True).exclude(email='').distinct().order_by('last_name')
+        if not article.visible_for_all:
+            groups = article.visible_for_group.all()
+            q = Q(groups__in=groups)
+            users = users.filter(q)
+    return users
+
+
 @permission_required("articles.svjis_edit_article")
 @require_GET
-def redaction_article_delete_view(request, pk):
-    obj = get_object_or_404(models.Article, pk=pk)
-    obj.delete()
-    return redirect(redaction_article_view)
+def redaction_article_notifications_view(request, pk):
+    article = get_object_or_404(models.Article, pk=pk)
+    users = get_users_for_notification(article)
+
+    ctx = utils.get_context()
+    ctx['article'] = article
+    ctx['object_list'] = users
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['aside_menu_items'] = get_side_menu('article', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_article_notifications.html", ctx)
+
+
+@permission_required("articles.svjis_edit_article")
+@require_POST
+def redaction_article_notifications_send_view(request):
+    pk = int(request.POST['pk'])
+    article = get_object_or_404(models.Article, pk=pk)
+    users = get_users_for_notification(article)
+
+    i = 0
+    for u in users:
+        if request.POST.get(f"u_{u.pk}", False) == 'on':
+            utils.send_article_notification(u, f"{request.scheme}://{request.get_host()}", article)
+            i += 1
+
+    ctx = utils.get_context()
+    ctx['article'] = article
+    ctx['num_of_recipients'] = i
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['aside_menu_items'] = get_side_menu('article', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_article_notifications_sent.html", ctx)
 
 
 # Redaction - ArticleAsset
