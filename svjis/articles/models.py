@@ -92,7 +92,11 @@ class ArticleMenu(models.Model):
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"ArticleMenu: {self.description}"
+        return self.description
+
+    @property
+    def articles(self):
+        return self.article_set.all()
 
     class Meta:
         ordering = ['description']

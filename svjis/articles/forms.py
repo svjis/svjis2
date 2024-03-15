@@ -5,6 +5,11 @@ from . import models
 
 
 class ArticleMenuForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['parent'].queryset = models.ArticleMenu.objects.exclude(pk=self.instance.pk)
+
     class Meta:
         model = models.ArticleMenu
         fields = ("description", "hide", "parent",)

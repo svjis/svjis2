@@ -23,6 +23,28 @@ def get_side_menu(active_item, user):
 
 
 # Redaction - Article Menu
+def get_article_menu():
+    result = []
+    menu_items = models.ArticleMenu.objects.all()
+    level = 0
+    for i in menu_items:
+        if i.parent is None:
+            node = {'item': i, 'level': level, 'articles': i.articles.count()}
+            result.append(node)
+            result.extend(get_article_submenu(i, menu_items, level + 1))
+    return result
+
+
+def get_article_submenu(parent, menu_items, level):
+    result = []
+    for i in menu_items:
+        if i.parent == parent:
+            node = {'item': i, 'level': level, 'articles': i.articles.count()}
+            result.append(node)
+            result.extend(get_article_submenu(i, menu_items, level + 1))
+    return result
+
+
 @permission_required("articles.svjis_edit_article_menu")
 @require_GET
 def redaction_menu_view(request):
@@ -30,7 +52,7 @@ def redaction_menu_view(request):
     ctx['aside_menu_name'] = _("Redaction")
     ctx['aside_menu_items'] = get_side_menu('menu', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
-    ctx['object_list'] = models.ArticleMenu.objects.all()
+    ctx['object_list'] = get_article_menu()
     return render(request, "redaction_menu.html", ctx)
 
 

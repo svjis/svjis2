@@ -19,8 +19,26 @@ def get_side_menu(ctx):
     result.append({'description': _("All articles"), 'link': reverse(main_view), 'active': True if header == _("All articles") else False})
     menu_items = models.ArticleMenu.objects.filter(hide=False).all()
     for obj in menu_items:
-        result.append({'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': True if header == obj.description else False})
+        if obj.parent == None:
+            active = True if header == obj.description else False
+            node = {'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': active}
+            submenu = get_side_submenu(obj, menu_items, header, active)
+            if submenu is not None:
+                node['active'] = True
+                node['submenu'] = submenu
+            result.append(node)
     return result
+
+
+def get_side_submenu(parent, menu_items, active_header, active):
+    result = []
+    for obj in menu_items:
+        if obj.parent == parent:
+            node = {'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': False}
+            if active_header == obj.description:
+                active = True
+            result.append(node)
+    return result if active else None
 
 
 def get_article_filter(user):
