@@ -1,6 +1,7 @@
 # SVJIS PY
 
-Tento repozitář obsahuje pokus o reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/).
+Tento repozitář obsahuje reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/). Na reimplementaci se stále pracuje...
+
 
 ## 1 Instalace
 Předpokládá se, že máte na počítači nainstalovaný python verze 3.10 a nebo vyšší.
