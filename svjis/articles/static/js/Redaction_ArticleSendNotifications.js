@@ -6,10 +6,10 @@ refreshCount();
 
 function checkAll() {
     let control = document.getElementById('check-all');
-    let check = (control.checked) ? false : true;
+    let check = !control.checked;
     let table = document.getElementById('recipient-list');
 
-    let row = undefined;
+    let row;
     let i = 1;
     do {
         row = table.getElementsByTagName('tr')[i];
@@ -28,7 +28,7 @@ function refreshCount() {
     let r = 0;
     let table = document.getElementById('recipient-list');
 
-    let row = undefined;
+    let row;
     let i = 1;
     do {
         row = table.getElementsByTagName('tr')[i];
@@ -47,7 +47,7 @@ function refreshCount() {
 function registerRefresh() {
     let table = document.getElementById('recipient-list');
 
-    let row = undefined;
+    let row;
     let i = 1;
     do {
         row = table.getElementsByTagName('tr')[i];
