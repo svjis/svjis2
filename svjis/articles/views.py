@@ -133,8 +133,37 @@ def article_comment_save_view(request):
     body = request.POST.get('body', '')
     if body != '':
         article = get_object_or_404(models.Article, pk=article_pk)
-        models.ArticleComment.objects.create(body=body, article=article, author=request.user)
-    return redirect(article_view, pk=article_pk)
+        comment = models.ArticleComment.objects.create(body=body, article=article, author=request.user)
+
+        for u in article.watching_users.all():
+            if u.pk != request.user.pk:
+                utils.send_article_comment_notification(u, f"{request.scheme}://{request.get_host()}", article, comment)
+
+    return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
+
+
+@permission_required("articles.svjis_add_article_comment")
+@require_GET
+def article_watch_view(request):
+    try:
+        pk = int(request.GET.get('id'))
+        watch = int(request.GET.get('watch'))
+    except:
+        raise Http404
+
+    q = get_article_filter(request.user)
+    article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
+    if len(article_qs) == 0:
+        raise Http404
+    else:
+        article = article_qs[0]
+
+    if watch == 0:
+        article.watching_users.remove(request.user)
+    else:
+        article.watching_users.add(request.user)
+
+    return redirect(article_view, pk=pk)
 
 
 # Login

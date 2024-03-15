@@ -95,3 +95,15 @@ def send_article_notification(user, host, article):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.pk}/'>{article.header}</a>"
     send_mails([user.email], f'{subj} - {article.header}', template.value.format(link), False)
+
+
+def send_article_comment_notification(user, host, article, comment):
+    template_key = 'mail.template.comment.notification'
+    template = models.Preferences.objects.get(key=template_key)
+    if template == None:
+        logger.error(f"Error: Missing template {template_key}")
+        return
+
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/article/{article.pk}/'>{article.header}</a>"
+    send_mails([user.email], f'{subj} - {article.header}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body), False)

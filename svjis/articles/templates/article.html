@@ -17,7 +17,7 @@
 </div>
 
 {% if obj.comments %}
-<h2 class="article-title">Komentáře:</h2>
+<h2 class="article-title">{% trans 'Comments' %}:</h2>
 {% for comment in obj.comments %}
 <div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date | date:"d.m.Y H:i" }}</strong>
     <br>{{ comment.body | linebreaks | safe }}
@@ -27,6 +27,13 @@
 
 
 {% if perms.articles.svjis_add_article_comment and obj.allow_comments %}
+
+    {% if user in obj.watching_users.all %}
+    [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=0">{% trans 'Stop watching discussion' %}</a>]
+    {% else %}
+    [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% trans 'Watch discussion' %}</a>]
+    {% endif %}
+
 <form action="{% url 'article_comment_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="article_pk" value="{{ obj.pk }}">
