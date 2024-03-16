@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
-[<a href="{% url 'redaction_news_edit' pk=0 %}">{% trans 'Create new Survey' %}</a>]
+[<a href="{% url 'redaction_survey_edit' pk=0 %}">{% trans 'Create new Survey' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
@@ -23,8 +23,8 @@
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list"><a href="{% url 'redaction_news_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'redaction_news_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_survey_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_survey_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
         <td class="list"><a href=""></a></td>
         <td class="list">{{ obj.description }}</td>
         <td class="list">{{ obj.starting_date|date:"d.m.Y" }}</td>

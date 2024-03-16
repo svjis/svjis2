@@ -55,6 +55,18 @@ class NewsForm(forms.ModelForm):
         }
 
 
+class SurveyForm(forms.ModelForm):
+    class Meta:
+        model = models.Survey
+        fields = ("description", "starting_date", "ending_date", "published",)
+        widgets = {
+            'description': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}),
+            'starting_date': forms.widgets.DateInput(attrs={'class': 'common-input', 'size': '50'}),
+            'ending_date': forms.widgets.DateInput(attrs={'class': 'common-input', 'size': '50'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+        }
+
+
 class UserForm(forms.ModelForm):
     class Meta:
         model = User

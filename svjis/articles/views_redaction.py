@@ -380,3 +380,35 @@ def redaction_survey_view(request):
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     ctx['object_list'] = survey_list
     return render(request, "redaction_survey.html", ctx)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_edit_view(request, pk):
+    if pk != 0:
+        a = get_object_or_404(models.Survey, pk=pk)
+        form = forms.SurveyForm(instance=a)
+    else:
+        form = forms.SurveyForm
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_survey_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_POST
+def redaction_survey_save_view(request):
+    pass
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_delete_view(request, pk):
+    obj = get_object_or_404(models.Survey, pk=pk)
+    obj.delete()
+    return redirect(redaction_survey_view)

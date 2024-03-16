@@ -1,0 +1,64 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Survey' %}</h1>
+<form action="{% url 'redaction_survey_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description }}
+    </p>
+    <fieldset>
+        <legend>{% trans 'Options' %}</legend>
+        <table border="0" aria-describedby="tbl-desc">
+            <tbody id="opt_parent">
+
+                <tr id="opt_1">
+                    <th scope="row" style="text-align: left">Volba&nbsp;1:&nbsp;</th>
+                    <td>
+                        <input type="hidden" name="oid_1" value="0">
+                        <input class="common-input" id="o1-input" type="text" name="o_1" size="50" maxlength="250" value="">
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="add-remove-buttons" class="container" style="display: none;">
+            <div class="row">
+                <div class="left">
+                    <p><input id="add-option" type="button" value="Přidat volbu" onclick="addOption();" /></p>
+                </div>
+                <div class="left">
+                    <p><input id="remove-option" type="button" value="Odebrat volbu" onclick="removeOption();" disabled /></p>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{% trans 'Properties' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.starting_date.auto_id }}">{{ form.starting_date.label }}</label>
+            {{ form.starting_date }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.ending_date.auto_id }}">{{ form.ending_date.label }}</label>
+            {{ form.ending_date }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.published.auto_id }}">{{ form.published.label }}</label>
+            {{ form.published }}
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+<script src="/static/js/Redaction_InquiryEdit.js"></script>
+
+{% endblock %}
