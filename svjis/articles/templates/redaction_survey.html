@@ -1,0 +1,39 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+[<a href="{% url 'redaction_news_edit' pk=0 %}">{% trans 'Create new Survey' %}</a>]
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">{% trans 'Starting date' %}</th>
+        <th class="list" scope="col">{% trans 'Ending date' %}</th>
+        <th class="list" scope="col">{% trans 'Author' %}</th>
+        <th class="list" scope="col">{% trans 'Published' %}</th>
+
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+        <td class="list"><a href="{% url 'redaction_news_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_news_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href=""></a></td>
+        <td class="list">{{ obj.description }}</td>
+        <td class="list">{{ obj.starting_date|date:"d.m.Y" }}</td>
+        <td class="list">{{ obj.ending_date|date:"d.m.Y" }}</td>
+        <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="list">{{ obj.published }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

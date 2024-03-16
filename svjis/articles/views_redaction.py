@@ -17,6 +17,8 @@ def get_side_menu(active_item, user):
         result.append({'description': _("Articles"), 'link': reverse(redaction_article_view), 'active': True if active_item == 'article' else False})
     if user.has_perm('articles.svjis_edit_article_news'):
         result.append({'description': _("News"), 'link': reverse(redaction_news_view), 'active': True if active_item == 'news' else False})
+    if user.has_perm('articles.svjis_edit_survey'):
+        result.append({'description': _("Surveys"), 'link': reverse(redaction_survey_view), 'active': True if active_item == 'surveys' else False})
     if user.has_perm('articles.svjis_edit_article_menu'):
         result.append({'description': _("Menu"), 'link': reverse(redaction_menu_view), 'active': True if active_item == 'menu' else False})
     return result
@@ -350,3 +352,31 @@ def redaction_news_delete_view(request, pk):
     obj = get_object_or_404(models.News, pk=pk)
     obj.delete()
     return redirect(redaction_news_view)
+
+
+# Redaction - Surveys
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_view(request):
+    survey_list = models.Survey.objects.all()
+    header = _("Surveys")
+
+    # Paginator
+    is_paginated = len(survey_list) > getattr(settings, 'SVJIS_SURVEY_PAGE_SIZE', 10)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(survey_list, per_page=getattr(settings, 'SVJIS_SURVEY_PAGE_SIZE', 10))
+    page_obj = paginator.get_page(page)
+    try:
+        survey_list = paginator.page(page)
+    except InvalidPage:
+        survey_list = paginator.page(paginator.num_pages)
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['is_paginated'] = is_paginated
+    ctx['page_obj'] = page_obj
+    ctx['header'] = header
+    ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    ctx['object_list'] = survey_list
+    return render(request, "redaction_survey.html", ctx)
