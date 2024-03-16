@@ -124,8 +124,8 @@ class News(models.Model):
 class Survey(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(_("Description"))
-    starting_date = models.DateTimeField(_("Starting day"))
-    ending_date = models.DateTimeField(_("Ending day"))
+    starting_date = models.DateField(_("Starting day"))
+    ending_date = models.DateField(_("Ending day"))
     published = models.BooleanField(_("Published"), default=False)
 
     def __str__(self):

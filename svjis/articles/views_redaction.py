@@ -403,7 +403,23 @@ def redaction_survey_edit_view(request, pk):
 @permission_required("articles.svjis_edit_survey")
 @require_POST
 def redaction_survey_save_view(request):
-    pass
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.SurveyForm(request.POST)
+    else:
+        instance = get_object_or_404(models.Survey, pk=pk)
+        form = forms.SurveyForm(request.POST, instance=instance)
+
+
+    if form.is_valid():
+        obj = form.save(commit=False)
+        if pk == 0:
+            obj.author = request.user
+        obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
+    return redirect(redaction_survey_view)
 
 
 @permission_required("articles.svjis_edit_survey")
