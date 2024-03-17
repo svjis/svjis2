@@ -142,7 +142,7 @@ class Survey(models.Model):
         return self.published and self.starting_date <= now and self.ending_date >= now
 
     def is_user_open_for_voting(self, user):
-        return self.answers.filter(user=user).count == 0
+        return self.answers.filter(user=user).count() == 0
 
     @property
     def answers(self):
@@ -168,6 +168,10 @@ class SurveyOption(models.Model):
         total = self.survey.answers.count()
         opt_total = self.survey.answers.filter(option=self).count()
         return opt_total / total * 100 if total != 0 else 0
+
+    @property
+    def bar_width(self):
+        return int(self.pct * 2)
 
     class Meta:
         ordering = ['id']

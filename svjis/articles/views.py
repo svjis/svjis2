@@ -105,6 +105,13 @@ def main_filtered_view(request, menu):
 
     # Survey
     survey_list = models.Survey.objects.filter(published=True)
+    slist = []
+    for s in survey_list:
+        node = {}
+        node['survey'] = s
+        node['user_can_vote'] = s.is_user_open_for_voting(request.user) if not request.user.is_anonymous else False
+        slist.append(node)
+
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
@@ -116,7 +123,7 @@ def main_filtered_view(request, menu):
     ctx['header'] = header
     ctx['article_list'] = article_list
     ctx['news_list'] = news_list
-    ctx['survey_list'] = survey_list
+    ctx['survey_list'] = slist
     ctx['top_articles'] = top_articles
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)

@@ -1,6 +1,7 @@
 {% extends "base-with-aside-menu-content.html" %}
 
 {% load i18n %}
+{% load humanize %}
 
 {% block content %}
 
@@ -20,7 +21,7 @@
     <tr>
         <td class="list">{{ forloop.counter }}</td>
         <td class="list">{{ o.description }}</td>
-        <td class="list">{{ o.pct }}</td>
+        <td class="list">{{ o.pct|floatformat:1 }}</td>
     </tr>
     {% endfor %}
     {% endif %}
