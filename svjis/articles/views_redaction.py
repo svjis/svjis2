@@ -17,6 +17,8 @@ def get_side_menu(active_item, user):
         result.append({'description': _("Articles"), 'link': reverse(redaction_article_view), 'active': True if active_item == 'article' else False})
     if user.has_perm('articles.svjis_edit_article_news'):
         result.append({'description': _("News"), 'link': reverse(redaction_news_view), 'active': True if active_item == 'news' else False})
+    if user.has_perm('articles.svjis_edit_survey'):
+        result.append({'description': _("Surveys"), 'link': reverse(redaction_survey_view), 'active': True if active_item == 'surveys' else False})
     if user.has_perm('articles.svjis_edit_article_menu'):
         result.append({'description': _("Menu"), 'link': reverse(redaction_menu_view), 'active': True if active_item == 'menu' else False})
     return result
@@ -350,3 +352,119 @@ def redaction_news_delete_view(request, pk):
     obj = get_object_or_404(models.News, pk=pk)
     obj.delete()
     return redirect(redaction_news_view)
+
+
+# Redaction - Surveys
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_view(request):
+    survey_list = models.Survey.objects.all()
+    header = _("Surveys")
+
+    # Paginator
+    is_paginated = len(survey_list) > getattr(settings, 'SVJIS_SURVEY_PAGE_SIZE', 10)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(survey_list, per_page=getattr(settings, 'SVJIS_SURVEY_PAGE_SIZE', 10))
+    page_obj = paginator.get_page(page)
+    try:
+        survey_list = paginator.page(page)
+    except InvalidPage:
+        survey_list = paginator.page(paginator.num_pages)
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['is_paginated'] = is_paginated
+    ctx['page_obj'] = page_obj
+    ctx['header'] = header
+    ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    ctx['object_list'] = survey_list
+    return render(request, "redaction_survey.html", ctx)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_edit_view(request, pk):
+    if pk != 0:
+        a = get_object_or_404(models.Survey, pk=pk)
+        form = forms.SurveyForm(instance=a)
+        n = a.options.count()
+    else:
+        form = forms.SurveyForm
+        n = 0
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['new_option_no'] = n + 1
+    ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_survey_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_POST
+def redaction_survey_save_view(request):
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.SurveyForm(request.POST)
+    else:
+        instance = get_object_or_404(models.Survey, pk=pk)
+        form = forms.SurveyForm(request.POST, instance=instance)
+
+    if form.is_valid():
+        obj = form.save(commit=False)
+        if pk == 0:
+            obj.author = request.user
+        obj.save()
+
+        # Options
+        i = 1
+        while f'oid_{i}' in request.POST:
+            o_pk = int(request.POST[f'oid_{i}'])
+            o_description = request.POST.get(f'o_{i}', '')
+            if o_pk != 0:
+                o_i = get_object_or_404(models.SurveyOption, pk=o_pk)
+                o_i.description=o_description
+                o_i.save()
+            else:
+                if o_description != '':
+                    models.SurveyOption.objects.create(survey=obj, description=o_description)
+            i += 1
+
+    else:
+        for error in form.errors:
+            messages.error(request, error)
+    return redirect(redaction_survey_view)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_delete_view(request, pk):
+    obj = get_object_or_404(models.Survey, pk=pk)
+    obj.delete()
+    return redirect(redaction_survey_view)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_option_delete_view(request, pk):
+    obj = get_object_or_404(models.SurveyOption, pk=pk)
+    survey_pk = obj.survey.pk
+    obj.delete()
+    return redirect(redaction_survey_edit_view, pk=survey_pk)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_results_view(request, pk):
+    header = _("Surveys")
+    survey = get_object_or_404(models.Survey, pk=pk)
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['obj'] = survey
+    ctx['header'] = header
+    ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_survey_results.html", ctx)

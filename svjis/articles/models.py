@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import gettext_lazy as _
@@ -119,6 +120,75 @@ class News(models.Model):
         permissions = (
             ("svjis_edit_article_news", "Can edit News"),
         )
+
+
+class Survey(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(_("Description"))
+    starting_date = models.DateField(_("Starting day"))
+    ending_date = models.DateField(_("Ending day"))
+    published = models.BooleanField(_("Published"), default=False)
+
+    def __str__(self):
+        return f"Survey: {self.description}"
+
+    @property
+    def options(self):
+        return self.surveyoption_set.all()
+
+    @property
+    def is_open_for_voting(self):
+        now = date.today()
+        return self.published and self.starting_date <= now and self.ending_date >= now
+
+    def is_user_open_for_voting(self, user):
+        return self.answers.filter(user=user).count() == 0 and user.has_perm('articles.svjis_answer_survey')
+
+    @property
+    def answers(self):
+        return self.surveyanswerlog_set.all()
+
+    class Meta:
+        ordering = ['-id']
+        permissions = (
+            ("svjis_answer_survey", "Can answer Survey"),
+            ("svjis_edit_survey", "Can edit Survey"),
+        )
+
+
+class SurveyOption(models.Model):
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
+    description = models.CharField(_("Description"), max_length=250)
+
+    def __str__(self):
+        return f"SurveyOption: {self.description}"
+
+    @property
+    def pct(self):
+        total = self.survey.answers.count()
+        opt_total = self.survey.answers.filter(option=self).count()
+        return opt_total / total * 100 if total != 0 else 0
+
+    @property
+    def bar_width(self):
+        return int(self.pct * 2)
+
+    class Meta:
+        ordering = ['id']
+
+
+class SurveyAnswerLog(models.Model):
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
+    option = models.ForeignKey(SurveyOption, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"SurveyAnswerLog: {self.option}"
+
+    class Meta:
+        ordering = ['id']
+
 
 # Administration
 #####################

@@ -103,6 +103,16 @@ def main_filtered_view(request, menu):
     for ta in top_articles:
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
+    # Survey
+    survey_list = models.Survey.objects.filter(published=True)
+    slist = []
+    for s in survey_list:
+        node = {}
+        node['survey'] = s
+        node['user_can_vote'] = s.is_user_open_for_voting(request.user) if not request.user.is_anonymous else False
+        slist.append(node)
+
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
     ctx['is_paginated'] = is_paginated
@@ -113,10 +123,31 @@ def main_filtered_view(request, menu):
     ctx['header'] = header
     ctx['article_list'] = article_list
     ctx['news_list'] = news_list
+    ctx['survey_list'] = slist
     ctx['top_articles'] = top_articles
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "main.html", ctx)
+
+
+@permission_required("articles.svjis_answer_survey")
+@require_POST
+def article_survey_vote_view(request):
+    pk = int(request.POST.get('pk'))
+    o_pk = int(request.POST.get(f'i_{pk}'))
+    option = get_object_or_404(models.SurveyOption, pk=o_pk)
+    survey = option.survey
+
+    # is voting open?
+    if not survey.is_open_for_voting:
+        raise Http404
+
+    # already voted?
+    if not survey.is_user_open_for_voting(request.user):
+        raise Http404
+
+    models.SurveyAnswerLog.objects.create(survey=survey, option=option, user=request.user)
+    return redirect(main_view)
 
 
 @require_GET

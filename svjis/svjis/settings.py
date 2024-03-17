@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'articles',
 ]
 
@@ -159,6 +160,7 @@ EMAIL_HOST_PASSWORD = ''
 SVJIS_ARTICLE_PAGE_SIZE = 10
 SVJIS_TOP_ARTICLES_LIST_SIZE = 5
 SVJIS_NEWS_PAGE_SIZE = 10
+SVJIS_SURVEY_PAGE_SIZE = 10
 
 # Load local settings if exists
 try:

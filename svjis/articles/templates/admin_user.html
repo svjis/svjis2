@@ -28,7 +28,7 @@
         <td class="list">{{ obj.last_name }}</td>
         <td class="list">{{ obj.first_name }}</td>
         <td class="list">{{ obj.is_active }}</td>
-        <td class="list">{{ obj.email }}</td>
+        <td class="list"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
         <td class="list">{{ obj.last_login | date:"d.m.Y H:i"}}</td>
     </tr>
     {% endfor %}

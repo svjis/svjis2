@@ -34,7 +34,7 @@
     {% if company.email %}
     <tr>
         <th scope="row" style="text-align: left">{% trans 'E-Mail' %}:&nbsp;</th>
-        <td><a href="{{ company.email }}">{{ company.email }}</a></td>
+        <td><a href="mailto:{{ company.email }}">{{ company.email }}</a></td>
     </tr>
     {% endif %}
     {% if company.registration_no %}
