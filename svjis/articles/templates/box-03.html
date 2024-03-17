@@ -16,7 +16,7 @@
 
             {% for o in obj.options %}
             <p>
-                <input id="vote-{{ forloop.counter }}" type="radio" name="i_{{ obj.pk }}" value="{{ o.pk }}">&nbsp;{{ o.description }}&nbsp;-&nbsp;<em>0%</em><br>
+                <input id="vote-{{ forloop.counter }}" type="radio" name="i_{{ obj.pk }}" value="{{ o.pk }}">&nbsp;{{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct }}%</em><br>
                 <img src="/static/gfx/inq_0212.gif" width="0" height="22" alt="Bar">
             </p>
             {% endfor %}

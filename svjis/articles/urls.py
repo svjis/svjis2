@@ -40,6 +40,7 @@ urlpatterns = [
     path('redaction_survey_save/', views_redaction.redaction_survey_save_view, name='redaction_survey_save'),
     path('redaction_survey_delete/<int:pk>/', views_redaction.redaction_survey_delete_view, name='redaction_survey_delete'),
     path('redaction_survey_option_delete/<int:pk>/', views_redaction.redaction_survey_option_delete_view, name='redaction_survey_option_delete'),
+    path('redaction_survey_results/<int:pk>/', views_redaction.redaction_survey_results_view, name='redaction_survey_results'),
     path('admin_company_edit/', views_admin.admin_company_edit_view, name='admin_company_edit'),
     path('admin_company_save/', views_admin.admin_company_save_view, name='admin_company_save'),
     path('admin_board/', views_admin.admin_board_view, name='admin_board'),

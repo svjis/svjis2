@@ -11,7 +11,6 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
-from datetime import date
 
 
 def get_side_menu(ctx):
@@ -133,13 +132,11 @@ def article_survey_vote_view(request):
     survey = option.survey
 
     # is voting open?
-    now = date.today()
-    if not survey.published or survey.starting_date > now or survey.ending_date < now:
+    if not survey.is_open_for_voting:
         raise Http404
 
     # already voted?
-    log = models.SurveyAnswerLog.objects.filter(survey=survey, user=request.user)
-    if log.count() != 0:
+    if not survey.is_user_open_for_voting(request.user):
         raise Http404
 
     models.SurveyAnswerLog.objects.create(survey=survey, option=option, user=request.user)

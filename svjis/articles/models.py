@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import gettext_lazy as _
@@ -136,6 +137,14 @@ class Survey(models.Model):
         return self.surveyoption_set.all()
 
     @property
+    def is_open_for_voting(self):
+        now = date.today()
+        return self.published and self.starting_date <= now and self.ending_date >= now
+
+    def is_user_open_for_voting(self, user):
+        return self.answers.filter(user=user).count == 0
+
+    @property
     def answers(self):
         return self.surveyanswerlog_set.all()
 
@@ -153,6 +162,12 @@ class SurveyOption(models.Model):
 
     def __str__(self):
         return f"SurveyOption: {self.description}"
+
+    @property
+    def pct(self):
+        total = self.survey.answers.count()
+        opt_total = self.survey.answers.filter(option=self).count()
+        return opt_total / total * 100 if total != 0 else 0
 
     class Meta:
         ordering = ['id']

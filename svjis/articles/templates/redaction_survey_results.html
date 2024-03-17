@@ -1,0 +1,51 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+
+<p>{{ obj.description }}</p>
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">{% trans 'Votes' %}</th>
+    </tr>
+
+    {% if obj.options %}
+    {% for o in obj.options %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ o.description }}</td>
+        <td class="list">{{ o.pct }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+<h2 class="page-title" id="tbl2-desc">{% trans 'Voting log' %}</h2>
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Time' %}</th>
+        <th class="list" scope="col">{% trans 'User' %}</th>
+        <th class="list" scope="col">{% trans 'Option' %}</th>
+    </tr>
+
+    {% if obj.answers %}
+    {% for a in obj.answers %}
+    <tr>
+        <td class="list">{{ forloop.counter }}</td>
+        <td class="list">{{ a.time }}</td>
+        <td class="list">{{ a.user.first_name }}&nbsp;{{ a.user.last_name }}</td>
+        <td class="list">{{ a.option.description }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

@@ -24,8 +24,8 @@
     {% for obj in object_list %}
     <tr>
         <td class="list"><a href="{% url 'redaction_survey_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_survey_results' pk=obj.id %}"><img src="/static/gfx/chart_bar.png" border="0" title="{% trans 'Results' %}" alt="{% trans 'Results' %}"></a></td>
         <td class="list"><a href="{% url 'redaction_survey_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
-        <td class="list"><a href=""></a></td>
         <td class="list">{{ obj.description }}</td>
         <td class="list">{{ obj.starting_date|date:"d.m.Y" }}</td>
         <td class="list">{{ obj.ending_date|date:"d.m.Y" }}</td>

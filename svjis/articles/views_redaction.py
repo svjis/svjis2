@@ -454,3 +454,17 @@ def redaction_survey_option_delete_view(request, pk):
     survey_pk = obj.survey.pk
     obj.delete()
     return redirect(redaction_survey_edit_view, pk=survey_pk)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_results_view(request, pk):
+    header = _("Surveys")
+    survey = get_object_or_404(models.Survey, pk=pk)
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['obj'] = survey
+    ctx['header'] = header
+    ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_survey_results.html", ctx)
