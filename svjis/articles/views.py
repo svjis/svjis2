@@ -103,6 +103,9 @@ def main_filtered_view(request, menu):
     for ta in top_articles:
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
+    # Survey
+    survey_list = models.Survey.objects.filter(published=True)
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
     ctx['is_paginated'] = is_paginated
@@ -113,6 +116,7 @@ def main_filtered_view(request, menu):
     ctx['header'] = header
     ctx['article_list'] = article_list
     ctx['news_list'] = news_list
+    ctx['survey_list'] = survey_list
     ctx['top_articles'] = top_articles
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
