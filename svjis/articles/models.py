@@ -142,7 +142,7 @@ class Survey(models.Model):
         return self.published and self.starting_date <= now and self.ending_date >= now
 
     def is_user_open_for_voting(self, user):
-        return self.answers.filter(user=user).count() == 0
+        return self.answers.filter(user=user).count() == 0 and user.has_perm('articles.svjis_answer_survey')
 
     @property
     def answers(self):
