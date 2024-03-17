@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.main_view, name='main'),
     path('main/<int:menu>', views.main_filtered_view, name='main_filtered'),
+    path('article_survey_vote/', views.article_survey_vote_view, name='article_survey_vote'),
     path('article/<int:pk>/', views.article_view, name='article'),
     path('article_comment_save/', views.article_comment_save_view, name='article_comment_save'),
     path('article_watch/', views.article_watch_view, name='article_watch'),

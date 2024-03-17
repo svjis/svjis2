@@ -11,6 +11,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
+from datetime import date
 
 
 def get_side_menu(ctx):
@@ -121,6 +122,28 @@ def main_filtered_view(request, menu):
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     return render(request, "main.html", ctx)
+
+
+@permission_required("articles.svjis_answer_survey")
+@require_POST
+def article_survey_vote_view(request):
+    pk = int(request.POST.get('pk'))
+    o_pk = int(request.POST.get(f'i_{pk}'))
+    option = get_object_or_404(models.SurveyOption, pk=o_pk)
+    survey = option.survey
+
+    # is voting open?
+    now = date.today()
+    if not survey.published or survey.starting_date > now or survey.ending_date < now:
+        raise Http404
+
+    # already voted?
+    log = models.SurveyAnswerLog.objects.filter(survey=survey, user=request.user)
+    if log.count() != 0:
+        raise Http404
+
+    models.SurveyAnswerLog.objects.create(survey=survey, option=option, user=request.user)
+    return redirect(main_view)
 
 
 @require_GET
