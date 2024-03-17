@@ -388,13 +388,16 @@ def redaction_survey_edit_view(request, pk):
     if pk != 0:
         a = get_object_or_404(models.Survey, pk=pk)
         form = forms.SurveyForm(instance=a)
+        n = a.options.count()
     else:
         form = forms.SurveyForm
+        n = 0
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['form'] = form
     ctx['pk'] = pk
+    ctx['new_option_no'] = n + 1
     ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_survey_edit.html", ctx)
@@ -410,12 +413,26 @@ def redaction_survey_save_view(request):
         instance = get_object_or_404(models.Survey, pk=pk)
         form = forms.SurveyForm(request.POST, instance=instance)
 
-
     if form.is_valid():
         obj = form.save(commit=False)
         if pk == 0:
             obj.author = request.user
         obj.save()
+
+        # Options
+        i = 1
+        while f'oid_{i}' in request.POST:
+            o_pk = int(request.POST[f'oid_{i}'])
+            o_description = request.POST.get(f'o_{i}', '')
+            if o_pk != 0:
+                o_i = get_object_or_404(models.SurveyOption, pk=o_pk)
+                o_i.description=o_description
+                o_i.save()
+            else:
+                if o_description != '':
+                    models.SurveyOption.objects.create(survey=obj, description=o_description)
+            i += 1
+
     else:
         for error in form.errors:
             messages.error(request, error)
@@ -428,3 +445,12 @@ def redaction_survey_delete_view(request, pk):
     obj = get_object_or_404(models.Survey, pk=pk)
     obj.delete()
     return redirect(redaction_survey_view)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_option_delete_view(request, pk):
+    obj = get_object_or_404(models.SurveyOption, pk=pk)
+    survey_pk = obj.survey.pk
+    obj.delete()
+    return redirect(redaction_survey_edit_view, pk=survey_pk)

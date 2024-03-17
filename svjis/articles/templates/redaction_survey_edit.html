@@ -17,11 +17,23 @@
         <table border="0" aria-describedby="tbl-desc">
             <tbody id="opt_parent">
 
-                <tr id="opt_1">
-                    <th scope="row" style="text-align: left">Volba&nbsp;1:&nbsp;</th>
+                {% if form.instance.pk %}
+                {% for obj in form.instance.options %}
+                <tr id="opt_{{ forloop.counter }}">
+                    <th scope="row" style="text-align: left">{% trans 'Option' %}&nbsp;{{ forloop.counter }}:&nbsp;</th>
                     <td>
-                        <input type="hidden" name="oid_1" value="0">
-                        <input class="common-input" id="o1-input" type="text" name="o_1" size="50" maxlength="250" value="">
+                        <input type="hidden" name="oid_{{ forloop.counter }}" value="{{ obj.pk }}">
+                        <input class="common-input" id="o{{ forloop.counter }}-input" type="text" name="o_{{ forloop.counter }}" size="50" maxlength="250" value="{{ obj.description }}">
+                    </td>
+                    <td><td class="list"><a href="{% url 'redaction_survey_option_delete' pk=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                <tr id="opt_{{ new_option_no }}">
+                    <th scope="row" style="text-align: left">{% trans 'Option' %}&nbsp;{{ new_option_no }}:&nbsp;</th>
+                    <td>
+                        <input type="hidden" name="oid_{{ new_option_no }}" value="0">
+                        <input class="common-input" id="o{{ new_option_no }}-input" type="text" name="o_{{ new_option_no }}" size="50" maxlength="250" value="">
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -30,10 +42,10 @@
         <div id="add-remove-buttons" class="container" style="display: none;">
             <div class="row">
                 <div class="left">
-                    <p><input id="add-option" type="button" value="Přidat volbu" onclick="addOption();" /></p>
+                    <p><input id="add-option" type="button" value="{% trans 'Add option' %}" onclick="addOption();" /></p>
                 </div>
                 <div class="left">
-                    <p><input id="remove-option" type="button" value="Odebrat volbu" onclick="removeOption();" disabled /></p>
+                    <p><input id="remove-option" type="button" value="{% trans 'Remove option' %}" onclick="removeOption();" disabled /></p>
                 </div>
             </div>
         </div>
