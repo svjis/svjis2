@@ -49,6 +49,9 @@
             <label class="common-label" for="{{ form.header_picture.auto_id }}">{{ form.header_picture.label }}</label>
             {{ form.header_picture }}
         </p>
+        {% if form.instance.header_picture %}
+        <p><img src="/media/{{ form.instance.header_picture }}" alt="{% trans 'Company header picture' %}" width="80%" height="80%"></p>
+        {% endif %}
     </fieldset>
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />

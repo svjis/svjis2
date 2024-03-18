@@ -10,20 +10,20 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% trans 'Description' %}</th>
         <th class="list" scope="col">{% trans 'Address' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ obj.description }}</td>
-        <td class="list">{{ obj.address }}</td>
         <td class="list"><a href="{% url 'admin_entrance_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_entrance_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list">{{ obj.description }}</td>
+        <td class="list">{{ obj.address }}</td>
     </tr>
     {% endfor %}
     {% endif %}

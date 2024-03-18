@@ -333,12 +333,22 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
 @permission_required("articles.svjis_edit_admin_users")
 @require_GET
 def admin_user_view(request):
-    user_list = User.objects.all()
+    deactivated_users = request.GET.get('deactivated_users', False) == 'on'
+    user_list = User.objects.filter(is_active= not deactivated_users)
+    group_filter = int(request.GET.get('group_filter', 0))
+    if group_filter != 0:
+        g = Group.objects.filter(pk=group_filter)
+        user_list = User.objects.filter(groups__in=g)
+    group_list = Group.objects.all()
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = user_list
+    ctx['group_list'] = group_list
+    ctx['group_filter'] = group_filter
+    ctx['deactivated_users'] = deactivated_users
     return render(request, "admin_user.html", ctx)
 
 

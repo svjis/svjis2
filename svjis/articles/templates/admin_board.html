@@ -10,20 +10,20 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% trans 'Member' %}</th>
         <th class="list" scope="col">{% trans 'Position' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
-        <td class="list">{{ obj.position }}</td>
         <td class="list"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list">{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
+        <td class="list">{{ obj.position }}</td>
     </tr>
     {% endfor %}
     {% endif %}
