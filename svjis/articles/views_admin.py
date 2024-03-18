@@ -236,11 +236,26 @@ def admin_entrance_delete_view(request, pk):
 @require_GET
 def admin_building_unit_view(request):
     unit_list = models.BuildingUnit.objects.all()
+    type_list = models.BuildingUnitType.objects.all()
+    entrance_list = models.BuildingEntrance.objects.all()
+
+    type_filter = int(request.GET.get('type_filter', 0))
+    if type_filter != 0:
+        unit_list = unit_list.filter(type_id = type_filter)
+
+    entrance_filter = int(request.GET.get('entrance_filter', 0))
+    if entrance_filter != 0:
+        unit_list = unit_list.filter(entrance_id = entrance_filter)
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = unit_list
+    ctx['type_list'] = type_list
+    ctx['type_filter'] = type_filter
+    ctx['entrance_list'] = entrance_list
+    ctx['entrance_filter'] = entrance_filter
     return render(request, "admin_building_unit.html", ctx)
 
 

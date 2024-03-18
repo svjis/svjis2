@@ -5,7 +5,48 @@
 {% block content %}
 
 <h1 class="page-title" id="tbl-desc">{% trans 'Building units' %}</h1>
-[<a href="{% url 'admin_building_unit_edit' pk=0 %}">{% trans 'Add new unit' %}</a>]
+
+<div class="container">
+    <div class="row">
+
+        <div class="left">
+            <p>[<a href="{% url 'admin_building_unit_edit' pk=0 %}">{% trans 'Add new unit' %}</a>]</p>
+        </div>
+
+        <div class="right">
+            <p>{% trans 'Unit type' %}</p>
+        </div>
+        <div class="middle">
+            <p>
+            <form action="{% url 'admin_building_unit' %}" method="get">
+                <select name='type_filter' onchange='this.form.submit()'>
+                    <option value="0">-------</option>
+                    {% for t in type_list %}
+                    <option value="{{ t.pk }}" {% if type_filter == t.pk  %}selected{% endif %}>{{ t.description }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            </p>
+        </div>
+
+        <div class="right">
+            <p>{% trans 'Entrance' %}</p>
+        </div>
+        <div class="middle">
+            <p>
+            <form action="{% url 'admin_building_unit' %}" method="get">
+                <select name='entrance_filter' onchange='this.form.submit()'>
+                    <option value="0">-------</option>
+                    {% for e in entrance_list %}
+                    <option value="{{ e.pk }}" {% if entrance_filter == e.pk  %}selected{% endif %}>{{ e.description }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            </p>
+        </div>
+
+    </div>
+</div>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
