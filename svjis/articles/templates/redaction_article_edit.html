@@ -72,7 +72,7 @@
         <td class="list">{{ obj.description }}</td>
         <td class="list">[{{ obj.description }}](/media/{{ obj.file }})</td>
         <td class="list">![{{ obj.description }}](/media/{{ obj.file }})</td>
-        <td class="list"><a href="{% url 'redaction_article_asset_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
 </table>

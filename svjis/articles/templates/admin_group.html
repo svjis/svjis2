@@ -22,7 +22,7 @@
         <td class="list">{{ forloop.counter }}</td>
         <td class="list"><a href="{% url 'admin_group_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_user' %}?group_filter={{ obj.pk }}"><img src="/static/gfx/user.png" border="0" title="{% trans 'List of users' %}" alt="{% trans 'List of users' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.name }} ?')) return false;" href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
         <td class="list">{{ obj.name }}</td>
     </tr>
     {% endfor %}

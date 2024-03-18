@@ -21,7 +21,7 @@
     <tr>
         <td class="list">{{ forloop.counter }}</td>
         <td class="list"><a href="{% url 'admin_entrance_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_entrance_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.description }} ?')) return false;" href="{% url 'admin_entrance_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
         <td class="list">{{ obj.description }}</td>
         <td class="list">{{ obj.address }}</td>
     </tr>

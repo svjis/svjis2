@@ -68,7 +68,7 @@
         <td class="list">{{ forloop.counter }}</td>
         <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" border="0" title="{% trans 'Owners' %}" alt="{% trans 'Owners' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.type.description }} {{ obj.description }} ?')) return false;" href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
         <td class="list">{{ obj.type.description }}</td>
         <td class="list">{{ obj.entrance.description }}</td>
         <td class="list">{{ obj.registration_id }}</td>
