@@ -32,7 +32,6 @@ def create_groups():
                         'svjis_add_article_comment',
                         'svjis_view_personal_menu',
                         'svjis_view_phonelist',
-                        'svjis_edit_survey',
             ]},
             {'name': 'Dodavatel', 'perms': [
                         'svjis_add_article_comment',
