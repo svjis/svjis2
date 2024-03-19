@@ -10,19 +10,23 @@ groups = {
         'svjis_add_article_comment',
         'svjis_view_personal_menu',
         'svjis_view_phonelist',
+        'svjis_answer_survey',
     ],
     'board_member': [
-        'svjis_view_redaction_menu',
-        'svjis_edit_article',
         'svjis_add_article_comment',
-        'svjis_edit_article_menu',
-        'svjis_edit_article_news',
         'svjis_view_personal_menu',
         'svjis_view_phonelist',
     ],
     'vendor': [
         'svjis_add_article_comment',
         'svjis_view_personal_menu',
+    ],
+    'redactor': [
+        'svjis_view_redaction_menu',
+        'svjis_edit_article',
+        'svjis_edit_article_menu',
+        'svjis_edit_survey',
+        'svjis_edit_article_news',
     ],
     'admin': [
         'svjis_view_redaction_menu',
@@ -99,9 +103,10 @@ class ArticleListTest(TestCase):
         cls.g_owner = create_group('owner')
         cls.g_board_member = create_group('board_member')
         cls.g_vendor = create_group('vendor')
+        cls.g_redactor = create_group('redactor')
         cls.g_admin = create_group('admin')
 
-        cls.u_jiri = create_user('jiri', [cls.g_owner, cls.g_board_member])
+        cls.u_jiri = create_user('jiri', [cls.g_owner, cls.g_board_member, cls.g_redactor])
         cls.u_petr = create_user('petr', [cls.g_owner])
         cls.u_karel = create_user('karel', [cls.g_vendor])
         cls.u_jarda = create_user('jarda', [cls.g_owner, cls.g_board_member, cls.g_admin])

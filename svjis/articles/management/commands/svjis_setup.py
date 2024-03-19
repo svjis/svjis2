@@ -21,27 +21,23 @@ def create_groups():
                         'svjis_edit_admin_company',
                         'svjis_edit_admin_building',
                         'svjis_view_phonelist',
-        ]},
+            ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',
                         'svjis_view_personal_menu',
                         'svjis_view_phonelist',
                         'svjis_answer_survey',
-        ]},
+            ]},
             {'name': 'Člen výboru', 'perms': [
-                        'svjis_view_redaction_menu',
-                        'svjis_edit_article',
                         'svjis_add_article_comment',
-                        'svjis_edit_article_menu',
-                        'svjis_edit_article_news',
                         'svjis_view_personal_menu',
                         'svjis_view_phonelist',
                         'svjis_edit_survey',
-        ]},
+            ]},
             {'name': 'Dodavatel', 'perms': [
                         'svjis_add_article_comment',
                         'svjis_view_personal_menu',
-        ]},
+            ]},
             {'name': 'Redaktor', 'perms': [
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
@@ -49,7 +45,7 @@ def create_groups():
                         'svjis_edit_article_news',
                         'svjis_view_personal_menu',
                         'svjis_edit_survey',
-        ]},
+            ]},
     ]
 
     print("Creating groups...")

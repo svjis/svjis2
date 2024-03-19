@@ -152,12 +152,15 @@ def article_survey_vote_view(request):
 
 @require_GET
 def article_view(request, pk):
-    q = get_article_filter(request.user)
-    article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
-    if len(article_qs) == 0:
-        raise Http404
+    if request.user.has_perm("articles.svjis_edit_article"):
+        article = get_object_or_404(models.Article, pk=pk)
     else:
-        article = article_qs[0]
+        q = get_article_filter(request.user)
+        article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
+        if len(article_qs) == 0:
+            raise Http404
+        else:
+            article = article_qs[0]
 
     user = request.user
     if user.is_anonymous:
