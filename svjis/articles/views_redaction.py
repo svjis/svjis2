@@ -169,6 +169,8 @@ def redaction_article_edit_view(request, pk):
     ctx['group_list'] = group_list
     ctx['asset_form'] = forms.ArticleAssetForm
     ctx['pk'] = pk
+    if pk != 0:
+        ctx['assets'] = utils.wrap_assets(form.instance.assets)
     ctx['aside_menu_items'] = get_side_menu('article', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_article_edit.html", ctx)

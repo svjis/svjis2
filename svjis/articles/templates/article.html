@@ -16,6 +16,23 @@
     </div>
 </div>
 
+{% if assets %}
+<p>
+    <table class="list" aria-describedby="tbl-desc">
+        <tr>
+            <th class="list" scope="col">&nbsp;</th>
+            <th class="list" scope="col">{% trans 'Assets' %}:</th>
+        </tr>
+        {% for a in assets %}
+        <tr>
+            <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
+            <td class="list"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</p>
+{% endif %}
+
 {% if obj.comments %}
 <h2 class="article-title">{% trans 'Comments' %}:</h2>
 {% for comment in obj.comments %}

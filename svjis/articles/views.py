@@ -172,6 +172,7 @@ def article_view(request, pk):
     ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
+    ctx['assets'] = utils.wrap_assets(article.assets)
     ctx['web_title'] = article.header
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)

@@ -2,6 +2,7 @@ import logging
 import re
 import secrets
 import string
+import os.path
 from . import views, views_contact, views_personal_settings, views_redaction, views_admin, models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -44,6 +45,24 @@ def generate_password(len: int) -> str:
 
 def validate_email_address(email_address: str) -> bool:
     return re.search(r"^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$", email_address) != None
+
+
+def wrap_assets(assets):
+    supported_icons = ['doc', 'docx', 'gif', 'htm', 'html', 'jpeg', 'jpg', 'pdf', 'pps', 'txt', 'xls', 'xlsx', 'zip']
+    result = []
+    for a in assets:
+        item = {}
+        item['asset'] = a
+        basename = os.path.basename(a.file.path)
+        _file_name, file_extension = os.path.splitext(basename)
+        file_extension = file_extension[1:]
+        item['basename'] = basename
+        if file_extension.lower() in supported_icons:
+            item['icon'] = f'Files_{file_extension.lower()}.gif'
+        else:
+            item['icon'] = 'Files_unknown.gif'
+        result.append(item)
+    return result
 
 
 def send_mails(recipient_list: list, subject: str, html_body: str, immediately: bool) -> None:
