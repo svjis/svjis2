@@ -8,19 +8,23 @@ from articles.models import ArticleMenu, Preferences, BuildingUnitType
 def create_groups():
     names = [
             {'name': 'Administrator', 'perms': [
+                        'svjis_add_article_comment',
+
+                        'svjis_view_personal_menu',
+                        'svjis_view_phonelist',
+
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
-                        'svjis_add_article_comment',
-                        'svjis_edit_article_menu',
                         'svjis_edit_article_news',
+                        'svjis_edit_survey',
+                        'svjis_edit_article_menu',
+
                         'svjis_view_admin_menu',
-                        'svjis_edit_admin_users',
-                        'svjis_edit_admin_groups',
-                        'svjis_view_personal_menu',
-                        'svjis_edit_admin_preferences',
                         'svjis_edit_admin_company',
                         'svjis_edit_admin_building',
-                        'svjis_view_phonelist',
+                        'svjis_edit_admin_users',
+                        'svjis_edit_admin_groups',
+                        'svjis_edit_admin_preferences',
             ]},
             {'name': 'Vlastník', 'perms': [
                         'svjis_add_article_comment',
