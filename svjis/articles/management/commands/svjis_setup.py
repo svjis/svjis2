@@ -40,10 +40,9 @@ def create_groups():
             {'name': 'Redaktor', 'perms': [
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
-                        'svjis_add_article_comment',
                         'svjis_edit_article_news',
-                        'svjis_view_personal_menu',
                         'svjis_edit_survey',
+                        'svjis_edit_article_menu',
             ]},
     ]
 
