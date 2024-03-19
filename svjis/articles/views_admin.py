@@ -63,7 +63,7 @@ def get_side_menu(active_item, user):
 @permission_required("articles.svjis_edit_admin_company")
 @require_GET
 def admin_company_edit_view(request):
-    instance, created = models.Company.objects.get_or_create(pk=1)
+    instance, __ = models.Company.objects.get_or_create(pk=1)
     form = forms.CompanyForm(instance=instance)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
@@ -76,7 +76,7 @@ def admin_company_edit_view(request):
 @permission_required("articles.svjis_edit_admin_company")
 @require_POST
 def admin_company_save_view(request):
-    instance, created = models.Company.objects.get_or_create(pk=1)
+    instance, __ = models.Company.objects.get_or_create(pk=1)
     form = forms.CompanyForm(request.POST, request.FILES, instance=instance)
     if form.is_valid:
         form.save()
@@ -149,7 +149,7 @@ def admin_board_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_edit_view(request):
-    instance, created = models.Building.objects.get_or_create(pk=1)
+    instance, __ = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(instance=instance)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
@@ -162,7 +162,7 @@ def admin_building_edit_view(request):
 @permission_required("articles.svjis_edit_admin_building")
 @require_POST
 def admin_building_save_view(request):
-    instance, created = models.Building.objects.get_or_create(pk=1)
+    instance, __ = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
@@ -214,7 +214,7 @@ def admin_entrance_save_view(request):
         form = forms.BuildingEntranceForm(request.POST, instance=instance)
     if form.is_valid:
         obj = form.save(commit=False)
-        obj.building, created = models.Building.objects.get_or_create(pk=1)
+        obj.building, __ = models.Building.objects.get_or_create(pk=1)
         obj.save()
     else:
         for error in form.errors:
@@ -288,7 +288,7 @@ def admin_building_unit_save_view(request):
         form = forms.BuildingUnitForm(request.POST, instance=instance)
     if form.is_valid:
         obj = form.save(commit=False)
-        obj.building, created = models.Building.objects.get_or_create(pk=1)
+        obj.building, __ = models.Building.objects.get_or_create(pk=1)
         obj.save()
     else:
         for error in form.errors:
@@ -373,7 +373,7 @@ def admin_user_edit_view(request, pk):
     if pk != 0:
         instance = get_object_or_404(User, pk=pk)
         uform = forms.UserForm(instance=instance)
-        pinstance, created = models.UserProfile.objects.get_or_create(user=instance)
+        pinstance, __ = models.UserProfile.objects.get_or_create(user=instance)
         pform = forms.UserProfileForm(instance=pinstance)
     else:
         instance = User

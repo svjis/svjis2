@@ -21,7 +21,7 @@ def get_side_menu(active_item, user):
 # Contact - company
 @require_GET
 def contact_view(request):
-    instance, created = models.Company.objects.get_or_create(pk=1)
+    instance, __ = models.Company.objects.get_or_create(pk=1)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Contact")
     ctx['company'] = instance
