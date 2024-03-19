@@ -46,6 +46,8 @@ python manage.py runserver
 
 Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Osobní nastavení - Změna hesla**.
 
+Uvedený způsob spuštění je vhodný pro rychlé vyzkoušení aplikace na vašem počítači, nebo pro vývojáře. Pokud chcete SVJIS nasadit na server do produkce tak si prostudujte [Django dokumentaci](https://docs.djangoproject.com/en/5.0/howto/deployment/).
+
 ## 3 Parametrizace
 
 ### 3.1 Údaje o SVJ
