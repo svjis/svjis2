@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def get_context():
      ctx = {}
-     company, __ = models.Company.objects.get_or_create(pk=1)
+     company, _created = models.Company.objects.get_or_create(pk=1)
      if company is not None:
           ctx['company_picture'] = company.header_picture
           ctx['company_name'] = company.name
