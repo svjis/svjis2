@@ -1,4 +1,5 @@
 import os
+from . import utils
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
@@ -10,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Article(models.Model):
     header = models.CharField(_("Header"), max_length=100)
+    slug = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
@@ -38,6 +40,10 @@ class Article(models.Model):
             ("svjis_view_redaction_menu", "Can view Redaction menu"),
             ("svjis_edit_article", "Can edit Article"),
         )
+
+    def save(self, **kwargs):
+        utils.unique_slugify(self, self.header)
+        super(Article, self).save(**kwargs)
 
 
 class ArticleLog(models.Model):
