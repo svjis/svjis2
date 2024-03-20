@@ -131,11 +131,11 @@ class ArticleListTest(TestCase):
         self.assertEqual(logged_in, True)
 
         # Article for all
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Board
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Main page
@@ -166,13 +166,13 @@ class ArticleListTest(TestCase):
         self.assertEqual(logged_in, True)
 
         # Article for all
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Board
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Main page
@@ -202,15 +202,15 @@ class ArticleListTest(TestCase):
         self.assertEqual(logged_in, True)
 
         # Article for all
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Owners
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_owners.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Board
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 404)
 
         # Main page
@@ -238,15 +238,15 @@ class ArticleListTest(TestCase):
         self.assertEqual(logged_in, True)
 
         # Article for all
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Owners
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_owners.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
         self.assertEqual(response.status_code, 404)
 
         # Article for Board
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 404)
 
         # Main page
@@ -271,15 +271,15 @@ class ArticleListTest(TestCase):
         self.client.logout()
 
         # Article for all
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Owners
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_owners.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
         self.assertEqual(response.status_code, 404)
 
         # Article for Board
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 404)
 
         # Main page
@@ -304,13 +304,13 @@ class ArticleListTest(TestCase):
         self.assertEqual(logged_in, True)
 
         # Article for all
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_all.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Article for Board
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('article', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
         self.assertEqual(response.status_code, 200)
 
         # Main page
