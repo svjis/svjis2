@@ -1,5 +1,5 @@
 import os
-from . import utils
+from .model_utils import unique_slugify
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Article(models.Model):
     header = models.CharField(_("Header"), max_length=100)
-    slug = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, default='')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
@@ -42,7 +42,7 @@ class Article(models.Model):
         )
 
     def save(self, **kwargs):
-        utils.unique_slugify(self, self.header)
+        unique_slugify(self, self.header)
         super(Article, self).save(**kwargs)
 
 
@@ -56,7 +56,7 @@ class ArticleLog(models.Model):
 
 
 def article_directory_path(instance, filename):
-    return 'articles/{0}/{1}'.format(instance.article.id, filename)
+    return 'articles/{0}/{1}'.format(instance.article.slug, filename)
 
 
 class ArticleAsset(models.Model):

@@ -16,7 +16,7 @@
             <!-- Article -->
             <div class="article box">
                 <div class="article-desc">
-                    <h1 class="article-title-list"><a {% if search != '' %} href="{% url 'article' pk=obj.id %}?search={{ search }}" {% else %} href="{% url 'article' pk=obj.id %}" {% endif %}>{{ obj.header | highlight:search | safe }}</a></h1>
+                    <h1 class="article-title-list"><a {% if search != '' %} href="{% url 'article' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'article' slug=obj.slug %}" {% endif %}>{{ obj.header | highlight:search | safe }}</a></h1>
                     <p class="info">
                         <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
                         <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,

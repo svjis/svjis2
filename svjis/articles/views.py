@@ -151,16 +151,17 @@ def article_survey_vote_view(request):
 
 
 @require_GET
-def article_view(request, pk):
+def article_view(request, slug):
     if request.user.has_perm("articles.svjis_edit_article"):
-        article = get_object_or_404(models.Article, pk=pk)
+        article_qs = models.Article.objects.filter(slug=slug)
     else:
         q = get_article_filter(request.user)
-        article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
-        if len(article_qs) == 0:
-            raise Http404
-        else:
-            article = article_qs[0]
+        article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
+
+    if len(article_qs) == 0:
+        raise Http404
+    else:
+        article = article_qs[0]
 
     user = request.user
     if user.is_anonymous:
@@ -216,7 +217,7 @@ def article_watch_view(request):
     else:
         article.watching_users.add(request.user)
 
-    return redirect(article_view, pk=pk)
+    return redirect(article_view, slug=article.slug)
 
 
 # Login
