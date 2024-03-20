@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-17 23:36+0100\n"
+"POT-Creation-Date: 2024-03-20 21:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,37 +23,37 @@ msgstr ""
 msgid "Select the entrnance (if does it make sense)"
 msgstr "Vyberte vchod (pokud dává smysl)"
 
-#: articles/models.py:12
+#: articles/models.py:13
 msgid "Header"
 msgstr "Nadpis"
 
-#: articles/models.py:15 articles/models.py:112 articles/models.py:130
-#: articles/templates/redaction_article.html:19
+#: articles/models.py:17 articles/models.py:118 articles/models.py:136
+#: articles/templates/redaction_article.html:20
 #: articles/templates/redaction_news.html:14
 #: articles/templates/redaction_survey.html:19
 msgid "Published"
 msgstr "Publikován"
 
-#: articles/models.py:16
+#: articles/models.py:18
 msgid "Perex (markdown)"
 msgstr "Perex (markdown)"
 
-#: articles/models.py:17
+#: articles/models.py:19
 msgid "Body (markdown)"
 msgstr "Tělo (markdown)"
 
-#: articles/models.py:19
+#: articles/models.py:21
 msgid "Allow comments"
 msgstr "Povolit komentáře"
 
-#: articles/models.py:21
+#: articles/models.py:23
 msgid "Visible for all"
 msgstr "Viditelný pro všechny"
 
-#: articles/models.py:57 articles/models.py:91 articles/models.py:127
-#: articles/models.py:161 articles/models.py:285 articles/models.py:292
-#: articles/models.py:302 articles/templates/admin_building_unit.html:16
-#: articles/templates/admin_entrance.html:13
+#: articles/models.py:63 articles/models.py:97 articles/models.py:133
+#: articles/models.py:167 articles/models.py:291 articles/models.py:298
+#: articles/models.py:308 articles/templates/admin_building_unit.html:60
+#: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/personal_my_units.html:14
 #: articles/templates/redaction_survey.html:15
@@ -61,159 +61,161 @@ msgstr "Viditelný pro všechny"
 msgid "Description"
 msgstr "Popis"
 
-#: articles/models.py:58
+#: articles/models.py:64
 msgid "File"
 msgstr "Soubor"
 
-#: articles/models.py:59 articles/models.py:75
-#: articles/templates/redaction_article.html:15
+#: articles/models.py:65 articles/models.py:81
+#: articles/templates/redaction_article.html:16
 #: articles/templates/redaction_article_edit.html:7
 #: articles/views_redaction.py:125
 msgid "Article"
 msgstr "Článek"
 
-#: articles/models.py:78 articles/models.py:113 articles/models.py:223
+#: articles/models.py:84 articles/models.py:119 articles/models.py:229
 #: articles/templates/redaction_news.html:15
 msgid "Body"
 msgstr "Tělo"
 
-#: articles/models.py:92 articles/templates/redaction_menu.html:15
+#: articles/models.py:98 articles/templates/redaction_menu.html:15
 msgid "Hide"
 msgstr "Skrýt"
 
-#: articles/models.py:128
+#: articles/models.py:134
 msgid "Starting day"
 msgstr "Počáteční datum"
 
-#: articles/models.py:129
+#: articles/models.py:135
 msgid "Ending day"
 msgstr "Koncové datum"
 
-#: articles/models.py:198
+#: articles/models.py:204
 msgid "Salutation"
 msgstr "Oslovení"
 
-#: articles/models.py:199 articles/models.py:244 articles/models.py:264
-#: articles/models.py:286 articles/templates/admin_entrance.html:14
+#: articles/models.py:205 articles/models.py:250 articles/models.py:270
+#: articles/models.py:292 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Adresa"
 
-#: articles/models.py:200 articles/models.py:245 articles/models.py:265
+#: articles/models.py:206 articles/models.py:251 articles/models.py:271
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "Město"
 
-#: articles/models.py:201 articles/models.py:246 articles/models.py:266
+#: articles/models.py:207 articles/models.py:252 articles/models.py:272
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "PSČ"
 
-#: articles/models.py:202
+#: articles/models.py:208
 msgid "Country"
 msgstr "Země"
 
-#: articles/models.py:203 articles/models.py:247
+#: articles/models.py:209 articles/models.py:253
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:14
 msgid "Phone"
 msgstr "Telefon"
 
-#: articles/models.py:204
+#: articles/models.py:210
 msgid "Show in phonelist"
 msgstr "Ukázat v seznamu kontaktů"
 
-#: articles/models.py:205
+#: articles/models.py:211
 msgid "Internal note"
 msgstr "Interní poznámka"
 
-#: articles/models.py:221 articles/models.py:248
-#: articles/templates/admin_user.html:18
+#: articles/models.py:227 articles/models.py:254
+#: articles/templates/admin_user.html:54
 #: articles/templates/contact_company.html:36
 #: articles/templates/contact_phonelist.html:15
 #: articles/templates/redaction_article_notifications.html:20
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: articles/models.py:222 articles/templates/admin_messages.html:13
+#: articles/models.py:228 articles/templates/admin_messages.html:13
 msgid "Subject"
 msgstr "Předmět"
 
-#: articles/models.py:230 articles/templates/admin_preferences.html:15
+#: articles/models.py:236 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Klíč"
 
-#: articles/models.py:231 articles/templates/admin_preferences.html:16
+#: articles/models.py:237 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Hodnota"
 
-#: articles/models.py:243 articles/templates/admin_group.html:12
-#: articles/templates/redaction_article_edit.html:65
+#: articles/models.py:249 articles/templates/admin_group.html:16
+#: articles/templates/redaction_article_edit.html:66
 #: articles/templates/redaction_menu.html:12
 msgid "Name"
 msgstr "Název"
 
-#: articles/models.py:249
+#: articles/models.py:255
 msgid "Registration no."
 msgstr "IČ"
 
-#: articles/models.py:250
+#: articles/models.py:256
 msgid "VAT Registration no."
 msgstr "DIČ"
 
-#: articles/models.py:251 articles/templates/contact_company.html:54
+#: articles/models.py:257 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Internetová adresa"
 
-#: articles/models.py:252
+#: articles/models.py:258
 msgid "Header picture (940 x 94)"
 msgstr "Obrázek záhlaví (940 x 94)"
 
-#: articles/models.py:267
+#: articles/models.py:273
 msgid "Land Registration no."
 msgstr "Id v katastru nemovitostí"
 
-#: articles/models.py:275 articles/templates/admin_company_edit.html:7
+#: articles/models.py:281 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11 articles/views_admin.py:16
 msgid "Company"
 msgstr "Společenství"
 
-#: articles/models.py:276
+#: articles/models.py:282
 msgid "Order"
 msgstr "Pořadí"
 
-#: articles/models.py:278 articles/templates/admin_board.html:14
+#: articles/models.py:284 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Funkce"
 
-#: articles/models.py:284 articles/models.py:298
+#: articles/models.py:290 articles/models.py:304
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11 articles/views_admin.py:26
 msgid "Building"
 msgstr "Budova"
 
-#: articles/models.py:299 articles/templates/admin_building_unit.html:13
+#: articles/models.py:305 articles/templates/admin_building_unit.html:17
+#: articles/templates/admin_building_unit.html:57
 #: articles/templates/admin_user_ownes_edit.html:12
 #: articles/templates/personal_my_units.html:12
 msgid "Type"
 msgstr "Typ"
 
-#: articles/models.py:300 articles/templates/admin_building_unit.html:14
+#: articles/models.py:306 articles/templates/admin_building_unit.html:33
+#: articles/templates/admin_building_unit.html:58
 #: articles/templates/admin_entrance_edit.html:13
 msgid "Entrance"
 msgstr "Vchod"
 
-#: articles/models.py:301 articles/templates/admin_building_unit.html:15
+#: articles/models.py:307 articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:13
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "ID v katastru"
 
-#: articles/models.py:303 articles/templates/admin_building_unit.html:17
+#: articles/models.py:309 articles/templates/admin_building_unit.html:61
 msgid "Numerator"
 msgstr "Čitatel"
 
-#: articles/models.py:304 articles/templates/admin_building_unit.html:18
+#: articles/models.py:310 articles/templates/admin_building_unit.html:62
 msgid "Denominator"
 msgstr "Jmenovatel"
 
@@ -227,31 +229,41 @@ msgstr "Výbor"
 msgid "Add new member"
 msgstr "Přidat nového člena"
 
-#: articles/templates/admin_board.html:13
+#: articles/templates/admin_board.html:15
 msgid "Member"
 msgstr "Člen"
 
-#: articles/templates/admin_board.html:25
-#: articles/templates/admin_building_unit.html:35
-#: articles/templates/admin_entrance.html:25
-#: articles/templates/admin_group.html:21
+#: articles/templates/admin_board.html:23
+#: articles/templates/admin_building_unit.html:69
+#: articles/templates/admin_entrance.html:23
+#: articles/templates/admin_group.html:23
 #: articles/templates/admin_preferences.html:23
-#: articles/templates/admin_user.html:26
-#: articles/templates/redaction_article.html:25
+#: articles/templates/admin_user.html:62
+#: articles/templates/redaction_article.html:27
 #: articles/templates/redaction_menu.html:29
 #: articles/templates/redaction_news.html:27
 #: articles/templates/redaction_survey.html:26
 msgid "Edit"
 msgstr "Editovat"
 
-#: articles/templates/admin_board.html:26
-#: articles/templates/admin_building_unit.html:36
+#: articles/templates/admin_board.html:24
+#: articles/templates/admin_building_unit.html:71
+#: articles/templates/admin_entrance.html:24
+#: articles/templates/admin_group.html:25
+#: articles/templates/admin_preferences.html:24
+#: articles/templates/redaction_article_edit.html:79
+#: articles/templates/redaction_menu.html:32
+msgid "Do you want to delete"
+msgstr "Chcete smazat"
+
+#: articles/templates/admin_board.html:24
+#: articles/templates/admin_building_unit.html:71
 #: articles/templates/admin_building_unit_owners_edit.html:23
-#: articles/templates/admin_entrance.html:26
-#: articles/templates/admin_group.html:22
+#: articles/templates/admin_entrance.html:24
+#: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
 #: articles/templates/admin_user_ownes_edit.html:25
-#: articles/templates/redaction_article_edit.html:75
+#: articles/templates/redaction_article_edit.html:79
 #: articles/templates/redaction_menu.html:32
 #: articles/templates/redaction_news.html:28
 #: articles/templates/redaction_survey.html:28
@@ -262,7 +274,7 @@ msgstr "Smazat"
 #: articles/templates/admin_board_edit.html:28
 #: articles/templates/admin_building_edit.html:30
 #: articles/templates/admin_building_unit_edit.html:41
-#: articles/templates/admin_company_edit.html:54
+#: articles/templates/admin_company_edit.html:57
 #: articles/templates/admin_entrance_edit.html:25
 #: articles/templates/admin_group_edit.html:32
 #: articles/templates/admin_preferences_edit.html:27
@@ -280,11 +292,11 @@ msgstr "Uložit"
 msgid "Building units"
 msgstr "Jednotky"
 
-#: articles/templates/admin_building_unit.html:8
+#: articles/templates/admin_building_unit.html:13
 msgid "Add new unit"
 msgstr "Přidat jednotku"
 
-#: articles/templates/admin_building_unit.html:34
+#: articles/templates/admin_building_unit.html:70
 msgid "Owners"
 msgstr "Vlastníci"
 
@@ -308,6 +320,10 @@ msgstr "Příjmení"
 msgid "Add"
 msgstr "Přidat"
 
+#: articles/templates/admin_company_edit.html:53
+msgid "Company header"
+msgstr "Hlavička společenství"
+
 #: articles/templates/admin_entrance.html:7
 #: articles/templates/admin_entrance_edit.html:7 articles/views_admin.py:31
 msgid "Entrances"
@@ -320,12 +336,17 @@ msgstr "Přidat vchod"
 #: articles/templates/admin_group.html:7
 #: articles/templates/admin_group_edit.html:7
 #: articles/templates/admin_group_edit.html:13
+#: articles/templates/admin_user.html:28
 msgid "Group"
 msgstr "Skupina"
 
 #: articles/templates/admin_group.html:8
 msgid "Create new group"
 msgstr "Vytvořit novou skupinu"
+
+#: articles/templates/admin_group.html:24
+msgid "List of users"
+msgstr "Seznam uživatelů"
 
 #: articles/templates/admin_group_edit.html:21
 msgid "Permissions"
@@ -359,29 +380,33 @@ msgstr "Vytvořit novou položku"
 msgid "User"
 msgstr "Uživatel"
 
-#: articles/templates/admin_user.html:8
+#: articles/templates/admin_user.html:13
 msgid "Create new user"
 msgstr "Vytvořit nového uživatele"
 
-#: articles/templates/admin_user.html:15
+#: articles/templates/admin_user.html:17
+msgid "Deactivated users"
+msgstr "Deaktivovaní uživatelé"
+
+#: articles/templates/admin_user.html:51
 #: articles/templates/contact_phonelist.html:12
 msgid "Last name"
 msgstr "Příjmení"
 
-#: articles/templates/admin_user.html:16
+#: articles/templates/admin_user.html:52
 #: articles/templates/contact_phonelist.html:13
 msgid "First name"
 msgstr "Křestní jméno"
 
-#: articles/templates/admin_user.html:17
+#: articles/templates/admin_user.html:53
 msgid "Active"
 msgstr "Aktivní"
 
-#: articles/templates/admin_user.html:19
+#: articles/templates/admin_user.html:55
 msgid "Last login"
 msgstr "Poslední přihlášení"
 
-#: articles/templates/admin_user.html:27
+#: articles/templates/admin_user.html:63
 msgid "Units"
 msgstr "Jednotky"
 
@@ -412,32 +437,38 @@ msgid "Member of"
 msgstr "Je členem"
 
 #: articles/templates/article.html:12 articles/templates/main.html:23
-#: articles/templates/redaction_article.html:17
+#: articles/templates/redaction_article.html:18
 #: articles/templates/redaction_news.html:13
 #: articles/templates/redaction_survey.html:18
 msgid "Author"
 msgstr "Autor"
 
-#: articles/templates/article.html:12 articles/templates/article.html:20
+#: articles/templates/article.html:12 articles/templates/article.html:37
 #: articles/templates/main.html:24
 msgid "Comments"
 msgstr "Komentáře"
 
-#: articles/templates/article.html:32
+#: articles/templates/article.html:24
+#: articles/templates/redaction_article_edit.html:60
+#: articles/templates/redaction_article_edit.html:92
+msgid "Assets"
+msgstr "Přílohy"
+
+#: articles/templates/article.html:49
 msgid "Stop watching discussion"
 msgstr "Přestat sledovat diskuzi"
 
-#: articles/templates/article.html:34
+#: articles/templates/article.html:51
 msgid "Start watching discussion"
 msgstr "Začít sledovat diskuzi"
 
-#: articles/templates/article.html:49
+#: articles/templates/article.html:66
 msgid "Insert comment"
 msgstr "Vložit komentář"
 
 #: articles/templates/box-01.html:9
 #: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:19
-#: articles/views_redaction.py:287
+#: articles/views_redaction.py:289
 msgid "News"
 msgstr "Novinky"
 
@@ -519,18 +550,22 @@ msgstr "Nové heslo ještě jednou"
 msgid "Create new article"
 msgstr "Vytvořit nový článek"
 
-#: articles/templates/redaction_article.html:16
+#: articles/templates/redaction_article.html:17
 #: articles/templates/redaction_menu.html:7
 #: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:23
 msgid "Menu"
 msgstr "Menu"
 
-#: articles/templates/redaction_article.html:18
+#: articles/templates/redaction_article.html:19
 #: articles/templates/redaction_news.html:12
 msgid "Date"
 msgstr "Datum"
 
 #: articles/templates/redaction_article.html:26
+msgid "View"
+msgstr "Zobrazit"
+
+#: articles/templates/redaction_article.html:28
 #: articles/templates/redaction_article_notifications.html:8
 #: articles/templates/redaction_article_notifications_sent.html:8
 msgid "Send notifications"
@@ -546,20 +581,24 @@ msgstr "Vlastnosti"
 msgid "Visible for"
 msgstr "Viditelný pro"
 
-#: articles/templates/redaction_article_edit.html:60
-#: articles/templates/redaction_article_edit.html:86
-msgid "Assets"
-msgstr "Přílohy"
-
-#: articles/templates/redaction_article_edit.html:66
-msgid "Insert as Link"
-msgstr "Vložit jako link"
-
 #: articles/templates/redaction_article_edit.html:67
-msgid "Insert as Picture"
-msgstr "Vložit jako obrázek"
+msgid "Path"
+msgstr "Cesta"
 
-#: articles/templates/redaction_article_edit.html:97
+#: articles/templates/redaction_article_edit.html:68
+msgid "Link"
+msgstr "Odkaz"
+
+#: articles/templates/redaction_article_edit.html:69
+msgid "Link as picture"
+msgstr "Odkaz jako obrázek"
+
+#: articles/templates/redaction_article_edit.html:77
+#: articles/templates/redaction_article_edit.html:78
+msgid "Copy to clipboard"
+msgstr "Zkopírovat do schránky"
+
+#: articles/templates/redaction_article_edit.html:103
 msgid "Upload"
 msgstr "Upload"
 
@@ -588,8 +627,8 @@ msgstr "Rodič"
 msgid "Level"
 msgstr "Úroveň"
 
-#: articles/templates/redaction_menu.html:16 articles/utils.py:28
-#: articles/views.py:117 articles/views.py:168 articles/views_redaction.py:17
+#: articles/templates/redaction_menu.html:16 articles/utils.py:29
+#: articles/views.py:117 articles/views.py:172 articles/views_redaction.py:17
 msgid "Articles"
 msgstr "Články"
 
@@ -600,6 +639,10 @@ msgstr "Položka menu"
 #: articles/templates/redaction_news.html:8
 msgid "Create new news"
 msgstr "Vytvořit novinku"
+
+#: articles/templates/redaction_news.html:28
+msgid "Do you want to delete this news"
+msgstr "Chcete smazat tuto novinku"
 
 #: articles/templates/redaction_survey.html:8
 msgid "Create new survey"
@@ -617,6 +660,10 @@ msgstr "Koncové datum"
 msgid "Results"
 msgstr "Výsledky"
 
+#: articles/templates/redaction_survey.html:28
+msgid "Do you want to delete this survey"
+msgstr "Chcete smazat tuto anketu"
+
 #: articles/templates/redaction_survey_edit.html:16
 msgid "Options"
 msgstr "Volby"
@@ -626,6 +673,10 @@ msgstr "Volby"
 #: articles/templates/redaction_survey_results.html:37
 msgid "Option"
 msgstr "Volba"
+
+#: articles/templates/redaction_survey_edit.html:28
+msgid "Do you want to delete this option"
+msgstr "Chcete smazat tuto volbu"
 
 #: articles/templates/redaction_survey_edit.html:45
 msgid "Add option"
@@ -663,36 +714,36 @@ msgstr "Odeslat přihlašovací informace e-mailem"
 msgid "Your E-Mail"
 msgstr "Váš E-Mail"
 
-#: articles/utils.py:29 articles/views_contact.py:15
+#: articles/utils.py:30 articles/views_contact.py:15
 #: articles/views_contact.py:26 articles/views_contact.py:39
 msgid "Contact"
 msgstr "Kontakt"
 
-#: articles/utils.py:31 articles/views_personal_settings.py:16
+#: articles/utils.py:32 articles/views_personal_settings.py:16
 #: articles/views_personal_settings.py:32
 #: articles/views_personal_settings.py:63
 #: articles/views_personal_settings.py:74
 msgid "Personal settings"
 msgstr "Osobní nastavení"
 
-#: articles/utils.py:33 articles/views_redaction.py:54
+#: articles/utils.py:34 articles/views_redaction.py:54
 #: articles/views_redaction.py:71 articles/views_redaction.py:139
-#: articles/views_redaction.py:167 articles/views_redaction.py:228
-#: articles/views_redaction.py:250 articles/views_redaction.py:300
-#: articles/views_redaction.py:320 articles/views_redaction.py:375
-#: articles/views_redaction.py:397 articles/views_redaction.py:465
+#: articles/views_redaction.py:167 articles/views_redaction.py:230
+#: articles/views_redaction.py:252 articles/views_redaction.py:302
+#: articles/views_redaction.py:322 articles/views_redaction.py:377
+#: articles/views_redaction.py:399 articles/views_redaction.py:467
 msgid "Redaction"
 msgstr "Redakce"
 
-#: articles/utils.py:35 articles/views_admin.py:69 articles/views_admin.py:96
+#: articles/utils.py:36 articles/views_admin.py:69 articles/views_admin.py:96
 #: articles/views_admin.py:113 articles/views_admin.py:155
 #: articles/views_admin.py:181 articles/views_admin.py:198
-#: articles/views_admin.py:240 articles/views_admin.py:257
-#: articles/views_admin.py:300 articles/views_admin.py:338
-#: articles/views_admin.py:367 articles/views_admin.py:428
-#: articles/views_admin.py:466 articles/views_admin.py:493
-#: articles/views_admin.py:545 articles/views_admin.py:562
-#: articles/views_admin.py:601
+#: articles/views_admin.py:251 articles/views_admin.py:272
+#: articles/views_admin.py:315 articles/views_admin.py:360
+#: articles/views_admin.py:392 articles/views_admin.py:453
+#: articles/views_admin.py:491 articles/views_admin.py:518
+#: articles/views_admin.py:570 articles/views_admin.py:587
+#: articles/views_admin.py:626
 msgid "Administration"
 msgstr "Administrace"
 
@@ -737,7 +788,7 @@ msgstr "Heslo nemůže být prázdné"
 msgid "New passwords don't match"
 msgstr "Nová hesla se neshodují"
 
-#: articles/views_redaction.py:21 articles/views_redaction.py:362
-#: articles/views_redaction.py:462
+#: articles/views_redaction.py:21 articles/views_redaction.py:364
+#: articles/views_redaction.py:464
 msgid "Surveys"
 msgstr "Ankety"

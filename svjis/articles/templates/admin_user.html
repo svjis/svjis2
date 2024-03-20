@@ -5,7 +5,43 @@
 {% block content %}
 
 <h1 class="page-title" id="tbl-desc">{% trans 'User' %}</h1>
-[<a href="{% url 'admin_user_edit' pk=0 %}">{% trans 'Create new user' %}</a>]
+
+<div class="container">
+    <div class="row">
+
+        <div class="left">
+            <p>[<a href="{% url 'admin_user_edit' pk=0 %}">{% trans 'Create new user' %}</a>]</p>
+        </div>
+
+        <div class="right">
+            <p>{% trans 'Deactivated users' %}</p>
+        </div>
+        <div class="middle">
+            <p>
+            <form action="{% url 'admin_user' %}" method="get">
+                <input type="checkbox" name="deactivated_users" {% if deactivated_users %}checked{% endif %}  onchange='this.form.submit()'  />
+            </form>
+            </p>
+        </div>
+
+        <div class="right">
+            <p>{% trans 'Group' %}</p>
+        </div>
+        <div class="middle">
+            <p>
+            <form action="{% url 'admin_user' %}" method="get">
+                <select name='group_filter' onchange='this.form.submit()'>
+                    <option value="0">-------</option>
+                    {% for r in group_list %}
+                    <option value="{{ r.pk }}" {% if group_filter == r.pk  %}selected{% endif %}>{{ r.name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            </p>
+        </div>
+
+    </div>
+</div>
 
 <table class="list" width="100%" aria-describedby="tbl-desc">
     <tr>

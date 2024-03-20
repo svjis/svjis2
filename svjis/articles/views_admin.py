@@ -63,7 +63,7 @@ def get_side_menu(active_item, user):
 @permission_required("articles.svjis_edit_admin_company")
 @require_GET
 def admin_company_edit_view(request):
-    instance, created = models.Company.objects.get_or_create(pk=1)
+    instance, _created = models.Company.objects.get_or_create(pk=1)
     form = forms.CompanyForm(instance=instance)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
@@ -76,7 +76,7 @@ def admin_company_edit_view(request):
 @permission_required("articles.svjis_edit_admin_company")
 @require_POST
 def admin_company_save_view(request):
-    instance, created = models.Company.objects.get_or_create(pk=1)
+    instance, _created = models.Company.objects.get_or_create(pk=1)
     form = forms.CompanyForm(request.POST, request.FILES, instance=instance)
     if form.is_valid:
         form.save()
@@ -149,7 +149,7 @@ def admin_board_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_edit_view(request):
-    instance, created = models.Building.objects.get_or_create(pk=1)
+    instance, _created = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(instance=instance)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
@@ -162,7 +162,7 @@ def admin_building_edit_view(request):
 @permission_required("articles.svjis_edit_admin_building")
 @require_POST
 def admin_building_save_view(request):
-    instance, created = models.Building.objects.get_or_create(pk=1)
+    instance, _created = models.Building.objects.get_or_create(pk=1)
     form = forms.BuildingForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
@@ -214,7 +214,7 @@ def admin_entrance_save_view(request):
         form = forms.BuildingEntranceForm(request.POST, instance=instance)
     if form.is_valid:
         obj = form.save(commit=False)
-        obj.building, created = models.Building.objects.get_or_create(pk=1)
+        obj.building, _created = models.Building.objects.get_or_create(pk=1)
         obj.save()
     else:
         for error in form.errors:
@@ -236,11 +236,26 @@ def admin_entrance_delete_view(request, pk):
 @require_GET
 def admin_building_unit_view(request):
     unit_list = models.BuildingUnit.objects.all()
+    type_list = models.BuildingUnitType.objects.all()
+    entrance_list = models.BuildingEntrance.objects.all()
+
+    type_filter = int(request.GET.get('type_filter', 0))
+    if type_filter != 0:
+        unit_list = unit_list.filter(type_id = type_filter)
+
+    entrance_filter = int(request.GET.get('entrance_filter', 0))
+    if entrance_filter != 0:
+        unit_list = unit_list.filter(entrance_id = entrance_filter)
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = unit_list
+    ctx['type_list'] = type_list
+    ctx['type_filter'] = type_filter
+    ctx['entrance_list'] = entrance_list
+    ctx['entrance_filter'] = entrance_filter
     return render(request, "admin_building_unit.html", ctx)
 
 
@@ -273,7 +288,7 @@ def admin_building_unit_save_view(request):
         form = forms.BuildingUnitForm(request.POST, instance=instance)
     if form.is_valid:
         obj = form.save(commit=False)
-        obj.building, created = models.Building.objects.get_or_create(pk=1)
+        obj.building, _created = models.Building.objects.get_or_create(pk=1)
         obj.save()
     else:
         for error in form.errors:
@@ -333,12 +348,22 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
 @permission_required("articles.svjis_edit_admin_users")
 @require_GET
 def admin_user_view(request):
-    user_list = User.objects.all()
+    deactivated_users = request.GET.get('deactivated_users', False) == 'on'
+    user_list = User.objects.filter(is_active= not deactivated_users)
+    group_filter = int(request.GET.get('group_filter', 0))
+    if group_filter != 0:
+        g = Group.objects.filter(pk=group_filter)
+        user_list = User.objects.filter(groups__in=g)
+    group_list = Group.objects.all()
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = user_list
+    ctx['group_list'] = group_list
+    ctx['group_filter'] = group_filter
+    ctx['deactivated_users'] = deactivated_users
     return render(request, "admin_user.html", ctx)
 
 
@@ -348,7 +373,7 @@ def admin_user_edit_view(request, pk):
     if pk != 0:
         instance = get_object_or_404(User, pk=pk)
         uform = forms.UserForm(instance=instance)
-        pinstance, created = models.UserProfile.objects.get_or_create(user=instance)
+        pinstance, _created = models.UserProfile.objects.get_or_create(user=instance)
         pform = forms.UserProfileForm(instance=pinstance)
     else:
         instance = User

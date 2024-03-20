@@ -1,4 +1,4 @@
-from . import utils, models, forms
+from . import utils, models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required
@@ -151,9 +151,13 @@ def article_survey_vote_view(request):
 
 
 @require_GET
-def article_view(request, pk):
-    q = get_article_filter(request.user)
-    article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
+def article_view(request, slug):
+    if request.user.has_perm("articles.svjis_edit_article"):
+        article_qs = models.Article.objects.filter(slug=slug)
+    else:
+        q = get_article_filter(request.user)
+        article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
+
     if len(article_qs) == 0:
         raise Http404
     else:
@@ -169,6 +173,7 @@ def article_view(request, pk):
     ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
+    ctx['assets'] = utils.wrap_assets(article.assets)
     ctx['web_title'] = article.header
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
@@ -212,7 +217,7 @@ def article_watch_view(request):
     else:
         article.watching_users.add(request.user)
 
-    return redirect(article_view, pk=pk)
+    return redirect(article_view, slug=article.slug)
 
 
 # Login

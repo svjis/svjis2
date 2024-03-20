@@ -2,6 +2,7 @@ import logging
 import re
 import secrets
 import string
+import os.path
 from . import views, views_contact, views_personal_settings, views_redaction, views_admin, models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -15,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def get_context():
      ctx = {}
-     company, created = models.Company.objects.get_or_create(pk=1)
+     company, _created = models.Company.objects.get_or_create(pk=1)
      if company is not None:
           ctx['company_picture'] = company.header_picture
           ctx['company_name'] = company.name
@@ -44,6 +45,24 @@ def generate_password(len: int) -> str:
 
 def validate_email_address(email_address: str) -> bool:
     return re.search(r"^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$", email_address) != None
+
+
+def wrap_assets(assets):
+    supported_icons = ['doc', 'docx', 'gif', 'htm', 'html', 'jpeg', 'jpg', 'pdf', 'pps', 'txt', 'xls', 'xlsx', 'zip']
+    result = []
+    for a in assets:
+        item = {}
+        item['asset'] = a
+        basename = os.path.basename(a.file.path)
+        _file_name, file_extension = os.path.splitext(basename)
+        file_extension = file_extension[1:]
+        item['basename'] = basename
+        if file_extension.lower() in supported_icons:
+            item['icon'] = f'Files_{file_extension.lower()}.gif'
+        else:
+            item['icon'] = 'Files_unknown.gif'
+        result.append(item)
+    return result
 
 
 def send_mails(recipient_list: list, subject: str, html_body: str, immediately: bool) -> None:
@@ -93,7 +112,7 @@ def send_article_notification(user, host, article):
         return
 
     subj = models.Company.objects.get(pk=1).name
-    link = f"<a href='{host}/article/{article.pk}/'>{article.header}</a>"
+    link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     send_mails([user.email], f'{subj} - {article.header}', template.value.format(link), False)
 
 
@@ -105,5 +124,5 @@ def send_article_comment_notification(user, host, article, comment):
         return
 
     subj = models.Company.objects.get(pk=1).name
-    link = f"<a href='{host}/article/{article.pk}/'>{article.header}</a>"
+    link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     send_mails([user.email], f'{subj} - {article.header}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body), False)

@@ -12,6 +12,7 @@
     <tr>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% trans 'Article' %}</th>
         <th class="list" scope="col">{% trans 'Menu' %}</th>
         <th class="list" scope="col">{% trans 'Author' %}</th>
@@ -22,6 +23,7 @@
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
+        <td class="list"><a href="{% url 'article' slug=obj.slug %}?search={{ search }}"><img src="/static/gfx/find.png" border="0" title="{% trans 'View' %}" alt="{% trans 'View' %}"></a></td>
         <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'redaction_article_notifications' pk=obj.id %}"><img src="/static/gfx/email_open_image.png" border="0" title="{% trans 'Send notifications' %}" alt="{% trans 'Send notifications' %}"></a></td>
         <td class="list">{{ obj.header | highlight:search | safe }}</td>

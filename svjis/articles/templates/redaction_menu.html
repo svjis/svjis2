@@ -29,7 +29,7 @@
         <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.item.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list">
             {% if obj.articles == 0 %}
-            <a href="{% url 'redaction_menu_delete' pk=obj.item.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a>
+            <a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.item.description }} ?')) return false;" href="{% url 'redaction_menu_delete' pk=obj.item.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a>
             {% endif %}
         </td>
     </tr>
