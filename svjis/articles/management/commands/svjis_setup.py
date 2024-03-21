@@ -11,9 +11,10 @@ def create_groups():
                         # Articles
                         'svjis_add_article_comment',
                         'svjis_answer_survey',
+                        # Contact
+                        'svjis_view_phonelist',
                         # Personal settings
                         'svjis_view_personal_menu',
-                        'svjis_view_phonelist',
                         # Redaction
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
@@ -37,9 +38,10 @@ def create_groups():
                         # Articles
                         'svjis_add_article_comment',
                         'svjis_answer_survey',
+                        # Contact
+                        'svjis_view_phonelist',
                         # Personal settings
                         'svjis_view_personal_menu',
-                        'svjis_view_phonelist',
                         # Faults
                         'svjis_view_fault_menu',
                         'svjis_fault_reporter',
@@ -48,9 +50,10 @@ def create_groups():
             {'name': 'Člen výboru', 'perms': [
                         # Articles
                         'svjis_add_article_comment',
+                        # Contact
+                        'svjis_view_phonelist',
                         # Personal settings
                         'svjis_view_personal_menu',
-                        'svjis_view_phonelist',
             ]},
             {'name': 'Dodavatel', 'perms': [
                         # Articles
@@ -59,6 +62,10 @@ def create_groups():
                         'svjis_view_personal_menu',
             ]},
             {'name': 'Redaktor', 'perms': [
+                        # Articles
+                        'svjis_add_article_comment',
+                        # Personal settings
+                        'svjis_view_personal_menu',
                         # Redaction
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
@@ -67,6 +74,8 @@ def create_groups():
                         'svjis_edit_article_menu',
             ]},
             {'name': 'Řešitel', 'perms': [
+                        # Personal settings
+                        'svjis_view_personal_menu',
                         # Faults
                         'svjis_view_fault_menu',
                         'svjis_fault_reporter',
