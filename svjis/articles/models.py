@@ -311,3 +311,73 @@ class BuildingUnit(models.Model):
     owners = models.ManyToManyField(User)
     class Meta:
         ordering = ['description']
+
+
+# Faults
+#####################
+
+class FaultReport(models.Model):
+    subject = models.CharField(_("Subject"), max_length=50)
+    description = models.TextField(_("Description"))
+    created_date = models.DateTimeField(auto_now_add=True)
+    created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    assigned_to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_fault_set', null=True, blank=True)
+    closed = models.BooleanField(_("Closed"), default=False)
+    entrance = models.ForeignKey(BuildingEntrance, on_delete=models.CASCADE, verbose_name=_("Entrance"), null=True, blank=True)
+
+    def __str__(self):
+        return f"FaultReport: {self.header}"
+
+    @property
+    def assets(self):
+        return self.faultasset_set.all()
+
+    @property
+    def comments(self):
+        return self.faultcomment_set.all()
+
+    class Meta:
+        ordering = ['-id']
+        permissions = (
+            ("svjis_view_fault_menu", "Can view Faults menu"),
+            ("svjis_fault_reporter", "Can report fault"),
+            ("svjis_fault_resolver", "Can resolve fault"),
+        )
+
+
+def fault_directory_path(instance, filename):
+    return 'faults/{0}/{1}'.format(instance.faultreport.pk, filename)
+
+
+class FaultAsset(models.Model):
+    description = models.CharField(_("Description"), max_length=100)
+    file = models.FileField(_("File"), upload_to=fault_directory_path)
+    fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, verbose_name=_("Fault report"))
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"FaultAsset: {self.description}"
+
+    def delete(self, *args, **kwargs):
+        if os.path.isfile(self.file.path):
+            os.remove(self.file.path)
+        super(FaultAsset, self).delete(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-id']
+
+
+class FaultComment(models.Model):
+    fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, verbose_name=_("Fault report"))
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(_("Body"))
+
+    def __str__(self):
+        return f"FaultComment: {self.description}"
+
+    class Meta:
+        ordering = ['-id']
+        permissions = (
+            ("svjis_add_fault_comment", "Can add Fault comment"),
+        )
