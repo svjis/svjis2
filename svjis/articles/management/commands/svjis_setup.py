@@ -8,45 +8,70 @@ from articles.models import ArticleMenu, Preferences, BuildingUnitType
 def create_groups():
     names = [
             {'name': 'Administrator', 'perms': [
+                        # Articles
                         'svjis_add_article_comment',
-
+                        'svjis_answer_survey',
+                        # Personal settings
                         'svjis_view_personal_menu',
                         'svjis_view_phonelist',
-
+                        # Redaction
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
                         'svjis_edit_article_news',
                         'svjis_edit_survey',
                         'svjis_edit_article_menu',
-
+                        # Administration
                         'svjis_view_admin_menu',
                         'svjis_edit_admin_company',
                         'svjis_edit_admin_building',
                         'svjis_edit_admin_users',
                         'svjis_edit_admin_groups',
                         'svjis_edit_admin_preferences',
+                        # Faults
+                        'svjis_view_fault_menu',
+                        'svjis_fault_reporter',
+                        'svjis_fault_resolver',
+                        'svjis_add_fault_comment',
             ]},
             {'name': 'Vlastník', 'perms': [
+                        # Articles
                         'svjis_add_article_comment',
+                        'svjis_answer_survey',
+                        # Personal settings
                         'svjis_view_personal_menu',
                         'svjis_view_phonelist',
-                        'svjis_answer_survey',
+                        # Faults
+                        'svjis_view_fault_menu',
+                        'svjis_fault_reporter',
+                        'svjis_add_fault_comment',
             ]},
             {'name': 'Člen výboru', 'perms': [
+                        # Articles
                         'svjis_add_article_comment',
+                        # Personal settings
                         'svjis_view_personal_menu',
                         'svjis_view_phonelist',
             ]},
             {'name': 'Dodavatel', 'perms': [
+                        # Articles
                         'svjis_add_article_comment',
+                        # Personal settings
                         'svjis_view_personal_menu',
             ]},
             {'name': 'Redaktor', 'perms': [
+                        # Redaction
                         'svjis_view_redaction_menu',
                         'svjis_edit_article',
                         'svjis_edit_article_news',
                         'svjis_edit_survey',
                         'svjis_edit_article_menu',
+            ]},
+            {'name': 'Řešitel', 'perms': [
+                        # Faults
+                        'svjis_view_fault_menu',
+                        'svjis_fault_reporter',
+                        'svjis_fault_resolver',
+                        'svjis_add_fault_comment',
             ]},
     ]
 

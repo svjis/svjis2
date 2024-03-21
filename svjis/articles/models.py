@@ -318,10 +318,12 @@ class BuildingUnit(models.Model):
 
 class FaultReport(models.Model):
     subject = models.CharField(_("Subject"), max_length=50)
+    slug = models.CharField(max_length=50)
     description = models.TextField(_("Description"))
     created_date = models.DateTimeField(auto_now_add=True)
     created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
     assigned_to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_fault_set', null=True, blank=True)
+    watching_users = models.ManyToManyField(User, related_name='watching_fault_set')
     closed = models.BooleanField(_("Closed"), default=False)
     entrance = models.ForeignKey(BuildingEntrance, on_delete=models.CASCADE, verbose_name=_("Entrance"), null=True, blank=True)
 
@@ -343,6 +345,10 @@ class FaultReport(models.Model):
             ("svjis_fault_reporter", "Can report fault"),
             ("svjis_fault_resolver", "Can resolve fault"),
         )
+
+    def save(self, **kwargs):
+        unique_slugify(self, self.subject)
+        super(FaultReport, self).save(**kwargs)
 
 
 def fault_directory_path(instance, filename):
