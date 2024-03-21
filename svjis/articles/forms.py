@@ -227,3 +227,19 @@ class BuildingUnitForm(forms.ModelForm):
             'numerator': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
             'denominator': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
         }
+
+
+class FaultReportForm(forms.ModelForm):
+    entrance = BuildingEntranceChoiceField(
+        queryset=models.BuildingEntrance.objects.all().order_by('description'),
+        required=False,
+        help_text=_("Select the entrnance (if does it make sense)")
+        )
+    class Meta:
+        model = models.FaultReport
+        fields = ("subject", "entrance", "description",)
+        widgets = {
+            'subject': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
+            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'description': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}),
+        }

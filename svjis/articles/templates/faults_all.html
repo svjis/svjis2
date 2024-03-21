@@ -1,0 +1,40 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+{% load article_filters %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Fault reporting' %}</h1>
+
+{% if perms.articles.svjis_fault_reporter %}
+<a href="{% url 'faults_fault_edit' pk=0 %}" class="create-button">{% trans 'Report fault or request' %}</a>
+{% endif %}
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">{% trans 'Ticket no.' %}</th>
+        <th class="list" scope="col">{% trans 'Date' %}</th>
+        <th class="list" scope="col">{% trans 'Subject' %}</th>
+        <th class="list" scope="col">{% trans 'Entry' %}</th>
+        <th class="list" scope="col">{% trans 'Author' %}</th>
+        <th class="list" scope="col">{% trans 'Resolver' %}</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+        <td class="list"><a href="{% url 'fault' slug=obj.slug %}"><img src="/static/gfx/find.png" border="0" title="{% trans 'View' %}" alt="{% trans 'View' %}"></a></td>
+        <td class="list">{{ obj.pk }}</td>
+        <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
+        <td class="list">{{ obj.subject }}</td>
+        <td class="list">{{ obj.entry }}</td>
+        <td class="list">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+        <td class="list">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

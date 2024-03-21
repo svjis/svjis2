@@ -1,0 +1,37 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load article_filters %}
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">#{{ obj.pk }} - {{ obj.subject }}</h1>
+
+<table width="100%" class="list" width="95%" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" width="25%" scope="row">{% trans 'Date' %}</th>
+        <td class="list" width="75%">{{ obj.created_date }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Creator' %}</th>
+        <td class="list">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Resolver' %}</th>
+        <td class="list">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Closed' %}</th>
+        <td class="list">{{ obj.closed }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Entrance' %}</th>
+        <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Description' %}</th>
+        <td class="list">{{ obj.description | markdown | safe }}</td>
+    </tr>
+</table>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from . import views, views_contact, views_personal_settings, views_redaction, views_admin
+from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -41,6 +41,10 @@ urlpatterns = [
     path('redaction_survey_delete/<int:pk>/', views_redaction.redaction_survey_delete_view, name='redaction_survey_delete'),
     path('redaction_survey_option_delete/<int:pk>/', views_redaction.redaction_survey_option_delete_view, name='redaction_survey_option_delete'),
     path('redaction_survey_results/<int:pk>/', views_redaction.redaction_survey_results_view, name='redaction_survey_results'),
+    path('fault/<str:slug>/', views_faults.fault_view, name='fault'),
+    path('faults_all/', views_faults.faults_all_view, name='faults_all'),
+    path('faults_fault_edit/<int:pk>/', views_faults.faults_fault_edit_view, name='faults_fault_edit'),
+    path('faults_fault_save/', views_faults.faults_fault_save_view, name='faults_fault_save'),
     path('admin_company_edit/', views_admin.admin_company_edit_view, name='admin_company_edit'),
     path('admin_company_save/', views_admin.admin_company_save_view, name='admin_company_save'),
     path('admin_board/', views_admin.admin_board_view, name='admin_board'),
