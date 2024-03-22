@@ -115,3 +115,40 @@ def faults_fault_asset_delete_view(request, pk):
     if obj.created_by_user == request.user:
         obj.delete()
     return redirect(fault_view, slug=fault_slug)
+
+
+# Faults - FaultComment
+@permission_required("articles.svjis_add_fault_comment")
+@require_POST
+def fault_comment_save_view(request):
+    fault_pk = int(request.POST.get('fault_pk'))
+    body = request.POST.get('body', '')
+    if body != '':
+        fault = get_object_or_404(models.FaultReport, pk=fault_pk)
+        comment = models.FaultComment.objects.create(body=body, fault_report=fault, author=request.user)
+
+        for u in fault.watching_users.all():
+            if u.pk != request.user.pk:
+                utils.send_fault_comment_notification(u, f"{request.scheme}://{request.get_host()}", fault, comment)
+
+    return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
+
+
+# Faults - FaultWatching
+@permission_required("articles.svjis_view_fault_menu")
+@require_GET
+def fault_watch_view(request):
+    try:
+        pk = int(request.GET.get('id'))
+        watch = int(request.GET.get('watch'))
+    except:
+        raise Http404
+
+    fault = get_object_or_404(models.FaultReport, pk=pk)
+
+    if watch == 0:
+        fault.watching_users.remove(request.user)
+    else:
+        fault.watching_users.add(request.user)
+
+    return redirect(fault_view, slug=fault.slug)

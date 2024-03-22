@@ -92,12 +92,18 @@ def send_message_queue():
           m.save()
 
 
-def send_new_password(user):
-    template_key = 'mail.template.lost.password'
+def get_template(template_key):
     template = models.Preferences.objects.get(key=template_key)
     if template == None:
         logger.error(f"Error: Missing template {template_key}")
+    return template
+
+
+def send_new_password(user):
+    template = get_template('mail.template.lost.password')
+    if template is None:
         return
+
     password = generate_password(6)
     user.password = make_password(password)
     user.save()
@@ -107,10 +113,8 @@ def send_new_password(user):
 
 
 def send_article_notification(user, host, article):
-    template_key = 'mail.template.article.notification'
-    template = models.Preferences.objects.get(key=template_key)
-    if template == None:
-        logger.error(f"Error: Missing template {template_key}")
+    template = get_template('mail.template.article.notification')
+    if template is None:
         return
 
     subj = models.Company.objects.get(pk=1).name
@@ -119,12 +123,20 @@ def send_article_notification(user, host, article):
 
 
 def send_article_comment_notification(user, host, article, comment):
-    template_key = 'mail.template.comment.notification'
-    template = models.Preferences.objects.get(key=template_key)
-    if template == None:
-        logger.error(f"Error: Missing template {template_key}")
+    template = get_template('mail.template.comment.notification')
+    if template is None:
         return
 
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     send_mails([user.email], f'{subj} - {article.header}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body), False)
+
+
+def send_fault_comment_notification(user, host, fault_report, comment):
+    template = get_template('mail.template.fault.comment.notification')
+    if template is None:
+        return
+
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails([user.email], f'{subj} - {fault_report.subject}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body), False)
