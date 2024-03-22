@@ -87,14 +87,14 @@ def fault_view(request, slug):
     return render(request, "fault.html", ctx)
 
 
-@permission_required("articles.svjis_fault_reporter")
+@permission_required("articles.svjis_fault_resolver")
 @require_GET
 def faults_fault_edit_view(request, pk):
     if pk != 0:
-        fr = get_object_or_404(models.FaultReport, pk=pk)
-        form = forms.FaultReportForm(instance=fr)
+        a = get_object_or_404(models.FaultReport, pk=pk)
+        form = forms.FaultReportEditForm(instance=a)
     else:
-        form = forms.FaultReportForm
+        form = forms.FaultReportEditForm
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
@@ -103,6 +103,19 @@ def faults_fault_edit_view(request, pk):
     ctx['aside_menu_items'] = get_side_menu('faults', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
     return render(request, "faults_edit.html", ctx)
+
+
+@permission_required("articles.svjis_fault_reporter")
+@require_GET
+def faults_fault_create_view(request):
+    form = forms.FaultReportForm
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Fault reporting")
+    ctx['form'] = form
+    ctx['pk'] = 0
+    ctx['aside_menu_items'] = get_side_menu('faults', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
+    return render(request, "faults_create.html", ctx)
 
 
 @permission_required("articles.svjis_fault_reporter")
@@ -120,6 +133,21 @@ def faults_fault_save_view(request):
         if pk == 0:
             obj.created_by_user = request.user
         obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
+    return redirect(faults_all_view)
+
+
+@permission_required("articles.svjis_fault_resolver")
+@require_POST
+def faults_fault_update_view(request):
+    pk = int(request.POST['pk'])
+    instance = get_object_or_404(models.FaultReport, pk=pk)
+    form = forms.FaultReportEditForm(request.POST, instance=instance)
+
+    if form.is_valid():
+        form.save()
     else:
         for error in form.errors:
             messages.error(request, error)

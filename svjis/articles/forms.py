@@ -245,6 +245,33 @@ class FaultReportForm(forms.ModelForm):
         }
 
 
+class AssignedUserChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.last_name} {obj.first_name}"
+
+
+class FaultReportEditForm(forms.ModelForm):
+    entrance = BuildingEntranceChoiceField(
+        queryset=models.BuildingEntrance.objects.all().order_by('description'),
+        required=False,
+        help_text=_("Select the entrnance (if does it make sense)")
+        )
+    assigned_to_user = AssignedUserChoiceField(
+        queryset=User.objects.filter(groups__permissions__codename='svjis_fault_resolver').exclude(is_active=False).distinct().order_by('last_name'),
+        required=False,
+        )
+    class Meta:
+        model = models.FaultReport
+        fields = ("subject", "entrance", "description", "assigned_to_user", "closed")
+        widgets = {
+            'subject': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
+            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'description': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}),
+            'assigned_to_user': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
 class FaultAssetForm(forms.ModelForm):
     class Meta:
         model = models.FaultAsset

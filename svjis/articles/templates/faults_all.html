@@ -8,7 +8,7 @@
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 
 {% if perms.articles.svjis_fault_reporter %}
-<a href="{% url 'faults_fault_edit' pk=0 %}" class="create-button">{% trans 'Report fault or request' %}</a>
+<a href="{% url 'faults_fault_create' %}" class="create-button">{% trans 'Report fault or request' %}</a>
 {% endif %}
 
 <table class="list" aria-describedby="tbl-desc">

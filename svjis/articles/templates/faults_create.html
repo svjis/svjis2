@@ -4,9 +4,9 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">#{{ form.instance.pk }} - {{ form.instance.subject }}</h1>
+<h1 class="page-title" id="tbl-desc">{% trans 'Fault report' %}</h1>
 
-<form action="{% url 'faults_fault_update' %}" method="post">
+<form action="{% url 'faults_fault_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}" />
     <p>
@@ -20,14 +20,6 @@
     <p>
         {{ form.description.label }}<br>
         {{ form.description }}
-    </p>
-    <p>
-        {{ form.assigned_to_user.label }}<br>
-        {{ form.assigned_to_user }}
-    </p>
-    <p>
-        {{ form.closed.label }}<br>
-        {{ form.closed }}
     </p>
 
     <p>
