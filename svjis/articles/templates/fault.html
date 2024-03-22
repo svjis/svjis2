@@ -1,11 +1,11 @@
 {% extends "base-with-aside-menu-content.html" %}
 
-{% load article_filters %}
 {% load i18n %}
+{% load article_filters %}
 
 {% block content %}
 
-<h1 class="page-title">#{{ obj.pk }} - {{ obj.subject }}</h1>
+<h1 class="page-title">#{{ obj.pk }} - {{ obj.subject | highlight:search | safe }}</h1>
 
 <table width="100%" class="list" width="95%" aria-describedby="tbl-desc">
     <tr>
@@ -30,7 +30,7 @@
     </tr>
     <tr>
         <th class="list" scope="row">{% trans 'Description' %}</th>
-        <td class="list">{{ obj.description | markdown | safe }}</td>
+        <td class="list">{{ obj.description | highlight:search | markdown | safe }}</td>
     </tr>
 </table>
 
