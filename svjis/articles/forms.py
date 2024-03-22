@@ -243,3 +243,13 @@ class FaultReportForm(forms.ModelForm):
             'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
             'description': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}),
         }
+
+
+class FaultAssetForm(forms.ModelForm):
+    class Meta:
+        model = models.FaultAsset
+        fields = ("description", "file",)
+        widgets = {
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'file': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
+        }

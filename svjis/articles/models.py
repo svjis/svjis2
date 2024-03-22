@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Article(models.Model):
     header = models.CharField(_("Header"), max_length=100)
-    slug = models.CharField(max_length=100, default='')
+    slug = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
@@ -352,7 +352,7 @@ class FaultReport(models.Model):
 
 
 def fault_directory_path(instance, filename):
-    return 'faults/{0}/{1}'.format(instance.faultreport.pk, filename)
+    return 'faults/{0}/{1}'.format(instance.fault_report.slug, filename)
 
 
 class FaultAsset(models.Model):
@@ -360,6 +360,7 @@ class FaultAsset(models.Model):
     file = models.FileField(_("File"), upload_to=fault_directory_path)
     fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, verbose_name=_("Fault report"))
     created_date = models.DateTimeField(auto_now_add=True)
+    created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"FaultAsset: {self.description}"
