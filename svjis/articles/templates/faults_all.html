@@ -29,7 +29,7 @@
         <td class="list">{{ obj.pk }}</td>
         <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
         <td class="list">{{ obj.subject | highlight:search | safe }}</td>
-        <td class="list">{{ obj.entry }}</td>
+        <td class="list">{{ obj.entrance.description }}</td>
         <td class="list">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
         <td class="list">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
     </tr>
