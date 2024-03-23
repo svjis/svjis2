@@ -5,10 +5,18 @@
 
 {% block content %}
 
-<h1 class="page-title">#{{ obj.pk }} - {{ obj.subject | highlight:search | safe }}</h1>
+<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject | highlight:search | safe }}</h1>
 
 {% if perms.articles.svjis_fault_resolver %}
     [<a href="{% url 'faults_fault_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]&nbsp;
+{% endif %}
+
+{% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user != user %}
+    [<a href="{% url 'faults_fault_take_ticket' pk=obj.pk %}">{% trans 'Take ticket' %}</a>]&nbsp;
+{% endif %}
+
+{% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user == user %}
+    [<a href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% trans 'Close ticket' %}</a>]&nbsp;
 {% endif %}
 
 {% if user in obj.watching_users.all %}
@@ -46,10 +54,11 @@
 
 
 {% if pk != 0 %}
+    {% if not obj.closed %}
     <form action="{% url 'faults_fault_asset_save' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="hidden" name="fault_pk" value="{{ obj.pk }}">
-
+    {% endif %}
         <fieldset>
             <legend>{% trans 'Assets' %}</legend>
             <p>
@@ -80,6 +89,7 @@
                 </table>
                 {% endif %}
             </p>
+            {% if not obj.closed %}
             <p>
                 <label class="common-label" for="{{ asset_form.description.auto_id }}">{{ asset_form.description.label }}</label>
                 {{ asset_form.description }}
@@ -88,11 +98,14 @@
                 <label class="common-label" for="{{ asset_form.file.auto_id }}">{{ asset_form.file.label }}</label>
                 {{ asset_form.file }}
             </p>
+            {% endif %}
         </fieldset>
+    {% if not obj.closed %}
         <p>
             <input class="my-button" id="submit2" type="submit" value="{% trans 'Upload' %}" />
         </p>
     </form>
+    {% endif %}
 {% endif %}
 
 {% if obj.comments %}
@@ -105,7 +118,7 @@
 {% endif %}
 
 
-{% if perms.articles.svjis_add_fault_comment %}
+{% if perms.articles.svjis_add_fault_comment and not obj.closed %}
 <form action="{% url 'fault_comment_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="fault_pk" value="{{ obj.pk }}">

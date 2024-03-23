@@ -217,3 +217,23 @@ def fault_watch_view(request):
         fault.watching_users.add(request.user)
 
     return redirect(fault_view, slug=fault.slug)
+
+
+# Faults - Take ticket
+@permission_required("articles.svjis_fault_resolver")
+@require_GET
+def faults_fault_take_ticket_view(request, pk):
+    fault = get_object_or_404(models.FaultReport, pk=pk)
+    fault.assigned_to_user=request.user
+    fault.save()
+    return redirect(fault_view, slug=fault.slug)
+
+
+# Faults - Close ticket
+@permission_required("articles.svjis_fault_resolver")
+@require_GET
+def faults_fault_close_ticket_view(request, pk):
+    fault = get_object_or_404(models.FaultReport, pk=pk)
+    fault.closed=True
+    fault.save()
+    return redirect(fault_view, slug=fault.slug)
