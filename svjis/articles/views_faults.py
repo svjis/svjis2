@@ -76,7 +76,7 @@ def faults_list_view(request):
         fault_list = paginator.page(page)
     except InvalidPage:
         fault_list = paginator.page(paginator.num_pages)
-    page_parameter = '' if search == '' else f"search={search}"
+    page_parameter = f'scope={scope}' if search == '' else f"search={search}"
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
