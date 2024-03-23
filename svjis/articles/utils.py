@@ -33,7 +33,7 @@ def get_tray_menu(active_item: str, user) -> list:
     if user.has_perm('articles.svjis_view_redaction_menu'):
             result.append({'description': _("Redaction"), 'link': reverse(views_redaction.redaction_article_view), 'active': True if active_item == 'redaction' else False})
     if user.has_perm('articles.svjis_view_fault_menu'):
-            result.append({'description': _("Fault reporting"), 'link': reverse(views_faults.faults_all_view), 'active': True if active_item == 'faults' else False})
+            result.append({'description': _("Fault reporting"), 'link': reverse(views_faults.faults_list_view) + '?scope=open', 'active': True if active_item == 'faults' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
             result.append({'description': _("Administration"), 'link': reverse(views_admin.admin_company_edit_view), 'active': True if active_item == 'admin' else False})
     return  result

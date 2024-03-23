@@ -15,17 +15,33 @@ def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_view_fault_menu'):
         result.append({
-            'description': _("Faults"),
-            'link': reverse(faults_all_view),
-            'active': True if active_item == 'faults' else False})
+            'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
+            'link': reverse(faults_list_view) + '?scope=open',
+            'active': True if active_item == 'open' else False})
+        result.append({
+            'description': _("Mine") + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
+            'link': reverse(faults_list_view) + '?scope=mine',
+            'active': True if active_item == 'mine' else False})
+        result.append({
+            'description': _("Closed") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
+            'link': reverse(faults_list_view) + '?scope=closed',
+            'active': True if active_item == 'closed' else False})
     return result
 
 
 # Faults - Fault report
 @permission_required("articles.svjis_view_fault_menu")
 @require_GET
-def faults_all_view(request):
+def faults_list_view(request):
     fault_list = models.FaultReport.objects.all()
+    scope = request.GET.get('scope', '')
+    if scope == 'open':
+        fault_list = fault_list.filter(closed=False)
+    if scope == 'mine':
+        fault_list = fault_list.filter(created_by_user=request.user)
+    if scope == 'closed':
+        fault_list = fault_list.filter(closed=True)
+
 
     # Search
     search = request.GET.get('search')
@@ -40,7 +56,7 @@ def faults_all_view(request):
         header = _("Search results") + f": {search}"
     else:
         search = ''
-        header = _("Article")
+        header = _("Fault reporting")
 
     # Paginator
     is_paginated = len(fault_list) > getattr(settings, 'SVJIS_FAULTS_PAGE_SIZE', 10)
@@ -59,12 +75,12 @@ def faults_all_view(request):
     ctx['is_paginated'] = is_paginated
     ctx['page_obj'] = page_obj
     ctx['page_parameter'] = page_parameter
-    ctx['search_endpoint'] = reverse(faults_all_view)
+    ctx['search_endpoint'] = reverse(faults_list_view)
     ctx['search'] = search
-    ctx['aside_menu_items'] = get_side_menu('faults', request.user)
+    ctx['aside_menu_items'] = get_side_menu(scope, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
     ctx['object_list'] = fault_list
-    return render(request, "faults_all.html", ctx)
+    return render(request, "faults_list.html", ctx)
 
 
 @permission_required("articles.svjis_view_fault_menu")
@@ -136,7 +152,7 @@ def faults_fault_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(faults_all_view)
+    return redirect(faults_list_view)
 
 
 @permission_required("articles.svjis_fault_resolver")
@@ -151,7 +167,7 @@ def faults_fault_update_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(faults_all_view)
+    return redirect(faults_list_view)
 
 
 # Faults - FaultAsset
