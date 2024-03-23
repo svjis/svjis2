@@ -170,9 +170,11 @@ def faults_fault_save_view(request):
             obj.watching_users.add(u)
 
     # Send notifications
+    recipients = []
     for u in obj.watching_users.all():
         if u.pk != request.user.pk:
-            utils.send_new_fault_notification(u, f"{request.scheme}://{request.get_host()}", obj)
+            recipients.append(u)
+    utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
 
     return redirect(reverse(faults_list_view) + '?scope=open')
 
@@ -230,9 +232,11 @@ def fault_comment_save_view(request):
         fault = get_object_or_404(models.FaultReport, pk=fault_pk)
         comment = models.FaultComment.objects.create(body=body, fault_report=fault, author=request.user)
 
+        recipients = []
         for u in fault.watching_users.all():
             if u.pk != request.user.pk:
-                utils.send_fault_comment_notification(u, f"{request.scheme}://{request.get_host()}", fault, comment)
+                recipients.append(u)
+        utils.send_fault_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", fault, comment)
 
     return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
 

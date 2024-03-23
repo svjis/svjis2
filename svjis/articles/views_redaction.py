@@ -241,10 +241,12 @@ def redaction_article_notifications_send_view(request):
     users = get_users_for_notification(article)
 
     i = 0
+    recipients = []
     for u in users:
         if request.POST.get(f"u_{u.pk}", False) == 'on':
-            utils.send_article_notification(u, f"{request.scheme}://{request.get_host()}", article)
+            recipients.append(u)
             i += 1
+    utils.send_article_notification(recipients, f"{request.scheme}://{request.get_host()}", article)
 
     ctx = utils.get_context()
     ctx['article'] = article
