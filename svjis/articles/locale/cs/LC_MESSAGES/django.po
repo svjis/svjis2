@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-23 19:40+0100\n"
+"POT-Creation-Date: 2024-03-23 20:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,7 +208,7 @@ msgstr "Typ"
 #: articles/templates/admin_building_unit.html:33
 #: articles/templates/admin_building_unit.html:58
 #: articles/templates/admin_entrance_edit.html:13
-#: articles/templates/fault.html:46
+#: articles/templates/fault.html:46 articles/templates/faults_list.html:20
 msgid "Entrance"
 msgstr "Vchod"
 
@@ -227,7 +227,7 @@ msgid "Denominator"
 msgstr "Jmenovatel"
 
 #: articles/models.py:327 articles/templates/fault.html:42
-#: articles/views_faults.py:26
+#: articles/views_faults.py:32
 msgid "Closed"
 msgstr "Vyřešené"
 
@@ -793,9 +793,9 @@ msgstr "Osobní nastavení"
 msgid "Redaction"
 msgstr "Redakce"
 
-#: articles/utils.py:36 articles/views_faults.py:59 articles/views_faults.py:73
-#: articles/views_faults.py:96 articles/views_faults.py:116
-#: articles/views_faults.py:129
+#: articles/utils.py:36 articles/views_faults.py:67 articles/views_faults.py:81
+#: articles/views_faults.py:104 articles/views_faults.py:124
+#: articles/views_faults.py:137
 msgid "Fault reporting"
 msgstr "Hlášení závad"
 
@@ -815,18 +815,18 @@ msgstr "Administrace"
 msgid "All articles"
 msgstr "Všechny články"
 
-#: articles/views.py:73 articles/views_faults.py:49
+#: articles/views.py:73 articles/views_faults.py:57
 #: articles/views_redaction.py:115
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr ""
 "Vyhledat: Klíčové slovo '{}' je příliš krátké. Zadejte alespoň 3 znaky."
 
-#: articles/views.py:76 articles/views_faults.py:52
+#: articles/views.py:76 articles/views_faults.py:60
 #: articles/views_redaction.py:118
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "Vyhledat: Klíčové slovo je příliš dlouhé. Zadejte maximálně 100 znaků."
 
-#: articles/views.py:81 articles/views_faults.py:56
+#: articles/views.py:81 articles/views_faults.py:64
 #: articles/views_redaction.py:122
 msgid "Search results"
 msgstr "Výsledky hledání"
@@ -843,9 +843,13 @@ msgstr "Skupiny"
 msgid "Open"
 msgstr "Nevyřešené"
 
-#: articles/views_faults.py:22
+#: articles/views_faults.py:23
 msgid "Mine"
 msgstr "Nahlášené mnou"
+
+#: articles/views_faults.py:28
+msgid "Assigned to me"
+msgstr "Přiřazené mě"
 
 #: articles/views_personal_settings.py:18
 msgid "My units"

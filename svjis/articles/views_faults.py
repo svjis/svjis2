@@ -18,10 +18,16 @@ def get_side_menu(active_item, user):
             'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
             'link': reverse(faults_list_view) + '?scope=open',
             'active': True if active_item == 'open' else False})
-        result.append({
-            'description': _("Mine") + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
-            'link': reverse(faults_list_view) + '?scope=mine',
-            'active': True if active_item == 'mine' else False})
+        if user.has_perm('articles.svjis_fault_reporter'):
+            result.append({
+                'description': _("Mine") + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
+                'link': reverse(faults_list_view) + '?scope=mine',
+                'active': True if active_item == 'mine' else False})
+        if user.has_perm('articles.svjis_fault_resolver'):
+            result.append({
+                'description': _("Assigned to me") + f' ({models.FaultReport.objects.filter(closed=False, assigned_to_user=user).count()})',
+                'link': reverse(faults_list_view) + '?scope=assigned',
+                'active': True if active_item == 'assigned' else False})
         result.append({
             'description': _("Closed") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
             'link': reverse(faults_list_view) + '?scope=closed',
@@ -39,6 +45,8 @@ def faults_list_view(request):
         fault_list = fault_list.filter(closed=False)
     if scope == 'mine':
         fault_list = fault_list.filter(created_by_user=request.user)
+    if scope == 'assigned':
+        fault_list = fault_list.filter(assigned_to_user=request.user)
     if scope == 'closed':
         fault_list = fault_list.filter(closed=True)
 
