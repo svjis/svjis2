@@ -1,5 +1,6 @@
 from . import utils, forms, models
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
@@ -160,7 +161,20 @@ def faults_fault_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(faults_list_view)
+
+    # Set watching users
+    if pk == 0:
+        obj.watching_users.add(request.user)
+        resolvers = User.objects.filter(groups__permissions__codename='svjis_fault_resolver').exclude(is_active=False).distinct()
+        for u in resolvers:
+            obj.watching_users.add(u)
+
+    # Send notifications
+    for u in obj.watching_users.all():
+        if u.pk != request.user.pk:
+            utils.send_new_fault_notification(u, f"{request.scheme}://{request.get_host()}", obj)
+
+    return redirect(reverse(faults_list_view) + '?scope=open')
 
 
 @permission_required("articles.svjis_fault_resolver")
@@ -175,7 +189,7 @@ def faults_fault_update_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(faults_list_view)
+    return redirect(reverse(faults_list_view) + '?scope=open')
 
 
 # Faults - FaultAsset

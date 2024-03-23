@@ -136,6 +136,10 @@ def create_preferences():
             'value': 'Uživatel {} přidal nový komentář k článku {}: <br><br><br>{}'
         },
         {
+            'key': 'mail.template.fault.notification',
+            'value': 'Uživatel {} vložil novou závadu {}: <br><br><br>{}'
+        },
+        {
             'key': 'mail.template.fault.comment.notification',
             'value': 'Uživatel {} přidal nový komentář k závadě {}: <br><br><br>{}'
         },
