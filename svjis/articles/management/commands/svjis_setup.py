@@ -151,6 +151,10 @@ def create_preferences():
             'key': 'mail.template.fault.closed',
             'value': 'Uživatel {} uzavřel tiket {}: <br><br><br>{}'
         },
+        {
+            'key': 'mail.template.fault.reopened',
+            'value': 'Uživatel {} znovu otevřel tiket {}: <br><br><br>{}'
+        },
     ]
     for p in preferences:
         Preferences.objects.create(key=p['key'], value=p['value'])

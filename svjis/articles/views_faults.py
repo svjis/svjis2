@@ -209,6 +209,14 @@ def faults_fault_update_view(request):
                 recipients.append(u)
         utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
 
+    # Send reopened notification
+    if original_closed_status == True and instance.closed == False:
+        recipients = []
+        for u in instance.watching_users.all():
+            if u.pk != request.user.pk:
+                recipients.append(u)
+        utils.send_fault_reopened_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
+
     return redirect(reverse(faults_list_view) + '?scope=open')
 
 
