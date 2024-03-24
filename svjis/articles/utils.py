@@ -108,7 +108,11 @@ def send_new_password(user):
     user.save()
     msg = f"Username: {user.username}<br>Password: {password}<br>"
     subj = models.Company.objects.get(pk=1).name
-    send_mails([user.email], f'{subj} - {_("Credentials")}', template.value.format(msg), False)
+    send_mails(
+        [user.email],
+        f'{subj} - {_("Credentials")}',
+        template.value.format(msg),
+        False)
 
 
 def send_article_notification(user_list, host, article):
@@ -118,7 +122,11 @@ def send_article_notification(user_list, host, article):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     for user in user_list:
-        send_mails([user.email], f'{subj} - {article.header}', template.value.format(link), False)
+        send_mails(
+            [user.email],
+            f'{subj} - {article.header}',
+            template.value.format(link),
+            False)
 
 
 def send_article_comment_notification(user_list, host, article, comment):
@@ -128,7 +136,14 @@ def send_article_comment_notification(user_list, host, article, comment):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     for user in user_list:
-        send_mails([user.email], f'{subj} - {article.header}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body.replace('\n', '<br>')), False)
+        send_mails(
+            [user.email],
+            f'{subj} - {article.header}',
+            template.value.format(
+                f"{comment.author.first_name} {comment.author.last_name}",
+                link,
+                comment.body.replace('\n', '<br>')),
+            False)
 
 
 def send_new_fault_notification(user_list, host, fault_report):
@@ -138,7 +153,14 @@ def send_new_fault_notification(user_list, host, fault_report):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
     for user in user_list:
-        send_mails([user.email], f'{subj} - {fault_report.subject}', template.value.format(f"{fault_report.created_by_user.first_name} {fault_report.created_by_user.last_name}", link, fault_report.description.replace('\n', '<br>')), False)
+        send_mails(
+            [user.email],
+            f'{subj} - {fault_report.subject}',
+            template.value.format(
+                f"{fault_report.created_by_user.first_name} {fault_report.created_by_user.last_name}",
+                link,
+                fault_report.description.replace('\n', '<br>')),
+            False)
 
 
 def send_fault_comment_notification(user_list, host, fault_report, comment):
@@ -148,4 +170,27 @@ def send_fault_comment_notification(user_list, host, fault_report, comment):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
     for user in user_list:
-        send_mails([user.email], f'{subj} - {fault_report.subject}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body.replace('\n', '<br>')), False)
+        send_mails(
+            [user.email],
+            f'{subj} - {fault_report.subject}',
+            template.value.format(
+                f"{comment.author.first_name} {comment.author.last_name}",
+                link,
+                comment.body.replace('\n', '<br>')),
+            False)
+
+
+def send_fault_assigned_notification(user, who_assigned_you, host, fault_report):
+    template = get_template('mail.template.fault.assigned')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails(
+        [user.email],
+        f'{subj} - {fault_report.subject}',
+        template.value.format(
+            f"{who_assigned_you.first_name} {who_assigned_you.last_name}",
+            link,
+            fault_report.description.replace('\n', '<br>')),
+        False)

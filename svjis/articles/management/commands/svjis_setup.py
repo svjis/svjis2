@@ -143,6 +143,10 @@ def create_preferences():
             'key': 'mail.template.fault.comment.notification',
             'value': 'Uživatel {} přidal nový komentář k závadě {}: <br><br><br>{}'
         },
+        {
+            'key': 'mail.template.fault.assigned',
+            'value': 'Uživatel {} vám přiřadil tiket {}: <br><br><br>{}'
+        },
     ]
     for p in preferences:
         Preferences.objects.create(key=p['key'], value=p['value'])

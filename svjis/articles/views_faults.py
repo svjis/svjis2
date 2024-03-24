@@ -185,12 +185,21 @@ def faults_fault_update_view(request):
     pk = int(request.POST['pk'])
     instance = get_object_or_404(models.FaultReport, pk=pk)
     form = forms.FaultReportEditForm(request.POST, instance=instance)
+    original_resolver = instance.assigned_to_user
 
     if form.is_valid():
         form.save()
     else:
         for error in form.errors:
             messages.error(request, error)
+
+    # Set watching user
+    instance.watching_users.add(request.user)
+
+    # Send assigned notification
+    if original_resolver != instance.assigned_to_user and request.user != instance.assigned_to_user:
+        utils.send_fault_assigned_notification(instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance)
+
     return redirect(reverse(faults_list_view) + '?scope=open')
 
 
