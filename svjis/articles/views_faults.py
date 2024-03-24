@@ -170,10 +170,7 @@ def faults_fault_save_view(request):
             obj.watching_users.add(u)
 
     # Send notifications
-    recipients = []
-    for u in obj.watching_users.all():
-        if u.pk != request.user.pk:
-            recipients.append(u)
+    recipients = [u for u in obj.watching_users.all() if u != request.user]
     utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
 
     return redirect(reverse(faults_list_view) + '?scope=open')
@@ -203,18 +200,12 @@ def faults_fault_update_view(request):
 
     # Send closed notification
     if original_closed_status == False and instance.closed == True:
-        recipients = []
-        for u in instance.watching_users.all():
-            if u.pk != request.user.pk:
-                recipients.append(u)
+        recipients = [u for u in instance.watching_users.all() if u != request.user]
         utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
 
     # Send reopened notification
     if original_closed_status == True and instance.closed == False:
-        recipients = []
-        for u in instance.watching_users.all():
-            if u.pk != request.user.pk:
-                recipients.append(u)
+        recipients = [u for u in instance.watching_users.all() if u != request.user]
         utils.send_fault_reopened_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
 
     return redirect(reverse(faults_list_view) + '?scope=open')
@@ -258,10 +249,7 @@ def fault_comment_save_view(request):
         fault = get_object_or_404(models.FaultReport, pk=fault_pk)
         comment = models.FaultComment.objects.create(body=body, fault_report=fault, author=request.user)
 
-        recipients = []
-        for u in fault.watching_users.all():
-            if u.pk != request.user.pk:
-                recipients.append(u)
+        recipients = [u for u in fault.watching_users.all() if u != request.user]
         utils.send_fault_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", fault, comment)
 
     return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
@@ -306,10 +294,7 @@ def faults_fault_close_ticket_view(request, pk):
     fault.save()
 
     # Send closed notification
-    recipients = []
-    for u in fault.watching_users.all():
-        if u.pk != request.user.pk:
-            recipients.append(u)
+    recipients = [u for u in fault.watching_users.all() if u != request.user]
     utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", fault)
 
     return redirect(fault_view, slug=fault.slug)
