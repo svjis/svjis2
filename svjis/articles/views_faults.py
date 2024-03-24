@@ -186,6 +186,7 @@ def faults_fault_update_view(request):
     instance = get_object_or_404(models.FaultReport, pk=pk)
     form = forms.FaultReportEditForm(request.POST, instance=instance)
     original_resolver = instance.assigned_to_user
+    original_closed_status = instance.closed
 
     if form.is_valid():
         form.save()
@@ -199,6 +200,14 @@ def faults_fault_update_view(request):
     # Send assigned notification
     if original_resolver != instance.assigned_to_user and request.user != instance.assigned_to_user:
         utils.send_fault_assigned_notification(instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance)
+
+    # Send closed notification
+    if original_closed_status == False and instance.closed == True:
+        recipients = []
+        for u in instance.watching_users.all():
+            if u.pk != request.user.pk:
+                recipients.append(u)
+        utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
 
     return redirect(reverse(faults_list_view) + '?scope=open')
 
@@ -287,4 +296,12 @@ def faults_fault_close_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
     fault.closed=True
     fault.save()
+
+    # Send closed notification
+    recipients = []
+    for u in fault.watching_users.all():
+        if u.pk != request.user.pk:
+            recipients.append(u)
+    utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", fault)
+
     return redirect(fault_view, slug=fault.slug)

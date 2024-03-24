@@ -194,3 +194,20 @@ def send_fault_assigned_notification(user, who_assigned_you, host, fault_report)
             link,
             fault_report.description.replace('\n', '<br>')),
         False)
+
+
+def send_fault_closed_notification(user_list, who_closed, host, fault_report):
+    template = get_template('mail.template.fault.closed')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    for user in user_list:
+        send_mails(
+            [user.email],
+            f'{subj} - {fault_report.subject}',
+            template.value.format(
+                f"{who_closed.first_name} {who_closed.last_name}",
+                link,
+                fault_report.description.replace('\n', '<br>')),
+            False)
