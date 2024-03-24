@@ -1,0 +1,38 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">#{{ form.instance.pk }} - {{ form.instance.subject }}</h1>
+
+<form action="{% url 'faults_fault_update' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}" />
+    <p>
+        {{ form.subject.label }}<br>
+        {{ form.subject }}
+    </p>
+    <p>
+        {{ form.entrance.label }}<br>
+        {{ form.entrance }}
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description }}
+    </p>
+    <p>
+        {{ form.assigned_to_user.label }}<br>
+        {{ form.assigned_to_user }}
+    </p>
+    <p>
+        {{ form.closed.label }}<br>
+        {{ form.closed }}
+    </p>
+
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

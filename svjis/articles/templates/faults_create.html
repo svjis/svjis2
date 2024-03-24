@@ -1,0 +1,30 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Fault report' %}</h1>
+
+<form action="{% url 'faults_fault_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}" />
+    <p>
+        {{ form.subject.label }}<br>
+        {{ form.subject }}
+    </p>
+    <p>
+        {{ form.entrance.label }}<br>
+        {{ form.entrance }}
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description }}
+    </p>
+
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

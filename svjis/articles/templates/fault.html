@@ -1,0 +1,139 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+{% load article_filters %}
+
+{% block content %}
+
+<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject | highlight:search | safe }}</h1>
+
+{% if perms.articles.svjis_fault_resolver %}
+    [<a href="{% url 'faults_fault_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]&nbsp;
+{% endif %}
+
+{% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user != user %}
+    [<a href="{% url 'faults_fault_take_ticket' pk=obj.pk %}">{% trans 'Take ticket' %}</a>]&nbsp;
+{% endif %}
+
+{% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user == user %}
+    [<a href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% trans 'Close ticket' %}</a>]&nbsp;
+{% endif %}
+
+{% if user in obj.watching_users.all %}
+    [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=0">{% trans 'Stop watching ticket' %}</a>]
+    {% else %}
+    [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% trans 'Start watching ticket' %}</a>]
+{% endif %}
+
+<table width="100%" class="list" width="95%" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" width="25%" scope="row">{% trans 'Date' %}</th>
+        <td class="list" width="75%">{{ obj.created_date }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Creator' %}</th>
+        <td class="list">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Resolver' %}</th>
+        <td class="list">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Closed' %}</th>
+        <td class="list">{{ obj.closed }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Entrance' %}</th>
+        <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
+    </tr>
+    <tr>
+        <th class="list" scope="row">{% trans 'Description' %}</th>
+        <td class="list">{{ obj.description | highlight:search | markdown | safe }}</td>
+    </tr>
+</table>
+
+
+{% if pk != 0 %}
+    {% if not obj.closed %}
+    <form action="{% url 'faults_fault_asset_save' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="fault_pk" value="{{ obj.pk }}">
+    {% endif %}
+        <fieldset>
+            <legend>{% trans 'Assets' %}</legend>
+            <p>
+                {% if assets %}
+                <table class="list" aria-describedby="tbl-desc">
+                    <tr>
+                        <th class="list" scope="col">&nbsp;</th>
+                        <th class="list" scope="col">{% trans 'Description' %}</th>
+                        <th class="list" scope="col">{% trans 'File' %}</th>
+                        <th class="list" scope="col">{% trans 'User' %}</th>
+                        <th class="list" scope="col">{% trans 'Time' %}</th>
+                        <th class="list" scope="col">&nbsp;</th>
+                    </tr>
+                    {% for a in assets %}
+                    <tr>
+                        <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
+                        <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
+                        <td class="list" id="asset_file_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
+                        <td class="list" id="asset_user_{{ a.asset.pk }}">{{ a.asset.created_by_user.first_name }}&nbsp;{{ a.asset.created_by_user.last_name }}</td>
+                        <td class="list" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date }}</td>
+                        {% if a.asset.created_by_user == user %}
+                        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+                        {% else %}
+                        <td class="list">&nbsp;</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </p>
+            {% if not obj.closed %}
+            <p>
+                <label class="common-label" for="{{ asset_form.description.auto_id }}">{{ asset_form.description.label }}</label>
+                {{ asset_form.description }}
+            </p>
+            <p>
+                <label class="common-label" for="{{ asset_form.file.auto_id }}">{{ asset_form.file.label }}</label>
+                {{ asset_form.file }}
+            </p>
+            {% endif %}
+        </fieldset>
+    {% if not obj.closed %}
+        <p>
+            <input class="my-button" id="submit2" type="submit" value="{% trans 'Upload' %}" />
+        </p>
+    </form>
+    {% endif %}
+{% endif %}
+
+{% if obj.comments %}
+<h2 class="article-title">{% trans 'Comments' %}:</h2>
+    {% for comment in obj.comments %}
+    <div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date | date:"d.m.Y H:i" }}</strong>
+        <br>{{ comment.body | linebreaks | safe }}
+    </div>
+    {% endfor %}
+{% endif %}
+
+
+{% if perms.articles.svjis_add_fault_comment and not obj.closed %}
+<form action="{% url 'fault_comment_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="fault_pk" value="{{ obj.pk }}">
+    <p>
+        <textarea
+           id="body"
+           name="body"
+           rows=5 cols=50
+           wrap
+        ></textarea>
+    </p>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Insert comment' %}" name="submit">
+    </p>
+</form>
+{% endif %}
+
+{% endblock %}

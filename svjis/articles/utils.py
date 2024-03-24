@@ -3,7 +3,7 @@ import re
 import secrets
 import string
 import os.path
-from . import views, views_contact, views_personal_settings, views_redaction, views_admin, models
+from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_admin, models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
@@ -32,6 +32,8 @@ def get_tray_menu(active_item: str, user) -> list:
             result.append({'description': _("Personal settings"), 'link': reverse(views_personal_settings.personal_settings_edit_view), 'active': True if active_item == 'personal_settings' else False})
     if user.has_perm('articles.svjis_view_redaction_menu'):
             result.append({'description': _("Redaction"), 'link': reverse(views_redaction.redaction_article_view), 'active': True if active_item == 'redaction' else False})
+    if user.has_perm('articles.svjis_view_fault_menu'):
+            result.append({'description': _("Fault reporting"), 'link': reverse(views_faults.faults_list_view) + '?scope=open', 'active': True if active_item == 'faults' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
             result.append({'description': _("Administration"), 'link': reverse(views_admin.admin_company_edit_view), 'active': True if active_item == 'admin' else False})
     return  result
@@ -90,39 +92,133 @@ def send_message_queue():
           m.save()
 
 
-def send_new_password(user):
-    template_key = 'mail.template.lost.password'
+def get_template(template_key):
     template = models.Preferences.objects.get(key=template_key)
     if template == None:
         logger.error(f"Error: Missing template {template_key}")
+    return template
+
+
+def send_new_password(user):
+    template = get_template('mail.template.lost.password')
+    if template is None:
         return
     password = generate_password(6)
     user.password = make_password(password)
     user.save()
     msg = f"Username: {user.username}<br>Password: {password}<br>"
     subj = models.Company.objects.get(pk=1).name
-    send_mails([user.email], f'{subj} - {_("Credentials")}', template.value.format(msg), False)
+    send_mails(
+        [user.email],
+        f'{subj} - {_("Credentials")}',
+        template.value.format(msg),
+        False)
 
 
-def send_article_notification(user, host, article):
-    template_key = 'mail.template.article.notification'
-    template = models.Preferences.objects.get(key=template_key)
-    if template == None:
-        logger.error(f"Error: Missing template {template_key}")
+def send_article_notification(user_list, host, article):
+    template = get_template('mail.template.article.notification')
+    if template is None:
         return
-
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
-    send_mails([user.email], f'{subj} - {article.header}', template.value.format(link), False)
+    send_mails(
+        [user.email for user in user_list],
+        f'{subj} - {article.header}',
+        template.value.format(link),
+        False)
 
 
-def send_article_comment_notification(user, host, article, comment):
-    template_key = 'mail.template.comment.notification'
-    template = models.Preferences.objects.get(key=template_key)
-    if template == None:
-        logger.error(f"Error: Missing template {template_key}")
+def send_article_comment_notification(user_list, host, article, comment):
+    template = get_template('mail.template.comment.notification')
+    if template is None:
         return
-
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
-    send_mails([user.email], f'{subj} - {article.header}', template.value.format(f"{comment.author.first_name} {comment.author.last_name}", link, comment.body), False)
+    send_mails(
+        [user.email for user in user_list],
+        f'{subj} - {article.header}',
+        template.value.format(
+            f"{comment.author.first_name} {comment.author.last_name}",
+            link,
+            comment.body.replace('\n', '<br>')),
+        False)
+
+
+def send_new_fault_notification(user_list, host, fault_report):
+    template = get_template('mail.template.fault.notification')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails(
+        [user.email for user in user_list],
+        f'{subj} - {fault_report.subject}',
+        template.value.format(
+            f"{fault_report.created_by_user.first_name} {fault_report.created_by_user.last_name}",
+            link,
+            fault_report.description.replace('\n', '<br>')),
+        False)
+
+
+def send_fault_comment_notification(user_list, host, fault_report, comment):
+    template = get_template('mail.template.fault.comment.notification')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails(
+        [user.email for user in user_list],
+        f'{subj} - {fault_report.subject}',
+        template.value.format(
+            f"{comment.author.first_name} {comment.author.last_name}",
+            link,
+            comment.body.replace('\n', '<br>')),
+        False)
+
+
+def send_fault_assigned_notification(user, who_assigned_you, host, fault_report):
+    template = get_template('mail.template.fault.assigned')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails(
+        [user.email],
+        f'{subj} - {fault_report.subject}',
+        template.value.format(
+            f"{who_assigned_you.first_name} {who_assigned_you.last_name}",
+            link,
+            fault_report.description.replace('\n', '<br>')),
+        False)
+
+
+def send_fault_closed_notification(user_list, who_closed, host, fault_report):
+    template = get_template('mail.template.fault.closed')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails(
+        [user.email for user in user_list],
+        f'{subj} - {fault_report.subject}',
+        template.value.format(
+            f"{who_closed.first_name} {who_closed.last_name}",
+            link,
+            fault_report.description.replace('\n', '<br>')),
+        False)
+
+
+def send_fault_reopened_notification(user_list, who_closed, host, fault_report):
+    template = get_template('mail.template.fault.reopened')
+    if template is None:
+        return
+    subj = models.Company.objects.get(pk=1).name
+    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    send_mails(
+        [user.email for user in user_list],
+        f'{subj} - {fault_report.subject}',
+        template.value.format(
+            f"{who_closed.first_name} {who_closed.last_name}",
+            link,
+            fault_report.description.replace('\n', '<br>')),
+        False)

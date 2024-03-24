@@ -189,9 +189,8 @@ def article_comment_save_view(request):
         article = get_object_or_404(models.Article, pk=article_pk)
         comment = models.ArticleComment.objects.create(body=body, article=article, author=request.user)
 
-        for u in article.watching_users.all():
-            if u.pk != request.user.pk:
-                utils.send_article_comment_notification(u, f"{request.scheme}://{request.get_host()}", article, comment)
+        recipients = [u for u in article.watching_users.all() if u != request.user]
+        utils.send_article_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", article, comment)
 
     return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
 
