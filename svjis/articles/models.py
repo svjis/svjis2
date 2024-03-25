@@ -66,7 +66,7 @@ class ArticleAsset(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Asset: {self.description}"
+        return f"ArticleAsset: {self.description}"
 
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
@@ -119,7 +119,7 @@ class News(models.Model):
     body = models.TextField(_("Body"))
 
     def __str__(self):
-        return f"MiniNews: {self.body}"
+        return f"News: {self.body}"
 
     class Meta:
         ordering = ['-id']
@@ -388,3 +388,59 @@ class FaultComment(models.Model):
         permissions = (
             ("svjis_add_fault_comment", "Can add Fault comment"),
         )
+
+
+# Adverts
+#####################
+
+class AdvertType(models.Model):
+    description = models.CharField(_("Description"), max_length=50, blank=False)
+    class Meta:
+        ordering = ['description']
+
+
+class Advert(models.Model):
+    type = models.ForeignKey(AdvertType, on_delete=models.CASCADE, verbose_name=_("Type"))
+    header = models.CharField(_("Header"), max_length=50)
+    body = models.TextField(_("Body"))
+    created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone = models.CharField(_("Phone"), max_length=30, blank=True)
+    email = models.CharField(_("E-Mail"), max_length=50, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(_("Published"), default=True)
+
+    def __str__(self):
+        return f"Advert: {self.header}"
+
+    @property
+    def assets(self):
+        return self.advertasset_set.all()
+
+    class Meta:
+        ordering = ['-id']
+        permissions = (
+            ("svjis_view_adverts_menu", "Can view Adverts menu"),
+        )
+
+
+def advert_directory_path(instance, filename):
+    return 'adverts/{0}/{1}'.format(instance.advert.pk, filename)
+
+
+class AdvertAsset(models.Model):
+    description = models.CharField(_("Description"), max_length=100)
+    file = models.FileField(_("File"), upload_to=advert_directory_path)
+    advert = models.ForeignKey(Advert, on_delete=models.CASCADE, verbose_name=_("Advert"))
+    created_date = models.DateTimeField(auto_now_add=True)
+    created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"AdvertAsset: {self.description}"
+
+    def delete(self, *args, **kwargs):
+        if os.path.isfile(self.file.path):
+            os.remove(self.file.path)
+        super(AdvertAsset, self).delete(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-id']
