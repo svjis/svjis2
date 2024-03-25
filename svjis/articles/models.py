@@ -423,6 +423,7 @@ class Advert(models.Model):
         ordering = ['-id']
         permissions = (
             ("svjis_view_adverts_menu", "Can view Adverts menu"),
+            ("svjis_add_advert", "Can add Advert"),
         )
 
 

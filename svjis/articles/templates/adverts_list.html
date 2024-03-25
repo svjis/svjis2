@@ -7,7 +7,9 @@
 
 <h1 class="page-title" id="tbl-desc">{% trans 'Adverts' %}</h1>
 
+{% if perms.articles.svjis_add_advert %}
 <a href="{% url 'adverts_edit' pk=0 %}" class="create-button">{% trans 'Create new advert' %}</a><br>
+{% endif %}
 
 {% if object_list %}
 {% for obj in object_list %}
@@ -17,8 +19,9 @@
     <div id="advert-desc">
         <h2>{{ obj.header }}</h2>
         <p class="info"><a href="#">{{ obj.type.description }}</a>: <strong>{{ obj.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
-
+            {% if obj.created_by_user == user %}
             &nbsp;[<a href="{% url 'adverts_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]
+            {% endif %}
 
         </p>
         <p class="nomb">{{ obj.body }}</p>

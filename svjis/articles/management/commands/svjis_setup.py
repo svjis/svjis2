@@ -35,6 +35,7 @@ def create_groups():
                         'svjis_add_fault_comment',
                         # Adverts
                         'svjis_view_adverts_menu',
+                        'svjis_add_advert',
             ]},
             {'name': 'Vlastník', 'perms': [
                         # Articles
@@ -50,6 +51,7 @@ def create_groups():
                         'svjis_add_fault_comment',
                         # Adverts
                         'svjis_view_adverts_menu',
+                        'svjis_add_advert',
             ]},
             {'name': 'Člen výboru', 'perms': [
                         # Articles

@@ -35,11 +35,13 @@ def adverts_list_view(request):
     return render(request, "adverts_list.html", ctx)
 
 
-@permission_required("articles.svjis_view_adverts_menu")
+@permission_required("articles.svjis_add_advert")
 @require_GET
 def adverts_edit_view(request, pk):
     if pk != 0:
         i = get_object_or_404(models.Advert, pk=pk)
+        if i.created_by_user != request.user:
+            raise Http404
         form = forms.AdvertForm(instance=i)
     else:
         form = forms.AdvertForm({'phone':request.user.userprofile.phone, 'email': request.user.email})
@@ -53,7 +55,7 @@ def adverts_edit_view(request, pk):
     return render(request, "advert_edit.html", ctx)
 
 
-@permission_required("articles.svjis_view_adverts_menu")
+@permission_required("articles.svjis_add_advert")
 @require_POST
 def adverts_save_view(request):
     pk = int(request.POST['pk'])
@@ -61,6 +63,8 @@ def adverts_save_view(request):
         form = forms.AdvertForm(request.POST)
     else:
         instance = get_object_or_404(models.Advert, pk=pk)
+        if instance.created_by_user != request.user:
+            raise Http404
         form = forms.AdvertForm(request.POST, instance=instance)
 
     if form.is_valid():
