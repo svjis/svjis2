@@ -42,9 +42,8 @@
     </p>
 </form>
 
-<h2>{% trans 'Assets' %}</h2>
-
 {% if pk != 0 %}
+    <h2>{% trans 'Assets' %}</h2>
     <form action="{% url 'adverts_asset_save' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="hidden" name="advert_pk" value="{{ form.instance.pk }}">
