@@ -295,3 +295,13 @@ class AdvertForm(forms.ModelForm):
             'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
             'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
         }
+
+
+class AdvertAssetForm(forms.ModelForm):
+    class Meta:
+        model = models.AdvertAsset
+        fields = ("description", "file",)
+        widgets = {
+            'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'file': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
+        }

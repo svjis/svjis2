@@ -17,21 +17,25 @@
 <!-- advert -->&nbsp;
 <div id="advert" class="box">
     <div id="advert-desc">
-        <h2 {% if not obj.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.header }}</h2>
-        <p class="info"><a href="{% url 'adverts_list'%}?scope={{ obj.type.description }}">{{ obj.type.description }}</a>: <strong>{{ obj.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
-            {% if obj.created_by_user == user %}
-            &nbsp;[<a href="{% url 'adverts_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]
+        <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
+        <p class="info"><a href="{% url 'adverts_list'%}?scope={{ obj.advert.type.description }}">{{ obj.advert.type.description }}</a>: <strong>{{ obj.advert.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
+            {% if obj.advert.created_by_user == user %}
+            &nbsp;[<a href="{% url 'adverts_edit' pk=obj.advert.pk %}">{% trans 'Edit' %}</a>]
             {% endif %}
 
         </p>
         <p class="nomb">{{ obj.body }}</p>
 
+        {% if obj.assets %}
+        <p class="nomb"></p>
         {% for a in obj.assets %}
-        <p class="nomb"><img src="gfx/Files_unknown.gif" border="0" alt="Sedačka1.PNG">&nbsp;<a href="Upload?page=advertAttachmentDownload&id=5">Sedačka1.PNG</a>&nbsp; <img src="gfx/Files_unknown.gif" border="0" alt="Příliš_žluťoučký_kůň.PNG">&nbsp;<a href="Upload?page=advertAttachmentDownload&id=7">Příliš_žluťoučký_kůň.PNG</a>&nbsp; </p>
+            <img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
         {% endfor %}
+        </p>
+        {% endif %}
         <p class="contact">
-            {% if obj.phone %}{% trans 'Phone' %}:&nbsp;<strong>{{ obj.phone }}</strong>&nbsp;{% endif %}
-            {% if obj.email %}{% trans 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></strong>{% endif %}
+            {% if obj.advert.phone %}{% trans 'Phone' %}:&nbsp;<strong>{{ obj.advert.phone }}</strong>&nbsp;{% endif %}
+            {% if obj.advert.email %}{% trans 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.advert.email }}">{{ obj.advert.email }}</a></strong>{% endif %}
         </p>
     </div> <!-- /advert-desc -->
 </div> <!-- /advert -->

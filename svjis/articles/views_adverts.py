@@ -1,8 +1,6 @@
 from . import utils, forms, models
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
-from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
@@ -48,11 +46,15 @@ def adverts_list_view(request):
         advert_list = advert_list.filter(type__description=scope)
         scope_description = scope
 
+    ad_list = []
+    for ad in advert_list:
+        ad_list.append({'advert': ad, 'assets': utils.wrap_assets(ad.assets)})
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Adverts")
     ctx['aside_menu_items'] = get_side_menu(scope, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('adverts', request.user)
-    ctx['object_list'] = advert_list
+    ctx['object_list'] = ad_list
     ctx['scope_description'] = scope_description
     return render(request, "adverts_list.html", ctx)
 
@@ -65,13 +67,17 @@ def adverts_edit_view(request, pk):
         if i.created_by_user != request.user:
             raise Http404
         form = forms.AdvertForm(instance=i)
+        assets = utils.wrap_assets(i.assets)
     else:
         form = forms.AdvertForm({'phone':request.user.userprofile.phone, 'email': request.user.email})
+        assets = None
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Adverts")
     ctx['form'] = form
     ctx['pk'] = pk
+    ctx['assets'] = assets
+    ctx['asset_form'] = forms.AdvertAssetForm
     ctx['aside_menu_items'] = get_side_menu(None, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('adverts', request.user)
     return render(request, "advert_edit.html", ctx)
@@ -99,3 +105,34 @@ def adverts_save_view(request):
             messages.error(request, error)
 
     return redirect(reverse(adverts_list_view))
+
+
+# Adverts - AdvertAsset
+@permission_required("articles.svjis_add_advert")
+@require_POST
+def adverts_asset_save_view(request):
+    advert_pk = int(request.POST.get('advert_pk'))
+    advert = get_object_or_404(models.Advert, pk=advert_pk)
+    if advert.created_by_user != request.user:
+            raise Http404
+    form = forms.AdvertAssetForm(request.POST, request.FILES)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.advert = advert
+        obj.created_by_user = request.user
+        obj.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
+    return redirect(adverts_edit_view, pk=advert.pk)
+
+
+@permission_required("articles.svjis_add_advert")
+@require_GET
+def adverts_asset_delete_view(request, pk):
+    obj = get_object_or_404(models.AdvertAsset, pk=pk)
+    advert = obj.advert
+    if advert.created_by_user != request.user:
+            raise Http404
+    obj.delete()
+    return redirect(adverts_edit_view, pk=advert.pk)
