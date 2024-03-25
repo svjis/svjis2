@@ -1,4 +1,4 @@
-from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_admin
+from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_adverts, views_admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -53,6 +53,7 @@ urlpatterns = [
     path('faults_fault_asset_delete/<int:pk>/', views_faults.faults_fault_asset_delete_view, name='faults_fault_asset_delete'),
     path('fault_comment_save/', views_faults.fault_comment_save_view, name='fault_comment_save'),
     path('fault_watch/', views_faults.fault_watch_view, name='fault_watch'),
+    path('adverts_list/', views_adverts.adverts_list_view, name='adverts_list'),
     path('admin_company_edit/', views_admin.admin_company_edit_view, name='admin_company_edit'),
     path('admin_company_save/', views_admin.admin_company_save_view, name='admin_company_save'),
     path('admin_board/', views_admin.admin_board_view, name='admin_board'),
