@@ -1,0 +1,45 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Adverts' %}</h1>
+<form action="{% url 'adverts_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+
+    <p>
+        {{ form.type.label }}<br>
+        {{ form.type }}
+    </p>
+    <p>
+        {{ form.header.label }}<br>
+        {{ form.header }}
+    </p>
+    <p>
+        {{ form.body.label }}<br>
+        {{ form.body }}
+    </p>
+
+    <fieldset>
+        <legend>{% trans 'Properties' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>
+            {{ form.phone }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.email.auto_id }}">{{ form.email.label }}</label>
+            {{ form.email }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.published.auto_id }}">{{ form.published.label }}</label>
+            {{ form.published }}
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}

@@ -280,3 +280,18 @@ class FaultAssetForm(forms.ModelForm):
             'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'file': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
         }
+
+
+class AdvertForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Advert
+        fields = ("type", "header", "body", "phone", "email", "published")
+        widgets = {
+            'type': forms.widgets.Select(attrs={'class': 'common-input'}),
+            'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}),
+            'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+        }

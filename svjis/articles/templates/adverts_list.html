@@ -7,5 +7,33 @@
 
 <h1 class="page-title" id="tbl-desc">{% trans 'Adverts' %}</h1>
 
+<a href="{% url 'adverts_edit' pk=0 %}" class="create-button">{% trans 'Create new advert' %}</a><br>
+
+{% if object_list %}
+{% for obj in object_list %}
+
+<!-- advert -->&nbsp;
+<div id="advert" class="box">
+    <div id="advert-desc">
+        <h2>{{ obj.header }}</h2>
+        <p class="info"><a href="#">{{ obj.type.description }}</a>: <strong>{{ obj.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
+
+            &nbsp;[<a href="{% url 'adverts_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]
+
+        </p>
+        <p class="nomb">{{ obj.body }}</p>
+
+        {% for a in obj.assets %}
+        <p class="nomb"><img src="gfx/Files_unknown.gif" border="0" alt="Sedačka1.PNG">&nbsp;<a href="Upload?page=advertAttachmentDownload&id=5">Sedačka1.PNG</a>&nbsp; <img src="gfx/Files_unknown.gif" border="0" alt="Příliš_žluťoučký_kůň.PNG">&nbsp;<a href="Upload?page=advertAttachmentDownload&id=7">Příliš_žluťoučký_kůň.PNG</a>&nbsp; </p>
+        {% endfor %}
+        <p class="contact">
+            {% trans 'Phone' %}:&nbsp;<strong>{{ obj.phone }}</strong>&nbsp;
+            {% trans 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></strong>
+        </p>
+    </div> <!-- /advert-desc -->
+</div> <!-- /advert -->
+
+{% endfor %}
+{% endif %}
 
 {% endblock %}

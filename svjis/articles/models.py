@@ -398,6 +398,9 @@ class AdvertType(models.Model):
     class Meta:
         ordering = ['description']
 
+    def __str__(self):
+        return self.description
+
 
 class Advert(models.Model):
     type = models.ForeignKey(AdvertType, on_delete=models.CASCADE, verbose_name=_("Type"))
