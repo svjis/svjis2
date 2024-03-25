@@ -1,7 +1,6 @@
 name: Makemessages
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
 
@@ -35,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Messages cs
-        path: svjis/articles/locale/cs/django.po
+        path: svjis/articles/locale/cs/LC_MESSAGES/django.po
 
     - name: Make messages en
       run: |
@@ -47,4 +46,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Messages en
-        path: svjis/articles/locale/en/django.po
+        path: svjis/articles/locale/en/LC_MESSAGES/django.po
