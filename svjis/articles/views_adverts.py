@@ -12,12 +12,24 @@ from django.views.decorators.http import require_GET, require_POST
 
 def get_side_menu(active_item, user):
     result = []
+    result.append({
+        'description': _("All") + f' ({models.Advert.objects.count()})',
+        'link': reverse(adverts_list_view) + '?scope=all',
+        'active': True if active_item == 'all' else False})
+
     types = models.AdvertType.objects.all()
     for t in types:
         result.append({
             'description': t.description + f' ({models.Advert.objects.filter(published=True, type=t).count()})',
-            'link': reverse(adverts_list_view),
-            'active': True if active_item == t.pk else False})
+            'link': reverse(adverts_list_view) + f'?scope={t.description}',
+            'active': True if active_item == t.description else False})
+
+    if user.has_perm('articles.svjis_add_advert'):
+        result.append({
+            'description': _("Mine") + f' ({models.Advert.objects.filter(published=True, created_by_user=user).count()})',
+            'link': reverse(adverts_list_view)  + '?scope=mine',
+            'active': True if active_item == 'mine' else False})
+
     return result
 
 
@@ -25,13 +37,23 @@ def get_side_menu(active_item, user):
 @permission_required("articles.svjis_view_adverts_menu")
 @require_GET
 def adverts_list_view(request):
-    advert_list = models.Advert.objects.all()
+    advert_list = models.Advert.objects.filter(published=True)
+    scope = request.GET.get('scope', 'all')
+    scope_description = _('All')
+
+    if scope == 'mine':
+        advert_list = models.Advert.objects.filter(created_by_user=request.user)
+        scope_description = _('Mine')
+    elif models.AdvertType.objects.filter(description=scope).count() > 0:
+        advert_list = advert_list.filter(type__description=scope)
+        scope_description = scope
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Adverts")
-    ctx['aside_menu_items'] = get_side_menu(None, request.user)
+    ctx['aside_menu_items'] = get_side_menu(scope, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('adverts', request.user)
     ctx['object_list'] = advert_list
+    ctx['scope_description'] = scope_description
     return render(request, "adverts_list.html", ctx)
 
 

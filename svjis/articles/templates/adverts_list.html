@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Adverts' %}</h1>
+<h1 class="page-title" id="tbl-desc">{% trans 'Adverts' %}: {{ scope_description }}</h1>
 
 {% if perms.articles.svjis_add_advert %}
 <a href="{% url 'adverts_edit' pk=0 %}" class="create-button">{% trans 'Create new advert' %}</a><br>
@@ -17,8 +17,8 @@
 <!-- advert -->&nbsp;
 <div id="advert" class="box">
     <div id="advert-desc">
-        <h2>{{ obj.header }}</h2>
-        <p class="info"><a href="#">{{ obj.type.description }}</a>: <strong>{{ obj.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
+        <h2 {% if not obj.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.header }}</h2>
+        <p class="info"><a href="{% url 'adverts_list'%}?scope={{ obj.type.description }}">{{ obj.type.description }}</a>: <strong>{{ obj.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
             {% if obj.created_by_user == user %}
             &nbsp;[<a href="{% url 'adverts_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]
             {% endif %}
@@ -30,8 +30,8 @@
         <p class="nomb"><img src="gfx/Files_unknown.gif" border="0" alt="Sedačka1.PNG">&nbsp;<a href="Upload?page=advertAttachmentDownload&id=5">Sedačka1.PNG</a>&nbsp; <img src="gfx/Files_unknown.gif" border="0" alt="Příliš_žluťoučký_kůň.PNG">&nbsp;<a href="Upload?page=advertAttachmentDownload&id=7">Příliš_žluťoučký_kůň.PNG</a>&nbsp; </p>
         {% endfor %}
         <p class="contact">
-            {% trans 'Phone' %}:&nbsp;<strong>{{ obj.phone }}</strong>&nbsp;
-            {% trans 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></strong>
+            {% if obj.phone %}{% trans 'Phone' %}:&nbsp;<strong>{{ obj.phone }}</strong>&nbsp;{% endif %}
+            {% if obj.email %}{% trans 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></strong>{% endif %}
         </p>
     </div> <!-- /advert-desc -->
 </div> <!-- /advert -->
