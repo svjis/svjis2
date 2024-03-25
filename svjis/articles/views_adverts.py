@@ -13,7 +13,7 @@ from django.views.decorators.http import require_GET, require_POST
 def get_side_menu(active_item, user):
     result = []
     result.append({
-        'description': _("All") + f' ({models.Advert.objects.count()})',
+        'description': _("All") + f' ({models.Advert.objects.filter(published=True).count()})',
         'link': reverse(adverts_list_view) + '?scope=all',
         'active': True if active_item == 'all' else False})
 
