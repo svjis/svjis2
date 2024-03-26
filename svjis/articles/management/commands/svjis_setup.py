@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group, Permission
-from articles.models import ArticleMenu, Preferences, BuildingUnitType
+from articles.models import ArticleMenu, Preferences, BuildingUnitType, AdvertType
 
 
 def create_groups():
@@ -33,6 +33,9 @@ def create_groups():
                         'svjis_fault_reporter',
                         'svjis_fault_resolver',
                         'svjis_add_fault_comment',
+                        # Adverts
+                        'svjis_view_adverts_menu',
+                        'svjis_add_advert',
             ]},
             {'name': 'Vlastník', 'perms': [
                         # Articles
@@ -46,6 +49,9 @@ def create_groups():
                         'svjis_view_fault_menu',
                         'svjis_fault_reporter',
                         'svjis_add_fault_comment',
+                        # Adverts
+                        'svjis_view_adverts_menu',
+                        'svjis_add_advert',
             ]},
             {'name': 'Člen výboru', 'perms': [
                         # Articles
@@ -168,11 +174,21 @@ def create_building_unit_types():
         BuildingUnitType.objects.create(description=t)
     print("Done")
 
+
+def create_advert_types():
+    print("Creating advert types...")
+    types = ['Koupím', 'Prodám', 'Ostatní']
+    for t in types:
+        AdvertType.objects.create(description=t)
+    print("Done")
+
+
 class Command(BaseCommand):
     help = "Populate database with initial data"
 
     def handle(self, *args, **options):
         create_article_menu()
+        create_advert_types()
         create_building_unit_types()
         create_groups()
         create_preferences()

@@ -3,7 +3,7 @@ import re
 import secrets
 import string
 import os.path
-from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_admin, models
+from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_adverts, views_admin, models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
@@ -34,6 +34,8 @@ def get_tray_menu(active_item: str, user) -> list:
             result.append({'description': _("Redaction"), 'link': reverse(views_redaction.redaction_article_view), 'active': True if active_item == 'redaction' else False})
     if user.has_perm('articles.svjis_view_fault_menu'):
             result.append({'description': _("Fault reporting"), 'link': reverse(views_faults.faults_list_view) + '?scope=open', 'active': True if active_item == 'faults' else False})
+    if user.has_perm('articles.svjis_view_adverts_menu'):
+            result.append({'description': _("Adverts"), 'link': reverse(views_adverts.adverts_list_view)  + '?scope=all', 'active': True if active_item == 'adverts' else False})
     if user.has_perm('articles.svjis_view_admin_menu'):
             result.append({'description': _("Administration"), 'link': reverse(views_admin.admin_company_edit_view), 'active': True if active_item == 'admin' else False})
     return  result

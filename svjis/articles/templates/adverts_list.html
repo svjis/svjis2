@@ -1,0 +1,46 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+{% load article_filters %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% trans 'Adverts' %}: {{ scope_description }}</h1>
+
+{% if perms.articles.svjis_add_advert %}
+<a href="{% url 'adverts_edit' pk=0 %}" class="create-button">{% trans 'Create new advert' %}</a><br>
+{% endif %}
+
+{% if object_list %}
+{% for obj in object_list %}
+
+<!-- advert -->&nbsp;
+<div id="advert" class="box">
+    <div id="advert-desc">
+        <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
+        <p class="info"><a href="{% url 'adverts_list'%}?scope={{ obj.advert.type.description }}">{{ obj.advert.type.description }}</a>: <strong>{{ obj.advert.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
+            {% if obj.advert.created_by_user == user %}
+            &nbsp;[<a href="{% url 'adverts_edit' pk=obj.advert.pk %}">{% trans 'Edit' %}</a>]
+            {% endif %}
+
+        </p>
+        <p class="nomb">{{ obj.body }}</p>
+
+        {% if obj.assets %}
+        <p class="nomb"></p>
+        {% for a in obj.assets %}
+            <img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
+        {% endfor %}
+        </p>
+        {% endif %}
+        <p class="contact">
+            {% if obj.advert.phone %}{% trans 'Phone' %}:&nbsp;<strong>{{ obj.advert.phone }}</strong>&nbsp;{% endif %}
+            {% if obj.advert.email %}{% trans 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.advert.email }}">{{ obj.advert.email }}</a></strong>{% endif %}
+        </p>
+    </div> <!-- /advert-desc -->
+</div> <!-- /advert -->
+
+{% endfor %}
+{% endif %}
+
+{% endblock %}
