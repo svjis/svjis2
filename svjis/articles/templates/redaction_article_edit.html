@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{{ form.media }}
+
 <h1 class="page-title">{% trans 'Article' %}</h1>
 <form action="{% url 'redaction_article_save' %}" method="post">
     {% csrf_token %}

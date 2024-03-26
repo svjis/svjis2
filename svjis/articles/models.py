@@ -2,6 +2,7 @@ import os
 from .model_utils import unique_slugify
 from datetime import date
 from django.db import models
+from tinymce import models as tinymce_models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import gettext_lazy as _
 
@@ -16,7 +17,7 @@ class Article(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
     perex = models.TextField(_("Perex (markdown)"))
-    body = models.TextField(_("Body (markdown)"))
+    body = tinymce_models.HTMLField(_("Body (markdown)"))
     menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
     allow_comments = models.BooleanField(_("Allow comments"), default=False)
     watching_users = models.ManyToManyField(User, related_name='watching_article_set')

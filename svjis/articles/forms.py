@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User, Group
 from django.utils.translation import gettext_lazy as _
 from . import models
+from tinymce.widgets import TinyMCE
 
 
 class ArticleMenuForm(forms.ModelForm):
@@ -27,7 +28,7 @@ class ArticleForm(forms.ModelForm):
         widgets = {
             'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'perex': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '10', 'cols': '80', 'wrap': True}),
-            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '20', 'cols': '80', 'wrap': True}),
+            'body': TinyMCE(attrs={'cols': 80, 'rows': 30}),
             'menu': forms.widgets.Select(attrs={'class': 'common-input'}),
             'allow_comments': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
             'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
