@@ -29,7 +29,8 @@ def highlight(text, search):
 @register.filter()
 def inject_pictures(text, assets):
     for a in assets:
-        text = text.replace('{' + a['basename'] + '}', f'<img src="/media/{a['asset'].file}" alt="{a['basename']}">')
+        file = a['asset'].file
+        text = text.replace('{' + a['basename'] + '}', f'<img src="/media/{file}" alt="{a['basename']}">')
     return mark_safe(text)
 
 
