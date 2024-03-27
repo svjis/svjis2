@@ -14,7 +14,7 @@ def markdown(value):
     return md.markdown(value, extensions=['markdown.extensions.fenced_code'])
 
 
-@register.filter(name='highlight')
+@register.filter()
 def highlight(text, search):
     if search == '':
         return text
@@ -23,8 +23,17 @@ def highlight(text, search):
             lambda m: '<b style="color:black;background-color:#ffff66">{}</b>'.format(m.group()),
             text
         )
-    # highlighted = text.replace(search, '<b style="color:black;background-color:#ffff66">{}</b>'.format(search))
     return mark_safe(highlighted)
+
+
+@register.filter()
+def inject_pictures(text, assets):
+    for a in assets:
+        file = a['asset'].file
+        basename = a['basename']
+        text = text.replace('{' + basename + '}', f'<img src="/media/{file}" alt="{basename}">')
+    return mark_safe(text)
+
 
 # settings value
 @register.simple_tag

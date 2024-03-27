@@ -22,7 +22,7 @@
                         <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
                         {% trans 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
                         {% if obj.comments %}, {% trans 'Comments' %}: <strong>{{ obj.comments | length }}</strong>{% endif %}</p>
-                    <p>{{ obj.perex | highlight:search | markdown | safe }}</p>
+                    <p>{{ obj.perex | highlight:search | safe }}</p>
                 </div>
             </div> <!-- /article -->
             {% endfor %}

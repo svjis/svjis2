@@ -1,2 +1,3 @@
 django == 5.0.3
 markdown == 3.4.3
+django-tinymce == 3.7.1
