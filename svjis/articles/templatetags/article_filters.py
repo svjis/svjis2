@@ -30,7 +30,8 @@ def highlight(text, search):
 def inject_pictures(text, assets):
     for a in assets:
         file = a['asset'].file
-        text = text.replace('{' + a['basename'] + '}', f'<img src="/media/{file}" alt="{a['basename']}">')
+        basename = a['basename']
+        text = text.replace('{' + basename + '}', f'<img src="/media/{file}" alt="{basename}">')
     return mark_safe(text)
 
 
