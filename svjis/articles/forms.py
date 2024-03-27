@@ -27,8 +27,8 @@ class ArticleForm(forms.ModelForm):
         fields = ("header", "perex", "body", "menu", "allow_comments", "published", "visible_for_all")
         widgets = {
             'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'perex': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '10', 'cols': '80', 'wrap': True}),
-            'body': TinyMCE(attrs={'class': 'common-textarea', 'rows': '20', 'cols': '30'}, mce_attrs={"height": "350px","width": "600px",}),
+            'perex': TinyMCE(attrs={'class': 'common-textarea', 'rows': '20', 'cols': '30'}, mce_attrs={'entity_encoding': 'raw', 'height': '350px', 'width': '600px',}),
+            'body': TinyMCE(attrs={'class': 'common-textarea', 'rows': '20', 'cols': '30'}, mce_attrs={'entity_encoding': 'raw', 'height': '350px', 'width': '600px',}),
             'menu': forms.widgets.Select(attrs={'class': 'common-input'}),
             'allow_comments': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
             'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
