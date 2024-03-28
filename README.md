@@ -1,6 +1,12 @@
-# SVJIS PY
+# SVJIS2
 
-Tento repozitář obsahuje reimplementaci [SVJIS](https://svjis.github.io/) do [Django](https://www.djangoproject.com/). Na reimplementaci se stále pracuje...
+[![UnitTests](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=svjis_svjis-py&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=svjis_svjis-py)
+
+Informační systém pro SVJ :house_with_garden:
+
+## Popis projektu
+
+SVJIS je CMS pro Společenství Vlastníku Jednotek. Systém poskytuje redakční systém :memo:, diskuze pod článkem, aknkety :bar_chart:, hlášení a sledování závad, inzeráty, databázi vlastníků :family_man_woman_boy: včetně evidence jednotek a podílů. Více na [stránkách projektu](https://svjis.github.io/Vlastnosti/).
 
 
 ## 1 Instalace
@@ -12,8 +18,8 @@ python --version
 
 Naklonujte si projekt
 ```
-git clone https://github.com/svjis/svjis-py.git
-cd svjis-py
+git clone https://github.com/svjis/svjis2.git
+cd svjis2
 ```
 
 Vytvořte si virtuální prostředí a přepněte se do něj
@@ -78,7 +84,7 @@ Odesílání e-mailů se děje na pozadí - systém ukládá e-maily do fronty k
 python manage.py svjis_send_messages
 ```
 
-Při testování aplikace ho můžete spouštět ručně. Při produkčním nastavení je potřeba nastavit plánovač systému (například cron) aby ho spoštěl v určitých itervalech (třeba každých 5 minut).
+Při testování aplikace ho můžete spouštět ručně. Při produkčním nastavení je potřeba nastavit plánovač systému (například cron) aby ho spoštěl v určitých itervalech (například každých 5 minut).
 
 ## 4 Spolupráce
 

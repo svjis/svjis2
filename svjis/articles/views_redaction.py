@@ -200,6 +200,10 @@ def redaction_article_save_view(request):
                 obj.visible_for_group.add(g)
             if not gr_set and g in group_list:
                 obj.visible_for_group.remove(g)
+
+        # Set watching users
+        if pk == 0:
+            obj.watching_users.add(request.user)
     else:
         for error in form.errors:
             messages.error(request, error)
