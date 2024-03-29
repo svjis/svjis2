@@ -28,21 +28,23 @@ jobs:
         source venv/bin/activate
         cd svjis
         python manage.py makemessages -l cs
+        python manage.py compilemessages
 
     - name: Archive messages cs
       uses: actions/upload-artifact@v3
       with:
         name: Messages cs
-        path: svjis/articles/locale/cs/LC_MESSAGES/django.po
+        path: svjis/articles/locale/cs/*
 
     - name: Make messages en
       run: |
         source venv/bin/activate
         cd svjis
         python manage.py makemessages -l en
+        python manage.py compilemessages
 
     - name: Archive messages en
       uses: actions/upload-artifact@v3
       with:
         name: Messages en
-        path: svjis/articles/locale/en/LC_MESSAGES/django.po
+        path: svjis/articles/locale/en/*

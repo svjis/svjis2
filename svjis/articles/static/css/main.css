@@ -51,7 +51,28 @@ h3 {font-size: small;}
         #logo {position:relative; float: left; width:940px; height:94px; overflow:hidden; margin:0px 0px 0px 0px; padding:0; font-size:300%;}
         #logo span {display:block; position:absolute; top:0; left:0; z-index:1; width:100%; height:100%; margin:0; padding:0; cursor:pointer;}
         #company_name {position:relative; float: right; width:940px; height:94px; overflow:hidden; margin:25px 0px 0px 0px; padding:0; font-size:160%; text-align: center;}
-        #messages {padding:10px 15px 15px 10px;}
+        #msg-error {
+            border-radius: 5px;
+            background-color: #ffeaf4;
+            border-color: #ff8ec4;
+            border-width: 1px;
+            border-style: solid;
+            padding:10px 15px 15px 10px;
+            width: 913px;
+            height: 15px;
+            position:relative; margin:10px 0;
+          }
+          #msg-info {
+            border-radius: 5px;
+            background-color: #f5fae5;
+            border-color: #cee67e;
+            border-width: 1px;
+            border-style: solid;
+            padding:10px 15px 15px 10px;
+            width: 913px;
+            height: 15px;
+            position:relative; margin:10px 0;
+          }
     #tray {padding:10px 0 15px 10px; background:url("../design/tray.gif") 0 100% no-repeat;}
 
         #tray ul {margin:0; list-style:none;}
