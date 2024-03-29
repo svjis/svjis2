@@ -46,6 +46,7 @@ def personal_settings_save_view(request):
     if uform.is_valid() and pform.is_valid():
         u = uform.save()
         u.userprofile.save()
+        messages.info(request, _('Saved'))
     else:
         for error in uform.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -100,6 +101,7 @@ def personal_settings_password_save_view(request):
 
     user.password = make_password(npwd1)
     user.save()
+    messages.info(request, _('Password has been changed'))
     return redirect(personal_settings_password_view)
 
 

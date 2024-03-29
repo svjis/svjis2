@@ -80,6 +80,7 @@ def admin_company_save_view(request):
     form = forms.CompanyForm(request.POST, request.FILES, instance=instance)
     if form.is_valid:
         form.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -166,6 +167,7 @@ def admin_building_save_view(request):
     form = forms.BuildingForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
