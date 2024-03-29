@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-27 23:40+0100\n"
+"POT-Creation-Date: 2024-03-29 22:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -523,7 +523,7 @@ msgstr "Insert comment"
 
 #: articles/templates/box-01.html:9
 #: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:19
-#: articles/views_redaction.py:287
+#: articles/views_redaction.py:291
 msgid "News"
 msgstr "News"
 
@@ -784,17 +784,17 @@ msgstr "Contact"
 
 #: articles/utils.py:32 articles/views_personal_settings.py:16
 #: articles/views_personal_settings.py:32
-#: articles/views_personal_settings.py:63
-#: articles/views_personal_settings.py:74
+#: articles/views_personal_settings.py:64
+#: articles/views_personal_settings.py:75
 msgid "Personal settings"
 msgstr "Personal settings"
 
 #: articles/utils.py:34 articles/views_redaction.py:54
 #: articles/views_redaction.py:71 articles/views_redaction.py:139
-#: articles/views_redaction.py:167 articles/views_redaction.py:230
-#: articles/views_redaction.py:250 articles/views_redaction.py:300
-#: articles/views_redaction.py:320 articles/views_redaction.py:375
-#: articles/views_redaction.py:397 articles/views_redaction.py:465
+#: articles/views_redaction.py:167 articles/views_redaction.py:234
+#: articles/views_redaction.py:254 articles/views_redaction.py:304
+#: articles/views_redaction.py:324 articles/views_redaction.py:379
+#: articles/views_redaction.py:401 articles/views_redaction.py:469
 msgid "Redaction"
 msgstr "Redaction"
 
@@ -804,15 +804,15 @@ msgstr "Redaction"
 msgid "Fault reporting"
 msgstr "Fault reporting"
 
-#: articles/utils.py:40 articles/views_admin.py:69 articles/views_admin.py:96
-#: articles/views_admin.py:113 articles/views_admin.py:155
-#: articles/views_admin.py:181 articles/views_admin.py:198
-#: articles/views_admin.py:251 articles/views_admin.py:272
-#: articles/views_admin.py:315 articles/views_admin.py:360
-#: articles/views_admin.py:392 articles/views_admin.py:453
-#: articles/views_admin.py:491 articles/views_admin.py:518
-#: articles/views_admin.py:570 articles/views_admin.py:587
-#: articles/views_admin.py:626
+#: articles/utils.py:40 articles/views_admin.py:69 articles/views_admin.py:97
+#: articles/views_admin.py:114 articles/views_admin.py:156
+#: articles/views_admin.py:183 articles/views_admin.py:200
+#: articles/views_admin.py:253 articles/views_admin.py:274
+#: articles/views_admin.py:317 articles/views_admin.py:362
+#: articles/views_admin.py:394 articles/views_admin.py:455
+#: articles/views_admin.py:493 articles/views_admin.py:520
+#: articles/views_admin.py:572 articles/views_admin.py:589
+#: articles/views_admin.py:628
 msgid "Administration"
 msgstr "Administration"
 
@@ -843,6 +843,11 @@ msgstr "Users"
 msgid "Groups"
 msgstr "Groups"
 
+#: articles/views_admin.py:83 articles/views_admin.py:170
+#: articles/views_personal_settings.py:49
+msgid "Saved"
+msgstr "Saved"
+
 #: articles/views_adverts.py:14 articles/views_adverts.py:40
 msgid "All"
 msgstr "All"
@@ -864,19 +869,23 @@ msgstr "Assigned to me"
 msgid "My units"
 msgstr "My units"
 
-#: articles/views_personal_settings.py:90
+#: articles/views_personal_settings.py:91
 msgid "Wrong password"
 msgstr "Wrong password"
 
-#: articles/views_personal_settings.py:94
+#: articles/views_personal_settings.py:95
 msgid "Password cannot be enpty"
 msgstr "Password cannot be enpty"
 
-#: articles/views_personal_settings.py:98
+#: articles/views_personal_settings.py:99
 msgid "New passwords don't match"
 msgstr "New passwords don't match"
 
-#: articles/views_redaction.py:21 articles/views_redaction.py:362
-#: articles/views_redaction.py:462
+#: articles/views_personal_settings.py:104
+msgid "Password has been changed"
+msgstr "Password has been changed"
+
+#: articles/views_redaction.py:21 articles/views_redaction.py:366
+#: articles/views_redaction.py:466
 msgid "Surveys"
 msgstr "Surveys"
