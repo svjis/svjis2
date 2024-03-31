@@ -7,7 +7,7 @@ from articles.models import ArticleMenu, Preferences, BuildingUnitType, AdvertTy
 
 def create_groups():
     names = [
-            {'name': 'Administrator', 'perms': [
+            {'name': 'Administrátor', 'perms': [
                         # Articles
                         'svjis_add_article_comment',
                         'svjis_answer_survey',
@@ -113,7 +113,7 @@ def create_admin_user():
     u.is_staff = True
     u.is_superuser = True
     u.save()
-    g = Group.objects.get(name='Administrator')
+    g = Group.objects.get(name='Administrátor')
     u.groups.add(g)
     print("Done")
 
