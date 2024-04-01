@@ -122,7 +122,7 @@ def migrate_building_users(cnn):
     cur = cnn.cursor()
     cur.execute(SELECT)
     for row in cur:
-        i = User.objects.filter(username=row[12], first_name=row[2], last_name=row[3], email=row[11]).count()
+        i = User.objects.filter(username=row[12], first_name=row[2], last_name=row[3], email=row[11], is_active=(row[14] != 0)).count()
         if i == 0:
             print(f"creating user {row[2]} {row[3]}")
             obj = User(username=row[12], first_name=row[2], last_name=row[3], email=row[11], is_active=(row[14] != 0), is_staff=False, is_superuser=False)
@@ -133,6 +133,26 @@ def migrate_building_users(cnn):
 
         else:
             print(f"user {row[2]} {row[3]} already exists")
+    cnn.commit()
+
+    SELECT = '''
+    SELECT u.LOGIN, u.FIRST_NAME, u.LAST_NAME, u.E_MAIL, u.ENABLED, o.DESCRIPTION
+    FROM USER_HAS_ROLE r
+    LEFT JOIN "USER" u ON u.ID = r.USER_ID
+    LEFT JOIN "ROLE" o ON o.ID = r.ROLE_ID
+    WHERE u.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = User.objects.filter(username=row[0], first_name=row[1], last_name=row[2], email=row[3], is_active=(row[4] != 0)).count()
+        if i == 1:
+            print(f"creating user group for {row[1]} {row[2]}")
+            u = User.objects.filter(username=row[0], first_name=row[1], last_name=row[2], email=row[3], is_active=(row[4] != 0))[0]
+            g = Group.objects.filter(name=row[5])[0]
+            u.groups.add(g)
+        else:
+            print(f"user {row[1]} {row[2]} does not exist")
     cnn.commit()
 
 
