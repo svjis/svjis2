@@ -109,7 +109,7 @@ def migrate_groups(cnn):
     cnn.commit()
 
 
-def migrate_building_users(cnn):
+def migrate_users(cnn):
     SELECT = '''
     SELECT r.ID, r.COMPANY_ID, r.FIRST_NAME, r.LAST_NAME, r.SALUTATION, r.ADDRESS,
     r.CITY, r.POST_CODE, r.COUNTRY, r.FIXED_PHONE, r.CELL_PHONE, r.E_MAIL,
@@ -217,6 +217,34 @@ def migrate_menu(cnn):
     cnn.commit()
 
 
+def migrate_articles(cnn):
+    SELECT = '''
+    SELECT r.ID, r.COMPANY_ID, m.DESCRIPTION, r.LANGUAGE_ID, r.HEADER,
+    r.DESCRIPTION, r."BODY", u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r.CREATION_DATE, r.PUBLISHED,
+    r.COMMENTS_ALLOWED
+    FROM ARTICLE r
+    LEFT JOIN MENU_TREE m on m.ID = r.MENU_NODE_ID
+    LEFT JOIN "USER" u on u.ID = r.CREATED_BY_USER_ID
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = models.Article.objects.filter(header=row[4], created_date=row[10]).count()
+        if i == 0:
+            print(f"creating article {row[4]}")
+            u = User.objects.filter(username=row[9], first_name=row[7], last_name=row[8])[0]
+            m = models.ArticleMenu.objects.filter(description=row[2])[0]
+            obj = models.Article(header=row[4], author=u, published=(row[11] != 0), perex=row[5], body=row[6], menu=m, allow_comments=(row[12] != 0))
+            obj.save()
+            obj.created_date=row[10]
+            obj.save()
+
+        else:
+            print(f"article {row[4]} already exists")
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -231,7 +259,8 @@ class Command(BaseCommand):
         migrate_building_entrances(self.cnn)
         migrate_building_units(self.cnn)
         migrate_groups(self.cnn)
-        migrate_building_users(self.cnn)
+        migrate_users(self.cnn)
         migrate_board(self.cnn)
         migrate_menu(self.cnn)
+        migrate_articles(self.cnn)
         self.cnn.close()
