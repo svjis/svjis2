@@ -245,6 +245,27 @@ def migrate_articles(cnn):
     cnn.commit()
 
 
+def migrate_article_pernission(cnn):
+    SELECT = '''
+    SELECT a.HEADER, a.CREATION_DATE, o.DESCRIPTION
+    FROM ARTICLE_IS_VISIBLE_TO_ROLE r
+    LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
+    LEFT JOIN "ROLE" o on o.ID = r.ROLE_ID
+    WHERE a.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        print(f"creating article permission for {row[0]}")
+        a = models.Article.objects.filter(header=row[0], created_date=row[1])[0]
+        g = Group.objects.filter(name=row[2])[0]
+        a.visible_for_group.add(g)
+        if row[2] == 'Nepřihlášený uživatel':
+            a.visible_for_all = True
+            a.save()
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -263,4 +284,5 @@ class Command(BaseCommand):
         migrate_board(self.cnn)
         migrate_menu(self.cnn)
         migrate_articles(self.cnn)
+        migrate_article_pernission(self.cnn)
         self.cnn.close()
