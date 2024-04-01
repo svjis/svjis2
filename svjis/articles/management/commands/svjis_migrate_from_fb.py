@@ -198,6 +198,25 @@ def migrate_board(cnn):
     cnn.commit()
 
 
+def migrate_menu(cnn):
+    SELECT = '''
+    SELECT r.ID, r.COMPANY_ID, r.PARENT_ID, r.DESCRIPTION, r.HIDE
+    FROM MENU_TREE r
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = models.ArticleMenu.objects.filter(description=row[3]).count()
+        if i == 0:
+            print(f"creating menu {row[3]}")
+            obj = models.ArticleMenu(description=row[3], hide=(row[4] != 0))
+            obj.save()
+        else:
+            print(f"menu {row[3]} already exists")
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -214,4 +233,5 @@ class Command(BaseCommand):
         migrate_groups(self.cnn)
         migrate_building_users(self.cnn)
         migrate_board(self.cnn)
+        migrate_menu(self.cnn)
         self.cnn.close()
