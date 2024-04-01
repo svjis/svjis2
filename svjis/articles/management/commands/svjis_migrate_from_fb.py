@@ -125,8 +125,12 @@ def migrate_building_users(cnn):
         i = User.objects.filter(username=row[12], first_name=row[2], last_name=row[3], email=row[11]).count()
         if i == 0:
             print(f"creating user {row[2]} {row[3]}")
-            obj = User(username=row[12], first_name=row[2], last_name=row[3], email=row[11], is_active=(row[14] != 0))
+            obj = User(username=row[12], first_name=row[2], last_name=row[3], email=row[11], is_active=(row[14] != 0), is_staff=False, is_superuser=False)
             obj.save()
+            pobj = models.UserProfile(salutation=row[4], address=row[5], city=row[6], post_code=row[7], country=row[8], phone=row[10], show_in_phonelist=(row[15] != 0), internal_note=row[19])
+            obj.userprofile = pobj
+            obj.userprofile.save()
+
         else:
             print(f"user {row[2]} {row[3]} already exists")
     cnn.commit()
