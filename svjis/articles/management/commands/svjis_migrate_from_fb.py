@@ -155,6 +155,26 @@ def migrate_building_users(cnn):
             print(f"user {row[1]} {row[2]} does not exist")
     cnn.commit()
 
+    SELECT = '''
+    SELECT u.LOGIN, u.FIRST_NAME, u.LAST_NAME, u.E_MAIL, u.ENABLED, b.DESCRIPTION
+    FROM USER_HAS_BUILDING_UNIT r
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    LEFT JOIN BUILDING_UNIT b on b.ID = r.BUILDING_UNIT_ID
+    WHERE u.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = User.objects.filter(username=row[0], first_name=row[1], last_name=row[2], email=row[3], is_active=(row[4] != 0)).count()
+        if i == 1:
+            print(f"creating user unit for {row[1]} {row[2]}")
+            u = User.objects.filter(username=row[0], first_name=row[1], last_name=row[2], email=row[3], is_active=(row[4] != 0))[0]
+            b = models.BuildingUnit.objects.filter(description=row[5])[0]
+            u.buildingunit_set.add(b)
+        else:
+            print(f"user {row[1]} {row[2]} does not exist")
+    cnn.commit()
+
 
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
