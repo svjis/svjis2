@@ -176,6 +176,28 @@ def migrate_building_users(cnn):
     cnn.commit()
 
 
+def migrate_board(cnn):
+    SELECT = '''
+    SELECT u.LOGIN, u.FIRST_NAME, u.LAST_NAME, u.E_MAIL, u.ENABLED, t.DESCRIPTION, t.ID
+    FROM BOARD_MEMBER r
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    LEFT JOIN BOARD_MEMBER_TYPE t on t.ID = r.BOARD_MEMBER_TYPE_ID
+    WHERE u.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = User.objects.filter(username=row[0], first_name=row[1], last_name=row[2], email=row[3], is_active=(row[4] != 0)).count()
+        if i == 1:
+            print(f"creating board for {row[1]} {row[2]}")
+            u = User.objects.filter(username=row[0], first_name=row[1], last_name=row[2], email=row[3], is_active=(row[4] != 0))[0]
+            obj = models.Board(company_id=1, order=row[6], member=u, position=row[5])
+            obj.save()
+        else:
+            print(f"user {row[1]} {row[2]} does not exist")
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -191,4 +213,5 @@ class Command(BaseCommand):
         migrate_building_units(self.cnn)
         migrate_groups(self.cnn)
         migrate_building_users(self.cnn)
+        migrate_board(self.cnn)
         self.cnn.close()
