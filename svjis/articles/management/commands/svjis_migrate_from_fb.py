@@ -75,6 +75,7 @@ def migrate_building_units(cnn):
     FROM BUILDING_UNIT r
     LEFT JOIN BUILDING_UNIT_TYPE t on r.BUILDING_UNIT_TYPE_ID = t.ID
     WHERE r.BUILDING_ID = 1
+    ORDER BY r.ID
     '''
     cur = cnn.cursor()
     cur.execute(SELECT)
@@ -118,6 +119,7 @@ def migrate_users(cnn):
     r.PERM_LOGIN_EXPIRES
     FROM "USER" r
     WHERE r.COMPANY_ID = 1
+    ORDER BY r.ID
     '''
     cur = cnn.cursor()
     cur.execute(SELECT)
@@ -226,6 +228,7 @@ def migrate_articles(cnn):
     LEFT JOIN MENU_TREE m on m.ID = r.MENU_NODE_ID
     LEFT JOIN "USER" u on u.ID = r.CREATED_BY_USER_ID
     WHERE r.COMPANY_ID = 1
+    ORDER BY r.ID
     '''
     cur = cnn.cursor()
     cur.execute(SELECT)
