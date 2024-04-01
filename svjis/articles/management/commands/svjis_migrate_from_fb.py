@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 import mypwd
 from firebird.driver import connect
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from articles import models
 
 
@@ -79,7 +79,7 @@ def migrate_building_units(cnn):
     cur = cnn.cursor()
     cur.execute(SELECT)
     for row in cur:
-        i = models.BuildingUnit.objects.filter(description=row[2]).count()
+        i = models.BuildingUnit.objects.filter(description=row[4]).count()
         if i == 0:
             print(f"creating unit {row[4]}")
             utype = models.BuildingUnitType.objects.filter(description=row[2])[0]
@@ -109,6 +109,29 @@ def migrate_groups(cnn):
     cnn.commit()
 
 
+def migrate_building_users(cnn):
+    SELECT = '''
+    SELECT r.ID, r.COMPANY_ID, r.FIRST_NAME, r.LAST_NAME, r.SALUTATION, r.ADDRESS,
+    r.CITY, r.POST_CODE, r.COUNTRY, r.FIXED_PHONE, r.CELL_PHONE, r.E_MAIL,
+    r.LOGIN, r."PASSWORD", r.ENABLED, r.SHOW_IN_PHONELIST, r.LANGUAGE_ID,
+    r.PASSWORD_HASH, r.PASSWORD_SALT, r.INTERNAL_NOTE, r.PERM_LOGIN_HASH,
+    r.PERM_LOGIN_EXPIRES
+    FROM "USER" r
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = User.objects.filter(username=row[12], first_name=row[2], last_name=row[3], email=row[11]).count()
+        if i == 0:
+            print(f"creating user {row[2]} {row[3]}")
+            obj = User(username=row[12], first_name=row[2], last_name=row[3], email=row[11], is_active=(row[14] != 0))
+            obj.save()
+        else:
+            print(f"user {row[2]} {row[3]} already exists")
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -123,4 +146,5 @@ class Command(BaseCommand):
         migrate_building_entrances(self.cnn)
         migrate_building_units(self.cnn)
         migrate_groups(self.cnn)
+        migrate_building_users(self.cnn)
         self.cnn.close()
