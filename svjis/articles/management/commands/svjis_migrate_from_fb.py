@@ -248,7 +248,7 @@ def migrate_articles(cnn):
     cnn.commit()
 
 
-def migrate_article_pernission(cnn):
+def migrate_article_permission(cnn):
     SELECT = '''
     SELECT a.HEADER, a.CREATION_DATE, o.DESCRIPTION
     FROM ARTICLE_IS_VISIBLE_TO_ROLE r
@@ -266,6 +266,28 @@ def migrate_article_pernission(cnn):
         if row[2] == 'Nepřihlášený uživatel':
             a.visible_for_all = True
             a.save()
+    cnn.commit()
+
+
+def migrate_article_comment(cnn):
+    SELECT = '''
+    SELECT r.INSERTION_TIME, r."BODY", a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+    FROM TABLE ARTICLE_COMMENT r
+    LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    WHERE a.COMPANY_ID = 1
+    ORDER BY r.ID
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        print(f"creating article comment for {row[2]}")
+        a = models.Article.objects.filter(header=row[2], created_date=row[3])[0]
+        u = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
+        obj = models.ArticleComment(article=a, author=u, body=row[1])
+        obj.save()
+        obj.created_date = row[0]
+        obj.save()
     cnn.commit()
 
 
@@ -287,5 +309,6 @@ class Command(BaseCommand):
         migrate_board(self.cnn)
         migrate_menu(self.cnn)
         migrate_articles(self.cnn)
-        migrate_article_pernission(self.cnn)
+        migrate_article_permission(self.cnn)
+        migrate_article_comment(self.cnn)
         self.cnn.close()
