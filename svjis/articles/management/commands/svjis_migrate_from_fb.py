@@ -291,6 +291,28 @@ def migrate_article_comment(cnn):
     cnn.commit()
 
 
+def migrate_article_asset(cnn):
+    SELECT = '''
+    SELECT r.UPLOAD_TIME, r.FILENAME, a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA"
+    FROM TABLE ARTICLE_ATTACHMENT r
+    LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    WHERE a.COMPANY_ID = 1
+    ORDER BY r.ID
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        print(f"creating article attachment for {row[2]}")
+        a = models.Article.objects.filter(header=row[2], created_date=row[3])[0]
+        obj = models.ArticleAsset(description='', article=a)
+        obj.file.save(row[1], row[7])
+        obj.save()
+        obj.created_date = row[0]
+        obj.save()
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -311,4 +333,5 @@ class Command(BaseCommand):
         migrate_articles(self.cnn)
         migrate_article_permission(self.cnn)
         migrate_article_comment(self.cnn)
+        migrate_article_asset(self.cnn)
         self.cnn.close()
