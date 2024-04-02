@@ -386,7 +386,7 @@ def admin_user_edit_view(request, pk):
     user_group_list = []
     if pk != 0:
         user_group_list = Group.objects.filter(user__id=instance.id)
-    for g in Group.objects.all():
+    for g in Group.objects.all().order_by('name'):
         item = {'name': g.name, 'checked': g in user_group_list}
         group_list.append(item)
 
