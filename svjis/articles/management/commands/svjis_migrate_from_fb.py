@@ -313,6 +313,24 @@ def migrate_article_asset(cnn):
     cnn.commit()
 
 
+def migrate_article_watching(cnn):
+    SELECT = '''
+    SELECT a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+    FROM ARTICLE_WATCHING r
+    LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    WHERE a.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        print(f"creating article watching for {row[0]} and {row[2]} {row[3]}")
+        a = models.Article.objects.filter(header=row[0], created_date=row[1])[0]
+        u = User.objects.filter(username=row[4], first_name=row[2], last_name=row[3])[0]
+        a.watching_users.add(u)
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -334,4 +352,5 @@ class Command(BaseCommand):
         migrate_article_permission(self.cnn)
         migrate_article_comment(self.cnn)
         migrate_article_asset(self.cnn)
+        migrate_article_watching(self.cnn)
         self.cnn.close()
