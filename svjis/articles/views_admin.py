@@ -237,7 +237,7 @@ def admin_entrance_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_unit_view(request):
-    unit_list = models.BuildingUnit.objects.all()
+    unit_list = models.BuildingUnit.objects.all().order_by('id')
     type_list = models.BuildingUnitType.objects.all()
     entrance_list = models.BuildingEntrance.objects.all()
 
@@ -351,7 +351,7 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
 @require_GET
 def admin_user_view(request):
     deactivated_users = request.GET.get('deactivated_users', False) == 'on'
-    user_list = User.objects.filter(is_active= not deactivated_users)
+    user_list = User.objects.filter(is_active= not deactivated_users).order_by('last_name', 'first_name')
     group_filter = int(request.GET.get('group_filter', 0))
     if group_filter != 0:
         g = Group.objects.filter(pk=group_filter)
