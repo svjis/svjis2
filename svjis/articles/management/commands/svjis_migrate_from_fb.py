@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import mypwd
-from firebird.driver import connect
-from django.shortcuts import get_object_or_404
+import io
+from firebird.driver import connect, driver_config
 from django.contrib.auth.models import Group, User
 from articles import models
 
@@ -272,7 +272,7 @@ def migrate_article_permission(cnn):
 def migrate_article_comment(cnn):
     SELECT = '''
     SELECT r.INSERTION_TIME, r."BODY", a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
-    FROM TABLE ARTICLE_COMMENT r
+    FROM ARTICLE_COMMENT r
     LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
     LEFT JOIN "USER" u on u.ID = r.USER_ID
     WHERE a.COMPANY_ID = 1
@@ -294,7 +294,7 @@ def migrate_article_comment(cnn):
 def migrate_article_asset(cnn):
     SELECT = '''
     SELECT r.UPLOAD_TIME, r.FILENAME, a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA"
-    FROM TABLE ARTICLE_ATTACHMENT r
+    FROM ARTICLE_ATTACHMENT r
     LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
     LEFT JOIN "USER" u on u.ID = r.USER_ID
     WHERE a.COMPANY_ID = 1
@@ -306,7 +306,8 @@ def migrate_article_asset(cnn):
         print(f"creating article attachment for {row[2]}")
         a = models.Article.objects.filter(header=row[2], created_date=row[3])[0]
         obj = models.ArticleAsset(description='', article=a)
-        obj.file.save(row[1], row[7])
+        data = row[7]
+        obj.file.save(row[1], io.BytesIO(data))
         obj.save()
         obj.created_date = row[0]
         obj.save()
@@ -338,6 +339,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         db_login, db_password, db_database = mypwd.get_values("svjis-fb", ["login", "password", "database"])
+        driver_config.stream_blob_threshold.value = 20_971_520 # 20MB
         self.cnn = connect(db_database, user=db_login, password=db_password)
 
         migrate_company(self.cnn)
