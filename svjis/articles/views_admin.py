@@ -237,7 +237,7 @@ def admin_entrance_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_unit_view(request):
-    unit_list = models.BuildingUnit.objects.all().order_by('id')
+    unit_list = models.BuildingUnit.objects.all()
     type_list = models.BuildingUnitType.objects.all()
     entrance_list = models.BuildingEntrance.objects.all()
 
@@ -253,7 +253,7 @@ def admin_building_unit_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = unit_list
+    ctx['object_list'] = unit_list.order_by('id')
     ctx['type_list'] = type_list
     ctx['type_filter'] = type_filter
     ctx['entrance_list'] = entrance_list
@@ -351,7 +351,7 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
 @require_GET
 def admin_user_view(request):
     deactivated_users = request.GET.get('deactivated_users', False) == 'on'
-    user_list = User.objects.filter(is_active= not deactivated_users).order_by('last_name', 'first_name')
+    user_list = User.objects.filter(is_active= not deactivated_users)
     group_filter = int(request.GET.get('group_filter', 0))
     if group_filter != 0:
         g = Group.objects.filter(pk=group_filter)
@@ -362,7 +362,7 @@ def admin_user_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = user_list
+    ctx['object_list'] = user_list.order_by('last_name', 'first_name')
     ctx['group_list'] = group_list
     ctx['group_filter'] = group_filter
     ctx['deactivated_users'] = deactivated_users
