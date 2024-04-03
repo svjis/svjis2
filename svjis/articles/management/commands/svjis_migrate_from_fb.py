@@ -491,6 +491,31 @@ def migrate_fault_report(cnn):
     cnn.commit()
 
 
+def migrate_adverts(cnn):
+    SELECT = '''
+    SELECT t.DESCRIPTION, r.HEADER, r.BODY, r.PHONE, r.E_MAIL, r.CREATION_DATE, r.PUBLISHED, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+    FROM ADVERT r
+    LEFT JOIN ADVERT_TYPE t on t.ID = r.TYPE_ID
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = models.Advert.objects.filter(description=row[0]).count()
+        if i == 0:
+            print(f"creating advert {row[1]}")
+            u = User.objects.filter(username=row[9], first_name=row[7], last_name=row[8])[0]
+            t = models.AdvertType.objects.filter(description=row[0])[0]
+            obj = models.Advert(type=t, header=row[1], body=row[2], created_by_user=u, phone=row[3], email=row[4], published=(row[6] != 0))
+            obj.save()
+            obj.created_date=row[5]
+            obj.save()
+        else:
+            print(f"advert {row[0]} already exists")
+    cnn.commit()
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -517,5 +542,6 @@ class Command(BaseCommand):
         migrate_news(self.cnn)
         migrate_survey(self.cnn)
         migrate_fault_report(self.cnn)
+        migrate_adverts(self.cnn)
 
         self.cnn.close()
