@@ -14,6 +14,7 @@
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% trans 'Description' %}</th>
         <th class="list" scope="col">{% trans 'Votes' %}</th>
+        <th class="list" scope="col">{% trans 'Votes' %} %</th>
     </tr>
 
     {% if obj.options %}
@@ -21,6 +22,7 @@
     <tr>
         <td class="list">{{ forloop.counter }}</td>
         <td class="list">{{ o.description }}</td>
+        <td class="list">{{ o.total }}</td>
         <td class="list">{{ o.pct|floatformat:1 }}%</td>
     </tr>
     {% endfor %}

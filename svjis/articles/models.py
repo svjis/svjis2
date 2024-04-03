@@ -172,12 +172,16 @@ class SurveyOption(models.Model):
     @property
     def pct(self):
         total = self.survey.answers.count()
-        opt_total = self.survey.answers.filter(option=self).count()
+        opt_total = self.total
         return opt_total / total * 100 if total != 0 else 0
 
     @property
     def bar_width(self):
         return int(self.pct * 2)
+
+    @property
+    def total(self):
+        return self.survey.answers.filter(option=self).count()
 
     class Meta:
         ordering = ['id']
