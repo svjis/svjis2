@@ -393,10 +393,11 @@ def migrate_survey(cnn):
                 SELECT r.VOTING_TIME, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
                 FROM INQUIRY_VOTING_LOG r
                 LEFT JOIN "USER" u on u.ID = r.USER_ID
-                WHERE r.INQUIRY_OPTION_ID =
+                WHERE r.INQUIRY_OPTION_ID = {}
+                ORDER BY r.ID
                 '''
                 cur2 = cnn.cursor()
-                cur2.execute(SELECT2 + str(row1[1]))
+                cur2.execute(SELECT2.replace('{}', str(row1[1])))
                 for row2 in cur2:
                     u = User.objects.filter(username=row2[3], first_name=row2[1], last_name=row2[2])[0]
                     obj2 = models.SurveyAnswerLog(survey=obj, option=obj1, user=u)
@@ -408,6 +409,33 @@ def migrate_survey(cnn):
 
         else:
             print(f"survey {row[0]} already exists")
+    cnn.commit()
+
+
+def migrate_fault_report(cnn):
+    SELECT = '''
+    SELECT r.SUBJECT, r.DESCRIPTION, r.CREATION_DATE, r.CLOSED, cr.FIRST_NAME, cr.LAST_NAME, cr.LOGIN, ass.FIRST_NAME, ass.LAST_NAME, ass.LOGIN, e.DESCRIPTION
+    FROM FAULT_REPORT r
+    LEFT JOIN "USER" cr on cr.ID = r.CREATED_BY_USER_ID
+    LEFT JOIN "USER" ass on ass.ID = r.ASSIGNED_TO_USER_ID
+    LEFT JOIN BUILDING_ENTRANCE e on e.ID = r.BUILDING_ENTRANCE_ID
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = models.FaultReport.objects.filter(subject=row[0], description=row[1]).count()
+        if i == 0:
+            print(f"creating fault report {row[0]}")
+            cr = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
+            ass = User.objects.filter(username=row[9], first_name=row[7], last_name=row[8])[0] if row[9] != None else None
+            e = models.BuildingEntrance.objects.filter(description=row[10]) if row[10] != None else None
+            obj = models.FaultReport(subject=row[0], description=row[1], created_by_user=cr, assigned_to_user=ass, closed=(row[3] != 0), entrance=e)
+            obj.save()
+            obj.created_date=row[2]
+            obj.save()
+        else:
+            print(f"fault report {row[0]} already exists")
     cnn.commit()
 
 
@@ -436,5 +464,6 @@ class Command(BaseCommand):
         migrate_article_watching(self.cnn)
         migrate_news(self.cnn)
         migrate_survey(self.cnn)
+        migrate_fault_report(self.cnn)
 
         self.cnn.close()
