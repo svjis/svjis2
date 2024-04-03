@@ -474,6 +474,20 @@ def migrate_fault_report(cnn):
             obj1.save()
         cur1.close()
 
+        SELECT1 = '''
+        SELECT u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+        FROM FAULT_REPORT_WATCHING r
+        LEFT JOIN "USER" u on u.ID = r.USER_ID
+        WHERE r.FAULT_REPORT_ID = {}
+        '''
+        cur1 = cnn.cursor()
+        cur1.execute(SELECT1.replace('{}', row[11]))
+        for row1 in cur1:
+            print(f"creating fault watching for {row1[0]} {row1[1]}")
+            u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
+            obj.watching_users.add(u)
+        cur1.close()
+
     cnn.commit()
 
 
