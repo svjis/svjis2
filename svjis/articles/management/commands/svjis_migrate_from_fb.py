@@ -472,7 +472,7 @@ def migrate_fault_report(cnn):
             u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
             obj1 = models.FaultComment(fault_report=obj, author=u, body=row1[4])
             obj1.save()
-            obj1.created_date = row1[4]
+            obj1.created_date = row1[3]
             obj1.save()
         cur1.close()
 
