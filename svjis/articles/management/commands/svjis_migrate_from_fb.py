@@ -436,6 +436,27 @@ def migrate_fault_report(cnn):
             obj.save()
         else:
             print(f"fault report {row[0]} already exists")
+
+        SELECT1 = '''
+        SELECT r.UPLOAD_TIME, r.FILENAME, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA"
+        FROM FAULT_REPORT_ATTACHMENT r
+        LEFT JOIN "USER" u on u.ID = r.USER_ID
+        WHERE r.FAULT_REPORT_ID = {}
+        ORDER BY r.ID
+        '''
+        cur1 = cnn.cursor()
+        cur1.execute(SELECT1)
+        for row1 in cur1:
+            print(f"creating fault attachment for {row1[1]}")
+            u = User.objects.filter(username=row1[4], first_name=row1[2], last_name=row1[3])[0]
+            obj1 = models.FaultAsset(description='', fault_report=obj, created_by_user=u)
+            data = row1[5]
+            obj1.file.save(row1[1], io.BytesIO(data))
+            obj1.save()
+            obj1.created_date = row1[0]
+            obj1.save()
+        cur1.close()
+
     cnn.commit()
 
 
