@@ -369,7 +369,13 @@ def migrate_survey(cnn):
         if i == 0:
             print(f"creating survey {row[0]}")
             u = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
-            obj = models.Survey(author=u, description=row[0], starting_date=row[1], ending_date=row[3], published=(row[3] != 0))
+
+            fromd = row[1]
+            fromd = fromd.date()
+            tod = row[2]
+            tod = tod.date()
+
+            obj = models.Survey(author=u, description=row[0], starting_date=fromd, ending_date=tod, published=(row[3] != 0))
             obj.save()
 
             SELECT1 = '''
@@ -378,7 +384,7 @@ def migrate_survey(cnn):
             WHERE r.INQUIRY_ID =
             '''
             cur1 = cnn.cursor()
-            cur1.execute(SELECT1 + row[7])
+            cur1.execute(SELECT1 + str(row[7]))
             for row1 in cur1:
                 obj1 = models.SurveyOption(description=row1[0], survey=obj)
                 obj1.save()
@@ -390,7 +396,7 @@ def migrate_survey(cnn):
                 WHERE r.INQUIRY_OPTION_ID =
                 '''
                 cur2 = cnn.cursor()
-                cur2.execute(SELECT2 + row1[1])
+                cur2.execute(SELECT2 + str(row1[1]))
                 for row2 in cur2:
                     u = User.objects.filter(username=row2[3], first_name=row2[1], last_name=row2[2])[0]
                     obj2 = models.SurveyAnswerLog(survey=obj, option=obj1, user=u)
