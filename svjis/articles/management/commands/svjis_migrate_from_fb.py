@@ -414,7 +414,7 @@ def migrate_survey(cnn):
 
 def migrate_fault_report(cnn):
     SELECT = '''
-    SELECT r.SUBJECT, r.DESCRIPTION, r.CREATION_DATE, r.CLOSED, cr.FIRST_NAME, cr.LAST_NAME, cr.LOGIN, ass.FIRST_NAME, ass.LAST_NAME, ass.LOGIN, e.DESCRIPTION
+    SELECT r.SUBJECT, r.DESCRIPTION, r.CREATION_DATE, r.CLOSED, cr.FIRST_NAME, cr.LAST_NAME, cr.LOGIN, ass.FIRST_NAME, ass.LAST_NAME, ass.LOGIN, e.DESCRIPTION, r.ID
     FROM FAULT_REPORT r
     LEFT JOIN "USER" cr on cr.ID = r.CREATED_BY_USER_ID
     LEFT JOIN "USER" ass on ass.ID = r.ASSIGNED_TO_USER_ID
@@ -445,7 +445,7 @@ def migrate_fault_report(cnn):
         ORDER BY r.ID
         '''
         cur1 = cnn.cursor()
-        cur1.execute(SELECT1)
+        cur1.execute(SELECT1.replace('{}', row[11]))
         for row1 in cur1:
             print(f"creating fault attachment for {row1[1]}")
             u = User.objects.filter(username=row1[4], first_name=row1[2], last_name=row1[3])[0]
@@ -454,6 +454,23 @@ def migrate_fault_report(cnn):
             obj1.file.save(row1[1], io.BytesIO(data))
             obj1.save()
             obj1.created_date = row1[0]
+            obj1.save()
+        cur1.close()
+
+        SELECT1 = '''
+        SELECT u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r.INSERTION_TIME, r."BODY"
+        FROM FAULT_REPORT_COMMENT r
+        LEFT JOIN "USER" u on u.ID = r.USER_ID
+        WHERE r.FAULT_REPORT_ID = {}
+        ORDER BY r.ID
+        '''
+        cur1 = cnn.cursor()
+        cur1.execute(SELECT1.replace('{}', row[11]))
+        for row1 in cur1:
+            print(f"creating fault comment for {row1[4]}")
+            u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
+            obj1 = models.FaultComment(fault_report=obj, author=u, body=row1[4])
+            obj1.created_date = row1[4]
             obj1.save()
         cur1.close()
 
