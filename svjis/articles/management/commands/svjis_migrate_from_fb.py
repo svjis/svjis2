@@ -355,6 +355,55 @@ def migrate_news(cnn):
     cnn.commit()
 
 
+def migrate_survey(cnn):
+    SELECT = '''
+    SELECT r.DESCRIPTION, r.STARTING_DATE, r.ENDING_DATE, r.ENABLED, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r.ID
+    FROM INQUIRY r
+    LEFT JOIN "USER" u on u.ID = r.USER_ID
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = models.Survey.objects.filter(description=row[0]).count()
+        if i == 0:
+            print(f"creating survey {row[0]}")
+            u = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
+            obj = models.Survey(author=u, description=row[0], starting_date=row[1], ending_date=row[3], published=(row[3] != 0))
+            obj.save()
+
+            SELECT1 = '''
+            SELECT r.DESCRIPTION, r.ID
+            FROM INQUIRY_OPTION r
+            WHERE r.INQUIRY_ID =
+            '''
+            cur1 = cnn.cursor()
+            cur1.execute(SELECT1 + row[7])
+            for row1 in cur1:
+                obj1 = models.SurveyOption(description=row1[0], survey=obj)
+                obj1.save()
+
+                SELECT2 = '''
+                SELECT r.VOTING_TIME, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+                FROM INQUIRY_VOTING_LOG r
+                LEFT JOIN "USER" u on u.ID = r.USER_ID
+                WHERE r.INQUIRY_OPTION_ID =
+                '''
+                cur2 = cnn.cursor()
+                cur2.execute(SELECT2 + row1[1])
+                for row2 in cur2:
+                    u = User.objects.filter(username=row2[3], first_name=row2[1], last_name=row2[2])[0]
+                    obj2 = models.SurveyAnswerLog(survey=obj, option=obj1, user=u)
+                    obj2.save()
+                    obj2.time = row2[0]
+                    obj2.save()
+                cur2.close()
+            cur1.close()
+
+        else:
+            print(f"survey {row[0]} already exists")
+    cnn.commit()
+
 
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
@@ -380,5 +429,6 @@ class Command(BaseCommand):
         migrate_article_asset(self.cnn)
         migrate_article_watching(self.cnn)
         migrate_news(self.cnn)
+        migrate_survey(self.cnn)
 
         self.cnn.close()
