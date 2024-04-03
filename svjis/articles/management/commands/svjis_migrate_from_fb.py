@@ -332,6 +332,30 @@ def migrate_article_watching(cnn):
     cnn.commit()
 
 
+def migrate_news(cnn):
+    SELECT = '''
+    SELECT r.NEWS_TIME, r."BODY", r.PUBLISHED, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+    FROM MINI_NEWS r
+    LEFT JOIN "USER" u on u.ID = r.CREATED_BY_USER_ID
+    WHERE r.COMPANY_ID = 1
+    '''
+    cur = cnn.cursor()
+    cur.execute(SELECT)
+    for row in cur:
+        i = models.News.objects.filter(body=row[1]).count()
+        if i == 0:
+            print(f"creating news {row[1]}")
+            u = User.objects.filter(username=row[5], first_name=row[3], last_name=row[4])[0]
+            obj = models.News(author=u, published=(row[2] != 0), body=row[1])
+            obj.save()
+            obj.created_date=row[0]
+            obj.save()
+        else:
+            print(f"news {row[1]} already exists")
+    cnn.commit()
+
+
+
 # https://firebird-driver.readthedocs.io/en/latest/getting-started.html#installation
 class Command(BaseCommand):
     help = "Migrate from fb"
@@ -355,4 +379,6 @@ class Command(BaseCommand):
         migrate_article_comment(self.cnn)
         migrate_article_asset(self.cnn)
         migrate_article_watching(self.cnn)
+        migrate_news(self.cnn)
+
         self.cnn.close()
