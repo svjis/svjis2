@@ -420,6 +420,7 @@ def migrate_fault_report(cnn):
     LEFT JOIN "USER" ass on ass.ID = r.ASSIGNED_TO_USER_ID
     LEFT JOIN BUILDING_ENTRANCE e on e.ID = r.BUILDING_ENTRANCE_ID
     WHERE r.COMPANY_ID = 1
+    ORDER BY r.ID
     '''
     cur = cnn.cursor()
     cur.execute(SELECT)
