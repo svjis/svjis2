@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-29 22:46+0100\n"
+"POT-Creation-Date: 2024-04-03 22:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,12 @@ msgstr ""
 msgid "Select the entrnance (if does it make sense)"
 msgstr "Select the entrnance (if does it make sense)"
 
-#: articles/models.py:13 articles/models.py:407
+#: articles/models.py:13 articles/models.py:411
 msgid "Header"
 msgstr "Header"
 
 #: articles/models.py:17 articles/models.py:118 articles/models.py:136
-#: articles/models.py:413 articles/templates/redaction_article.html:20
+#: articles/models.py:417 articles/templates/redaction_article.html:20
 #: articles/templates/redaction_news.html:14
 #: articles/templates/redaction_survey.html:19
 msgid "Published"
@@ -38,7 +38,7 @@ msgid "Perex"
 msgstr "Perex"
 
 #: articles/models.py:19 articles/models.py:84 articles/models.py:119
-#: articles/models.py:229 articles/models.py:381 articles/models.py:408
+#: articles/models.py:233 articles/models.py:385 articles/models.py:412
 #: articles/templates/redaction_news.html:15
 msgid "Body"
 msgstr "Body"
@@ -52,9 +52,9 @@ msgid "Visible for all"
 msgstr "Visible for all"
 
 #: articles/models.py:63 articles/models.py:97 articles/models.py:133
-#: articles/models.py:167 articles/models.py:291 articles/models.py:298
-#: articles/models.py:308 articles/models.py:322 articles/models.py:359
-#: articles/models.py:397 articles/models.py:435
+#: articles/models.py:167 articles/models.py:295 articles/models.py:302
+#: articles/models.py:312 articles/models.py:326 articles/models.py:363
+#: articles/models.py:401 articles/models.py:439
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
@@ -67,7 +67,7 @@ msgstr "Visible for all"
 msgid "Description"
 msgstr "Description"
 
-#: articles/models.py:64 articles/models.py:360 articles/models.py:436
+#: articles/models.py:64 articles/models.py:364 articles/models.py:440
 #: articles/templates/advert_edit.html:58 articles/templates/fault.html:70
 msgid "File"
 msgstr "File"
@@ -91,46 +91,46 @@ msgstr "Starting day"
 msgid "Ending day"
 msgstr "Ending day"
 
-#: articles/models.py:204
+#: articles/models.py:208
 msgid "Salutation"
 msgstr "Salutation"
 
-#: articles/models.py:205 articles/models.py:250 articles/models.py:270
-#: articles/models.py:292 articles/templates/admin_entrance.html:16
+#: articles/models.py:209 articles/models.py:254 articles/models.py:274
+#: articles/models.py:296 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Address"
 
-#: articles/models.py:206 articles/models.py:251 articles/models.py:271
+#: articles/models.py:210 articles/models.py:255 articles/models.py:275
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "City"
 
-#: articles/models.py:207 articles/models.py:252 articles/models.py:272
+#: articles/models.py:211 articles/models.py:256 articles/models.py:276
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "Post code"
 
-#: articles/models.py:208
+#: articles/models.py:212
 msgid "Country"
 msgstr "Country"
 
-#: articles/models.py:209 articles/models.py:253 articles/models.py:410
+#: articles/models.py:213 articles/models.py:257 articles/models.py:414
 #: articles/templates/adverts_list.html:37
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:14
 msgid "Phone"
 msgstr "Phone"
 
-#: articles/models.py:210
+#: articles/models.py:214
 msgid "Show in phonelist"
 msgstr "Show in phonelist"
 
-#: articles/models.py:211
+#: articles/models.py:215
 msgid "Internal note"
 msgstr "Internal note"
 
-#: articles/models.py:227 articles/models.py:254 articles/models.py:411
+#: articles/models.py:231 articles/models.py:258 articles/models.py:415
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:38
 #: articles/templates/contact_company.html:36
@@ -139,66 +139,66 @@ msgstr "Internal note"
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: articles/models.py:228 articles/models.py:320
+#: articles/models.py:232 articles/models.py:324
 #: articles/templates/admin_messages.html:13
 #: articles/templates/faults_list.html:19
 msgid "Subject"
 msgstr "Subject"
 
-#: articles/models.py:236 articles/templates/admin_preferences.html:15
+#: articles/models.py:240 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Key"
 
-#: articles/models.py:237 articles/templates/admin_preferences.html:16
+#: articles/models.py:241 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Value"
 
-#: articles/models.py:249 articles/templates/admin_group.html:16
+#: articles/models.py:253 articles/templates/admin_group.html:16
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:12
 msgid "Name"
 msgstr "Name"
 
-#: articles/models.py:255
+#: articles/models.py:259
 msgid "Registration no."
 msgstr "Registration no."
 
-#: articles/models.py:256
+#: articles/models.py:260
 msgid "VAT Registration no."
 msgstr "VAT Registration no."
 
-#: articles/models.py:257 articles/templates/contact_company.html:54
+#: articles/models.py:261 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Internet domain"
 
-#: articles/models.py:258
+#: articles/models.py:262
 msgid "Header picture (940 x 94)"
 msgstr "Header picture (940 x 94)"
 
-#: articles/models.py:273
+#: articles/models.py:277
 msgid "Land Registration no."
 msgstr "Land Registration no."
 
-#: articles/models.py:281 articles/templates/admin_company_edit.html:7
+#: articles/models.py:285 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11 articles/views_admin.py:16
 msgid "Company"
 msgstr "Company"
 
-#: articles/models.py:282
+#: articles/models.py:286
 msgid "Order"
 msgstr "Order"
 
-#: articles/models.py:284 articles/templates/admin_board.html:16
+#: articles/models.py:288 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Position"
 
-#: articles/models.py:290 articles/models.py:304
+#: articles/models.py:294 articles/models.py:308
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11 articles/views_admin.py:26
 msgid "Building"
 msgstr "Building"
 
-#: articles/models.py:305 articles/models.py:406
+#: articles/models.py:309 articles/models.py:410
 #: articles/templates/admin_building_unit.html:17
 #: articles/templates/admin_building_unit.html:57
 #: articles/templates/admin_user_ownes_edit.html:12
@@ -206,7 +206,7 @@ msgstr "Building"
 msgid "Type"
 msgstr "Type"
 
-#: articles/models.py:306 articles/models.py:328
+#: articles/models.py:310 articles/models.py:332
 #: articles/templates/admin_building_unit.html:33
 #: articles/templates/admin_building_unit.html:58
 #: articles/templates/admin_entrance_edit.html:13
@@ -214,31 +214,31 @@ msgstr "Type"
 msgid "Entrance"
 msgstr "Entrance"
 
-#: articles/models.py:307 articles/templates/admin_building_unit.html:59
+#: articles/models.py:311 articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:13
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "Registration Id"
 
-#: articles/models.py:309 articles/templates/admin_building_unit.html:61
+#: articles/models.py:313 articles/templates/admin_building_unit.html:61
 msgid "Numerator"
 msgstr "Numerator"
 
-#: articles/models.py:310 articles/templates/admin_building_unit.html:62
+#: articles/models.py:314 articles/templates/admin_building_unit.html:62
 msgid "Denominator"
 msgstr "Denominator"
 
-#: articles/models.py:327 articles/templates/fault.html:42
+#: articles/models.py:331 articles/templates/fault.html:42
 #: articles/views_faults.py:33
 msgid "Closed"
 msgstr "Closed"
 
-#: articles/models.py:361 articles/models.py:378
+#: articles/models.py:365 articles/models.py:382
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Fault report"
 
-#: articles/models.py:437
+#: articles/models.py:441
 msgid "Advert"
 msgstr "Advert"
 
@@ -406,7 +406,7 @@ msgstr "Create new entry"
 #: articles/templates/admin_user.html:7
 #: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:71
 #: articles/templates/login.html:4
-#: articles/templates/redaction_survey_results.html:36
+#: articles/templates/redaction_survey_results.html:38
 msgid "User"
 msgstr "User"
 
@@ -583,7 +583,7 @@ msgid "Resolver"
 msgstr "Resolver"
 
 #: articles/templates/fault.html:72
-#: articles/templates/redaction_survey_results.html:35
+#: articles/templates/redaction_survey_results.html:37
 msgid "Time"
 msgstr "Time"
 
@@ -737,7 +737,7 @@ msgstr "Options"
 
 #: articles/templates/redaction_survey_edit.html:23
 #: articles/templates/redaction_survey_edit.html:33
-#: articles/templates/redaction_survey_results.html:37
+#: articles/templates/redaction_survey_results.html:39
 msgid "Option"
 msgstr "Option"
 
@@ -754,10 +754,11 @@ msgid "Remove option"
 msgstr "Remove option"
 
 #: articles/templates/redaction_survey_results.html:16
+#: articles/templates/redaction_survey_results.html:17
 msgid "Votes"
 msgstr "Votes"
 
-#: articles/templates/redaction_survey_results.html:30
+#: articles/templates/redaction_survey_results.html:32
 msgid "Voting log"
 msgstr "Voting log"
 
@@ -816,24 +817,32 @@ msgstr "Fault reporting"
 msgid "Administration"
 msgstr "Administration"
 
-#: articles/views.py:19 articles/views.py:64
+#: articles/views.py:19 articles/views.py:71
 msgid "All articles"
 msgstr "All articles"
 
-#: articles/views.py:73 articles/views_faults.py:58
+#: articles/views.py:80 articles/views_faults.py:58
 #: articles/views_redaction.py:115
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr "Search: Keyword '{}' is too short. Type at least 3 characters."
 
-#: articles/views.py:76 articles/views_faults.py:61
+#: articles/views.py:83 articles/views_faults.py:61
 #: articles/views_redaction.py:118
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "Search: Keyword is too long. Type maximum of 100 characters."
 
-#: articles/views.py:81 articles/views_faults.py:65
+#: articles/views.py:88 articles/views_faults.py:65
 #: articles/views_redaction.py:122
 msgid "Search results"
 msgstr "Search results"
+
+#: articles/views.py:232
+msgid "Wrong username or password"
+msgstr "Wrong username or password"
+
+#: articles/views.py:233
+msgid "In case password is expired use Lost Password link"
+msgstr "In case password is expired use Lost Password link"
 
 #: articles/views_admin.py:41
 msgid "Users"
