@@ -375,7 +375,7 @@ class FaultAsset(models.Model):
         super(FaultAsset, self).delete(*args, **kwargs)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
 
 class FaultComment(models.Model):
@@ -388,7 +388,7 @@ class FaultComment(models.Model):
         return f"FaultComment: {self.description}"
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
         permissions = (
             ("svjis_add_fault_comment", "Can add Fault comment"),
         )
