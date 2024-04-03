@@ -493,7 +493,7 @@ def admin_group_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('groups', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = group_list
+    ctx['object_list'] = group_list.order_by('name')
     return render(request, "admin_group.html", ctx)
 
 
@@ -572,7 +572,7 @@ def admin_preferences_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = property_list
+    ctx['object_list'] = property_list.order_by('key')
     return render(request, "admin_preferences.html", ctx)
 
 
