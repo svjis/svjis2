@@ -7,7 +7,7 @@
 
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 
-<p>{{ obj.description }}</p>
+<p>{{ obj.description | safe }}</p>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
