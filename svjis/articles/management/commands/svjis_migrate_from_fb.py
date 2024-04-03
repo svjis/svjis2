@@ -233,7 +233,7 @@ def migrate_articles(cnn):
     cur = cnn.cursor()
     cur.execute(SELECT)
     for row in cur:
-        i = models.Article.objects.filter(header=row[4], created_date=row[10]).count()
+        i = models.Article.objects.filter(header=row[4], created_date=row[10], published=(row[11] != 0)).count()
         if i == 0:
             print(f"creating article {row[4]}")
             u = User.objects.filter(username=row[9], first_name=row[7], last_name=row[8])[0]
@@ -250,7 +250,7 @@ def migrate_articles(cnn):
 
 def migrate_article_permission(cnn):
     SELECT = '''
-    SELECT a.HEADER, a.CREATION_DATE, o.DESCRIPTION
+    SELECT a.HEADER, a.CREATION_DATE, o.DESCRIPTION, a.PUBLISHED
     FROM ARTICLE_IS_VISIBLE_TO_ROLE r
     LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
     LEFT JOIN "ROLE" o on o.ID = r.ROLE_ID
@@ -260,7 +260,7 @@ def migrate_article_permission(cnn):
     cur.execute(SELECT)
     for row in cur:
         print(f"creating article permission for {row[0]}")
-        a = models.Article.objects.filter(header=row[0], created_date=row[1])[0]
+        a = models.Article.objects.filter(header=row[0], created_date=row[1], published=(row[3] != 0))[0]
         g = Group.objects.filter(name=row[2])[0]
         a.visible_for_group.add(g)
         if row[2] == 'Nepřihlášený uživatel':
@@ -271,7 +271,7 @@ def migrate_article_permission(cnn):
 
 def migrate_article_comment(cnn):
     SELECT = '''
-    SELECT r.INSERTION_TIME, r."BODY", a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+    SELECT r.INSERTION_TIME, r."BODY", a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, a.PUBLISHED
     FROM ARTICLE_COMMENT r
     LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
     LEFT JOIN "USER" u on u.ID = r.USER_ID
@@ -282,7 +282,7 @@ def migrate_article_comment(cnn):
     cur.execute(SELECT)
     for row in cur:
         print(f"creating article comment for {row[2]}")
-        a = models.Article.objects.filter(header=row[2], created_date=row[3])[0]
+        a = models.Article.objects.filter(header=row[2], created_date=row[3], published=(row[7] != 0))[0]
         u = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
         obj = models.ArticleComment(article=a, author=u, body=row[1])
         obj.save()
@@ -293,7 +293,7 @@ def migrate_article_comment(cnn):
 
 def migrate_article_asset(cnn):
     SELECT = '''
-    SELECT r.UPLOAD_TIME, r.FILENAME, a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA"
+    SELECT r.UPLOAD_TIME, r.FILENAME, a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA", a.PUBLISHED
     FROM ARTICLE_ATTACHMENT r
     LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
     LEFT JOIN "USER" u on u.ID = r.USER_ID
@@ -304,7 +304,7 @@ def migrate_article_asset(cnn):
     cur.execute(SELECT)
     for row in cur:
         print(f"creating article attachment for {row[2]}")
-        a = models.Article.objects.filter(header=row[2], created_date=row[3])[0]
+        a = models.Article.objects.filter(header=row[2], created_date=row[3], published=(row[8] != 0))[0]
         obj = models.ArticleAsset(description='', article=a)
         data = row[7]
         obj.file.save(row[1], io.BytesIO(data))
@@ -316,7 +316,7 @@ def migrate_article_asset(cnn):
 
 def migrate_article_watching(cnn):
     SELECT = '''
-    SELECT a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+    SELECT a.HEADER, a.CREATION_DATE, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, a.PUBLISHED
     FROM ARTICLE_WATCHING r
     LEFT JOIN ARTICLE a on a.ID = r.ARTICLE_ID
     LEFT JOIN "USER" u on u.ID = r.USER_ID
@@ -326,7 +326,7 @@ def migrate_article_watching(cnn):
     cur.execute(SELECT)
     for row in cur:
         print(f"creating article watching for {row[0]} and {row[2]} {row[3]}")
-        a = models.Article.objects.filter(header=row[0], created_date=row[1])[0]
+        a = models.Article.objects.filter(header=row[0], created_date=row[1], published=(row[5] != 0))[0]
         u = User.objects.filter(username=row[4], first_name=row[2], last_name=row[3])[0]
         a.watching_users.add(u)
     cnn.commit()
@@ -425,7 +425,7 @@ def migrate_fault_report(cnn):
     cur = cnn.cursor()
     cur.execute(SELECT)
     for row in cur:
-        i = models.FaultReport.objects.filter(subject=row[0], description=row[1]).count()
+        i = models.FaultReport.objects.filter(subject=row[0], description=row[1], created_date=row[2]).count()
         if i == 0:
             print(f"creating fault report {row[0]}")
             cr = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
@@ -435,60 +435,61 @@ def migrate_fault_report(cnn):
             obj.save()
             obj.created_date=row[2]
             obj.save()
+
+
+            SELECT1 = '''
+            SELECT r.UPLOAD_TIME, r.FILENAME, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA"
+            FROM FAULT_REPORT_ATTACHMENT r
+            LEFT JOIN "USER" u on u.ID = r.USER_ID
+            WHERE r.FAULT_REPORT_ID = {}
+            ORDER BY r.ID
+            '''
+            cur1 = cnn.cursor()
+            cur1.execute(SELECT1.replace('{}', str(row[11])))
+            for row1 in cur1:
+                print(f"creating fault attachment for {row1[1]}")
+                u = User.objects.filter(username=row1[4], first_name=row1[2], last_name=row1[3])[0]
+                obj1 = models.FaultAsset(description='', fault_report=obj, created_by_user=u)
+                data = row1[5]
+                obj1.file.save(row1[1], io.BytesIO(data))
+                obj1.save()
+                obj1.created_date = row1[0]
+                obj1.save()
+            cur1.close()
+
+            SELECT1 = '''
+            SELECT u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r.INSERTION_TIME, r."BODY"
+            FROM FAULT_REPORT_COMMENT r
+            LEFT JOIN "USER" u on u.ID = r.USER_ID
+            WHERE r.FAULT_REPORT_ID = {}
+            ORDER BY r.ID
+            '''
+            cur1 = cnn.cursor()
+            cur1.execute(SELECT1.replace('{}', str(row[11])))
+            for row1 in cur1:
+                print(f"creating fault comment for {row1[4]}")
+                u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
+                obj1 = models.FaultComment(fault_report=obj, author=u, body=row1[4])
+                obj1.save()
+                obj1.created_date = row1[3]
+                obj1.save()
+            cur1.close()
+
+            SELECT1 = '''
+            SELECT u.FIRST_NAME, u.LAST_NAME, u.LOGIN
+            FROM FAULT_REPORT_WATCHING r
+            LEFT JOIN "USER" u on u.ID = r.USER_ID
+            WHERE r.FAULT_REPORT_ID = {}
+            '''
+            cur1 = cnn.cursor()
+            cur1.execute(SELECT1.replace('{}', str(row[11])))
+            for row1 in cur1:
+                print(f"creating fault watching for {row1[0]} {row1[1]}")
+                u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
+                obj.watching_users.add(u)
+            cur1.close()
         else:
             print(f"fault report {row[0]} already exists")
-
-        SELECT1 = '''
-        SELECT r.UPLOAD_TIME, r.FILENAME, u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r."DATA"
-        FROM FAULT_REPORT_ATTACHMENT r
-        LEFT JOIN "USER" u on u.ID = r.USER_ID
-        WHERE r.FAULT_REPORT_ID = {}
-        ORDER BY r.ID
-        '''
-        cur1 = cnn.cursor()
-        cur1.execute(SELECT1.replace('{}', str(row[11])))
-        for row1 in cur1:
-            print(f"creating fault attachment for {row1[1]}")
-            u = User.objects.filter(username=row1[4], first_name=row1[2], last_name=row1[3])[0]
-            obj1 = models.FaultAsset(description='', fault_report=obj, created_by_user=u)
-            data = row1[5]
-            obj1.file.save(row1[1], io.BytesIO(data))
-            obj1.save()
-            obj1.created_date = row1[0]
-            obj1.save()
-        cur1.close()
-
-        SELECT1 = '''
-        SELECT u.FIRST_NAME, u.LAST_NAME, u.LOGIN, r.INSERTION_TIME, r."BODY"
-        FROM FAULT_REPORT_COMMENT r
-        LEFT JOIN "USER" u on u.ID = r.USER_ID
-        WHERE r.FAULT_REPORT_ID = {}
-        ORDER BY r.ID
-        '''
-        cur1 = cnn.cursor()
-        cur1.execute(SELECT1.replace('{}', str(row[11])))
-        for row1 in cur1:
-            print(f"creating fault comment for {row1[4]}")
-            u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
-            obj1 = models.FaultComment(fault_report=obj, author=u, body=row1[4])
-            obj1.save()
-            obj1.created_date = row1[3]
-            obj1.save()
-        cur1.close()
-
-        SELECT1 = '''
-        SELECT u.FIRST_NAME, u.LAST_NAME, u.LOGIN
-        FROM FAULT_REPORT_WATCHING r
-        LEFT JOIN "USER" u on u.ID = r.USER_ID
-        WHERE r.FAULT_REPORT_ID = {}
-        '''
-        cur1 = cnn.cursor()
-        cur1.execute(SELECT1.replace('{}', str(row[11])))
-        for row1 in cur1:
-            print(f"creating fault watching for {row1[0]} {row1[1]}")
-            u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
-            obj.watching_users.add(u)
-        cur1.close()
 
     cnn.commit()
 
