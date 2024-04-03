@@ -628,5 +628,5 @@ def admin_messages_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('messages', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = message_list
+    ctx['object_list'] = message_list.order_by('pk')
     return render(request, "admin_messages.html", ctx)
