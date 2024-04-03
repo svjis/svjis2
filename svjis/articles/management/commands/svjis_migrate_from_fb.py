@@ -430,7 +430,7 @@ def migrate_fault_report(cnn):
             print(f"creating fault report {row[0]}")
             cr = User.objects.filter(username=row[6], first_name=row[4], last_name=row[5])[0]
             ass = User.objects.filter(username=row[9], first_name=row[7], last_name=row[8])[0] if row[9] != None else None
-            e = models.BuildingEntrance.objects.filter(description=row[10]) if row[10] != None else None
+            e = models.BuildingEntrance.objects.filter(description=row[10])[0] if row[10] != None else None
             obj = models.FaultReport(subject=row[0], description=row[1], created_by_user=cr, assigned_to_user=ass, closed=(row[3] != 0), entrance=e)
             obj.save()
             obj.created_date=row[2]
@@ -446,7 +446,7 @@ def migrate_fault_report(cnn):
         ORDER BY r.ID
         '''
         cur1 = cnn.cursor()
-        cur1.execute(SELECT1.replace('{}', row[11]))
+        cur1.execute(SELECT1.replace('{}', str(row[11])))
         for row1 in cur1:
             print(f"creating fault attachment for {row1[1]}")
             u = User.objects.filter(username=row1[4], first_name=row1[2], last_name=row1[3])[0]
@@ -466,11 +466,12 @@ def migrate_fault_report(cnn):
         ORDER BY r.ID
         '''
         cur1 = cnn.cursor()
-        cur1.execute(SELECT1.replace('{}', row[11]))
+        cur1.execute(SELECT1.replace('{}', str(row[11])))
         for row1 in cur1:
             print(f"creating fault comment for {row1[4]}")
             u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
             obj1 = models.FaultComment(fault_report=obj, author=u, body=row1[4])
+            obj1.save()
             obj1.created_date = row1[4]
             obj1.save()
         cur1.close()
@@ -482,7 +483,7 @@ def migrate_fault_report(cnn):
         WHERE r.FAULT_REPORT_ID = {}
         '''
         cur1 = cnn.cursor()
-        cur1.execute(SELECT1.replace('{}', row[11]))
+        cur1.execute(SELECT1.replace('{}', str(row[11])))
         for row1 in cur1:
             print(f"creating fault watching for {row1[0]} {row1[1]}")
             u = User.objects.filter(username=row1[2], first_name=row1[0], last_name=row1[1])[0]
@@ -503,7 +504,7 @@ def migrate_adverts(cnn):
     cur = cnn.cursor()
     cur.execute(SELECT)
     for row in cur:
-        i = models.Advert.objects.filter(description=row[0]).count()
+        i = models.Advert.objects.filter(header=row[1]).count()
         if i == 0:
             print(f"creating advert {row[1]}")
             u = User.objects.filter(username=row[9], first_name=row[7], last_name=row[8])[0]
@@ -546,3 +547,4 @@ class Command(BaseCommand):
         migrate_adverts(self.cnn)
 
         self.cnn.close()
+        print('Done!')
