@@ -60,6 +60,13 @@ def main_filtered_view(request, menu):
     q = get_article_filter(request.user)
     article_list = models.Article.objects.filter(q).distinct()
 
+    # Top 5 Articles
+    top = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
+    users_articles = [a.id for a in article_list]
+    top_articles = [a for a in top if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
+    for ta in top_articles:
+        ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
+
     # Menu
     header = _("All articles")
     if menu is not None:
@@ -81,13 +88,6 @@ def main_filtered_view(request, menu):
         header = _("Search results") + f": {search}"
     else:
         search = ''
-
-    # Top 5 Articles
-    top = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
-    users_articles = [a.id for a in article_list]
-    top_articles = [a for a in top if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
-    for ta in top_articles:
-        ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
     # Paginator
     is_paginated = len(article_list) > getattr(settings, 'SVJIS_ARTICLE_PAGE_SIZE', 10)
