@@ -152,7 +152,7 @@ class Survey(models.Model):
 
     @property
     def answers(self):
-        return self.surveyanswerlog_set.all()
+        return self.surveyanswerlog_set.order_by('time')
 
     class Meta:
         ordering = ['-id']

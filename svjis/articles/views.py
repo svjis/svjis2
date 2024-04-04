@@ -228,6 +228,9 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+        else:
+            messages.error(request, _("Wrong username or password"))
+            messages.info(request, _("In case password is expired use Lost Password link"))
     return redirect(main_view)
 
 
