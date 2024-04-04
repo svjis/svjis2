@@ -159,7 +159,7 @@ def redaction_article_edit_view(request, pk):
         form = forms.ArticleForm
 
     group_list = []
-    for g in Group.objects.all():
+    for g in Group.objects.all().order_by('name'):
         item = {'name': g.name, 'checked': g in form.instance.visible_for_group.all() if pk != 0 else False}
         group_list.append(item)
 
