@@ -60,6 +60,13 @@ def main_filtered_view(request, menu):
     q = get_article_filter(request.user)
     article_list = models.Article.objects.filter(q).distinct()
 
+    # Top 5 Articles
+    top = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
+    users_articles = [a.id for a in article_list]
+    top_articles = [a for a in top if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
+    for ta in top_articles:
+        ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
+
     # Menu
     header = _("All articles")
     if menu is not None:
@@ -95,13 +102,6 @@ def main_filtered_view(request, menu):
 
     # News
     news_list = models.News.objects.filter(published=True)
-
-    # Top 5 Articles
-    top_articles = models.ArticleLog.objects.filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
-    users_articles = [a.id for a in article_list]
-    top_articles = [a for a in top_articles if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
-    for ta in top_articles:
-        ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
     # Survey
     survey_list = models.Survey.objects.filter(published=True)
@@ -228,6 +228,9 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+        else:
+            messages.error(request, _("Wrong username or password"))
+            messages.info(request, _("In case password is expired use Lost Password link"))
     return redirect(main_view)
 
 

@@ -18,7 +18,7 @@
                     {{ news.created_date|date:"M"|upper }}<br /><span>{{ news.created_date|date:"d" }}</span>
                 </dt>
                 <dd>
-                    <span>@ {{ news.created_date|date:"H:i" }}</span><br />{{ news.body }}
+                    <span>@ {{ news.created_date|date:"H:i" }}</span><br />{{ news.body | safe }}
                 </dd>
             </dl>
         {% if forloop.counter|divisibleby:2 %}</div> <!-- /bg -->{% endif %}

@@ -152,7 +152,7 @@ class Survey(models.Model):
 
     @property
     def answers(self):
-        return self.surveyanswerlog_set.all()
+        return self.surveyanswerlog_set.order_by('time')
 
     class Meta:
         ordering = ['-id']
@@ -172,12 +172,16 @@ class SurveyOption(models.Model):
     @property
     def pct(self):
         total = self.survey.answers.count()
-        opt_total = self.survey.answers.filter(option=self).count()
+        opt_total = self.total
         return opt_total / total * 100 if total != 0 else 0
 
     @property
     def bar_width(self):
         return int(self.pct * 2)
+
+    @property
+    def total(self):
+        return self.survey.answers.filter(option=self).count()
 
     class Meta:
         ordering = ['id']
@@ -371,7 +375,7 @@ class FaultAsset(models.Model):
         super(FaultAsset, self).delete(*args, **kwargs)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
 
 class FaultComment(models.Model):
@@ -384,7 +388,7 @@ class FaultComment(models.Model):
         return f"FaultComment: {self.description}"
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
         permissions = (
             ("svjis_add_fault_comment", "Can add Fault comment"),
         )

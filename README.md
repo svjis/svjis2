@@ -67,6 +67,7 @@ Systém SVJIS při různých událostech používá odesílání emailů, proto 
 Vytvořte nový soubor `svjis/svjis/local_settings.py` a v něm vytvořte následující konfiguraci
 
 ```
+SECRET_KEY = 'produkcni django secret'
 TIME_ZONE = 'Europe/Prague'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

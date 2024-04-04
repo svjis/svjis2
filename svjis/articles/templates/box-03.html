@@ -9,7 +9,7 @@
     <span class="f-left"><strong>{% trans 'Survey' %}</strong></span>
 </div> <!-- /box-02-top-b -->
 <div class="box-02 box">
-    <strong>{{ obj.survey.description }}</strong>
+    <strong>{{ obj.survey.description | safe }}</strong>
     {% if obj.survey.is_open_for_voting and obj.user_can_vote %}
         <form action="{% url 'article_survey_vote' %}" method="post">
             {% csrf_token %}

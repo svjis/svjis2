@@ -253,7 +253,7 @@ def admin_building_unit_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = unit_list
+    ctx['object_list'] = unit_list.order_by('id')
     ctx['type_list'] = type_list
     ctx['type_filter'] = type_filter
     ctx['entrance_list'] = entrance_list
@@ -362,7 +362,7 @@ def admin_user_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = user_list
+    ctx['object_list'] = user_list.order_by('last_name', 'first_name')
     ctx['group_list'] = group_list
     ctx['group_filter'] = group_filter
     ctx['deactivated_users'] = deactivated_users
@@ -386,7 +386,7 @@ def admin_user_edit_view(request, pk):
     user_group_list = []
     if pk != 0:
         user_group_list = Group.objects.filter(user__id=instance.id)
-    for g in Group.objects.all():
+    for g in Group.objects.all().order_by('name'):
         item = {'name': g.name, 'checked': g in user_group_list}
         group_list.append(item)
 
@@ -493,7 +493,7 @@ def admin_group_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('groups', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = group_list
+    ctx['object_list'] = group_list.order_by('name')
     return render(request, "admin_group.html", ctx)
 
 
@@ -572,7 +572,7 @@ def admin_preferences_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('preferences', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = property_list
+    ctx['object_list'] = property_list.order_by('key')
     return render(request, "admin_preferences.html", ctx)
 
 
@@ -628,5 +628,5 @@ def admin_messages_view(request):
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('messages', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
-    ctx['object_list'] = message_list
+    ctx['object_list'] = message_list.order_by('pk')
     return render(request, "admin_messages.html", ctx)
