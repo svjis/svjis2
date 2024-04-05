@@ -363,7 +363,7 @@ def admin_user_view(request):
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = user_list.order_by('last_name', 'first_name')
-    ctx['group_list'] = group_list
+    ctx['group_list'] = group_list.order_by('name')
     ctx['group_filter'] = group_filter
     ctx['deactivated_users'] = deactivated_users
     return render(request, "admin_user.html", ctx)
