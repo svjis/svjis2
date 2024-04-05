@@ -65,15 +65,15 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Description' %}</th>
         <th class="list" scope="col">{% trans 'Name' %}</th>
+        <th class="list" scope="col">{% trans 'Description' %}</th>
         <th class="list" scope="col">&nbsp;</th>
     </tr>
     {% for a in assets %}
     <tr>
         <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
-        <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
         <td class="list" id="asset_path_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
+        <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
         <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
