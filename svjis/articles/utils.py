@@ -124,7 +124,7 @@ def send_article_notification(user_list, host, article):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     send_mails(
-        [user.email for user in user_list],
+        [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {article.header}',
         template.value.format(link),
         False)
@@ -137,7 +137,7 @@ def send_article_comment_notification(user_list, host, article, comment):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
     send_mails(
-        [user.email for user in user_list],
+        [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {article.header}',
         template.value.format(
             f"{comment.author.first_name} {comment.author.last_name}",
@@ -153,7 +153,7 @@ def send_new_fault_notification(user_list, host, fault_report):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
     send_mails(
-        [user.email for user in user_list],
+        [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
         template.value.format(
             f"{fault_report.created_by_user.first_name} {fault_report.created_by_user.last_name}",
@@ -169,7 +169,7 @@ def send_fault_comment_notification(user_list, host, fault_report, comment):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
     send_mails(
-        [user.email for user in user_list],
+        [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
         template.value.format(
             f"{comment.author.first_name} {comment.author.last_name}",
@@ -201,7 +201,7 @@ def send_fault_closed_notification(user_list, who_closed, host, fault_report):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
     send_mails(
-        [user.email for user in user_list],
+        [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
         template.value.format(
             f"{who_closed.first_name} {who_closed.last_name}",
@@ -217,7 +217,7 @@ def send_fault_reopened_notification(user_list, who_closed, host, fault_report):
     subj = models.Company.objects.get(pk=1).name
     link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
     send_mails(
-        [user.email for user in user_list],
+        [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
         template.value.format(
             f"{who_closed.first_name} {who_closed.last_name}",
