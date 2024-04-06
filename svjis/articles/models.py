@@ -15,7 +15,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
-    perex = models.TextField(_("Perex"), blank=True)
+    perex = models.TextField(_("Perex"))
     body = models.TextField(_("Body"), blank=True)
     menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
     allow_comments = models.BooleanField(_("Allow comments"), default=False)

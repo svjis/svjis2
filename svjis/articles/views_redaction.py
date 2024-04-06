@@ -206,7 +206,8 @@ def redaction_article_save_view(request):
             obj.watching_users.add(request.user)
     else:
         for error in form.errors:
-            messages.error(request, error)
+            messages.error(request, f"{_('Form validation error')}: {error}")
+        return redirect(reverse('redaction_article_edit', kwargs={'pk':pk}))
 
     return redirect(redaction_article_view)
 
