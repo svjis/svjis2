@@ -241,7 +241,7 @@ def user_logout(request):
 
 
 # Error pages
-def error_404_view(request):
+def error_404_view(request, exception):
     ctx = utils.get_context()
     ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
     return render(request, "error_404.html", ctx, status=404)
