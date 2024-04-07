@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 19:52+0200\n"
+"POT-Creation-Date: 2024-04-07 20:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,7 +559,9 @@ msgstr "Stránka nenalezena"
 
 #: articles/templates/error_404.html:13
 msgid "Page doesn't exist or you have no access. You can try to login."
-msgstr "Požadovaná stránka buď neexistuje nebo k ní nemáte přístup. Pokud nejste přihlášení tak se zkuste přihlásit."
+msgstr ""
+"Požadovaná stránka buď neexistuje nebo k ní nemáte přístup. Pokud nejste "
+"přihlášení tak se zkuste přihlásit."
 
 #: articles/templates/error_404.html:15
 msgid "Continue"
@@ -913,7 +915,11 @@ msgstr "Nová hesla se neshodují"
 msgid "Password has been changed"
 msgstr "Heslo bylo změněno"
 
-#: articles/views_personal_settings.py:125
+#: articles/views_personal_settings.py:119
+msgid "E-Mail is not valid"
+msgstr "Neplatný e-mail"
+
+#: articles/views_personal_settings.py:126
 msgid "Credentials have been sent to your e-mail"
 msgstr "Přihlašovací údaje byly odeslány na Váš e-mail"
 

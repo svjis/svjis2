@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 19:52+0200\n"
+"POT-Creation-Date: 2024-04-07 20:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -910,7 +910,11 @@ msgstr "New passwords don't match"
 msgid "Password has been changed"
 msgstr "Password has been changed"
 
-#: articles/views_personal_settings.py:125
+#: articles/views_personal_settings.py:119
+msgid "E-Mail is not valid"
+msgstr "E-Mail is not valid"
+
+#: articles/views_personal_settings.py:126
 msgid "Credentials have been sent to your e-mail"
 msgstr "Credentials have been sent to your e-mail"
 
