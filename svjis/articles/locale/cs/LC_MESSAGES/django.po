@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 16:26+0200\n"
+"POT-Creation-Date: 2024-04-07 19:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -552,6 +552,22 @@ msgstr "DIČ"
 #: articles/templates/contact_phonelist.html:7 articles/views_contact.py:17
 msgid "Phonelist"
 msgstr "Seznam kontaktů"
+
+#: articles/templates/error_404.html:11
+msgid "Page not found"
+msgstr "Stránka nenalezena"
+
+#: articles/templates/error_404.html:13
+msgid "Page doesn't exist or you have no access. You can try to login."
+msgstr "Požadovaná stránka buď neexistuje nebo k ní nemáte přístup. Pokud nejste přihlášení tak se zkuste přihlásit."
+
+#: articles/templates/error_404.html:15
+msgid "Continue"
+msgstr "Pokračujte"
+
+#: articles/templates/error_404.html:15
+msgid "here"
+msgstr "zde"
 
 #: articles/templates/fault.html:15
 msgid "Take ticket"
