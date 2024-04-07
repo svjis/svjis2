@@ -122,6 +122,6 @@ def lost_password_send_view(request):
     if u is not None:
         for user in u:
             utils.send_new_password(user)
-    messages.info(request, "Credentials has been sent to your e-mail")
+    messages.info(request, _("Credentials have been sent to your e-mail"))
     return redirect('/')
 
