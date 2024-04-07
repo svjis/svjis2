@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-03 22:57+0200\n"
+"POT-Creation-Date: 2024-04-07 20:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,16 +59,16 @@ msgstr "Visible for all"
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/advert_edit.html:57 articles/templates/fault.html:50
-#: articles/templates/fault.html:69
+#: articles/templates/fault.html:70
 #: articles/templates/personal_my_units.html:14
-#: articles/templates/redaction_article_edit.html:68
+#: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_survey.html:15
 #: articles/templates/redaction_survey_results.html:15
 msgid "Description"
 msgstr "Description"
 
 #: articles/models.py:64 articles/models.py:364 articles/models.py:440
-#: articles/templates/advert_edit.html:58 articles/templates/fault.html:70
+#: articles/templates/advert_edit.html:58 articles/templates/fault.html:69
 msgid "File"
 msgstr "File"
 
@@ -154,7 +154,7 @@ msgid "Value"
 msgstr "Value"
 
 #: articles/models.py:253 articles/templates/admin_group.html:16
-#: articles/templates/redaction_article_edit.html:69
+#: articles/templates/redaction_article_edit.html:68
 #: articles/templates/redaction_menu.html:12
 msgid "Name"
 msgstr "Name"
@@ -523,7 +523,7 @@ msgstr "Insert comment"
 
 #: articles/templates/box-01.html:9
 #: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:19
-#: articles/views_redaction.py:291
+#: articles/views_redaction.py:292
 msgid "News"
 msgstr "News"
 
@@ -551,6 +551,22 @@ msgstr "VAT Registration No."
 #: articles/templates/contact_phonelist.html:7 articles/views_contact.py:17
 msgid "Phonelist"
 msgstr "Phonelist"
+
+#: articles/templates/error_404.html:11
+msgid "Page not found"
+msgstr "Page not found"
+
+#: articles/templates/error_404.html:13
+msgid "Page doesn't exist or you have no access. You can try to login."
+msgstr "Page doesn't exist or you have no access. You can try to login."
+
+#: articles/templates/error_404.html:15
+msgid "Continue"
+msgstr "Continue"
+
+#: articles/templates/error_404.html:15
+msgid "here"
+msgstr "here"
 
 #: articles/templates/fault.html:15
 msgid "Take ticket"
@@ -792,10 +808,10 @@ msgstr "Personal settings"
 
 #: articles/utils.py:34 articles/views_redaction.py:54
 #: articles/views_redaction.py:71 articles/views_redaction.py:139
-#: articles/views_redaction.py:167 articles/views_redaction.py:234
-#: articles/views_redaction.py:254 articles/views_redaction.py:304
-#: articles/views_redaction.py:324 articles/views_redaction.py:379
-#: articles/views_redaction.py:401 articles/views_redaction.py:469
+#: articles/views_redaction.py:167 articles/views_redaction.py:235
+#: articles/views_redaction.py:255 articles/views_redaction.py:305
+#: articles/views_redaction.py:325 articles/views_redaction.py:380
+#: articles/views_redaction.py:402 articles/views_redaction.py:470
 msgid "Redaction"
 msgstr "Redaction"
 
@@ -894,7 +910,15 @@ msgstr "New passwords don't match"
 msgid "Password has been changed"
 msgstr "Password has been changed"
 
-#: articles/views_redaction.py:21 articles/views_redaction.py:366
-#: articles/views_redaction.py:466
+#: articles/views_personal_settings.py:119
+msgid "E-Mail is not valid"
+msgstr "E-Mail is not valid"
+
+#: articles/views_personal_settings.py:126
+msgid "Credentials have been sent to your e-mail"
+msgstr "Credentials have been sent to your e-mail"
+
+#: articles/views_redaction.py:21 articles/views_redaction.py:367
+#: articles/views_redaction.py:467
 msgid "Surveys"
 msgstr "Surveys"

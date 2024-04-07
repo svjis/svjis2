@@ -16,7 +16,7 @@ class Article(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
     perex = models.TextField(_("Perex"))
-    body = models.TextField(_("Body"))
+    body = models.TextField(_("Body"), blank=True)
     menu = models.ForeignKey("ArticleMenu", on_delete=models.CASCADE, null=False, blank=False)
     allow_comments = models.BooleanField(_("Allow comments"), default=False)
     watching_users = models.ManyToManyField(User, related_name='watching_article_set')
