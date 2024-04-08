@@ -10,7 +10,8 @@ __pycache__/
 
 # Project
 db.sqlite3*
-media/
+svjis/media/
+svjis/static/
 local_settings.py
 local_requirements.txt
 *.mo
