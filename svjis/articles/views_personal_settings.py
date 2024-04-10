@@ -119,7 +119,7 @@ def lost_password_send_view(request):
         lmsg = _("E-Mail is not valid")
         messages.error(request, f"{lmsg}  {email}")
         return redirect(lost_password_view)
-    u = User.objects.filter(email=email).exclude(is_active=False)
+    u = User.objects.filter(email__iexact=email).exclude(is_active=False)
     if u is not None:
         for user in u:
             utils.send_new_password(user)
