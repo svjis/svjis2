@@ -20,7 +20,7 @@
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
+    <td class="list">{{ obj.created_date | date:"d.m.Y H:i" }}</td>
     <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
     <td class="list">{{ obj.published }}</td>
     <td class="list">{{ obj.body | safe }}</td>

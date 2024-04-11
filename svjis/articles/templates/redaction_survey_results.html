@@ -43,7 +43,7 @@
     {% for a in obj.answers %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ a.time }}</td>
+        <td class="list">{{ a.time | date:"d.m.Y H:i" }}</td>
         <td class="list">{{ a.user.first_name }}&nbsp;{{ a.user.last_name }}</td>
         <td class="list">{{ a.option.description }}</td>
     </tr>
