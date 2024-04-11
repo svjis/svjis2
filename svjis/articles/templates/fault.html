@@ -28,7 +28,7 @@
 <table width="100%" class="list" width="95%" aria-describedby="tbl-desc">
     <tr>
         <th class="list" width="25%" scope="row">{% trans 'Date' %}</th>
-        <td class="list" width="75%">{{ obj.created_date }}</td>
+        <td class="list" width="75%">{{ obj.created_date | date:"d.m.Y H:i" }}</td>
     </tr>
     <tr>
         <th class="list" scope="row">{% trans 'Creator' %}</th>
@@ -78,7 +78,7 @@
                         <td class="list" id="asset_file_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
                         <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
                         <td class="list" id="asset_user_{{ a.asset.pk }}">{{ a.asset.created_by_user.first_name }}&nbsp;{{ a.asset.created_by_user.last_name }}</td>
-                        <td class="list" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date }}</td>
+                        <td class="list" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date | date:"d.m.Y H:i" }}</td>
                         {% if a.asset.created_by_user == user %}
                         <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
                         {% else %}

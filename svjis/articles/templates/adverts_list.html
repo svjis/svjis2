@@ -18,7 +18,7 @@
 <div id="advert" class="box">
     <div id="advert-desc">
         <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
-        <p class="info"><a href="{% url 'adverts_list'%}?scope={{ obj.advert.type.description }}">{{ obj.advert.type.description }}</a>: <strong>{{ obj.advert.created_date }}</strong> {% trans 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
+        <p class="info"><a href="{% url 'adverts_list'%}?scope={{ obj.advert.type.description }}">{{ obj.advert.type.description }}</a>: <strong>{{ obj.advert.created_date | date:"d.m.Y" }}</strong> {% trans 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
             {% if obj.advert.created_by_user == user %}
             &nbsp;[<a href="{% url 'adverts_edit' pk=obj.advert.pk %}">{% trans 'Edit' %}</a>]
             {% endif %}
