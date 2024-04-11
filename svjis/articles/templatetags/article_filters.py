@@ -18,7 +18,7 @@ def markdown(value):
 def highlight(text, search):
     if search == '':
         return text
-    rgx = compile(rescape(search), IGNORECASE)
+    rgx = compile(f'({search})(?![^<>]*>)', IGNORECASE)
     highlighted = rgx.sub(
             lambda m: '<b style="color:black;background-color:#ffff66">{}</b>'.format(m.group()),
             text
