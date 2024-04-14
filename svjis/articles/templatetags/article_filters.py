@@ -31,7 +31,7 @@ def inject_pictures(text, assets):
     for a in assets:
         file = a['asset'].file
         basename = a['basename']
-        text = text.replace('{' + basename + '}', f'<img src="/media/{file}" alt="{basename}">')
+        text = text.replace('{' + basename + '}', f'<img src="/media/{file}" alt="{basename}" style="max-width:100%;height:auto;">')
     return mark_safe(text)
 
 
