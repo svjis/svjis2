@@ -88,7 +88,7 @@ def adjust_worksheet_columns_width(ws):
                 if len(str(cell.value)) > max_length:
                     max_length = len(str(cell.value))
             except:
-                pass
+                logger.error("Error: Unable to get cell value length")
         adjusted_width = (max_length + 2) * 1.2
         ws.column_dimensions[column_letter].width = adjusted_width
 
