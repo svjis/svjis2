@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as gt
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
 from openpyxl import Workbook
@@ -356,17 +357,25 @@ def admin_building_unit_export_to_excel_view(request):
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "Building units"
+    ws.title = gt("Building units")
 
     # Add headers
-    headers = ["Type", "Entrance", "Registration Id", "Description", "Numerator", "Denominator"]
+    headers = [gt("Type"), gt("Entrance"), gt("Registration Id"), gt("Description"), gt("Numerator"), gt("Denominator")]
     ws.append(headers)
+
+    header_st = utils.get_worksheet_header_style()
+
+    for rows in ws.iter_rows(min_row=1, max_row=1, min_col=1, max_col=6):
+        for cell in rows:
+            cell.style = header_st
 
     # Add data from the model
     unit_list = models.BuildingUnit.objects.all().order_by('id')
     for u in unit_list:
         unit_entrance = u.entrance.description if u.entrance else ''
         ws.append([u.type.description, unit_entrance, u.registration_id, u.description, u.numerator, u.denominator])
+
+    utils.adjust_worksheet_columns_width(ws)
 
     # Save the workbook to the HttpResponse
     wb.save(response)
