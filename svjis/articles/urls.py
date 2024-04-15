@@ -77,6 +77,7 @@ urlpatterns = [
     path('admin_building_unit_owners/<int:pk>/', views_admin.admin_building_unit_owners_view, name='admin_building_unit_owners'),
     path('admin_building_unit_owners_save', views_admin.admin_building_unit_owners_save_view, name='admin_building_unit_owners_save'),
     path('admin_building_unit_owners_delete/<int:pk>/<int:owner>/', views_admin.admin_building_unit_owners_delete_view, name='admin_building_unit_owners_delete'),
+    path('admin_building_unit_export_to_excel/', views_admin.admin_building_unit_export_to_excel_view, name='admin_building_unit_export_to_excel'),
     path('admin_user/', views_admin.admin_user_view, name='admin_user'),
     path('admin_user_edit/<int:pk>/', views_admin.admin_user_edit_view, name='admin_user_edit'),
     path('admin_user_save/', views_admin.admin_user_save_view, name='admin_user_save'),

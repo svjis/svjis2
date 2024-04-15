@@ -4,9 +4,11 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
+from openpyxl import Workbook
 
 
 def get_side_menu(active_item, user):
@@ -344,6 +346,31 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
     u = get_object_or_404(User, pk=owner)
     bu.owners.remove(u)
     return redirect(admin_building_unit_owners_view, pk=pk)
+
+
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_building_unit_export_to_excel_view(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="Building_Units.xlsx"'
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Building units"
+
+    # Add headers
+    headers = ["Type", "Entrance", "Registration Id", "Description", "Numerator", "Denominator"]
+    ws.append(headers)
+
+    # Add data from the model
+    unit_list = models.BuildingUnit.objects.all().order_by('id')
+    for u in unit_list:
+        unit_entrance = u.entrance.description if u.entrance else ''
+        ws.append([u.type.description, unit_entrance, u.registration_id, u.description, u.numerator, u.denominator])
+
+    # Save the workbook to the HttpResponse
+    wb.save(response)
+    return response
 
 
 # Administration - User
