@@ -41,6 +41,7 @@ urlpatterns = [
     path('redaction_survey_delete/<int:pk>/', views_redaction.redaction_survey_delete_view, name='redaction_survey_delete'),
     path('redaction_survey_option_delete/<int:pk>/', views_redaction.redaction_survey_option_delete_view, name='redaction_survey_option_delete'),
     path('redaction_survey_results/<int:pk>/', views_redaction.redaction_survey_results_view, name='redaction_survey_results'),
+    path('redaction_survey_results_export_to_excel/<int:pk>/', views_redaction.redaction_survey_results_export_to_excel_view, name='redaction_survey_results_export_to_excel'),
     path('fault/<str:slug>/', views_faults.fault_view, name='fault'),
     path('faults_list/', views_faults.faults_list_view, name='faults_list'),
     path('faults_fault_create/', views_faults.faults_fault_create_view, name='faults_fault_create'),

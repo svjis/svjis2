@@ -79,7 +79,7 @@ def get_worksheet_header_style():
     return header_st
 
 
-def adjust_worksheet_columns_width(ws):
+def adjust_worksheet_columns_width(ws, max_width=1000):
     for column in ws.columns:
         max_length = 0
         column_letter = column[0].column_letter
@@ -90,6 +90,8 @@ def adjust_worksheet_columns_width(ws):
             except:
                 logger.error("Error: Unable to get cell value length")
         adjusted_width = (max_length + 2) * 1.2
+        if adjusted_width > max_width:
+             adjusted_width = max_width
         ws.column_dimensions[column_letter].width = adjusted_width
 
 
