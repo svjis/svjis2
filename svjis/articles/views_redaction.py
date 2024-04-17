@@ -506,7 +506,7 @@ def redaction_survey_results_export_to_excel_view(request, pk):
     ws.append(headers)
 
     header_st = utils.get_worksheet_header_style()
-    for rows in ws.iter_rows(min_row=6, max_row=6, min_col=1, max_col=len(headers)):
+    for rows in ws.iter_rows(min_row=5, max_row=5, min_col=1, max_col=len(headers)):
         for cell in rows:
             cell.style = header_st
 

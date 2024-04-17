@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 20:03+0200\n"
+"POT-Creation-Date: 2024-04-17 18:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr "Visible for all"
 #: articles/models.py:167 articles/models.py:295 articles/models.py:302
 #: articles/models.py:312 articles/models.py:326 articles/models.py:363
 #: articles/models.py:401 articles/models.py:439
-#: articles/templates/admin_building_unit.html:60
+#: articles/templates/admin_building_unit.html:64
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/advert_edit.html:57 articles/templates/fault.html:50
@@ -63,7 +63,7 @@ msgstr "Visible for all"
 #: articles/templates/personal_my_units.html:14
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_survey.html:15
-#: articles/templates/redaction_survey_results.html:15
+#: articles/templates/redaction_survey_results.html:17
 msgid "Description"
 msgstr "Description"
 
@@ -75,7 +75,7 @@ msgstr "File"
 #: articles/models.py:65 articles/models.py:81
 #: articles/templates/redaction_article.html:16
 #: articles/templates/redaction_article_edit.html:9
-#: articles/views_redaction.py:125
+#: articles/views_redaction.py:130
 msgid "Article"
 msgstr "Article"
 
@@ -131,7 +131,7 @@ msgid "Internal note"
 msgstr "Internal note"
 
 #: articles/models.py:231 articles/models.py:258 articles/models.py:415
-#: articles/templates/admin_user.html:54
+#: articles/templates/admin_user.html:58
 #: articles/templates/adverts_list.html:38
 #: articles/templates/contact_company.html:36
 #: articles/templates/contact_phonelist.html:15
@@ -180,7 +180,7 @@ msgid "Land Registration no."
 msgstr "Land Registration no."
 
 #: articles/models.py:285 articles/templates/admin_company_edit.html:7
-#: articles/templates/admin_company_edit.html:11 articles/views_admin.py:16
+#: articles/templates/admin_company_edit.html:11 articles/views_admin.py:19
 msgid "Company"
 msgstr "Company"
 
@@ -194,37 +194,37 @@ msgstr "Position"
 
 #: articles/models.py:294 articles/models.py:308
 #: articles/templates/admin_building_edit.html:7
-#: articles/templates/admin_building_edit.html:11 articles/views_admin.py:26
+#: articles/templates/admin_building_edit.html:11 articles/views_admin.py:29
 msgid "Building"
 msgstr "Building"
 
 #: articles/models.py:309 articles/models.py:410
-#: articles/templates/admin_building_unit.html:17
-#: articles/templates/admin_building_unit.html:57
+#: articles/templates/admin_building_unit.html:21
+#: articles/templates/admin_building_unit.html:61
 #: articles/templates/admin_user_ownes_edit.html:12
 #: articles/templates/personal_my_units.html:12
 msgid "Type"
 msgstr "Type"
 
 #: articles/models.py:310 articles/models.py:332
-#: articles/templates/admin_building_unit.html:33
-#: articles/templates/admin_building_unit.html:58
+#: articles/templates/admin_building_unit.html:37
+#: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance_edit.html:13
 #: articles/templates/fault.html:46 articles/templates/faults_list.html:20
 msgid "Entrance"
 msgstr "Entrance"
 
-#: articles/models.py:311 articles/templates/admin_building_unit.html:59
+#: articles/models.py:311 articles/templates/admin_building_unit.html:63
 #: articles/templates/admin_user_ownes_edit.html:13
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "Registration Id"
 
-#: articles/models.py:313 articles/templates/admin_building_unit.html:61
+#: articles/models.py:313 articles/templates/admin_building_unit.html:65
 msgid "Numerator"
 msgstr "Numerator"
 
-#: articles/models.py:314 articles/templates/admin_building_unit.html:62
+#: articles/models.py:314 articles/templates/admin_building_unit.html:66
 msgid "Denominator"
 msgstr "Denominator"
 
@@ -244,7 +244,7 @@ msgstr "Advert"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
-#: articles/templates/admin_board_edit.html:13 articles/views_admin.py:21
+#: articles/templates/admin_board_edit.html:13 articles/views_admin.py:24
 msgid "Board"
 msgstr "Board"
 
@@ -257,11 +257,11 @@ msgid "Member"
 msgstr "Member"
 
 #: articles/templates/admin_board.html:23
-#: articles/templates/admin_building_unit.html:69
+#: articles/templates/admin_building_unit.html:73
 #: articles/templates/admin_entrance.html:23
 #: articles/templates/admin_group.html:23
 #: articles/templates/admin_preferences.html:23
-#: articles/templates/admin_user.html:62
+#: articles/templates/admin_user.html:66
 #: articles/templates/adverts_list.html:23 articles/templates/fault.html:11
 #: articles/templates/redaction_article.html:27
 #: articles/templates/redaction_menu.html:29
@@ -271,7 +271,7 @@ msgid "Edit"
 msgstr "Edit"
 
 #: articles/templates/admin_board.html:24
-#: articles/templates/admin_building_unit.html:71
+#: articles/templates/admin_building_unit.html:75
 #: articles/templates/admin_entrance.html:24
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
@@ -282,7 +282,7 @@ msgid "Do you want to delete"
 msgstr "Do you want to delete"
 
 #: articles/templates/admin_board.html:24
-#: articles/templates/admin_building_unit.html:71
+#: articles/templates/admin_building_unit.html:75
 #: articles/templates/admin_building_unit_owners_edit.html:23
 #: articles/templates/admin_entrance.html:24
 #: articles/templates/admin_group.html:25
@@ -292,7 +292,7 @@ msgstr "Do you want to delete"
 #: articles/templates/redaction_article_edit.html:77
 #: articles/templates/redaction_menu.html:32
 #: articles/templates/redaction_news.html:28
-#: articles/templates/redaction_survey.html:28
+#: articles/templates/redaction_survey.html:29
 #: articles/templates/redaction_survey_edit.html:28
 msgid "Delete"
 msgstr "Delete"
@@ -317,7 +317,7 @@ msgstr "Delete"
 msgid "Save"
 msgstr "Save"
 
-#: articles/templates/admin_building_unit.html:7 articles/views_admin.py:36
+#: articles/templates/admin_building_unit.html:7 articles/views_admin.py:39
 msgid "Building units"
 msgstr "Building units"
 
@@ -325,7 +325,12 @@ msgstr "Building units"
 msgid "Add new unit"
 msgstr "Add new unit"
 
-#: articles/templates/admin_building_unit.html:70
+#: articles/templates/admin_building_unit.html:17
+#: articles/templates/admin_user.html:17
+msgid "Export to Excel"
+msgstr "Export to Excel"
+
+#: articles/templates/admin_building_unit.html:74
 msgid "Owners"
 msgstr "Owners"
 
@@ -354,7 +359,7 @@ msgid "Company header"
 msgstr "Company header"
 
 #: articles/templates/admin_entrance.html:7
-#: articles/templates/admin_entrance_edit.html:7 articles/views_admin.py:31
+#: articles/templates/admin_entrance_edit.html:7 articles/views_admin.py:34
 msgid "Entrances"
 msgstr "Entrances"
 
@@ -365,7 +370,7 @@ msgstr "Add new entrance"
 #: articles/templates/admin_group.html:7
 #: articles/templates/admin_group_edit.html:7
 #: articles/templates/admin_group_edit.html:13
-#: articles/templates/admin_user.html:28
+#: articles/templates/admin_user.html:32
 msgid "Group"
 msgstr "Group"
 
@@ -381,7 +386,7 @@ msgstr "List of users"
 msgid "Permissions"
 msgstr "Permissions"
 
-#: articles/templates/admin_messages.html:7 articles/views_admin.py:56
+#: articles/templates/admin_messages.html:7 articles/views_admin.py:59
 msgid "Waiting messages"
 msgstr "Waiting messages"
 
@@ -395,7 +400,7 @@ msgstr "Creation time"
 
 #: articles/templates/admin_preferences.html:7
 #: articles/templates/admin_preferences_edit.html:7
-#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:51
+#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:54
 msgid "Preferences"
 msgstr "Preferences"
 
@@ -406,7 +411,7 @@ msgstr "Create new entry"
 #: articles/templates/admin_user.html:7
 #: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:71
 #: articles/templates/login.html:4
-#: articles/templates/redaction_survey_results.html:38
+#: articles/templates/redaction_survey_results.html:40
 msgid "User"
 msgstr "User"
 
@@ -414,29 +419,29 @@ msgstr "User"
 msgid "Create new user"
 msgstr "Create new user"
 
-#: articles/templates/admin_user.html:17
+#: articles/templates/admin_user.html:21
 msgid "Deactivated users"
 msgstr "Deactivated users"
 
-#: articles/templates/admin_user.html:51
+#: articles/templates/admin_user.html:55
 #: articles/templates/contact_phonelist.html:12
 msgid "Last name"
 msgstr "Last name"
 
-#: articles/templates/admin_user.html:52
+#: articles/templates/admin_user.html:56
 #: articles/templates/contact_phonelist.html:13
 msgid "First name"
 msgstr "First name"
 
-#: articles/templates/admin_user.html:53
+#: articles/templates/admin_user.html:57
 msgid "Active"
 msgstr "Active"
 
-#: articles/templates/admin_user.html:55
+#: articles/templates/admin_user.html:59
 msgid "Last login"
 msgstr "Last login"
 
-#: articles/templates/admin_user.html:63
+#: articles/templates/admin_user.html:67
 msgid "Units"
 msgstr "Units"
 
@@ -467,7 +472,7 @@ msgid "Member of"
 msgstr "Member of"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:8
-#: articles/utils.py:38 articles/views_adverts.py:54
+#: articles/utils.py:39 articles/views_adverts.py:54
 #: articles/views_adverts.py:76
 msgid "Adverts"
 msgstr "Adverts"
@@ -522,8 +527,8 @@ msgid "Insert comment"
 msgstr "Insert comment"
 
 #: articles/templates/box-01.html:9
-#: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:19
-#: articles/views_redaction.py:292
+#: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:24
+#: articles/views_redaction.py:297
 msgid "News"
 msgstr "News"
 
@@ -533,6 +538,7 @@ msgstr "Top articles"
 
 #: articles/templates/box-03.html:9
 #: articles/templates/redaction_survey_edit.html:7
+#: articles/views_redaction.py:472
 msgid "Survey"
 msgstr "Survey"
 
@@ -599,7 +605,7 @@ msgid "Resolver"
 msgstr "Resolver"
 
 #: articles/templates/fault.html:72
-#: articles/templates/redaction_survey_results.html:37
+#: articles/templates/redaction_survey_results.html:39
 msgid "Time"
 msgstr "Time"
 
@@ -671,7 +677,7 @@ msgstr "Create new article"
 
 #: articles/templates/redaction_article.html:17
 #: articles/templates/redaction_menu.html:7
-#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:23
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:28
 msgid "Menu"
 msgstr "Menu"
 
@@ -710,8 +716,8 @@ msgstr "Parent"
 msgid "Level"
 msgstr "Level"
 
-#: articles/templates/redaction_menu.html:16 articles/utils.py:29
-#: articles/views.py:117 articles/views.py:172 articles/views_redaction.py:17
+#: articles/templates/redaction_menu.html:16 articles/utils.py:30
+#: articles/views.py:117 articles/views.py:172 articles/views_redaction.py:22
 msgid "Articles"
 msgstr "Articles"
 
@@ -744,6 +750,10 @@ msgid "Results"
 msgstr "Results"
 
 #: articles/templates/redaction_survey.html:28
+msgid "Export results to Excel"
+msgstr "Export results to Excel"
+
+#: articles/templates/redaction_survey.html:29
 msgid "Do you want to delete this survey"
 msgstr "Do you want to delete this survey"
 
@@ -753,7 +763,7 @@ msgstr "Options"
 
 #: articles/templates/redaction_survey_edit.html:23
 #: articles/templates/redaction_survey_edit.html:33
-#: articles/templates/redaction_survey_results.html:39
+#: articles/templates/redaction_survey_results.html:41
 msgid "Option"
 msgstr "Option"
 
@@ -769,12 +779,16 @@ msgstr "Add option"
 msgid "Remove option"
 msgstr "Remove option"
 
-#: articles/templates/redaction_survey_results.html:16
-#: articles/templates/redaction_survey_results.html:17
+#: articles/templates/redaction_survey_results.html:12
+msgid "Result"
+msgstr "Result"
+
+#: articles/templates/redaction_survey_results.html:18
+#: articles/templates/redaction_survey_results.html:19
 msgid "Votes"
 msgstr "Votes"
 
-#: articles/templates/redaction_survey_results.html:32
+#: articles/templates/redaction_survey_results.html:34
 msgid "Voting log"
 msgstr "Voting log"
 
@@ -794,42 +808,42 @@ msgstr "Send credentials by E-Mail"
 msgid "Your E-Mail"
 msgstr "Your E-Mail"
 
-#: articles/utils.py:30 articles/views_contact.py:15
+#: articles/utils.py:31 articles/views_contact.py:15
 #: articles/views_contact.py:26 articles/views_contact.py:39
 msgid "Contact"
 msgstr "Contact"
 
-#: articles/utils.py:32 articles/views_personal_settings.py:16
+#: articles/utils.py:33 articles/views_personal_settings.py:16
 #: articles/views_personal_settings.py:32
 #: articles/views_personal_settings.py:64
 #: articles/views_personal_settings.py:75
 msgid "Personal settings"
 msgstr "Personal settings"
 
-#: articles/utils.py:34 articles/views_redaction.py:54
-#: articles/views_redaction.py:71 articles/views_redaction.py:139
-#: articles/views_redaction.py:167 articles/views_redaction.py:235
-#: articles/views_redaction.py:255 articles/views_redaction.py:305
-#: articles/views_redaction.py:325 articles/views_redaction.py:380
-#: articles/views_redaction.py:402 articles/views_redaction.py:470
+#: articles/utils.py:35 articles/views_redaction.py:59
+#: articles/views_redaction.py:76 articles/views_redaction.py:144
+#: articles/views_redaction.py:172 articles/views_redaction.py:240
+#: articles/views_redaction.py:260 articles/views_redaction.py:310
+#: articles/views_redaction.py:330 articles/views_redaction.py:385
+#: articles/views_redaction.py:407 articles/views_redaction.py:475
 msgid "Redaction"
 msgstr "Redaction"
 
-#: articles/utils.py:36 articles/views_faults.py:68 articles/views_faults.py:82
+#: articles/utils.py:37 articles/views_faults.py:68 articles/views_faults.py:82
 #: articles/views_faults.py:105 articles/views_faults.py:125
 #: articles/views_faults.py:138
 msgid "Fault reporting"
 msgstr "Fault reporting"
 
-#: articles/utils.py:40 articles/views_admin.py:69 articles/views_admin.py:97
-#: articles/views_admin.py:114 articles/views_admin.py:156
-#: articles/views_admin.py:183 articles/views_admin.py:200
-#: articles/views_admin.py:253 articles/views_admin.py:274
-#: articles/views_admin.py:317 articles/views_admin.py:362
-#: articles/views_admin.py:394 articles/views_admin.py:455
-#: articles/views_admin.py:493 articles/views_admin.py:520
-#: articles/views_admin.py:572 articles/views_admin.py:589
-#: articles/views_admin.py:628
+#: articles/utils.py:41 articles/views_admin.py:72 articles/views_admin.py:100
+#: articles/views_admin.py:117 articles/views_admin.py:159
+#: articles/views_admin.py:186 articles/views_admin.py:203
+#: articles/views_admin.py:256 articles/views_admin.py:277
+#: articles/views_admin.py:320 articles/views_admin.py:398
+#: articles/views_admin.py:430 articles/views_admin.py:491
+#: articles/views_admin.py:582 articles/views_admin.py:609
+#: articles/views_admin.py:661 articles/views_admin.py:678
+#: articles/views_admin.py:717
 msgid "Administration"
 msgstr "Administration"
 
@@ -838,17 +852,17 @@ msgid "All articles"
 msgstr "All articles"
 
 #: articles/views.py:80 articles/views_faults.py:58
-#: articles/views_redaction.py:115
+#: articles/views_redaction.py:120
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr "Search: Keyword '{}' is too short. Type at least 3 characters."
 
 #: articles/views.py:83 articles/views_faults.py:61
-#: articles/views_redaction.py:118
+#: articles/views_redaction.py:123
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "Search: Keyword is too long. Type maximum of 100 characters."
 
 #: articles/views.py:88 articles/views_faults.py:65
-#: articles/views_redaction.py:122
+#: articles/views_redaction.py:127
 msgid "Search results"
 msgstr "Search results"
 
@@ -860,15 +874,15 @@ msgstr "Wrong username or password"
 msgid "In case password is expired use Lost Password link"
 msgstr "In case password is expired use Lost Password link"
 
-#: articles/views_admin.py:41
+#: articles/views_admin.py:44
 msgid "Users"
 msgstr "Users"
 
-#: articles/views_admin.py:46
+#: articles/views_admin.py:49
 msgid "Groups"
 msgstr "Groups"
 
-#: articles/views_admin.py:83 articles/views_admin.py:170
+#: articles/views_admin.py:86 articles/views_admin.py:173
 #: articles/views_personal_settings.py:49
 msgid "Saved"
 msgstr "Saved"
@@ -918,7 +932,6 @@ msgstr "E-Mail is not valid"
 msgid "Credentials have been sent to your e-mail"
 msgstr "Credentials have been sent to your e-mail"
 
-#: articles/views_redaction.py:21 articles/views_redaction.py:367
-#: articles/views_redaction.py:467
+#: articles/views_redaction.py:26 articles/views_redaction.py:372
 msgid "Surveys"
 msgstr "Surveys"
