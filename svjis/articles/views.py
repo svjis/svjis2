@@ -46,7 +46,6 @@ def get_side_submenu(parent, menu_items, active_header, active):
 def get_article_filter(user):
     q1 = Q(published=True)
     q2 = Q(visible_for_all=True)
-    # https://stackoverflow.com/questions/4507893/django-filter-many-to-many-with-contains
     groups = Group.objects.filter(user__id=user.id)
     q3 = Q(visible_for_group__in=groups)
     return Q(q1 & (q2 | q3)) if not user.is_anonymous else Q(q1 & q2)
