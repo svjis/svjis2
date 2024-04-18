@@ -9,6 +9,7 @@ from django.db.models import Q, Count
 from django.conf import settings
 from django.http import Http404
 from django.urls import reverse
+from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
@@ -62,7 +63,7 @@ def main_filtered_view(request, menu):
     article_list = models.Article.objects.filter(q).distinct()
 
     # Top 5 Articles
-    top_history_from = datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365))
+    top_history_from = make_aware(datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365)))
     top = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
     users_articles = [a.id for a in article_list]
     top_articles = [a for a in top if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
