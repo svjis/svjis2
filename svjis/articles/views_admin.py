@@ -4,9 +4,12 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as gt
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
+from openpyxl import Workbook
 
 
 def get_side_menu(active_item, user):
@@ -346,6 +349,39 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
     return redirect(admin_building_unit_owners_view, pk=pk)
 
 
+@permission_required("articles.svjis_edit_admin_building")
+@require_GET
+def admin_building_unit_export_to_excel_view(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="Building_Units.xlsx"'
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = gt("Building units")
+
+    # Add headers
+    headers = [gt("Type"), gt("Entrance"), gt("Registration Id"), gt("Description"), gt("Numerator"), gt("Denominator")]
+    ws.append(headers)
+
+    header_st = utils.get_worksheet_header_style()
+
+    for rows in ws.iter_rows(min_row=1, max_row=1, min_col=1, max_col=len(headers)):
+        for cell in rows:
+            cell.style = header_st
+
+    # Add data from the model
+    unit_list = models.BuildingUnit.objects.all().order_by('id')
+    for u in unit_list:
+        unit_entrance = u.entrance.description if u.entrance else ''
+        ws.append([u.type.description, unit_entrance, u.registration_id, u.description, u.numerator, u.denominator])
+
+    utils.adjust_worksheet_columns_width(ws)
+
+    # Save the workbook to the HttpResponse
+    wb.save(response)
+    return response
+
+
 # Administration - User
 @permission_required("articles.svjis_edit_admin_users")
 @require_GET
@@ -482,6 +518,59 @@ def admin_user_owns_delete_view(request, pk, owner):
     bu = get_object_or_404(models.BuildingUnit, pk=owner)
     u.buildingunit_set.remove(bu)
     return redirect(admin_user_owns_view, pk=pk)
+
+
+@permission_required("articles.svjis_edit_admin_users")
+@require_GET
+def admin_user_export_to_excel_view(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="Users.xlsx"'
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = gt("Users")
+
+    # Add headers
+    headers = [
+        gt("Salutation"),
+        gt("First name"),
+        gt("Last name"),
+        gt("Address"),
+        gt("City"),
+        gt("Post code"),
+        gt("Country"),
+        gt("Phone"),
+        gt("Email address"),
+        gt("Username")]
+    ws.append(headers)
+
+    header_st = utils.get_worksheet_header_style()
+
+    for rows in ws.iter_rows(min_row=1, max_row=1, min_col=1, max_col=len(headers)):
+        for cell in rows:
+            cell.style = header_st
+
+    # Add data from the model
+    user_list = User.objects.filter(is_active=True).order_by('last_name', 'first_name')
+    for u in user_list:
+        if hasattr(u, 'userprofile'):
+            ws.append([
+                u.userprofile.salutation,
+                u.first_name,
+                u.last_name,
+                u.userprofile.address,
+                u.userprofile.city,
+                u.userprofile.post_code,
+                u.userprofile.country,
+                u.userprofile.phone,
+                u.email,
+                u.username])
+
+    utils.adjust_worksheet_columns_width(ws)
+
+    # Save the workbook to the HttpResponse
+    wb.save(response)
+    return response
 
 
 # Administration - Group

@@ -1,14 +1,19 @@
 from . import utils, models, forms
-from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group, User
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q
-from django.conf import settings
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.utils import timezone, dateformat
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as gt
 from django.views.decorators.http import require_GET, require_POST
+from openpyxl import Workbook
+from openpyxl.styles import Font
 
 
 def get_side_menu(active_item, user):
@@ -464,7 +469,7 @@ def redaction_survey_option_delete_view(request, pk):
 @permission_required("articles.svjis_edit_survey")
 @require_GET
 def redaction_survey_results_view(request, pk):
-    header = _("Surveys")
+    header = _("Survey")
     survey = get_object_or_404(models.Survey, pk=pk)
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
@@ -473,3 +478,59 @@ def redaction_survey_results_view(request, pk):
     ctx['aside_menu_items'] = get_side_menu('surveys', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_survey_results.html", ctx)
+
+
+@permission_required("articles.svjis_edit_survey")
+@require_GET
+def redaction_survey_results_export_to_excel_view(request, pk):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="Survey_Results.xlsx"'
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = gt("Survey")
+
+    survey = get_object_or_404(models.Survey, pk=pk)
+
+    # Survey
+    ws['A1'] = gt("Survey")
+    ws['A1'].font = Font(bold=True)
+    ws['A2'] = survey.description
+
+
+    # Result
+    ws['A4'] = gt("Result")
+    ws['A4'].font = Font(bold=True)
+
+    headers = [gt("Description"), gt("Votes"), gt("Votes") + ' %']
+    ws.append(headers)
+
+    header_st = utils.get_worksheet_header_style()
+    for rows in ws.iter_rows(min_row=5, max_row=5, min_col=1, max_col=len(headers)):
+        for cell in rows:
+            cell.style = header_st
+
+    for o in survey.options:
+        ws.append([o.description, o.total, round(o.pct, 2)])
+
+    # Log
+    last = len(ws['A']) + 1
+    ws['A' + str(last + 1)] = gt("Voting log")
+    ws['A' + str(last + 1)].font = Font(bold=True)
+
+    headers = [gt("Time"), gt("User"), gt("Option")]
+    ws.append(headers)
+
+    last = len(ws['A'])
+    for rows in ws.iter_rows(min_row=last, max_row=last, min_col=1, max_col=len(headers)):
+        for cell in rows:
+            cell.style = header_st
+
+    for a in survey.answers:
+        time = dateformat.format(timezone.localtime(a.time), "d.m.Y H:i")
+        ws.append([time, f'{a.user.first_name} {a.user.last_name}', a.option.description])
+
+    # Save the workbook to the HttpResponse
+    utils.adjust_worksheet_columns_width(ws, 50)
+    wb.save(response)
+    return response

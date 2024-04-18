@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from openpyxl.styles import NamedStyle, Font, Border, Side, PatternFill
 
 
 logger = logging.getLogger(__name__)
@@ -67,6 +68,31 @@ def wrap_assets(assets):
             item['icon'] = 'Files_unknown.gif'
         result.append(item)
     return result
+
+
+def get_worksheet_header_style():
+    header_st = NamedStyle(name="highlight")
+    header_st.font = Font(bold=True)
+    bd = Side(style='thick', color="000000")
+    header_st.border = Border(bottom=bd)
+    header_st.fill = PatternFill("solid", fgColor="DDDDDD")
+    return header_st
+
+
+def adjust_worksheet_columns_width(ws, max_width=1000):
+    for column in ws.columns:
+        max_length = 0
+        column_letter = column[0].column_letter
+        for cell in column:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(str(cell.value))
+            except:
+                logger.error("Error: Unable to get cell value length")
+        adjusted_width = (max_length + 2) * 1.2
+        if adjusted_width > max_width:
+             adjusted_width = max_width
+        ws.column_dimensions[column_letter].width = adjusted_width
 
 
 def send_mails(recipient_list: list, subject: str, html_body: str, immediately: bool) -> None:
