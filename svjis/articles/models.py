@@ -10,8 +10,8 @@ from django.utils.translation import gettext_lazy as _
 #####################
 
 class Article(models.Model):
-    header = models.CharField(_("Header"), max_length=100)
-    slug = models.CharField(max_length=100)
+    header = models.CharField(_("Header"), max_length=50)
+    slug = models.CharField(max_length=50)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
@@ -229,7 +229,7 @@ class UserProfile(models.Model):
 
 class MessageQueue(models.Model):
     email = models.CharField(_("E-Mail"), max_length=50, blank=False)
-    subject = models.CharField(_("Subject"),max_length=100, blank=False)
+    subject = models.CharField(_("Subject"),max_length=150, blank=False)
     body = models.TextField(_("Body"))
     creation_time = models.DateTimeField(auto_now_add=True)
     sending_time = models.DateTimeField(null=True)
