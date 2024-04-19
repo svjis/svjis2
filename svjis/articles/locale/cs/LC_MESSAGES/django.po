@@ -329,7 +329,7 @@ msgstr "Přidat jednotku"
 #: articles/templates/admin_building_unit.html:17
 #: articles/templates/admin_user.html:17
 msgid "Export to Excel"
-msgstr "Exportovat do Excelu"
+msgstr "Export do Excelu"
 
 #: articles/templates/admin_building_unit.html:74
 msgid "Owners"
@@ -418,7 +418,7 @@ msgstr "Uživatel"
 
 #: articles/templates/admin_user.html:13
 msgid "Create new user"
-msgstr "Vytvořit nového uživatele"
+msgstr "Nový uživatel"
 
 #: articles/templates/admin_user.html:21
 msgid "Deactivated users"
