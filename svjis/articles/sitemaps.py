@@ -6,7 +6,7 @@ from .models import Article
 class StaticViewSitemap(Sitemap):
 
     def items(self):
-        return ['contact_company']
+        return ['main', 'contact_company']
 
     def location(self, item):
         return reverse(item)
