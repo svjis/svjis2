@@ -13,5 +13,10 @@ class StaticViewSitemap(Sitemap):
 
 
 class ArticleSitemap(Sitemap):
+    changefreq = "never"
+
     def items(self):
         return Article.objects.filter(published=True, visible_for_all=True).order_by('created_date')
+
+    def lastmod(self, obj):
+        return obj.created_date
