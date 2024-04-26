@@ -4,7 +4,6 @@ from .models import Article
 
 
 class StaticViewSitemap(Sitemap):
-
     def items(self):
         return ['main', 'contact_company']
 
