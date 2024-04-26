@@ -45,6 +45,9 @@ class Article(models.Model):
         unique_slugify(self, self.header)
         super(Article, self).save(**kwargs)
 
+    def get_absolute_url(self):
+        return f'/article/{self.slug}'
+
 
 class ArticleLog(models.Model):
     entry_time = models.DateTimeField(auto_now_add=True)
