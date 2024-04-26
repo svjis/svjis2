@@ -224,15 +224,14 @@ def article_watch_view(request):
 # Login
 @require_POST
 def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-        else:
-            messages.error(request, _("Wrong username or password"))
-            messages.info(request, _("In case password is expired use Lost Password link"))
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+    else:
+        messages.error(request, _("Wrong username or password"))
+        messages.info(request, _("In case password is expired use Lost Password link"))
     return redirect(main_view)
 
 
