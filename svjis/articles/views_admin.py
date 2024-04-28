@@ -486,7 +486,7 @@ def admin_user_save_view(request):
 @require_GET
 def admin_user_owns_view(request, pk):
     u = get_object_or_404(User, pk=pk)
-    bu_list = [ bu for bu in models.BuildingUnit.objects.all().order_by('description') if bu not in u.buildingunit_set.all()]
+    bu_list = [ bu for bu in models.BuildingUnit.objects.all().order_by('id') if bu not in u.buildingunit_set.all()]
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['u'] = u
