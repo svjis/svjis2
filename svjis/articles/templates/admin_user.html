@@ -1,5 +1,6 @@
 {% extends "base-with-aside-menu-content.html" %}
 
+{% load article_filters %}
 {% load i18n %}
 
 {% block content %}
@@ -67,7 +68,7 @@
         <td class="list"><a href="{% url 'admin_user_owns' pk=obj.pk %}"><img src="/static/gfx/house.png" border="0" title="{% trans 'Units' %}" alt="{% trans 'Units' %}"></a></td>
         <td class="list">{{ obj.last_name }}</td>
         <td class="list">{{ obj.first_name }}</td>
-        <td class="list">{{ obj.is_active }}</td>
+        <td class="list">{{ obj.is_active | _bool }}</td>
         <td class="list"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
         <td class="list">{{ obj.last_login | date:"d.m.Y H:i"}}</td>
     </tr>
