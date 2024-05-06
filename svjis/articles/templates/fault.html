@@ -40,7 +40,7 @@
     </tr>
     <tr>
         <th class="list" scope="row">{% trans 'Closed' %}</th>
-        <td class="list">{{ obj.closed }}</td>
+        <td class="list">{{ obj.closed | _bool }}</td>
     </tr>
     <tr>
         <th class="list" scope="row">{% trans 'Entrance' %}</th>

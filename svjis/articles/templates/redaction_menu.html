@@ -1,6 +1,7 @@
 {% extends "base-with-aside-menu-content.html" %}
 
 {% load i18n %}
+{% load article_filters %}
 
 {% block content %}
 
@@ -24,7 +25,7 @@
         <td class="list" {% if obj.level > 1 %}style="background-color:#f1948a;"{% endif %}>{% with ''|center:obj.level as range %}{% for _ in range %}&nbsp;&nbsp;&nbsp;{% endfor %}{% endwith %}{{ obj.item.description }}</td>
         <td class="list">{{ obj.item.parent.description }}</td>
         <td class="list"{% if obj.level > 1 %}style="background-color:#f1948a;"{% endif %}>{{ obj.level }}</td>
-        <td class="list">{{ obj.item.hide }}</td>
+        <td class="list">{{ obj.item.hide | _bool }}</td>
         <td class="list">{{ obj.articles }}</td>
         <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.item.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
         <td class="list">
