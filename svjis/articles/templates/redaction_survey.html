@@ -1,6 +1,7 @@
 {% extends "base-with-aside-menu-content.html" %}
 
 {% load i18n %}
+{% load article_filters %}
 
 {% block content %}
 
@@ -32,7 +33,7 @@
         <td class="list">{{ obj.starting_date|date:"d.m.Y" }}</td>
         <td class="list">{{ obj.ending_date|date:"d.m.Y" }}</td>
         <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
-        <td class="list">{{ obj.published }}</td>
+        <td class="list">{{ obj.published | yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}

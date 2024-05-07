@@ -1,5 +1,6 @@
 from django import template
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext as gt
 from django.template.defaultfilters import stringfilter
 from django.conf import settings
 import markdown as md
@@ -33,6 +34,12 @@ def inject_pictures(text, assets):
         basename = a['basename']
         text = text.replace('{' + basename + '}', f'<img src="/media/{file}" alt="{basename}" style="max-width:100%;height:auto;">')
     return mark_safe(text)
+
+
+@register.filter()
+def yes_no(bool_value):
+    result = gt("Yes") if bool_value else gt("No")
+    return mark_safe(result)
 
 
 # settings value
