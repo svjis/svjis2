@@ -37,7 +37,7 @@ def inject_pictures(text, assets):
 
 
 @register.filter()
-def _bool(bool_value):
+def yes_no(bool_value):
     result = gt("Yes") if bool_value else gt("No")
     return mark_safe(result)
 

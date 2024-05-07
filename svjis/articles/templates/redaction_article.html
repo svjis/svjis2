@@ -30,7 +30,7 @@
         <td class="list">{{ obj.menu.description }}</td>
         <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
         <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
-        <td class="list">{{ obj.published | _bool }}</td>
+        <td class="list">{{ obj.published | yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}
