@@ -15,50 +15,77 @@ from openpyxl import Workbook
 def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_edit_admin_company'):
-        result.append({
-            'description': _("Company"),
-            'link': reverse(admin_company_edit_view),
-            'active': True if active_item == 'company' else False})
+        result.append(
+            {
+                'description': _("Company"),
+                'link': reverse(admin_company_edit_view),
+                'active': True if active_item == 'company' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_company'):
-        result.append({
-            'description': _("Board") + f' ({models.Board.objects.count()})',
-            'link': reverse(admin_board_view),
-            'active': True if active_item == 'board' else False})
+        result.append(
+            {
+                'description': _("Board") + f' ({models.Board.objects.count()})',
+                'link': reverse(admin_board_view),
+                'active': True if active_item == 'board' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append({
-            'description': _("Building"),
-            'link': reverse(admin_building_edit_view),
-            'active': True if active_item == 'building' else False})
+        result.append(
+            {
+                'description': _("Building"),
+                'link': reverse(admin_building_edit_view),
+                'active': True if active_item == 'building' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append({
-            'description': _("Entrances") + f' ({models.BuildingEntrance.objects.count()})',
-            'link': reverse(admin_entrance_view),
-            'active': True if active_item == 'entrances' else False})
+        result.append(
+            {
+                'description': _("Entrances") + f' ({models.BuildingEntrance.objects.count()})',
+                'link': reverse(admin_entrance_view),
+                'active': True if active_item == 'entrances' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append({
-            'description': _("Building units") + f' ({models.BuildingUnit.objects.count()})',
-            'link': reverse(admin_building_unit_view),
-            'active': True if active_item == 'units' else False})
+        result.append(
+            {
+                'description': _("Building units") + f' ({models.BuildingUnit.objects.count()})',
+                'link': reverse(admin_building_unit_view),
+                'active': True if active_item == 'units' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_users'):
-        result.append({
-            'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
-            'link': reverse(admin_user_view),
-            'active': True if active_item == 'users' else False})
+        result.append(
+            {
+                'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
+                'link': reverse(admin_user_view),
+                'active': True if active_item == 'users' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_groups'):
-        result.append({
-            'description': _("Groups"),
-            'link': reverse(admin_group_view),
-            'active': True if active_item == 'groups' else False})
+        result.append(
+            {
+                'description': _("Groups"),
+                'link': reverse(admin_group_view),
+                'active': True if active_item == 'groups' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_admin_preferences'):
-        result.append({
-            'description': _("Preferences"),
-            'link': reverse(admin_preferences_view),
-            'active': True if active_item == 'preferences' else False})
+        result.append(
+            {
+                'description': _("Preferences"),
+                'link': reverse(admin_preferences_view),
+                'active': True if active_item == 'preferences' else False,
+            }
+        )
     if user.has_perm('articles.svjis_view_admin_menu'):
-        result.append({
-            'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
-            'link': reverse(admin_messages_view),
-            'active': True if active_item == 'messages' else False})
+        result.append(
+            {
+                'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
+                'link': reverse(admin_messages_view),
+                'active': True if active_item == 'messages' else False,
+            }
+        )
     return result
 
 
@@ -91,6 +118,7 @@ def admin_company_save_view(request):
 
 
 # Administration - Board
+
 
 @permission_required("articles.svjis_edit_admin_company")
 @require_GET
@@ -246,11 +274,11 @@ def admin_building_unit_view(request):
 
     type_filter = int(request.GET.get('type_filter', 0))
     if type_filter != 0:
-        unit_list = unit_list.filter(type_id = type_filter)
+        unit_list = unit_list.filter(type_id=type_filter)
 
     entrance_filter = int(request.GET.get('entrance_filter', 0))
     if entrance_filter != 0:
-        unit_list = unit_list.filter(entrance_id = entrance_filter)
+        unit_list = unit_list.filter(entrance_id=entrance_filter)
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
@@ -314,7 +342,7 @@ def admin_building_unit_delete_view(request, pk):
 @require_GET
 def admin_building_unit_owners_view(request, pk):
     bu = get_object_or_404(models.BuildingUnit, pk=pk)
-    user_list = [ u for u in User.objects.filter(is_active=True).order_by('last_name') if u not in bu.owners.all()]
+    user_list = [u for u in User.objects.filter(is_active=True).order_by('last_name') if u not in bu.owners.all()]
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
@@ -360,7 +388,14 @@ def admin_building_unit_export_to_excel_view(request):
     ws.title = gt("Building units")
 
     # Add headers
-    headers = [gt("Type"), gt("Entrance"), gt("Registration Id"), gt("Description"), gt("Numerator"), gt("Denominator")]
+    headers = [
+        gt("Type"),
+        gt("Entrance"),
+        gt("Registration Id"),
+        gt("Description"),
+        gt("Numerator"),
+        gt("Denominator"),
+    ]
     ws.append(headers)
 
     header_st = utils.get_worksheet_header_style()
@@ -387,7 +422,7 @@ def admin_building_unit_export_to_excel_view(request):
 @require_GET
 def admin_user_view(request):
     deactivated_users = request.GET.get('deactivated_users', False) == 'on'
-    user_list = User.objects.filter(is_active= not deactivated_users)
+    user_list = User.objects.filter(is_active=not deactivated_users)
     group_filter = int(request.GET.get('group_filter', 0))
     if group_filter != 0:
         g = Group.objects.filter(pk=group_filter)
@@ -477,7 +512,7 @@ def admin_user_save_view(request):
             messages.error(request, f"{_('Form validation error')}: {error}")
         for error in user_profile_form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
-        return redirect(reverse('admin_user_edit', kwargs={'pk':pk}))
+        return redirect(reverse('admin_user_edit', kwargs={'pk': pk}))
 
     return redirect(admin_user_view)
 
@@ -486,7 +521,7 @@ def admin_user_save_view(request):
 @require_GET
 def admin_user_owns_view(request, pk):
     u = get_object_or_404(User, pk=pk)
-    bu_list = [ bu for bu in models.BuildingUnit.objects.all().order_by('id') if bu not in u.buildingunit_set.all()]
+    bu_list = [bu for bu in models.BuildingUnit.objects.all().order_by('id') if bu not in u.buildingunit_set.all()]
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['u'] = u
@@ -541,7 +576,8 @@ def admin_user_export_to_excel_view(request):
         gt("Country"),
         gt("Phone"),
         gt("Email address"),
-        gt("Username")]
+        gt("Username"),
+    ]
     ws.append(headers)
 
     header_st = utils.get_worksheet_header_style()
@@ -554,17 +590,20 @@ def admin_user_export_to_excel_view(request):
     user_list = User.objects.filter(is_active=True).order_by('last_name', 'first_name')
     for u in user_list:
         if hasattr(u, 'userprofile'):
-            ws.append([
-                u.userprofile.salutation,
-                u.first_name,
-                u.last_name,
-                u.userprofile.address,
-                u.userprofile.city,
-                u.userprofile.post_code,
-                u.userprofile.country,
-                u.userprofile.phone,
-                u.email,
-                u.username])
+            ws.append(
+                [
+                    u.userprofile.salutation,
+                    u.first_name,
+                    u.last_name,
+                    u.userprofile.address,
+                    u.userprofile.city,
+                    u.userprofile.post_code,
+                    u.userprofile.country,
+                    u.userprofile.phone,
+                    u.email,
+                    u.username,
+                ]
+            )
 
     utils.adjust_worksheet_columns_width(ws)
 

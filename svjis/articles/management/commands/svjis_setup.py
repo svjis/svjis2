@@ -6,87 +6,105 @@ from articles.models import ArticleMenu, Preferences, BuildingUnitType, AdvertTy
 
 def create_groups():
     names = [
-            {'name': 'Administrátor', 'perms': [
-                        # Articles
-                        'svjis_add_article_comment',
-                        'svjis_answer_survey',
-                        # Contact
-                        'svjis_view_phonelist',
-                        # Personal settings
-                        'svjis_view_personal_menu',
-                        # Redaction
-                        'svjis_view_redaction_menu',
-                        'svjis_edit_article',
-                        'svjis_edit_article_news',
-                        'svjis_edit_survey',
-                        'svjis_edit_article_menu',
-                        # Administration
-                        'svjis_view_admin_menu',
-                        'svjis_edit_admin_company',
-                        'svjis_edit_admin_building',
-                        'svjis_edit_admin_users',
-                        'svjis_edit_admin_groups',
-                        'svjis_edit_admin_preferences',
-                        # Faults
-                        'svjis_view_fault_menu',
-                        'svjis_fault_reporter',
-                        'svjis_fault_resolver',
-                        'svjis_add_fault_comment',
-                        # Adverts
-                        'svjis_view_adverts_menu',
-                        'svjis_add_advert',
-            ]},
-            {'name': 'Vlastník', 'perms': [
-                        # Articles
-                        'svjis_add_article_comment',
-                        'svjis_answer_survey',
-                        # Contact
-                        'svjis_view_phonelist',
-                        # Personal settings
-                        'svjis_view_personal_menu',
-                        # Faults
-                        'svjis_view_fault_menu',
-                        'svjis_fault_reporter',
-                        'svjis_add_fault_comment',
-                        # Adverts
-                        'svjis_view_adverts_menu',
-                        'svjis_add_advert',
-            ]},
-            {'name': 'Člen výboru', 'perms': [
-                        # Articles
-                        'svjis_add_article_comment',
-                        # Contact
-                        'svjis_view_phonelist',
-                        # Personal settings
-                        'svjis_view_personal_menu',
-            ]},
-            {'name': 'Dodavatel', 'perms': [
-                        # Articles
-                        'svjis_add_article_comment',
-                        # Personal settings
-                        'svjis_view_personal_menu',
-            ]},
-            {'name': 'Redaktor', 'perms': [
-                        # Articles
-                        'svjis_add_article_comment',
-                        # Personal settings
-                        'svjis_view_personal_menu',
-                        # Redaction
-                        'svjis_view_redaction_menu',
-                        'svjis_edit_article',
-                        'svjis_edit_article_news',
-                        'svjis_edit_survey',
-                        'svjis_edit_article_menu',
-            ]},
-            {'name': 'Řešitel', 'perms': [
-                        # Personal settings
-                        'svjis_view_personal_menu',
-                        # Faults
-                        'svjis_view_fault_menu',
-                        'svjis_fault_reporter',
-                        'svjis_fault_resolver',
-                        'svjis_add_fault_comment',
-            ]},
+        {
+            'name': 'Administrátor',
+            'perms': [
+                # Articles
+                'svjis_add_article_comment',
+                'svjis_answer_survey',
+                # Contact
+                'svjis_view_phonelist',
+                # Personal settings
+                'svjis_view_personal_menu',
+                # Redaction
+                'svjis_view_redaction_menu',
+                'svjis_edit_article',
+                'svjis_edit_article_news',
+                'svjis_edit_survey',
+                'svjis_edit_article_menu',
+                # Administration
+                'svjis_view_admin_menu',
+                'svjis_edit_admin_company',
+                'svjis_edit_admin_building',
+                'svjis_edit_admin_users',
+                'svjis_edit_admin_groups',
+                'svjis_edit_admin_preferences',
+                # Faults
+                'svjis_view_fault_menu',
+                'svjis_fault_reporter',
+                'svjis_fault_resolver',
+                'svjis_add_fault_comment',
+                # Adverts
+                'svjis_view_adverts_menu',
+                'svjis_add_advert',
+            ],
+        },
+        {
+            'name': 'Vlastník',
+            'perms': [
+                # Articles
+                'svjis_add_article_comment',
+                'svjis_answer_survey',
+                # Contact
+                'svjis_view_phonelist',
+                # Personal settings
+                'svjis_view_personal_menu',
+                # Faults
+                'svjis_view_fault_menu',
+                'svjis_fault_reporter',
+                'svjis_add_fault_comment',
+                # Adverts
+                'svjis_view_adverts_menu',
+                'svjis_add_advert',
+            ],
+        },
+        {
+            'name': 'Člen výboru',
+            'perms': [
+                # Articles
+                'svjis_add_article_comment',
+                # Contact
+                'svjis_view_phonelist',
+                # Personal settings
+                'svjis_view_personal_menu',
+            ],
+        },
+        {
+            'name': 'Dodavatel',
+            'perms': [
+                # Articles
+                'svjis_add_article_comment',
+                # Personal settings
+                'svjis_view_personal_menu',
+            ],
+        },
+        {
+            'name': 'Redaktor',
+            'perms': [
+                # Articles
+                'svjis_add_article_comment',
+                # Personal settings
+                'svjis_view_personal_menu',
+                # Redaction
+                'svjis_view_redaction_menu',
+                'svjis_edit_article',
+                'svjis_edit_article_news',
+                'svjis_edit_survey',
+                'svjis_edit_article_menu',
+            ],
+        },
+        {
+            'name': 'Řešitel',
+            'perms': [
+                # Personal settings
+                'svjis_view_personal_menu',
+                # Faults
+                'svjis_view_fault_menu',
+                'svjis_fault_reporter',
+                'svjis_fault_resolver',
+                'svjis_add_fault_comment',
+            ],
+        },
     ]
 
     print("Creating groups...")
@@ -97,17 +115,16 @@ def create_groups():
             try:
                 pobj = Permission.objects.get(content_type__app_label='articles', codename=p)
                 gobj.permissions.add(pobj)
-            except:
+            except Permission.DoesNotExist:
                 print(f"Permission {p} doesnt exist")
     print("Done")
 
 
 def create_admin_user():
     print("Creating admin user...")
-    u = User.objects.create(username='admin',
-                            email='admin@test.cz',
-                            password=make_password('masterkey'),
-                            last_name='admin')
+    u = User.objects.create(
+        username='admin', email='admin@test.cz', password=make_password('masterkey'), last_name='admin'
+    )
     u.is_active = True
     u.is_staff = True
     u.is_superuser = True
@@ -119,7 +136,7 @@ def create_admin_user():
 
 def create_article_menu():
     print("Creating article menu...")
-    menu = ['Vývěska', 'Dotazy a návody' ,'Smlouvy' ,'Zápisy']
+    menu = ['Vývěska', 'Dotazy a návody', 'Smlouvy', 'Zápisy']
     for m in menu:
         ArticleMenu.objects.create(description=m)
     print("Done")
@@ -130,36 +147,26 @@ def create_preferences():
     preferences = [
         {
             'key': 'mail.template.lost.password',
-            'value': '<html><body>Dobrý den,<br>Vaše přihlašovací údaje jsou:<br><br>{}<br>Heslo si můžete změnit v menu <b>Osobní nastavení - Změna hesla</b><br><br>Web SVJ</body></html>'
+            'value': '<html><body>Dobrý den,<br>Vaše přihlašovací údaje jsou:<br><br>{}<br>\
+            Heslo si můžete změnit v menu <b>Osobní nastavení - Změna hesla</b><br><br>Web SVJ</body></html>',
         },
         {
             'key': 'mail.template.article.notification',
-            'value': 'Dobrý den,<br><br>rádi bychom Vás upozornili na následující článek na stránkách SVJ.<br><br>{}<br><br>S pozdravem,<br>Výbor SVJ'
+            'value': 'Dobrý den,<br><br>rádi bychom Vás upozornili na následující článek na stránkách SVJ.<br>\
+            <br>{}<br><br>S pozdravem,<br>Výbor SVJ',
         },
         {
             'key': 'mail.template.comment.notification',
-            'value': 'Uživatel {} přidal nový komentář k článku {}: <br><br><br>{}'
+            'value': 'Uživatel {} přidal nový komentář k článku {}: <br><br><br>{}',
         },
-        {
-            'key': 'mail.template.fault.notification',
-            'value': 'Uživatel {} vložil novou závadu {}: <br><br><br>{}'
-        },
+        {'key': 'mail.template.fault.notification', 'value': 'Uživatel {} vložil novou závadu {}: <br><br><br>{}'},
         {
             'key': 'mail.template.fault.comment.notification',
-            'value': 'Uživatel {} přidal nový komentář k závadě {}: <br><br><br>{}'
+            'value': 'Uživatel {} přidal nový komentář k závadě {}: <br><br><br>{}',
         },
-        {
-            'key': 'mail.template.fault.assigned',
-            'value': 'Uživatel {} vám přiřadil tiket {}: <br><br><br>{}'
-        },
-        {
-            'key': 'mail.template.fault.closed',
-            'value': 'Uživatel {} uzavřel tiket {}: <br><br><br>{}'
-        },
-        {
-            'key': 'mail.template.fault.reopened',
-            'value': 'Uživatel {} znovu otevřel tiket {}: <br><br><br>{}'
-        },
+        {'key': 'mail.template.fault.assigned', 'value': 'Uživatel {} vám přiřadil tiket {}: <br><br><br>{}'},
+        {'key': 'mail.template.fault.closed', 'value': 'Uživatel {} uzavřel tiket {}: <br><br><br>{}'},
+        {'key': 'mail.template.fault.reopened', 'value': 'Uživatel {} znovu otevřel tiket {}: <br><br><br>{}'},
     ]
     for p in preferences:
         Preferences.objects.create(key=p['key'], value=p['value'])

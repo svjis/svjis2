@@ -1,4 +1,4 @@
-name: UnitTests
+name: CI
 
 on:
   push:
@@ -7,34 +7,52 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
+
+  unit-test:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ['3.10', '3.11', '3.12']
+        python-version: [ '3.10', '3.11', '3.12' ]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Setup Application
-      run: |
-        source venv/bin/activate
-        cd svjis
-        python manage.py migrate
-        python manage.py svjis_setup
-    - name: Run Tests
-      run: |
-        source venv/bin/activate
-        cd svjis
-        python manage.py test
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Setup Application
+        run: |
+          source venv/bin/activate
+          cd svjis
+          python manage.py migrate
+          python manage.py svjis_setup
+
+      - name: Run Tests
+        run: |
+          source venv/bin/activate
+          cd svjis
+          python manage.py test

@@ -4,7 +4,7 @@ from django.utils.translation import gettext as gt
 from django.template.defaultfilters import stringfilter
 from django.conf import settings
 import markdown as md
-from re import IGNORECASE, compile, escape as rescape
+from re import IGNORECASE, compile
 
 register = template.Library()
 
@@ -20,10 +20,7 @@ def highlight(text, search):
     if search == '':
         return text
     rgx = compile(f'({search})(?![^<>]*>)', IGNORECASE)
-    highlighted = rgx.sub(
-            lambda m: '<b style="color:black;background-color:#ffff66">{}</b>'.format(m.group()),
-            text
-        )
+    highlighted = rgx.sub(lambda m: f'<b style="color:black;background-color:#ffff66">{m.group()}</b>', text)
     return mark_safe(highlighted)
 
 
@@ -32,7 +29,9 @@ def inject_pictures(text, assets):
     for a in assets:
         file = a['asset'].file
         basename = a['basename']
-        text = text.replace('{' + basename + '}', f'<img src="/media/{file}" alt="{basename}" style="max-width:100%;height:auto;">')
+        text = text.replace(
+            '{' + basename + '}', f'<img src="/media/{file}" alt="{basename}" style="max-width:100%;height:auto;">'
+        )
     return mark_safe(text)
 
 
