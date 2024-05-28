@@ -89,4 +89,4 @@ Při testování aplikace ho můžete spouštět ručně. Při produkčním nast
 
 ## 4 Spolupráce
 
-Jakákoliv forma spolupráce je vítána. :octocat:
+Jakákoliv forma spolupráce je vítána. :octocat: Koukni do [CONTRIBUTING.md](CONTRIBUTING.md) jak na to.
