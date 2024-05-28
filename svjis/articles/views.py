@@ -18,12 +18,22 @@ from datetime import datetime, timedelta
 def get_side_menu(ctx):
     result = []
     header = ctx.get('header', None)
-    result.append({'description': _("All articles"), 'link': reverse(main_view), 'active': True if header == _("All articles") else False})
+    result.append(
+        {
+            'description': _("All articles"),
+            'link': reverse(main_view),
+            'active': True if header == _("All articles") else False,
+        }
+    )
     menu_items = models.ArticleMenu.objects.filter(hide=False).all()
     for obj in menu_items:
-        if obj.parent == None:
+        if obj.parent is None:
             active = True if header == obj.description else False
-            node = {'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': active}
+            node = {
+                'description': obj.description,
+                'link': reverse('main_filtered', kwargs={'menu': obj.id}),
+                'active': active,
+            }
             submenu = get_side_submenu(obj, menu_items, header, active)
             if submenu is not None:
                 node['active'] = True
@@ -36,7 +46,11 @@ def get_side_submenu(parent, menu_items, active_header, active):
     result = []
     for obj in menu_items:
         if obj.parent == parent:
-            node = {'description': obj.description, 'link': reverse('main_filtered', kwargs={'menu':obj.id}), 'active': False}
+            node = {
+                'description': obj.description,
+                'link': reverse('main_filtered', kwargs={'menu': obj.id}),
+                'active': False,
+            }
             if active_header == obj.description:
                 active = True
             result.append(node)
@@ -50,6 +64,7 @@ def get_article_filter(user):
     q3 = Q(visible_for_group__in=groups)
     return Q(q1 & (q2 | q3)) if not user.is_anonymous else Q(q1 & q2)
 
+
 @require_GET
 def main_view(request):
     return main_filtered_view(request, None)
@@ -62,10 +77,20 @@ def main_filtered_view(request, menu):
     article_list = models.Article.objects.filter(q).distinct()
 
     # Top 5 Articles
-    top_history_from = make_aware(datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365)))
-    top = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).filter(article__published=True).values('article_id').annotate(total=Count('*')).order_by('-total')
+    top_history_from = make_aware(
+        datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365))
+    )
+    top = (
+        models.ArticleLog.objects.filter(entry_time__gte=top_history_from)
+        .filter(article__published=True)
+        .values('article_id')
+        .annotate(total=Count('*'))
+        .order_by('-total')
+    )
     users_articles = [a.id for a in article_list]
-    top_articles = [a for a in top if a['article_id'] in users_articles][:getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)]
+    top_articles = [a for a in top if a['article_id'] in users_articles][
+        : getattr(settings, 'SVJIS_TOP_ARTICLES_LIST_SIZE', 10)
+    ]
     for ta in top_articles:
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
@@ -82,10 +107,10 @@ def main_filtered_view(request, menu):
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
     if search is not None and len(search) > 100:
-            messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
-            search = None
+        messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
+        search = None
     if search is not None:
-        qs = (Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        qs = Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search)
         article_list = article_list.filter(qs)
         header = _("Search results") + f": {search}"
     else:
@@ -113,7 +138,6 @@ def main_filtered_view(request, menu):
         node['survey'] = s
         node['user_can_vote'] = s.is_user_open_for_voting(request.user) if not request.user.is_anonymous else False
         slist.append(node)
-
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
@@ -192,7 +216,9 @@ def article_comment_save_view(request):
         comment = models.ArticleComment.objects.create(body=body, article=article, author=request.user)
 
         recipients = [u for u in article.watching_users.all() if u != request.user]
-        utils.send_article_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", article, comment)
+        utils.send_article_comment_notification(
+            recipients, f"{request.scheme}://{request.get_host()}", article, comment
+        )
 
     return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
 
@@ -203,7 +229,7 @@ def article_watch_view(request):
     try:
         pk = int(request.GET.get('id'))
         watch = int(request.GET.get('watch'))
-    except:
+    except TypeError:
         raise Http404
 
     q = get_article_filter(request.user)

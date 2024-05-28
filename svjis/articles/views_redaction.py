@@ -19,13 +19,37 @@ from openpyxl.styles import Font
 def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_edit_article'):
-        result.append({'description': _("Articles"), 'link': reverse(redaction_article_view), 'active': True if active_item == 'article' else False})
+        result.append(
+            {
+                'description': _("Articles"),
+                'link': reverse(redaction_article_view),
+                'active': True if active_item == 'article' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_article_news'):
-        result.append({'description': _("News"), 'link': reverse(redaction_news_view), 'active': True if active_item == 'news' else False})
+        result.append(
+            {
+                'description': _("News"),
+                'link': reverse(redaction_news_view),
+                'active': True if active_item == 'news' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_survey'):
-        result.append({'description': _("Surveys"), 'link': reverse(redaction_survey_view), 'active': True if active_item == 'surveys' else False})
+        result.append(
+            {
+                'description': _("Surveys"),
+                'link': reverse(redaction_survey_view),
+                'active': True if active_item == 'surveys' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_article_menu'):
-        result.append({'description': _("Menu"), 'link': reverse(redaction_menu_view), 'active': True if active_item == 'menu' else False})
+        result.append(
+            {
+                'description': _("Menu"),
+                'link': reverse(redaction_menu_view),
+                'active': True if active_item == 'menu' else False,
+            }
+        )
     return result
 
 
@@ -120,10 +144,12 @@ def redaction_article_view(request):
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
     if search is not None and len(search) > 100:
-            messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
-            search = None
+        messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
+        search = None
     if search is not None:
-        article_list = article_list.filter(Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search))
+        article_list = article_list.filter(
+            Q(header__icontains=search) | Q(perex__icontains=search) | Q(body__icontains=search)
+        )
         header = _("Search results") + f": {search}"
     else:
         search = ''
@@ -212,7 +238,7 @@ def redaction_article_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
-        return redirect(reverse('redaction_article_edit', kwargs={'pk':pk}))
+        return redirect(reverse('redaction_article_edit', kwargs={'pk': pk}))
 
     return redirect(redaction_article_view)
 
@@ -436,7 +462,7 @@ def redaction_survey_save_view(request):
             o_description = request.POST.get(f'o_{i}', '')
             if o_pk != 0:
                 o_i = get_object_or_404(models.SurveyOption, pk=o_pk)
-                o_i.description=o_description
+                o_i.description = o_description
                 o_i.save()
             else:
                 if o_description != '':
@@ -496,7 +522,6 @@ def redaction_survey_results_export_to_excel_view(request, pk):
     ws['A1'] = gt("Survey")
     ws['A1'].font = Font(bold=True)
     ws['A2'] = survey.description
-
 
     # Result
     ws['A4'] = gt("Result")

@@ -13,11 +13,29 @@ from django.views.decorators.http import require_GET, require_POST
 def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_view_personal_menu'):
-        result.append({'description': _("Personal settings"), 'link': reverse(personal_settings_edit_view), 'active': True if active_item == 'settings' else False})
+        result.append(
+            {
+                'description': _("Personal settings"),
+                'link': reverse(personal_settings_edit_view),
+                'active': True if active_item == 'settings' else False,
+            }
+        )
     if user.has_perm('articles.svjis_view_personal_menu'):
-        result.append({'description': _("My units"), 'link': reverse(personal_my_units_view), 'active': True if active_item == 'units' else False})
+        result.append(
+            {
+                'description': _("My units"),
+                'link': reverse(personal_my_units_view),
+                'active': True if active_item == 'units' else False,
+            }
+        )
     if user.has_perm('articles.svjis_view_personal_menu'):
-        result.append({'description': _("Password change"), 'link': reverse(personal_settings_password_view), 'active': True if active_item == 'password' else False})
+        result.append(
+            {
+                'description': _("Password change"),
+                'link': reverse(personal_settings_password_view),
+                'active': True if active_item == 'password' else False,
+            }
+        )
     return result
 
 
@@ -125,4 +143,3 @@ def lost_password_send_view(request):
             utils.send_new_password(user)
     messages.info(request, _("Credentials have been sent to your e-mail"))
     return redirect('/')
-

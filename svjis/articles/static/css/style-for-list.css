@@ -33,7 +33,7 @@ a:visited {
 	text-decoration: underline
 }
 
-a:hover { 
+a:hover {
 	color: #FF0080;
 	text-decoration: underline
 }
@@ -64,7 +64,7 @@ pre {
         white-space: -pre-wrap;      /* Opera 4-6 */
         white-space: -o-pre-wrap;    /* Opera 7 */
         word-wrap: break-word;       /* Internet Explorer 5.5+ */
-        
+
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
         -khtml-border-radius: 8px;
@@ -74,7 +74,7 @@ pre {
 /*****************************************************************************
  * Source
  *****************************************************************************/
-.source { 
+.source {
         font-family:"Courier New", Courier, monospace;
         background-color: #F9F9F9;
         border: 1px #DDD solid;
@@ -93,7 +93,7 @@ pre {
 /*****************************************************************************
  * pre text
  *****************************************************************************/
-.pretext { 
+.pretext {
         font-family:"Courier New", Courier, monospace;
         background-color: #FDFDFD;
         border: 1px #DDD solid;

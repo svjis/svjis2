@@ -10,23 +10,33 @@ from django.views.decorators.http import require_GET, require_POST
 
 def get_side_menu(active_item, user):
     result = []
-    result.append({
-        'description': _("All") + f' ({models.Advert.objects.filter(published=True).count()})',
-        'link': reverse(adverts_list_view) + '?scope=all',
-        'active': True if active_item == 'all' else False})
+    result.append(
+        {
+            'description': _("All") + f' ({models.Advert.objects.filter(published=True).count()})',
+            'link': reverse(adverts_list_view) + '?scope=all',
+            'active': True if active_item == 'all' else False,
+        }
+    )
 
     types = models.AdvertType.objects.all()
     for t in types:
-        result.append({
-            'description': t.description + f' ({models.Advert.objects.filter(published=True, type=t).count()})',
-            'link': reverse(adverts_list_view) + f'?scope={t.description}',
-            'active': True if active_item == t.description else False})
+        result.append(
+            {
+                'description': t.description + f' ({models.Advert.objects.filter(published=True, type=t).count()})',
+                'link': reverse(adverts_list_view) + f'?scope={t.description}',
+                'active': True if active_item == t.description else False,
+            }
+        )
 
     if user.has_perm('articles.svjis_add_advert'):
-        result.append({
-            'description': _("Mine") + f' ({models.Advert.objects.filter(published=True, created_by_user=user).count()})',
-            'link': reverse(adverts_list_view)  + '?scope=mine',
-            'active': True if active_item == 'mine' else False})
+        result.append(
+            {
+                'description': _("Mine")
+                + f' ({models.Advert.objects.filter(published=True, created_by_user=user).count()})',
+                'link': reverse(adverts_list_view) + '?scope=mine',
+                'active': True if active_item == 'mine' else False,
+            }
+        )
 
     return result
 
@@ -69,7 +79,7 @@ def adverts_edit_view(request, pk):
         form = forms.AdvertForm(instance=i)
         assets = utils.wrap_assets(i.assets)
     else:
-        form = forms.AdvertForm({'phone':request.user.userprofile.phone, 'email': request.user.email})
+        form = forms.AdvertForm({'phone': request.user.userprofile.phone, 'email': request.user.email})
         assets = None
 
     ctx = utils.get_context()
@@ -114,7 +124,7 @@ def adverts_asset_save_view(request):
     advert_pk = int(request.POST.get('advert_pk'))
     advert = get_object_or_404(models.Advert, pk=advert_pk)
     if advert.created_by_user != request.user:
-            raise Http404
+        raise Http404
     form = forms.AdvertAssetForm(request.POST, request.FILES)
     if form.is_valid():
         obj = form.save(commit=False)
@@ -133,6 +143,6 @@ def adverts_asset_delete_view(request, pk):
     obj = get_object_or_404(models.AdvertAsset, pk=pk)
     advert = obj.advert
     if advert.created_by_user != request.user:
-            raise Http404
+        raise Http404
     obj.delete()
     return redirect(adverts_edit_view, pk=advert.pk)

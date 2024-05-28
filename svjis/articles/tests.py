@@ -47,28 +47,28 @@ groups = {
 
 users = {
     'jiri': {
-         'first_name': 'Jiří',
-         'last_name': 'Brambůrek',
-         'password': 'jiri',
-         'email': 'jiri@test.cz',
+        'first_name': 'Jiří',
+        'last_name': 'Brambůrek',
+        'password': 'jiri',
+        'email': 'jiri@test.cz',
     },
     'petr': {
-         'first_name': 'Petr',
-         'last_name': 'Nebus',
-         'password': 'petr',
-         'email': 'petr@test.cz',
+        'first_name': 'Petr',
+        'last_name': 'Nebus',
+        'password': 'petr',
+        'email': 'petr@test.cz',
     },
     'karel': {
-         'first_name': 'Karel',
-         'last_name': 'Lukáš',
-         'password': 'karel',
-         'email': 'karel@test.cz',
+        'first_name': 'Karel',
+        'last_name': 'Lukáš',
+        'password': 'karel',
+        'email': 'karel@test.cz',
     },
     'jarda': {
-         'first_name': 'Jaroslav',
-         'last_name': 'Beran',
-         'password': 'jarda',
-         'email': 'jarda@test.cz',
+        'first_name': 'Jaroslav',
+        'last_name': 'Beran',
+        'password': 'jarda',
+        'email': 'jarda@test.cz',
     },
 }
 
@@ -83,7 +83,8 @@ def create_group(name):
 
 
 def create_user(name, groups):
-    u = User.objects.create(username=name,
+    u = User.objects.create(
+        username=name,
         email=users[name]['email'],
         password=make_password(users[name]['password']),
         first_name=users[name]['first_name'],
@@ -113,17 +114,64 @@ class ArticleListTest(TestCase):
 
         cls.menu_docs = ArticleMenu.objects.create(description='Documents')
 
-        cls.article_not_published = Article.objects.create(header='Not Published', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=False, visible_for_all=True)
-        cls.article_for_no_one = Article.objects.create(header='For no one', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
-        cls.article_for_all = Article.objects.create(header='For All', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=True)
-        cls.article_for_owners = Article.objects.create(header='For Owners', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
+        cls.article_not_published = Article.objects.create(
+            header='Not Published',
+            perex='test perex',
+            body='test body',
+            menu=cls.menu_docs,
+            author=cls.u_jiri,
+            published=False,
+            visible_for_all=True,
+        )
+        cls.article_for_no_one = Article.objects.create(
+            header='For no one',
+            perex='test perex',
+            body='test body',
+            menu=cls.menu_docs,
+            author=cls.u_jiri,
+            published=True,
+            visible_for_all=False,
+        )
+        cls.article_for_all = Article.objects.create(
+            header='For All',
+            perex='test perex',
+            body='test body',
+            menu=cls.menu_docs,
+            author=cls.u_jiri,
+            published=True,
+            visible_for_all=True,
+        )
+        cls.article_for_owners = Article.objects.create(
+            header='For Owners',
+            perex='test perex',
+            body='test body',
+            menu=cls.menu_docs,
+            author=cls.u_jiri,
+            published=True,
+            visible_for_all=False,
+        )
         cls.article_for_owners.visible_for_group.add(cls.g_owner)
-        cls.article_for_owners_and_board = Article.objects.create(header='For Owners and Board', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
+        cls.article_for_owners_and_board = Article.objects.create(
+            header='For Owners and Board',
+            perex='test perex',
+            body='test body',
+            menu=cls.menu_docs,
+            author=cls.u_jiri,
+            published=True,
+            visible_for_all=False,
+        )
         cls.article_for_owners_and_board.visible_for_group.add(cls.g_owner)
         cls.article_for_owners_and_board.visible_for_group.add(cls.g_board_member)
-        cls.article_for_board = Article.objects.create(header='For Board', perex='test perex', body='test body', menu=cls.menu_docs, author=cls.u_jiri, published=True, visible_for_all=False)
+        cls.article_for_board = Article.objects.create(
+            header='For Board',
+            perex='test perex',
+            body='test body',
+            menu=cls.menu_docs,
+            author=cls.u_jiri,
+            published=True,
+            visible_for_all=False,
+        )
         cls.article_for_board.visible_for_group.add(cls.g_board_member)
-
 
     def test_admin_user(self):
         # Login user
@@ -158,7 +206,6 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_articles[1].header, 'For Owners and Board')
         self.assertEqual(res_articles[2].header, 'For Owners')
         self.assertEqual(res_articles[3].header, 'For All')
-
 
     def test_board_user(self):
         # Login user
@@ -195,7 +242,6 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_articles[2].header, 'For Owners')
         self.assertEqual(res_articles[3].header, 'For All')
 
-
     def test_owner_user(self):
         # Login user
         logged_in = self.client.login(username='petr', password=users['petr']['password'])
@@ -231,7 +277,6 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_articles[1].header, 'For Owners')
         self.assertEqual(res_articles[2].header, 'For All')
 
-
     def test_vendor_user(self):
         # Login user
         logged_in = self.client.login(username='karel', password=users['karel']['password'])
@@ -265,7 +310,6 @@ class ArticleListTest(TestCase):
         self.assertEqual(len(res_articles), 1)
         self.assertEqual(res_articles[0].header, 'For All')
 
-
     def test_anonymous_user(self):
         # Logout user
         self.client.logout()
@@ -296,7 +340,6 @@ class ArticleListTest(TestCase):
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 1)
         self.assertEqual(res_articles[0].header, 'For All')
-
 
     def test_top_articles(self):
         # Login board user
@@ -352,20 +395,23 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_top[0]['article_id'], self.article_for_all.pk)
         self.assertEqual(res_top[0]['total'], 1)
 
-
     def test_send_article_notifications(self):
         # Login board user
         logged_in = self.client.login(username='jiri', password=users['jiri']['password'])
         self.assertEqual(logged_in, True)
 
         # Send notifications for article not published
-        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_not_published.pk}))
+        response = self.client.get(
+            reverse('redaction_article_notifications', kwargs={'pk': self.article_not_published.pk})
+        )
         self.assertEqual(response.status_code, 200)
         res_recipients = response.context['object_list']
         self.assertEqual(len(res_recipients), 0)
 
         # Send notifications for no one
-        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_no_one.pk}))
+        response = self.client.get(
+            reverse('redaction_article_notifications', kwargs={'pk': self.article_for_no_one.pk})
+        )
         self.assertEqual(response.status_code, 200)
         res_recipients = response.context['object_list']
         self.assertEqual(len(res_recipients), 0)
@@ -381,7 +427,9 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_recipients[3].last_name, 'Nebus')
 
         # Send notifications for owners
-        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_owners.pk}))
+        response = self.client.get(
+            reverse('redaction_article_notifications', kwargs={'pk': self.article_for_owners.pk})
+        )
         self.assertEqual(response.status_code, 200)
         res_recipients = response.context['object_list']
         self.assertEqual(len(res_recipients), 3)
@@ -390,7 +438,9 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_recipients[2].last_name, 'Nebus')
 
         # Send notifications for board
-        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_board.pk}))
+        response = self.client.get(
+            reverse('redaction_article_notifications', kwargs={'pk': self.article_for_board.pk})
+        )
         self.assertEqual(response.status_code, 200)
         res_recipients = response.context['object_list']
         self.assertEqual(len(res_recipients), 2)
@@ -398,7 +448,9 @@ class ArticleListTest(TestCase):
         self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
 
         # Send notifications for board
-        response = self.client.get(reverse('redaction_article_notifications', kwargs={'pk': self.article_for_owners_and_board.pk}))
+        response = self.client.get(
+            reverse('redaction_article_notifications', kwargs={'pk': self.article_for_owners_and_board.pk})
+        )
         self.assertEqual(response.status_code, 200)
         res_recipients = response.context['object_list']
         self.assertEqual(len(res_recipients), 3)

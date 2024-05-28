@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from articles import utils
 
+
 class Command(BaseCommand):
     help = "Send messages and empty message queue"
 

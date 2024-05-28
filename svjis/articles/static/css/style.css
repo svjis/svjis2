@@ -105,13 +105,13 @@ h2.article-title {color:#739D13;}
   padding: .7em 1.5em; /* odsazení od textu */
   outline: none; /* odstraňovat vnější rámeček v Mozilla */
   border: none;
-} 
-.my-button:hover { 
-    background: #404040; 
+}
+.my-button:hover {
+    background: #404040;
     color:#ffffff;
 }
-.my-button:active { 
-    background: #ffffff; 
+.my-button:active {
+    background: #ffffff;
 }
 
 .create-button {

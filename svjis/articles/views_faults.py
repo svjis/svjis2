@@ -15,24 +15,38 @@ from django.views.decorators.http import require_GET, require_POST
 def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_view_fault_menu'):
-        result.append({
-            'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
-            'link': reverse(faults_list_view) + '?scope=open',
-            'active': True if active_item == 'open' else False})
+        result.append(
+            {
+                'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
+                'link': reverse(faults_list_view) + '?scope=open',
+                'active': True if active_item == 'open' else False,
+            }
+        )
         if user.has_perm('articles.svjis_fault_reporter'):
-            result.append({
-                'description': _("Mine") + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
-                'link': reverse(faults_list_view) + '?scope=mine',
-                'active': True if active_item == 'mine' else False})
+            result.append(
+                {
+                    'description': _("Mine")
+                    + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
+                    'link': reverse(faults_list_view) + '?scope=mine',
+                    'active': True if active_item == 'mine' else False,
+                }
+            )
         if user.has_perm('articles.svjis_fault_resolver'):
-            result.append({
-                'description': _("Assigned to me") + f' ({models.FaultReport.objects.filter(closed=False, assigned_to_user=user).count()})',
-                'link': reverse(faults_list_view) + '?scope=assigned',
-                'active': True if active_item == 'assigned' else False})
-        result.append({
-            'description': _("Closed") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
-            'link': reverse(faults_list_view) + '?scope=closed',
-            'active': True if active_item == 'closed' else False})
+            result.append(
+                {
+                    'description': _("Assigned to me")
+                    + f' ({models.FaultReport.objects.filter(closed=False, assigned_to_user=user).count()})',
+                    'link': reverse(faults_list_view) + '?scope=assigned',
+                    'active': True if active_item == 'assigned' else False,
+                }
+            )
+        result.append(
+            {
+                'description': _("Closed") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
+                'link': reverse(faults_list_view) + '?scope=closed',
+                'active': True if active_item == 'closed' else False,
+            }
+        )
     return result
 
 
@@ -51,15 +65,14 @@ def faults_list_view(request):
     if scope == 'closed':
         fault_list = fault_list.filter(closed=True)
 
-
     # Search
     search = request.GET.get('search')
     if search is not None and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
     if search is not None and len(search) > 100:
-            messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
-            search = None
+        messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
+        search = None
     if search is not None:
         fault_list = fault_list.filter(Q(subject__icontains=search) | Q(description__icontains=search))
         header = _("Search results") + f": {search}"
@@ -165,7 +178,11 @@ def faults_fault_save_view(request):
     # Set watching users
     if pk == 0:
         obj.watching_users.add(request.user)
-        resolvers = User.objects.filter(groups__permissions__codename='svjis_fault_resolver').exclude(is_active=False).distinct()
+        resolvers = (
+            User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
+            .exclude(is_active=False)
+            .distinct()
+        )
         for u in resolvers:
             obj.watching_users.add(u)
 
@@ -196,17 +213,23 @@ def faults_fault_update_view(request):
 
     # Send assigned notification
     if original_resolver != instance.assigned_to_user and request.user != instance.assigned_to_user:
-        utils.send_fault_assigned_notification(instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance)
+        utils.send_fault_assigned_notification(
+            instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance
+        )
 
     # Send closed notification
-    if original_closed_status == False and instance.closed == True:
+    if original_closed_status is False and instance.closed is True:
         recipients = [u for u in instance.watching_users.all() if u != request.user]
-        utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
+        utils.send_fault_closed_notification(
+            recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
+        )
 
     # Send reopened notification
-    if original_closed_status == True and instance.closed == False:
+    if original_closed_status is True and instance.closed is False:
         recipients = [u for u in instance.watching_users.all() if u != request.user]
-        utils.send_fault_reopened_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", instance)
+        utils.send_fault_reopened_notification(
+            recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
+        )
 
     return redirect(reverse(faults_list_view) + '?scope=open')
 
@@ -262,7 +285,7 @@ def fault_watch_view(request):
     try:
         pk = int(request.GET.get('id'))
         watch = int(request.GET.get('watch'))
-    except:
+    except TypeError:
         raise Http404
 
     fault = get_object_or_404(models.FaultReport, pk=pk)
@@ -280,7 +303,7 @@ def fault_watch_view(request):
 @require_GET
 def faults_fault_take_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
-    fault.assigned_to_user=request.user
+    fault.assigned_to_user = request.user
     fault.save()
     return redirect(fault_view, slug=fault.slug)
 
@@ -290,7 +313,7 @@ def faults_fault_take_ticket_view(request, pk):
 @require_GET
 def faults_fault_close_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
-    fault.closed=True
+    fault.closed = True
     fault.save()
 
     # Send closed notification
