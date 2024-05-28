@@ -1,0 +1,4 @@
+-r requirements.txt
+
+django-stubs==5.0.2
+pre-commit==3.7.1
