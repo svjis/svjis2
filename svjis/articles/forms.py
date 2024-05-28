@@ -5,6 +5,9 @@ from . import models
 from tinymce.widgets import TinyMCE
 
 
+SELECT_ENTRANCE_TEXT = "Select the entranance (if does it make sense)"
+
+
 class ArticleMenuForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -277,7 +280,7 @@ class BuildingUnitForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=_("Select the entrnance (if does it make sense)"),
+        help_text=_(SELECT_ENTRANCE_TEXT),
     )
 
     class Meta:
@@ -298,7 +301,7 @@ class FaultReportForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=_("Select the entrnance (if does it make sense)"),
+        help_text=_(SELECT_ENTRANCE_TEXT),
     )
 
     class Meta:
@@ -326,7 +329,7 @@ class FaultReportEditForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=_("Select the entrnance (if does it make sense)"),
+        help_text=_(SELECT_ENTRANCE_TEXT),
     )
     assigned_to_user = AssignedUserChoiceField(
         queryset=User.objects.filter(groups__permissions__codename='svjis_fault_resolver')

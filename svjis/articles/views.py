@@ -14,15 +14,17 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
 
+ALL_ARTICLE_TEXT = "All articles"
+
 
 def get_side_menu(ctx):
     result = []
     header = ctx.get('header', None)
     result.append(
         {
-            'description': _("All articles"),
+            'description': _(ALL_ARTICLE_TEXT),
             'link': reverse(main_view),
-            'active': True if header == _("All articles") else False,
+            'active': True if header == _(ALL_ARTICLE_TEXT) else False,
         }
     )
     menu_items = models.ArticleMenu.objects.filter(hide=False).all()
@@ -95,7 +97,7 @@ def main_filtered_view(request, menu):
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
     # Menu
-    header = _("All articles")
+    header = _(ALL_ARTICLE_TEXT)
     if menu is not None:
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)

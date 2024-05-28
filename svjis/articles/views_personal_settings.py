@@ -10,12 +10,15 @@ from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
 
 
+PERSONAL_SETTINGS_TEXT = "Personal settings"
+
+
 def get_side_menu(active_item, user):
     result = []
     if user.has_perm('articles.svjis_view_personal_menu'):
         result.append(
             {
-                'description': _("Personal settings"),
+                'description': _(PERSONAL_SETTINGS_TEXT),
                 'link': reverse(personal_settings_edit_view),
                 'active': True if active_item == 'settings' else False,
             }
@@ -47,7 +50,7 @@ def personal_settings_edit_view(request):
     pinstance, _created = models.UserProfile.objects.get_or_create(user=request.user)
     pform = forms.PersonalUserProfileForm(instance=pinstance)
     ctx = utils.get_context()
-    ctx['aside_menu_name'] = _("Personal settings")
+    ctx['aside_menu_name'] = _(PERSONAL_SETTINGS_TEXT)
     ctx['uform'] = uform
     ctx['pform'] = pform
     ctx['aside_menu_items'] = get_side_menu('settings', request.user)
@@ -79,7 +82,7 @@ def personal_settings_save_view(request):
 @require_GET
 def personal_my_units_view(request):
     ctx = utils.get_context()
-    ctx['aside_menu_name'] = _("Personal settings")
+    ctx['aside_menu_name'] = _(PERSONAL_SETTINGS_TEXT)
     ctx['aside_menu_items'] = get_side_menu('units', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('personal_settings', request.user)
     return render(request, "personal_my_units.html", ctx)
@@ -90,7 +93,7 @@ def personal_my_units_view(request):
 @require_GET
 def personal_settings_password_view(request):
     ctx = utils.get_context()
-    ctx['aside_menu_name'] = _("Personal settings")
+    ctx['aside_menu_name'] = _(PERSONAL_SETTINGS_TEXT)
     ctx['aside_menu_items'] = get_side_menu('password', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('personal_settings', request.user)
     return render(request, "personal_settings_password.html", ctx)
