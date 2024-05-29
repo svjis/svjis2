@@ -1,3 +1,6 @@
+import getpass
+import sys
+
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group, Permission
@@ -195,6 +198,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         password = options["password"]
+        if password is None and sys.stdin.isatty():
+            password = getpass.getpass("Enter password for admin user: ")
         with transaction.atomic():
             create_article_menu()
             create_advert_types()
