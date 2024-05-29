@@ -158,7 +158,7 @@ def faults_fault_create_view(request):
 
 @permission_required("articles.svjis_fault_reporter")
 @require_POST
-def faults_fault_save_view(request):
+def faults_fault_create_save_view(request):
     pk = int(request.POST['pk'])
     if pk == 0:
         form = forms.FaultReportForm(request.POST)
