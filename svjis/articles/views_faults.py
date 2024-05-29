@@ -171,26 +171,26 @@ def faults_fault_save_view(request):
         if pk == 0:
             obj.created_by_user = request.user
         obj.save()
+
+        # Set watching users
+        if pk == 0:
+            obj.watching_users.add(request.user)
+            resolvers = (
+                User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
+                .exclude(is_active=False)
+                .distinct()
+            )
+            for u in resolvers:
+                obj.watching_users.add(u)
+
+        # Send notifications
+        recipients = [u for u in obj.watching_users.all() if u != request.user]
+        utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
+        return redirect(fault_view, slug=obj.slug)
     else:
         for error in form.errors:
             messages.error(request, error)
-
-    # Set watching users
-    if pk == 0:
-        obj.watching_users.add(request.user)
-        resolvers = (
-            User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
-            .exclude(is_active=False)
-            .distinct()
-        )
-        for u in resolvers:
-            obj.watching_users.add(u)
-
-    # Send notifications
-    recipients = [u for u in obj.watching_users.all() if u != request.user]
-    utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
-
-    return redirect(reverse(faults_list_view) + '?scope=open')
+        return redirect(reverse(faults_list_view) + '?scope=open')
 
 
 @permission_required("articles.svjis_fault_resolver")
@@ -231,7 +231,7 @@ def faults_fault_update_view(request):
             recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
         )
 
-    return redirect(reverse(faults_list_view) + '?scope=open')
+    return redirect(fault_view, slug=instance.slug)
 
 
 # Faults - FaultAsset
