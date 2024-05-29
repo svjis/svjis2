@@ -32,7 +32,7 @@ def get_side_menu(active_item, user):
         result.append(
             {
                 'description': _("Mine")
-                + f' ({models.Advert.objects.filter(published=True, created_by_user=user).count()})',
+                + f' ({models.Advert.objects.filter(created_by_user=user).count()})',
                 'link': reverse(adverts_list_view) + '?scope=mine',
                 'active': True if active_item == 'mine' else False,
             }
