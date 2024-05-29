@@ -102,11 +102,7 @@ urlpatterns = [
         views_faults.faults_fault_close_ticket_view,
         name='faults_fault_close_ticket',
     ),
-    path(
-        'faults_fault_create_save/',
-        views_faults.faults_fault_create_save_view,
-        name='faults_fault_create_save'
-    ),
+    path('faults_fault_create_save/', views_faults.faults_fault_create_save_view, name='faults_fault_create_save'),
     path('faults_fault_update/', views_faults.faults_fault_update_view, name='faults_fault_update'),
     path('faults_fault_asset_save/', views_faults.faults_fault_asset_save_view, name='faults_fault_asset_save'),
     path(
