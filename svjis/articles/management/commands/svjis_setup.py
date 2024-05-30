@@ -1,6 +1,10 @@
+import getpass
+import sys
+
 from django.core.management.base import BaseCommand
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group, Permission
+from django.db import transaction
+
 from articles.models import ArticleMenu, Preferences, BuildingUnitType, AdvertType
 
 
@@ -120,15 +124,9 @@ def create_groups():
     print("Done")
 
 
-def create_admin_user():
+def create_admin_user(password: str = None):
     print("Creating admin user...")
-    u = User.objects.create(
-        username='admin', email='admin@test.cz', password=make_password('masterkey'), last_name='admin'
-    )
-    u.is_active = True
-    u.is_staff = True
-    u.is_superuser = True
-    u.save()
+    u = User.objects.create_superuser(username='admin', email='admin@test.cz', password=password, last_name='admin')
     g = Group.objects.get(name='Administrátor')
     u.groups.add(g)
     print("Done")
@@ -192,10 +190,23 @@ def create_advert_types():
 class Command(BaseCommand):
     help = "Populate database with initial data"
 
+    def add_arguments(self, parser):
+        parser.add_argument("--password", type=str, help="Password for admin user")
+
     def handle(self, *args, **options):
-        create_article_menu()
-        create_advert_types()
-        create_building_unit_types()
-        create_groups()
-        create_preferences()
-        create_admin_user()
+        password = options["password"]
+        if password is None and sys.stdin.isatty():
+            while True:
+                password = getpass.getpass("Enter password for admin user: ")
+                password2 = getpass.getpass("Enter password again: ")
+                if password == password2 and password != "":
+                    break
+                print("Passwords don't match.")
+
+        with transaction.atomic():
+            create_article_menu()
+            create_advert_types()
+            create_building_unit_types()
+            create_groups()
+            create_preferences()
+            create_admin_user(password=password)
