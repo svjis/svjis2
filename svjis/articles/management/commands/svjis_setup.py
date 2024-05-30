@@ -128,7 +128,7 @@ def create_groups():
 def create_admin_user(password: str = None):
     print("Creating admin user...")
     u = User.objects.create_superuser(
-        username='admin', email='admin@test.cz', password=make_password(password), last_name='admin'
+        username='admin', email='admin@test.cz', password=password, last_name='admin'
     )
     g = Group.objects.get(name='Administrátor')
     u.groups.add(g)
@@ -199,7 +199,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         password = options["password"]
         if password is None and sys.stdin.isatty():
-            password = getpass.getpass("Enter password for admin user: ")
+            while True:
+                password = getpass.getpass("Enter password for admin user: ")
+                password2 = getpass.getpass("Enter password again: ")
+                if password == password2 and password != "":
+                    break
+                print("Passwords don't match.")
+
         with transaction.atomic():
             create_article_menu()
             create_advert_types()

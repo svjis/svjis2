@@ -36,10 +36,11 @@ Nainstalujte závislosti a vytvoře konfiguraci
 pip install -r requirements.txt
 cd svjis
 python manage.py migrate
-python manage.py svjis_setup
+python manage.py svjis_setup --password <heslo pro uživatele admin>
 ```
 
-Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext` - vyzkoušejte `gettext --version`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
+> [!NOTE]
+> Abyste mohli zkompilovat překlady, budete potřebovat nainstalovanou utilitu `gettext` - vyzkoušejte `gettext --version`. Pokud jí nemáte, tak následující krok klidně přeskočte a aplikace bude dostupná jen v angličtině.
 ```
 python manage.py compilemessages
 ```
@@ -50,7 +51,7 @@ python manage.py compilemessages
 python manage.py runserver
 ```
 
-Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je `masterkey`. Heslo změňte v **Osobní nastavení - Změna hesla**.
+Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je vámi dříve zadané heslo.
 
 Uvedený způsob spuštění je vhodný pro rychlé vyzkoušení aplikace na vašem počítači, nebo pro vývojáře. Pokud chcete SVJIS nasadit na server do produkce tak si prostudujte [Django dokumentaci](https://docs.djangoproject.com/en/5.0/howto/deployment/).
 
