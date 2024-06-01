@@ -6,7 +6,7 @@
 
 <h1 class="page-title" id="tbl-desc">{% trans 'Fault report' %}</h1>
 
-<form action="{% url 'faults_fault_save' %}" method="post">
+<form action="{% url 'faults_fault_create_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}" />
     <p>
