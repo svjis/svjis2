@@ -63,6 +63,24 @@ def create_groups():
             ],
         },
         {
+            'name': 'Nájemník',
+            'perms': [
+                # Articles
+                'svjis_add_article_comment',
+                # Contact
+                'svjis_view_phonelist',
+                # Personal settings
+                'svjis_view_personal_menu',
+                # Faults
+                'svjis_view_fault_menu',
+                'svjis_fault_reporter',
+                'svjis_add_fault_comment',
+                # Adverts
+                'svjis_view_adverts_menu',
+                'svjis_add_advert',
+            ],
+        },
+        {
             'name': 'Člen výboru',
             'perms': [
                 # Articles
