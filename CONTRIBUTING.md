@@ -1,6 +1,6 @@
 # Přispívání do projektu
 
-Pokud chcete přispět do projektu a zlepšit jej, Vaše pomoc je velmi vítána. Přispět můžete různými způsoby:
+Pokud chcete přispět do projektu a zlepšit jej, Vaše pomoc je velmi vítána. Přispívat můžete různými způsoby:
 
 * můžete nahlásit závadu nebo požadavek v [issues](https://github.com/svjis/svjis2/issues);
 * můžete diskutovat a odpovídat na dotazy v [diskuzích](https://github.com/orgs/svjis/discussions);
