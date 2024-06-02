@@ -2,10 +2,10 @@
 
 Pokud chcete přispět do projektu a zlepšit jej, Vaše pomoc je velmi vítána. Přispět můžete různými způsoby:
 
-* můžete nahlásit závadu nebo požadavek v [issues](/svjis/svjis2/issues);
-* můžete diskutovat a odpovídat na dotazy v [diskuzích](/orgs/svjis/discussions);
+* můžete nahlásit závadu nebo požadavek v [issues](https://github.com/svjis/svjis2/issues);
+* můžete diskutovat a odpovídat na dotazy v [diskuzích](https://github.com/orgs/svjis/discussions);
 * můžete testovat nově přidané funkcionality;
-* můžete si udělat fork projektu, udělat úpravy a poslat je zpět formou [pull-requestu](/svjis/svjis2/pulls)
+* můžete si udělat fork projektu, udělat úpravy a poslat je zpět formou [pull-requestu](https://github.com/svjis/svjis2/pulls)
 
 
 ## Před vytvořením pull-requestu
