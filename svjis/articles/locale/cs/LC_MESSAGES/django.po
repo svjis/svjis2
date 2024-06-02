@@ -496,7 +496,7 @@ msgstr "Přílohy"
 #: articles/templates/advert_edit.html:82 articles/templates/fault.html:105
 #: articles/templates/redaction_article_edit.html:99
 msgid "Upload"
-msgstr "Nahrát"
+msgstr "Nahrát soubor"
 
 #: articles/templates/adverts_list.html:11
 msgid "Create new advert"
