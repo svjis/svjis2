@@ -2,3 +2,4 @@
 
 django-stubs==5.0.2
 pre-commit==3.7.1
+factory-boy==3.3.0
