@@ -187,7 +187,7 @@ def send_new_password(user):
     user.save()
     msg = f"Username: {user.username}<br>Password: {password}<br>"
     subj = models.Company.objects.get(pk=1).internet_domain
-    send_mails([user.email], f'{subj} - {_("Credentials")}', template.value.format(msg), False)
+    send_mails([user.email], subj, template.value.format(msg), False)
 
 
 def send_article_notification(user_list, host, article):
