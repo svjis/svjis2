@@ -34,6 +34,14 @@ def get_side_menu(active_item, user):
                 'active': True if active_item == 'news' else False,
             }
         )
+    if user.has_perm('articles.svjis_edit_useful_link'):
+        result.append(
+            {
+                'description': _("Useful Links"),
+                'link': reverse(redaction_useful_link_view),
+                'active': True if active_item == 'links' else False,
+            }
+        )
     if user.has_perm('articles.svjis_edit_survey'):
         result.append(
             {
@@ -388,6 +396,78 @@ def redaction_news_delete_view(request, pk):
     obj = get_object_or_404(models.News, pk=pk)
     obj.delete()
     return redirect(redaction_news_view)
+
+
+# Redaction - UsefulLink
+@permission_required("articles.svjis_edit_useful_link")
+@require_GET
+def redaction_useful_link_view(request):
+    useful_link_list = models.UsefulLink.objects.all()
+    header = _("Useful links")
+
+    # Paginator
+    is_paginated = len(useful_link_list) > getattr(settings, 'SVJIS_USEFUL_LIST_PAGE_SIZE', 10)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(useful_link_list, per_page=getattr(settings, 'SVJIS_USEFUL_LIST_PAGE_SIZE', 10))
+    page_obj = paginator.get_page(page)
+    try:
+        useful_link_list = paginator.page(page)
+    except InvalidPage:
+        useful_link_list = paginator.page(paginator.num_pages)
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['is_paginated'] = is_paginated
+    ctx['page_obj'] = page_obj
+    ctx['header'] = header
+    ctx['aside_menu_items'] = get_side_menu('links', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    ctx['object_list'] = useful_link_list
+    return render(request, "redaction_useful_link.html", ctx)
+
+
+@permission_required("articles.svjis_edit_useful_link")
+@require_GET
+def redaction_useful_link_edit_view(request, pk):
+    if pk != 0:
+        a = get_object_or_404(models.UsefulLink, pk=pk)
+        form = forms.UsefulLinkForm(instance=a)
+    else:
+        form = forms.UsefulLinkForm
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['form'] = form
+    ctx['pk'] = pk
+    ctx['aside_menu_items'] = get_side_menu('links', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_useful_link_edit.html", ctx)
+
+
+@permission_required("articles.svjis_edit_useful_link")
+@require_POST
+def redaction_useful_link_save_view(request):
+    pk = int(request.POST['pk'])
+    if pk == 0:
+        form = forms.UsefulLinkForm(request.POST)
+    else:
+        instance = get_object_or_404(models.UsefulLink, pk=pk)
+        form = forms.UsefulLinkForm(request.POST, instance=instance)
+
+    if form.is_valid():
+        form.save()
+    else:
+        for error in form.errors:
+            messages.error(request, error)
+    return redirect(redaction_useful_link_view)
+
+
+@permission_required("articles.svjis_edit_useful_link")
+@require_GET
+def redaction_useful_link_delete_view(request, pk):
+    obj = get_object_or_404(models.UsefulLink, pk=pk)
+    obj.delete()
+    return redirect(redaction_useful_link_view)
 
 
 # Redaction - Surveys

@@ -1,0 +1,35 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+{% load article_filters %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+[<a href="{% url 'redaction_useful_link_edit' pk=0 %}">{% trans 'Create new useful link' %}</a>]
+
+<table class="list" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">{% trans 'Header' %}</th>
+        <th class="list" scope="col">{% trans 'Link' %}</th>
+        <th class="list" scope="col">{% trans 'Order' %}</th>
+        <th class="list" scope="col">{% trans 'Published' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+    <td class="list">{{ obj.header }}</td>
+    <td class="list">{{ obj.link }}</td>
+    <td class="list">{{ obj.order }}</td>
+    <td class="list">{{ obj.published | yes_no }}</td>
+    <td class="list"><a href="{% url 'redaction_useful_link_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
+    <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete this useful link' %}?')) return false;" href="{% url 'redaction_useful_link_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}
