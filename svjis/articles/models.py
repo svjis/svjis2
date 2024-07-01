@@ -126,6 +126,20 @@ class News(models.Model):
         permissions = (("svjis_edit_article_news", "Can edit News"),)
 
 
+class UsefulLink(models.Model):
+    header = models.CharField(_("Header"), max_length=100)
+    link = models.CharField(_("Link"), max_length=100)
+    order = models.IntegerField(_("Order"))
+    published = models.BooleanField(_("Published"), default=False)
+
+    def __str__(self):
+        return f"UsefulLink: {self.header}"
+
+    class Meta:
+        ordering = ['order']
+        permissions = (("svjis_edit_useful_link", "Can edit Useful Links"),)
+
+
 class Survey(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(_("Description"))

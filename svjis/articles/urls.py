@@ -65,6 +65,22 @@ urlpatterns = [
     path('redaction_news_edit/<int:pk>/', views_redaction.redaction_news_edit_view, name='redaction_news_edit'),
     path('redaction_news_save/', views_redaction.redaction_news_save_view, name='redaction_news_save'),
     path('redaction_news_delete/<int:pk>/', views_redaction.redaction_news_delete_view, name='redaction_news_delete'),
+    path('redaction_useful_link/', views_redaction.redaction_useful_link_view, name='redaction_useful_link'),
+    path(
+        'redaction_useful_link_edit/<int:pk>/',
+        views_redaction.redaction_useful_link_edit_view,
+        name='redaction_useful_link_edit',
+    ),
+    path(
+        'redaction_useful_link_save/',
+        views_redaction.redaction_useful_link_save_view,
+        name='redaction_useful_link_save',
+    ),
+    path(
+        'redaction_useful_link_delete/<int:pk>/',
+        views_redaction.redaction_useful_link_delete_view,
+        name='redaction_useful_link_delete',
+    ),
     path('redaction_survey/', views_redaction.redaction_survey_view, name='redaction_survey'),
     path('redaction_survey_edit/<int:pk>/', views_redaction.redaction_survey_edit_view, name='redaction_survey_edit'),
     path('redaction_survey_save/', views_redaction.redaction_survey_save_view, name='redaction_survey_save'),

@@ -191,6 +191,14 @@ h2.article-title {margin:0; padding:10px 10px 10px 0px; font-weight:normal;}
     .mostreaded {margin:0; list-style:none;}
     .mostreaded span {font-size:85%;}
 
+.box-04-top {width:260px; height:5px; background:url("../design/box-01-top.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+.box-04-top-b {padding:5px 10px 15px 10px; background:url("../design/box-01-top-b.gif") 0 100% no-repeat; text-transform:uppercase;}
+.box-04-bottom {width:260px; height:11px; margin-bottom:10px; background:url("../design/box-01-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+.box-04 {padding:5px 15px; background:url("../design/box-01.gif") 0 0 repeat-y;}
+
+    .usefullinks {margin:0; list-style:none;}
+    .usefullinks span {padding:0px 10px 0px 0px;}
+
 /* ----------------------------------------------------------------------------------------------------------
 5) Others
 ---------------------------------------------------------------------------------------------------------- */
