@@ -85,6 +85,20 @@ class NewsForm(forms.ModelForm):
         }
 
 
+class UsefulLinkForm(forms.ModelForm):
+    class Meta:
+        model = models.UsefulLink
+        fields = (
+            "header",
+            "link",
+            "order",
+            "published",
+        )
+        widgets = {
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+        }
+
+
 class SurveyForm(forms.ModelForm):
     class Meta:
         model = models.Survey
