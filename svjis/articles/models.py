@@ -47,7 +47,7 @@ class Article(models.Model):
         super().save(**kwargs)
 
     def get_absolute_url(self):
-        return f'/article/{self.slug}'
+        return f'/article/{self.slug}/'
 
 
 class ArticleLog(models.Model):
