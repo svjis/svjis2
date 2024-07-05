@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% if useful_links_list %}
+<!-- Useful Links -->
+<div class="box-04-top"></div>
+
+ <div class="box-04-top-b box">
+    <span class="f-right">&nbsp;</span>
+    <span class="f-left"><strong>{% trans 'Useful Links' %}</strong></span>
+</div> <!-- /box-04-top-b -->
+
+<div class="box-04">
+    <ul  class="usefullinks">
+    {% for link in useful_links_list %}
+        <li><span class="f-left"><img style="float: left;" src="/static/gfx/attach_2.png" border="0" title="{{ link.header }}" alt="{{ link.header }}"></span><a href="{{ link.link }}">{{ link.header }}</a></li>
+    {% endfor %}
+    </ul>
+</div> <!-- /box-04 -->
+<div class="box-04-bottom"></div>
+{% endif %}

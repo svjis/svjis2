@@ -88,6 +88,9 @@ h2.article-title {color:#739D13;}
 
     .mostreaded span {color:#5F5F5F;}
 
+.box-04-top, .box-04-top-b {background-color:#44A1CA; color:#FFF;}
+.box-04-top-b .f-right {color:#D7ECF4;}
+.box-04 .bg {border-top:1px solid #D7F199; border-bottom:1px solid #D7F199; background:#F1FADD;}
 /* ----------------------------------------------------------------------------------------------------------
 5) Others
 ---------------------------------------------------------------------------------------------------------- */

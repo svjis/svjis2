@@ -24,6 +24,7 @@ def create_groups():
                 'svjis_view_redaction_menu',
                 'svjis_edit_article',
                 'svjis_edit_article_news',
+                'svjis_edit_useful_link',
                 'svjis_edit_survey',
                 'svjis_edit_article_menu',
                 # Administration
@@ -111,6 +112,7 @@ def create_groups():
                 'svjis_view_redaction_menu',
                 'svjis_edit_article',
                 'svjis_edit_article_news',
+                'svjis_edit_useful_link',
                 'svjis_edit_survey',
                 'svjis_edit_article_menu',
             ],

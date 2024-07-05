@@ -14,17 +14,15 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
 
-ALL_ARTICLE_TEXT = "All articles"
-
 
 def get_side_menu(ctx):
     result = []
     header = ctx.get('header', None)
     result.append(
         {
-            'description': _(ALL_ARTICLE_TEXT),
+            'description': _("All articles"),
             'link': reverse(main_view),
-            'active': True if header == _(ALL_ARTICLE_TEXT) else False,
+            'active': True if header == _("All articles") else False,
         }
     )
     menu_items = models.ArticleMenu.objects.filter(hide=False).all()
@@ -97,7 +95,7 @@ def main_filtered_view(request, menu):
         ta['article'] = get_object_or_404(models.Article, pk=ta['article_id'])
 
     # Menu
-    header = _(ALL_ARTICLE_TEXT)
+    header = _("All articles")
     if menu is not None:
         article_menu = get_object_or_404(models.ArticleMenu, pk=menu)
         article_list = article_list.filter(menu=article_menu)
@@ -141,6 +139,9 @@ def main_filtered_view(request, menu):
         node['user_can_vote'] = s.is_user_open_for_voting(request.user) if not request.user.is_anonymous else False
         slist.append(node)
 
+    # Useful Links
+    useful_links_list = models.UsefulLink.objects.filter(published=True)
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
     ctx['is_paginated'] = is_paginated
@@ -152,6 +153,7 @@ def main_filtered_view(request, menu):
     ctx['article_list'] = article_list
     ctx['news_list'] = news_list
     ctx['survey_list'] = slist
+    ctx['useful_links_list'] = useful_links_list
     ctx['top_articles'] = top_articles
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)

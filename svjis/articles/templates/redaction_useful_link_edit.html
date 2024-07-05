@@ -1,0 +1,35 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{% trans 'Useful link' %}</h1>
+<form action="{% url 'redaction_useful_link_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ pk }}">
+    <fieldset>
+        <legend>{% trans 'Useful link' %}</legend>
+        <p>
+            <label class="common-label" for="{{ form.header.auto_id }}">{{ form.header.label }}</label>
+            {{ form.header }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.link.auto_id }}">{{ form.link.label }}</label>
+            {{ form.link }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.order.auto_id }}">{{ form.order.label }}</label>
+            {{ form.order }}
+        </p>
+        <p>
+            <label class="common-label" for="{{ form.published.auto_id }}">{{ form.published.label }}</label>
+            {{ form.published }}
+        </p>
+    </fieldset>
+    <p>
+        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+    </p>
+</form>
+
+{% endblock %}
