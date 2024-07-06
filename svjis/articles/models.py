@@ -262,7 +262,7 @@ def company_directory_path(instance, filename):
 
 
 class Company(models.Model):
-    name = models.CharField(_("Name"), max_length=50, blank=True)
+    name = models.CharField(_("Name"), max_length=100, blank=True)
     address = models.CharField(_("Address"), max_length=50, blank=True)
     city = models.CharField(_("City"), max_length=50, blank=True)
     post_code = models.CharField(_("Post code"), max_length=10, blank=True)
