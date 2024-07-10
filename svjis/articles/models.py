@@ -23,7 +23,6 @@ class Article(models.Model):
     watching_users = models.ManyToManyField(User, related_name='watching_article_set')
     visible_for_all = models.BooleanField(_("Visible for all"), default=False)
     visible_for_group = models.ManyToManyField(Group)
-    header2 = models.CharField(_("Header"), max_length=50)
 
     def __str__(self):
         return f"Article: {self.header}"
