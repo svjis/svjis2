@@ -44,6 +44,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
+      - name: Check for pending migrations
+        run: |
+          source venv/bin/activate
+          cd svjis
+          python manage.py makemigrations --check
+
       - name: Setup Application
         run: |
           source venv/bin/activate
