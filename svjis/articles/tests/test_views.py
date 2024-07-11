@@ -1,3 +1,5 @@
+from io import StringIO
+from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
@@ -290,3 +292,17 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         self.assertEqual(res_recipients[0].last_name, 'Beran')
         self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
         self.assertEqual(res_recipients[2].last_name, 'Nebus')
+
+
+class PendingMigrationsTests(TestCase):
+    def test_no_pending_migrations(self):
+        out = StringIO()
+        try:
+            call_command(
+                "makemigrations",
+                "--check",
+                stdout=out,
+                stderr=StringIO(),
+            )
+        except SystemExit:  # pragma: no cover
+            raise AssertionError("Pending migrations:\n" + out.getvalue()) from None
