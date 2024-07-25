@@ -261,7 +261,7 @@ def user_login(request):
         login(request, user)
     else:
         messages.error(request, _("Wrong username or password"))
-        messages.info(request, _("In case password is expired use Lost Password link"))
+        messages.info(request, _("In case you lost your password use Lost Password link"))
     return redirect(main_view)
 
 
