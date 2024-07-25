@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 19:01+0200\n"
+"POT-Creation-Date: 2024-07-25 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -533,27 +533,27 @@ msgstr "Start watching discussion"
 msgid "Insert comment"
 msgstr "Insert comment"
 
-#: articles/templates/box-01.html:9
+#: articles/templates/box-01-news.html:9
 #: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:32
 #: articles/views_redaction.py:331
 msgid "News"
 msgstr "News"
 
-#: articles/templates/box-02.html:7
+#: articles/templates/box-02-top-articles.html:7
 msgid "Top articles"
 msgstr "Top articles"
 
-#: articles/templates/box-03.html:9
+#: articles/templates/box-03-survey.html:9
 #: articles/templates/redaction_survey_edit.html:7
 #: articles/views_redaction.py:578
 msgid "Survey"
 msgstr "Survey"
 
-#: articles/templates/box-03.html:26
+#: articles/templates/box-03-survey.html:26
 msgid "Vote"
 msgstr "Vote"
 
-#: articles/templates/box-04.html:9 articles/views_redaction.py:40
+#: articles/templates/box-04-useful-links.html:9 articles/views_redaction.py:40
 msgid "Useful Links"
 msgstr "Useful Links"
 
@@ -893,8 +893,8 @@ msgid "Wrong username or password"
 msgstr "Wrong username or password"
 
 #: articles/views.py:264
-msgid "In case password is expired use Lost Password link"
-msgstr "In case password is expired use Lost Password link"
+msgid "In case you lost your password use Lost Password link"
+msgstr "In case you lost your password use Lost Password link"
 
 #: articles/views_admin.py:60
 msgid "Users"
