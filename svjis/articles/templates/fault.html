@@ -25,7 +25,7 @@
     [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% trans 'Start watching ticket' %}</a>]
 {% endif %}
 
-<table width="100%" class="list" width="95%" aria-describedby="tbl-desc">
+<table width="100%" class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" width="25%" scope="row">{% trans 'Date' %}</th>
         <td class="list" width="75%">{{ obj.created_date | date:"d.m.Y H:i" }}</td>
