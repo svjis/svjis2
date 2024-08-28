@@ -13,7 +13,7 @@ urlpatterns = [
     path('article_watch/', views.article_watch_view, name='article_watch'),
     path('user_login/', views.user_login, name='user_login'),
     path('user_logout/', views.user_logout, name='user_logout'),
-    path('contact_company/', views_contact.contact_view, name='contact_company'),
+    path('contact/', views_contact.contact_view, name='contact'),
     path('contact_phonelist/', views_contact.phonelist_view, name='contact_phonelist'),
     path(
         'personal_settings_edit/', views_personal_settings.personal_settings_edit_view, name='personal_settings_edit'
