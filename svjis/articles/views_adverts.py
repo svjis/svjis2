@@ -12,7 +12,8 @@ def get_side_menu(active_item, user):
     result = []
     result.append(
         {
-            'description': _("All") + f' ({models.Advert.objects.filter(published=True, created_by_user__is_active=True).count()})',
+            'description': _("All")
+            + f' ({models.Advert.objects.filter(published=True, created_by_user__is_active=True).count()})',
             'link': reverse(adverts_list_view) + '?scope=all',
             'active': True if active_item == 'all' else False,
         }
@@ -22,7 +23,8 @@ def get_side_menu(active_item, user):
     for t in types:
         result.append(
             {
-                'description': t.description + f' ({models.Advert.objects.filter(published=True, created_by_user__is_active=True, type=t).count()})',
+                'description': t.description
+                + f' ({models.Advert.objects.filter(published=True, created_by_user__is_active=True, type=t).count()})',
                 'link': reverse(adverts_list_view) + f'?scope={t.description}',
                 'active': True if active_item == t.description else False,
             }
