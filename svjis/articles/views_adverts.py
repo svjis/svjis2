@@ -12,8 +12,9 @@ def get_side_menu(active_item, user):
     result = []
     result.append(
         {
-            'description': _("All")
-            + f' ({models.Advert.objects.filter(published=True, created_by_user__is_active=True).count()})',
+            'description': '{} ({})'.format(
+                _("All"), models.Advert.objects.filter(published=True, created_by_user__is_active=True).count()
+            ),
             'link': reverse(adverts_list_view) + '?scope=all',
             'active': True if active_item == 'all' else False,
         }
@@ -35,7 +36,7 @@ def get_side_menu(active_item, user):
     if user.has_perm('articles.svjis_add_advert'):
         result.append(
             {
-                'description': _("Mine") + f' ({models.Advert.objects.filter(created_by_user=user).count()})',
+                'description': '{} ({})'.format(_("Mine"), models.Advert.objects.filter(created_by_user=user).count()),
                 'link': reverse(adverts_list_view) + '?scope=mine',
                 'active': True if active_item == 'mine' else False,
             }
