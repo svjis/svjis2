@@ -9,10 +9,11 @@ from django.views.decorators.http import require_GET, require_POST
 
 
 def get_side_menu(active_item, user):
+    description_template = '{} ({})'
     result = []
     result.append(
         {
-            'description': '{} ({})'.format(
+            'description': description_template.format(
                 _("All"), models.Advert.objects.filter(published=True, created_by_user__is_active=True).count()
             ),
             'link': reverse(adverts_list_view) + '?scope=all',
@@ -24,7 +25,7 @@ def get_side_menu(active_item, user):
     for t in types:
         result.append(
             {
-                'description': '{} ({})'.format(
+                'description': description_template.format(
                     t.description,
                     models.Advert.objects.filter(published=True, created_by_user__is_active=True, type=t).count(),
                 ),
@@ -36,7 +37,9 @@ def get_side_menu(active_item, user):
     if user.has_perm('articles.svjis_add_advert'):
         result.append(
             {
-                'description': '{} ({})'.format(_("Mine"), models.Advert.objects.filter(created_by_user=user).count()),
+                'description': description_template.format(
+                    _("Mine"), models.Advert.objects.filter(created_by_user=user).count()
+                ),
                 'link': reverse(adverts_list_view) + '?scope=mine',
                 'active': True if active_item == 'mine' else False,
             }
