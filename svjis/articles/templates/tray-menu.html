@@ -1,11 +1,28 @@
 <!-- Tray -->
 <div id="tray">
     <ul class="box">
+        <li>
+            <a href="javascript:void(0);" class="icon" onclick="hamburgerMenu()">
+                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" style="color: inherit !important; display: flex; pointer-events: none; float: unset; fill: currentColor;">
+                    <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
+                </svg>
+            </a>
+        </li>
         {% if tray_menu_items %}
         {% for obj in tray_menu_items %}
         <li {% if obj.active %}id="tray-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
         {% endfor %}
         {% endif %}
     </ul>
+    <script>
+        function hamburgerMenu() {
+            let x = document.getElementById("aside");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
 <hr class="noscreen" />
 </div> <!-- /tray -->
