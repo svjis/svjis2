@@ -25,22 +25,29 @@
             if (aside.style.display === "block" || aside.style.display == "") {
                 aside.style.display = "none";
                 cols.style.backgroundImage = "none";
+                content.style.opacity = 1;
                 asideBottom.style.display = "none";
                 content.style.width = "940px";
                 if (contentLeft != null) {
                     contentLeft.style.width = "670px";
                 }
             } else {
+                content.style.opacity = 0.5;
                 aside.style.display = "block";
-                cols.style.backgroundImage = 'url(/static/design/cols.gif)';
-                cols.style.backgroundRepeat = 'repeat-y';
-                cols.style.backgroundPositionX = 0;
-                cols.style.backgroundPositionY = 0;
-                asideBottom.style.display = "block";
-                content.style.width = "740px";
-                if (contentLeft != null) {
-                    contentLeft.style.width = "470px";
-                }
+                //aside.style.zIndex = 10;
+                aside.style.backgroundColor = '#e7e3e0';
+                aside.style.position = "absolute";
+                //cols.style.backgroundImage = 'url(/static/design/cols.gif)';
+                //cols.style.backgroundRepeat = 'repeat-y';
+                //cols.style.backgroundPositionX = 0;
+                //cols.style.backgroundPositionY = 0;
+                //cols.style.opacity = 0.5;
+                //aside.style.opacity = 1;
+                //asideBottom.style.display = "block";
+                // content.style.width = "740px";
+                // if (contentLeft != null) {
+                //     contentLeft.style.width = "470px";
+                // }
             }
         }
     </script>
