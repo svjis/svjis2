@@ -269,3 +269,18 @@ text-align:left;
 #advert-desc {float:left; width:100%}
 #advert-desc h2 {margin:0; font-size:140%; font-weight:normal;}
 #advert-desc .info {margin:0; font-size:85%;}
+
+#tray ul li#hamburger a {display: none;}
+
+/* ----------------------------------------------------------------------------------------------------------
+6) Media Queries
+---------------------------------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 940px) {
+    #aside {display: none;}
+    #cols {background-image: none;}
+    #aside-bottom {display: none;}
+    #content {width: 940px;}
+    #content-left {width: 670px;}
+    #tray ul li#hamburger a {display: inline;}
+}
