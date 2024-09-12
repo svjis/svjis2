@@ -27,7 +27,9 @@
                 cols.style.backgroundImage = "none";
                 asideBottom.style.display = "none";
                 content.style.width = "940px";
-                contentLeft.style.width = "670px";
+                if (contentLeft != null) {
+                    contentLeft.style.width = "670px";
+                }
             } else {
                 aside.style.display = "block";
                 cols.style.backgroundImage = 'url(/static/design/cols.gif)';
@@ -36,7 +38,9 @@
                 cols.style.backgroundPositionY = 0;
                 asideBottom.style.display = "block";
                 content.style.width = "740px";
-                contentLeft.style.width = "470px";
+                if (contentLeft != null) {
+                    contentLeft.style.width = "470px";
+                }
             }
         }
     </script>
