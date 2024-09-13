@@ -311,29 +311,6 @@ class BuildingUnitForm(forms.ModelForm):
         }
 
 
-class FaultReportForm(forms.ModelForm):
-    entrance = BuildingEntranceChoiceField(
-        queryset=models.BuildingEntrance.objects.all().order_by('description'),
-        required=False,
-        help_text=_(SELECT_ENTRANCE_TEXT),
-    )
-
-    class Meta:
-        model = models.FaultReport
-        fields = (
-            "subject",
-            "entrance",
-            "description",
-        )
-        widgets = {
-            'subject': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
-            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'description': forms.widgets.Textarea(
-                attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}
-            ),
-        }
-
-
 class AssignedUserChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return f"{obj.last_name} {obj.first_name}"

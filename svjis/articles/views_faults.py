@@ -146,7 +146,7 @@ def faults_fault_edit_view(request, pk):
 @permission_required("articles.svjis_fault_reporter")
 @require_GET
 def faults_fault_create_view(request):
-    form = forms.FaultReportForm
+    form = forms.FaultReportEditForm
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
     ctx['form'] = form
@@ -160,11 +160,7 @@ def faults_fault_create_view(request):
 @require_POST
 def faults_fault_create_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
-        form = forms.FaultReportForm(request.POST)
-    else:
-        instance = get_object_or_404(models.FaultReport, pk=pk)
-        form = forms.FaultReportForm(request.POST, instance=instance)
+    form = forms.FaultReportEditForm(request.POST)
 
     if form.is_valid():
         obj = form.save(commit=False)
@@ -186,6 +182,12 @@ def faults_fault_create_save_view(request):
         # Send notifications
         recipients = [u for u in obj.watching_users.all() if u != request.user]
         utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
+
+        # Send assigned notification
+        if obj.assigned_to_user is not None and request.user != obj.assigned_to_user:
+            utils.send_fault_assigned_notification(
+                obj.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", obj
+            )
         return redirect(fault_view, slug=obj.slug)
     else:
         for error in form.errors:

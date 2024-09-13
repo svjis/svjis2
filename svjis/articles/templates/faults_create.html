@@ -21,7 +21,12 @@
         {{ form.description.label }}<br>
         {{ form.description }}
     </p>
-
+    {% if perms.articles.svjis_fault_resolver %}
+    <p>
+        {{ form.assigned_to_user.label }}<br>
+        {{ form.assigned_to_user }}
+    </p>
+    {% endif %}
     <p>
         <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
     </p>
