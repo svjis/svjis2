@@ -316,7 +316,7 @@ class AssignedUserChoiceField(forms.ModelChoiceField):
         return f"{obj.last_name} {obj.first_name}"
 
 
-class FaultReportEditForm(forms.ModelForm):
+class FaultReportForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,

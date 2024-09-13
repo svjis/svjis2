@@ -130,9 +130,9 @@ def fault_view(request, slug):
 def faults_fault_edit_view(request, pk):
     if pk != 0:
         a = get_object_or_404(models.FaultReport, pk=pk)
-        form = forms.FaultReportEditForm(instance=a)
+        form = forms.FaultReportForm(instance=a)
     else:
-        form = forms.FaultReportEditForm
+        form = forms.FaultReportForm
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
@@ -146,7 +146,7 @@ def faults_fault_edit_view(request, pk):
 @permission_required("articles.svjis_fault_reporter")
 @require_GET
 def faults_fault_create_view(request):
-    form = forms.FaultReportEditForm
+    form = forms.FaultReportForm
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
     ctx['form'] = form
@@ -160,7 +160,7 @@ def faults_fault_create_view(request):
 @require_POST
 def faults_fault_create_save_view(request):
     pk = int(request.POST['pk'])
-    form = forms.FaultReportEditForm(request.POST)
+    form = forms.FaultReportForm(request.POST)
 
     if form.is_valid():
         obj = form.save(commit=False)
@@ -200,7 +200,7 @@ def faults_fault_create_save_view(request):
 def faults_fault_update_view(request):
     pk = int(request.POST['pk'])
     instance = get_object_or_404(models.FaultReport, pk=pk)
-    form = forms.FaultReportEditForm(request.POST, instance=instance)
+    form = forms.FaultReportForm(request.POST, instance=instance)
     original_resolver = instance.assigned_to_user
     original_closed_status = instance.closed
 
