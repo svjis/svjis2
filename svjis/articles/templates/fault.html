@@ -112,7 +112,7 @@
 <h2 class="article-title">{% trans 'Comments' %}:</h2>
     {% for comment in obj.comments %}
     <div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date | date:"d.m.Y H:i" }}</strong>
-        <br>{{ comment.body | linebreaks | safe }}
+        <br>{{ comment.body | replace_url_to_link | linebreaks | safe }}
     </div>
     {% endfor %}
 {% endif %}
