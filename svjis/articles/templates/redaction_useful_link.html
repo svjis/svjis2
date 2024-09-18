@@ -22,7 +22,7 @@
     {% for obj in object_list %}
     <tr>
     <td class="list">{{ obj.header }}</td>
-    <td class="list">{{ obj.link }}</td>
+    <td class="list"><a href="{{ obj.link }}">{{ obj.link }}</a></td>
     <td class="list">{{ obj.order }}</td>
     <td class="list">{{ obj.published | yes_no }}</td>
     <td class="list"><a href="{% url 'redaction_useful_link_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
