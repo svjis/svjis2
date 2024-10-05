@@ -59,7 +59,7 @@
         {% csrf_token %}
         <input type="hidden" name="fault_pk" value="{{ obj.pk }}">
     {% endif %}
-        <fieldset>
+        <fieldset style="width:95%;">
             <legend>{% trans 'Assets' %}</legend>
             <p>
                 {% if assets %}
@@ -126,8 +126,9 @@
         <textarea
            id="body"
            name="body"
-           rows=5 cols=50
+           rows="7"
            wrap
+           style="width:100%;"
         ></textarea>
     </p>
     <p>
