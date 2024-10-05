@@ -4,6 +4,7 @@ from django.utils.translation import gettext as gt
 from django.template.defaultfilters import stringfilter
 from django.conf import settings
 import markdown as md
+import re
 from re import IGNORECASE, compile
 
 register = template.Library()
@@ -33,6 +34,17 @@ def inject_pictures(text, assets):
             '{' + basename + '}', f'<img src="/media/{file}" alt="{basename}" style="max-width:100%;height:auto;">'
         )
     return mark_safe(text)
+
+
+@register.filter()
+def replace_url_to_link(value):
+    # Replace url to link
+    urls = re.compile(r"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)", re.MULTILINE | re.UNICODE)
+    value = urls.sub(r'<a href="\1" target="_blank">\1</a>', value)
+    # Replace email to mailto
+    urls = re.compile(r"([\w\-\.]+@(\w[\w\-]+\.)+[\w\-]+)", re.MULTILINE | re.UNICODE)
+    value = urls.sub(r'<a href="mailto:\1">\1</a>', value)
+    return mark_safe(value)
 
 
 @register.filter()
