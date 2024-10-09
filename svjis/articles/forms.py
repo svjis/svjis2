@@ -321,6 +321,7 @@ class FaultReportForm(forms.ModelForm):
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
         help_text=_(SELECT_ENTRANCE_TEXT),
+        label=_("Entrance"),
     )
     assigned_to_user = AssignedUserChoiceField(
         queryset=User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
@@ -328,6 +329,7 @@ class FaultReportForm(forms.ModelForm):
         .distinct()
         .order_by('last_name'),
         required=False,
+        label=_("Assign"),
     )
 
     class Meta:
