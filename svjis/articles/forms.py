@@ -329,7 +329,7 @@ class FaultReportForm(forms.ModelForm):
         .distinct()
         .order_by('last_name'),
         required=False,
-        label=_("Assign"),
+        label=_("Resolver"),
     )
 
     class Meta:
