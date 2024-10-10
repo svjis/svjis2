@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-25 10:45+0200\n"
+"POT-Creation-Date: 2024-10-10 10:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+#: articles/forms.py:324 articles/models.py:332 articles/models.py:360
+#: articles/templates/admin_building_unit.html:37
+#: articles/templates/admin_building_unit.html:62
+#: articles/templates/admin_entrance_edit.html:13
+#: articles/templates/fault.html:46 articles/templates/faults_list.html:20
+msgid "Entrance"
+msgstr "Vchod"
+
+#: articles/forms.py:332 articles/templates/fault.html:38
+#: articles/templates/faults_list.html:22
+msgid "Resolver"
+msgstr "Řešitel"
 
 #: articles/models.py:14 articles/models.py:130 articles/models.py:440
 #: articles/templates/redaction_useful_link.html:13
@@ -211,14 +224,6 @@ msgstr "Budova"
 msgid "Type"
 msgstr "Typ"
 
-#: articles/models.py:332 articles/models.py:360
-#: articles/templates/admin_building_unit.html:37
-#: articles/templates/admin_building_unit.html:62
-#: articles/templates/admin_entrance_edit.html:13
-#: articles/templates/fault.html:46 articles/templates/faults_list.html:20
-msgid "Entrance"
-msgstr "Vchod"
-
 #: articles/models.py:334 articles/templates/admin_building_unit.html:63
 #: articles/templates/admin_user_ownes_edit.html:13
 #: articles/templates/personal_my_units.html:13
@@ -313,7 +318,7 @@ msgstr "Smazat"
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
-#: articles/templates/faults_create.html:26
+#: articles/templates/faults_create.html:31
 #: articles/templates/faults_edit.html:34
 #: articles/templates/personal_settings_edit.html:58
 #: articles/templates/personal_settings_password.html:26
@@ -480,8 +485,8 @@ msgid "Member of"
 msgstr "Je členem"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:8
-#: articles/utils.py:80 articles/views_adverts.py:63
-#: articles/views_adverts.py:85
+#: articles/utils.py:80 articles/views_adverts.py:71
+#: articles/views_adverts.py:93
 msgid "Adverts"
 msgstr "Inzeráty"
 
@@ -530,7 +535,7 @@ msgstr "Přestat sledovat diskuzi"
 msgid "Start watching discussion"
 msgstr "Začít sledovat diskuzi"
 
-#: articles/templates/article.html:66 articles/templates/fault.html:134
+#: articles/templates/article.html:67 articles/templates/fault.html:135
 msgid "Insert comment"
 msgstr "Vložit komentář"
 
@@ -613,10 +618,6 @@ msgstr "Datum"
 #: articles/templates/fault.html:34
 msgid "Creator"
 msgstr "Zadavatel"
-
-#: articles/templates/fault.html:38 articles/templates/faults_list.html:22
-msgid "Resolver"
-msgstr "Řešitel"
 
 #: articles/templates/fault.html:72
 #: articles/templates/redaction_survey_results.html:39
@@ -899,7 +900,8 @@ msgstr "Nesprávné uživatelské jméno nebo heslo."
 #: articles/views.py:264
 msgid "In case you lost your password use Lost Password link"
 msgstr ""
-"V případě, že jste zapomněli Vaše přihlašovací údaje, použijte volbu 'Zapomenuté heslo'."
+"V případě, že jste zapomněli Vaše přihlašovací údaje, použijte volbu "
+"'Zapomenuté heslo'."
 
 #: articles/views_admin.py:60
 msgid "Users"
@@ -914,11 +916,11 @@ msgstr "Skupiny"
 msgid "Saved"
 msgstr "Uloženo"
 
-#: articles/views_adverts.py:15 articles/views_adverts.py:49
+#: articles/views_adverts.py:17 articles/views_adverts.py:57
 msgid "All"
 msgstr "Vše"
 
-#: articles/views_adverts.py:34 articles/views_adverts.py:53
+#: articles/views_adverts.py:41 articles/views_adverts.py:61
 #: articles/views_faults.py:28
 msgid "Mine"
 msgstr "Moje"
