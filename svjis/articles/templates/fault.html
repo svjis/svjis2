@@ -48,7 +48,7 @@
     </tr>
     <tr>
         <th class="list" scope="row">{% trans 'Description' %}</th>
-        <td class="list">{{ obj.description | markdown | highlight:search | safe }}</td>
+        <td class="list">{{ obj.description | replace_url_to_link | linebreaks | highlight:search | safe }}</td>
     </tr>
 </table>
 

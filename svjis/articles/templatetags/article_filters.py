@@ -1,19 +1,11 @@
 from django import template
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as gt
-from django.template.defaultfilters import stringfilter
 from django.conf import settings
-import markdown as md
 import re
 from re import IGNORECASE, compile
 
 register = template.Library()
-
-
-@register.filter()
-@stringfilter
-def markdown(value):
-    return md.markdown(value, extensions=['markdown.extensions.fenced_code'])
 
 
 @register.filter()
