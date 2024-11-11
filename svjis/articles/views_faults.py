@@ -178,7 +178,7 @@ def faults_fault_create_save_view(request):
 
     # Set watching users
     if pk == 0:
-        obj.watching_users.add(request.user)
+        obj.watching_users.add(obj.created_by_user)
         resolvers = (
             User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
             .exclude(is_active=False)
@@ -188,7 +188,7 @@ def faults_fault_create_save_view(request):
             obj.watching_users.add(u)
 
     # Send notifications
-    recipients = [u for u in obj.watching_users.all() if u != request.user]
+    recipients = [u for u in obj.watching_users.all() if u != obj.created_by_user]
     utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
 
     # Send assigned notification
