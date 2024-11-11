@@ -245,7 +245,7 @@ class MemberModelChoiceField(forms.ModelChoiceField):
 
 
 class BoardForm(forms.ModelForm):
-    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True).order_by('last_name'))
+    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True).order_by('last_name', 'first_name'))
 
     class Meta:
         model = models.Board
