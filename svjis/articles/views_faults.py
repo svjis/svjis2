@@ -162,41 +162,41 @@ def faults_fault_create_save_view(request):
     pk = int(request.POST['pk'])
     form = forms.FaultReportForm(request.POST)
 
-    if form.is_valid():
-        obj = form.save(commit=False)
-        if pk == 0 and (
-            "created_by_user" not in form.data
-            or form.data["created_by_user"] == ''
-            or not request.user.has_perm('articles.svjis_fault_reporter')
-        ):
-            obj.created_by_user = request.user
-        obj.save()
-
-        # Set watching users
-        if pk == 0:
-            obj.watching_users.add(request.user)
-            resolvers = (
-                User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
-                .exclude(is_active=False)
-                .distinct()
-            )
-            for u in resolvers:
-                obj.watching_users.add(u)
-
-        # Send notifications
-        recipients = [u for u in obj.watching_users.all() if u != request.user]
-        utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
-
-        # Send assigned notification
-        if obj.assigned_to_user is not None and request.user != obj.assigned_to_user:
-            utils.send_fault_assigned_notification(
-                obj.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", obj
-            )
-        return redirect(fault_view, slug=obj.slug)
-    else:
+    if not form.is_valid():
         for error in form.errors:
             messages.error(request, error)
         return redirect(reverse(faults_list_view) + '?scope=open')
+
+    obj = form.save(commit=False)
+    if pk == 0 and (
+        "created_by_user" not in form.data
+        or form.data["created_by_user"] == ''
+        or not request.user.has_perm('articles.svjis_fault_reporter')
+    ):
+        obj.created_by_user = request.user
+    obj.save()
+
+    # Set watching users
+    if pk == 0:
+        obj.watching_users.add(request.user)
+        resolvers = (
+            User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
+            .exclude(is_active=False)
+            .distinct()
+        )
+        for u in resolvers:
+            obj.watching_users.add(u)
+
+    # Send notifications
+    recipients = [u for u in obj.watching_users.all() if u != request.user]
+    utils.send_new_fault_notification(recipients, f"{request.scheme}://{request.get_host()}", obj)
+
+    # Send assigned notification
+    if obj.assigned_to_user is not None and request.user != obj.assigned_to_user:
+        utils.send_fault_assigned_notification(
+            obj.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", obj
+        )
+    return redirect(fault_view, slug=obj.slug)
 
 
 @permission_required("articles.svjis_fault_resolver")
