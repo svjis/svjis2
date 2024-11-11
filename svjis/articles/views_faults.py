@@ -171,7 +171,7 @@ def faults_fault_create_save_view(request):
     if pk == 0 and (
         "created_by_user" not in form.data
         or form.data["created_by_user"] == ''
-        or not request.user.has_perm('articles.svjis_fault_reporter')
+        or not request.user.has_perm('articles.svjis_fault_resolver')
     ):
         obj.created_by_user = request.user
     obj.save()
