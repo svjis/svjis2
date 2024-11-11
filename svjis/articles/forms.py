@@ -327,12 +327,12 @@ class FaultReportForm(forms.ModelForm):
         queryset=User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
         .exclude(is_active=False)
         .distinct()
-        .order_by('last_name'),
+        .order_by('last_name', 'first_name'),
         required=False,
         label=_("Resolver"),
     )
     created_by_user = UserChoiceField(
-        queryset=User.objects.exclude(is_active=False).distinct().order_by('last_name'),
+        queryset=User.objects.exclude(is_active=False).distinct().order_by('last_name', 'first_name'),
         required=False,
         label=_("On Behalf Of"),
     )
