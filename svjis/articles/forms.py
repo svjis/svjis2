@@ -311,7 +311,7 @@ class BuildingUnitForm(forms.ModelForm):
         }
 
 
-class AssignedUserChoiceField(forms.ModelChoiceField):
+class UserChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return f"{obj.last_name} {obj.first_name}"
 
@@ -323,7 +323,7 @@ class FaultReportForm(forms.ModelForm):
         help_text=_(SELECT_ENTRANCE_TEXT),
         label=_("Entrance"),
     )
-    assigned_to_user = AssignedUserChoiceField(
+    assigned_to_user = UserChoiceField(
         queryset=User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
         .exclude(is_active=False)
         .distinct()
@@ -331,16 +331,22 @@ class FaultReportForm(forms.ModelForm):
         required=False,
         label=_("Resolver"),
     )
+    created_by_user = UserChoiceField(
+        queryset=User.objects.exclude(is_active=False).distinct().order_by('last_name'),
+        required=False,
+        label=_("On Behalf Of"),
+    )
 
     class Meta:
         model = models.FaultReport
-        fields = ("subject", "entrance", "description", "assigned_to_user", "closed")
+        fields = ("subject", "entrance", "description", "created_by_user", "assigned_to_user", "closed")
         widgets = {
             'subject': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
             'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
             'description': forms.widgets.Textarea(
                 attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}
             ),
+            'created_by_user': forms.widgets.Select(attrs={'class': 'common-input'}),
             'assigned_to_user': forms.widgets.Select(attrs={'class': 'common-input'}),
             'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
         }

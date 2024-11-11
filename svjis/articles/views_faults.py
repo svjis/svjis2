@@ -146,7 +146,7 @@ def faults_fault_edit_view(request, pk):
 @permission_required("articles.svjis_fault_reporter")
 @require_GET
 def faults_fault_create_view(request):
-    form = forms.FaultReportForm
+    form = forms.FaultReportForm(initial={'created_by_user': request.user.pk})
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
     ctx['form'] = form
@@ -164,7 +164,11 @@ def faults_fault_create_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if pk == 0 and (
+            "created_by_user" not in form.data
+            or form.data["created_by_user"] == ''
+            or not request.user.has_perm('articles.svjis_fault_reporter')
+        ):
             obj.created_by_user = request.user
         obj.save()
 
