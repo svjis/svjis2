@@ -28,6 +28,7 @@ class FaultsTest(UserDataMixin, TestCase):
             fault,
             follow=True,
         )
+        self.assertEqual(response.status_code, 200)
 
         # Test Fault Creator
         fault = response.context['obj']
