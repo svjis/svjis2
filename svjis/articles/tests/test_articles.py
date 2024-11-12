@@ -6,18 +6,25 @@ from .testdata import ArticleDataMixin
 
 class ArticleListTest(ArticleDataMixin, TestCase):
 
-    def test_admin_user(self):
+    def do_user_test(self, username, password, for_all, for_owners, for_board, menu_list, article_list):
         # Login user
-        logged_in = self.client.login(username='jarda', password='jarda')
-        self.assertTrue(logged_in)
+        if username == 'anonymous':
+            self.client.logout()
+        else:
+            logged_in = self.client.login(username=username, password=password)
+            self.assertTrue(logged_in)
 
         # Article for all
         response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, for_all)
+
+        # Article for Owners
+        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
+        self.assertEqual(response.status_code, for_owners)
 
         # Article for Board
         response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, for_board)
 
         # Main page
         response = self.client.get(reverse('main'))
@@ -25,148 +32,61 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
         # Menu
         res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 6)
         self.assertEqual(
             [m['description'] for m in res_tray_menu],
-            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Administration'],
+            menu_list,
         )
 
         # List of Articles
         res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 4)
-        self.assertEqual(
-            [a.header for a in res_articles], ['For Board', 'For Owners and Board', 'For Owners', 'For All']
+        self.assertEqual([a.header for a in res_articles], article_list)
+
+    def test_admin_user(self):
+        self.do_user_test(
+            'jarda',
+            'jarda',
+            200,
+            200,
+            200,
+            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Administration'],
+            ['For Board', 'For Owners and Board', 'For Owners', 'For All'],
         )
 
     def test_board_user(self):
-        # Login user
-        logged_in = self.client.login(username='jiri', password='jiri')
-        self.assertTrue(logged_in)
-
-        # Article for all
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
-        self.assertEqual(response.status_code, 200)
-
-        # Article for Board
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
-        self.assertEqual(response.status_code, 200)
-
-        # Main page
-        response = self.client.get(reverse('main'))
-        self.assertEqual(response.status_code, 200)
-
-        # Menu
-        res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 5)
-        self.assertEqual(
-            [m['description'] for m in res_tray_menu],
+        self.do_user_test(
+            'jiri',
+            'jiri',
+            200,
+            200,
+            200,
             ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting'],
-        )
-
-        # List of Articles
-        res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 4)
-        self.assertEqual(
-            [a.header for a in res_articles], ['For Board', 'For Owners and Board', 'For Owners', 'For All']
+            ['For Board', 'For Owners and Board', 'For Owners', 'For All'],
         )
 
     def test_owner_user(self):
-        # Login user
-        logged_in = self.client.login(username='petr', password='petr')
-        self.assertTrue(logged_in)
-
-        # Article for all
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
-        self.assertEqual(response.status_code, 200)
-
-        # Article for Owners
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
-        self.assertEqual(response.status_code, 200)
-
-        # Article for Board
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
-        self.assertEqual(response.status_code, 404)
-
-        # Main page
-        response = self.client.get(reverse('main'))
-        self.assertEqual(response.status_code, 200)
-
-        # Menu
-        res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 4)
-        self.assertEqual(
-            [m['description'] for m in res_tray_menu], ['Articles', 'Contact', 'Personal settings', 'Fault reporting']
+        self.do_user_test(
+            'petr',
+            'petr',
+            200,
+            200,
+            404,
+            ['Articles', 'Contact', 'Personal settings', 'Fault reporting'],
+            ['For Owners and Board', 'For Owners', 'For All'],
         )
-
-        # List of Articles
-        res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 3)
-        self.assertEqual([a.header for a in res_articles], ['For Owners and Board', 'For Owners', 'For All'])
 
     def test_vendor_user(self):
-        # Login user
-        logged_in = self.client.login(username='karel', password='karel')
-        self.assertTrue(logged_in)
-
-        # Article for all
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
-        self.assertEqual(response.status_code, 200)
-
-        # Article for Owners
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
-        self.assertEqual(response.status_code, 404)
-
-        # Article for Board
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
-        self.assertEqual(response.status_code, 404)
-
-        # Main page
-        response = self.client.get(reverse('main'))
-        self.assertEqual(response.status_code, 200)
-
-        # Menu
-        res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 4)
-        self.assertEqual(
-            [m['description'] for m in res_tray_menu], ['Articles', 'Contact', 'Personal settings', 'Fault reporting']
+        self.do_user_test(
+            'karel',
+            'karel',
+            200,
+            404,
+            404,
+            ['Articles', 'Contact', 'Personal settings', 'Fault reporting'],
+            ['For All'],
         )
 
-        # List of Articles
-        res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 1)
-        self.assertEqual([a.header for a in res_articles], ['For All'])
-
     def test_anonymous_user(self):
-        # Logout user
-        self.client.logout()
-
-        # Article for all
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_all.slug}))
-        self.assertEqual(response.status_code, 200)
-
-        # Article for Owners
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_owners.slug}))
-        self.assertEqual(response.status_code, 404)
-
-        # Article for Board
-        response = self.client.get(reverse('article', kwargs={'slug': self.article_for_board.slug}))
-        self.assertEqual(response.status_code, 404)
-
-        # Main page
-        response = self.client.get(reverse('main'))
-        self.assertEqual(response.status_code, 200)
-
-        # Menu
-        res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 2)
-        self.assertEqual([m['description'] for m in res_tray_menu], ['Articles', 'Contact'])
-
-        # List of Articles
-        res_articles = response.context['article_list']
-        self.assertEqual(len(res_articles), 1)
-        self.assertEqual([a.header for a in res_articles], ['For All'])
+        self.do_user_test('anonymous', '', 200, 404, 404, ['Articles', 'Contact'], ['For All'])
 
     def test_top_articles(self):
         # Login board user
