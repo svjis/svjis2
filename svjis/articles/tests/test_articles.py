@@ -26,20 +26,17 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 6)
-        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
-        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
-        self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
-        self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
-        self.assertEqual(res_tray_menu[4]['description'], 'Fault reporting')
-        self.assertEqual(res_tray_menu[5]['description'], 'Administration')
+        self.assertEqual(
+            [m['description'] for m in res_tray_menu],
+            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Administration'],
+        )
 
         # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 4)
-        self.assertEqual(res_articles[0].header, 'For Board')
-        self.assertEqual(res_articles[1].header, 'For Owners and Board')
-        self.assertEqual(res_articles[2].header, 'For Owners')
-        self.assertEqual(res_articles[3].header, 'For All')
+        self.assertEqual(
+            [a.header for a in res_articles], ['For Board', 'For Owners and Board', 'For Owners', 'For All']
+        )
 
     def test_board_user(self):
         # Login user
@@ -63,19 +60,17 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 5)
-        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
-        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
-        self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
-        self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
-        self.assertEqual(res_tray_menu[4]['description'], 'Fault reporting')
+        self.assertEqual(
+            [m['description'] for m in res_tray_menu],
+            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting'],
+        )
 
         # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 4)
-        self.assertEqual(res_articles[0].header, 'For Board')
-        self.assertEqual(res_articles[1].header, 'For Owners and Board')
-        self.assertEqual(res_articles[2].header, 'For Owners')
-        self.assertEqual(res_articles[3].header, 'For All')
+        self.assertEqual(
+            [a.header for a in res_articles], ['For Board', 'For Owners and Board', 'For Owners', 'For All']
+        )
 
     def test_owner_user(self):
         # Login user
@@ -101,17 +96,14 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 4)
-        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
-        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
-        self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
-        self.assertEqual(res_tray_menu[3]['description'], 'Fault reporting')
+        self.assertEqual(
+            [m['description'] for m in res_tray_menu], ['Articles', 'Contact', 'Personal settings', 'Fault reporting']
+        )
 
         # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 3)
-        self.assertEqual(res_articles[0].header, 'For Owners and Board')
-        self.assertEqual(res_articles[1].header, 'For Owners')
-        self.assertEqual(res_articles[2].header, 'For All')
+        self.assertEqual([a.header for a in res_articles], ['For Owners and Board', 'For Owners', 'For All'])
 
     def test_vendor_user(self):
         # Login user
@@ -137,15 +129,14 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 4)
-        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
-        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
-        self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
-        self.assertEqual(res_tray_menu[3]['description'], 'Fault reporting')
+        self.assertEqual(
+            [m['description'] for m in res_tray_menu], ['Articles', 'Contact', 'Personal settings', 'Fault reporting']
+        )
 
         # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 1)
-        self.assertEqual(res_articles[0].header, 'For All')
+        self.assertEqual([a.header for a in res_articles], ['For All'])
 
     def test_anonymous_user(self):
         # Logout user
@@ -170,13 +161,12 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         # Menu
         res_tray_menu = response.context['tray_menu_items']
         self.assertEqual(len(res_tray_menu), 2)
-        self.assertEqual(res_tray_menu[0]['description'], 'Articles')
-        self.assertEqual(res_tray_menu[1]['description'], 'Contact')
+        self.assertEqual([m['description'] for m in res_tray_menu], ['Articles', 'Contact'])
 
         # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual(len(res_articles), 1)
-        self.assertEqual(res_articles[0].header, 'For All')
+        self.assertEqual([a.header for a in res_articles], ['For All'])
 
     def test_top_articles(self):
         # Login board user
