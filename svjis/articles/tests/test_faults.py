@@ -6,9 +6,9 @@ from .testdata import UserDataMixin
 
 class FaultsTest(UserDataMixin, TestCase):
 
-    def test_owner_user(self):
+    def create_fault_and_get_created_by(self, username, password, user_provided):
         # Login user
-        logged_in = self.client.login(username='petr', password='petr')
+        logged_in = self.client.login(username=username, password=password)
         self.assertTrue(logged_in)
 
         # Create Fault
@@ -19,61 +19,24 @@ class FaultsTest(UserDataMixin, TestCase):
                 'subject': 'test',
                 'entrance': '',
                 'description': 'test',
-                # 'created_by_user': '',
+                'created_by_user': user_provided,
                 'assigned_to_user': '',
             },
             follow=True,
         )
-        self.assertEqual(response.status_code, 200)
 
         # Test Fault Creator
         fault = response.context['obj']
-        self.assertEqual(fault.created_by_user, self.u_petr)
+        return fault.created_by_user
+
+    def test_owner_user(self):
+        user = self.create_fault_and_get_created_by("petr", "petr", "")
+        self.assertEqual(user, self.u_petr)
 
     def test_owner_user_on_behalf_of(self):
-        # Login user
-        logged_in = self.client.login(username='petr', password='petr')
-        self.assertTrue(logged_in)
-
-        # Create Fault
-        response = self.client.post(
-            reverse('faults_fault_create_save'),
-            {
-                'pk': 0,
-                'subject': 'test',
-                'entrance': '',
-                'description': 'test',
-                'created_by_user': self.u_jarda.pk,
-                'assigned_to_user': '',
-            },
-            follow=True,
-        )
-        self.assertEqual(response.status_code, 200)
-
-        # Test Fault Creator
-        fault = response.context['obj']
-        self.assertEqual(fault.created_by_user, self.u_petr)
+        user = self.create_fault_and_get_created_by("petr", "petr", self.u_jarda.pk)
+        self.assertEqual(user, self.u_petr)
 
     def test_board_user_on_behalf_of(self):
-        # Login user
-        logged_in = self.client.login(username='jiri', password='jiri')
-        self.assertTrue(logged_in)
-
-        # Create Fault
-        response = self.client.post(
-            reverse('faults_fault_create_save'),
-            {
-                'pk': 0,
-                'subject': 'test',
-                'entrance': '',
-                'description': 'test',
-                'created_by_user': self.u_jarda.pk,
-                'assigned_to_user': '',
-            },
-            follow=True,
-        )
-        self.assertEqual(response.status_code, 200)
-
-        # Test Fault Creator
-        fault = response.context['obj']
-        self.assertEqual(fault.created_by_user, self.u_jarda)
+        user = self.create_fault_and_get_created_by("jiri", "jiri", self.u_jarda.pk)
+        self.assertEqual(user, self.u_jarda)
