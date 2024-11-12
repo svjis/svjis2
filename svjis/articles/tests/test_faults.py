@@ -12,16 +12,20 @@ class FaultsTest(UserDataMixin, TestCase):
         self.assertTrue(logged_in)
 
         # Create Fault
+        fault = {
+            'pk': 0,
+            'subject': 'test',
+            'entrance': '',
+            'description': 'test',
+            'assigned_to_user': '',
+        }
+
+        if user_provided is not None:
+            fault['created_by_user'] = user_provided
+
         response = self.client.post(
             reverse('faults_fault_create_save'),
-            {
-                'pk': 0,
-                'subject': 'test',
-                'entrance': '',
-                'description': 'test',
-                'created_by_user': user_provided,
-                'assigned_to_user': '',
-            },
+            fault,
             follow=True,
         )
 
@@ -30,13 +34,17 @@ class FaultsTest(UserDataMixin, TestCase):
         return fault.created_by_user
 
     def test_owner_user(self):
-        user = self.create_fault_and_get_created_by("petr", "petr", "")
-        self.assertEqual(user, self.u_petr)
+        fault_creator = self.create_fault_and_get_created_by("petr", "petr", "")
+        self.assertEqual(fault_creator, self.u_petr)
 
     def test_owner_user_on_behalf_of(self):
-        user = self.create_fault_and_get_created_by("petr", "petr", self.u_jarda.pk)
-        self.assertEqual(user, self.u_petr)
+        fault_creator = self.create_fault_and_get_created_by("petr", "petr", self.u_jarda.pk)
+        self.assertEqual(fault_creator, self.u_petr)
 
     def test_board_user_on_behalf_of(self):
-        user = self.create_fault_and_get_created_by("jiri", "jiri", self.u_jarda.pk)
-        self.assertEqual(user, self.u_jarda)
+        fault_creator = self.create_fault_and_get_created_by("jiri", "jiri", self.u_jarda.pk)
+        self.assertEqual(fault_creator, self.u_jarda)
+
+    def test_board_user_empty_user_provided(self):
+        fault_creator = self.create_fault_and_get_created_by("jiri", "jiri", None)
+        self.assertEqual(fault_creator, self.u_jiri)
