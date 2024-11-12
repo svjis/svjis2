@@ -9,3 +9,6 @@ class PreferencesDataMixin:
         cls.p_fault_notif = PreferencesFactory(
             key="mail.template.fault.notification", value="Uživatel {} vložil novou závadu {}: <br><br><br>{}"
         )
+        cls.p_fault_assigned = PreferencesFactory(
+            key="mail.template.fault.assigned", value="Uživatel {} vám přiřadil tiket {}: <br><br><br>{}"
+        )

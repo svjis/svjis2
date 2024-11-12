@@ -174,6 +174,8 @@ def faults_fault_create_save_view(request):
         or not request.user.has_perm('articles.svjis_fault_resolver')
     ):
         obj.created_by_user = request.user
+    if pk == 0 and not request.user.has_perm('articles.svjis_fault_resolver'):
+        obj.assigned_to_user = None
     obj.save()
 
     # Set watching users
