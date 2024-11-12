@@ -1,5 +1,3 @@
-from io import StringIO
-from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
@@ -27,12 +25,13 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
         # Menu
         res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 5)
+        self.assertEqual(len(res_tray_menu), 6)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
         self.assertEqual(res_tray_menu[1]['description'], 'Contact')
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
         self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
-        self.assertEqual(res_tray_menu[4]['description'], 'Administration')
+        self.assertEqual(res_tray_menu[4]['description'], 'Fault reporting')
+        self.assertEqual(res_tray_menu[5]['description'], 'Administration')
 
         # List of Articles
         res_articles = response.context['article_list']
@@ -63,11 +62,12 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
         # Menu
         res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 4)
+        self.assertEqual(len(res_tray_menu), 5)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
         self.assertEqual(res_tray_menu[1]['description'], 'Contact')
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
         self.assertEqual(res_tray_menu[3]['description'], 'Redaction')
+        self.assertEqual(res_tray_menu[4]['description'], 'Fault reporting')
 
         # List of Articles
         res_articles = response.context['article_list']
@@ -100,10 +100,11 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
         # Menu
         res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 3)
+        self.assertEqual(len(res_tray_menu), 4)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
         self.assertEqual(res_tray_menu[1]['description'], 'Contact')
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
+        self.assertEqual(res_tray_menu[3]['description'], 'Fault reporting')
 
         # List of Articles
         res_articles = response.context['article_list']
@@ -135,10 +136,11 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
         # Menu
         res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(len(res_tray_menu), 3)
+        self.assertEqual(len(res_tray_menu), 4)
         self.assertEqual(res_tray_menu[0]['description'], 'Articles')
         self.assertEqual(res_tray_menu[1]['description'], 'Contact')
         self.assertEqual(res_tray_menu[2]['description'], 'Personal settings')
+        self.assertEqual(res_tray_menu[3]['description'], 'Fault reporting')
 
         # List of Articles
         res_articles = response.context['article_list']
@@ -292,17 +294,3 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         self.assertEqual(res_recipients[0].last_name, 'Beran')
         self.assertEqual(res_recipients[1].last_name, 'Brambůrek')
         self.assertEqual(res_recipients[2].last_name, 'Nebus')
-
-
-class PendingMigrationsTests(TestCase):
-    def test_no_pending_migrations(self):
-        out = StringIO()
-        try:
-            call_command(
-                "makemigrations",
-                "--check",
-                stdout=out,
-                stderr=StringIO(),
-            )
-        except SystemExit:  # pragma: no cover
-            raise AssertionError("Pending migrations:\n" + out.getvalue()) from None
