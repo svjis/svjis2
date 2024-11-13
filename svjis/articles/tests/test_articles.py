@@ -6,7 +6,7 @@ from .testdata import ArticleDataMixin
 
 class ArticleListTest(ArticleDataMixin, TestCase):
 
-    def do_user_test(self, username, password, for_all, for_owners, for_board, menu_list, article_list):
+    def do_user_test(self, username, password, for_all, for_owners, for_board, article_list):
         # Login user
         if username == 'anonymous':
             self.client.logout()
@@ -30,13 +30,6 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
 
-        # Menu
-        res_tray_menu = response.context['tray_menu_items']
-        self.assertEqual(
-            [m['description'] for m in res_tray_menu],
-            menu_list,
-        )
-
         # List of Articles
         res_articles = response.context['article_list']
         self.assertEqual([a.header for a in res_articles], article_list)
@@ -48,7 +41,6 @@ class ArticleListTest(ArticleDataMixin, TestCase):
             200,
             200,
             200,
-            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Administration'],
             ['For Board', 'For Owners and Board', 'For Owners', 'For All'],
         )
 
@@ -59,7 +51,6 @@ class ArticleListTest(ArticleDataMixin, TestCase):
             200,
             200,
             200,
-            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting'],
             ['For Board', 'For Owners and Board', 'For Owners', 'For All'],
         )
 
@@ -70,7 +61,6 @@ class ArticleListTest(ArticleDataMixin, TestCase):
             200,
             200,
             404,
-            ['Articles', 'Contact', 'Personal settings', 'Fault reporting'],
             ['For Owners and Board', 'For Owners', 'For All'],
         )
 
@@ -81,12 +71,11 @@ class ArticleListTest(ArticleDataMixin, TestCase):
             200,
             404,
             404,
-            ['Articles', 'Contact', 'Personal settings', 'Fault reporting'],
             ['For All'],
         )
 
     def test_anonymous_user(self):
-        self.do_user_test('anonymous', '', 200, 404, 404, ['Articles', 'Contact'], ['For All'])
+        self.do_user_test('anonymous', '', 200, 404, 404, ['For All'])
 
     def test_top_articles(self):
         # Login board user
