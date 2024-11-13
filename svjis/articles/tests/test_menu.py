@@ -46,8 +46,11 @@ class MenuTest(ArticleDataMixin, TestCase):
         # Menu access
         for m in menu:
             response = self.client.get(m['link'])
-            status_expected = 200 if m['item'] in menu_list else 302
-            self.assertEqual(response.status_code, status_expected)
+            if m['item'] in menu_list:
+                self.assertEqual(response.status_code, 200)
+            else:
+                self.assertEqual(response.status_code, 302)
+                self.assertTrue(response.url.startswith('/?next='))
 
     def test_admin_user(self):
         self.do_menu_test(
