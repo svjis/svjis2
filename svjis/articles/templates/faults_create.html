@@ -23,6 +23,12 @@
     </p>
     {% if perms.articles.svjis_fault_resolver %}
     <p>
+        {{ form.created_by_user.label }}<br>
+        {{ form.created_by_user }}
+    </p>
+    {% endif %}
+    {% if perms.articles.svjis_fault_resolver %}
+    <p>
         {{ form.assigned_to_user.label }}<br>
         {{ form.assigned_to_user }}
     </p>

@@ -148,7 +148,7 @@ def adjust_worksheet_columns_width(ws, max_width=1000):
 
 def send_mails(recipient_list: list, subject: str, html_body: str, immediately: bool) -> None:
     if settings.EMAIL_HOST == '':
-        logger.error("Error: It seems E-Mail system is not configured yet.")
+        logger.error("Warning: It seems E-Mail system is not configured yet.")
         return
 
     if immediately:

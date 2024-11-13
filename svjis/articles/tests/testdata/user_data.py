@@ -1,10 +1,13 @@
 from ..factories import GroupFactory, UserFactory, PermissionFactory
+from .preferences_data import PreferencesDataMixin
 
 
-class UserDataMixin:
+class UserDataMixin(PreferencesDataMixin):
 
     @classmethod
     def setUpTestData(cls):
+        super().setUpTestData()
+
         cls.g_owner = GroupFactory(
             name="owner",
             permissions=[
@@ -12,6 +15,9 @@ class UserDataMixin:
                 PermissionFactory(codename="svjis_view_personal_menu"),
                 PermissionFactory(codename="svjis_view_phonelist"),
                 PermissionFactory(codename="svjis_answer_survey"),
+                PermissionFactory(codename="svjis_view_fault_menu"),
+                PermissionFactory(codename="svjis_fault_reporter"),
+                PermissionFactory(codename="svjis_add_fault_comment"),
             ],
         )
         cls.g_board_member = GroupFactory(
@@ -20,6 +26,7 @@ class UserDataMixin:
                 PermissionFactory(codename="svjis_add_article_comment"),
                 PermissionFactory(codename="svjis_view_personal_menu"),
                 PermissionFactory(codename="svjis_view_phonelist"),
+                PermissionFactory(codename="svjis_fault_resolver"),
             ],
         )
         cls.g_vendor = GroupFactory(
@@ -27,6 +34,10 @@ class UserDataMixin:
             permissions=[
                 PermissionFactory(codename="svjis_add_article_comment"),
                 PermissionFactory(codename="svjis_view_personal_menu"),
+                PermissionFactory(codename="svjis_view_fault_menu"),
+                PermissionFactory(codename="svjis_fault_reporter"),
+                PermissionFactory(codename="svjis_fault_resolver"),
+                PermissionFactory(codename="svjis_add_fault_comment"),
             ],
         )
         cls.g_redactor = GroupFactory(
@@ -55,6 +66,10 @@ class UserDataMixin:
                 PermissionFactory(codename="svjis_edit_admin_company"),
                 PermissionFactory(codename="svjis_edit_admin_building"),
                 PermissionFactory(codename="svjis_view_phonelist"),
+                PermissionFactory(codename="svjis_view_fault_menu"),
+                PermissionFactory(codename="svjis_fault_reporter"),
+                PermissionFactory(codename="svjis_fault_resolver"),
+                PermissionFactory(codename="svjis_add_fault_comment"),
             ],
         )
 

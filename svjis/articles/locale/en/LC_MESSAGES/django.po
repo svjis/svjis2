@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 10:18+0200\n"
+"POT-Creation-Date: 2024-11-11 19:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,6 +30,10 @@ msgstr "Entrance"
 #: articles/templates/faults_list.html:22
 msgid "Resolver"
 msgstr "Resolver"
+
+#: articles/forms.py:337
+msgid "On Behalf Of"
+msgstr "On Behalf Of"
 
 #: articles/models.py:14 articles/models.py:130 articles/models.py:440
 #: articles/templates/redaction_useful_link.html:13
@@ -317,7 +321,7 @@ msgstr "Delete"
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
-#: articles/templates/faults_create.html:31
+#: articles/templates/faults_create.html:37
 #: articles/templates/faults_edit.html:34
 #: articles/templates/personal_settings_edit.html:58
 #: articles/templates/personal_settings_password.html:26
