@@ -60,3 +60,16 @@ class FaultsTest(UserDataMixin, TestCase):
             "jiri", "jiri", {'pk': 0, 'subject': 'test', 'description': 'test', 'assigned_to_user': self.u_jarda.pk}
         )
         self.assertEqual(fault.assigned_to_user, self.u_jarda)
+
+    # Closed
+    def test_owner_closed(self):
+        fault = self.create_fault_and_get_created_by(
+            "petr", "petr", {'pk': 0, 'subject': 'test', 'description': 'test', 'closed': True}
+        )
+        self.assertEqual(fault.closed, False)
+
+    def test_board_closed(self):
+        fault = self.create_fault_and_get_created_by(
+            "jiri", "jiri", {'pk': 0, 'subject': 'test', 'description': 'test', 'closed': True}
+        )
+        self.assertEqual(fault.closed, True)

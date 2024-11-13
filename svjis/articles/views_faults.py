@@ -162,32 +162,30 @@ def faults_fault_create_save_view(request):
     pk = int(request.POST['pk'])
     form = forms.FaultReportForm(request.POST)
 
-    if not form.is_valid():
+    if not form.is_valid() or pk != 0:
         for error in form.errors:
             messages.error(request, error)
         return redirect(reverse(faults_list_view) + '?scope=open')
 
     obj = form.save(commit=False)
-    if pk == 0 and (
+    if (
         "created_by_user" not in form.data
         or form.data["created_by_user"] == ''
         or not request.user.has_perm('articles.svjis_fault_resolver')
     ):
         obj.created_by_user = request.user
-    if pk == 0 and not request.user.has_perm('articles.svjis_fault_resolver'):
+    if not request.user.has_perm('articles.svjis_fault_resolver'):
         obj.assigned_to_user = None
+        obj.closed = False
     obj.save()
 
     # Set watching users
-    if pk == 0:
-        obj.watching_users.add(obj.created_by_user)
-        resolvers = (
-            User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
-            .exclude(is_active=False)
-            .distinct()
-        )
-        for u in resolvers:
-            obj.watching_users.add(u)
+    obj.watching_users.add(obj.created_by_user)
+    resolvers = (
+        User.objects.filter(groups__permissions__codename='svjis_fault_resolver').exclude(is_active=False).distinct()
+    )
+    for u in resolvers:
+        obj.watching_users.add(u)
 
     # Send notifications
     recipients = [u for u in obj.watching_users.all() if u != obj.created_by_user]

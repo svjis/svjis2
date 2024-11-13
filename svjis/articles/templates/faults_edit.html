@@ -9,6 +9,7 @@
 <form action="{% url 'faults_fault_update' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}" />
+    <input type="hidden" name="created_by_user" value="{{ form.instance.created_by_user.pk }}" />
     <p>
         {{ form.subject.label }}<br>
         {{ form.subject }}
