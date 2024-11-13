@@ -218,7 +218,11 @@ def faults_fault_update_view(request):
     instance.watching_users.add(request.user)
 
     # Send assigned notification
-    if original_resolver != instance.assigned_to_user and request.user != instance.assigned_to_user:
+    if (
+        original_resolver != instance.assigned_to_user
+        and request.user != instance.assigned_to_user
+        and None is not instance.assigned_to_user
+    ):
         utils.send_fault_assigned_notification(
             instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance
         )
