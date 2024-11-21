@@ -1,0 +1,68 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900);
+
+* {
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 400px 1fr; /* Left column for menu, right column for content */
+    grid-template-rows: auto; /* Adjusts rows automatically */
+    height: 100vh; /* Full viewport height */
+}
+
+.menu {
+    background-color: #432E54;
+    color: white;
+    padding: 1rem;
+    box-shadow: 3px 0px 6px 2px #796969;
+}
+
+.content {
+    padding: 2rem;
+    overflow-y: auto; /* Allows scrolling if content is too long */
+}
+
+.header {
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    height: auto;
+}
+
+.centered {
+    grid-column: span 2;
+    justify-self: center;
+
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.no-style {
+    text-decoration: none;
+    color: inherit; 
+}
+
+.nav-item {
+    display: block;
+    margin-top: 40px;
+    color: #E8BCB9;
+    font-size: 32px;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns:2fr 8fr 2fr;
+    height: auto;
+}

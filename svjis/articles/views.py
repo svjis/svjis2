@@ -157,7 +157,7 @@ def main_filtered_view(request, menu):
     ctx['top_articles'] = top_articles
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
-    return render(request, "main.html", ctx)
+    return render(request, "base.html", ctx)
 
 
 @permission_required("articles.svjis_answer_survey")

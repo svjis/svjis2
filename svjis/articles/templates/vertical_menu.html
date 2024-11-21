@@ -1,0 +1,20 @@
+{% load static %}
+<div class="nav-container">
+    {% if tray_menu_items %}
+    {% for obj in tray_menu_items %}
+    <a href='{{ obj.link }}' class="no-style">
+        <div class="nav-item">
+            <div class="nav-icon">
+                {{ obj.id }}
+            </div>
+            <div class="nav-link">
+                <div class="{% if obj.active %}nav-active{% endif %}">{{ obj.description }}</div>
+            </div>
+            <div class="nav-arrow">
+                <img src="{% static 'icons/arrow_down.svg' %}">
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+    {% endif %}
+</div>

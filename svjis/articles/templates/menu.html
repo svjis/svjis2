@@ -1,0 +1,16 @@
+{% load static %}
+<div class="menu">
+    <div class="header">
+        {% if company_picture %}
+            <div class="logo">
+                <img src="{% static 'icons/' %}{{ company_picture }}">
+            </div>
+        {% endif %}
+        <div class="title {% if not company_picture %}centered{% endif %}">
+                {{ web_title|default:"IS SVJ" }}
+        </div>
+    </div>
+    <div>
+        {% include 'vertical_menu.html' %}
+    </div>
+</div>
