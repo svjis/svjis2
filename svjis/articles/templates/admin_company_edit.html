@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<h1 class="page-title">{% trans 'Company' %}</h1>
+<h1 class="page-title">{% translate 'Company' %}</h1>
 <form action="{% url 'admin_company_save' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <fieldset>
-        <legend>{% trans 'Company' %}</legend>
+        <legend>{% translate 'Company' %}</legend>
         <p>
             <label class="common-label" for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
             {{ form.name }}
@@ -50,12 +50,12 @@
             {{ form.header_picture }}
         </p>
         {% if form.instance.header_picture %}
-        <p><img src="/media/{{ form.instance.header_picture }}" alt="{% trans 'Company header' %}" width="80%" height="80%"></p>
+        <p><img src="/media/{{ form.instance.header_picture }}" alt="{% translate 'Company header' %}" width="80%" height="80%"></p>
         {% endif %}
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
-{% endblock %}
+{% endblock content %}

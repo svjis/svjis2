@@ -9,9 +9,9 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Type' %}</th>
-        <th class="list" scope="col">{% trans 'Registration Id' %}</th>
-        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">{% translate 'Type' %}</th>
+        <th class="list" scope="col">{% translate 'Registration Id' %}</th>
+        <th class="list" scope="col">{% translate 'Description' %}</th>
     </tr>
 
     {% if user.buildingunit_set.all %}
@@ -26,4 +26,4 @@
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

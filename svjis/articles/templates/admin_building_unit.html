@@ -4,21 +4,21 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Building units' %}</h1>
+<h1 class="page-title" id="tbl-desc">{% translate 'Building units' %}</h1>
 
 <div class="container">
     <div class="row">
 
         <div class="left">
-            <p>[<a href="{% url 'admin_building_unit_edit' pk=0 %}">{% trans 'Add new unit' %}</a>]</p>
+            <p>[<a href="{% url 'admin_building_unit_edit' pk=0 %}">{% translate 'Add new unit' %}</a>]</p>
         </div>
 
         <div class="middle">
-            <p>[<a href="{% url 'admin_building_unit_export_to_excel' %}">{% trans 'Export to Excel' %}</a>]</p>
+            <p>[<a href="{% url 'admin_building_unit_export_to_excel' %}">{% translate 'Export to Excel' %}</a>]</p>
         </div>
 
         <div class="right">
-            <p>{% trans 'Type' %}</p>
+            <p>{% translate 'Type' %}</p>
         </div>
         <div class="middle">
             <p>
@@ -26,7 +26,7 @@
                 <select name='type_filter' onchange='this.form.submit()'>
                     <option value="0">-------</option>
                     {% for t in type_list %}
-                    <option value="{{ t.pk }}" {% if type_filter == t.pk  %}selected{% endif %}>{{ t.description }}</option>
+                    <option value="{{ t.pk }}" {% if type_filter == t.pk %}selected{% endif %}>{{ t.description }}</option>
                     {% endfor %}
                 </select>
             </form>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="right">
-            <p>{% trans 'Entrance' %}</p>
+            <p>{% translate 'Entrance' %}</p>
         </div>
         <div class="right">
             <p>
@@ -42,7 +42,7 @@
                 <select name='entrance_filter' onchange='this.form.submit()'>
                     <option value="0">-------</option>
                     {% for e in entrance_list %}
-                    <option value="{{ e.pk }}" {% if entrance_filter == e.pk  %}selected{% endif %}>{{ e.description }}</option>
+                    <option value="{{ e.pk }}" {% if entrance_filter == e.pk %}selected{% endif %}>{{ e.description }}</option>
                     {% endfor %}
                 </select>
             </form>
@@ -58,21 +58,21 @@
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Type' %}</th>
-        <th class="list" scope="col">{% trans 'Entrance' %}</th>
-        <th class="list" scope="col">{% trans 'Registration Id' %}</th>
-        <th class="list" scope="col">{% trans 'Description' %}</th>
-        <th class="list" scope="col">{% trans 'Numerator' %}</th>
-        <th class="list" scope="col">{% trans 'Denominator' %}</th>
+        <th class="list" scope="col">{% translate 'Type' %}</th>
+        <th class="list" scope="col">{% translate 'Entrance' %}</th>
+        <th class="list" scope="col">{% translate 'Registration Id' %}</th>
+        <th class="list" scope="col">{% translate 'Description' %}</th>
+        <th class="list" scope="col">{% translate 'Numerator' %}</th>
+        <th class="list" scope="col">{% translate 'Denominator' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" border="0" title="{% trans 'Owners' %}" alt="{% trans 'Owners' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.type.description }} {{ obj.description }} ?')) return false;" href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" border="0" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.type.description }} {{ obj.description }} ?')) return false;" href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
         <td class="list">{{ obj.type.description }}</td>
         <td class="list">{{ obj.entrance.description }}</td>
         <td class="list">{{ obj.registration_id }}</td>
@@ -84,4 +84,4 @@
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

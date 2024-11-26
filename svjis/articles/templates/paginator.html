@@ -5,11 +5,11 @@
 <!-- pagination starts -->
 <p class="t-center">
     {% if page_obj.has_previous %}
-        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}&{{page_parameter}}">{% trans 'Previous' %}</a>&nbsp;
+        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}&{{ page_parameter }}">{% translate 'Previous' %}</a>&nbsp;
     {% endif %}
 
     {% if page_obj.number > 3 %}
-        <a href="{{ request.path }}?page=1&{{page_parameter}}">1</a>
+        <a href="{{ request.path }}?page=1&{{ page_parameter }}">1</a>
     {% endif %}
 
     {% if page_obj.number > 4 %}
@@ -20,19 +20,19 @@
         {% if page_obj.number == i %}
             <b>{{ i }}</b>
         {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
-            <a href="{{ request.path }}?page={{ i }}&{{page_parameter}}">{{ i }}</a>
+            <a href="{{ request.path }}?page={{ i }}&{{ page_parameter }}">{{ i }}</a>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
         {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
             <span>....</span>
-            <a href="?page={{ page_obj.paginator.num_pages }}&{{page_parameter}}">{{ page_obj.paginator.num_pages }}</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&{{ page_parameter }}">{{ page_obj.paginator.num_pages }}</a>
         {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
-            <a href="?page={{ page_obj.paginator.num_pages }}&{{page_parameter}}">{{ page_obj.paginator.num_pages }}</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&{{ page_parameter }}">{{ page_obj.paginator.num_pages }}</a>
         {% endif %}
 
-        &nbsp;<a href="?page={{ page_obj.next_page_number }}&{{page_parameter}}">{% trans 'Next' %}</a>
+        &nbsp;<a href="?page={{ page_obj.next_page_number }}&{{ page_parameter }}">{% translate 'Next' %}</a>
     {% endif %}
 </p>
 <!-- pagination end -->

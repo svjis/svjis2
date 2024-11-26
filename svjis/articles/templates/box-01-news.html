@@ -6,7 +6,7 @@
 
  <div class="box-01-top-b box">
     <span class="f-right">&nbsp;</span>
-    <span class="f-left"><strong>{% trans 'News' %}</strong></span>
+    <span class="f-left"><strong>{% translate 'News' %}</strong></span>
 </div> <!-- /box-01-top-b -->
 
 <div class="box-01">
@@ -18,7 +18,7 @@
                     {{ news.created_date|date:"M"|upper }}<br /><span>{{ news.created_date|date:"d" }}</span>
                 </dt>
                 <dd>
-                    <span>@ {{ news.created_date|date:"H:i" }}</span><br />{{ news.body | safe }}
+                    <span>@ {{ news.created_date|date:"H:i" }}</span><br />{{ news.body|safe }}
                 </dd>
             </dl>
         {% if forloop.counter|divisibleby:2 %}</div> <!-- /bg -->{% endif %}

@@ -9,7 +9,7 @@
     {% csrf_token %}
 
     <fieldset>
-        <legend>{% trans 'Person' %}</legend>
+        <legend>{% translate 'Person' %}</legend>
         <p>
             <label class="common-label" for="{{ pform.salutation.auto_id }}">{{ pform.salutation.label }}</label>
             {{ pform.salutation }}
@@ -24,7 +24,7 @@
         </p>
     </fieldset>
     <fieldset>
-        <legend>{% trans 'Contact information' %}</legend>
+        <legend>{% translate 'Contact information' %}</legend>
         <p>
             <label class="common-label" for="{{ pform.address.auto_id }}">{{ pform.address.label }}</label>
             {{ pform.address }}
@@ -55,8 +55,8 @@
         </p>
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
-{% endblock %}
+{% endblock content %}

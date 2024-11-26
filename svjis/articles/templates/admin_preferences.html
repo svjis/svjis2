@@ -4,24 +4,24 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Preferences' %}</h1>
-[<a href="{% url 'admin_preferences_edit' pk=0 %}">{% trans 'Create new entry' %}</a>]
+<h1 class="page-title" id="tbl-desc">{% translate 'Preferences' %}</h1>
+[<a href="{% url 'admin_preferences_edit' pk=0 %}">{% translate 'Create new entry' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Key' %}</th>
-        <th class="list" scope="col">{% trans 'Value' %}</th>
+        <th class="list" scope="col">{% translate 'Key' %}</th>
+        <th class="list" scope="col">{% translate 'Value' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.key }} ?')) return false;" href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.key }} ?')) return false;" href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
         <td class="list">{{ obj.key }}</td>
         <td class="list">{{ obj.value }}</td>
     </tr>
@@ -29,4 +29,4 @@
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

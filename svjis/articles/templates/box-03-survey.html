@@ -1,15 +1,14 @@
-{% load i18n %}
-{% load humanize %}
+{% load humanize i18n %}
 
 {% if survey_list %}
 {% for obj in survey_list %}
 <!-- Inquiry -->
 <div class="box-02-top"></div>
 <div class="box-02-top-b box">
-    <span class="f-left"><strong>{% trans 'Survey' %}</strong></span>
+    <span class="f-left"><strong>{% translate 'Survey' %}</strong></span>
 </div> <!-- /box-02-top-b -->
 <div class="box-02 box">
-    <strong>{{ obj.survey.description | safe }}</strong>
+    <strong>{{ obj.survey.description|safe }}</strong>
     {% if obj.survey.is_open_for_voting and obj.user_can_vote %}
         <form action="{% url 'article_survey_vote' %}" method="post">
             {% csrf_token %}
@@ -23,7 +22,7 @@
                 {% endfor %}
 
             <p>
-                <input type="submit" id="vote-submit" value="{% trans 'Vote' %}" />
+                <input type="submit" id="vote-submit" value="{% translate 'Vote' %}" />
             </p>
         </form>
     {% else %}

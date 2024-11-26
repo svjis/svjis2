@@ -6,7 +6,7 @@
 
 {{ form.media }}
 
-<h1 class="page-title">{% trans 'Article' %}</h1>
+<h1 class="page-title">{% translate 'Article' %}</h1>
 <form action="{% url 'redaction_article_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}">
@@ -23,7 +23,7 @@
         {{ form.body }}
     </p>
     <fieldset>
-        <legend>{% trans 'Properties' %}</legend>
+        <legend>{% translate 'Properties' %}</legend>
         <p>
             <label class="common-label" for="{{ form.menu.auto_id }}">{{ form.menu.label }}</label>
             {{ form.menu }}
@@ -38,7 +38,7 @@
         </p>
     </fieldset>
     <fieldset>
-        <legend>{% trans 'Visible for' %}</legend>
+        <legend>{% translate 'Visible for' %}</legend>
         <p>
             <label class="common-label" for="{{ form.visible_for_all.auto_id }}">{{ form.visible_for_all.label }}</label>
             {{ form.visible_for_all }}
@@ -53,20 +53,20 @@
         {% endif %}
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
 
 {% if pk != 0 %}
-<h2 class="page-title">{% trans 'Assets' %}</h2>
+<h2 class="page-title">{% translate 'Assets' %}</h2>
 
 {% if assets %}
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Name' %}</th>
-        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">{% translate 'Name' %}</th>
+        <th class="list" scope="col">{% translate 'Description' %}</th>
         <th class="list" scope="col">&nbsp;</th>
     </tr>
     {% for a in assets %}
@@ -74,7 +74,7 @@
         <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
         <td class="list" id="asset_path_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
         <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
-        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
 </table>
@@ -85,7 +85,7 @@
     <input type="hidden" name="article_pk" value="{{ pk }}">
 
     <fieldset>
-        <legend>{% trans 'Assets' %}</legend>
+        <legend>{% translate 'Assets' %}</legend>
         <p>
             <label class="common-label" for="{{ asset_form.description.auto_id }}">{{ asset_form.description.label }}</label>
             {{ asset_form.description }}
@@ -96,9 +96,9 @@
         </p>
     </fieldset>
     <p>
-        <input class="my-button" id="submit2" type="submit" value="{% trans 'Upload' %}" />
+        <input class="my-button" id="submit2" type="submit" value="{% translate 'Upload' %}" />
     </p>
 </form>
 {% endif %}
 
-{% endblock %}
+{% endblock content %}

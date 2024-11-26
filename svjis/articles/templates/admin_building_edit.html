@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<h1 class="page-title">{% trans 'Building' %}</h1>
+<h1 class="page-title">{% translate 'Building' %}</h1>
 <form action="{% url 'admin_building_save' %}" method="post">
     {% csrf_token %}
     <fieldset>
-        <legend>{% trans 'Building' %}</legend>
+        <legend>{% translate 'Building' %}</legend>
         <p>
             <label class="common-label" for="{{ form.address.auto_id }}">{{ form.address.label }}</label>
             {{ form.address }}
@@ -27,8 +27,8 @@
         </p>
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
-{% endblock %}
+{% endblock content %}
