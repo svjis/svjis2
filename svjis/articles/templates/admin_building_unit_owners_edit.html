@@ -9,8 +9,8 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'First Name' %}</th>
-        <th class="list" scope="col">{% trans 'Last Name' %}</th>
+        <th class="list" scope="col">{% translate 'First Name' %}</th>
+        <th class="list" scope="col">{% translate 'Last Name' %}</th>
         <th class="list" scope="col">&nbsp;</th>
     </tr>
 
@@ -20,7 +20,7 @@
         <td class="list">{{ forloop.counter }}</td>
         <td class="list">{{ obj.first_name }}</td>
         <td class="list">{{ obj.last_name }}</td>
-        <td class="list"><a href="{% url 'admin_building_unit_owners_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_building_unit_owners_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}
@@ -36,8 +36,8 @@
         <option value="{{ u.id }}">{{ u.last_name }} {{ u.first_name }}</option>
         {% endfor %}
     </select>
-    <input id="submit" type="submit" value="{% trans 'Add' %}" />
+    <input id="submit" type="submit" value="{% translate 'Add' %}" />
 </form>
 {% endif %}
 
-{% endblock %}
+{% endblock content %}

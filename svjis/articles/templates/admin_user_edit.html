@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<h1 class="page-title">{% trans 'User' %}</h1>
+<h1 class="page-title">{% translate 'User' %}</h1>
 <form action="{% url 'admin_user_save' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
-        <legend>{% trans 'Person' %}</legend>
+        <legend>{% translate 'Person' %}</legend>
         <p>
             <label class="common-label" for="{{ pform.salutation.auto_id }}">{{ pform.salutation.label }}</label>
             {{ pform.salutation }}
@@ -29,7 +29,7 @@
         </p>
     </fieldset>
     <fieldset>
-        <legend>{% trans 'Contact information' %}</legend>
+        <legend>{% translate 'Contact information' %}</legend>
         <p>
             <label class="common-label" for="{{ pform.address.auto_id }}">{{ pform.address.label }}</label>
             {{ pform.address }}
@@ -60,17 +60,17 @@
         </p>
     </fieldset>
     <fieldset>
-        <legend>{% trans 'Login information' %}</legend>
+        <legend>{% translate 'Login information' %}</legend>
         <p>
             <label class="common-label" for="{{ uform.username.auto_id }}">{{ uform.username.label }}</label>
             {{ uform.username }}
         </p>
         <p>
-            <label class="common-label" id="lpass-label" for="lpass-input">{% trans 'Password' %}</label>
+            <label class="common-label" id="lpass-label" for="lpass-input">{% translate 'Password' %}</label>
             <input class="common-input" id="lpass-input" type="password" name="password" maxlength="20" size="50" value="" />
         </p>
         <p>
-            <label class="common-label" id="sendc-label" for="sendc-input">{% trans 'Send Credentials By E-Mail' %}</label>
+            <label class="common-label" id="sendc-label" for="sendc-input">{% translate 'Send Credentials By E-Mail' %}</label>
             <input class="common-input" id="sendc-input" type="checkbox" name="send_credentials"  />
         </p>
         <p>
@@ -80,7 +80,7 @@
     </fieldset>
 
     <fieldset>
-        <legend>{% trans 'Member of' %}</legend>
+        <legend>{% translate 'Member of' %}</legend>
         {% if group_list %}
         {% for obj in group_list %}
         <p>
@@ -91,8 +91,8 @@
         {% endif %}
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
-{% endblock %}
+{% endblock content %}

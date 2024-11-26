@@ -1,54 +1,53 @@
 {% extends "base-with-aside-menu-content.html" %}
 
-{% load i18n %}
-{% load article_filters %}
+{% load article_filters i18n %}
 
 {% block content %}
 
-<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject | highlight:search | safe }}</h1>
+<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject|highlight:search|safe }}</h1>
 
 {% if perms.articles.svjis_fault_resolver %}
-    [<a href="{% url 'faults_fault_edit' pk=obj.pk %}">{% trans 'Edit' %}</a>]&nbsp;
+    [<a href="{% url 'faults_fault_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>]&nbsp;
 {% endif %}
 
 {% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user != user %}
-    [<a href="{% url 'faults_fault_take_ticket' pk=obj.pk %}">{% trans 'Take ticket' %}</a>]&nbsp;
+    [<a href="{% url 'faults_fault_take_ticket' pk=obj.pk %}">{% translate 'Take ticket' %}</a>]&nbsp;
 {% endif %}
 
 {% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user == user %}
-    [<a href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% trans 'Close ticket' %}</a>]&nbsp;
+    [<a href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% translate 'Close ticket' %}</a>]&nbsp;
 {% endif %}
 
 {% if user in obj.watching_users.all %}
-    [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=0">{% trans 'Stop watching ticket' %}</a>]
+    [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching ticket' %}</a>]
     {% else %}
-    [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% trans 'Start watching ticket' %}</a>]
+    [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>]
 {% endif %}
 
 <table width="100%" class="list" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" width="25%" scope="row">{% trans 'Date' %}</th>
-        <td class="list" width="75%">{{ obj.created_date | date:"d.m.Y H:i" }}</td>
+        <th class="list" width="25%" scope="row">{% translate 'Date' %}</th>
+        <td class="list" width="75%">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% trans 'Creator' %}</th>
+        <th class="list" scope="row">{% translate 'Creator' %}</th>
         <td class="list">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% trans 'Resolver' %}</th>
+        <th class="list" scope="row">{% translate 'Resolver' %}</th>
         <td class="list">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% trans 'Closed' %}</th>
-        <td class="list">{{ obj.closed | yes_no }}</td>
+        <th class="list" scope="row">{% translate 'Closed' %}</th>
+        <td class="list">{{ obj.closed|yes_no }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% trans 'Entrance' %}</th>
+        <th class="list" scope="row">{% translate 'Entrance' %}</th>
         <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% trans 'Description' %}</th>
-        <td class="list">{{ obj.description | replace_url_to_link | linebreaks | highlight:search | safe }}</td>
+        <th class="list" scope="row">{% translate 'Description' %}</th>
+        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|highlight:search|safe }}</td>
     </tr>
 </table>
 
@@ -60,16 +59,16 @@
         <input type="hidden" name="fault_pk" value="{{ obj.pk }}">
     {% endif %}
         <fieldset style="width:95%;">
-            <legend>{% trans 'Assets' %}</legend>
+            <legend>{% translate 'Assets' %}</legend>
             <p>
                 {% if assets %}
                 <table class="list" aria-describedby="tbl-desc">
                     <tr>
                         <th class="list" scope="col">&nbsp;</th>
-                        <th class="list" scope="col">{% trans 'File' %}</th>
-                        <th class="list" scope="col">{% trans 'Description' %}</th>
-                        <th class="list" scope="col">{% trans 'User' %}</th>
-                        <th class="list" scope="col">{% trans 'Time' %}</th>
+                        <th class="list" scope="col">{% translate 'File' %}</th>
+                        <th class="list" scope="col">{% translate 'Description' %}</th>
+                        <th class="list" scope="col">{% translate 'User' %}</th>
+                        <th class="list" scope="col">{% translate 'Time' %}</th>
                         <th class="list" scope="col">&nbsp;</th>
                     </tr>
                     {% for a in assets %}
@@ -78,9 +77,9 @@
                         <td class="list" id="asset_file_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
                         <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
                         <td class="list" id="asset_user_{{ a.asset.pk }}">{{ a.asset.created_by_user.first_name }}&nbsp;{{ a.asset.created_by_user.last_name }}</td>
-                        <td class="list" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date | date:"d.m.Y H:i" }}</td>
+                        <td class="list" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date|date:"d.m.Y H:i" }}</td>
                         {% if a.asset.created_by_user == user %}
-                        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+                        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
                         {% else %}
                         <td class="list">&nbsp;</td>
                         {% endif %}
@@ -102,17 +101,17 @@
         </fieldset>
     {% if not obj.closed %}
         <p>
-            <input class="my-button" id="submit2" type="submit" value="{% trans 'Upload' %}" />
+            <input class="my-button" id="submit2" type="submit" value="{% translate 'Upload' %}" />
         </p>
     </form>
     {% endif %}
 {% endif %}
 
 {% if obj.comments %}
-<h2 class="article-title">{% trans 'Comments' %}:</h2>
+<h2 class="article-title">{% translate 'Comments' %}:</h2>
     {% for comment in obj.comments %}
-    <div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date | date:"d.m.Y H:i" }}</strong>
-        <br>{{ comment.body | replace_url_to_link | linebreaks | safe }}
+    <div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
+        <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
     </div>
     {% endfor %}
 {% endif %}
@@ -132,9 +131,9 @@
         ></textarea>
     </p>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Insert comment' %}" name="submit">
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Insert comment' %}" name="submit">
     </p>
 </form>
 {% endif %}
 
-{% endblock %}
+{% endblock content %}

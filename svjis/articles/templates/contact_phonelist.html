@@ -4,15 +4,15 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Phonelist' %}</h1>
+<h1 class="page-title" id="tbl-desc">{% translate 'Phonelist' %}</h1>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Last name' %}</th>
-        <th class="list" scope="col">{% trans 'First name' %}</th>
-        <th class="list" scope="col">{% trans 'Phone' %}</th>
-        <th class="list" scope="col">{% trans 'E-Mail' %}</th>
+        <th class="list" scope="col">{% translate 'Last name' %}</th>
+        <th class="list" scope="col">{% translate 'First name' %}</th>
+        <th class="list" scope="col">{% translate 'Phone' %}</th>
+        <th class="list" scope="col">{% translate 'E-Mail' %}</th>
     </tr>
 
     {% if object_list %}
@@ -28,4 +28,4 @@
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

@@ -1,11 +1,11 @@
 {% load i18n %}
 
 {% if search_endpoint %}
-<h4 class="margin">{% trans 'Search' %}:</h4>
+<h4 class="margin">{% translate 'Search' %}:</h4>
 
 <form action="{{ search_endpoint }}" method="get">
     <div id="search" class="box">
-        <input type="text" size="20" id="search-input" name="search" value="" /><input class="my-button" type="submit" id="search-submit" value="{% trans 'Search' %}" />
+        <input type="text" size="20" id="search-input" name="search" value="" /><input class="my-button" type="submit" id="search-submit" value="{% translate 'Search' %}" />
     </div> <!-- /search -->
 </form>
 {% endif %}

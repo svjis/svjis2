@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Group' %}</h1>
-[<a href="{% url 'admin_group_edit' pk=0 %}">{% trans 'Create new group' %}</a>]
+<h1 class="page-title" id="tbl-desc">{% translate 'Group' %}</h1>
+[<a href="{% url 'admin_group_edit' pk=0 %}">{% translate 'Create new group' %}</a>]
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
@@ -13,20 +13,20 @@
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Name' %}</th>
+        <th class="list" scope="col">{% translate 'Name' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_group_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_user' %}?group_filter={{ obj.pk }}"><img src="/static/gfx/user.png" border="0" title="{% trans 'List of users' %}" alt="{% trans 'List of users' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% trans 'Do you want to delete' %} {{ obj.name }} ?')) return false;" href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_group_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_user' %}?group_filter={{ obj.pk }}"><img src="/static/gfx/user.png" border="0" title="{% translate 'List of users' %}" alt="{% translate 'List of users' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.name }} ?')) return false;" href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
         <td class="list">{{ obj.name }}</td>
     </tr>
     {% endfor %}
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

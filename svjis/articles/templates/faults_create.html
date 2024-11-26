@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'Fault report' %}</h1>
+<h1 class="page-title" id="tbl-desc">{% translate 'Fault report' %}</h1>
 
 <form action="{% url 'faults_fault_create_save' %}" method="post">
     {% csrf_token %}
@@ -34,8 +34,8 @@
     </p>
     {% endif %}
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% trans 'Save' %}" />
+        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
-{% endblock %}
+{% endblock content %}

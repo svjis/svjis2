@@ -9,49 +9,49 @@
 <table border="0" aria-describedby="tbl-desc">
     {% if company.address %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'Address' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'Address' %}:&nbsp;</th>
         <td>{{ company.address }}</td>
     </tr>
     {% endif %}
     {% if company.city %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'City' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'City' %}:&nbsp;</th>
         <td>{{ company.city }}</td>
     </tr>
     {% endif %}
     {% if company.post_code %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'Post code' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'Post code' %}:&nbsp;</th>
         <td>{{ company.post_code }}</td>
     </tr>
     {% endif %}
     {% if company.phone %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'Phone' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'Phone' %}:&nbsp;</th>
         <td>{{ company.phone }}</td>
     </tr>
     {% endif %}
     {% if company.email %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'E-Mail' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'E-Mail' %}:&nbsp;</th>
         <td><a href="mailto:{{ company.email }}">{{ company.email }}</a></td>
     </tr>
     {% endif %}
     {% if company.registration_no %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'Registration No.' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'Registration No.' %}:&nbsp;</th>
         <td>{{ company.registration_no }}</td>
     </tr>
     {% endif %}
     {% if company.vat_registration_no %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'VAT Registration No.' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'VAT Registration No.' %}:&nbsp;</th>
         <td>{{ company.vat_registration_no }}</td>
     </tr>
     {% endif %}
     {% if company.internet_domain %}
     <tr>
-        <th scope="row" style="text-align: left">{% trans 'Internet domain' %}:&nbsp;</th>
+        <th scope="row" style="text-align: left">{% translate 'Internet domain' %}:&nbsp;</th>
         <td>{{ company.internet_domain }}</td>
     </tr>
     {% endif %}
@@ -72,4 +72,4 @@
 </table>
 {% endif %}
 
-{% endblock %}
+{% endblock content %}

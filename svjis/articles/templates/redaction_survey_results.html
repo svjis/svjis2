@@ -1,22 +1,21 @@
 {% extends "base-with-aside-menu-content.html" %}
 
-{% load i18n %}
-{% load humanize %}
+{% load humanize i18n %}
 
 {% block content %}
 
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 
-<p>{{ obj.description | safe }}</p>
+<p>{{ obj.description|safe }}</p>
 
-<h2 class="page-title" id="tbl2-desc">{% trans 'Result' %}</h2>
+<h2 class="page-title" id="tbl2-desc">{% translate 'Result' %}</h2>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Description' %}</th>
-        <th class="list" scope="col">{% trans 'Votes' %}</th>
-        <th class="list" scope="col">{% trans 'Votes' %} %</th>
+        <th class="list" scope="col">{% translate 'Description' %}</th>
+        <th class="list" scope="col">{% translate 'Votes' %}</th>
+        <th class="list" scope="col">{% translate 'Votes' %} %</th>
     </tr>
 
     {% if obj.options %}
@@ -31,21 +30,21 @@
     {% endif %}
 </table>
 
-<h2 class="page-title" id="tbl2-desc">{% trans 'Voting log' %}</h2>
+<h2 class="page-title" id="tbl2-desc">{% translate 'Voting log' %}</h2>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Time' %}</th>
-        <th class="list" scope="col">{% trans 'User' %}</th>
-        <th class="list" scope="col">{% trans 'Option' %}</th>
+        <th class="list" scope="col">{% translate 'Time' %}</th>
+        <th class="list" scope="col">{% translate 'User' %}</th>
+        <th class="list" scope="col">{% translate 'Option' %}</th>
     </tr>
 
     {% if obj.answers %}
     {% for a in obj.answers %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ a.time | date:"d.m.Y H:i" }}</td>
+        <td class="list">{{ a.time|date:"d.m.Y H:i" }}</td>
         <td class="list">{{ a.user.first_name }}&nbsp;{{ a.user.last_name }}</td>
         <td class="list">{{ a.option.description }}</td>
     </tr>
@@ -53,4 +52,4 @@
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

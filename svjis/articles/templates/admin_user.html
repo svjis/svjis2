@@ -1,25 +1,24 @@
 {% extends "base-with-aside-menu-content.html" %}
 
-{% load article_filters %}
-{% load i18n %}
+{% load article_filters i18n %}
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% trans 'User' %}</h1>
+<h1 class="page-title" id="tbl-desc">{% translate 'User' %}</h1>
 
 <div class="container">
     <div class="row">
 
         <div class="left">
-            <p>[<a href="{% url 'admin_user_edit' pk=0 %}">{% trans 'Create new user' %}</a>]</p>
+            <p>[<a href="{% url 'admin_user_edit' pk=0 %}">{% translate 'Create new user' %}</a>]</p>
         </div>
 
         <div class="middle">
-            <p>[<a href="{% url 'admin_user_export_to_excel' %}">{% trans 'Export to Excel' %}</a>]</p>
+            <p>[<a href="{% url 'admin_user_export_to_excel' %}">{% translate 'Export to Excel' %}</a>]</p>
         </div>
 
         <div class="right">
-            <p>{% trans 'Deactivated users' %}</p>
+            <p>{% translate 'Deactivated users' %}</p>
         </div>
         <div class="middle">
             <p>
@@ -30,7 +29,7 @@
         </div>
 
         <div class="right">
-            <p>{% trans 'Group' %}</p>
+            <p>{% translate 'Group' %}</p>
         </div>
         <div class="middle">
             <p>
@@ -38,7 +37,7 @@
                 <select name='group_filter' onchange='this.form.submit()'>
                     <option value="0">-------</option>
                     {% for r in group_list %}
-                    <option value="{{ r.pk }}" {% if group_filter == r.pk  %}selected{% endif %}>{{ r.name }}</option>
+                    <option value="{{ r.pk }}" {% if group_filter == r.pk %}selected{% endif %}>{{ r.name }}</option>
                     {% endfor %}
                 </select>
             </form>
@@ -53,27 +52,27 @@
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Last name' %}</th>
-        <th class="list" scope="col">{% trans 'First name' %}</th>
-        <th class="list" scope="col">{% trans 'Active' %}</th>
-        <th class="list" scope="col">{% trans 'E-Mail' %}</th>
-        <th class="list" scope="col">{% trans 'Last login' %}</th>
+        <th class="list" scope="col">{% translate 'Last name' %}</th>
+        <th class="list" scope="col">{% translate 'First name' %}</th>
+        <th class="list" scope="col">{% translate 'Active' %}</th>
+        <th class="list" scope="col">{% translate 'E-Mail' %}</th>
+        <th class="list" scope="col">{% translate 'Last login' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% trans 'Edit' %}" alt="{% trans 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_user_owns' pk=obj.pk %}"><img src="/static/gfx/house.png" border="0" title="{% trans 'Units' %}" alt="{% trans 'Units' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_user_owns' pk=obj.pk %}"><img src="/static/gfx/house.png" border="0" title="{% translate 'Units' %}" alt="{% translate 'Units' %}"></a></td>
         <td class="list">{{ obj.last_name }}</td>
         <td class="list">{{ obj.first_name }}</td>
-        <td class="list">{{ obj.is_active | yes_no }}</td>
+        <td class="list">{{ obj.is_active|yes_no }}</td>
         <td class="list"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
-        <td class="list">{{ obj.last_login | date:"d.m.Y H:i"}}</td>
+        <td class="list">{{ obj.last_login|date:"d.m.Y H:i" }}</td>
     </tr>
     {% endfor %}
     {% endif %}
 </table>
 
-{% endblock %}
+{% endblock content %}

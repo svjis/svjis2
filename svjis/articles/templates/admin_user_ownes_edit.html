@@ -9,9 +9,9 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% trans 'Type' %}</th>
-        <th class="list" scope="col">{% trans 'Registration Id' %}</th>
-        <th class="list" scope="col">{% trans 'Description' %}</th>
+        <th class="list" scope="col">{% translate 'Type' %}</th>
+        <th class="list" scope="col">{% translate 'Registration Id' %}</th>
+        <th class="list" scope="col">{% translate 'Description' %}</th>
         <th class="list" scope="col">&nbsp;</th>
     </tr>
 
@@ -22,7 +22,7 @@
         <td class="list">{{ obj.type.description }}</td>
         <td class="list">{{ obj.registration_id }}</td>
         <td class="list">{{ obj.description }}</td>
-        <td class="list"><a href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% trans 'Delete' %}" alt="{% trans 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}
@@ -38,8 +38,8 @@
         <option value="{{ bu.id }}">{{ bu.type.description }} - {{ bu.registration_id }} - {{ bu.description }}</option>
         {% endfor %}
     </select>
-    <input id="submit" type="submit" value="{% trans 'Add' %}" />
+    <input id="submit" type="submit" value="{% translate 'Add' %}" />
 </form>
 {% endif %}
 
-{% endblock %}
+{% endblock content %}
