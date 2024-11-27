@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'articles',
     'tinymce',
     'django.contrib.sitemaps',
+    'dramatiq_crontab',
 ]
 
 MIDDLEWARE = [

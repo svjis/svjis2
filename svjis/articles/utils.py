@@ -1,3 +1,4 @@
+import dramatiq
 import logging
 import re
 import secrets
@@ -18,6 +19,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from dramatiq_crontab import cron
 from openpyxl.styles import NamedStyle, Font, Border, Side, PatternFill
 
 
@@ -146,6 +148,8 @@ def adjust_worksheet_columns_width(ws, max_width=1000):
         ws.column_dimensions[column_letter].width = adjusted_width
 
 
+@cron("*/5 * * * *")  # every 5 minutes
+@dramatiq.actor
 def send_mails(recipient_list: list, subject: str, html_body: str, immediately: bool) -> None:
     if settings.EMAIL_HOST == '':
         logger.error("Warning: It seems E-Mail system is not configured yet.")
