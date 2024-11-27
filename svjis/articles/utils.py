@@ -148,8 +148,6 @@ def adjust_worksheet_columns_width(ws, max_width=1000):
         ws.column_dimensions[column_letter].width = adjusted_width
 
 
-@cron("*/5 * * * *")  # every 5 minutes
-@dramatiq.actor
 def send_mails(recipient_list: list, subject: str, html_body: str, immediately: bool) -> None:
     if settings.EMAIL_HOST == '':
         logger.error("Warning: It seems E-Mail system is not configured yet.")
@@ -167,6 +165,8 @@ def send_mails(recipient_list: list, subject: str, html_body: str, immediately: 
                 models.MessageQueue.objects.create(email=r, subject=subject, body=html_body, status=0)
 
 
+@cron("*/5 * * * *")  # every 5 minutes
+@dramatiq.actor
 def send_message_queue():
     messages = models.MessageQueue.objects.filter(status=0)
     for m in messages:
