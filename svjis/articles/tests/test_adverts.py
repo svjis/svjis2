@@ -17,7 +17,8 @@ class AdvertsTest(UserDataMixin, TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/adverts_list/')
 
-    def test_advert_created_by_user(self):
+    def test_hide_adverts_of_deactivated_user(self):
+        # create advert
         self.create_advert(
             "petr",
             "petr",
@@ -32,6 +33,10 @@ class AdvertsTest(UserDataMixin, TestCase):
             },
         )
 
+        # advert is visible for other users
+        logged_in = self.client.login(username='jiri', password='jiri')
+        self.assertTrue(logged_in)
+
         response = self.client.get(reverse('adverts_list'), follow=True)
         self.assertEqual(response.status_code, 200)
 
@@ -40,3 +45,14 @@ class AdvertsTest(UserDataMixin, TestCase):
 
         advert = adverts[0]['advert']
         self.assertEqual(advert.created_by_user, self.u_petr)
+
+        # disable advert owner
+        self.u_petr.is_active = False
+        self.u_petr.save()
+
+        # advert is not visible for other users
+        response = self.client.get(reverse('adverts_list'), follow=True)
+        self.assertEqual(response.status_code, 200)
+
+        adverts = response.context['object_list']
+        self.assertEqual(len(adverts), 0)
