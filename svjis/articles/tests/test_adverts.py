@@ -6,7 +6,7 @@ from .testdata import UserDataMixin
 
 class AdvertsTest(UserDataMixin, TestCase):
 
-    def create_advert(self, username, password, advert_form, status):
+    def create_advert(self, username, password, advert_form, expected_status):
         logged_in = self.client.login(username=username, password=password)
         self.assertTrue(logged_in)
         response = self.client.post(
@@ -14,8 +14,8 @@ class AdvertsTest(UserDataMixin, TestCase):
             advert_form,
             follow=False,
         )
-        if status == 302:
-            self.assertEqual(response.status_code, status)
+        if expected_status == 302:
+            self.assertEqual(response.status_code, expected_status)
             self.assertEqual(response.url, '/adverts_list/')
             response = self.client.get(reverse('adverts_list'), follow=True)
             self.assertEqual(response.status_code, 200)
@@ -26,7 +26,7 @@ class AdvertsTest(UserDataMixin, TestCase):
             advert = adverts[0]['advert']
             return advert
         else:
-            self.assertEqual(response.status_code, status)
+            self.assertEqual(response.status_code, expected_status)
             return None
 
     def test_hide_adverts_of_deactivated_user(self):
