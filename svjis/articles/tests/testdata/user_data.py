@@ -18,6 +18,8 @@ class UserDataMixin(PreferencesDataMixin):
                 PermissionFactory(codename="svjis_view_fault_menu"),
                 PermissionFactory(codename="svjis_fault_reporter"),
                 PermissionFactory(codename="svjis_add_fault_comment"),
+                PermissionFactory(codename="svjis_view_adverts_menu"),
+                PermissionFactory(codename="svjis_add_advert"),
             ],
         )
         cls.g_board_member = GroupFactory(
