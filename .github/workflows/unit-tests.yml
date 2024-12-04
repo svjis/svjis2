@@ -38,11 +38,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
+          cache-dependency-path: 'requirements*.txt'
 
       - name: Install Dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
