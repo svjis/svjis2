@@ -20,7 +20,7 @@ jobs:
           cache: "pip"
 
       - name: Run pre-commit
-        uses: pre-commit/action@v3
+        uses: pre-commit/action@v3.0.1
 
   unit-test:
     runs-on: ubuntu-latest
