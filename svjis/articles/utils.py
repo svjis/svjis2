@@ -3,6 +3,7 @@ import re
 import secrets
 import string
 import os.path
+import time
 from . import (
     views,
     views_contact,
@@ -18,6 +19,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from django_tasks import task
 from openpyxl.styles import NamedStyle, Font, Border, Side, PatternFill
 
 
@@ -163,12 +165,17 @@ def send_mails(recipient_list: list, subject: str, html_body: str, immediately: 
                 models.MessageQueue.objects.create(email=r, subject=subject, body=html_body, status=0)
 
 
+@task()
 def send_message_queue():
-    messages = models.MessageQueue.objects.filter(status=0)
-    for m in messages:
-        send_mails([m.email], m.subject, m.body, True)
-        m.status = 1
-        m.save()
+    for i in range(100):
+        print(i)
+        time.sleep(1)
+
+    # messages = models.MessageQueue.objects.filter(status=0)
+    # for m in messages:
+    #     send_mails([m.email], m.subject, m.body, True)
+    #     m.status = 1
+    #     m.save()
 
 
 def get_template(template_key):
