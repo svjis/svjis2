@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'articles',
     'tinymce',
     'django.contrib.sitemaps',
+    'django_tasks',
+    'django_tasks.backends.database',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +56,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+TASKS = {
+    "default": {
+        "BACKEND": "django_tasks.backends.database.DatabaseBackend",
+    }
+}
 
 ROOT_URLCONF = 'svjis.urls'
 
@@ -83,6 +91,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'transaction_mode': 'EXCLUSIVE',
+        },
     }
 }
 

@@ -285,7 +285,8 @@ def redaction_article_notifications_send_view(request):
     users = get_users_for_notification(article)
 
     recipients = [u for u in users if request.POST.get(f"u_{u.pk}", False) == 'on']
-    utils.send_article_notification(recipients, f"{request.scheme}://{request.get_host()}", article)
+    # utils.send_article_notification(recipients, f"{request.scheme}://{request.get_host()}", article)
+    utils.send_message_queue.enqueue()
     i = len(recipients)
 
     ctx = utils.get_context()
