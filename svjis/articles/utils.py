@@ -18,6 +18,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from django_tasks import task
 from openpyxl.styles import NamedStyle, Font, Border, Side, PatternFill
 
 
@@ -161,8 +162,10 @@ def send_mails(recipient_list: list, subject: str, html_body: str, immediately: 
                 logger.warning(f"It seems E-Mail address is not valid: {r} - skipping it")
             else:
                 models.MessageQueue.objects.create(email=r, subject=subject, body=html_body, status=0)
+        send_message_queue.enqueue()
 
 
+@task()
 def send_message_queue():
     messages = models.MessageQueue.objects.filter(status=0)
     for m in messages:
