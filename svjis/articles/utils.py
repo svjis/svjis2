@@ -3,7 +3,6 @@ import re
 import secrets
 import string
 import os.path
-import time
 from . import (
     views,
     views_contact,
@@ -163,19 +162,16 @@ def send_mails(recipient_list: list, subject: str, html_body: str, immediately: 
                 logger.warning(f"It seems E-Mail address is not valid: {r} - skipping it")
             else:
                 models.MessageQueue.objects.create(email=r, subject=subject, body=html_body, status=0)
+        send_message_queue.enqueue()
 
 
 @task()
 def send_message_queue():
-    for i in range(100):
-        print(i)
-        time.sleep(1)
-
-    # messages = models.MessageQueue.objects.filter(status=0)
-    # for m in messages:
-    #     send_mails([m.email], m.subject, m.body, True)
-    #     m.status = 1
-    #     m.save()
+    messages = models.MessageQueue.objects.filter(status=0)
+    for m in messages:
+        send_mails([m.email], m.subject, m.body, True)
+        m.status = 1
+        m.save()
 
 
 def get_template(template_key):

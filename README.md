@@ -83,7 +83,7 @@ EMAIL_HOST_PASSWORD = 'heslo k vasemu smtp serveru'
 Odesílání e-mailů se děje na pozadí - systém ukládá e-maily do fronty k odeslání, viz `Administrace - čekající zprávy`. Pro odeslání zprávy je třeba spustit následující příkaz:
 
 ```
-python manage.py svjis_send_messages
+python manage.py db_worker --batch
 ```
 
 Při testování aplikace ho můžete spouštět ručně. Při produkčním nastavení je potřeba nastavit plánovač systému (například cron) aby ho spoštěl v určitých itervalech (například každých 5 minut).
