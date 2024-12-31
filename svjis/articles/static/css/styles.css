@@ -154,8 +154,7 @@ main {
 
 .main-content {
   background-color: gray;
-  /* width: 100%; */
-  display: inline-block;
+  width: 100%;
   padding: 0px 5px 0px 5px;
 }
 
@@ -277,6 +276,10 @@ footer {
 
   .side-menu.active {
     display: flex;
+  }
+
+  .main-content {
+    width: unset;
   }
 
 }
