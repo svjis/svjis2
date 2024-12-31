@@ -1,31 +1,38 @@
 {% load article_filters %}
 
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-language" content="cs" />
-
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="/static/css/reset.css" />
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="/static/css/main.css" />
-    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/static/css/main-msie.css" /><![endif]-->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="/static/css/style.css" />
-    <link rel="stylesheet" media="print" type="text/css" href="/static/css/print.css" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
     <title>{{ web_title|default:"SVJIS2" }}</title>
 </head>
 
 <body>
-    <div id="main">
-        {% include 'header.html' %}
-        {% include 'tray-menu.html' %}
-        {% include 'messages.html' %}
-        {% block sitecontent %}
+    <div class="wrapper1">
+        <div class="wrapper2">
+            {% include 'header.html' %}
+            {% include 'tray-menu.html' %}
+            {% include 'messages.html' %}
+            <main>
+            {% block sitecontent %}
 
-        {% endblock sitecontent %}
-        {% include 'footer.html' %}
+            {% endblock sitecontent %}
+            </main>
+            {% include 'footer.html' %}
+        </div>
     </div>
+    <script>
+        document.querySelector(".menu-toggle").addEventListener("click", function () {
+            const menu = document.querySelector(".menu");
+            const sidemenu = document.querySelector(".side-menu");
+            menu.classList.toggle("active");
+            sidemenu.classList.toggle("active");
+        });
+    </script>
 </body>
 
 </html>

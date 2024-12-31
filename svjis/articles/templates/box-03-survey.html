@@ -2,39 +2,39 @@
 
 {% if survey_list %}
 {% for obj in survey_list %}
-<!-- Inquiry -->
-<div class="box-02-top"></div>
-<div class="box-02-top-b box">
-    <span class="f-left"><strong>{% translate 'Survey' %}</strong></span>
-</div> <!-- /box-02-top-b -->
-<div class="box-02 box">
-    <strong>{{ obj.survey.description|safe }}</strong>
-    {% if obj.survey.is_open_for_voting and obj.user_can_vote %}
-        <form action="{% url 'article_survey_vote' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="pk" value="{{ obj.survey.pk }}">
 
-                {% for o in obj.survey.options %}
+<div class="box1">
+    <div class="box1_header">
+        {% translate 'Survey' %}
+    </div>
+    <div class="box1_content">
+        <strong>{{ obj.survey.description|safe }}</strong>
+        {% if obj.survey.is_open_for_voting and obj.user_can_vote %}
+            <form action="{% url 'article_survey_vote' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="pk" value="{{ obj.survey.pk }}">
+
+                    {% for o in obj.survey.options %}
+                    <p>
+                        <input id="vote-{{ forloop.counter }}" type="radio" name="i_{{ obj.survey.pk }}" value="{{ o.pk }}">&nbsp;{{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct|floatformat:1 }}%</em><br>
+                        <img src="/static/gfx/inq_0242.gif" width="{{ o.bar_width }}" height="22" alt="Bar">
+                    </p>
+                    {% endfor %}
+
                 <p>
-                    <input id="vote-{{ forloop.counter }}" type="radio" name="i_{{ obj.survey.pk }}" value="{{ o.pk }}">&nbsp;{{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct|floatformat:1 }}%</em><br>
-                    <img src="/static/gfx/inq_0242.gif" width="{{ o.bar_width }}" height="22" alt="Bar">
+                    <input type="submit" id="vote-submit" value="{% translate 'Vote' %}" />
                 </p>
-                {% endfor %}
-
+            </form>
+        {% else %}
+            {% for o in obj.survey.options %}
             <p>
-                <input type="submit" id="vote-submit" value="{% translate 'Vote' %}" />
+                {{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct|floatformat:1 }}%</em><br>
+                <img src="/static/gfx/inq_0242.gif" width="{{ o.bar_width }}" height="22" alt="Bar">
             </p>
-        </form>
-    {% else %}
-        {% for o in obj.survey.options %}
-        <p>
-            {{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct|floatformat:1 }}%</em><br>
-            <img src="/static/gfx/inq_0242.gif" width="{{ o.bar_width }}" height="22" alt="Bar">
-        </p>
-        {% endfor %}
-    {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+  </div>
 
-</div> <!-- /box-02 -->
-<div class="box-02-bottom"></div>
 {% endfor %}
 {% endif %}
