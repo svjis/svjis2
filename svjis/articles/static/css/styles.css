@@ -29,6 +29,11 @@ body {
   align-items: center;
 }
 
+#company_name {
+  font-size:160%;
+  text-align: center;
+}
+
 /* Tray */
 .tray {
   display: flex;
@@ -229,6 +234,10 @@ footer {
 @media (max-width: 960px) {
   main {
       flex-direction: column;
+  }
+
+  #company_name {
+    font-size:100%;
   }
 
   .menu {
