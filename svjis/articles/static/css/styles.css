@@ -1,0 +1,272 @@
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #d7ecf4;
+}
+
+.wrapper1 {
+  max-width: 960px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.wrapper2 {
+  margin: 0px 10px 0px 10px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  max-width: 940px;
+  height: 95px;
+  margin: auto;
+  background-color: #92bf00;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tray */
+.tray {
+  display: flex;
+  max-width: 940px;
+  padding: 10px 0px 15px 0px;
+  margin: auto;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #2f2f2f;
+  line-height: 1.5;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0px 20px 0px 20px;
+  margin: 0;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: underline;
+  display: block;
+  float: left;
+  padding: 0 15px 0 10px;
+  background:url("../design/tray-separator.gif") 100% 50% no-repeat;
+}
+
+nav a:hover {
+  text-decoration: none;
+}
+
+.tray li#tray-active a {
+  color: #94c9e2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0px 10px;
+}
+
+.menu-toggle .bar {
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  margin: 2px 0;
+  transition: 0.4s;
+}
+
+/* Main */
+main {
+  display: flex;
+  max-width: 940px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: #e5e5e5;
+  width: 190px;
+  min-width: 190px;
+  padding: 0px 0px 15px 0px;
+  margin: 10px 5px 10px 0px;
+  border-radius: 5px;
+}
+
+.side-menu__header {
+  padding: 5px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.side-menu__nav {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  display: inline;
+}
+
+#side-menu__nav-active a {
+  background: url("../design/nav-active.gif") 15px 13px no-repeat;
+  background-color: #9fcf00 !important;
+  color: #FFF !important;
+}
+
+.side-menu__nav #side-menu__nav-active ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  display: inline;
+}
+
+.side-menu__nav #side-menu__nav-active ul li a {
+  border-top: 1px solid #525252;
+  background: url("../design/nav-sub.gif") 30px 10px no-repeat;
+  background-color: #2f2f2f !important;
+  color: #F1FADD !important;
+  padding-left: 45px;
+}
+
+.side-menu__nav a {
+  display: block;
+  padding: 7px 10px 7px 30px;
+  margin: 0px;
+  background: url("../design/nav-link.gif") 15px 13px no-repeat;
+  border-top: 1px solid #e5e5e5;
+  background-color: #d0d0d0 !important;
+  color: #000 !important;
+}
+
+.main-content {
+  background-color: gray;
+  width: auto;
+  padding: 0px 5px 0px 5px;
+}
+
+/* Boxes */
+.boxes {
+  display: block;
+  background-color: #ffffff;
+  min-width: 260px;
+  padding: 0px;
+  margin: 10px 0px 10px 5px;
+}
+
+.box1 {
+  display: flex;
+  flex-direction: column;
+  background-color: #44a1ca;
+  padding: 5px;
+  margin: 0px 0px 10px 0px;
+  border-radius: 5px;
+  max-width: 250px;
+}
+
+.box1_header {
+  background-color: #44a1ca;
+  margin: 5px 0px 10px 0px;
+  padding: 0px 5px 0px 5px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.box1_content {
+  background-color: #ffffff;
+  padding: 5px;
+  margin: 0px;
+  border-radius: 5px;
+}
+
+.box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: #d7ecf4;
+  padding: 5px;
+  margin: 0px 0px 10px 0px;
+  border-radius: 5px;
+  max-width: 250px;
+}
+
+.box2_header {
+  background-color: #d7ecf4;
+  margin: 5px 0px 10px 0px;
+  padding: 0px 5px 0px 5px;
+  font-weight: bold;
+  color: #44a1ca;
+}
+
+.box2_content {
+  background-color: #ffffff;
+  padding: 5px;
+  margin: 0px;
+  border-radius: 5px;
+}
+
+
+/* Footer */
+footer {
+  display: flex;
+  max-width: 940px;
+  margin: auto;
+  color: #3fa5cd;
+  font-size: 85%;
+  padding: 20px 0px;
+  background: url("../design/footer.gif") 0 0 repeat-x;
+  background-color: lightgray;
+}
+
+/* Mobile Styles (320px — 480px) */
+@media (max-width: 960px) {
+  main {
+      flex-direction: column;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background-color: #000;
+  }
+
+  nav li {
+    background: none;
+    margin: 3px;
+  }
+
+  nav a {
+    background: none;
+  }
+
+  .side-menu {
+    display: none;
+    width: 100%;
+  }
+
+  .side-menu.active {
+    display: flex;
+  }
+
+}
