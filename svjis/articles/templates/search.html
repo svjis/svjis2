@@ -1,11 +1,14 @@
 {% load i18n %}
 
 {% if search_endpoint %}
-<h4 class="margin">{% translate 'Search' %}:</h4>
+<div class="side-menu__search">
+    <div class="side-menu__search_header">{% translate 'Search' %}:</div>
 
-<form action="{{ search_endpoint }}" method="get">
-    <div id="search" class="box">
-        <input type="text" size="20" id="search-input" name="search" value="" /><input class="my-button" type="submit" id="search-submit" value="{% translate 'Search' %}" />
-    </div> <!-- /search -->
-</form>
+    <form action="{{ search_endpoint }}" method="get">
+        <div class="side-menu__search_form">
+            <input type="text" size="20" id="search-input" name="search" value="" />
+            <input type="submit" id="search-submit" value="{% translate 'Search' %}" />
+        </div>
+    </form>
+</div>
 {% endif %}
