@@ -6,8 +6,10 @@
     <form action="{% url 'user_logout' %}" method="post">
         <div class="side-menu__login_form">
             {% csrf_token %}
-            {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}<br>
-            <input id="logout-submit" type="submit" value="{% translate 'Logout' %}" />
+            <p>
+                {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}<br>
+                <input id="logout-submit" type="submit" value="{% translate 'Logout' %}" />
+            </p>
         </div>
     </form>
 {% else %}
