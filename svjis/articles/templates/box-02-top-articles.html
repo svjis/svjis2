@@ -7,9 +7,9 @@
         {% translate 'Top articles' %}
     </div>
     <div class="box2_content">
-        <ul class="mostreaded">
+        <ul id="top_articles">
             {% for ta in top_articles %}
-            <li><span class="f-right">{{ ta.total }}&times;</span><a href="{% url 'article' slug=ta.article.slug %}">{{ ta.article.header }}</a></li>
+            <li><span class="top_articles_times">{{ ta.total }}&times;</span><a href="{% url 'article' slug=ta.article.slug %}">{{ ta.article.header }}</a></li>
             {% endfor %}
         </ul>
     </div>

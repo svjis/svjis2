@@ -237,8 +237,12 @@ main {
   background-color: #d0d0d0;
   position: relative;
   margin: 0;
-  padding: 15px;
+  padding: 5px 15px 5px 15px;
   text-align: center;
+}
+
+.side-menu__login_form p {
+  margin: 10px 0px 10px 0px;
 }
 
 #logout-submit {
@@ -339,7 +343,7 @@ main {
 
 .box1_content {
   background-color: #ffffff;
-  padding: 5px;
+  padding: 10px;
   margin: 0px;
   border-radius: 5px;
 }
@@ -364,9 +368,25 @@ main {
 
 .box2_content {
   background-color: #ffffff;
-  padding: 5px;
+  padding: 10px;
   margin: 0px;
   border-radius: 5px;
+}
+
+#top_articles {
+  margin: 0;
+  list-style: none;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+  padding: 0;
+}
+
+.top_articles_times {
+  color: #5F5F5F;
+  font-size: 85%;
+  float: right !important;
 }
 
 /*
