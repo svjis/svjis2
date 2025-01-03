@@ -9,7 +9,7 @@
     <div class="box1_content">
         {% for news in news_list %}
         {% if forloop.counter|divisibleby:2 %}<div class="bg">{% endif %}
-            <dl class="news box">
+            <dl class="news_box">
                 <dt>
                     {{ news.created_date|date:"M"|upper }}<br /><span>{{ news.created_date|date:"d" }}</span>
                 </dt>
@@ -17,7 +17,7 @@
                     <span>@ {{ news.created_date|date:"H:i" }}</span><br />{{ news.body|safe }}
                 </dd>
             </dl>
-        {% if forloop.counter|divisibleby:2 %}</div> <!-- /bg -->{% endif %}
+        {% if forloop.counter|divisibleby:2 %}</div>{% endif %}
         {% endfor %}
     </div>
 </div>
