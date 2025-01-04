@@ -7,9 +7,14 @@
         {% translate 'Useful Links' %}
     </div>
     <div class="box2_content">
-        <ul  class="usefullinks">
+        <ul class="usefullinks">
         {% for link in useful_links_list %}
-            <li><span class="f-left"><img style="float: left;" src="/static/gfx/attach_2.png" border="0" title="{{ link.header }}" alt="{{ link.header }}"></span><a href="{{ link.link }}">{{ link.header }}</a></li>
+            <li>
+                <span>
+                    <img style="float: left;" src="/static/gfx/attach_2.png" border="0" title="{{ link.header }}" alt="{{ link.header }}">
+                </span>
+                <a href="{{ link.link }}">{{ link.header }}</a>
+            </li>
         {% endfor %}
         </ul>
     </div>

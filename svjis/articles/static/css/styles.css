@@ -457,6 +457,20 @@ main {
   line-height: 1.5;
 }
 
+.usefullinks {
+  margin: 0;
+  list-style: none;
+  border: 0;
+  outline: 0;
+  padding: 0px 10px;
+  line-height: 1.5;
+}
+
+.usefullinks span {
+  padding: 0px 10px 0px 0px;
+  float: left !important;
+}
+
 /*
  *  Footer
  */
