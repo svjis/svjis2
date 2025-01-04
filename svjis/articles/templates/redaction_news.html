@@ -9,23 +9,23 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" scope="col">{% translate 'Date' %}</th>
-        <th class="list" scope="col">{% translate 'Author' %}</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Date' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Author' %}</th>
         <th class="list" scope="col">{% translate 'Published' %}</th>
         <th class="list" scope="col">{% translate 'Body' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
-    <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
-    <td class="list">{{ obj.published|yes_no }}</td>
-    <td class="list">{{ obj.body|safe }}</td>
-    <td class="list"><a href="{% url 'redaction_news_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-    <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete this news' %}?')) return false;" href="{% url 'redaction_news_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_news_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete this news' %}?')) return false;" href="{% url 'redaction_news_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="list hide-in-mobile">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
+        <td class="list hide-in-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="list">{{ obj.published|yes_no }}</td>
+        <td class="list">{{ obj.body|safe }}</td>
     </tr>
     {% endfor %}
     {% endif %}
