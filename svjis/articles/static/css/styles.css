@@ -121,6 +121,7 @@ nav a {
 }
 
 nav a:hover {
+  color: #fff;
   text-decoration: none;
 }
 
@@ -273,6 +274,7 @@ p.assets {
   background: url("../design/nav-active.gif") 15px 13px no-repeat;
   background-color: #9fcf00 !important;
   color: #FFF !important;
+  text-decoration: none;
 }
 
 .side-menu__nav #side-menu__nav-active ul {
@@ -298,6 +300,10 @@ p.assets {
   border-top: 1px solid #e5e5e5;
   background-color: #d0d0d0 !important;
   color: #000 !important;
+}
+
+.side-menu__nav a:hover {
+  text-decoration: none;
 }
 
 /*
