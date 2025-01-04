@@ -499,8 +499,14 @@ footer {
 }
 
 footer a {
-
+  color: #3fa5cd;
 }
+
+footer a:hover {
+  color: #3fa5cd;
+  text-decoration: none;
+}
+
 /*
  *  Messages
  */
