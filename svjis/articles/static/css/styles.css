@@ -452,6 +452,11 @@ main {
   padding: 10px 0;
 }
 
+.survey_box {
+  padding: 0px 10px;
+  line-height: 1.5;
+}
+
 /*
  *  Footer
  */
