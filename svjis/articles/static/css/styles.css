@@ -128,6 +128,13 @@ main {
   background: url("../design/dot.gif") 0 100% repeat-x;
   padding: 0px 0px 10px 0px;
   margin: 0px 0px 10px 0px;
+  line-height: 1.5;
+}
+
+.article-desc p {
+  text-align: justify;
+  margin-top: 8px;
+  margin-bottom: 0 !important;
 }
 
 .article-title-list {
@@ -136,12 +143,24 @@ main {
   margin: 0;
 }
 
-.info {
+.article-desc .info {
   font-size: 85%;
   color: #5F5F5F;
   margin: 0;
   text-align: justify;
   margin-bottom: 0 !important;
+}
+
+.info a {
+  color: #5F5F5F;
+}
+
+.info a:hover {
+  color:#2F2F2F;
+}
+
+.paginator {
+  text-align: center !important;
 }
 
 /*
