@@ -59,7 +59,7 @@ h2.article-title {color:#739D13;}
 
 nav ul {
   list-style-type: none;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px 0px 10px;
   margin: 0;
 }
 
@@ -113,9 +113,13 @@ main {
 }
 
 .main-content {
-  background-color: gray;
+  background-color: #fff;
   width: 100%;
   padding: 0px 5px 0px 5px;
+}
+
+article-box. {
+  background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
 /*
