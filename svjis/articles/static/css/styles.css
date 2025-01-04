@@ -23,6 +23,44 @@ h1.page-title {color:#000000;}
 h1.article-page-title {border-bottom:1px solid #D7ECF4; color:#3fa5cd;}
 h1.article-title {color:#739D13;}
 h2.article-title {color:#739D13;}
+h2.comments-title {color:#739D13;}
+
+table.list {
+  border:1px solid #c3c3c3;
+  border-collapse:collapse;
+}
+
+table.list th {
+  background-color:#f2f3f4;
+  border:1px solid #c3c3c3;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+}
+
+table.list td {
+  background-color:#ffffff;
+  border:1px solid #c3c3c3;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+}
+
+.black-submit {
+  font-family:"arial",sans-serif;
+  color: #ffffff; /* barva textu */
+  text-decoration: none; /* odebrat podtržení u odkazů */
+  user-select: none; /* zakázat označování textu */
+  background: #2F2F2F; /* pozadí tlačítka */
+  padding: .7em 1.5em; /* odsazení od textu */
+  outline: none; /* odstraňovat vnější rámeček v Mozilla */
+  border: none;
+}
+
+textarea.full-width {
+  width:100%;
+  box-sizing: border-box;
+}
 
 .wrapper1 {
   max-width: 960px;
@@ -157,6 +195,46 @@ main {
 
 .info a:hover {
   color:#2F2F2F;
+}
+
+.article-detail {
+  line-height: 1.5;
+}
+
+.article-detail .info {
+  font-size: 85%;
+  color: #5F5F5F;
+  margin: 0;
+  text-align: justify;
+  margin-bottom: 0 !important;
+}
+
+.article-detail p {
+  text-align: justify;
+  margin-top: 15px;
+}
+
+.article-title {
+  margin: 0;
+  padding: 10px 10px 0px 0px;
+  font-weight: normal;
+}
+
+p.assets {
+  margin: 0;
+  padding: 1px 0px;
+}
+
+.comments-title {
+  margin: 0;
+  padding: 10px 10px 10px 0px;
+  font-weight: normal;
+}
+
+.comment-box {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
 .paginator {
