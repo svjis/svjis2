@@ -13,6 +13,12 @@ body {
 a {color:#739D13;}
 a:hover {color:#516F0D;}
 
+h1, h2, h3, h4, h5, h6, p, address, blockquote, table, dl, fieldset {margin:15px 0;}
+
+h1 {font-size: large;}
+h2 {font-size: medium;}
+h3 {font-size: small;}
+
 h1.page-title {color:#000000;}
 h1.article-page-title {border-bottom:1px solid #D7ECF4; color:#3fa5cd;}
 h1.article-title {color:#739D13;}
@@ -115,11 +121,27 @@ main {
 .main-content {
   background-color: #fff;
   width: 100%;
-  padding: 0px 5px 0px 5px;
+  padding: 10px;
 }
 
 .article-box {
   background: url("../design/dot.gif") 0 100% repeat-x;
+  padding: 0px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
+}
+
+.article-title-list {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+
+.info {
+  font-size: 85%;
+  color: #5F5F5F;
+  margin: 0;
+  text-align: justify;
+  margin-bottom: 0 !important;
 }
 
 /*
