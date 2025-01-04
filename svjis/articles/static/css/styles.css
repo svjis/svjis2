@@ -712,4 +712,8 @@ footer a:hover {
     width: unset;
   }
 
+  .hide-in-mobile {
+    display: none;
+  }
+
 }

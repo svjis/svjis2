@@ -16,7 +16,7 @@
             <th class="list" scope="col"><input id="check-all" type="checkbox" checked onchange="checkAll();"/></th>
             <th class="list" scope="col">{% translate 'Last Name' %}</th>
             <th class="list" scope="col">{% translate 'First Name' %}</th>
-            <th class="list" scope="col">{% translate 'E-Mail' %}</th>
+            <th class="list hide-in-mobile" scope="col">{% translate 'E-Mail' %}</th>
         </tr>
 
         {% if object_list %}
@@ -25,7 +25,7 @@
             <td class="list"><input type="checkbox" name="u_{{ obj.pk }}" checked /></td>
             <td class="list">{{ obj.last_name }}</td>
             <td class="list">{{ obj.first_name }}</td>
-            <td class="list"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
+            <td class="list hide-in-mobile"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
         </tr>
         {% endfor %}
         {% endif %}
