@@ -9,7 +9,7 @@
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}">
     <p>
-        {{ form.description.label }}<br>
+        <label class="label" for="{{ form.description.auto_id }}">{{ form.description.label }}</label>
         {{ form.description }}
     </p>
     <fieldset>
@@ -67,7 +67,7 @@
         </p>
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
+        <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
