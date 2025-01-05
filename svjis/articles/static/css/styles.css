@@ -20,7 +20,7 @@ h2 {font-size: medium;}
 h3 {font-size: small;}
 
 h1.page-title {color:#000000;}
-h1.article-page-title {border-bottom:1px solid #D7ECF4; color:#3fa5cd;}
+h1.article-page-title {border-bottom:1px solid #D7ECF4; color:#3fa5cd; line-height: 1.5;}
 h1.article-title {color:#739D13;}
 h2.article-title {color:#739D13;}
 h2.comment-title {color:#739D13;}
