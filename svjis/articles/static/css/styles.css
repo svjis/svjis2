@@ -23,7 +23,7 @@ h1.page-title {color:#000000;}
 h1.article-page-title {border-bottom:1px solid #D7ECF4; color:#3fa5cd;}
 h1.article-title {color:#739D13;}
 h2.article-title {color:#739D13;}
-h2.comments-title {color:#739D13;}
+h2.comment-title {color:#739D13;}
 
 table.no-border {
   border: 0;
@@ -320,7 +320,7 @@ p.assets {
   padding: 1px 0px;
 }
 
-.comments-title {
+.comment-title {
   margin: 0;
   padding: 10px 10px 10px 0px;
   font-weight: normal;
@@ -330,6 +330,10 @@ p.assets {
   margin-bottom: 10px;
   padding-bottom: 10px;
   background: url("../design/dot.gif") 0 100% repeat-x;
+}
+
+. advert {
+
 }
 
 .paginator {
