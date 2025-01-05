@@ -348,7 +348,7 @@ class FaultReportForm(forms.ModelForm):
             ),
             'created_by_user': forms.widgets.Select(attrs={'class': 'common-input'}),
             'assigned_to_user': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck', 'size': '50'}),
         }
 
 

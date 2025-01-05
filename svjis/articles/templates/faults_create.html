@@ -10,31 +10,31 @@
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}" />
     <p>
-        {{ form.subject.label }}<br>
+        <label class="label" for="{{ form.subject.auto_id }}">{{ form.subject.label }}</label><br>
         {{ form.subject }}
     </p>
     <p>
-        {{ form.entrance.label }}<br>
+        <label class="label" for="{{ form.entrance.auto_id }}">{{ form.entrance.label }}</label><br>
         {{ form.entrance }}
     </p>
     <p>
-        {{ form.description.label }}<br>
+        <label class="label" for="{{ form.description.auto_id }}">{{ form.description.label }}</label><br>
         {{ form.description }}
     </p>
     {% if perms.articles.svjis_fault_resolver %}
     <p>
-        {{ form.created_by_user.label }}<br>
+        <label class="label" for="{{ form.created_by_user.auto_id }}">{{ form.created_by_user.label }}</label><br>
         {{ form.created_by_user }}
     </p>
     {% endif %}
     {% if perms.articles.svjis_fault_resolver %}
     <p>
-        {{ form.assigned_to_user.label }}<br>
+        <label class="label" for="{{ form.assigned_to_user.auto_id }}">{{ form.assigned_to_user.label }}</label><br>
         {{ form.assigned_to_user }}
     </p>
     {% endif %}
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
+        <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 
