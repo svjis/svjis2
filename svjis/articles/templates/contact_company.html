@@ -6,7 +6,7 @@
 
 <h1 class="page-title" id="tbl-desc">{{ company.name }}</h1>
 
-<table border="0" aria-describedby="tbl-desc">
+<table class="no-border" aria-describedby="tbl-desc">
     {% if company.address %}
     <tr>
         <th scope="row" style="text-align: left">{% translate 'Address' %}:&nbsp;</th>
@@ -58,7 +58,7 @@
 </table>
 
 {% if company.board %}
-<table border="0" aria-describedby="tbl-desc">
+<table class="no-border" aria-describedby="tbl-desc">
     <tr>
         <th scope="col" style="text-align: left" colspan="3">Výbor:&nbsp;</th>
     </tr>
