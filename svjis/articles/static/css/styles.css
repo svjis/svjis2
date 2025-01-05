@@ -71,6 +71,60 @@ textarea.full-width {
   box-sizing: border-box;
 }
 
+fieldset {
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  line-height: 1.5;
+}
+
+legend {
+  color: #000000;
+  background: #d0d0d0;
+  border: 1px solid #d0d0d0;
+  padding: 2px 6px;
+}
+
+legend.hidden-legend {display: none;}
+
+.common-label {
+  width: 14em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+  padding: 0;
+}
+
+.common-input {
+  color: #000000;
+  background: #ffffff;
+  height:22px;
+  border: 1px solid #e5e5e5;
+  margin: 0;
+  padding: 0;
+}
+
+.common-input-chck {
+  color: #000000;
+  background: #ffffff;
+  height:22px;
+  border: 1px solid #e5e5e5;
+  margin: 0;
+  padding: 0;
+}
+.common-textarea {
+  color: #000000;
+  background: #ffffff;
+  height:150px;
+  border: 1px solid #e5e5e5;
+}
+
+.common-submit input {
+  margin-left: 15em;
+}
+
 .wrapper1 {
   max-width: 960px;
   margin: auto;
@@ -725,5 +779,13 @@ footer a:hover {
   .hide-in-mobile {
     display: none;
   }
+  .common-label {
+    text-align: left;
+    color:#5F5F5F;
+    font-weight: bold;
+  }
 
+  .common-input {
+    width: 100%;
+  }
 }

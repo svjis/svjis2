@@ -184,7 +184,7 @@ class PersonalUserProfileForm(forms.ModelForm):
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'country': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck', 'size': '50'}),
         }
 
 
