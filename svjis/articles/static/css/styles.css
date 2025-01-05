@@ -332,8 +332,33 @@ p.assets {
   background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
-. advert {
+.advert {
+  background-color: #D7ECF4;
+  padding: 10px 10px 10px 15px;
+  border-radius: 5px;
+}
 
+.advert-desc h2 {
+  margin: 0;
+  font-size: 140%;
+  font-weight: normal;
+}
+
+.advert-desc .info {
+  font-size: 85%;
+  color: #5F5F5F;
+  margin: 0;
+  text-align: justify;
+  margin-bottom: 0 !important;
+}
+
+.advert-desc .contact {
+  color: #5F5F5F;
+  line-height: 1.5;
+}
+
+p.contact a {
+  color: #5F5F5F;
 }
 
 .paginator {

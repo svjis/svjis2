@@ -378,7 +378,7 @@ class AdvertForm(forms.ModelForm):
             ),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
-            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
