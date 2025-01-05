@@ -25,6 +25,15 @@ h1.article-title {color:#739D13;}
 h2.article-title {color:#739D13;}
 h2.comments-title {color:#739D13;}
 
+table.no-border {
+  border: 0;
+  line-height: 1.6;
+}
+
+table.full-width {
+  width: 100%;
+}
+
 table.list {
   border:1px solid #c3c3c3;
   border-collapse:collapse;
@@ -275,6 +284,7 @@ p.assets {
   background-color: #9fcf00 !important;
   color: #FFF !important;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .side-menu__nav #side-menu__nav-active ul {
