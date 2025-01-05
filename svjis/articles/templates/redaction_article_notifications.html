@@ -11,7 +11,7 @@
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ article.pk }}">
 
-    <table class="list" aria-describedby="tbl-desc" id="recipient-list">
+    <table class="list full-width" aria-describedby="tbl-desc" id="recipient-list">
         <tr>
             <th class="list" scope="col"><input id="check-all" type="checkbox" checked onchange="checkAll();"/></th>
             <th class="list" scope="col">{% translate 'Last Name' %}</th>
@@ -31,7 +31,7 @@
         {% endif %}
     </table>
     <p>
-        <input id="submit" class="my-button" type="submit" value="{% translate 'Submit' %}" />
+        <input id="submit" class="black-submit" type="submit" value="{% translate 'Submit' %}" />
     </p>
 </form>
 

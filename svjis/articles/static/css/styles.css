@@ -119,6 +119,8 @@ legend.hidden-legend {display: none;}
   background: #ffffff;
   height:150px;
   border: 1px solid #e5e5e5;
+  width:100%;
+  box-sizing: border-box;
 }
 
 .common-submit input {
@@ -779,6 +781,12 @@ footer a:hover {
   .hide-in-mobile {
     display: none;
   }
+
+  .label {
+    color:#5F5F5F;
+    font-weight: bold;
+  }
+
   .common-label {
     text-align: left;
     color:#5F5F5F;
