@@ -95,6 +95,9 @@ class UsefulLinkForm(forms.ModelForm):
             "published",
         )
         widgets = {
+            'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'link': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'order': forms.widgets.NumberInput(attrs={'class': 'common-input', 'size': '50'}),
             'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
