@@ -55,6 +55,11 @@ table.list td {
   text-align:left;
 }
 
+table.list td.closed-ticket {
+  background-color:#d0d0d0;
+  text-decoration: line-through;
+}
+
 .black-submit {
   font-family:"arial",sans-serif;
   color: #ffffff; /* barva textu */
@@ -125,6 +130,30 @@ legend.hidden-legend {display: none;}
 
 .common-submit input {
   margin-left: 15em;
+}
+
+.create-button {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #949294;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:"arial",sans-serif;
+	font-size:13px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.create-button:hover {
+	background-color:#eb675e;
+  color:#ffffff;
+}
+.create-button:active {
+	position:relative;
+	top:1px;
+  color:#ffffff;
 }
 
 .wrapper1 {
