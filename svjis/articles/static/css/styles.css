@@ -128,6 +128,13 @@ legend.hidden-legend {display: none;}
   box-sizing: border-box;
 }
 
+.textarea-internal-note {
+  color: #000000;
+  background: #ffffff;
+  height:150px;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+}
 .common-submit input {
   margin-left: 15em;
 }
@@ -154,6 +161,17 @@ legend.hidden-legend {display: none;}
 	position:relative;
 	top:1px;
   color:#ffffff;
+}
+
+.filter-container {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.filter-item {
+  display: block;
+  padding: 0px 10px 0px 0px;
 }
 
 .wrapper1 {
@@ -852,6 +870,14 @@ footer a:hover {
   }
 
   .common-input {
+    width: 100%;
+  }
+
+  .filter-container {
+    display: block;
+  }
+
+  .textarea-internal-note {
     width: 100%;
   }
 }
