@@ -23,13 +23,13 @@
         {% for obj in permission_list %}
         <p>
             <label class="common-label" id="{{ obj.name }}-label" for="{{ obj.name }}-input">{{ obj.name }}</label>
-            <input class="common-input" id="{{ obj.name }}-input" type="checkbox" name="{{ obj.name }}" {% if obj.checked %}checked{% endif %}/>
+            <input class="common-input-chck" id="{{ obj.name }}-input" type="checkbox" name="{{ obj.name }}" {% if obj.checked %}checked{% endif %}/>
         </p>
         {% endfor %}
         {% endif %}
     </fieldset>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% translate 'Save' %}" />
+        <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
 </form>
 

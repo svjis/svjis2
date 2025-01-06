@@ -134,7 +134,7 @@ class UserForm(forms.ModelForm):
             'last_name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
             'username': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
@@ -158,9 +158,9 @@ class UserProfileForm(forms.ModelForm):
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'country': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
             'internal_note': forms.widgets.Textarea(
-                attrs={'class': 'common-textarea', 'rows': '5', 'cols': '40', 'wrap': True}
+                attrs={'class': 'textarea-internal-note', 'rows': '5', 'cols': '40', 'wrap': True}
             ),
         }
 
@@ -244,7 +244,7 @@ class CompanyForm(forms.ModelForm):
 
 class MemberModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"{obj.last_name} {obj.first_name} ({obj.username})"
+        return f"{obj.last_name} {obj.first_name}"
 
 
 class BoardForm(forms.ModelForm):
