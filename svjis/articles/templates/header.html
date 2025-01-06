@@ -1,9 +1,13 @@
-{% load article_filters %}
+{% load article_filters i18n %}
 
 
 <div class="header">
     {% if company_picture %}
-    <div id="logo"><a href="/" title="[Přejít na domovskou stránku]"><span style="background:url('/media/{{ company_picture }}') 0 0 no-repeat;"></span></a></div>
+    <div class="logo">
+        <a href="/" title="{% translate '[Go to homepage]' %}">
+            <span id="logo" style="background:url('/media/{{ company_picture }}') 0 0 no-repeat;"></span>
+        </a>
+    </div>
     {% endif %}
     <div id="company_name">{{ company_name|default:"SVJIS2" }}</div>
 </div>
