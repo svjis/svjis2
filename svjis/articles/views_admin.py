@@ -123,7 +123,7 @@ def admin_company_save_view(request):
 @permission_required("articles.svjis_edit_admin_company")
 @require_GET
 def admin_board_view(request):
-    board_list = models.Board.objects.all()
+    board_list = models.Board.objects.select_related('member').all()
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('board', request.user)
