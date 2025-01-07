@@ -14,23 +14,21 @@
 
 
     {% if assets %}
-    <p class="assets">
-        <table class="list" aria-describedby="tbl-desc">
-            <tr>
-                <th class="list" scope="col">&nbsp;</th>
-                <th class="list" scope="col">{% translate 'Assets' %}:</th>
-            </tr>
-            {% for a in assets %}
-            <tr>
-                <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
-                <td class="list"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-    </p>
+    <table class="list" aria-describedby="tbl-desc">
+        <tr>
+            <th class="list" scope="col">&nbsp;</th>
+            <th class="list" scope="col">{% translate 'Assets' %}:</th>
+        </tr>
+        {% for a in assets %}
+        <tr>
+            <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
+            <td class="list"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
     {% endif %}
 
-    {% if obj.comments %}
+    {% if obj.comments or obj.allow_comments %}
     <h2 class="comment-title">{% translate 'Comments' %}:</h2>
     {% for comment in obj.comments %}
     <div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
