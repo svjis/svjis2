@@ -77,7 +77,7 @@ textarea.full-width {
 }
 
 fieldset {
-  border: 1px solid #e5e5e5;
+  border: 1px solid #c3c3c3;
   width: 100%;
   box-sizing: border-box;
   padding: 15px;
@@ -106,7 +106,7 @@ legend.hidden-legend {display: none;}
   color: #000000;
   background: #ffffff;
   height:22px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #c3c3c3;
   margin: 0;
   padding: 0px 5px;
   box-sizing: border-box;
@@ -116,7 +116,7 @@ legend.hidden-legend {display: none;}
   color: #000000;
   background: #ffffff;
   height:22px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #c3c3c3;
   margin: 0;
   padding: 0;
 }
@@ -124,7 +124,7 @@ legend.hidden-legend {display: none;}
   color: #000000;
   background: #ffffff;
   height:150px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #c3c3c3;
   width:100%;
   box-sizing: border-box;
 }
@@ -133,7 +133,7 @@ legend.hidden-legend {display: none;}
   color: #000000;
   background: #ffffff;
   height:150px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #c3c3c3;
   box-sizing: border-box;
 }
 .common-submit input {
