@@ -123,7 +123,7 @@ def admin_company_save_view(request):
 @permission_required("articles.svjis_edit_admin_company")
 @require_GET
 def admin_board_view(request):
-    board_list = models.Board.objects.select_related('member').all()
+    board_list = models.Board.objects.select_related('member')
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['aside_menu_items'] = get_side_menu('board', request.user)
@@ -268,7 +268,7 @@ def admin_entrance_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_unit_view(request):
-    unit_list = models.BuildingUnit.objects.select_related('type', 'entrance').all()
+    unit_list = models.BuildingUnit.objects.select_related('type', 'entrance')
     type_list = models.BuildingUnitType.objects.all()
     entrance_list = models.BuildingEntrance.objects.all()
 
