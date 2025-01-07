@@ -268,7 +268,7 @@ def admin_entrance_delete_view(request, pk):
 @permission_required("articles.svjis_edit_admin_building")
 @require_GET
 def admin_building_unit_view(request):
-    unit_list = models.BuildingUnit.objects.all()
+    unit_list = models.BuildingUnit.objects.select_related('type', 'entrance').all()
     type_list = models.BuildingUnitType.objects.all()
     entrance_list = models.BuildingEntrance.objects.all()
 
