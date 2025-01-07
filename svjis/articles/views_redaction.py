@@ -144,7 +144,7 @@ def redaction_menu_delete_view(request, pk):
 @permission_required("articles.svjis_edit_article")
 @require_GET
 def redaction_article_view(request):
-    article_list = models.Article.objects.all()
+    article_list = models.Article.objects.select_related('author', 'menu').all()
 
     # Search
     search = request.GET.get('search')
@@ -474,7 +474,7 @@ def redaction_useful_link_delete_view(request, pk):
 @permission_required("articles.svjis_edit_survey")
 @require_GET
 def redaction_survey_view(request):
-    survey_list = models.Survey.objects.all()
+    survey_list = models.Survey.objects.select_related('author').all()
     header = _("Surveys")
 
     # Paginator

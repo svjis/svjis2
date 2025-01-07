@@ -52,7 +52,9 @@ def get_side_menu(active_item, user):
 @permission_required("articles.svjis_view_adverts_menu")
 @require_GET
 def adverts_list_view(request):
-    advert_list = models.Advert.objects.filter(published=True, created_by_user__is_active=True)
+    advert_list = models.Advert.objects.select_related('type', 'created_by_user').filter(
+        published=True, created_by_user__is_active=True
+    )
     scope = request.GET.get('scope', 'all')
     scope_description = _('All')
 
