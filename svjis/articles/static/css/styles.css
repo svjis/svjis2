@@ -910,4 +910,8 @@ footer a:hover {
   .textarea-internal-note {
     width: 100%;
   }
+
+  .box1, .box2 {
+    max-width: 400px;
+  }
 }
