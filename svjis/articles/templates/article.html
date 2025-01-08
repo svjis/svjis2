@@ -28,6 +28,10 @@
     </table>
     {% endif %}
 
+    <div class="article__back">
+        [<a href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>]
+    </div>
+
     {% if obj.comments or obj.allow_comments %}
     <h2 class="comment-title">{% translate 'Comments' %}:</h2>
     {% for comment in obj.comments %}

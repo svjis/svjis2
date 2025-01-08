@@ -360,6 +360,12 @@ main {
   background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
+.article__back {
+  display: none;
+  text-align: center;
+  padding: 15px 0px;
+}
+
 .advert {
   background-color: #D7ECF4;
   padding: 10px 10px 10px 15px;
@@ -914,5 +920,9 @@ footer a:hover {
 
   .box1, .box2 {
     max-width: 400px;
+  }
+
+  .article__back {
+    display: block;
   }
 }
