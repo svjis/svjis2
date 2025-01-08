@@ -290,6 +290,7 @@ main {
   background-color: #fff;
   width: 100%;
   padding: 10px;
+  overflow: hidden;
 }
 
 .article-box {
