@@ -925,4 +925,17 @@ footer a:hover {
   .back_to_list {
     display: block;
   }
+
+  #search-input {
+    width: 200px;
+  }
+
+  #search-submit {
+    left: 215px;
+  }
+
+  #login-input, #password-input {
+    width: 150px;
+  }
+
 }
