@@ -3,11 +3,11 @@
 {% if survey_list %}
 {% for obj in survey_list %}
 
-<div class="box1">
-    <div class="box1_header">
+<div class="box2">
+    <div class="box2_header">
         {% translate 'Survey' %}
     </div>
-    <div class="box1_content">
+    <div class="box2_content">
         <div class="survey_box">
             <strong>{{ obj.survey.description|safe }}</strong>
             {% if obj.survey.is_open_for_voting and obj.user_can_vote %}
