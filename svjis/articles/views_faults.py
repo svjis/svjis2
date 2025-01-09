@@ -54,7 +54,7 @@ def get_side_menu(active_item, user):
 @permission_required("articles.svjis_view_fault_menu")
 @require_GET
 def faults_list_view(request):
-    fault_list = models.FaultReport.objects.all()
+    fault_list = models.FaultReport.objects.select_related('created_by_user', 'assigned_to_user')
     scope = request.GET.get('scope', '')
     if scope == 'open':
         fault_list = fault_list.filter(closed=False)

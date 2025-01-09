@@ -74,7 +74,7 @@ def main_view(request):
 def main_filtered_view(request, menu):
     # Articles
     q = get_article_filter(request.user)
-    article_list = models.Article.objects.filter(q).distinct()
+    article_list = models.Article.objects.select_related('author', 'menu').filter(q).distinct()
 
     # Top 5 Articles
     top_history_from = make_aware(
