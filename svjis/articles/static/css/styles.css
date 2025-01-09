@@ -360,7 +360,7 @@ main {
   background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
-.article__back {
+.back_to_list {
   display: none;
   text-align: center;
   padding: 15px 0px;
@@ -922,7 +922,7 @@ footer a:hover {
     max-width: 400px;
   }
 
-  .article__back {
+  .back_to_list {
     display: block;
   }
 }
