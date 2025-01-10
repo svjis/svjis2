@@ -220,7 +220,9 @@ span#logo {
 }
 
 
-/* Tray */
+/*
+ *  Tray
+ */
 .tray {
   display: flex;
   max-width: 940px;
@@ -294,6 +296,9 @@ main {
   overflow: hidden;
 }
 
+/*
+ *  Article
+ */
 .article-box {
   background: url("../design/dot.gif") 0 100% repeat-x;
   padding: 0px 0px 10px 0px;
@@ -367,6 +372,10 @@ main {
   padding: 15px 0px;
 }
 
+/*
+ *  Advert
+ */
+
 .advert {
   background-color: #D7ECF4;
   padding: 10px 10px 10px 15px;
@@ -403,7 +412,6 @@ p.contact a {
 /*
  *  Side menu
  */
-
 .side-menu {
   display: flex;
   flex-direction: column;
@@ -819,14 +827,14 @@ footer a:hover {
   position:relative; margin:10px 0;
 }
 
-/* Mobile Styles (320px — 480px) */
+/*
+ *  Mobile Styles
+ */
 @media (max-width: 960px) {
+
+  /* Body */
   body {
     font-size: 100%;
-  }
-
-  main {
-      flex-direction: column;
   }
 
   input {
@@ -835,56 +843,6 @@ footer a:hover {
 
   textarea {
     font-size:100%;
-  }
-
-  #company_name {
-    font-size:120%;
-  }
-
-  .logo {
-    display: none;
-  }
-
-  .menu {
-    display: none;
-    flex-direction: column;
-    z-index: 1;
-  }
-
-  .menu.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  nav {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    background-color: #000;
-  }
-
-  nav li {
-    background: none;
-    margin: 3px;
-  }
-
-  nav a {
-    background: none;
-  }
-
-  .side-menu {
-    display: none;
-    width: 100%;
-  }
-
-  .side-menu.active {
-    display: flex;
-  }
-
-  .main-content {
-    width: unset;
   }
 
   .hide-in-mobile {
@@ -919,12 +877,71 @@ footer a:hover {
     width: 100%;
   }
 
-  .box1, .box2 {
-    max-width: 400px;
+  /* Header */
+  #company_name {
+    font-size:120%;
   }
+
+  .logo {
+    display: none;
+  }
+
+  /* Tray */
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background-color: #000;
+  }
+
+  nav li {
+    background: none;
+    margin: 3px;
+  }
+
+  nav a {
+    background: none;
+  }
+
+  /* Main */
+  main {
+      flex-direction: column;
+  }
+
+  .main-content {
+    width: unset;
+  }
+
+  /* Article */
 
   .back_to_list {
     display: block;
+  }
+
+  /* Advert */
+
+  /* Side menu */
+  .side-menu {
+    display: none;
+    width: 100%;
+  }
+
+  .side-menu.active {
+    display: flex;
   }
 
   #search-input {
@@ -940,4 +957,8 @@ footer a:hover {
     width: 150px;
   }
 
+  /* Boxes */
+  .box1, .box2 {
+    max-width: 400px;
+  }
 }
