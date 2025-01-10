@@ -205,6 +205,7 @@ legend.hidden-legend {display: none;}
 
 .logo {
   position: absolute;
+  top: 0;
   width: 940px;
   height: 94px;
 }
