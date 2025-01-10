@@ -14,10 +14,11 @@
 
 
     {% if assets %}
+    <h2 class="comment-title">{% translate 'Assets' %}:</h2>
     <table class="list" aria-describedby="tbl-desc">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
-            <th class="list" scope="col">{% translate 'Assets' %}:</th>
+            <th class="list" scope="col">{% translate 'File' %}</th>
         </tr>
         {% for a in assets %}
         <tr>
@@ -27,10 +28,6 @@
         {% endfor %}
     </table>
     {% endif %}
-
-    <div class="back_to_list">
-        [<a href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>]
-    </div>
 
     {% if obj.comments or obj.allow_comments %}
     <h2 class="comment-title">{% translate 'Comments' %}:</h2>
@@ -67,5 +64,10 @@
         </p>
     </form>
     {% endif %}
+
+    <div class="back_to_list">
+        [<a href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>]
+    </div>
+
 </div>
 {% endblock content %}
