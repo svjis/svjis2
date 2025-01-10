@@ -2,18 +2,30 @@
 
 {% block sitecontent %}
 
-    <!-- Columns -->
-    <div id="cols" class="box">
+<section class="side-menu">
+    <div class="side-menu__header">{{ aside_menu_name }}</div>
+    <ul class="side-menu__nav">
+        {% if aside_menu_items %}
+            {% for obj in aside_menu_items %}
+                <li {% if obj.active %}id="side-menu__nav-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a>
+                {% if obj.submenu %}
+                    <ul>
+                    {% for obj1 in obj.submenu %}
+                    <li><a href="{{ obj1.link }}">{{ obj1.description }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
 
-        <!-- Content -->
-        <div id="content">
-            {% block cnt %}
+    {% include 'search.html' %}
+    {% include 'login.html' %}
+</section>
 
-            {% endblock cnt %}
-        </div> <!-- /content -->
+{% block cnt %}
 
-        {% include 'aside-menu.html' %}
-
-    </div> <!-- /cols -->
+{% endblock cnt %}
 
 {% endblock sitecontent %}

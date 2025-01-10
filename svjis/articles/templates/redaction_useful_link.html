@@ -9,23 +9,23 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Header' %}</th>
         <th class="list" scope="col">{% translate 'Link' %}</th>
         <th class="list" scope="col">{% translate 'Order' %}</th>
         <th class="list" scope="col">{% translate 'Published' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-    <td class="list">{{ obj.header }}</td>
-    <td class="list"><a href="{{ obj.link }}">{{ obj.link }}</a></td>
-    <td class="list">{{ obj.order }}</td>
-    <td class="list">{{ obj.published|yes_no }}</td>
-    <td class="list"><a href="{% url 'redaction_useful_link_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-    <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete this useful link' %}?')) return false;" href="{% url 'redaction_useful_link_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="list"><a href="{% url 'redaction_useful_link_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete this useful link' %}?')) return false;" href="{% url 'redaction_useful_link_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="list">{{ obj.header }}</td>
+        <td class="list"><a href="{{ obj.link }}">{{ obj.link }}</a></td>
+        <td class="list">{{ obj.order }}</td>
+        <td class="list">{{ obj.published|yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}

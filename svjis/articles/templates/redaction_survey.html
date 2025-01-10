@@ -14,9 +14,9 @@
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Description' %}</th>
-        <th class="list" scope="col">{% translate 'Starting date' %}</th>
-        <th class="list" scope="col">{% translate 'Ending date' %}</th>
-        <th class="list" scope="col">{% translate 'Author' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Starting date' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Ending date' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Author' %}</th>
         <th class="list" scope="col">{% translate 'Published' %}</th>
 
     </tr>
@@ -29,9 +29,9 @@
         <td class="list"><a href="{% url 'redaction_survey_results_export_to_excel' pk=obj.id %}"><img src="/static/gfx/Files_xls.gif" border="0" title="{% translate 'Export results to Excel' %}" alt="{% translate 'Export results to Excel' %}"></a></td>
         <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete this survey' %} ?')) return false;" href="{% url 'redaction_survey_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
         <td class="list">{{ obj.description|safe }}</td>
-        <td class="list">{{ obj.starting_date|date:"d.m.Y" }}</td>
-        <td class="list">{{ obj.ending_date|date:"d.m.Y" }}</td>
-        <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="list hide-in-mobile">{{ obj.starting_date|date:"d.m.Y" }}</td>
+        <td class="list hide-in-mobile">{{ obj.ending_date|date:"d.m.Y" }}</td>
+        <td class="list hide-in-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
         <td class="list">{{ obj.published|yes_no }}</td>
     </tr>
     {% endfor %}

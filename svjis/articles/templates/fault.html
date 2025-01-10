@@ -24,7 +24,7 @@
     [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>]
 {% endif %}
 
-<table width="100%" class="list" aria-describedby="tbl-desc">
+<table class="list full-width" aria-describedby="tbl-desc">
     <tr>
         <th class="list" width="25%" scope="row">{% translate 'Date' %}</th>
         <td class="list" width="75%">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
@@ -53,42 +53,40 @@
 
 
 {% if pk != 0 %}
+    <h2 class="comment-title">{% translate 'Assets' %}:</h2>
+    {% if assets %}
+    <table class="list full-width" aria-describedby="tbl-desc">
+        <tr>
+            <th class="list" scope="col">&nbsp;</th>
+            <th class="list" scope="col">{% translate 'File' %}</th>
+            <th class="list" scope="col">{% translate 'Description' %}</th>
+            <th class="list" scope="col">{% translate 'User' %}</th>
+            <th class="list hide-in-mobile" scope="col">{% translate 'Time' %}</th>
+            <th class="list" scope="col">&nbsp;</th>
+        </tr>
+        {% for a in assets %}
+        <tr>
+            <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
+            <td class="list" id="asset_file_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
+            <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
+            <td class="list" id="asset_user_{{ a.asset.pk }}">{{ a.asset.created_by_user.first_name }}&nbsp;{{ a.asset.created_by_user.last_name }}</td>
+            <td class="list hide-in-mobile" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date|date:"d.m.Y H:i" }}</td>
+            {% if a.asset.created_by_user == user %}
+            <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+            {% else %}
+            <td class="list">&nbsp;</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
     {% if not obj.closed %}
     <form action="{% url 'faults_fault_asset_save' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="hidden" name="fault_pk" value="{{ obj.pk }}">
-    {% endif %}
-        <fieldset style="width:95%;">
-            <legend>{% translate 'Assets' %}</legend>
-            <p>
-                {% if assets %}
-                <table class="list" aria-describedby="tbl-desc">
-                    <tr>
-                        <th class="list" scope="col">&nbsp;</th>
-                        <th class="list" scope="col">{% translate 'File' %}</th>
-                        <th class="list" scope="col">{% translate 'Description' %}</th>
-                        <th class="list" scope="col">{% translate 'User' %}</th>
-                        <th class="list" scope="col">{% translate 'Time' %}</th>
-                        <th class="list" scope="col">&nbsp;</th>
-                    </tr>
-                    {% for a in assets %}
-                    <tr>
-                        <td class="list"><img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}"></td>
-                        <td class="list" id="asset_file_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
-                        <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
-                        <td class="list" id="asset_user_{{ a.asset.pk }}">{{ a.asset.created_by_user.first_name }}&nbsp;{{ a.asset.created_by_user.last_name }}</td>
-                        <td class="list" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date|date:"d.m.Y H:i" }}</td>
-                        {% if a.asset.created_by_user == user %}
-                        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-                        {% else %}
-                        <td class="list">&nbsp;</td>
-                        {% endif %}
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
-            </p>
-            {% if not obj.closed %}
+        <fieldset>
+            <legend>{% translate 'Add asset' %}</legend>
             <p>
                 <label class="common-label" for="{{ asset_form.description.auto_id }}">{{ asset_form.description.label }}</label>
                 {{ asset_form.description }}
@@ -97,25 +95,20 @@
                 <label class="common-label" for="{{ asset_form.file.auto_id }}">{{ asset_form.file.label }}</label>
                 {{ asset_form.file }}
             </p>
-            {% endif %}
         </fieldset>
-    {% if not obj.closed %}
         <p>
-            <input class="my-button" id="submit2" type="submit" value="{% translate 'Upload' %}" />
+            <input class="black-submit" id="submit2" type="submit" value="{% translate 'Upload' %}" />
         </p>
     </form>
     {% endif %}
 {% endif %}
 
-{% if obj.comments %}
-<h2 class="article-title">{% translate 'Comments' %}:</h2>
-    {% for comment in obj.comments %}
-    <div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
-        <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
-    </div>
-    {% endfor %}
-{% endif %}
-
+<h2 class="comment-title">{% translate 'Comments' %}:</h2>
+{% for comment in obj.comments %}
+<div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
+    <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
+</div>
+{% endfor %}
 
 {% if perms.articles.svjis_add_fault_comment and not obj.closed %}
 <form action="{% url 'fault_comment_save' %}" method="post">
@@ -131,9 +124,13 @@
         ></textarea>
     </p>
     <p>
-        <input class="my-button" id="submit" type="submit" value="{% translate 'Insert comment' %}" name="submit">
+        <input class="black-submit" id="submit" type="submit" value="{% translate 'Insert comment' %}" name="submit">
     </p>
 </form>
 {% endif %}
+
+<div class="back_to_list">
+    [<a href="{% url 'faults_list' %}?scope=open">&lt;&lt;&nbsp{% translate 'Back to fault list' %}</a>]
+</div>
 
 {% endblock content %}

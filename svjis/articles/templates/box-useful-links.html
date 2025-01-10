@@ -1,0 +1,23 @@
+{% load i18n %}
+
+{% if useful_links_list %}
+
+<div class="box1">
+    <div class="box1_header">
+        {% translate 'Useful Links' %}
+    </div>
+    <div class="box1_content">
+        <ul class="usefullinks">
+        {% for link in useful_links_list %}
+            <li>
+                <span>
+                    <img style="float: left;" src="/static/gfx/attach_2.png" border="0" title="{{ link.header }}" alt="{{ link.header }}">
+                </span>
+                <a href="{{ link.link }}">{{ link.header }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}

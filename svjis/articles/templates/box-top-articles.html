@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% if top_articles %}
+
+<div class="box2">
+    <div class="box2_header">
+        {% translate 'Top articles' %}
+    </div>
+    <div class="box2_content">
+        <ul id="top_articles">
+            {% for ta in top_articles %}
+            <li><span class="top_articles_times">{{ ta.total }}&times;</span><a href="{% url 'article' slug=ta.article.slug %}">{{ ta.article.header }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}

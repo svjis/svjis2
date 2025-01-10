@@ -4,45 +4,40 @@
 
 {% block cnt %}
 
-    <div id="content-left">
-        <div id="content-left-in">
+<section class="main-content">
 
-            <!-- Recent Articles -->
-            <h1 class="article-page-title">{{ header }}</h1>
+    <!-- Recent Articles -->
+    <h1 class="article-page-title">{{ header }}</h1>
 
-            {% if article_list %}
-            {% for obj in article_list %}
-            <!-- Article -->
-            <div class="article box">
-                <div class="article-desc">
-                    <h1 class="article-title-list"><a {% if search != '' %} href="{% url 'article' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'article' slug=obj.slug %}" {% endif %}>{{ obj.header|highlight:search|safe }}</a></h1>
-                    <p class="info">
-                        <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
-                        <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
-                        {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
-                        {% if obj.comments %}, {% translate 'Comments' %}: <strong>{{ obj.comments|length }}</strong>{% endif %}</p>
-                    <p>{{ obj.perex|highlight:search|safe }}</p>
-                </div>
-            </div> <!-- /article -->
-            {% endfor %}
-            {% endif %}
+    {% if article_list %}
+    {% for obj in article_list %}
+    <!-- Article -->
+    <div class="article-box">
+        <div class="article-desc">
+            <h1 class="article-title-list"><a {% if search != '' %} href="{% url 'article' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'article' slug=obj.slug %}" {% endif %}>{{ obj.header|highlight:search|safe }}</a></h1>
+            <p class="info">
+                <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:
+                <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>,
+                {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
+                {% if obj.comments %}, {% translate 'Comments' %}: <strong>{{ obj.comments|length }}</strong>{% endif %}
+            </p>
+            <p>{{ obj.perex|highlight:search|safe }}</p>
+        </div>
+    </div> <!-- /article -->
+    {% endfor %}
+    {% endif %}
 
-            {% include 'paginator.html' %}
+    {% include 'paginator.html' %}
 
-        </div> <!-- /content-left-in -->
-    </div> <!-- /content-left -->
+</section>
 
-    <hr class="noscreen" />
+<section class="boxes">
 
-    <div id="content-right">
+{% include 'box-news.html' %}
+{% include 'box-survey.html' %}
+{% include 'box-useful-links.html' %}
+{% include 'box-top-articles.html' %}
 
-        {% include 'box-03-survey.html' %}
-        {% include 'box-01-news.html' %}
-        {% include 'box-02-top-articles.html' %}
-        {% include 'box-04-useful-links.html' %}
-
-    </div> <!-- /content-right -->
-
-    <hr class="noscreen" />
+</section>
 
 {% endblock cnt %}

@@ -23,7 +23,7 @@ class ArticleMenuForm(forms.ModelForm):
         )
         widgets = {
             'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'hide': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'hide': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
             'parent': forms.widgets.Select(attrs={'class': 'common-input'}),
         }
 
@@ -39,7 +39,7 @@ class ArticleForm(forms.ModelForm):
                 mce_attrs={
                     'entity_encoding': 'raw',
                     'height': '350px',
-                    'width': '600px',
+                    'width': '100%',
                 },
             ),
             'body': TinyMCE(
@@ -47,13 +47,13 @@ class ArticleForm(forms.ModelForm):
                 mce_attrs={
                     'entity_encoding': 'raw',
                     'height': '350px',
-                    'width': '600px',
+                    'width': '100%',
                 },
             ),
             'menu': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'allow_comments': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
-            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
-            'visible_for_all': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'allow_comments': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
+            'visible_for_all': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
@@ -81,7 +81,7 @@ class NewsForm(forms.ModelForm):
             'body': forms.widgets.Textarea(
                 attrs={'class': 'common-textarea', 'rows': '20', 'cols': '80', 'wrap': True}
             ),
-            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
@@ -95,7 +95,10 @@ class UsefulLinkForm(forms.ModelForm):
             "published",
         )
         widgets = {
-            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'link': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'order': forms.widgets.NumberInput(attrs={'class': 'common-input', 'size': '50'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
@@ -118,7 +121,7 @@ class SurveyForm(forms.ModelForm):
             'ending_date': forms.widgets.DateInput(
                 format=('%Y-%m-%d'), attrs={'placeholder': 'Select Date', 'type': 'date'}
             ),
-            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
@@ -131,7 +134,7 @@ class UserForm(forms.ModelForm):
             'last_name': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
             'username': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'is_active': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 
@@ -155,9 +158,9 @@ class UserProfileForm(forms.ModelForm):
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'country': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
             'internal_note': forms.widgets.Textarea(
-                attrs={'class': 'common-textarea', 'rows': '5', 'cols': '40', 'wrap': True}
+                attrs={'class': 'textarea-internal-note', 'rows': '5', 'cols': '40', 'wrap': True}
             ),
         }
 
@@ -184,7 +187,7 @@ class PersonalUserProfileForm(forms.ModelForm):
             'post_code': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'country': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
-            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'show_in_phonelist': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck', 'size': '50'}),
         }
 
 
@@ -241,7 +244,7 @@ class CompanyForm(forms.ModelForm):
 
 class MemberModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"{obj.last_name} {obj.first_name} ({obj.username})"
+        return f"{obj.last_name} {obj.first_name}"
 
 
 class BoardForm(forms.ModelForm):
@@ -348,7 +351,7 @@ class FaultReportForm(forms.ModelForm):
             ),
             'created_by_user': forms.widgets.Select(attrs={'class': 'common-input'}),
             'assigned_to_user': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input', 'size': '50'}),
+            'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck', 'size': '50'}),
         }
 
 
@@ -378,7 +381,7 @@ class AdvertForm(forms.ModelForm):
             ),
             'phone': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'email': forms.widgets.EmailInput(attrs={'class': 'common-input', 'size': '50'}),
-            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input'}),
+            'published': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck'}),
         }
 
 

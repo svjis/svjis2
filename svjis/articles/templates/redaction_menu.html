@@ -9,29 +9,29 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
+        <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Name' %}</th>
         <th class="list" scope="col">{% translate 'Parent' %}</th>
         <th class="list" scope="col">{% translate 'Level' %}</th>
         <th class="list" scope="col">{% translate 'Hide' %}</th>
         <th class="list" scope="col">{% translate 'Articles' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list" {% if obj.level > 1 %}style="background-color:#f1948a;"{% endif %}>{% with range=''|center:obj.level %}{% for _ in range %}&nbsp;&nbsp;&nbsp;{% endfor %}{% endwith %}{{ obj.item.description }}</td>
-        <td class="list">{{ obj.item.parent.description }}</td>
-        <td class="list"{% if obj.level > 1 %}style="background-color:#f1948a;"{% endif %}>{{ obj.level }}</td>
-        <td class="list">{{ obj.item.hide|yes_no }}</td>
-        <td class="list">{{ obj.articles }}</td>
         <td class="list"><a href="{% url 'redaction_menu_edit' pk=obj.item.pk %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
         <td class="list">
             {% if obj.articles == 0 %}
             <a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.item.description }} ?')) return false;" href="{% url 'redaction_menu_delete' pk=obj.item.pk %}"><img src="/static/gfx/delete.png" border="0" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a>
             {% endif %}
         </td>
+        <td class="list" {% if obj.level > 1 %}style="background-color:#f1948a;"{% endif %}>{% with range=''|center:obj.level %}{% for _ in range %}&nbsp;&nbsp;&nbsp;{% endfor %}{% endwith %}{{ obj.item.description }}</td>
+        <td class="list">{{ obj.item.parent.description }}</td>
+        <td class="list"{% if obj.level > 1 %}style="background-color:#f1948a;"{% endif %}>{{ obj.level }}</td>
+        <td class="list">{{ obj.item.hide|yes_no }}</td>
+        <td class="list">{{ obj.articles }}</td>
     </tr>
     {% endfor %}
     {% endif %}

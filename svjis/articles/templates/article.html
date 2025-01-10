@@ -5,22 +5,20 @@
 {% block content %}
 
 <div class="article-detail">
-    <div class="article-desc">
-        <h1 class="article-title" id="tbl-desc">{{ obj.header|highlight:search|safe }}</h1>
-        <p class="info">
-            <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>{% if obj.comments %}, {% translate 'Comments' %}: <strong>{{ obj.comments|length }}</strong>{% endif %}
-        </p>
-        {{ obj.perex|highlight:search|safe }}
-        {{ obj.body|inject_pictures:assets|highlight:search|safe }}
-    </div>
-</div>
+    <h1 class="article-title">{{ obj.header|highlight:search }}</h1>
+    <p class="info">
+        <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>{% if obj.comments %}, {% translate 'Comments' %}: <strong>{{ obj.comments|length }}</strong>{% endif %}
+    </p>
+    {{ obj.perex|highlight:search|safe }}
+    {{ obj.body|inject_pictures:assets|highlight:search|safe }}
 
-{% if assets %}
-<p>
+
+    {% if assets %}
+    <h2 class="comment-title">{% translate 'Assets' %}:</h2>
     <table class="list" aria-describedby="tbl-desc">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
-            <th class="list" scope="col">{% translate 'Assets' %}:</th>
+            <th class="list" scope="col">{% translate 'File' %}</th>
         </tr>
         {% for a in assets %}
         <tr>
@@ -29,43 +27,47 @@
         </tr>
         {% endfor %}
     </table>
-</p>
-{% endif %}
-
-{% if obj.comments %}
-<h2 class="article-title">{% translate 'Comments' %}:</h2>
-{% for comment in obj.comments %}
-<div class="article box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
-    <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
-</div>
-{% endfor %}
-{% endif %}
-
-
-{% if perms.articles.svjis_add_article_comment and obj.allow_comments %}
-
-    {% if user in obj.watching_users.all %}
-    [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching discussion' %}</a>]
-    {% else %}
-    [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching discussion' %}</a>]
     {% endif %}
 
-<form action="{% url 'article_comment_save' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="article_pk" value="{{ obj.pk }}">
-    <p>
-        <textarea
-           id="body"
-           name="body"
-           rows="7"
-           wrap
-           style="width:100%;"
-        ></textarea>
-    </p>
-    <p>
-        <input class="my-button" id="submit" type="submit" value="{% translate 'Insert comment' %}" name="submit">
-    </p>
-</form>
-{% endif %}
+    {% if obj.comments or obj.allow_comments %}
+    <h2 class="comment-title">{% translate 'Comments' %}:</h2>
+    {% for comment in obj.comments %}
+    <div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
+        <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
+    </div>
+    {% endfor %}
+    {% endif %}
 
+
+    {% if perms.articles.svjis_add_article_comment and obj.allow_comments %}
+
+        {% if user in obj.watching_users.all %}
+        [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching discussion' %}</a>]
+        {% else %}
+        [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching discussion' %}</a>]
+        {% endif %}
+
+    <form action="{% url 'article_comment_save' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="article_pk" value="{{ obj.pk }}">
+        <p>
+            <textarea
+            id="body"
+            name="body"
+            rows="7"
+            wrap
+            class="full-width"
+            ></textarea>
+        </p>
+        <p>
+            <input class="black-submit" id="submit" type="submit" value="{% translate 'Insert comment' %}" name="submit">
+        </p>
+    </form>
+    {% endif %}
+
+    <div class="back_to_list">
+        [<a href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>]
+    </div>
+
+</div>
 {% endblock content %}

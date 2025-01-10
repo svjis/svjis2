@@ -7,16 +7,16 @@
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 [<a href="{% url 'redaction_article_edit' pk=0 %}">{% translate 'Create new article' %}</a>]
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list full-width" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Article' %}</th>
-        <th class="list" scope="col">{% translate 'Menu' %}</th>
-        <th class="list" scope="col">{% translate 'Author' %}</th>
-        <th class="list" scope="col">{% translate 'Date' %}</th>
-        <th class="list" scope="col">{% translate 'Published' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Menu' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Author' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Date' %}</th>
+        <th class="list hide-in-mobile" scope="col">{% translate 'Published' %}</th>
     </tr>
 
     {% if object_list %}
@@ -26,10 +26,10 @@
         <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" border="0" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'redaction_article_notifications' pk=obj.id %}"><img src="/static/gfx/email_open_image.png" border="0" title="{% translate 'Send notifications' %}" alt="{% translate 'Send notifications' %}"></a></td>
         <td class="list">{{ obj.header|highlight:search|safe }}</td>
-        <td class="list">{{ obj.menu.description }}</td>
-        <td class="list">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
-        <td class="list">{{ obj.created_date|date:"d.m.Y" }}</td>
-        <td class="list">{{ obj.published|yes_no }}</td>
+        <td class="list hide-in-mobile">{{ obj.menu.description }}</td>
+        <td class="list hide-in-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="list hide-in-mobile">{{ obj.created_date|date:"d.m.Y" }}</td>
+        <td class="list hide-in-mobile">{{ obj.published|yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}
