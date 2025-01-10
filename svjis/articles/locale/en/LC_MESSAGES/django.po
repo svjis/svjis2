@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-09 09:18+0100\n"
+"POT-Creation-Date: 2025-01-10 18:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Visible for all"
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/advert_edit.html:57 articles/templates/fault.html:49
-#: articles/templates/fault.html:69
+#: articles/templates/fault.html:62
 #: articles/templates/personal_my_units.html:14
 #: articles/templates/redaction_article_edit.html:70
 #: articles/templates/redaction_survey.html:16
@@ -84,7 +84,8 @@ msgid "Description"
 msgstr "Description"
 
 #: articles/models.py:68 articles/models.py:393 articles/models.py:469
-#: articles/templates/advert_edit.html:58 articles/templates/fault.html:68
+#: articles/templates/advert_edit.html:58 articles/templates/article.html:21
+#: articles/templates/fault.html:61
 msgid "File"
 msgstr "File"
 
@@ -290,7 +291,7 @@ msgstr "Edit"
 #: articles/templates/admin_entrance.html:24
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
-#: articles/templates/advert_edit.html:66 articles/templates/fault.html:82
+#: articles/templates/advert_edit.html:66 articles/templates/fault.html:75
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
 msgid "Do you want to delete"
@@ -303,7 +304,7 @@ msgstr "Do you want to delete"
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
 #: articles/templates/admin_user_ownes_edit.html:25
-#: articles/templates/advert_edit.html:66 articles/templates/fault.html:82
+#: articles/templates/advert_edit.html:66 articles/templates/fault.html:75
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
 #: articles/templates/redaction_news.html:24
@@ -426,7 +427,7 @@ msgid "Create new entry"
 msgstr "Create new entry"
 
 #: articles/templates/admin_user.html:7
-#: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:70
+#: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:63
 #: articles/templates/login.html:5
 #: articles/templates/redaction_survey_results.html:39
 msgid "User"
@@ -487,8 +488,8 @@ msgid "Member of"
 msgstr "Member of"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
-#: articles/utils.py:80 articles/views_adverts.py:71
-#: articles/views_adverts.py:93
+#: articles/utils.py:80 articles/views_adverts.py:73
+#: articles/views_adverts.py:95
 msgid "Adverts"
 msgstr "Adverts"
 
@@ -500,14 +501,14 @@ msgid "Properties"
 msgstr "Properties"
 
 #: articles/templates/advert_edit.html:46
-#: articles/templates/advert_edit.html:51 articles/templates/article.html:20
-#: articles/templates/fault.html:62
+#: articles/templates/advert_edit.html:51 articles/templates/article.html:17
+#: articles/templates/fault.html:56
 #: articles/templates/redaction_article_edit.html:62
 #: articles/templates/redaction_article_edit.html:88
 msgid "Assets"
 msgstr "Assets"
 
-#: articles/templates/advert_edit.html:82 articles/templates/fault.html:104
+#: articles/templates/advert_edit.html:82 articles/templates/fault.html:100
 #: articles/templates/redaction_article_edit.html:99
 msgid "Upload"
 msgstr "Upload"
@@ -524,48 +525,48 @@ msgstr "Create new advert"
 msgid "Author"
 msgstr "Author"
 
-#: articles/templates/article.html:10 articles/templates/article.html:36
-#: articles/templates/fault.html:114 articles/templates/main.html:22
+#: articles/templates/article.html:10 articles/templates/article.html:33
+#: articles/templates/fault.html:106 articles/templates/main.html:22
 msgid "Comments"
 msgstr "Comments"
 
-#: articles/templates/article.html:32
-msgid "Back to article list"
-msgstr "Back to article list"
-
-#: articles/templates/article.html:48
+#: articles/templates/article.html:45
 msgid "Stop watching discussion"
 msgstr "Stop watching discussion"
 
-#: articles/templates/article.html:50
+#: articles/templates/article.html:47
 msgid "Start watching discussion"
 msgstr "Start watching discussion"
 
-#: articles/templates/article.html:66 articles/templates/fault.html:135
+#: articles/templates/article.html:63 articles/templates/fault.html:127
 msgid "Insert comment"
 msgstr "Insert comment"
 
-#: articles/templates/box-01-news.html:7
+#: articles/templates/article.html:69
+msgid "Back to article list"
+msgstr "Back to article list"
+
+#: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:32
 #: articles/views_redaction.py:331
 msgid "News"
 msgstr "News"
 
-#: articles/templates/box-02-top-articles.html:7
-msgid "Top articles"
-msgstr "Top articles"
-
-#: articles/templates/box-03-survey.html:8
+#: articles/templates/box-survey.html:8
 #: articles/templates/redaction_survey_edit.html:7
 #: articles/views_redaction.py:578
 msgid "Survey"
 msgstr "Survey"
 
-#: articles/templates/box-03-survey.html:25
+#: articles/templates/box-survey.html:25
 msgid "Vote"
 msgstr "Vote"
 
-#: articles/templates/box-04-useful-links.html:7 articles/views_redaction.py:40
+#: articles/templates/box-top-articles.html:7
+msgid "Top articles"
+msgstr "Top articles"
+
+#: articles/templates/box-useful-links.html:7 articles/views_redaction.py:40
 msgid "Useful Links"
 msgstr "Useful Links"
 
@@ -623,12 +624,16 @@ msgstr "Date"
 msgid "Creator"
 msgstr "Creator"
 
-#: articles/templates/fault.html:71
+#: articles/templates/fault.html:64
 #: articles/templates/redaction_survey_results.html:38
 msgid "Time"
 msgstr "Time"
 
-#: articles/templates/fault.html:111
+#: articles/templates/fault.html:89
+msgid "Add asset"
+msgstr "Add asset"
+
+#: articles/templates/fault.html:133
 msgid "Back to fault list"
 msgstr "Back to fault list"
 
@@ -849,7 +854,7 @@ msgid "Your E-Mail"
 msgstr "Your E-Mail"
 
 #: articles/utils.py:48 articles/views_contact.py:15
-#: articles/views_contact.py:36 articles/views_contact.py:49
+#: articles/views_contact.py:36 articles/views_contact.py:53
 msgid "Contact"
 msgstr "Contact"
 
@@ -925,11 +930,11 @@ msgstr "Groups"
 msgid "Saved"
 msgstr "Saved"
 
-#: articles/views_adverts.py:17 articles/views_adverts.py:57
+#: articles/views_adverts.py:17 articles/views_adverts.py:59
 msgid "All"
 msgstr "All"
 
-#: articles/views_adverts.py:41 articles/views_adverts.py:61
+#: articles/views_adverts.py:41 articles/views_adverts.py:63
 #: articles/views_faults.py:28
 msgid "Mine"
 msgstr "Mine"
