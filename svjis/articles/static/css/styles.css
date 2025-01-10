@@ -113,6 +113,7 @@ legend.hidden-legend {display: none;}
   margin: 0;
   padding: 0px 5px;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .common-input-chck {
@@ -128,6 +129,7 @@ legend.hidden-legend {display: none;}
   background: #ffffff;
   height:150px;
   border: 1px solid #c3c3c3;
+  border-radius: 5px;
   width:100%;
   box-sizing: border-box;
 }
@@ -137,6 +139,7 @@ legend.hidden-legend {display: none;}
   background: #ffffff;
   height:150px;
   border: 1px solid #c3c3c3;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 .common-submit input {
