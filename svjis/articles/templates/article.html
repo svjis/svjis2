@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="article-detail">
-    <h1 class="article-title">{{ obj.header|highlight:search }}</h1>
+    <h1 class="article-title">{{ obj.header|highlight:search|safe }}</h1>
     <p class="info">
         <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>{% if obj.comments %}, {% translate 'Comments' %}: <strong>{{ obj.comments|length }}</strong>{% endif %}
     </p>
@@ -33,7 +33,7 @@
     <h2 class="comment-title">{% translate 'Comments' %}:</h2>
     {% for comment in obj.comments %}
     <div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
-        <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
+        <br>{{ comment.body|replace_url_to_link|linebreaks }}
     </div>
     {% endfor %}
     {% endif %}

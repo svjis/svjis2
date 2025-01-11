@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject|highlight:search|safe }}</h1>
+<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject|highlight:search }}</h1>
 
 {% if perms.articles.svjis_fault_resolver %}
     [<a href="{% url 'faults_fault_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>]&nbsp;
@@ -47,7 +47,7 @@
     </tr>
     <tr>
         <th class="list" scope="row">{% translate 'Description' %}</th>
-        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|highlight:search|safe }}</td>
+        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|highlight:search }}</td>
     </tr>
 </table>
 
@@ -106,7 +106,7 @@
 <h2 class="comment-title">{% translate 'Comments' %}:</h2>
 {% for comment in obj.comments %}
 <div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
-    <br>{{ comment.body|replace_url_to_link|linebreaks|safe }}
+    <br>{{ comment.body|replace_url_to_link|linebreaks }}
 </div>
 {% endfor %}
 
