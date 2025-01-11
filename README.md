@@ -53,7 +53,9 @@ python manage.py runserver
 
 Aplikace běží na adrese http://127.0.0.1:8000/ uživatel je `admin` heslo je vámi dříve zadané heslo.
 
-Uvedený způsob spuštění je vhodný pro rychlé vyzkoušení aplikace na vašem počítači, nebo pro vývojáře. Pokud chcete SVJIS nasadit na server do produkce tak si prostudujte [Django dokumentaci](https://docs.djangoproject.com/en/5.0/howto/deployment/).
+Uvedený způsob spuštění je vhodný pro rychlé vyzkoušení aplikace na vašem počítači, nebo pro vývojáře. Pokud chcete SVJIS nasadit na server do produkce tak si prostudujte [Django dokumentaci](https://docs.djangoproject.com/en/5.0/howto/deployment/). 
+
+Na stránkách projektu najdete [příklad instalace na server (Debian, Apache, Postgres)](https://svjis.github.io/Instalace/) krok za krokem.
 
 ## 3 Parametrizace
 
@@ -88,7 +90,11 @@ python manage.py svjis_send_messages
 
 Při testování aplikace ho můžete spouštět ručně. Při produkčním nastavení je potřeba nastavit plánovač systému (například cron) aby ho spoštěl v určitých itervalech (například každých 5 minut).
 
-## 4 Spolupráce
+## 4 Řešení problémů
+
+Pokud narazíte na jakýkoliv problém, tak neváhejte položt dotaz v [diskuzích projektu](https://github.com/orgs/svjis/discussions).
+
+## 5 Spolupráce
 
 Jakákoliv forma spolupráce je vítána. :octocat:  
 Více informací naleznete v [CONTRIBUTING.md](CONTRIBUTING.md).
