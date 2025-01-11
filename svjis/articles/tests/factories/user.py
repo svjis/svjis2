@@ -6,7 +6,7 @@ from django.contrib.auth import models
 class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Faker("user_name")
     email = factory.Faker("email")
-    password = factory.django.Password("password")
+    password = factory.django.Password(None)
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
     is_active = True

@@ -1,5 +1,6 @@
 from ..factories import GroupFactory, UserFactory, PermissionFactory
 from .preferences_data import PreferencesDataMixin
+from ...utils import generate_password
 
 
 class UserDataMixin(PreferencesDataMixin):
@@ -75,34 +76,38 @@ class UserDataMixin(PreferencesDataMixin):
             ],
         )
 
+        cls.u_jiri_password = generate_password(6)
         cls.u_jiri = UserFactory(
             username="jiri",
             email="jiri@test.cz",
-            password="jiri",
+            password=cls.u_jiri_password,
             first_name="Jiří",
             last_name="Brambůrek",
             groups=[cls.g_owner, cls.g_board_member, cls.g_redactor],
         )
-        cls.u_petr = UserFactory(
-            username="petr",
-            email="petr@test.cz",
-            password="petr",
-            first_name="Petr",
+        cls.u_peter_password = generate_password(6)
+        cls.u_peter = UserFactory(
+            username="peter",
+            email="peter@test.cz",
+            password=cls.u_peter_password,
+            first_name="Peter",
             last_name="Nebus",
             groups=[cls.g_owner],
         )
+        cls.u_karel_password = generate_password(6)
         cls.u_karel = UserFactory(
             username="karel",
             email="karel@test.cz",
-            password="karel",
+            password=cls.u_karel_password,
             first_name="Karel",
             last_name="Lukáš",
             groups=[cls.g_vendor],
         )
+        cls.u_jarda_password = generate_password(6)
         cls.u_jarda = UserFactory(
             username="jarda",
             email="jarda@test.cz",
-            password="jarda",
+            password=cls.u_jarda_password,
             first_name="Jaroslav",
             last_name="Beran",
             groups=[cls.g_owner, cls.g_board_member, cls.g_admin],

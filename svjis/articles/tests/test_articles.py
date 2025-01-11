@@ -37,7 +37,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
     def test_admin_user(self):
         self.do_user_test(
             'jarda',
-            'jarda',
+            self.u_jarda_password,
             200,
             200,
             200,
@@ -47,7 +47,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
     def test_board_user(self):
         self.do_user_test(
             'jiri',
-            'jiri',
+            self.u_jiri_password,
             200,
             200,
             200,
@@ -56,8 +56,8 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
     def test_owner_user(self):
         self.do_user_test(
-            'petr',
-            'petr',
+            'peter',
+            self.u_peter_password,
             200,
             200,
             404,
@@ -67,7 +67,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
     def test_vendor_user(self):
         self.do_user_test(
             'karel',
-            'karel',
+            self.u_karel_password,
             200,
             404,
             404,
@@ -79,7 +79,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
     def test_top_articles(self):
         # Login board user
-        logged_in = self.client.login(username='jiri', password='jiri')
+        logged_in = self.client.login(username='jiri', password=self.u_jiri_password)
         self.assertTrue(logged_in)
 
         # Article for all
@@ -105,7 +105,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         self.assertEqual(res_top[1]['total'], 1)
 
         # Login owner user
-        logged_in = self.client.login(username='petr', password='petr')
+        logged_in = self.client.login(username='peter', password=self.u_peter_password)
         self.assertTrue(logged_in)
 
         # Main page
@@ -133,7 +133,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
 
     def test_send_article_notifications(self):
         # Login board user
-        logged_in = self.client.login(username='jiri', password='jiri')
+        logged_in = self.client.login(username='jiri', password=self.u_jiri_password)
         self.assertTrue(logged_in)
 
         # Send notifications for article not published

@@ -32,8 +32,8 @@ class AdvertsTest(UserDataMixin, TestCase):
     def test_hide_adverts_of_deactivated_user(self):
         # create advert
         self.create_advert(
-            "petr",
-            "petr",
+            "peter",
+            self.u_peter_password,
             {
                 'pk': 0,
                 'type': 1,
@@ -47,7 +47,7 @@ class AdvertsTest(UserDataMixin, TestCase):
         )
 
         # advert is visible for other users
-        logged_in = self.client.login(username='jiri', password='jiri')
+        logged_in = self.client.login(username='jiri', password=self.u_jiri_password)
         self.assertTrue(logged_in)
 
         response = self.client.get(reverse('adverts_list'), follow=True)
@@ -57,11 +57,11 @@ class AdvertsTest(UserDataMixin, TestCase):
         self.assertEqual(len(adverts), 1)
 
         advert = adverts[0]['advert']
-        self.assertEqual(advert.created_by_user, self.u_petr)
+        self.assertEqual(advert.created_by_user, self.u_peter)
 
         # disable advert owner
-        self.u_petr.is_active = False
-        self.u_petr.save()
+        self.u_peter.is_active = False
+        self.u_peter.save()
 
         # advert is not visible for other users
         response = self.client.get(reverse('adverts_list'), follow=True)
@@ -72,8 +72,8 @@ class AdvertsTest(UserDataMixin, TestCase):
 
     def test_advert_update(self):
         advert = self.create_advert(
-            "petr",
-            "petr",
+            "peter",
+            self.u_peter_password,
             {
                 'pk': 0,
                 'type': 1,
@@ -88,8 +88,8 @@ class AdvertsTest(UserDataMixin, TestCase):
         self.assertEqual(advert.header, 'testing advert')
 
         advert = self.create_advert(
-            "petr",
-            "petr",
+            "peter",
+            self.u_peter_password,
             {
                 'pk': advert.pk,
                 'type': 1,
@@ -105,8 +105,8 @@ class AdvertsTest(UserDataMixin, TestCase):
 
     def test_advert_update_by_another_user(self):
         advert = self.create_advert(
-            "petr",
-            "petr",
+            "peter",
+            self.u_peter_password,
             {
                 'pk': 0,
                 'type': 1,
@@ -122,7 +122,7 @@ class AdvertsTest(UserDataMixin, TestCase):
 
         advert = self.create_advert(
             "jiri",
-            "jiri",
+            self.u_jiri_password,
             {
                 'pk': advert.pk,
                 'type': 1,
