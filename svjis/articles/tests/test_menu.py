@@ -55,20 +55,26 @@ class MenuTest(ArticleDataMixin, TestCase):
     def test_admin_user(self):
         self.do_menu_test(
             'jarda',
-            'jarda',
+            self.u_jarda_password,
             ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Adverts', 'Administration'],
         )
 
     def test_board_user(self):
         self.do_menu_test(
-            'jiri', 'jiri', ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Adverts']
+            'jiri',
+            self.u_jiri_password,
+            ['Articles', 'Contact', 'Personal settings', 'Redaction', 'Fault reporting', 'Adverts'],
         )
 
     def test_owner_user(self):
-        self.do_menu_test('petr', 'petr', ['Articles', 'Contact', 'Personal settings', 'Fault reporting', 'Adverts'])
+        self.do_menu_test(
+            'peter', self.u_peter_password, ['Articles', 'Contact', 'Personal settings', 'Fault reporting', 'Adverts']
+        )
 
     def test_vendor_user(self):
-        self.do_menu_test('karel', 'karel', ['Articles', 'Contact', 'Personal settings', 'Fault reporting'])
+        self.do_menu_test(
+            'karel', self.u_karel_password, ['Articles', 'Contact', 'Personal settings', 'Fault reporting']
+        )
 
     def test_anonymous_user(self):
         self.do_menu_test('anonymous', '', ['Articles', 'Contact'])
