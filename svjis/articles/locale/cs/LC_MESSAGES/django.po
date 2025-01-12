@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-10 18:46+0100\n"
+"POT-Creation-Date: 2025-01-12 12:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -752,7 +752,7 @@ msgid "Level"
 msgstr "Úroveň"
 
 #: articles/templates/redaction_menu.html:18 articles/utils.py:41
-#: articles/views.py:146 articles/views.py:202 articles/views_redaction.py:24
+#: articles/views.py:146 articles/views.py:207 articles/views_redaction.py:24
 msgid "Articles"
 msgstr "Články"
 
@@ -913,11 +913,15 @@ msgstr "Vyhledat: Klíčové slovo je příliš dlouhé. Zadejte maximálně 100
 msgid "Search results"
 msgstr "Výsledky hledání"
 
-#: articles/views.py:263
+#: articles/views.py:170
+msgid "Please choose an option."
+msgstr "Prosím zvolte jednu možnost."
+
+#: articles/views.py:268
 msgid "Wrong username or password"
 msgstr "Nesprávné uživatelské jméno nebo heslo."
 
-#: articles/views.py:264
+#: articles/views.py:269
 msgid "In case you lost your password use Lost Password link"
 msgstr ""
 "V případě, že jste zapomněli Vaše přihlašovací údaje, použijte volbu "

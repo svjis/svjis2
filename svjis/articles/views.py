@@ -163,8 +163,13 @@ def main_filtered_view(request, menu):
 @permission_required("articles.svjis_answer_survey")
 @require_POST
 def article_survey_vote_view(request):
-    pk = int(request.POST.get('pk'))
-    o_pk = int(request.POST.get(f'i_{pk}'))
+    try:
+        pk = int(request.POST.get('pk'))
+        o_pk = int(request.POST.get(f'i_{pk}'))
+    except TypeError:
+        messages.error(request, _("Please choose an option."))
+        return redirect(main_view)
+
     option = get_object_or_404(models.SurveyOption, pk=o_pk)
     survey = option.survey
 
