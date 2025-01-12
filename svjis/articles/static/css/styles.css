@@ -783,6 +783,21 @@ p.contact a {
   line-height: 1.5;
 }
 
+#survey-submit {
+  padding: .1em .1em;
+  width: 100px;
+  height: 22px;
+  border: 0;
+  color: #ffffff;
+  text-decoration: none;
+  user-select: none;
+  background: #2F2F2F;
+  outline: none;
+  margin: 0;
+  text-align: center;
+  border-radius: 5px;
+}
+
 .usefullinks {
   margin: 0;
   list-style: none;
