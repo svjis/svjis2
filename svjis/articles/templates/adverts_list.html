@@ -29,7 +29,7 @@
         {% if obj.assets %}
         <p>
         {% for a in obj.assets %}
-            <img src="/static/gfx/{{ a.icon }}" border="0" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
+            <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
         {% endfor %}
         </p>
         {% endif %}
