@@ -27,7 +27,7 @@
         <td class="list {% if obj.closed %}closed-ticket{% endif %}"><a {% if search != '' %} href="{% url 'fault' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'fault' slug=obj.slug %}" {% endif %}><img src="/static/gfx/find.png" class="led" title="{% translate 'View' %}" alt="{% translate 'View' %}"></a></td>
         <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.pk }}</td>
         <td class="list hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_date|date:"d.m.Y" }}</td>
-        <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.subject|highlight:search|safe }}</td>
+        <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.subject|highlight:search }}</td>
         <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.entrance.description }}</td>
         <td class="list hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
         <td class="list hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
