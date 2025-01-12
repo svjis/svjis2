@@ -25,6 +25,12 @@ h1.article-title {color:#739D13;}
 h2.article-title {color:#739D13;}
 h2.comment-title {color:#739D13;}
 
+img.led {
+  border: 0;
+  width: 16px;
+  height: 16px;
+}
+
 table.no-border {
   border: 0;
   line-height: 1.6;
