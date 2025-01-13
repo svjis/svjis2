@@ -7,7 +7,7 @@
 <div class="article-detail">
     <h1 class="article-title">{{ obj.header|highlight:search|safe }}</h1>
     <p class="info">
-        <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>{% if obj.comments %}, {% translate 'Comments' %}: <strong>{{ obj.comments|length }}</strong>{% endif %}
+        <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
     </p>
     {{ obj.perex|highlight:search|safe }}
     {{ obj.body|inject_pictures:assets|highlight:search|safe }}
