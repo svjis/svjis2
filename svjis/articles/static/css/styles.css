@@ -755,9 +755,9 @@ p.contact a {
 
 .news_box dd {
   display: block;
-  width: 190px;
   font-size: 85%;
   overflow: hidden;
+  padding: 0px 5px 0px 0px;
 }
 
 .news_box dd span {
