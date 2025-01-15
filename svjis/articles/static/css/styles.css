@@ -31,13 +31,13 @@ img.led {
   height: 16px;
 }
 
+.full-width {
+  width: 100%;
+}
+
 table.no-border {
   border: 0;
   line-height: 1.6;
-}
-
-table.full-width {
-  width: 100%;
 }
 
 table.list {
@@ -76,11 +76,6 @@ table.list td.closed-ticket {
   outline: none; /* odstraňovat vnější rámeček v Mozilla */
   border: none;
   border-radius: 5px;
-}
-
-textarea.full-width {
-  width:100%;
-  box-sizing: border-box;
 }
 
 fieldset {
