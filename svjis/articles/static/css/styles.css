@@ -997,5 +997,6 @@ footer a:hover {
   /* Boxes */
   .box1, .box2 {
     max-width: 400px;
+    margin: 0;
   }
 }
