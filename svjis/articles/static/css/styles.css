@@ -870,6 +870,10 @@ footer a:hover {
     font-size: 100%;
   }
 
+  .wrapper2 {
+    margin: 0px 5px 0px 5px;
+  }
+
   input {
     font-size:100%;
   }
