@@ -995,8 +995,11 @@ footer a:hover {
   }
 
   /* Boxes */
+  .boxes {
+    margin: 10px 0px 10px 0px;
+  }
+
   .box1, .box2 {
     max-width: 400px;
-    margin: 0;
   }
 }
