@@ -497,6 +497,7 @@ def admin_user_save_view(request):
         send_credentials = request.POST.get('send_credentials', False) == 'on'
         if send_credentials:
             utils.send_new_password(u)
+            messages.info(request, _('Credentials has been sent by e-mail'))
 
         # Set groups
         user_group_list = Group.objects.filter(user__id=u.id)
@@ -514,6 +515,7 @@ def admin_user_save_view(request):
             messages.error(request, f"{_('Form validation error')}: {error}")
         return redirect(reverse('admin_user_edit', kwargs={'pk': pk}))
 
+    messages.info(request, _('Saved'))
     return redirect(admin_user_view)
 
 
