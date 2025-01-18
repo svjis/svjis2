@@ -315,7 +315,7 @@ def redaction_article_asset_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(redaction_article_edit_view, pk=article_pk)
+    return redirect(reverse('redaction_article_edit', kwargs={'pk': article_pk}) + '#assets')
 
 
 @permission_required("articles.svjis_edit_article")
@@ -324,7 +324,7 @@ def redaction_article_asset_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleAsset, pk=pk)
     article_pk = obj.article.pk
     obj.delete()
-    return redirect(redaction_article_edit_view, pk=article_pk)
+    return redirect(reverse('redaction_article_edit', kwargs={'pk': article_pk}) + '#assets')
 
 
 # Redaction - MiniNews
