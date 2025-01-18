@@ -145,7 +145,7 @@ def adverts_asset_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(adverts_edit_view, pk=advert.pk)
+    return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')
 
 
 @permission_required("articles.svjis_add_advert")
@@ -156,4 +156,4 @@ def adverts_asset_delete_view(request, pk):
     if advert.created_by_user != request.user:
         raise Http404
     obj.delete()
-    return redirect(adverts_edit_view, pk=advert.pk)
+    return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')

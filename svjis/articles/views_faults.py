@@ -261,7 +261,7 @@ def faults_fault_asset_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(fault_view, slug=fault.slug)
+    return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#assets')
 
 
 @permission_required("articles.svjis_fault_reporter")
@@ -271,7 +271,7 @@ def faults_fault_asset_delete_view(request, pk):
     fault_slug = obj.fault_report.slug
     if obj.created_by_user == request.user:
         obj.delete()
-    return redirect(fault_view, slug=fault_slug)
+    return redirect(reverse('fault', kwargs={'slug': fault_slug}) + '#assets')
 
 
 # Faults - FaultComment
