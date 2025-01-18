@@ -163,6 +163,7 @@ def admin_board_save_view(request):
         obj = form.save(commit=False)
         obj.company = models.Company.objects.get(pk=1)
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -249,6 +250,7 @@ def admin_entrance_save_view(request):
         obj = form.save(commit=False)
         obj.building, _created = models.Building.objects.get_or_create(pk=1)
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -323,6 +325,7 @@ def admin_building_unit_save_view(request):
         obj = form.save(commit=False)
         obj.building, _created = models.Building.objects.get_or_create(pk=1)
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -678,6 +681,7 @@ def admin_group_save_view(request):
                     instance.permissions.add(p)
                 if not perm_set and p in group_perm_list:
                     instance.permissions.remove(p)
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -735,6 +739,7 @@ def admin_preferences_save_view(request):
         form = forms.PreferencesForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
