@@ -196,6 +196,7 @@ def faults_fault_create_save_view(request):
         utils.send_fault_assigned_notification(
             obj.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", obj
         )
+    messages.info(request, _('Saved'))
     return redirect(fault_view, slug=obj.slug)
 
 
@@ -241,6 +242,7 @@ def faults_fault_update_view(request):
             recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
         )
 
+    messages.info(request, _('Saved'))
     return redirect(fault_view, slug=instance.slug)
 
 
