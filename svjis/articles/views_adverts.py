@@ -119,11 +119,12 @@ def adverts_save_view(request):
         if pk == 0:
             obj.created_by_user = request.user
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
 
-    return redirect(reverse(adverts_list_view))
+    return redirect(adverts_edit_view, pk=obj.pk)
 
 
 # Adverts - AdvertAsset
@@ -140,6 +141,7 @@ def adverts_asset_save_view(request):
         obj.advert = advert
         obj.created_by_user = request.user
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
