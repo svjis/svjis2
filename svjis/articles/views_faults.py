@@ -307,7 +307,7 @@ def fault_watch_view(request):
     else:
         fault.watching_users.add(request.user)
 
-    return redirect(fault_view, slug=fault.slug)
+    return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#comments')
 
 
 # Faults - Take ticket
