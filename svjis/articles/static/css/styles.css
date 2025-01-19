@@ -19,6 +19,11 @@ h1 {font-size: large;}
 h2 {font-size: medium;}
 h3 {font-size: small;}
 
+textarea {
+  font-family: Arial, sans-serif;
+  font-size: 100%;
+}
+
 h1.page-title {color:#000000;}
 h1.article-page-title {border-bottom:1px solid #D7ECF4; color:#3fa5cd; line-height: 1.5;}
 h1.article-title {color:#739D13;}
@@ -31,13 +36,13 @@ img.led {
   height: 16px;
 }
 
+.full-width {
+  width: 100%;
+}
+
 table.no-border {
   border: 0;
   line-height: 1.6;
-}
-
-table.full-width {
-  width: 100%;
 }
 
 table.list {
@@ -76,11 +81,6 @@ table.list td.closed-ticket {
   outline: none; /* odstraňovat vnější rámeček v Mozilla */
   border: none;
   border-radius: 5px;
-}
-
-textarea.full-width {
-  width:100%;
-  box-sizing: border-box;
 }
 
 fieldset {
@@ -755,9 +755,9 @@ p.contact a {
 
 .news_box dd {
   display: block;
-  width: 190px;
   font-size: 85%;
   overflow: hidden;
+  padding: 0px 5px 0px 0px;
 }
 
 .news_box dd span {

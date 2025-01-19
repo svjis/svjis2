@@ -33,7 +33,7 @@ class ArticleForm(forms.ModelForm):
         model = models.Article
         fields = ("header", "perex", "body", "menu", "allow_comments", "published", "visible_for_all")
         widgets = {
-            'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'header': forms.widgets.TextInput(attrs={'class': 'common-input full-width', 'size': '50'}),
             'perex': TinyMCE(
                 attrs={'class': 'common-textarea', 'rows': '20', 'cols': '30'},
                 mce_attrs={
@@ -344,7 +344,7 @@ class FaultReportForm(forms.ModelForm):
         model = models.FaultReport
         fields = ("subject", "entrance", "description", "created_by_user", "assigned_to_user", "closed")
         widgets = {
-            'subject': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
+            'subject': forms.widgets.TextInput(attrs={'class': 'common-input full-width', 'size': '80'}),
             'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
             'description': forms.widgets.Textarea(
                 attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}
