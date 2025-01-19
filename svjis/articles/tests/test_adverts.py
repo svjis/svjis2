@@ -16,7 +16,7 @@ class AdvertsTest(UserDataMixin, TestCase):
         )
         if expected_status == 302:
             self.assertEqual(response.status_code, expected_status)
-            self.assertEqual(response.url, '/adverts_list/')
+            self.assertEqual(response.url, '/adverts_edit/1/')
             response = self.client.get(reverse('adverts_list'), follow=True)
             self.assertEqual(response.status_code, 200)
 

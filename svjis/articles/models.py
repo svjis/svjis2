@@ -91,7 +91,7 @@ class ArticleComment(models.Model):
         return f"ArticleComment: {self.description}"
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
         permissions = (("svjis_add_article_comment", "Can add Article comment"),)
 
 

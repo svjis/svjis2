@@ -253,7 +253,7 @@ def article_watch_view(request):
     else:
         article.watching_users.add(request.user)
 
-    return redirect(article_view, slug=article.slug)
+    return redirect(reverse('article', kwargs={'slug': article.slug}) + '#comments')
 
 
 # Login

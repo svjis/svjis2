@@ -20,7 +20,7 @@
         <td class="list">{{ forloop.counter }}</td>
         <td class="list">{{ obj.first_name }}</td>
         <td class="list">{{ obj.last_name }}</td>
-        <td class="list"><a href="{% url 'admin_building_unit_owners_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.first_name }}&nbsp;{{ obj.last_name }} ?')) return false;" href="{% url 'admin_building_unit_owners_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}

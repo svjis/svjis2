@@ -125,6 +125,7 @@ def redaction_menu_save_view(request):
 
     if form.is_valid():
         form.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -230,6 +231,7 @@ def redaction_article_save_view(request):
         if pk == 0:
             obj.author = request.user
         obj.save()
+        pk = obj.pk
 
         # Set groups
         group_list = obj.visible_for_group.all()
@@ -243,12 +245,13 @@ def redaction_article_save_view(request):
         # Set watching users
         if pk == 0:
             obj.watching_users.add(request.user)
+
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
-        return redirect(reverse('redaction_article_edit', kwargs={'pk': pk}))
 
-    return redirect(redaction_article_view)
+    return redirect(reverse('redaction_article_edit', kwargs={'pk': pk}))
 
 
 def get_users_for_notification(article):
@@ -311,7 +314,7 @@ def redaction_article_asset_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(redaction_article_edit_view, pk=article_pk)
+    return redirect(reverse('redaction_article_edit', kwargs={'pk': article_pk}) + '#assets')
 
 
 @permission_required("articles.svjis_edit_article")
@@ -320,7 +323,7 @@ def redaction_article_asset_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleAsset, pk=pk)
     article_pk = obj.article.pk
     obj.delete()
-    return redirect(redaction_article_edit_view, pk=article_pk)
+    return redirect(reverse('redaction_article_edit', kwargs={'pk': article_pk}) + '#assets')
 
 
 # Redaction - MiniNews
@@ -384,6 +387,7 @@ def redaction_news_save_view(request):
         if pk == 0:
             obj.author = request.user
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
@@ -456,6 +460,7 @@ def redaction_useful_link_save_view(request):
 
     if form.is_valid():
         form.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
@@ -549,6 +554,7 @@ def redaction_survey_save_view(request):
                     models.SurveyOption.objects.create(survey=obj, description=o_description)
             i += 1
 
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)

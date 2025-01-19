@@ -22,7 +22,7 @@
         <td class="list">{{ obj.type.description }}</td>
         <td class="list">{{ obj.registration_id }}</td>
         <td class="list">{{ obj.description }}</td>
-        <td class="list"><a href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.type.description }}&nbsp;{{ obj.registration_id }} ?')) return false;" href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}

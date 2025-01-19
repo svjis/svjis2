@@ -119,11 +119,12 @@ def adverts_save_view(request):
         if pk == 0:
             obj.created_by_user = request.user
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
 
-    return redirect(reverse(adverts_list_view))
+    return redirect(adverts_edit_view, pk=obj.pk)
 
 
 # Adverts - AdvertAsset
@@ -140,10 +141,11 @@ def adverts_asset_save_view(request):
         obj.advert = advert
         obj.created_by_user = request.user
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(adverts_edit_view, pk=advert.pk)
+    return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')
 
 
 @permission_required("articles.svjis_add_advert")
@@ -154,4 +156,4 @@ def adverts_asset_delete_view(request, pk):
     if advert.created_by_user != request.user:
         raise Http404
     obj.delete()
-    return redirect(adverts_edit_view, pk=advert.pk)
+    return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')

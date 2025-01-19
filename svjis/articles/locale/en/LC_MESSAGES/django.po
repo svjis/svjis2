@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-12 12:52+0100\n"
+"POT-Creation-Date: 2025-01-18 23:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgstr "File"
 #: articles/models.py:69 articles/models.py:85
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
-#: articles/views_redaction.py:164
+#: articles/views_redaction.py:165
 msgid "Article"
 msgstr "Article"
 
@@ -288,9 +288,11 @@ msgstr "Edit"
 
 #: articles/templates/admin_board.html:24
 #: articles/templates/admin_building_unit.html:73
+#: articles/templates/admin_building_unit_owners_edit.html:23
 #: articles/templates/admin_entrance.html:24
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
+#: articles/templates/admin_user_ownes_edit.html:25
 #: articles/templates/advert_edit.html:66 articles/templates/fault.html:75
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
@@ -525,8 +527,7 @@ msgstr "Create new advert"
 msgid "Author"
 msgstr "Author"
 
-#: articles/templates/article.html:10 articles/templates/article.html:33
-#: articles/templates/fault.html:106 articles/templates/main.html:22
+#: articles/templates/article.html:33 articles/templates/fault.html:106
 msgid "Comments"
 msgstr "Comments"
 
@@ -548,13 +549,13 @@ msgstr "Back to article list"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7 articles/views_redaction.py:32
-#: articles/views_redaction.py:331
+#: articles/views_redaction.py:335
 msgid "News"
 msgstr "News"
 
 #: articles/templates/box-survey.html:8
 #: articles/templates/redaction_survey_edit.html:7
-#: articles/views_redaction.py:578
+#: articles/views_redaction.py:585
 msgid "Survey"
 msgstr "Survey"
 
@@ -863,12 +864,12 @@ msgid "Personal settings"
 msgstr "Personal settings"
 
 #: articles/utils.py:64 articles/views_redaction.py:91
-#: articles/views_redaction.py:108 articles/views_redaction.py:178
-#: articles/views_redaction.py:206 articles/views_redaction.py:274
-#: articles/views_redaction.py:294 articles/views_redaction.py:344
-#: articles/views_redaction.py:364 articles/views_redaction.py:419
-#: articles/views_redaction.py:439 articles/views_redaction.py:491
-#: articles/views_redaction.py:513 articles/views_redaction.py:581
+#: articles/views_redaction.py:108 articles/views_redaction.py:179
+#: articles/views_redaction.py:207 articles/views_redaction.py:277
+#: articles/views_redaction.py:297 articles/views_redaction.py:348
+#: articles/views_redaction.py:368 articles/views_redaction.py:424
+#: articles/views_redaction.py:444 articles/views_redaction.py:497
+#: articles/views_redaction.py:519 articles/views_redaction.py:588
 msgid "Redaction"
 msgstr "Redaction"
 
@@ -879,14 +880,14 @@ msgid "Fault reporting"
 msgstr "Fault reporting"
 
 #: articles/utils.py:88 articles/views_admin.py:99 articles/views_admin.py:128
-#: articles/views_admin.py:145 articles/views_admin.py:187
-#: articles/views_admin.py:214 articles/views_admin.py:231
-#: articles/views_admin.py:284 articles/views_admin.py:305
-#: articles/views_admin.py:348 articles/views_admin.py:433
-#: articles/views_admin.py:465 articles/views_admin.py:526
-#: articles/views_admin.py:621 articles/views_admin.py:648
-#: articles/views_admin.py:700 articles/views_admin.py:717
-#: articles/views_admin.py:756
+#: articles/views_admin.py:145 articles/views_admin.py:188
+#: articles/views_admin.py:215 articles/views_admin.py:232
+#: articles/views_admin.py:286 articles/views_admin.py:307
+#: articles/views_admin.py:351 articles/views_admin.py:436
+#: articles/views_admin.py:468 articles/views_admin.py:531
+#: articles/views_admin.py:626 articles/views_admin.py:653
+#: articles/views_admin.py:706 articles/views_admin.py:723
+#: articles/views_admin.py:763
 msgid "Administration"
 msgstr "Administration"
 
@@ -895,17 +896,17 @@ msgid "All articles"
 msgstr "All articles"
 
 #: articles/views.py:107 articles/views_faults.py:71
-#: articles/views_redaction.py:152
+#: articles/views_redaction.py:153
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr "Search: Keyword '{}' is too short. Type at least 3 characters."
 
 #: articles/views.py:110 articles/views_faults.py:74
-#: articles/views_redaction.py:155
+#: articles/views_redaction.py:156
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "Search: Keyword is too long. Type maximum of 100 characters."
 
 #: articles/views.py:115 articles/views_faults.py:78
-#: articles/views_redaction.py:161
+#: articles/views_redaction.py:162
 msgid "Search results"
 msgstr "Search results"
 
@@ -929,10 +930,22 @@ msgstr "Users"
 msgid "Groups"
 msgstr "Groups"
 
-#: articles/views_admin.py:113 articles/views_admin.py:201
-#: articles/views_personal_settings.py:70
+#: articles/views_admin.py:113 articles/views_admin.py:166
+#: articles/views_admin.py:202 articles/views_admin.py:253
+#: articles/views_admin.py:328 articles/views_admin.py:521
+#: articles/views_admin.py:684 articles/views_admin.py:742
+#: articles/views_adverts.py:122 articles/views_adverts.py:144
+#: articles/views_faults.py:199 articles/views_faults.py:245
+#: articles/views_personal_settings.py:70 articles/views_redaction.py:128
+#: articles/views_redaction.py:249 articles/views_redaction.py:314
+#: articles/views_redaction.py:391 articles/views_redaction.py:464
+#: articles/views_redaction.py:558
 msgid "Saved"
 msgstr "Saved"
+
+#: articles/views_admin.py:503
+msgid "Credentials has been sent by e-mail"
+msgstr "Credentials has been sent by e-mail"
 
 #: articles/views_adverts.py:17 articles/views_adverts.py:59
 msgid "All"
@@ -979,10 +992,10 @@ msgstr "E-Mail is not valid"
 msgid "Credentials have been sent to your e-mail"
 msgstr "Credentials have been sent to your e-mail"
 
-#: articles/views_redaction.py:48 articles/views_redaction.py:478
+#: articles/views_redaction.py:48 articles/views_redaction.py:484
 msgid "Surveys"
 msgstr "Surveys"
 
-#: articles/views_redaction.py:406
+#: articles/views_redaction.py:411
 msgid "Useful links"
 msgstr "Useful links"

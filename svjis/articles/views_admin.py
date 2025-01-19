@@ -163,6 +163,7 @@ def admin_board_save_view(request):
         obj = form.save(commit=False)
         obj.company = models.Company.objects.get(pk=1)
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -249,6 +250,7 @@ def admin_entrance_save_view(request):
         obj = form.save(commit=False)
         obj.building, _created = models.Building.objects.get_or_create(pk=1)
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -323,6 +325,7 @@ def admin_building_unit_save_view(request):
         obj = form.save(commit=False)
         obj.building, _created = models.Building.objects.get_or_create(pk=1)
         obj.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -497,6 +500,7 @@ def admin_user_save_view(request):
         send_credentials = request.POST.get('send_credentials', False) == 'on'
         if send_credentials:
             utils.send_new_password(u)
+            messages.info(request, _('Credentials has been sent by e-mail'))
 
         # Set groups
         user_group_list = Group.objects.filter(user__id=u.id)
@@ -514,6 +518,7 @@ def admin_user_save_view(request):
             messages.error(request, f"{_('Form validation error')}: {error}")
         return redirect(reverse('admin_user_edit', kwargs={'pk': pk}))
 
+    messages.info(request, _('Saved'))
     return redirect(admin_user_view)
 
 
@@ -676,6 +681,7 @@ def admin_group_save_view(request):
                     instance.permissions.add(p)
                 if not perm_set and p in group_perm_list:
                     instance.permissions.remove(p)
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
@@ -733,6 +739,7 @@ def admin_preferences_save_view(request):
         form = forms.PreferencesForm(request.POST, instance=instance)
     if form.is_valid:
         form.save()
+        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
