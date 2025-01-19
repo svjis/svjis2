@@ -311,7 +311,6 @@ def redaction_article_asset_save_view(request):
         obj = form.save(commit=False)
         obj.article = article
         obj.save()
-        messages.info(request, _('Saved'))
     else:
         for error in form.errors:
             messages.error(request, error)
