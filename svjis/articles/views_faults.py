@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
+from django.db import transaction
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -108,11 +109,7 @@ def faults_list_view(request):
 @permission_required("articles.svjis_view_fault_menu")
 @require_GET
 def fault_view(request, slug):
-    fault_qs = models.FaultReport.objects.filter(slug=slug)
-    if len(fault_qs) == 0:
-        raise Http404
-    else:
-        fault = fault_qs[0]
+    fault = get_object_or_404(models.FaultReport, slug=slug)
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
@@ -209,38 +206,44 @@ def faults_fault_update_view(request):
     original_resolver = instance.assigned_to_user
     original_closed_status = instance.closed
 
-    if form.is_valid():
-        form.save()
-    else:
-        for error in form.errors:
-            messages.error(request, error)
+    with transaction.atomic():
+        if form.is_valid():
+            form.save()
+            models.FaultReportLog.objects.log_actions(
+                request=request,
+                form=form,
+                queryset=[instance],
+            )
+        else:
+            for error in form.errors:
+                messages.error(request, error)
 
-    # Set watching user
-    instance.watching_users.add(request.user)
+        # Set watching user
+        instance.watching_users.add(request.user)
 
-    # Send assigned notification
-    if (
-        original_resolver != instance.assigned_to_user
-        and request.user != instance.assigned_to_user
-        and None is not instance.assigned_to_user
-    ):
-        utils.send_fault_assigned_notification(
-            instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance
-        )
+        # Send assigned notification
+        if (
+            original_resolver != instance.assigned_to_user
+            and request.user != instance.assigned_to_user
+            and None is not instance.assigned_to_user
+        ):
+            utils.send_fault_assigned_notification(
+                instance.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", instance
+            )
 
-    # Send closed notification
-    if original_closed_status is False and instance.closed is True:
-        recipients = [u for u in instance.watching_users.all() if u != request.user]
-        utils.send_fault_closed_notification(
-            recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
-        )
+        # Send closed notification
+        if original_closed_status is False and instance.closed is True:
+            recipients = [u for u in instance.watching_users.all() if u != request.user]
+            utils.send_fault_closed_notification(
+                recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
+            )
 
-    # Send reopened notification
-    if original_closed_status is True and instance.closed is False:
-        recipients = [u for u in instance.watching_users.all() if u != request.user]
-        utils.send_fault_reopened_notification(
-            recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
-        )
+        # Send reopened notification
+        if original_closed_status is True and instance.closed is False:
+            recipients = [u for u in instance.watching_users.all() if u != request.user]
+            utils.send_fault_reopened_notification(
+                recipients, request.user, f"{request.scheme}://{request.get_host()}", instance
+            )
 
     messages.info(request, _('Saved'))
     return redirect(fault_view, slug=instance.slug)
@@ -310,13 +313,31 @@ def fault_watch_view(request):
     return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#comments')
 
 
+# Faults - Report Log
+@permission_required("articles.svjis_view_fault_menu")
+@require_GET
+def fault_logs_view(request, slug):
+    fault = get_object_or_404(models.FaultReport, slug=slug)
+    log = models.FaultReportLog.objects.filter(fault_report=fault).order_by('-entry_time')
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Fault reporting log")
+    ctx['aside_menu_items'] = get_side_menu('faults', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
+    ctx['obj'] = fault
+    ctx['log'] = log
+    return render(request, "fault_logs.html", ctx)
+
+
 # Faults - Take ticket
 @permission_required("articles.svjis_fault_resolver")
 @require_GET
 def faults_fault_take_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
     fault.assigned_to_user = request.user
-    fault.save()
+    with transaction.atomic():
+        fault.save()
+        fault.log_taking_ticket(request.user)
     return redirect(fault_view, slug=fault.slug)
 
 
@@ -326,10 +347,14 @@ def faults_fault_take_ticket_view(request, pk):
 def faults_fault_close_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
     fault.closed = True
-    fault.save()
+    with transaction.atomic():
+        fault.save()
+        fault.log_closing_ticket(request.user)
 
-    # Send closed notification
-    recipients = [u for u in fault.watching_users.all() if u != request.user]
-    utils.send_fault_closed_notification(recipients, request.user, f"{request.scheme}://{request.get_host()}", fault)
+        # Send closed notification
+        recipients = [u for u in fault.watching_users.all() if u != request.user]
+        utils.send_fault_closed_notification(
+            recipients, request.user, f"{request.scheme}://{request.get_host()}", fault
+        )
 
     return redirect(fault_view, slug=fault.slug)
