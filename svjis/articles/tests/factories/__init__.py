@@ -7,6 +7,7 @@ from .article import ArticleFactory
 from .preferences import PreferencesFactory
 from .company import CompanyFactory
 from .advert_type import AdvertTypeFactory
+from .fault_report import FaultReportFactory
 
 __all__ = [
     "ContentTypeFactory",
@@ -18,4 +19,5 @@ __all__ = [
     "PreferencesFactory",
     "CompanyFactory",
     "AdvertTypeFactory",
+    "FaultReportFactory",
 ]
