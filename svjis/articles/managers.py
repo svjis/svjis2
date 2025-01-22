@@ -3,15 +3,13 @@ import typing
 from django.db import models
 
 if typing.TYPE_CHECKING:
-    from articles.models import FaultReport
+    from articles.models import FaultReportLog  # noqa: F401
 
 
-class FaultReportLogManager(models.Manager):
+class FaultReportLogManager(models.Manager["FaultReportLog"]):
     def log_actions(self, request, form, queryset, created: bool = False) -> None:
         result = []
         for obj in queryset:
-            obj: FaultReport
-
             if created:
                 result.append(
                     self.model(

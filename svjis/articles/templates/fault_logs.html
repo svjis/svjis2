@@ -6,6 +6,10 @@
 
 <h1 class="page-title">#{{ obj.pk }} - {{ obj.subject }}</h1>
 
+<div>
+    [<a href="{% url 'fault' slug=obj.slug %}">&lt;&lt;&nbsp{% translate 'Back to ticket' %}</a>]
+</div>
+
 {% if obj.logs.all %}
     <h2 class="comment-title">{% translate 'Logs' %}:</h2>
     <table class="list full-width" aria-describedby="tbl-desc">
@@ -17,9 +21,9 @@
     </tr>
     {% for log in obj.logs.all %}
         <tr>
-            <td class="list">{{ log.user }}</td>
+            <td class="list">{{ log.user.first_name }}&nbsp;{{ log.user.last_name }}</td>
             <td class="list">{{ log.get_type_display }}</td>
-            <td class="list">{{ log.resolver }}</td>
+            <td class="list">{{ log.resolver.first_name }}&nbsp;{{ log.resolver.last_name }}</td>
             <td class="list">{{ log.entry_time|date:"d.m.Y H:i" }}</td>
         </tr>
     {% endfor %}
