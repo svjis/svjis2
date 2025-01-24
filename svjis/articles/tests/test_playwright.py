@@ -1,4 +1,5 @@
 import os
+import sys
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.management import call_command
 from ..utils import generate_password
@@ -12,7 +13,7 @@ class MyViewTests(StaticLiveServerTestCase):
         super().setUpClass()
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch()
-        cls.test_output_dir = 'playwright_output'
+        cls.test_output_dir = f'playwright_output/{sys.version_info[0]}.{sys.version_info[1]}'
         cls.user_password = generate_password(6)
         call_command('svjis_setup', password=cls.user_password)
 
