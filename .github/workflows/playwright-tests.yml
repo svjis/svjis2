@@ -1,4 +1,4 @@
-name: Playeright Tests
+name: Playwright Tests
 
 on:
   push:
