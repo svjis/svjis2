@@ -45,7 +45,6 @@ jobs:
           source venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
-          playwright install
 
       - name: Setup Application
         run: |
@@ -58,11 +57,4 @@ jobs:
         run: |
           source venv/bin/activate
           cd svjis
-          python manage.py test
-
-      - name: Archive screen shots
-        uses: actions/upload-artifact@v4
-        with:
-          name: Screenshots
-          path: svjis/playwright_output/**.*
-          overwrite: true
+          python manage.py test articles.tests

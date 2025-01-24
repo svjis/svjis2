@@ -6,7 +6,7 @@ from ..utils import generate_password
 from playwright.sync_api import sync_playwright
 
 
-class MyViewTests(StaticLiveServerTestCase):
+class PlaywrightTests(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
