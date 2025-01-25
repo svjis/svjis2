@@ -18,7 +18,7 @@ class PlaywrightTests(StaticLiveServerTestCase):
         os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
         super().setUpClass()
         cls.playwright = sync_playwright().start()
-        cls.browser = cls.playwright.chromium.launch()
+        cls.browser = cls.playwright.chromium.launch(headless=True)
         cls.test_output_dir = 'playwright_output'
         cls.user_password = generate_password(6)
         call_command('svjis_setup', password=cls.user_password)
@@ -34,7 +34,8 @@ class PlaywrightTests(StaticLiveServerTestCase):
         return f'{self.test_output_dir}/{next(self.numbering):04}-{name}.png'
 
     def test_all(self):
-        page = self.browser.new_page()
+        context = self.browser.new_context(viewport={"width": 1280, "height": 720}, device_scale_factor=2)
+        page = context.new_page()
         self.login(page, 'admin', self.user_password)
         self.fill_company(page)
         self.logout(page)
@@ -68,6 +69,7 @@ class PlaywrightTests(StaticLiveServerTestCase):
         page.fill('[id=id_registration_no]', '123456')
         page.fill('[id=id_vat_registration_no]', 'CZ123456')
         page.fill('[id=id_internet_domain]', 'www.pracska.cz')
+        page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
         page.screenshot(path=self.get_filename('admin-company'))
