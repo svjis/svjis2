@@ -35,5 +35,6 @@ class DesktopTests(StaticLiveServerTestCase):
         page = context.new_page()
         cmd.login(self, page, 'admin', self.user_password)
         cmd.fill_company(self, page)
+        cmd.fill_building(self, page)
         cmd.logout(self, page)
         page.close()

@@ -64,3 +64,20 @@ def fill_company(cls, page):
     page.click('id=submit')
     page.wait_for_selector('text=Saved')
     scrshot(page, get_filename(cls, page, 'admin-company'))
+
+
+def fill_building(cls, page):
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Administration')
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Building')
+    scrshot(page, get_filename(cls, page, 'admin-building'))
+    page.fill('[id=id_address]', 'Práčská 1')
+    page.fill('[id=id_city]', 'Praha')
+    page.fill('[id=id_post_code]', '102 00')
+    page.fill('[id=id_land_registry_no]', 'KAT001')
+    page.click('id=submit')
+    page.wait_for_selector('text=Saved')
+    scrshot(page, get_filename(cls, page, 'admin-building'))
