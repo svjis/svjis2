@@ -81,3 +81,22 @@ def fill_building(cls, page):
     page.click('id=submit')
     page.wait_for_selector('text=Saved')
     scrshot(page, get_filename(cls, page, 'admin-building'))
+
+
+def fill_entrances(cls, page):
+    data = [{'description': 'vchod 1', 'address': 'Práčská 1'}, {'description': 'vchod 2', 'address': 'Práčská 2'}]
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Administration')
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Entrances')
+    scrshot(page, get_filename(cls, page, 'admin-entrances'))
+    for e in data:
+        page.click('text=Add new entrance')
+        page.fill('[id=id_description]', e['description'])
+        page.fill('[id=id_address]', e['address'])
+        scrshot(page, get_filename(cls, page, 'admin-entrances'))
+        page.click('id=submit')
+        page.wait_for_selector('text=Saved')
+        scrshot(page, get_filename(cls, page, 'admin-entrances'))
