@@ -100,3 +100,59 @@ def fill_entrances(cls, page):
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
         scrshot(page, get_filename(cls, page, 'admin-entrances'))
+
+
+def fill_building_units(cls, page):
+    data = [
+        {
+            'type': 'Byt',
+            'entrance': 'vchod 1, Práčská 1',
+            'id': '001',
+            'description': 'Byt 1',
+            'numerator': '1',
+            'denominator': '10',
+        },
+        {
+            'type': 'Byt',
+            'entrance': 'vchod 1, Práčská 1',
+            'id': '002',
+            'description': 'Byt 2',
+            'numerator': '1',
+            'denominator': '10',
+        },
+        {
+            'type': 'Byt',
+            'entrance': 'vchod 2, Práčská 2',
+            'id': '003',
+            'description': 'Byt 3',
+            'numerator': '1',
+            'denominator': '10',
+        },
+        {
+            'type': 'Byt',
+            'entrance': 'vchod 2, Práčská 2',
+            'id': '004',
+            'description': 'Byt 4',
+            'numerator': '1',
+            'denominator': '10',
+        },
+    ]
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Administration')
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Building units')
+    scrshot(page, get_filename(cls, page, 'admin-building-units'))
+    for e in data:
+        page.click('text=Add new unit')
+        page.select_option('[id=id_type]', label=e['type'])
+        page.select_option('[id=id_entrance]', label=e['entrance'])
+        page.fill('[id=id_registration_id]', e['id'])
+        page.fill('[id=id_description]', e['description'])
+        page.fill('[id=id_numerator]', e['numerator'])
+        page.fill('[id=id_denominator]', e['denominator'])
+        scrshot(page, get_filename(cls, page, 'admin-building-units'))
+        page.click('id=submit')
+        page.wait_for_selector('text=Saved')
+        scrshot(page, get_filename(cls, page, 'admin-building-units'))
