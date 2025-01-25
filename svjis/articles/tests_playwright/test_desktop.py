@@ -8,8 +8,9 @@ from ..utils import generate_password
 
 class DesktopTests(StaticLiveServerTestCase):
 
-    size_x = 1280
-    size_y = 720
+    device_width = 1280
+    device_height = 720
+    test_output_dir = 'playwright_output/desktop'
 
     @classmethod
     def setUpClass(cls):
@@ -17,7 +18,6 @@ class DesktopTests(StaticLiveServerTestCase):
         super().setUpClass()
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch(headless=True)
-        cls.test_output_dir = 'playwright_output'
         cls.user_password = generate_password(6)
         call_command('svjis_setup', password=cls.user_password)
         cls.numbering = cmd.get_number()
@@ -30,7 +30,7 @@ class DesktopTests(StaticLiveServerTestCase):
 
     def test_all(self):
         context = self.browser.new_context(
-            viewport={"width": self.size_x, "height": self.size_y}, device_scale_factor=2
+            viewport={"width": self.device_width, "height": self.device_height}, device_scale_factor=2
         )
         page = context.new_page()
         cmd.login(self, page, 'admin', self.user_password)

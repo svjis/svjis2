@@ -3,5 +3,6 @@ from .test_desktop import DesktopTests
 
 class MobileTests(DesktopTests):
 
-    size_x = 396
-    size_y = 854
+    device_width = 396
+    device_height = 854
+    test_output_dir = 'playwright_output/mobile'
