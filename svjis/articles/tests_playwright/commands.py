@@ -11,6 +11,16 @@ def get_filename(cls, page, name):
     return f'{cls.test_output_dir}/{w}x{h}-{next(cls.numbering):04}-{name}.png'
 
 
+def scrshot(page, path):
+    w = page.viewport_size['width']
+    h = page.viewport_size['height']
+    full_height = page.evaluate("document.body.scrollHeight")
+    if full_height > h:
+        page.set_viewport_size({"width": w, "height": full_height})
+    page.screenshot(path=path)
+    page.set_viewport_size({"width": w, "height": h})
+
+
 def is_element_visible(page, selector):
     return page.is_visible(selector)
 
@@ -20,12 +30,12 @@ def login(cls, page, user, password):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.wait_for_selector('id=login-submit')
-    page.screenshot(path=get_filename(cls, page, f'login-{user}'))
+    scrshot(page, get_filename(cls, page, f'login-{user}'))
     page.fill('[id=login-input]', user)
     page.fill('[id=password-input]', password)
-    page.screenshot(path=get_filename(cls, page, f'login-{user}'))
+    scrshot(page, get_filename(cls, page, f'login-{user}'))
     page.click('id=login-submit')
-    page.screenshot(path=get_filename(cls, page, f'login-{user}'))
+    scrshot(page, get_filename(cls, page, f'login-{user}'))
 
 
 def logout(cls, page):
@@ -33,14 +43,14 @@ def logout(cls, page):
         page.click('.menu-toggle')
     page.wait_for_selector('id=logout-submit')
     page.click('id=logout-submit')
-    page.screenshot(path=get_filename(cls, page, 'logout'))
+    scrshot(page, get_filename(cls, page, 'logout'))
 
 
 def fill_company(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.click('text=Administration')
-    page.screenshot(path=get_filename(cls, page, 'admin-company'))
+    scrshot(page, get_filename(cls, page, 'admin-company'))
     page.fill('[id=id_name]', 'Společenství vlastníků domu Práčská 1')
     page.fill('[id=id_address]', 'Práčská 1')
     page.fill('[id=id_city]', 'Praha')
@@ -53,4 +63,4 @@ def fill_company(cls, page):
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
     page.wait_for_selector('text=Saved')
-    page.screenshot(path=get_filename(cls, page, 'admin-company'))
+    scrshot(page, get_filename(cls, page, 'admin-company'))
