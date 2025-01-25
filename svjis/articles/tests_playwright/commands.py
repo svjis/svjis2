@@ -6,10 +6,9 @@ def get_number():
 
 
 def get_filename(cls, page, name):
-    viewport_size = page.viewport_size
-    return (
-        f'{cls.test_output_dir}/{viewport_size['width']}x{viewport_size['height']}-{next(cls.numbering):04}-{name}.png'
-    )
+    w = page.viewport_size['width']
+    h = page.viewport_size['height']
+    return f'{cls.test_output_dir}/{w}x{h}-{next(cls.numbering):04}-{name}.png'
 
 
 def is_element_visible(page, selector):
