@@ -40,5 +40,6 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.fill_building_units(self, page)
         cmd.fill_users(self, page)
         cmd.fill_board(self, page)
+        cmd.fill_user_units(self, page)
         cmd.logout(self, page)
         page.close()

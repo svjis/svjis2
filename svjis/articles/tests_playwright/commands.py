@@ -23,6 +23,17 @@ def is_element_visible(page, selector):
     return page.is_visible(selector)
 
 
+def click_link_in_row(page, text_to_find, i):
+    rows = page.query_selector_all("table tr")
+
+    for index, row in enumerate(rows):
+        if text_to_find in row.inner_text():
+            links = row.query_selector_all("a")
+            if len(links) >= i:
+                links[i].click()
+                break
+
+
 def login(cls, page, user, password):
     page.goto(f"{cls.live_server_url}/")
     if is_element_visible(page, 'div.menu-toggle'):
@@ -318,3 +329,25 @@ def fill_board(cls, page):
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
         scrshot(page, get_filename(cls, 'admin-board'))
+
+
+def fill_user_units(cls, page):
+    data = [
+        {'user': 'Hamplová', 'unit': 'Byt - 001 - Byt 1'},
+        {'user': 'Staněk', 'unit': 'Byt - 002 - Byt 2'},
+        {'user': 'Hranolek', 'unit': 'Byt - 003 - Byt 3'},
+        {'user': 'Ovečka', 'unit': 'Byt - 004 - Byt 4'},
+        {'user': 'Hampl', 'unit': 'Byt - 001 - Byt 1'},
+    ]
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Administration')
+    for e in data:
+        if is_element_visible(page, 'div.menu-toggle'):
+            page.click('.menu-toggle')
+        page.click('text=Users')
+        click_link_in_row(page, e['user'], 1)
+        scrshot(page, get_filename(cls, 'admin-user-units'))
+        page.select_option('[id=owner-input]', label=e['unit'])
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'admin-user-units'))
