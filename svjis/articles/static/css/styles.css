@@ -849,7 +849,8 @@ footer a:hover {
   border-width: 1px;
   border-style: solid;
   padding:10px 15px 15px 10px;
-  position:relative; margin:10px 0;
+  position:relative;
+  margin:10px 0 0 0;
 }
 #msg-info {
   border-radius: 5px;
@@ -858,7 +859,8 @@ footer a:hover {
   border-width: 1px;
   border-style: solid;
   padding:10px 15px 15px 10px;
-  position:relative; margin:10px 0;
+  position:relative;
+  margin:10px 0 0 0;
 }
 
 /*
