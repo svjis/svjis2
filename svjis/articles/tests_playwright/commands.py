@@ -293,3 +293,28 @@ def fill_users(cls, page):
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
         scrshot(page, get_filename(cls, 'admin-users'))
+
+
+def fill_board(cls, page):
+    data = [
+        {'order': '1', 'member': 'Staněk Petr', 'position': 'předseda'},
+        {'order': '2', 'member': 'Hranolek Jaroslav', 'position': 'místopředseda'},
+        {'order': '3', 'member': 'Ovečka Jiří', 'position': 'člen'},
+        {'order': '4', 'member': 'Hamplová Jana', 'position': 'revizor'},
+    ]
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Administration')
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Board')
+    scrshot(page, get_filename(cls, 'admin-board'))
+    for e in data:
+        page.click('text=Add new member')
+        page.fill('[id=id_order]', e['order'])
+        page.select_option('[id=id_member]', label=e['member'])
+        page.fill('[id=id_position]', e['position'])
+        scrshot(page, get_filename(cls, 'admin-board'))
+        page.click('id=submit')
+        page.wait_for_selector('text=Saved')
+        scrshot(page, get_filename(cls, 'admin-board'))
