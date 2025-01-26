@@ -30,7 +30,7 @@ class DesktopTests(StaticLiveServerTestCase):
 
     def test_all(self):
         context = self.browser.new_context(
-            viewport={"width": self.device_width, "height": self.device_height}, device_scale_factor=2
+            viewport={"width": self.device_width, "height": self.device_height}, device_scale_factor=1
         )
         page = context.new_page()
         cmd.login(self, page, 'admin', self.user_password)
