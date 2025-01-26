@@ -156,3 +156,142 @@ def fill_building_units(cls, page):
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
         scrshot(page, get_filename(cls, page, 'admin-building-units'))
+
+
+def fill_users(cls, page):
+    data = [
+        {
+            'salutation': 'Ing.',
+            'first_name': 'Petr',
+            'last_name': 'Staněk',
+            'note': 'Předseda',
+            'address': 'Práčská 1',
+            'city': 'Praha',
+            'postcode': '102 00',
+            'country': 'CZ',
+            'phone': '+420 111 111 111',
+            'email': 'petr.stanek@myseznam.cz',
+            'show_in_contacts': True,
+            'login': 'petr',
+            'password': cls.user_password,
+            'enabled': True,
+            'roles': ['Člen výboru', 'Redaktor', 'Vlastník'],
+        },
+        {
+            'salutation': 'Mgr.',
+            'first_name': 'Jana',
+            'last_name': 'Hamplová',
+            'note': 'Vlastník od 19.11.2020',
+            'address': 'Práčská 2',
+            'city': 'Praha',
+            'postcode': '102 00',
+            'country': 'CZ',
+            'phone': '+420 211 111 111',
+            'email': 'jana.hamplova@myseznam.cz',
+            'show_in_contacts': False,
+            'login': 'jana',
+            'password': cls.user_password,
+            'enabled': True,
+            'roles': ['Vlastník'],
+        },
+        {
+            'salutation': 'Pan',
+            'first_name': 'Karel',
+            'last_name': 'Lukáš',
+            'note': 'Údržbář',
+            'address': 'Kozinova 2',
+            'city': 'Praha',
+            'postcode': '102 00',
+            'country': 'CZ',
+            'phone': '+420 601 333 333',
+            'email': 'karel@myseznam.cz',
+            'show_in_contacts': False,
+            'login': 'karel',
+            'password': cls.user_password,
+            'enabled': True,
+            'roles': ['Řešitel'],
+        },
+        {
+            'salutation': 'MUDr.',
+            'first_name': 'Jaroslav',
+            'last_name': 'Hranolek',
+            'note': 'Vlastník od 21.11.2020',
+            'address': 'Práčská 2',
+            'city': 'Praha',
+            'postcode': '102 00',
+            'country': 'CZ',
+            'phone': '+420 311 111 111',
+            'email': 'jaroslav.hranolek@myseznam.cz',
+            'show_in_contacts': True,
+            'login': 'jaroslav',
+            'password': cls.user_password,
+            'enabled': True,
+            'roles': ['Člen výboru', 'Redaktor', 'Vlastník'],
+        },
+        {
+            'salutation': 'MUDr.',
+            'first_name': 'Jiří',
+            'last_name': 'Ovečka',
+            'note': 'Vlastník od 21.11.2020',
+            'address': 'Práčská 2',
+            'city': 'Praha',
+            'postcode': '102 00',
+            'country': 'CZ',
+            'phone': '+420 411 111 111',
+            'email': 'jiri.ovecka@myseznam.cz',
+            'show_in_contacts': True,
+            'login': 'jiri',
+            'password': cls.user_password,
+            'enabled': True,
+            'roles': ['Člen výboru', 'Redaktor', 'Vlastník'],
+        },
+        {
+            'salutation': 'Prof.',
+            'first_name': 'Tomáš',
+            'last_name': 'Hampl',
+            'note': 'Vlastník od 21.11.2020',
+            'address': 'Práčská 2',
+            'city': 'Praha',
+            'postcode': '102 00',
+            'country': 'CZ',
+            'phone': '+420 511 111 111',
+            'email': 'tomas.hampl@myseznam.cz',
+            'show_in_contacts': True,
+            'login': 'tomas',
+            'password': cls.user_password,
+            'enabled': True,
+            'roles': ['Vlastník'],
+        },
+    ]
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Administration')
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Users')
+    scrshot(page, get_filename(cls, page, 'admin-users'))
+    for e in data:
+        page.click('text=Create new user')
+        page.fill('[id=id_salutation]', e['salutation'])
+        page.fill('[id=id_first_name]', e['first_name'])
+        page.fill('[id=id_last_name]', e['last_name'])
+        page.fill('[id=id_internal_note]', e['note'])
+        page.fill('[id=id_address]', e['address'])
+        page.fill('[id=id_city]', e['city'])
+        page.fill('[id=id_post_code]', e['postcode'])
+        page.fill('[id=id_country]', e['country'])
+        page.fill('[id=id_phone]', e['phone'])
+        page.fill('[id=id_email]', e['email'])
+        if e['show_in_contacts']:
+            page.check("input[type='checkbox']#id_show_in_phonelist")
+        page.fill('[id=id_username]', e['login'])
+        page.fill('[id=lpass-input]', e['password'])
+        if e['enabled']:
+            page.check("input[type='checkbox']#id_is_active")
+        for r in e['roles']:
+            page.check(f'[id="{r}-input"]')
+
+        scrshot(page, get_filename(cls, page, 'admin-users'))
+        page.click('id=submit')
+        page.wait_for_selector('text=Saved')
+        scrshot(page, get_filename(cls, page, 'admin-users'))
