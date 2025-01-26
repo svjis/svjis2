@@ -5,10 +5,8 @@ def get_number():
         yield n
 
 
-def get_filename(cls, page, name):
-    w = page.viewport_size['width']
-    h = page.viewport_size['height']
-    return f'{cls.test_output_dir}/{w}x{h}-{next(cls.numbering):04}-{name}.png'
+def get_filename(cls, name):
+    return f'{cls.test_output_dir}/{next(cls.numbering):04}-{name}.png'
 
 
 def scrshot(page, path):
@@ -30,12 +28,12 @@ def login(cls, page, user, password):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.wait_for_selector('id=login-submit')
-    scrshot(page, get_filename(cls, page, f'login-{user}'))
+    scrshot(page, get_filename(cls, f'login-{user}'))
     page.fill('[id=login-input]', user)
     page.fill('[id=password-input]', password)
-    scrshot(page, get_filename(cls, page, f'login-{user}'))
+    scrshot(page, get_filename(cls, f'login-{user}'))
     page.click('id=login-submit')
-    scrshot(page, get_filename(cls, page, f'login-{user}'))
+    scrshot(page, get_filename(cls, f'login-{user}'))
 
 
 def logout(cls, page):
@@ -43,14 +41,14 @@ def logout(cls, page):
         page.click('.menu-toggle')
     page.wait_for_selector('id=logout-submit')
     page.click('id=logout-submit')
-    scrshot(page, get_filename(cls, page, 'logout'))
+    scrshot(page, get_filename(cls, 'logout'))
 
 
 def fill_company(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.click('text=Administration')
-    scrshot(page, get_filename(cls, page, 'admin-company'))
+    scrshot(page, get_filename(cls, 'admin-company'))
     page.fill('[id=id_name]', 'Společenství vlastníků domu Práčská 1')
     page.fill('[id=id_address]', 'Práčská 1')
     page.fill('[id=id_city]', 'Praha')
@@ -63,7 +61,7 @@ def fill_company(cls, page):
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
     page.wait_for_selector('text=Saved')
-    scrshot(page, get_filename(cls, page, 'admin-company'))
+    scrshot(page, get_filename(cls, 'admin-company'))
 
 
 def fill_building(cls, page):
@@ -73,14 +71,14 @@ def fill_building(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.click('text=Building')
-    scrshot(page, get_filename(cls, page, 'admin-building'))
+    scrshot(page, get_filename(cls, 'admin-building'))
     page.fill('[id=id_address]', 'Práčská 1')
     page.fill('[id=id_city]', 'Praha')
     page.fill('[id=id_post_code]', '102 00')
     page.fill('[id=id_land_registry_no]', 'KAT001')
     page.click('id=submit')
     page.wait_for_selector('text=Saved')
-    scrshot(page, get_filename(cls, page, 'admin-building'))
+    scrshot(page, get_filename(cls, 'admin-building'))
 
 
 def fill_entrances(cls, page):
@@ -91,15 +89,15 @@ def fill_entrances(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.click('text=Entrances')
-    scrshot(page, get_filename(cls, page, 'admin-entrances'))
+    scrshot(page, get_filename(cls, 'admin-entrances'))
     for e in data:
         page.click('text=Add new entrance')
         page.fill('[id=id_description]', e['description'])
         page.fill('[id=id_address]', e['address'])
-        scrshot(page, get_filename(cls, page, 'admin-entrances'))
+        scrshot(page, get_filename(cls, 'admin-entrances'))
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
-        scrshot(page, get_filename(cls, page, 'admin-entrances'))
+        scrshot(page, get_filename(cls, 'admin-entrances'))
 
 
 def fill_building_units(cls, page):
@@ -143,7 +141,7 @@ def fill_building_units(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.click('text=Building units')
-    scrshot(page, get_filename(cls, page, 'admin-building-units'))
+    scrshot(page, get_filename(cls, 'admin-building-units'))
     for e in data:
         page.click('text=Add new unit')
         page.select_option('[id=id_type]', label=e['type'])
@@ -152,10 +150,10 @@ def fill_building_units(cls, page):
         page.fill('[id=id_description]', e['description'])
         page.fill('[id=id_numerator]', e['numerator'])
         page.fill('[id=id_denominator]', e['denominator'])
-        scrshot(page, get_filename(cls, page, 'admin-building-units'))
+        scrshot(page, get_filename(cls, 'admin-building-units'))
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
-        scrshot(page, get_filename(cls, page, 'admin-building-units'))
+        scrshot(page, get_filename(cls, 'admin-building-units'))
 
 
 def fill_users(cls, page):
@@ -269,7 +267,7 @@ def fill_users(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.click('text=Users')
-    scrshot(page, get_filename(cls, page, 'admin-users'))
+    scrshot(page, get_filename(cls, 'admin-users'))
     for e in data:
         page.click('text=Create new user')
         page.fill('[id=id_salutation]', e['salutation'])
@@ -291,7 +289,7 @@ def fill_users(cls, page):
         for r in e['roles']:
             page.check(f'[id="{r}-input"]')
 
-        scrshot(page, get_filename(cls, page, 'admin-users'))
+        scrshot(page, get_filename(cls, 'admin-users'))
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
-        scrshot(page, get_filename(cls, page, 'admin-users'))
+        scrshot(page, get_filename(cls, 'admin-users'))
