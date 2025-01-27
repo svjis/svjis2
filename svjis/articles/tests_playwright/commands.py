@@ -370,13 +370,27 @@ def create_articles(cls, page):
         {
             'header': 'Vítejte na nových stránkách SVJ',
             'perex': 'Milí uživatelé, rád bych vám představil nové stránky našeho SVJ.',
-            'body': 'Na těchto stránkách Vás budeme informovat o všech nových událostech v domě.'
-            + ' \n\nDoufáme, že budete spokojení. \n\nVáš výbor.',
+            'body': 'Na těchto stránkách Vás budeme informovat o všech nových událostech v domě.\n'
+            + 'Doufáme, že budete spokojení.\n'
+            + 'Váš výbor.',
             'menu': 'Vývěska',
             'comments': True,
             'publish': True,
             'visible': ['id_visible_for_all'],
             'attachments': [],
+        },
+        {
+            'header': 'Nová úklidová firma',
+            'perex': 'Vážení vlastníci, '
+            + 'chtěli bychom Vás informovat, že od února převzala úklid v našem domě nová firma Blesk.',
+            'body': '{uklid.jpg}\n'
+            + 'V anketě na hlavní stránce se můžete vyjádřit zda jste s novou firmou spokojení.\n'
+            'Váš výbor',
+            'menu': 'Vývěska',
+            'comments': True,
+            'publish': True,
+            'visible': ['id_visible_for_all'],
+            'attachments': ['uklid.jpg'],
         },
     ]
     if is_element_visible(page, 'div.menu-toggle'):
