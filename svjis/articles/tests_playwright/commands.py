@@ -1,3 +1,6 @@
+# Common functions
+
+
 def get_number():
     n = 0
     while True:
@@ -34,6 +37,9 @@ def click_link_in_row(page, text_to_find, i):
                 break
 
 
+# Login / Logout
+
+
 def login(cls, page, user, password):
     page.goto(f"{cls.live_server_url}/")
     if is_element_visible(page, 'div.menu-toggle'):
@@ -53,6 +59,9 @@ def logout(cls, page):
     page.wait_for_selector('id=logout-submit')
     page.click('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
+
+
+# Administration
 
 
 def fill_company(cls, page):
@@ -351,3 +360,51 @@ def fill_user_units(cls, page):
         page.select_option('[id=owner-input]', label=e['unit'])
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-user-units'))
+
+
+# Redaction
+
+
+def create_articles(cls, page):
+    data = [
+        {
+            'header': 'Vítejte na nových stránkách SVJ',
+            'perex': 'Milí uživatelé, rád bych vám představil nové stránky našeho SVJ.',
+            'body': 'Na těchto stránkách Vás budeme informovat o všech nových událostech v domě.'
+            + ' \n\nDoufáme, že budete spokojení. \n\nVáš výbor.',
+            'menu': 'Vývěska',
+            'comments': True,
+            'publish': True,
+            'visible': ['id_visible_for_all'],
+            'attachments': [],
+        },
+    ]
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.click('text=Redaction')
+    scrshot(page, get_filename(cls, 'redaction-article'))
+    for e in data:
+        if is_element_visible(page, 'div.menu-toggle'):
+            page.click('.menu-toggle')
+        page.locator("section.side-menu").locator("a", has_text="Articles").click()
+        scrshot(page, get_filename(cls, 'redaction-article'))
+        page.click('text=Create new article')
+        page.fill('[id=id_header]', e['header'])
+
+        locator = page.frame_locator("#id_perex_ifr")
+        locator.locator("body").fill(e['perex'])
+
+        locator = page.frame_locator("#id_body_ifr")
+        locator.locator("body").fill(e['body'])
+
+        page.select_option('[id=id_menu]', label=e['menu'])
+        if e['comments']:
+            page.check('[id=id_allow_comments]')
+        if e['publish']:
+            page.check('[id=id_published]')
+        for vis in e['visible']:
+            page.check(f'[id={vis}]')
+        scrshot(page, get_filename(cls, 'redaction-article'))
+        page.click('id=submit')
+        page.wait_for_selector('text=Saved')
+        scrshot(page, get_filename(cls, 'redaction-article'))

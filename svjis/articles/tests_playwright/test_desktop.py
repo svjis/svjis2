@@ -33,6 +33,7 @@ class DesktopTests(StaticLiveServerTestCase):
             viewport={"width": self.device_width, "height": self.device_height}, device_scale_factor=1
         )
         page = context.new_page()
+        # Param
         cmd.login(self, page, 'admin', self.user_password)
         cmd.fill_company(self, page)
         cmd.fill_building(self, page)
@@ -41,5 +42,9 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.fill_users(self, page)
         cmd.fill_board(self, page)
         cmd.fill_user_units(self, page)
+        cmd.logout(self, page)
+        # Redaction
+        cmd.login(self, page, 'petr', self.user_password)
+        cmd.create_articles(self, page)
         cmd.logout(self, page)
         page.close()
