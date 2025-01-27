@@ -405,11 +405,13 @@ def create_articles(cls, page):
         page.click('text=Create new article')
         page.fill('[id=id_header]', e['header'])
 
-        locator = page.frame_locator("#id_perex_ifr")
-        locator.locator("body").fill(e['perex'])
+        page.wait_for_selector('#id_perex_ifr')
+        locator = page.frame_locator('#id_perex_ifr')
+        locator.locator('body').fill(e['perex'])
 
-        locator = page.frame_locator("#id_body_ifr")
-        locator.locator("body").fill(e['body'])
+        page.wait_for_selector('#id_body_ifr')
+        locator = page.frame_locator('#id_body_ifr')
+        locator.locator('body').fill(e['body'])
 
         page.select_option('[id=id_menu]', label=e['menu'])
         if e['comments']:
