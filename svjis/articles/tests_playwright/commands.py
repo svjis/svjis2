@@ -422,3 +422,9 @@ def create_articles(cls, page):
         page.click('id=submit')
         page.wait_for_selector('text=Saved')
         scrshot(page, get_filename(cls, 'redaction-article'))
+
+        for f in e['attachments']:
+            page.fill('[id=id_description]', f)
+            page.set_input_files('[id=id_file]', f'articles/tests_playwright/assets/{f}')
+            page.click('id=submit2')
+            scrshot(page, get_filename(cls, 'redaction-article'))
