@@ -434,3 +434,10 @@ def create_articles(cls, page):
             page.set_input_files('[id=id_file]', f'articles/tests_playwright/assets/{f}')
             page.click('id=submit2')
             scrshot(page, get_filename(cls, 'redaction-article'))
+
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.locator("ul.menu").locator("a", has_text="Articles").click()
+    scrshot(page, get_filename(cls, 'redaction-article'))
+    page.click('text=Nová úklidová firma')
+    scrshot(page, get_filename(cls, 'redaction-article'))

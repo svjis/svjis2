@@ -1,11 +1,16 @@
 import os
+import shutil
+import tempfile
 from . import commands as cmd
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.management import call_command
+from django.conf import settings
+from django.test import override_settings
 from playwright.sync_api import sync_playwright
 from ..utils import generate_password
 
 
+@override_settings(MEDIA_ROOT=tempfile.TemporaryDirectory(prefix='mediatest').name)
 class DesktopTests(StaticLiveServerTestCase):
 
     device_width = 1280
@@ -24,6 +29,7 @@ class DesktopTests(StaticLiveServerTestCase):
 
     @classmethod
     def tearDownClass(cls):
+        shutil.rmtree(settings.MEDIA_ROOT, ignore_errors=True)
         super().tearDownClass()
         cls.browser.close()
         cls.playwright.stop()
