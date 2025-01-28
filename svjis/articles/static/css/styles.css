@@ -366,6 +366,13 @@ main {
   font-weight: normal;
 }
 
+img.article-img {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
 .comment-title {
   margin: 0;
   padding: 10px 10px 10px 0px;
