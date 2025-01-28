@@ -82,8 +82,8 @@ def fill_company(cls, page):
     page.fill('[id=id_internet_domain]', 'www.pracska.cz')
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
-    expect(page.get_by_text('Saved')).to_be_visible()
     scrshot(page, get_filename(cls, 'admin-company'))
+    expect(page.get_by_text('Saved')).to_be_visible()
 
 
 def fill_building(cls, page):
@@ -99,8 +99,8 @@ def fill_building(cls, page):
     page.fill('[id=id_post_code]', '102 00')
     page.fill('[id=id_land_registry_no]', 'KAT001')
     page.click('id=submit')
-    expect(page.get_by_text('Saved')).to_be_visible()
     scrshot(page, get_filename(cls, 'admin-building'))
+    expect(page.get_by_text('Saved')).to_be_visible()
 
 
 def fill_entrances(cls, page):
@@ -118,8 +118,8 @@ def fill_entrances(cls, page):
         page.fill('[id=id_address]', e['address'])
         scrshot(page, get_filename(cls, 'admin-entrances'))
         page.click('id=submit')
-        expect(page.get_by_text('Saved')).to_be_visible()
         scrshot(page, get_filename(cls, 'admin-entrances'))
+        expect(page.get_by_text('Saved')).to_be_visible()
 
 
 def fill_building_units(cls, page):
@@ -174,8 +174,8 @@ def fill_building_units(cls, page):
         page.fill('[id=id_denominator]', e['denominator'])
         scrshot(page, get_filename(cls, 'admin-building-units'))
         page.click('id=submit')
-        expect(page.get_by_text('Saved')).to_be_visible()
         scrshot(page, get_filename(cls, 'admin-building-units'))
+        expect(page.get_by_text('Saved')).to_be_visible()
 
 
 def fill_users(cls, page):
@@ -313,8 +313,8 @@ def fill_users(cls, page):
 
         scrshot(page, get_filename(cls, 'admin-users'))
         page.click('id=submit')
-        expect(page.get_by_text('Saved')).to_be_visible()
         scrshot(page, get_filename(cls, 'admin-users'))
+        expect(page.get_by_text('Saved')).to_be_visible()
 
 
 def fill_board(cls, page):
@@ -338,17 +338,17 @@ def fill_board(cls, page):
         page.fill('[id=id_position]', e['position'])
         scrshot(page, get_filename(cls, 'admin-board'))
         page.click('id=submit')
-        expect(page.get_by_text('Saved')).to_be_visible()
         scrshot(page, get_filename(cls, 'admin-board'))
+        expect(page.get_by_text('Saved')).to_be_visible()
 
 
 def fill_user_units(cls, page):
     data = [
-        {'user': 'Hamplová', 'unit': 'Byt - 001 - Byt 1'},
-        {'user': 'Staněk', 'unit': 'Byt - 002 - Byt 2'},
-        {'user': 'Hranolek', 'unit': 'Byt - 003 - Byt 3'},
-        {'user': 'Ovečka', 'unit': 'Byt - 004 - Byt 4'},
-        {'user': 'Hampl', 'unit': 'Byt - 001 - Byt 1'},
+        {'user': 'Hamplová', 'unit': 'Byt - 001 - Byt 1', 'description': 'Byt 1'},
+        {'user': 'Staněk', 'unit': 'Byt - 002 - Byt 2', 'description': 'Byt 2'},
+        {'user': 'Hranolek', 'unit': 'Byt - 003 - Byt 3', 'description': 'Byt 3'},
+        {'user': 'Ovečka', 'unit': 'Byt - 004 - Byt 4', 'description': 'Byt 4'},
+        {'user': 'Hampl', 'unit': 'Byt - 001 - Byt 1', 'description': 'Byt 1'},
     ]
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
@@ -362,6 +362,8 @@ def fill_user_units(cls, page):
         page.select_option('[id=owner-input]', label=e['unit'])
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-user-units'))
+        expect(page.get_by_text(e['user'])).to_be_visible()
+        expect(page.get_by_text(e['description'])).to_be_visible()
 
 
 # Redaction
@@ -424,8 +426,8 @@ def create_articles(cls, page):
             page.check(f'[id={vis}]')
         scrshot(page, get_filename(cls, 'redaction-article'))
         page.click('id=submit')
-        expect(page.get_by_text('Saved')).to_be_visible()
         scrshot(page, get_filename(cls, 'redaction-article'))
+        expect(page.get_by_text('Saved')).to_be_visible()
 
         for f in e['attachments']:
             page.fill('[id=id_description]', f)
