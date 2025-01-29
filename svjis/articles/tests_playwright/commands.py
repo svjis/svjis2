@@ -407,10 +407,22 @@ def create_articles(cls, page):
             page.click('id=submit2')
             scrshot(page, get_filename(cls, 'redaction-article'))
 
-    menu(page, 'Articles', 'All articles', True)
-    scrshot(page, get_filename(cls, 'redaction-article'))
-    page.click('text=Nová úklidová firma')
-    scrshot(page, get_filename(cls, 'redaction-article'))
+
+def create_comments(cls, page):
+    data = [
+        {
+            'header': 'Nová úklidová firma',
+            'comment': 'Úklid se zlepšil.',
+        },
+    ]
+    for e in data:
+        menu(page, 'Articles', 'All articles', True)
+        page.click(f'text={e['header']}')
+        page.fill('[id=body]', e['comment'])
+        scrshot(page, get_filename(cls, 'redaction-article-comment'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'redaction-article-comment'))
+        expect(page.get_by_text(e['comment'])).to_be_visible()
 
 
 def create_news(cls, page):
