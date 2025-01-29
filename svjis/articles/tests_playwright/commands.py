@@ -92,7 +92,7 @@ def fill_company(cls, page):
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
     scrshot(page, get_filename(cls, 'admin-company'))
-    expect(page.get_by_text('Saved')).to_be_visible()
+    expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
 def fill_building(cls, page):
@@ -104,7 +104,7 @@ def fill_building(cls, page):
     page.fill('[id=id_land_registry_no]', 'KAT001')
     page.click('id=submit')
     scrshot(page, get_filename(cls, 'admin-building'))
-    expect(page.get_by_text('Saved')).to_be_visible()
+    expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
 def fill_entrances(cls, page):
@@ -118,7 +118,7 @@ def fill_entrances(cls, page):
         scrshot(page, get_filename(cls, 'admin-entrances'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-entrances'))
-        expect(page.get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
 def fill_building_units(cls, page):
@@ -169,7 +169,7 @@ def fill_building_units(cls, page):
         scrshot(page, get_filename(cls, 'admin-building-units'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-building-units'))
-        expect(page.get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
 def fill_users(cls, page):
@@ -303,7 +303,7 @@ def fill_users(cls, page):
         scrshot(page, get_filename(cls, 'admin-users'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-users'))
-        expect(page.get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
 def fill_board(cls, page):
@@ -323,7 +323,7 @@ def fill_board(cls, page):
         scrshot(page, get_filename(cls, 'admin-board'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-board'))
-        expect(page.get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
 def fill_user_units(cls, page):
@@ -341,8 +341,8 @@ def fill_user_units(cls, page):
         page.select_option('[id=owner-input]', label=e['unit'])
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-user-units'))
-        expect(page.get_by_text(e['user'])).to_be_visible()
-        expect(page.get_by_text(e['description'])).to_be_visible()
+        expect(page.locator('.main-content').get_by_text(e['user'])).to_be_visible()
+        expect(page.locator('.main-content').get_by_text(e['description'])).to_be_visible()
 
 
 # Redaction
@@ -354,8 +354,8 @@ def create_articles(cls, page):
             'header': 'Vítejte na nových stránkách SVJ',
             'perex': 'Milí uživatelé, rád bych vám představil nové stránky našeho SVJ.',
             'body': 'Na těchto stránkách Vás budeme informovat o všech nových událostech v domě.\n'
-            + 'Doufáme, že budete spokojení.\n'
-            + 'Váš výbor.',
+            'Doufáme, že budete spokojení.\n'
+            'Váš výbor.',
             'menu': 'Vývěska',
             'comments': True,
             'publish': True,
@@ -365,15 +365,26 @@ def create_articles(cls, page):
         {
             'header': 'Nová úklidová firma',
             'perex': 'Vážení vlastníci, '
-            + 'chtěli bychom Vás informovat, že od února převzala úklid v našem domě nová firma Blesk.',
+            'chtěli bychom Vás informovat, že od února převzala úklid v našem domě nová firma Blesk.',
             'body': '{uklid.jpg}\n'
-            + 'V anketě na hlavní stránce se můžete vyjádřit zda jste s novou firmou spokojení.\n'
+            'V anketě na hlavní stránce se můžete vyjádřit zda jste s novou firmou spokojení.\n'
             'Váš výbor',
             'menu': 'Vývěska',
             'comments': True,
             'publish': True,
             'visible': ['id_visible_for_all'],
             'attachments': ['uklid.jpg'],
+        },
+        {
+            'header': 'Podklady pro nadcházející shromáždění vlastníků',
+            'perex': 'Vážení vlastníci v příloze pod článkem naleznete '
+            'podklady pro shromáždění vlastníků, které se bude konat v pátek 2.4.2021.',
+            'body': 'Viz. přílohy. \n\nVáš výbor.',
+            'menu': 'Vývěska',
+            'comments': False,
+            'publish': True,
+            'visible': ['id_visible_for_all'],
+            'attachments': [],
         },
     ]
     for e in data:
@@ -402,7 +413,7 @@ def create_articles(cls, page):
         scrshot(page, get_filename(cls, 'redaction-article'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-article'))
-        expect(page.get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
         for f in e['attachments']:
             page.fill('[id=id_description]', f)
@@ -425,7 +436,7 @@ def create_comments(cls, page):
         scrshot(page, get_filename(cls, 'redaction-article-comment'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-article-comment'))
-        expect(page.get_by_text(e['comment'])).to_be_visible()
+        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
 
 
 def search_for_article(cls, page):
@@ -468,4 +479,4 @@ def create_news(cls, page):
         scrshot(page, get_filename(cls, 'redaction-news'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-news'))
-        expect(page.get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
