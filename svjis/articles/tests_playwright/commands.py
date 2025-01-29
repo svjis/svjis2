@@ -417,7 +417,7 @@ def create_comments(cls, page):
     ]
     for e in data:
         menu(page, 'Articles', 'All articles', True)
-        page.click(f'text={e['header']}')
+        page.click('text=' + e['header'])
         page.fill('[id=body]', e['comment'])
         scrshot(page, get_filename(cls, 'redaction-article-comment'))
         page.click('id=submit')
