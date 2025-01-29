@@ -39,6 +39,15 @@ def click_link_in_row(page, text_to_find, i):
                 break
 
 
+def menu(page, tray_menu_item, side_menu_item, is_exact):
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.locator('ul.menu').get_by_text(tray_menu_item, exact=is_exact).click()
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+    page.locator('ul.side-menu__nav').get_by_text(side_menu_item, exact=is_exact).click()
+
+
 # Login / Logout
 
 
@@ -67,9 +76,7 @@ def logout(cls, page):
 
 
 def fill_company(cls, page):
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
+    menu(page, 'Administration', 'Company', True)
     scrshot(page, get_filename(cls, 'admin-company'))
     page.fill('[id=id_name]', 'Společenství vlastníků domu Práčská 1')
     page.fill('[id=id_address]', 'Práčská 1')
@@ -87,12 +94,7 @@ def fill_company(cls, page):
 
 
 def fill_building(cls, page):
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Building')
+    menu(page, 'Administration', 'Building', True)
     scrshot(page, get_filename(cls, 'admin-building'))
     page.fill('[id=id_address]', 'Práčská 1')
     page.fill('[id=id_city]', 'Praha')
@@ -105,12 +107,7 @@ def fill_building(cls, page):
 
 def fill_entrances(cls, page):
     data = [{'description': 'vchod 1', 'address': 'Práčská 1'}, {'description': 'vchod 2', 'address': 'Práčská 2'}]
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Entrances')
+    menu(page, 'Administration', 'Entrances', False)
     scrshot(page, get_filename(cls, 'admin-entrances'))
     for e in data:
         page.click('text=Add new entrance')
@@ -157,12 +154,7 @@ def fill_building_units(cls, page):
             'denominator': '10',
         },
     ]
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Building units')
+    menu(page, 'Administration', 'Building units', False)
     scrshot(page, get_filename(cls, 'admin-building-units'))
     for e in data:
         page.click('text=Add new unit')
@@ -283,12 +275,7 @@ def fill_users(cls, page):
             'roles': ['Vlastník'],
         },
     ]
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Users')
+    menu(page, 'Administration', 'Users', False)
     scrshot(page, get_filename(cls, 'admin-users'))
     for e in data:
         page.click('text=Create new user')
@@ -324,12 +311,7 @@ def fill_board(cls, page):
         {'order': '3', 'member': 'Ovečka Jiří', 'position': 'člen'},
         {'order': '4', 'member': 'Hamplová Jana', 'position': 'revizor'},
     ]
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Board')
+    menu(page, 'Administration', 'Board', False)
     scrshot(page, get_filename(cls, 'admin-board'))
     for e in data:
         page.click('text=Add new member')
@@ -350,13 +332,8 @@ def fill_user_units(cls, page):
         {'user': 'Ovečka', 'unit': 'Byt - 004 - Byt 4', 'description': 'Byt 4'},
         {'user': 'Hampl', 'unit': 'Byt - 001 - Byt 1', 'description': 'Byt 1'},
     ]
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Administration')
     for e in data:
-        if is_element_visible(page, 'div.menu-toggle'):
-            page.click('.menu-toggle')
-        page.click('text=Users')
+        menu(page, 'Administration', 'Users', False)
         click_link_in_row(page, e['user'], 1)
         scrshot(page, get_filename(cls, 'admin-user-units'))
         page.select_option('[id=owner-input]', label=e['unit'])
@@ -397,14 +374,8 @@ def create_articles(cls, page):
             'attachments': ['uklid.jpg'],
         },
     ]
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.click('text=Redaction')
-    scrshot(page, get_filename(cls, 'redaction-article'))
     for e in data:
-        if is_element_visible(page, 'div.menu-toggle'):
-            page.click('.menu-toggle')
-        page.locator("section.side-menu").locator("a", has_text="Articles").click()
+        menu(page, 'Redaction', 'Articles', True)
         scrshot(page, get_filename(cls, 'redaction-article'))
         page.click('text=Create new article')
         page.fill('[id=id_header]', e['header'])
@@ -435,9 +406,7 @@ def create_articles(cls, page):
             page.click('id=submit2')
             scrshot(page, get_filename(cls, 'redaction-article'))
 
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
-    page.locator("ul.menu").locator("a", has_text="Articles").click()
+    menu(page, 'Articles', 'All articles', True)
     scrshot(page, get_filename(cls, 'redaction-article'))
     page.click('text=Nová úklidová firma')
     scrshot(page, get_filename(cls, 'redaction-article'))
