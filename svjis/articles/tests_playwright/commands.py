@@ -39,12 +39,15 @@ def click_link_in_row(page, text_to_find, i):
                 break
 
 
+def show_menu(page):
+    if is_element_visible(page, 'div.menu-toggle'):
+        page.click('.menu-toggle')
+
+
 def menu(page, tray_menu_item, side_menu_item, is_exact):
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
+    show_menu(page)
     page.locator('ul.menu').get_by_text(tray_menu_item, exact=is_exact).click()
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
+    show_menu(page)
     page.locator('ul.side-menu__nav').get_by_text(side_menu_item, exact=is_exact).click()
 
 
@@ -53,8 +56,7 @@ def menu(page, tray_menu_item, side_menu_item, is_exact):
 
 def login(cls, page, user, password):
     page.goto(f"{cls.live_server_url}/")
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
+    show_menu(page)
     page.wait_for_selector('id=login-submit')
     scrshot(page, get_filename(cls, f'login-{user}'))
     page.fill('[id=login-input]', user)
@@ -65,8 +67,7 @@ def login(cls, page, user, password):
 
 
 def logout(cls, page):
-    if is_element_visible(page, 'div.menu-toggle'):
-        page.click('.menu-toggle')
+    show_menu(page)
     page.wait_for_selector('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
     page.click('id=logout-submit')
@@ -382,10 +383,12 @@ def create_articles(cls, page):
         page.fill('[id=id_header]', e['header'])
 
         page.wait_for_selector('#id_perex_ifr')
+        page.wait_for_timeout(1000)
         locator = page.frame_locator('#id_perex_ifr')
         locator.locator('body').fill(e['perex'])
 
         page.wait_for_selector('#id_body_ifr')
+        page.wait_for_timeout(1000)
         locator = page.frame_locator('#id_body_ifr')
         locator.locator('body').fill(e['body'])
 
@@ -423,6 +426,25 @@ def create_comments(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-article-comment'))
         expect(page.get_by_text(e['comment'])).to_be_visible()
+
+
+def search_for_article(cls, page):
+    data = [
+        {
+            'search': 'nová',
+            'article': 'Nová úklidová firma',
+        },
+    ]
+    for e in data:
+        menu(page, 'Articles', 'All articles', True)
+        show_menu(page)
+        page.fill('[id=search-input]', e['search'])
+        scrshot(page, get_filename(cls, 'redaction-article-search'))
+        page.click('id=search-submit')
+        scrshot(page, get_filename(cls, 'redaction-article-search'))
+        expect(page.locator('.main-content').get_by_text(e['article'])).to_be_visible()
+        page.click('text=' + e['article'])
+        scrshot(page, get_filename(cls, 'redaction-article-search'))
 
 
 def create_news(cls, page):
