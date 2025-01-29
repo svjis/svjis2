@@ -68,6 +68,7 @@ def logout(cls, page):
     if is_element_visible(page, 'div.menu-toggle'):
         page.click('.menu-toggle')
     page.wait_for_selector('id=logout-submit')
+    scrshot(page, get_filename(cls, 'logout'))
     page.click('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
 
@@ -410,3 +411,27 @@ def create_articles(cls, page):
     scrshot(page, get_filename(cls, 'redaction-article'))
     page.click('text=Nová úklidová firma')
     scrshot(page, get_filename(cls, 'redaction-article'))
+
+
+def create_news(cls, page):
+    data = [
+        {
+            'body': 'Zprovozněny nové stránky výboru.',
+            'publish': True,
+        },
+        {
+            'body': 'V pátek 2.4.2021 se bude konat Shromáždění vlastníků jednotek.',
+            'publish': True,
+        },
+    ]
+    for e in data:
+        menu(page, 'Redaction', 'News', True)
+        scrshot(page, get_filename(cls, 'redaction-news'))
+        page.click('text=Create new news')
+        page.fill('[id=id_body]', e['body'])
+        if e['publish']:
+            page.check('[id=id_published]')
+        scrshot(page, get_filename(cls, 'redaction-news'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'redaction-news'))
+        expect(page.get_by_text('Saved')).to_be_visible()
