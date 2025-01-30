@@ -366,6 +366,13 @@ main {
   font-weight: normal;
 }
 
+img.article-img {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
 .comment-title {
   margin: 0;
   padding: 10px 10px 10px 0px;
@@ -392,6 +399,7 @@ main {
   background-color: #D7ECF4;
   padding: 10px 10px 10px 15px;
   border-radius: 5px;
+  line-height: 1.5;
 }
 
 .advert-desc h2 {
@@ -848,7 +856,8 @@ footer a:hover {
   border-width: 1px;
   border-style: solid;
   padding:10px 15px 15px 10px;
-  position:relative; margin:10px 0;
+  position:relative;
+  margin:10px 0 0 0;
 }
 #msg-info {
   border-radius: 5px;
@@ -857,7 +866,8 @@ footer a:hover {
   border-width: 1px;
   border-style: solid;
   padding:10px 15px 15px 10px;
-  position:relative; margin:10px 0;
+  position:relative;
+  margin:10px 0 0 0;
 }
 
 /*
