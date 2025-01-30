@@ -39,7 +39,7 @@ class DesktopTests(StaticLiveServerTestCase):
             viewport={"width": self.device_width, "height": self.device_height}, device_scale_factor=1
         )
         page = context.new_page()
-        # Param
+        # Parametrization
         cmd.login(self, page, 'admin', self.user_password)
         cmd.fill_company(self, page)
         cmd.fill_building(self, page)
@@ -49,7 +49,7 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.fill_board(self, page)
         cmd.fill_user_units(self, page)
         cmd.logout(self, page)
-        # Redaction
+        # Redaction use cases
         cmd.login(self, page, 'petr', self.user_password)
         cmd.create_articles(self, page)
         cmd.logout(self, page)
@@ -58,6 +58,7 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.create_useful_links(self, page)
         cmd.create_survey(self, page)
         cmd.logout(self, page)
+        # Ordinary use cases
         cmd.login(self, page, 'jana', self.user_password)
         cmd.create_comments(self, page)
         cmd.search_for_article(self, page)
