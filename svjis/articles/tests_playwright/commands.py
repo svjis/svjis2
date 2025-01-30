@@ -535,3 +535,39 @@ def vote_survey(cls, page):
         scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
         expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
         logout(cls, page)
+
+
+def create_useful_links(cls, page):
+    data = [
+        {
+            'header': 'Důležité kontakty',
+            'link': '/',
+            'order': '10',
+            'publish': True,
+        },
+        {
+            'header': 'Stanovy společenství',
+            'link': '/',
+            'order': '20',
+            'publish': True,
+        },
+        {
+            'header': 'Domovní řád',
+            'link': '/',
+            'order': '30',
+            'publish': True,
+        },
+    ]
+    for e in data:
+        menu(page, 'Redaction', 'Useful Links', True)
+        scrshot(page, get_filename(cls, 'redaction-links'))
+        page.click('text=Create new useful link')
+        page.fill('[id=id_header]', e['header'])
+        page.fill('[id=id_link]', e['link'])
+        page.fill('[id=id_order]', e['order'])
+        if e['publish']:
+            page.check('[id=id_published]')
+        scrshot(page, get_filename(cls, 'redaction-links'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'redaction-links'))
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()

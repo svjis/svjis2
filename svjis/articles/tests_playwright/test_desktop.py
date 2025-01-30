@@ -55,6 +55,7 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.logout(self, page)
         cmd.login(self, page, 'jaroslav', self.user_password)
         cmd.create_news(self, page)
+        cmd.create_useful_links(self, page)
         cmd.create_survey(self, page)
         cmd.logout(self, page)
         cmd.login(self, page, 'jana', self.user_password)
