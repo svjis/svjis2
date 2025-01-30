@@ -1,0 +1,42 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+          playwright install
+
+      - name: Run Tests
+        run: |
+          source venv/bin/activate
+          cd svjis
+          python manage.py test articles.tests_playwright
+
+      - name: Archive screen shots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Screenshots
+          path: svjis/playwright_output/**/*.*
+          overwrite: true
