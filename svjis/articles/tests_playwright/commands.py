@@ -1,3 +1,4 @@
+from datetime import datetime
 from playwright.sync_api import expect
 
 # Common functions
@@ -480,3 +481,57 @@ def create_news(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-news'))
         expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+
+
+def create_survey(cls, page):
+    data = [
+        {
+            'description': 'Jste spokojeni s novou úklidovou firmou?',
+            'options': ['Ano', 'Ne', 'Nevím'],
+            'publish': True,
+        },
+    ]
+    for e in data:
+        menu(page, 'Redaction', 'Surveys', True)
+        scrshot(page, get_filename(cls, 'redaction-survey'))
+        page.click('text=Create new survey')
+        page.fill('[id=id_description]', e['description'])
+        page.locator('#id_starting_date').press_sequentially(datetime.today().strftime('%m%d%Y'))
+        page.locator('#id_ending_date').press_sequentially(datetime.today().strftime('%m%d%Y'))
+        i = 1
+        for o in e['options']:
+            page.fill(f'[id=o{i}-input]', o)
+            page.click('id=add-option')
+            i += 1
+        if e['publish']:
+            page.check('[id=id_published]')
+        scrshot(page, get_filename(cls, 'redaction-survey'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'redaction-survey'))
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+
+
+def vote_survey(cls, page):
+    data = [
+        {
+            'user': 'petr',
+            'vote': '1',
+        },
+        {
+            'user': 'tomas',
+            'vote': '1',
+        },
+        {
+            'user': 'jana',
+            'vote': '2',
+        },
+    ]
+    for e in data:
+        login(cls, page, e['user'], cls.user_password)
+        menu(page, 'Articles', 'All articles', True)
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
+        page.check('id=vote-' + e['vote'])
+        page.click('id=survey-submit')
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
+        expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
+        logout(cls, page)
