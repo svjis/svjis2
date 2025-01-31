@@ -871,9 +871,20 @@ footer a:hover {
 }
 
 /*
- *  Mobile Styles
+*  Tablet Styles (481px — 768px)
+*/
+@media (min-width: 878px) and (max-width: 960px) {
+
+  .logo {
+    display: none;
+  }
+}
+
+/*
+ *  Mobile Styles (320px — 480px)
  */
-@media (max-width: 960px) {
+
+@media (max-width: 877px) {
 
   /* Body */
   body {
@@ -1006,7 +1017,7 @@ footer a:hover {
 
   /* Boxes */
   .boxes {
-    margin: 10px 0px 10px 0px;
+    margin: 10px auto;
   }
 
   .box1, .box2 {
