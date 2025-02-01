@@ -1,6 +1,7 @@
 name: Playwright Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "master" ]
   pull_request:
@@ -40,3 +41,4 @@ jobs:
           name: Screenshots
           path: svjis/playwright_output/**/*.*
           overwrite: true
+          retention-days: 7
