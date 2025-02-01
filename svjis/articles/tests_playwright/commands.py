@@ -591,3 +591,13 @@ def vote_survey(cls, page):
         scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
         expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
         logout(cls, page)
+
+
+# Contact
+
+
+def show_contact(cls, page):
+    menu(page, 'Contact', 'Contact', True)
+    scrshot(page, get_filename(cls, 'contact'))
+    menu(page, 'Contact', 'Phonelist', True)
+    scrshot(page, get_filename(cls, 'contact-phonelist'))

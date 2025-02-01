@@ -65,4 +65,8 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.search_for_article(self, page)
         cmd.logout(self, page)
         cmd.vote_survey(self, page)
+        # Contact
+        cmd.login(self, page, 'jana', self.user_password)
+        cmd.show_contact(self, page)
+        cmd.logout(self, page)
         page.close()
