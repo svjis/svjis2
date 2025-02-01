@@ -423,24 +423,7 @@ def create_articles(cls, page):
             scrshot(page, get_filename(cls, 'redaction-article'))
 
 
-def create_comments(cls, page):
-    data = [
-        {
-            'header': 'Nová úklidová firma',
-            'comment': 'Úklid se zlepšil.',
-        },
-    ]
-    for e in data:
-        menu(page, 'Articles', 'All articles', True)
-        page.click('text=' + e['header'])
-        page.fill('[id=body]', e['comment'])
-        scrshot(page, get_filename(cls, 'redaction-article-comment'))
-        page.click('id=submit')
-        scrshot(page, get_filename(cls, 'redaction-article-comment'))
-        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
-
-
-def search_for_article(cls, page):
+def search_for_article_in_redaction(cls, page):
     data = [
         {
             'search': 'nová',
@@ -448,15 +431,13 @@ def search_for_article(cls, page):
         },
     ]
     for e in data:
-        menu(page, 'Articles', 'All articles', True)
+        menu(page, 'Redaction', 'Articles', True)
         show_menu(page)
         page.fill('[id=search-input]', e['search'])
         scrshot(page, get_filename(cls, 'redaction-article-search'))
         page.click('id=search-submit')
         scrshot(page, get_filename(cls, 'redaction-article-search'))
         expect(page.locator('.main-content').get_by_text(e['article'])).to_be_visible()
-        page.click('text=' + e['article'])
-        scrshot(page, get_filename(cls, 'redaction-article-search'))
 
 
 def create_news(cls, page):
@@ -511,32 +492,6 @@ def create_survey(cls, page):
         expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
 
 
-def vote_survey(cls, page):
-    data = [
-        {
-            'user': 'petr',
-            'vote': '1',
-        },
-        {
-            'user': 'tomas',
-            'vote': '1',
-        },
-        {
-            'user': 'jana',
-            'vote': '2',
-        },
-    ]
-    for e in data:
-        login(cls, page, e['user'], cls.user_password)
-        menu(page, 'Articles', 'All articles', True)
-        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
-        page.check('id=vote-' + e['vote'])
-        page.click('id=survey-submit')
-        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
-        expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
-        logout(cls, page)
-
-
 def create_useful_links(cls, page):
     data = [
         {
@@ -571,3 +526,68 @@ def create_useful_links(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-links'))
         expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+
+
+# Ordinary use cases
+
+
+def search_for_article(cls, page):
+    data = [
+        {
+            'search': 'nová',
+            'article': 'Nová úklidová firma',
+        },
+    ]
+    for e in data:
+        menu(page, 'Articles', 'All articles', True)
+        show_menu(page)
+        page.fill('[id=search-input]', e['search'])
+        scrshot(page, get_filename(cls, 'article-search'))
+        page.click('id=search-submit')
+        scrshot(page, get_filename(cls, 'article-search'))
+        expect(page.locator('.main-content').get_by_text(e['article'])).to_be_visible()
+        page.click('text=' + e['article'])
+        scrshot(page, get_filename(cls, 'article-search'))
+
+
+def create_comments(cls, page):
+    data = [
+        {
+            'header': 'Nová úklidová firma',
+            'comment': 'Úklid se zlepšil.',
+        },
+    ]
+    for e in data:
+        menu(page, 'Articles', 'All articles', True)
+        page.click('text=' + e['header'])
+        page.fill('[id=body]', e['comment'])
+        scrshot(page, get_filename(cls, 'redaction-article-comment'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'redaction-article-comment'))
+        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
+
+
+def vote_survey(cls, page):
+    data = [
+        {
+            'user': 'petr',
+            'vote': '1',
+        },
+        {
+            'user': 'tomas',
+            'vote': '1',
+        },
+        {
+            'user': 'jana',
+            'vote': '2',
+        },
+    ]
+    for e in data:
+        login(cls, page, e['user'], cls.user_password)
+        menu(page, 'Articles', 'All articles', True)
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
+        page.check('id=vote-' + e['vote'])
+        page.click('id=survey-submit')
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
+        expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
+        logout(cls, page)

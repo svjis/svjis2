@@ -52,6 +52,7 @@ class DesktopTests(StaticLiveServerTestCase):
         # Redaction use cases
         cmd.login(self, page, 'petr', self.user_password)
         cmd.create_articles(self, page)
+        cmd.search_for_article_in_redaction(self, page)
         cmd.logout(self, page)
         cmd.login(self, page, 'jaroslav', self.user_password)
         cmd.create_news(self, page)
