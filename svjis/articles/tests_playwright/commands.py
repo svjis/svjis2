@@ -593,6 +593,13 @@ def vote_survey(cls, page):
         logout(cls, page)
 
 
+def show_survey_results(cls, page):
+    menu(page, 'Redaction', 'Surveys', True)
+    scrshot(page, get_filename(cls, 'survey-results'))
+    click_link_in_row(page, 'Jste spokojeni s novou úklidovou firmou?', 1)
+    scrshot(page, get_filename(cls, 'survey-results'))
+
+
 # Contact
 
 
