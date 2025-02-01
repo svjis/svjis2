@@ -68,5 +68,9 @@ class DesktopTests(StaticLiveServerTestCase):
         # Contact
         cmd.login(self, page, 'jana', self.user_password)
         cmd.show_contact(self, page)
+        # Personal settings
+        cmd.fill_personal_settings(self, page)
+        cmd.show_personal_units(self, page)
+        cmd.show_personal_password_change(self, page)
         cmd.logout(self, page)
         page.close()

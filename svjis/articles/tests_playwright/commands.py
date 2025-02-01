@@ -601,3 +601,26 @@ def show_contact(cls, page):
     scrshot(page, get_filename(cls, 'contact'))
     menu(page, 'Contact', 'Phonelist', True)
     scrshot(page, get_filename(cls, 'contact-phonelist'))
+
+
+# Personal settings
+
+
+def fill_personal_settings(cls, page):
+    menu(page, 'Personal settings', 'Personal settings', True)
+    scrshot(page, get_filename(cls, 'personal-settings'))
+    page.fill('[id=id_email]', 'jana.hamplova@my.new.email.com')
+    scrshot(page, get_filename(cls, 'personal-settings'))
+    page.click('id=submit')
+    scrshot(page, get_filename(cls, 'personal-settings'))
+    expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+
+
+def show_personal_units(cls, page):
+    menu(page, 'Personal settings', 'My units', True)
+    scrshot(page, get_filename(cls, 'personal-settings-units'))
+
+
+def show_personal_password_change(cls, page):
+    menu(page, 'Personal settings', 'Password change', True)
+    scrshot(page, get_filename(cls, 'personal-settings-password-change'))
