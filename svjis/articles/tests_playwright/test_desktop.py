@@ -72,5 +72,10 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.fill_personal_settings(self, page)
         cmd.show_personal_units(self, page)
         cmd.show_personal_password_change(self, page)
+        # Faults
+        cmd.create_faults(self, page)
+        cmd.logout(self, page)
+        cmd.login(self, page, 'karel', self.user_password)
+        cmd.create_fault_comments(self, page)
         cmd.logout(self, page)
         page.close()

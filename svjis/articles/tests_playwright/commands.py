@@ -624,3 +624,51 @@ def show_personal_units(cls, page):
 def show_personal_password_change(cls, page):
     menu(page, 'Personal settings', 'Password change', True)
     scrshot(page, get_filename(cls, 'personal-settings-password-change'))
+
+
+# Faults
+
+
+def create_faults(cls, page):
+    data = [
+        {
+            'subject': 'Nefunguje výtah',
+            'entrance': None,
+            'description': 'Od pondělí nejezdí výtah. Prosím o opravu.',
+        },
+        {
+            'subject': 'Nesvítí světlo na chodbě',
+            'entrance': 'vchod 1, Práčská 1',
+            'description': 'Prosím o opravu.\n\nDěkuji',
+        },
+    ]
+    for e in data:
+        menu(page, 'Fault reporting', 'Open', False)
+        scrshot(page, get_filename(cls, 'faults'))
+        page.click('text=Report fault or request')
+        page.fill('[id=id_subject]', e['subject'])
+        if e['entrance']:
+            page.select_option('[id=id_entrance]', label=e['entrance'])
+        page.fill('[id=id_description]', e['description'])
+        scrshot(page, get_filename(cls, 'faults'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'faults'))
+        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        expect(page.locator('.main-content').get_by_text(e['subject'])).to_be_visible()
+
+
+def create_fault_comments(cls, page):
+    data = [
+        {
+            'subject': 'Nefunguje výtah',
+            'comment': 'Kouknu na to',
+        },
+    ]
+    for e in data:
+        menu(page, 'Fault reporting', 'Open', False)
+        click_link_in_row(page, e['subject'], 0)
+        page.fill('[id=body]', e['comment'])
+        scrshot(page, get_filename(cls, 'fault-comment'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'fault-comment'))
+        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
