@@ -222,9 +222,9 @@ legend.hidden-legend {display: none;}
   flex-shrink: 0;
 }
 
-#logo {
-  width: 100%;
-  height: 100%;
+img#logo {
+  width: auto;
+  height: 95px;
   margin: 0;
   padding: 0;
   cursor: pointer;
