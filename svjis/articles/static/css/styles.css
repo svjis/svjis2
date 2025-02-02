@@ -83,6 +83,12 @@ table.list td.closed-ticket {
   border-radius: 5px;
 }
 
+.black-submit:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: default;
+}
+
 fieldset {
   border: 1px solid #c3c3c3;
   width: 100%;
