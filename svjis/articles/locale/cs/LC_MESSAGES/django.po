@@ -201,7 +201,7 @@ msgstr "Internetová adresa"
 
 #: articles/models.py:274
 msgid "Header picture"
-msgstr "Obrázek záhlaví"
+msgstr "Obrázek domu v záhlaví"
 
 #: articles/models.py:288
 msgid "Land Registration no."
