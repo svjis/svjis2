@@ -135,6 +135,7 @@ urlpatterns = [
     path('adverts_asset_delete/<int:pk>/', views_adverts.adverts_asset_delete_view, name='adverts_asset_delete'),
     path('admin_company_edit/', views_admin.admin_company_edit_view, name='admin_company_edit'),
     path('admin_company_save/', views_admin.admin_company_save_view, name='admin_company_save'),
+    path('admin_company_remove_logo/', views_admin.admin_company_remove_logo_view, name='admin_company_remove_logo'),
     path('admin_board/', views_admin.admin_board_view, name='admin_board'),
     path('admin_board_edit/<int:pk>/', views_admin.admin_board_edit_view, name='admin_board_edit'),
     path('admin_board_save/', views_admin.admin_board_save_view, name='admin_board_save'),

@@ -54,7 +54,8 @@
         {% endif %}
     </fieldset>
     <p>
-        <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />
+        <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />&nbsp;
+        <a class="black-submit" onclick="if (!confirm('{% translate 'Do you want to delete logo?' %}')) return false;" href="{% url 'admin_company_remove_logo' %}">{% translate 'Delete logo' %}</a>
     </p>
 </form>
 
