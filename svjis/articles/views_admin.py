@@ -117,6 +117,16 @@ def admin_company_save_view(request):
     return redirect(admin_company_edit_view)
 
 
+@permission_required("articles.svjis_edit_admin_company")
+@require_GET
+def admin_company_remove_logo_view(request):
+    instance, _created = models.Company.objects.get_or_create(pk=1)
+    instance.header_picture = None
+    instance.save()
+    messages.info(request, _('Saved'))
+    return redirect(admin_company_edit_view)
+
+
 # Administration - Board
 
 
