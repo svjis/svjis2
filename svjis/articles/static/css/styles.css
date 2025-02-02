@@ -214,12 +214,12 @@ legend.hidden-legend {display: none;}
   text-align: center;
   padding: 10px;
   margin: auto;
-  float: right;
 }
 
 .logo {
   box-sizing: border-box;
-  float: left;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 #logo {
