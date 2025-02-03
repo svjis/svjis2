@@ -6,6 +6,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.management import call_command
 from django.conf import settings
 from django.test import override_settings
+from django.utils.translation import activate
 from playwright.sync_api import sync_playwright
 from ..utils import generate_password
 
@@ -16,6 +17,7 @@ class DesktopTests(StaticLiveServerTestCase):
     device_width = 1280
     device_height = 720
     test_output_dir = 'playwright_output/desktop'
+    locale = 'cs'
 
     @classmethod
     def setUpClass(cls):
@@ -36,8 +38,11 @@ class DesktopTests(StaticLiveServerTestCase):
 
     def test_all(self):
         context = self.browser.new_context(
-            viewport={"width": self.device_width, "height": self.device_height}, device_scale_factor=1
+            viewport={"width": self.device_width, "height": self.device_height},
+            device_scale_factor=1,
+            locale=self.locale,
         )
+        activate(self.locale)
         page = context.new_page()
         # Parametrization
         cmd.login(self, page, 'admin', self.user_password)
