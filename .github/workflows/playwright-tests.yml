@@ -30,6 +30,7 @@ jobs:
 
       - name: Compile Messages
         run: |
+          sudo apt-get install gettext
           source venv/bin/activate
           cd svjis/
           python manage.py compilemessages
