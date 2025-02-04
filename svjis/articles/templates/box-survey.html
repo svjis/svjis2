@@ -17,7 +17,7 @@
                     {% for o in obj.survey.options %}
                     <p>
                         <input id="vote-{{ forloop.counter }}" type="radio" name="i_{{ obj.survey.pk }}" value="{{ o.pk }}">&nbsp;{{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct|floatformat:1 }}%</em><br>
-                        <img src="/static/gfx/inq_0242.gif" width="{{ o.bar_width }}" height="22" alt="Bar">
+                        <img src="/static/gfx/{% if o.is_winning %}inq_0212.gif{% else %}inq_0242.gif{% endif %}" width="{{ o.pct|floatformat:0 }}%" height="22" alt="Bar">
                     </p>
                     {% endfor %}
 
@@ -29,7 +29,7 @@
                 {% for o in obj.survey.options %}
                 <p>
                     {{ o.description }}&nbsp;-&nbsp;<em>{{ o.pct|floatformat:1 }}%</em><br>
-                    <img src="/static/gfx/inq_0242.gif" width="{{ o.bar_width }}" height="22" alt="Bar">
+                    <img src="/static/gfx/{% if o.is_winning %}inq_0212.gif{% else %}inq_0242.gif{% endif %}" width="{{ o.pct|floatformat:0 }}%" height="22" alt="Bar">
                 </p>
                 {% endfor %}
             {% endif %}

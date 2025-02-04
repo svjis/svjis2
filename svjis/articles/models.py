@@ -3,6 +3,7 @@ from .model_utils import unique_slugify
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 
 
@@ -182,14 +183,16 @@ class SurveyOption(models.Model):
         return f"SurveyOption: {self.description}"
 
     @property
+    def is_winning(self):
+        winning = self.survey.answers.values('option_id').annotate(total=Count('id')).order_by('-total').first()
+        opt_total = self.total
+        return False if winning is None else winning['total'] == opt_total
+
+    @property
     def pct(self):
         total = self.survey.answers.count()
         opt_total = self.total
         return opt_total / total * 100 if total != 0 else 0
-
-    @property
-    def bar_width(self):
-        return int(self.pct * 2)
 
     @property
     def total(self):
