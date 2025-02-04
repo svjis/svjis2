@@ -33,6 +33,7 @@
                 </p>
                 {% endfor %}
             {% endif %}
+            <p>{% translate 'Number of votes' %}: {{ obj.survey.answers.count }}</p>
         </div>
     </div>
   </div>
