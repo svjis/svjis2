@@ -1018,11 +1018,11 @@ footer a:hover {
   }
 
   .logo {
-    display: none;
+    /* display: none; */
+    width: 0px;
   }
 
   .hide-in-mobile {
     display: none;
   }
-
 }
