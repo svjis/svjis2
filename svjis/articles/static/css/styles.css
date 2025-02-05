@@ -878,23 +878,7 @@ footer a:hover {
 /*
 *  Tablet Styles (481px — 768px)
 */
-@media (min-width: 878px) and (max-width: 960px) {
-
-  .logo {
-    display: none;
-  }
-}
-
-/*
- *  Mobile Styles (320px — 480px)
- */
-
-@media (max-width: 877px) {
-
-  /* Body */
-  body {
-    font-size: 100%;
-  }
+@media (max-width: 960px) {
 
   .wrapper2 {
     margin: 0px 5px 0px 5px;
@@ -906,10 +890,6 @@ footer a:hover {
 
   textarea {
     font-size:100%;
-  }
-
-  .hide-in-mobile {
-    display: none;
   }
 
   .label {
@@ -938,15 +918,6 @@ footer a:hover {
 
   .textarea-internal-note {
     width: 100%;
-  }
-
-  /* Header */
-  #company_name {
-    font-size:120%;
-  }
-
-  .logo {
-    display: none;
   }
 
   /* Tray */
@@ -1028,4 +999,30 @@ footer a:hover {
   .box1, .box2 {
     max-width: 400px;
   }
+}
+
+/*
+ *  Mobile Styles (320px — 480px)
+ */
+
+@media (max-width: 800px) {
+
+  /* Body */
+  body {
+    font-size: 100%;
+  }
+
+  /* Header */
+  #company_name {
+    font-size:120%;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .hide-in-mobile {
+    display: none;
+  }
+
 }
