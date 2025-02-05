@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-02 21:12+0100\n"
+"POT-Creation-Date: 2025-02-04 23:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: articles/forms.py:327 articles/models.py:330 articles/models.py:358
+#: articles/forms.py:327 articles/models.py:333 articles/models.py:361
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -35,13 +35,13 @@ msgstr "Resolver"
 msgid "On Behalf Of"
 msgstr "On Behalf Of"
 
-#: articles/models.py:14 articles/models.py:130 articles/models.py:438
+#: articles/models.py:15 articles/models.py:131 articles/models.py:441
 #: articles/templates/redaction_useful_link.html:14
 msgid "Header"
 msgstr "Header"
 
-#: articles/models.py:18 articles/models.py:118 articles/models.py:133
-#: articles/models.py:148 articles/models.py:444
+#: articles/models.py:19 articles/models.py:119 articles/models.py:134
+#: articles/models.py:149 articles/models.py:447
 #: articles/templates/redaction_article.html:19
 #: articles/templates/redaction_news.html:16
 #: articles/templates/redaction_survey.html:20
@@ -49,28 +49,28 @@ msgstr "Header"
 msgid "Published"
 msgstr "Published"
 
-#: articles/models.py:19
+#: articles/models.py:20
 msgid "Perex"
 msgstr "Perex"
 
-#: articles/models.py:20 articles/models.py:88 articles/models.py:119
-#: articles/models.py:246 articles/models.py:412 articles/models.py:439
+#: articles/models.py:21 articles/models.py:89 articles/models.py:120
+#: articles/models.py:249 articles/models.py:415 articles/models.py:442
 #: articles/templates/redaction_news.html:17
 msgid "Body"
 msgstr "Body"
 
-#: articles/models.py:22
+#: articles/models.py:23
 msgid "Allow comments"
 msgstr "Allow comments"
 
-#: articles/models.py:24
+#: articles/models.py:25
 msgid "Visible for all"
 msgstr "Visible for all"
 
-#: articles/models.py:67 articles/models.py:99 articles/models.py:145
-#: articles/models.py:179 articles/models.py:308 articles/models.py:316
-#: articles/models.py:333 articles/models.py:349 articles/models.py:390
-#: articles/models.py:427 articles/models.py:466
+#: articles/models.py:68 articles/models.py:100 articles/models.py:146
+#: articles/models.py:180 articles/models.py:311 articles/models.py:319
+#: articles/models.py:336 articles/models.py:352 articles/models.py:393
+#: articles/models.py:430 articles/models.py:469
 #: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
@@ -83,80 +83,80 @@ msgstr "Visible for all"
 msgid "Description"
 msgstr "Description"
 
-#: articles/models.py:68 articles/models.py:391 articles/models.py:467
+#: articles/models.py:69 articles/models.py:394 articles/models.py:470
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
 #: articles/templates/fault.html:61
 msgid "File"
 msgstr "File"
 
-#: articles/models.py:69 articles/models.py:85
+#: articles/models.py:70 articles/models.py:86
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
 #: articles/views_redaction.py:165
 msgid "Article"
 msgstr "Article"
 
-#: articles/models.py:100 articles/templates/redaction_menu.html:17
+#: articles/models.py:101 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Hide"
 
-#: articles/models.py:131 articles/templates/redaction_useful_link.html:15
+#: articles/models.py:132 articles/templates/redaction_useful_link.html:15
 msgid "Link"
 msgstr "Link"
 
-#: articles/models.py:132 articles/models.py:296
+#: articles/models.py:133 articles/models.py:299
 #: articles/templates/redaction_useful_link.html:16
 msgid "Order"
 msgstr "Order"
 
-#: articles/models.py:146
+#: articles/models.py:147
 msgid "Starting day"
 msgstr "Starting day"
 
-#: articles/models.py:147
+#: articles/models.py:148
 msgid "Ending day"
 msgstr "Ending day"
 
-#: articles/models.py:221
+#: articles/models.py:224
 msgid "Salutation"
 msgstr "Salutation"
 
-#: articles/models.py:222 articles/models.py:266 articles/models.py:285
-#: articles/models.py:309 articles/templates/admin_entrance.html:16
+#: articles/models.py:225 articles/models.py:269 articles/models.py:288
+#: articles/models.py:312 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Address"
 
-#: articles/models.py:223 articles/models.py:267 articles/models.py:286
+#: articles/models.py:226 articles/models.py:270 articles/models.py:289
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "City"
 
-#: articles/models.py:224 articles/models.py:268 articles/models.py:287
+#: articles/models.py:227 articles/models.py:271 articles/models.py:290
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "Post code"
 
-#: articles/models.py:225
+#: articles/models.py:228
 msgid "Country"
 msgstr "Country"
 
-#: articles/models.py:226 articles/models.py:269 articles/models.py:441
+#: articles/models.py:229 articles/models.py:272 articles/models.py:444
 #: articles/templates/adverts_list.html:37
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:13
 msgid "Phone"
 msgstr "Phone"
 
-#: articles/models.py:227
+#: articles/models.py:230
 msgid "Show in phonelist"
 msgstr "Show in phonelist"
 
-#: articles/models.py:228
+#: articles/models.py:231
 msgid "Internal note"
 msgstr "Internal note"
 
-#: articles/models.py:244 articles/models.py:270 articles/models.py:442
+#: articles/models.py:247 articles/models.py:273 articles/models.py:445
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:38
 #: articles/templates/contact_company.html:36
@@ -165,63 +165,63 @@ msgstr "Internal note"
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: articles/models.py:245 articles/models.py:347
+#: articles/models.py:248 articles/models.py:350
 #: articles/templates/admin_messages.html:13
 #: articles/templates/faults_list.html:18
 msgid "Subject"
 msgstr "Subject"
 
-#: articles/models.py:253 articles/templates/admin_preferences.html:15
+#: articles/models.py:256 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Key"
 
-#: articles/models.py:254 articles/templates/admin_preferences.html:16
+#: articles/models.py:257 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Value"
 
-#: articles/models.py:265 articles/templates/admin_group.html:16
+#: articles/models.py:268 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:14
 msgid "Name"
 msgstr "Name"
 
-#: articles/models.py:271
+#: articles/models.py:274
 msgid "Registration no."
 msgstr "Registration no."
 
-#: articles/models.py:272
+#: articles/models.py:275
 msgid "VAT Registration no."
 msgstr "VAT Registration no."
 
-#: articles/models.py:273 articles/templates/contact_company.html:54
+#: articles/models.py:276 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Internet domain"
 
-#: articles/models.py:274
+#: articles/models.py:277
 msgid "Header picture"
 msgstr "Header picture"
 
-#: articles/models.py:288
+#: articles/models.py:291
 msgid "Land Registration no."
 msgstr "Land Registration no."
 
-#: articles/models.py:295 articles/templates/admin_company_edit.html:7
+#: articles/models.py:298 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11 articles/views_admin.py:20
 msgid "Company"
 msgstr "Company"
 
-#: articles/models.py:298 articles/templates/admin_board.html:16
+#: articles/models.py:301 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Position"
 
-#: articles/models.py:306 articles/models.py:324
+#: articles/models.py:309 articles/models.py:327
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11 articles/views_admin.py:36
 msgid "Building"
 msgstr "Building"
 
-#: articles/models.py:327 articles/models.py:437
+#: articles/models.py:330 articles/models.py:440
 #: articles/templates/admin_building_unit.html:19
 #: articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:12
@@ -229,31 +229,31 @@ msgstr "Building"
 msgid "Type"
 msgstr "Type"
 
-#: articles/models.py:332 articles/templates/admin_building_unit.html:61
+#: articles/models.py:335 articles/templates/admin_building_unit.html:61
 #: articles/templates/admin_user_ownes_edit.html:13
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "Registration Id"
 
-#: articles/models.py:334 articles/templates/admin_building_unit.html:63
+#: articles/models.py:337 articles/templates/admin_building_unit.html:63
 msgid "Numerator"
 msgstr "Numerator"
 
-#: articles/models.py:335 articles/templates/admin_building_unit.html:64
+#: articles/models.py:338 articles/templates/admin_building_unit.html:64
 msgid "Denominator"
 msgstr "Denominator"
 
-#: articles/models.py:356 articles/templates/fault.html:41
+#: articles/models.py:359 articles/templates/fault.html:41
 #: articles/views_faults.py:45
 msgid "Closed"
 msgstr "Closed"
 
-#: articles/models.py:392 articles/models.py:409
+#: articles/models.py:395 articles/models.py:412
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Fault report"
 
-#: articles/models.py:468
+#: articles/models.py:471
 msgid "Advert"
 msgstr "Advert"
 
@@ -570,6 +570,10 @@ msgstr "Survey"
 #: articles/templates/box-survey.html:25
 msgid "Vote"
 msgstr "Vote"
+
+#: articles/templates/box-survey.html:36
+msgid "Number of votes"
+msgstr "Number of votes"
 
 #: articles/templates/box-top-articles.html:7
 msgid "Top articles"
