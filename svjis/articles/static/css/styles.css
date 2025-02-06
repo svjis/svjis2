@@ -508,43 +508,33 @@ p.contact a {
   font-weight: bold;
 }
 
-.side-menu__search form {
-  margin: 0;
-  padding: 0;
-}
-
 .side-menu__search_form {
   border-top: 1px solid #f2f2f2;
   background-color: #d0d0d0;
-  position: relative;
-  height: 22px;
   margin: 0;
   padding: 15px;
-  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 #search-input {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 100px;
   height: 22px;
   border: 0;
   margin: 0;
   padding: 0;
   border-radius: 5px 0px 0px 5px;
+  flex: 1;
+  min-width: 10px;
 }
 
 #search-submit {
-  padding: .1em .1em;
-  position: absolute;
+  padding: .1em 10px;
   top: 15px;
-  left: 115px;
-  width: 60px;
   height: 22px;
   border: 0;
   border-radius: 0px 5px 5px 0px;
-
   color: #ffffff;
   text-decoration: none;
   user-select: none;
@@ -976,10 +966,6 @@ footer a:hover {
 
   .side-menu.active {
     display: flex;
-  }
-
-  #search-input {
-    width: 200px;
   }
 
   #search-submit {
