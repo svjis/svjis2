@@ -1018,8 +1018,7 @@ footer a:hover {
   }
 
   .logo {
-    /* display: none; */
-    width: 0px;
+    display: none;
   }
 
   .hide-in-mobile {
