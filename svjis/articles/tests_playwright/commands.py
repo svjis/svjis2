@@ -15,14 +15,16 @@ def get_filename(cls, name):
     return f'{cls.test_output_dir}/{next(cls.numbering):04}-{name}.png'
 
 
-def scrshot(page, path):
-    w = page.viewport_size['width']
-    h = page.viewport_size['height']
-    full_height = page.evaluate("document.body.scrollHeight")
-    if full_height > h:
-        page.set_viewport_size({"width": w, "height": full_height})
+def scrshot(page, path, full_height=False):
+    if full_height:
+        w = page.viewport_size['width']
+        h = page.viewport_size['height']
+        full_height = page.evaluate("document.body.scrollHeight")
+        if full_height > h:
+            page.set_viewport_size({"width": w, "height": full_height})
     page.screenshot(path=path)
-    page.set_viewport_size({"width": w, "height": h})
+    if full_height:
+        page.set_viewport_size({"width": w, "height": h})
 
 
 def is_element_visible(page, selector):
