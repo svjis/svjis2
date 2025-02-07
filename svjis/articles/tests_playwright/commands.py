@@ -39,7 +39,7 @@ def click_link_in_row(page, text_to_find, i):
 
 
 def show_menu(page):
-    page.wait_for_timeout(100)
+    page.wait_for_load_state('load')
     if page.is_visible('div.menu-toggle'):
         page.click('.menu-toggle')
 
