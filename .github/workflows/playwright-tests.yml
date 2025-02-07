@@ -1,6 +1,7 @@
 name: Playwright Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "master" ]
   pull_request:
@@ -27,6 +28,13 @@ jobs:
           pip install -r requirements-dev.txt
           playwright install
 
+      - name: Compile Messages
+        run: |
+          sudo apt-get install gettext
+          source venv/bin/activate
+          cd svjis/
+          python manage.py compilemessages
+
       - name: Run Tests
         run: |
           source venv/bin/activate
@@ -40,3 +48,4 @@ jobs:
           name: Screenshots
           path: svjis/playwright_output/**/*.*
           overwrite: true
+          retention-days: 7
