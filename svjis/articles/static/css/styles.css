@@ -566,6 +566,11 @@ p.contact a {
   text-align: center;
 }
 
+.side-menu__login_form_in {
+  max-width: 230px;
+  margin: auto;
+}
+
 .side-menu__login_form p {
   margin: 10px 0px 10px 0px;
 }
