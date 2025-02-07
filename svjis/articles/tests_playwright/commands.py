@@ -27,10 +27,6 @@ def scrshot(page, path, full_height=False):
         page.set_viewport_size({"width": w, "height": h})
 
 
-def is_element_visible(page, selector):
-    return page.is_visible(selector)
-
-
 def click_link_in_row(page, text_to_find, i):
     rows = page.query_selector_all("table tr")
 
@@ -43,7 +39,8 @@ def click_link_in_row(page, text_to_find, i):
 
 
 def show_menu(page):
-    if is_element_visible(page, 'div.menu-toggle'):
+    page.wait_for_timeout(100)
+    if page.is_visible('div.menu-toggle'):
         page.click('.menu-toggle')
 
 
