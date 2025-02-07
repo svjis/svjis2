@@ -570,3 +570,7 @@ def create_useful_links(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-links'))
         expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+
+
+def final_screen_shot(cls, page):
+    scrshot(page, get_filename(cls, 'final-shot'), True)
