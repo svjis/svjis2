@@ -84,8 +84,16 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.create_faults(self, page)
         cmd.logout(self, page)
         cmd.login(self, page, 'karel', self.user_password)
-        cmd.create_fault_comments(self, page)
+        cmd.create_fault_comment(self, page, 'Nefunguje výtah', 'Kouknu na to')
+        cmd.take_fault_ticket(self, page, 'Nefunguje výtah')
         cmd.logout(self, page)
-
+        cmd.login(self, page, 'jana', self.user_password)
+        cmd.create_fault_comment(self, page, 'Nefunguje výtah', 'Děkuji')
+        cmd.logout(self, page)
+        cmd.login(self, page, 'karel', self.user_password)
+        cmd.create_fault_comment(self, page, 'Nefunguje výtah', 'Opraveno')
+        cmd.close_fault_ticket(self, page, 'Nefunguje výtah')
+        cmd.logout(self, page)
+        # Final shot
         cmd.final_screen_shot(self, page)
         page.close()

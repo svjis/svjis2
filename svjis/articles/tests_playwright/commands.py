@@ -665,21 +665,32 @@ def create_faults(cls, page):
         expect(page.locator('.main-content').get_by_text(e['subject'])).to_be_visible()
 
 
-def create_fault_comments(cls, page):
-    data = [
-        {
-            'subject': 'Nefunguje výtah',
-            'comment': 'Kouknu na to',
-        },
-    ]
-    for e in data:
-        menu(page, _('Fault reporting'), _('Open'), False)
-        click_link_in_row(page, e['subject'], 0)
-        page.fill('[id=body]', e['comment'])
-        scrshot(page, get_filename(cls, 'fault-comment'))
-        page.click('id=submit')
-        scrshot(page, get_filename(cls, 'fault-comment'))
-        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
+def create_fault_comment(cls, page, subject, comment):
+    menu(page, _('Fault reporting'), _('Open'), False)
+    click_link_in_row(page, subject, 0)
+    page.fill('[id=body]', comment)
+    scrshot(page, get_filename(cls, 'fault-comment'))
+    page.click('id=submit')
+    scrshot(page, get_filename(cls, 'fault-comment'))
+    expect(page.locator('.main-content').get_by_text(comment)).to_be_visible()
+
+
+def take_fault_ticket(cls, page, subject):
+    menu(page, _('Fault reporting'), _('Open'), False)
+    click_link_in_row(page, subject, 0)
+    scrshot(page, get_filename(cls, 'take-ticket'))
+    page.click('text=' + _('Take ticket'))
+    scrshot(page, get_filename(cls, 'take-ticket'))
+    expect(page.locator('.main-content').get_by_text(_('Close ticket'))).to_be_visible()
+
+
+def close_fault_ticket(cls, page, subject):
+    menu(page, _('Fault reporting'), _('Open'), False)
+    click_link_in_row(page, subject, 0)
+    scrshot(page, get_filename(cls, 'close-ticket'))
+    page.click('text=' + _('Close ticket'))
+    scrshot(page, get_filename(cls, 'close-ticket'))
+    expect(page.locator('.main-content').get_by_text(_('Close ticket'))).not_to_be_visible()
 
 
 def final_screen_shot(cls, page):
