@@ -86,4 +86,6 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.login(self, page, 'karel', self.user_password)
         cmd.create_fault_comments(self, page)
         cmd.logout(self, page)
+
+        cmd.final_screen_shot(self, page)
         page.close()

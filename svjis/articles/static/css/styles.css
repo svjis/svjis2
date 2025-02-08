@@ -508,43 +508,33 @@ p.contact a {
   font-weight: bold;
 }
 
-.side-menu__search form {
-  margin: 0;
-  padding: 0;
-}
-
 .side-menu__search_form {
   border-top: 1px solid #f2f2f2;
   background-color: #d0d0d0;
-  position: relative;
-  height: 22px;
   margin: 0;
   padding: 15px;
-  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 #search-input {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 100px;
   height: 22px;
   border: 0;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 3px;
   border-radius: 5px 0px 0px 5px;
+  flex: 1;
+  min-width: 10px;
 }
 
 #search-submit {
-  padding: .1em .1em;
-  position: absolute;
+  padding: .1em 6px;
   top: 15px;
-  left: 115px;
-  width: 60px;
   height: 22px;
   border: 0;
   border-radius: 0px 5px 5px 0px;
-
   color: #ffffff;
   text-decoration: none;
   user-select: none;
@@ -574,6 +564,11 @@ p.contact a {
   margin: 0;
   padding: 5px 15px 5px 15px;
   text-align: center;
+}
+
+.side-menu__login_form_in {
+  max-width: 230px;
+  margin: auto;
 }
 
 .side-menu__login_form p {
@@ -618,20 +613,20 @@ p.contact a {
 }
 
 #login-input {
-  width: 100px;
+  width: 96px;
   height: 22px;
   border: 0;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 3px;
   border-radius: 5px;
 }
 
 #password-input {
-  width: 100px;
+  width: 96px;
   height: 22px;
   border: 0;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 3px;
   border-radius: 5px;
 }
 
@@ -876,14 +871,9 @@ footer a:hover {
 }
 
 /*
- *  Mobile Styles
- */
+*  Tablet Styles (481px — 768px)
+*/
 @media (max-width: 960px) {
-
-  /* Body */
-  body {
-    font-size: 100%;
-  }
 
   .wrapper2 {
     margin: 0px 5px 0px 5px;
@@ -895,10 +885,6 @@ footer a:hover {
 
   textarea {
     font-size:100%;
-  }
-
-  .hide-in-mobile {
-    display: none;
   }
 
   .label {
@@ -927,15 +913,6 @@ footer a:hover {
 
   .textarea-internal-note {
     width: 100%;
-  }
-
-  /* Header */
-  #company_name {
-    font-size:120%;
-  }
-
-  .logo {
-    display: none;
   }
 
   /* Tray */
@@ -996,10 +973,6 @@ footer a:hover {
     display: flex;
   }
 
-  #search-input {
-    width: 200px;
-  }
-
   #search-submit {
     left: 215px;
     width: 80px;
@@ -1011,10 +984,35 @@ footer a:hover {
 
   /* Boxes */
   .boxes {
-    margin: 10px 0px 10px 0px;
+    margin: 10px auto;
   }
 
   .box1, .box2 {
     max-width: 400px;
+  }
+}
+
+/*
+ *  Mobile Styles (320px — 480px)
+ */
+
+@media (max-width: 800px) {
+
+  /* Body */
+  body {
+    font-size: 100%;
+  }
+
+  /* Header */
+  #company_name {
+    font-size:120%;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .hide-in-mobile {
+    display: none;
   }
 }
