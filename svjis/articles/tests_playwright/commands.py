@@ -693,5 +693,43 @@ def close_fault_ticket(cls, page, subject):
     expect(page.locator('.main-content').get_by_text(_('Close ticket'))).not_to_be_visible()
 
 
+# Adverts
+
+
+def create_adverts(cls, page):
+    data = [
+        {
+            'type': 'Prodám',
+            'header': 'Prodám dětské kolo',
+            'body': 'Prodám červené dětské kolo značky McQeen.',
+            'publish': True,
+        },
+        {
+            'type': 'Prodám',
+            'header': 'Prodám akvárium',
+            'body': 'Prodám akvárium i s rybičkama.',
+            'publish': True,
+        },
+    ]
+    for e in data:
+        menu(page, _('Adverts'), _('All'), False)
+        scrshot(page, get_filename(cls, 'adverts'))
+        page.click('text=' + _('Create new advert'))
+        page.select_option('[id=id_type]', label=e['type'])
+        page.fill('[id=id_header]', e['header'])
+        page.fill('[id=id_body]', e['body'])
+        if e['publish']:
+            page.check('[id=id_published]')
+        scrshot(page, get_filename(cls, 'adverts'), True)
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'adverts'), True)
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
+    menu(page, _('Adverts'), _('All'), False)
+    scrshot(page, get_filename(cls, 'adverts'), True)
+
+
+# Final screenshot
+
+
 def final_screen_shot(cls, page):
     scrshot(page, get_filename(cls, 'final-shot'), True)

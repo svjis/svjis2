@@ -94,6 +94,10 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.create_fault_comment(self, page, 'Nefunguje výtah', 'Opraveno')
         cmd.close_fault_ticket(self, page, 'Nefunguje výtah')
         cmd.logout(self, page)
+        # Adverts
+        cmd.login(self, page, 'jana', self.user_password)
+        cmd.create_adverts(self, page)
+        cmd.logout(self, page)
         # Final shot
         cmd.final_screen_shot(self, page)
         page.close()
