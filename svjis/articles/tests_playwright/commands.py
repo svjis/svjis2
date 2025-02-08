@@ -15,18 +15,16 @@ def get_filename(cls, name):
     return f'{cls.test_output_dir}/{next(cls.numbering):04}-{name}.png'
 
 
-def scrshot(page, path):
-    w = page.viewport_size['width']
-    h = page.viewport_size['height']
-    full_height = page.evaluate("document.body.scrollHeight")
-    if full_height > h:
-        page.set_viewport_size({"width": w, "height": full_height})
+def scrshot(page, path, full_height=False):
+    if full_height:
+        w = page.viewport_size['width']
+        h = page.viewport_size['height']
+        full_height = page.evaluate("document.body.scrollHeight")
+        if full_height > h:
+            page.set_viewport_size({"width": w, "height": full_height})
     page.screenshot(path=path)
-    page.set_viewport_size({"width": w, "height": h})
-
-
-def is_element_visible(page, selector):
-    return page.is_visible(selector)
+    if full_height:
+        page.set_viewport_size({"width": w, "height": h})
 
 
 def click_link_in_row(page, text_to_find, i):
@@ -41,7 +39,8 @@ def click_link_in_row(page, text_to_find, i):
 
 
 def show_menu(page):
-    if is_element_visible(page, 'div.menu-toggle'):
+    page.wait_for_load_state('load')
+    if page.is_visible('div.menu-toggle'):
         page.click('.menu-toggle')
 
 
@@ -571,3 +570,7 @@ def create_useful_links(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-links'))
         expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+
+
+def final_screen_shot(cls, page):
+    scrshot(page, get_filename(cls, 'final-shot'), True)

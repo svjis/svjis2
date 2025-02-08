@@ -677,7 +677,7 @@ msgstr "Login"
 
 #: articles/templates/login.html:21
 msgid "Username"
-msgstr "Username"
+msgstr "User"
 
 #: articles/templates/login.html:25
 msgid "Passwod"

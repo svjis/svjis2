@@ -64,4 +64,6 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.search_for_article(self, page)
         cmd.logout(self, page)
         cmd.vote_survey(self, page)
+
+        cmd.final_screen_shot(self, page)
         page.close()

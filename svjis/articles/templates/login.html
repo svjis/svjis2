@@ -16,21 +16,23 @@
     <div class="side-menu__login_header">{% translate 'Login' %}:</div>
     <form action="{% url 'user_login' %}" method="post">
         <div class="side-menu__login_form">
-            {% csrf_token %}
-            <p>
-                <label id="login-label" for="login-name">{% translate 'Username' %}</label>
-                <input id="login-input" type="text" name="username" size="10" />
-            </p>
-            <p>
-                <label id="password-label" for="login-password">{% translate 'Passwod' %}</label>
-                <input id="password-input" type="password" name="password" size="10" />
-            </p>
-            <p>
-                <input id="login-submit" type="submit" value="{% translate 'Sign in' %}" />
-            </p>
-            <p>
-                <a href="{% url 'lost_password' %}">{% translate 'Lost passwod' %}</a>
-            </p>
+            <div class="side-menu__login_form_in">
+                {% csrf_token %}
+                <p>
+                    <label id="login-label" for="login-name">{% translate 'Username' %}</label>
+                    <input id="login-input" type="text" name="username" size="10" />
+                </p>
+                <p>
+                    <label id="password-label" for="login-password">{% translate 'Passwod' %}</label>
+                    <input id="password-input" type="password" name="password" size="10" />
+                </p>
+                <p>
+                    <input id="login-submit" type="submit" value="{% translate 'Sign in' %}" />
+                </p>
+                <p>
+                    <a href="{% url 'lost_password' %}">{% translate 'Lost passwod' %}</a>
+                </p>
+            </div>
         </div>
     </form>
 {% endif %}
