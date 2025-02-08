@@ -17,6 +17,7 @@ def get_filename(cls, name):
 
 
 def scrshot(page, path, full_height=False):
+    page.wait_for_load_state('load')
     if full_height:
         w = page.viewport_size['width']
         h = page.viewport_size['height']
@@ -92,7 +93,7 @@ def fill_company(cls, page):
     page.fill('[id=id_internet_domain]', 'www.pracska.cz')
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
-    scrshot(page, get_filename(cls, 'admin-company'))
+    scrshot(page, get_filename(cls, 'admin-company'), True)
     expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
@@ -301,9 +302,9 @@ def fill_users(cls, page):
         for r in e['roles']:
             page.check(f'[id="{r}-input"]')
 
-        scrshot(page, get_filename(cls, 'admin-users'))
+        scrshot(page, get_filename(cls, 'admin-users'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'admin-users'))
+        scrshot(page, get_filename(cls, 'admin-users'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
@@ -411,9 +412,9 @@ def create_articles(cls, page):
             page.check('[id=id_published]')
         for vis in e['visible']:
             page.check(f'[id={vis}]')
-        scrshot(page, get_filename(cls, 'redaction-article'))
+        scrshot(page, get_filename(cls, 'redaction-article'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'redaction-article'))
+        scrshot(page, get_filename(cls, 'redaction-article'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
         for f in e['attachments']:
@@ -486,9 +487,9 @@ def create_survey(cls, page):
             i += 1
         if e['publish']:
             page.check('[id=id_published]')
-        scrshot(page, get_filename(cls, 'redaction-survey'))
+        scrshot(page, get_filename(cls, 'redaction-survey'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'redaction-survey'))
+        scrshot(page, get_filename(cls, 'redaction-survey'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
@@ -544,10 +545,10 @@ def search_for_article(cls, page):
         page.fill('[id=search-input]', e['search'])
         scrshot(page, get_filename(cls, 'article-search'))
         page.click('id=search-submit')
-        scrshot(page, get_filename(cls, 'article-search'))
+        scrshot(page, get_filename(cls, 'article-search'), True)
         expect(page.locator('.main-content').get_by_text(e['article'])).to_be_visible()
         page.click('text=' + e['article'])
-        scrshot(page, get_filename(cls, 'article-search'))
+        scrshot(page, get_filename(cls, 'article-search'), True)
 
 
 def create_comments(cls, page):
@@ -585,10 +586,10 @@ def vote_survey(cls, page):
     for e in data:
         login(cls, page, e['user'], cls.user_password)
         menu(page, _('Articles'), _('All articles'), True)
-        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']), True)
         page.check('id=vote-' + e['vote'])
         page.click('id=survey-submit')
-        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']), True)
         expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
         logout(cls, page)
 
@@ -597,7 +598,7 @@ def show_survey_results(cls, page):
     menu(page, _('Redaction'), _('Surveys'), True)
     scrshot(page, get_filename(cls, 'survey-results'))
     click_link_in_row(page, 'Jste spokojeni s novou úklidovou firmou?', 1)
-    scrshot(page, get_filename(cls, 'survey-results'))
+    scrshot(page, get_filename(cls, 'survey-results'), True)
 
 
 # Contact
@@ -657,9 +658,9 @@ def create_faults(cls, page):
         if e['entrance']:
             page.select_option('[id=id_entrance]', label=e['entrance'])
         page.fill('[id=id_description]', e['description'])
-        scrshot(page, get_filename(cls, 'faults'))
+        scrshot(page, get_filename(cls, 'faults'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'faults'))
+        scrshot(page, get_filename(cls, 'faults'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
         expect(page.locator('.main-content').get_by_text(e['subject'])).to_be_visible()
 
