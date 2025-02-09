@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.utils.translation import gettext as _
 from playwright.sync_api import expect
 
 # Common functions
@@ -16,6 +17,7 @@ def get_filename(cls, name):
 
 
 def scrshot(page, path, full_height=False):
+    page.wait_for_load_state('load')
     if full_height:
         w = page.viewport_size['width']
         h = page.viewport_size['height']
@@ -78,7 +80,7 @@ def logout(cls, page):
 
 
 def fill_company(cls, page):
-    menu(page, 'Administration', 'Company', True)
+    menu(page, _('Administration'), _('Company'), True)
     scrshot(page, get_filename(cls, 'admin-company'))
     page.fill('[id=id_name]', 'Společenství vlastníků domu Práčská 1')
     page.fill('[id=id_address]', 'Práčská 1')
@@ -91,12 +93,12 @@ def fill_company(cls, page):
     page.fill('[id=id_internet_domain]', 'www.pracska.cz')
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
-    scrshot(page, get_filename(cls, 'admin-company'))
-    expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+    scrshot(page, get_filename(cls, 'admin-company'), True)
+    expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def fill_building(cls, page):
-    menu(page, 'Administration', 'Building', True)
+    menu(page, _('Administration'), _('Building'), True)
     scrshot(page, get_filename(cls, 'admin-building'))
     page.fill('[id=id_address]', 'Práčská 1')
     page.fill('[id=id_city]', 'Praha')
@@ -104,21 +106,21 @@ def fill_building(cls, page):
     page.fill('[id=id_land_registry_no]', 'KAT001')
     page.click('id=submit')
     scrshot(page, get_filename(cls, 'admin-building'))
-    expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+    expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def fill_entrances(cls, page):
     data = [{'description': 'vchod 1', 'address': 'Práčská 1'}, {'description': 'vchod 2', 'address': 'Práčská 2'}]
-    menu(page, 'Administration', 'Entrances', False)
+    menu(page, _('Administration'), _('Entrances'), False)
     scrshot(page, get_filename(cls, 'admin-entrances'))
     for e in data:
-        page.click('text=Add new entrance')
+        page.click('text=' + _('Add new entrance'))
         page.fill('[id=id_description]', e['description'])
         page.fill('[id=id_address]', e['address'])
         scrshot(page, get_filename(cls, 'admin-entrances'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-entrances'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def fill_building_units(cls, page):
@@ -156,10 +158,10 @@ def fill_building_units(cls, page):
             'denominator': '10',
         },
     ]
-    menu(page, 'Administration', 'Building units', False)
+    menu(page, _('Administration'), _('Building units'), False)
     scrshot(page, get_filename(cls, 'admin-building-units'))
     for e in data:
-        page.click('text=Add new unit')
+        page.click('text=' + _('Add new unit'))
         page.select_option('[id=id_type]', label=e['type'])
         page.select_option('[id=id_entrance]', label=e['entrance'])
         page.fill('[id=id_registration_id]', e['id'])
@@ -169,7 +171,7 @@ def fill_building_units(cls, page):
         scrshot(page, get_filename(cls, 'admin-building-units'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-building-units'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def fill_users(cls, page):
@@ -277,10 +279,10 @@ def fill_users(cls, page):
             'roles': ['Vlastník'],
         },
     ]
-    menu(page, 'Administration', 'Users', False)
+    menu(page, _('Administration'), _('Users'), False)
     scrshot(page, get_filename(cls, 'admin-users'))
     for e in data:
-        page.click('text=Create new user')
+        page.click('text=' + _('Create new user'))
         page.fill('[id=id_salutation]', e['salutation'])
         page.fill('[id=id_first_name]', e['first_name'])
         page.fill('[id=id_last_name]', e['last_name'])
@@ -300,10 +302,10 @@ def fill_users(cls, page):
         for r in e['roles']:
             page.check(f'[id="{r}-input"]')
 
-        scrshot(page, get_filename(cls, 'admin-users'))
+        scrshot(page, get_filename(cls, 'admin-users'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'admin-users'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        scrshot(page, get_filename(cls, 'admin-users'), True)
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def fill_board(cls, page):
@@ -313,17 +315,17 @@ def fill_board(cls, page):
         {'order': '3', 'member': 'Ovečka Jiří', 'position': 'člen'},
         {'order': '4', 'member': 'Hamplová Jana', 'position': 'revizor'},
     ]
-    menu(page, 'Administration', 'Board', False)
+    menu(page, _('Administration'), _('Board'), False)
     scrshot(page, get_filename(cls, 'admin-board'))
     for e in data:
-        page.click('text=Add new member')
+        page.click('text=' + _('Add new member'))
         page.fill('[id=id_order]', e['order'])
         page.select_option('[id=id_member]', label=e['member'])
         page.fill('[id=id_position]', e['position'])
         scrshot(page, get_filename(cls, 'admin-board'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-board'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def fill_user_units(cls, page):
@@ -335,7 +337,7 @@ def fill_user_units(cls, page):
         {'user': 'Hampl', 'unit': 'Byt - 001 - Byt 1', 'description': 'Byt 1'},
     ]
     for e in data:
-        menu(page, 'Administration', 'Users', False)
+        menu(page, _('Administration'), _('Users'), False)
         click_link_in_row(page, e['user'], 1)
         scrshot(page, get_filename(cls, 'admin-user-units'))
         page.select_option('[id=owner-input]', label=e['unit'])
@@ -388,9 +390,9 @@ def create_articles(cls, page):
         },
     ]
     for e in data:
-        menu(page, 'Redaction', 'Articles', True)
+        menu(page, _('Redaction'), _('Articles'), True)
         scrshot(page, get_filename(cls, 'redaction-article'))
-        page.click('text=Create new article')
+        page.click('text=' + _('Create new article'))
         page.fill('[id=id_header]', e['header'])
 
         page.wait_for_selector('#id_perex_ifr')
@@ -410,10 +412,10 @@ def create_articles(cls, page):
             page.check('[id=id_published]')
         for vis in e['visible']:
             page.check(f'[id={vis}]')
-        scrshot(page, get_filename(cls, 'redaction-article'))
+        scrshot(page, get_filename(cls, 'redaction-article'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'redaction-article'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        scrshot(page, get_filename(cls, 'redaction-article'), True)
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
         for f in e['attachments']:
             page.fill('[id=id_description]', f)
@@ -422,24 +424,7 @@ def create_articles(cls, page):
             scrshot(page, get_filename(cls, 'redaction-article'))
 
 
-def create_comments(cls, page):
-    data = [
-        {
-            'header': 'Nová úklidová firma',
-            'comment': 'Úklid se zlepšil.',
-        },
-    ]
-    for e in data:
-        menu(page, 'Articles', 'All articles', True)
-        page.click('text=' + e['header'])
-        page.fill('[id=body]', e['comment'])
-        scrshot(page, get_filename(cls, 'redaction-article-comment'))
-        page.click('id=submit')
-        scrshot(page, get_filename(cls, 'redaction-article-comment'))
-        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
-
-
-def search_for_article(cls, page):
+def search_for_article_in_redaction(cls, page):
     data = [
         {
             'search': 'nová',
@@ -447,15 +432,13 @@ def search_for_article(cls, page):
         },
     ]
     for e in data:
-        menu(page, 'Articles', 'All articles', True)
+        menu(page, _('Redaction'), _('Articles'), True)
         show_menu(page)
         page.fill('[id=search-input]', e['search'])
         scrshot(page, get_filename(cls, 'redaction-article-search'))
         page.click('id=search-submit')
         scrshot(page, get_filename(cls, 'redaction-article-search'))
         expect(page.locator('.main-content').get_by_text(e['article'])).to_be_visible()
-        page.click('text=' + e['article'])
-        scrshot(page, get_filename(cls, 'redaction-article-search'))
 
 
 def create_news(cls, page):
@@ -470,16 +453,16 @@ def create_news(cls, page):
         },
     ]
     for e in data:
-        menu(page, 'Redaction', 'News', True)
+        menu(page, _('Redaction'), _('News'), True)
         scrshot(page, get_filename(cls, 'redaction-news'))
-        page.click('text=Create new news')
+        page.click('text=' + _('Create new news'))
         page.fill('[id=id_body]', e['body'])
         if e['publish']:
             page.check('[id=id_published]')
         scrshot(page, get_filename(cls, 'redaction-news'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-news'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def create_survey(cls, page):
@@ -491,9 +474,9 @@ def create_survey(cls, page):
         },
     ]
     for e in data:
-        menu(page, 'Redaction', 'Surveys', True)
+        menu(page, _('Redaction'), _('Surveys'), True)
         scrshot(page, get_filename(cls, 'redaction-survey'))
-        page.click('text=Create new survey')
+        page.click('text=' + _('Create new survey'))
         page.fill('[id=id_description]', e['description'])
         page.locator('#id_starting_date').press_sequentially(datetime.today().strftime('%m%d%Y'))
         page.locator('#id_ending_date').press_sequentially(datetime.today().strftime('%m%d%Y'))
@@ -504,36 +487,10 @@ def create_survey(cls, page):
             i += 1
         if e['publish']:
             page.check('[id=id_published]')
-        scrshot(page, get_filename(cls, 'redaction-survey'))
+        scrshot(page, get_filename(cls, 'redaction-survey'), True)
         page.click('id=submit')
-        scrshot(page, get_filename(cls, 'redaction-survey'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
-
-
-def vote_survey(cls, page):
-    data = [
-        {
-            'user': 'petr',
-            'vote': '1',
-        },
-        {
-            'user': 'tomas',
-            'vote': '1',
-        },
-        {
-            'user': 'jana',
-            'vote': '2',
-        },
-    ]
-    for e in data:
-        login(cls, page, e['user'], cls.user_password)
-        menu(page, 'Articles', 'All articles', True)
-        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
-        page.check('id=vote-' + e['vote'])
-        page.click('id=survey-submit')
-        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']))
-        expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
-        logout(cls, page)
+        scrshot(page, get_filename(cls, 'redaction-survey'), True)
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
 
 
 def create_useful_links(cls, page):
@@ -558,9 +515,9 @@ def create_useful_links(cls, page):
         },
     ]
     for e in data:
-        menu(page, 'Redaction', 'Useful Links', True)
+        menu(page, _('Redaction'), _('Useful Links'), True)
         scrshot(page, get_filename(cls, 'redaction-links'))
-        page.click('text=Create new useful link')
+        page.click('text=' + _('Create new useful link'))
         page.fill('[id=id_header]', e['header'])
         page.fill('[id=id_link]', e['link'])
         page.fill('[id=id_order]', e['order'])
@@ -569,7 +526,209 @@ def create_useful_links(cls, page):
         scrshot(page, get_filename(cls, 'redaction-links'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-links'))
-        expect(page.locator('#msg-info').get_by_text('Saved')).to_be_visible()
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
+
+
+# Ordinary use cases
+
+
+def search_for_article(cls, page):
+    data = [
+        {
+            'search': 'nová',
+            'article': 'Nová úklidová firma',
+        },
+    ]
+    for e in data:
+        menu(page, _('Articles'), _('All articles'), True)
+        show_menu(page)
+        page.fill('[id=search-input]', e['search'])
+        scrshot(page, get_filename(cls, 'article-search'))
+        page.click('id=search-submit')
+        scrshot(page, get_filename(cls, 'article-search'), True)
+        expect(page.locator('.main-content').get_by_text(e['article'])).to_be_visible()
+        page.click('text=' + e['article'])
+        scrshot(page, get_filename(cls, 'article-search'), True)
+
+
+def create_comments(cls, page):
+    data = [
+        {
+            'header': 'Nová úklidová firma',
+            'comment': 'Úklid se zlepšil.',
+        },
+    ]
+    for e in data:
+        menu(page, _('Articles'), _('All articles'), True)
+        page.click('text=' + e['header'])
+        page.fill('[id=body]', e['comment'])
+        scrshot(page, get_filename(cls, 'redaction-article-comment'))
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'redaction-article-comment'))
+        expect(page.locator('.main-content').get_by_text(e['comment'])).to_be_visible()
+
+
+def vote_survey(cls, page):
+    data = [
+        {
+            'user': 'petr',
+            'vote': '1',
+        },
+        {
+            'user': 'tomas',
+            'vote': '1',
+        },
+        {
+            'user': 'jana',
+            'vote': '2',
+        },
+    ]
+    for e in data:
+        login(cls, page, e['user'], cls.user_password)
+        menu(page, _('Articles'), _('All articles'), True)
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']), True)
+        page.check('id=vote-' + e['vote'])
+        page.click('id=survey-submit')
+        scrshot(page, get_filename(cls, 'survey-vote-' + e['user']), True)
+        expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()
+        logout(cls, page)
+
+
+def show_survey_results(cls, page):
+    menu(page, _('Redaction'), _('Surveys'), True)
+    scrshot(page, get_filename(cls, 'survey-results'))
+    click_link_in_row(page, 'Jste spokojeni s novou úklidovou firmou?', 1)
+    scrshot(page, get_filename(cls, 'survey-results'), True)
+
+
+# Contact
+
+
+def show_contact(cls, page):
+    menu(page, _('Contact'), _('Contact'), True)
+    scrshot(page, get_filename(cls, 'contact'))
+    menu(page, _('Contact'), _('Phonelist'), True)
+    scrshot(page, get_filename(cls, 'contact-phonelist'))
+
+
+# Personal settings
+
+
+def fill_personal_settings(cls, page):
+    menu(page, _('Personal settings'), _('Personal settings'), True)
+    scrshot(page, get_filename(cls, 'personal-settings'))
+    page.fill('[id=id_email]', 'jana.hamplova@my.new.email.com')
+    scrshot(page, get_filename(cls, 'personal-settings'))
+    page.click('id=submit')
+    scrshot(page, get_filename(cls, 'personal-settings'))
+    expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
+
+
+def show_personal_units(cls, page):
+    menu(page, _('Personal settings'), _('My units'), True)
+    scrshot(page, get_filename(cls, 'personal-settings-units'))
+
+
+def show_personal_password_change(cls, page):
+    menu(page, _('Personal settings'), _('Password change'), True)
+    scrshot(page, get_filename(cls, 'personal-settings-password-change'))
+
+
+# Faults
+
+
+def create_faults(cls, page):
+    data = [
+        {
+            'subject': 'Nefunguje výtah',
+            'entrance': None,
+            'description': 'Od pondělí nejezdí výtah. Prosím o opravu.',
+        },
+        {
+            'subject': 'Nesvítí světlo na chodbě',
+            'entrance': 'vchod 1, Práčská 1',
+            'description': 'Prosím o opravu.\n\nDěkuji',
+        },
+    ]
+    for e in data:
+        menu(page, _('Fault reporting'), _('Open'), False)
+        scrshot(page, get_filename(cls, 'faults'))
+        page.click('text=' + _('Report fault or request'))
+        page.fill('[id=id_subject]', e['subject'])
+        if e['entrance']:
+            page.select_option('[id=id_entrance]', label=e['entrance'])
+        page.fill('[id=id_description]', e['description'])
+        scrshot(page, get_filename(cls, 'faults'), True)
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'faults'), True)
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
+        expect(page.locator('.main-content').get_by_text(e['subject'])).to_be_visible()
+
+
+def create_fault_comment(cls, page, subject, comment):
+    menu(page, _('Fault reporting'), _('Open'), False)
+    click_link_in_row(page, subject, 0)
+    page.fill('[id=body]', comment)
+    scrshot(page, get_filename(cls, 'fault-comment'))
+    page.click('id=submit')
+    scrshot(page, get_filename(cls, 'fault-comment'))
+    expect(page.locator('.main-content').get_by_text(comment)).to_be_visible()
+
+
+def take_fault_ticket(cls, page, subject):
+    menu(page, _('Fault reporting'), _('Open'), False)
+    click_link_in_row(page, subject, 0)
+    scrshot(page, get_filename(cls, 'take-ticket'))
+    page.click('text=' + _('Take ticket'))
+    scrshot(page, get_filename(cls, 'take-ticket'))
+    expect(page.locator('.main-content').get_by_text(_('Close ticket'))).to_be_visible()
+
+
+def close_fault_ticket(cls, page, subject):
+    menu(page, _('Fault reporting'), _('Open'), False)
+    click_link_in_row(page, subject, 0)
+    scrshot(page, get_filename(cls, 'close-ticket'))
+    page.click('text=' + _('Close ticket'))
+    scrshot(page, get_filename(cls, 'close-ticket'))
+    expect(page.locator('.main-content').get_by_text(_('Close ticket'))).not_to_be_visible()
+
+
+# Adverts
+
+
+def create_adverts(cls, page):
+    data = [
+        {
+            'type': 'Prodám',
+            'header': 'Prodám dětské kolo',
+            'body': 'Prodám červené dětské kolo značky McQeen.',
+            'publish': True,
+        },
+        {
+            'type': 'Prodám',
+            'header': 'Prodám akvárium',
+            'body': 'Prodám akvárium i s rybičkama.',
+            'publish': True,
+        },
+    ]
+    for e in data:
+        menu(page, _('Adverts'), _('All'), False)
+        scrshot(page, get_filename(cls, 'adverts'))
+        page.click('text=' + _('Create new advert'))
+        page.select_option('[id=id_type]', label=e['type'])
+        page.fill('[id=id_header]', e['header'])
+        page.fill('[id=id_body]', e['body'])
+        if e['publish']:
+            page.check('[id=id_published]')
+        scrshot(page, get_filename(cls, 'adverts'), True)
+        page.click('id=submit')
+        scrshot(page, get_filename(cls, 'adverts'), True)
+        expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
+    menu(page, _('Adverts'), _('All'), False)
+    scrshot(page, get_filename(cls, 'adverts'), True)
+
+
+# Final screenshot
 
 
 def final_screen_shot(cls, page):
