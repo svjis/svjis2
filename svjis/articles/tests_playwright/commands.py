@@ -57,7 +57,6 @@ def menu(page, tray_menu_item, side_menu_item, is_exact):
 
 
 def login(cls, page, user, password):
-    page.goto(f"{cls.live_server_url}/")
     show_menu(page)
     page.wait_for_selector('id=login-submit')
     scrshot(page, get_filename(cls, f'login-{user}'))

@@ -44,6 +44,7 @@ class DesktopTests(StaticLiveServerTestCase):
         )
         activate(self.locale)
         page = context.new_page()
+        page.goto(f"{self.live_server_url}/")
         # Parametrization
         cmd.login(self, page, 'admin', self.user_password)
         cmd.fill_company(self, page)
