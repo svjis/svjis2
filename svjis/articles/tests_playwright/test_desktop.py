@@ -18,6 +18,8 @@ class DesktopTests(StaticLiveServerTestCase):
     device_height = 720
     test_output_dir = 'playwright_output/desktop'
     locale = 'cs'
+    app_url = None
+    user_password = generate_password(6)
 
     @classmethod
     def setUpClass(cls):
@@ -25,7 +27,6 @@ class DesktopTests(StaticLiveServerTestCase):
         super().setUpClass()
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch(headless=True)
-        cls.user_password = generate_password(6)
         call_command('svjis_setup', password=cls.user_password)
         cls.numbering = cmd.get_number()
 
@@ -44,7 +45,7 @@ class DesktopTests(StaticLiveServerTestCase):
         )
         activate(self.locale)
         page = context.new_page()
-        page.goto(f"{self.live_server_url}/")
+        page.goto(self.app_url if self.app_url is not None else f"{self.live_server_url}/")
         # Parametrization
         cmd.login(self, page, 'admin', self.user_password)
         cmd.fill_company(self, page)
