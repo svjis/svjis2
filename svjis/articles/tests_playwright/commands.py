@@ -57,7 +57,6 @@ def menu(page, tray_menu_item, side_menu_item, is_exact):
 
 
 def login(cls, page, user, password):
-    page.goto(f"{cls.live_server_url}/")
     show_menu(page)
     page.wait_for_selector('id=login-submit')
     scrshot(page, get_filename(cls, f'login-{user}'))
@@ -572,22 +571,22 @@ def vote_survey(cls, page):
     data = [
         {
             'user': 'petr',
-            'vote': '1',
+            'vote': 'Ano',
         },
         {
             'user': 'tomas',
-            'vote': '1',
+            'vote': 'Ano',
         },
         {
             'user': 'jana',
-            'vote': '2',
+            'vote': 'Ne',
         },
     ]
     for e in data:
         login(cls, page, e['user'], cls.user_password)
         menu(page, _('Articles'), _('All articles'), True)
         scrshot(page, get_filename(cls, 'survey-vote-' + e['user']), True)
-        page.check('id=vote-' + e['vote'])
+        page.locator('.survey_box').get_by_text(e['vote'], exact=True).click()
         page.click('id=survey-submit')
         scrshot(page, get_filename(cls, 'survey-vote-' + e['user']), True)
         expect(page.locator('.survey_box').locator('#survey-submit')).not_to_be_visible()

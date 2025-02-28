@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 23:04+0100\n"
+"POT-Creation-Date: 2025-02-20 17:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -594,6 +594,10 @@ msgstr "Top articles"
 #: articles/tests_playwright/commands.py:518 articles/views_redaction.py:40
 msgid "Useful Links"
 msgstr "Useful Links"
+
+#: articles/templates/box-useful-links.html:14
+msgid "Paper clip"
+msgstr "Paper clip"
 
 #: articles/templates/contact_company.html:42
 msgid "Registration No."
