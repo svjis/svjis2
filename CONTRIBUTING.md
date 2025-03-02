@@ -15,7 +15,7 @@ Než vytvoříte pull-request, tak si nainstalujte nástroj `pre-commit`.
 Nainstalujte si závislosti pro vývoj:
 
 ```bash
-pip install -r requirements-dev.txt
+python -m pip install -e ".[dev]"
 ```
 
 Pro kontrolu kvality kódu a dodržování konvencí používáme nástroj `pre-commit`. Pro jeho instalaci použijte příkaz:

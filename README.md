@@ -33,7 +33,7 @@ source venv/Scripts/activate
 
 Nainstalujte závislosti a vytvoře konfiguraci
 ```
-pip install -r requirements.txt
+python -m pip install -e .
 cd svjis
 python manage.py migrate
 python manage.py svjis_setup --password <heslo pro uživatele admin>
