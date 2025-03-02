@@ -1,6 +1,8 @@
 # General
 venv/
+.venv/
 *~
+*.egg-info/
 
 # IDE
 .idea/
