@@ -275,7 +275,7 @@ class Company(models.Model):
     vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
     internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
     header_picture = models.FileField(_("Header picture"), upload_to=company_directory_path, null=True, blank=True)
-    website_language = models.CharField(_("Website language"), max_length=10, blank=True)
+    website_language = models.CharField(_("Website language"), max_length=2, blank=True)
 
     @property
     def board(self):
