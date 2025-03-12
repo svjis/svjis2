@@ -226,6 +226,7 @@ class CompanyForm(forms.ModelForm):
             "registration_no",
             "vat_registration_no",
             "internet_domain",
+            "website_language",
             "header_picture",
         )
         widgets = {
@@ -238,6 +239,7 @@ class CompanyForm(forms.ModelForm):
             'registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'vat_registration_no': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'internet_domain': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
+            'website_language': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'header_picture': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
         }
 

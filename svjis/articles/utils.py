@@ -31,6 +31,7 @@ def get_context():
         ctx['company_picture'] = company.header_picture
         ctx['company_name'] = company.name
         ctx['web_title'] = company.name
+        ctx['website_language'] = company.website_language
     return ctx
 
 
