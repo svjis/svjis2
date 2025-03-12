@@ -90,6 +90,7 @@ def fill_company(cls, page):
     page.fill('[id=id_registration_no]', '123456')
     page.fill('[id=id_vat_registration_no]', 'CZ123456')
     page.fill('[id=id_internet_domain]', 'www.pracska.cz')
+    page.fill('[id=id_website_language]', 'cs')
     page.set_input_files('[id=id_header_picture]', 'articles/tests_playwright/assets/Header_1.png')
     page.click('id=submit')
     scrshot(page, get_filename(cls, 'admin-company'), True)
