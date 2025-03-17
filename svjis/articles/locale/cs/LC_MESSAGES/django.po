@@ -574,7 +574,7 @@ msgstr "Zpět na seznam článků"
 #: articles/tests_playwright/commands.py:456 articles/views_redaction.py:32
 #: articles/views_redaction.py:334
 msgid "News"
-msgstr "Novinky"
+msgstr "Aktuálně"
 
 #: articles/templates/box-survey.html:8
 #: articles/templates/redaction_survey_edit.html:7
