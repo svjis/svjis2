@@ -113,6 +113,7 @@ LANGUAGES = (
     ('en', 'English'),
     ('cs', 'Česky'),
     ('sk', 'Slovensky'),
+    ('uk', 'українська'),
 )
 
 LANGUAGE_CODE = 'en'
