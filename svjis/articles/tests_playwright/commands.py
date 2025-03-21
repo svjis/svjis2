@@ -156,6 +156,22 @@ def fill_building_units(cls, page):
             'numerator': '1',
             'denominator': '10',
         },
+        {
+            'type': 'Sklep',
+            'entrance': 'vchod 1, Práčská 1',
+            'id': '101',
+            'description': 'Sklep 101',
+            'numerator': '1',
+            'denominator': '100',
+        },
+        {
+            'type': 'Sklep',
+            'entrance': 'vchod 1, Práčská 1',
+            'id': '102',
+            'description': 'Sklep 102',
+            'numerator': '1',
+            'denominator': '100',
+        },
     ]
     menu(page, _('Administration'), _('Building units'), False)
     scrshot(page, get_filename(cls, 'admin-building-units'))
@@ -334,6 +350,9 @@ def fill_user_units(cls, page):
         {'user': 'Hranolek', 'unit': 'Byt - 003 - Byt 3', 'description': 'Byt 3'},
         {'user': 'Ovečka', 'unit': 'Byt - 004 - Byt 4', 'description': 'Byt 4'},
         {'user': 'Hampl', 'unit': 'Byt - 001 - Byt 1', 'description': 'Byt 1'},
+        {'user': 'Hamplová', 'unit': 'Sklep - 101 - Sklep 101', 'description': 'Sklep 101'},
+        {'user': 'Hampl', 'unit': 'Sklep - 101 - Sklep 101', 'description': 'Sklep 101'},
+        {'user': 'Ovečka', 'unit': 'Sklep - 102 - Sklep 102', 'description': 'Sklep 102'},
     ]
     for e in data:
         menu(page, _('Administration'), _('Users'), False)
