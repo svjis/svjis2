@@ -115,6 +115,7 @@ LANGUAGES = (
     ('sk', 'Slovensky'),
     ('uk', 'українська'),
     ('vi', 'Tiếng Việt'),
+    ('ru', 'Русский'),
 )
 
 LANGUAGE_CODE = 'en'
