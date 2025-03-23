@@ -195,7 +195,10 @@ def article_view(request, slug):
         article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
 
     if len(article_qs) == 0:
-        raise Http404
+        if request.user.is_authenticated:
+            raise Http404
+        else:
+            return redirect(reverse(login_page_view) + '?next=' + request.get_full_path())
     else:
         article = article_qs[0]
 
@@ -264,6 +267,7 @@ def login_page_view(request):
         return redirect(main_view)
     else:
         ctx = utils.get_context()
+        ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
         next_page = request.GET.get('next', None)
         if next_page is not None:
             ctx['next_page'] = next_page
@@ -295,9 +299,6 @@ def user_logout(request):
 
 # Error pages
 def error_404_view(request, exception):
-    if request.user.is_authenticated:
-        ctx = utils.get_context()
-        ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
-        return render(request, "error_404.html", ctx, status=404)
-    else:
-        return redirect(login_page_view)
+    ctx = utils.get_context()
+    ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
+    return render(request, "error_404.html", ctx, status=404)
