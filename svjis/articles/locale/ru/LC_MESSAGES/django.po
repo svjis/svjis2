@@ -705,7 +705,7 @@ msgid "Username"
 msgstr "Имя пользователя"
 
 #: articles/templates/login.html:26
-msgid "Passwod"
+msgid "Password"
 msgstr "Пароль"
 
 #: articles/templates/login.html:30
@@ -713,7 +713,7 @@ msgid "Sign in"
 msgstr "Войти"
 
 #: articles/templates/login.html:33
-msgid "Lost passwod"
+msgid "Lost password"
 msgstr "Забыли пароль"
 
 #: articles/templates/paginator.html:8

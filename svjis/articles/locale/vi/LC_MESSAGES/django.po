@@ -703,7 +703,7 @@ msgid "Username"
 msgstr "Tên người dùng"
 
 #: articles/templates/login.html:26
-msgid "Passwod"
+msgid "Password"
 msgstr "Mật khẩu"
 
 #: articles/templates/login.html:30
@@ -711,7 +711,7 @@ msgid "Sign in"
 msgstr "Đăng nhập"
 
 #: articles/templates/login.html:33
-msgid "Lost passwod"
+msgid "Lost password"
 msgstr "Quên mật khẩu"
 
 #: articles/templates/paginator.html:8

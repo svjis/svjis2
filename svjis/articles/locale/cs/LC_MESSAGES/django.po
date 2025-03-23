@@ -702,7 +702,7 @@ msgid "Username"
 msgstr "Uživatel"
 
 #: articles/templates/login.html:26
-msgid "Passwod"
+msgid "Password"
 msgstr "Heslo"
 
 #: articles/templates/login.html:30
@@ -710,7 +710,7 @@ msgid "Sign in"
 msgstr "Přihlásit"
 
 #: articles/templates/login.html:33
-msgid "Lost passwod"
+msgid "Lost password"
 msgstr "Zapomenuté heslo"
 
 #: articles/templates/paginator.html:8

@@ -703,7 +703,7 @@ msgid "Username"
 msgstr "Felhasználónév"
 
 #: articles/templates/login.html:26
-msgid "Passwod"
+msgid "Password"
 msgstr "Jelszó"
 
 #: articles/templates/login.html:30
@@ -711,7 +711,7 @@ msgid "Sign in"
 msgstr "Belépés"
 
 #: articles/templates/login.html:33
-msgid "Lost passwod"
+msgid "Lost password"
 msgstr "Elfelejtett jelszó"
 
 #: articles/templates/paginator.html:8

@@ -576,13 +576,13 @@ msgstr "Zaloguj"
 msgid "Username"
 msgstr "Nazwa użytkownika"
 #: articles/templates/login.html:26
-msgid "Passwod"
+msgid "Password"
 msgstr "Hasło"
 #: articles/templates/login.html:30
 msgid "Sign in"
 msgstr "Zaloguj się"
 #: articles/templates/login.html:33
-msgid "Lost passwod"
+msgid "Lost password"
 msgstr "Zapomniane hasło"
 #: articles/templates/paginator.html:8
 msgid "Previous"
