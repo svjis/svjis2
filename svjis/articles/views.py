@@ -11,6 +11,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
 
@@ -277,7 +278,7 @@ def user_login(request):
     if user is not None:
         login(request, user)
         next_page = request.POST.get('next_page', None)
-        if next_page is not None:
+        if next_page is not None and url_has_allowed_host_and_scheme(next_page, allowed_hosts=None):
             return redirect(next_page)
     else:
         messages.error(request, _("Wrong username or password"))
