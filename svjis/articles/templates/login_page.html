@@ -8,11 +8,13 @@
     <h1 class="page-title">{% translate 'Login' %}</h1>
 
     <form action="{% url 'user_login' %}" method="post">
-        <input type="hidden" name="next" value="{{ next }}">
         <fieldset>
             <legend>{% translate 'Login' %}</legend>
 
             {% csrf_token %}
+            {% if next_page %}
+            <input type="hidden" name="next_page" value="{{ next_page }}" />
+            {% endif %}
 
             <p>
                 <label class="common-label" id="username-label" for="username-input">{% translate 'Username' %}</label>
