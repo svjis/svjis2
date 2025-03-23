@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block sitecontent %}
+<div class="main-content">
+
+    <h1 class="page-title">{% translate 'Login' %}</h1>
+
+    <form action="{% url 'user_login' %}" method="post">
+        <input type="hidden" name="next" value="{{ next }}">
+        <fieldset>
+            <legend>{% translate 'Login' %}</legend>
+
+            {% csrf_token %}
+
+            <p>
+                <label class="common-label" id="username-label" for="username-input">{% translate 'Username' %}</label>
+                <input class="common-input" id="username-input" type="text" name="username" size="10" />
+            </p>
+            <p>
+                <label class="common-label" id="pwd-label" for="pwd-input">{% translate 'Passwod' %}</label>
+                <input class="common-input" id="pwd-input" type="password" name="password" size="10" />
+            </p>
+            <p>
+                <input class="black-submit" type="submit" value="{% translate 'Sign in' %}" />
+            </p>
+            <p>
+                <a href="{% url 'lost_password' %}">{% translate 'Lost passwod' %}</a>
+            </p>
+        </fieldset>
+    </form>
+
+</div>
+{% endblock sitecontent %}

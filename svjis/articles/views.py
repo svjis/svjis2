@@ -257,6 +257,15 @@ def article_watch_view(request):
 
 
 # Login
+@require_GET
+def login_page_view(request):
+    if request.user.is_authenticated:
+        return redirect(main_view)
+    else:
+        ctx = utils.get_context()
+        return render(request, "login_page.html", ctx)
+
+
 @require_POST
 def user_login(request):
     username = request.POST.get('username')
@@ -264,9 +273,13 @@ def user_login(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         login(request, user)
+        next_page = request.POST.get('next', '')
+        if next_page != '':
+            return redirect(reverse(next_page))
     else:
         messages.error(request, _("Wrong username or password"))
         messages.info(request, _("In case you lost your password use Lost Password link"))
+        return redirect(login_page_view)
     return redirect(main_view)
 
 
