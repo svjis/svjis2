@@ -497,7 +497,7 @@ msgstr "Thông tin đăng nhập"
 #: articles/templates/admin_user_edit.html:69 articles/templates/login.html:26
 #: articles/templates/login_page.html:24
 msgid "Password"
-msgstr "Mật khẩu"
+msgstr "Mật"
 
 #: articles/templates/admin_user_edit.html:73
 msgid "Send Credentials By E-Mail"
@@ -702,7 +702,7 @@ msgstr "Đăng nhập"
 
 #: articles/templates/login.html:22 articles/templates/login_page.html:20
 msgid "Username"
-msgstr "Tên người dùng"
+msgstr "Dùng"
 
 #: articles/templates/login.html:30 articles/templates/login_page.html:28
 msgid "Sign in"

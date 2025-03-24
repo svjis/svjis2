@@ -704,7 +704,7 @@ msgstr "Войти"
 
 #: articles/templates/login.html:22 articles/templates/login_page.html:20
 msgid "Username"
-msgstr "Имя пользователя"
+msgstr "Пользователь"
 
 #: articles/templates/login.html:30 articles/templates/login_page.html:28
 msgid "Sign in"
