@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-24 00:28+0100\n"
+"POT-Creation-Date: 2025-03-25 23:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -261,6 +261,7 @@ msgstr "Inzerát"
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
 #: articles/templates/admin_board_edit.html:13
+#: articles/templates/contact_company.html:63
 #: articles/tests_playwright/commands.py:333 articles/views_admin.py:28
 msgid "Board"
 msgstr "Výbor"
@@ -619,8 +620,7 @@ msgstr "Stránka nenalezena"
 
 #: articles/templates/error_404.html:10
 msgid "Page doesn't exist or you have no access."
-msgstr ""
-"Požadovaná stránka buď neexistuje nebo k ní nemáte přístup."
+msgstr "Požadovaná stránka buď neexistuje nebo k ní nemáte přístup."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"

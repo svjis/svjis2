@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-24 00:29+0100\n"
+"POT-Creation-Date: 2025-03-25 23:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,6 +265,7 @@ msgstr "Оголошення"
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
 #: articles/templates/admin_board_edit.html:13
+#: articles/templates/contact_company.html:63
 #: articles/tests_playwright/commands.py:333 articles/views_admin.py:28
 msgid "Board"
 msgstr "Правління"
@@ -623,8 +624,7 @@ msgstr "Сторінку не знайдено"
 
 #: articles/templates/error_404.html:10
 msgid "Page doesn't exist or you have no access."
-msgstr ""
-"Сторінка або не існує, або у вас немає доступу."
+msgstr "Сторінка або не існує, або у вас немає доступу."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"
