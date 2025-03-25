@@ -619,10 +619,9 @@ msgid "Page not found"
 msgstr "Az oldal nem található"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
 msgstr ""
-"A keresett oldal vagy nem létezik, vagy nincs hozzáférése. Ha nincs "
-"bejelentkezve, próbálja meg belépni."
+"A keresett oldal vagy nem létezik, vagy nincs hozzáférése."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"

@@ -622,10 +622,9 @@ msgid "Page not found"
 msgstr "Сторінку не знайдено"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
 msgstr ""
-"Сторінка або не існує, або у вас немає доступу. Якщо ви не авторизовані, "
-"спробуйте увійти."
+"Сторінка або не існує, або у вас немає доступу."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"

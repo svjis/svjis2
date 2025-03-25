@@ -618,8 +618,8 @@ msgid "Page not found"
 msgstr "Page not found"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
-msgstr "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
+msgstr "Page doesn't exist or you have no access."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"

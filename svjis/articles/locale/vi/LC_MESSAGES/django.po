@@ -619,10 +619,9 @@ msgid "Page not found"
 msgstr "Không tìm thấy trang"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
 msgstr ""
-"Trang không tồn tại hoặc bạn không có quyền truy cập. Bạn có thể thử đăng "
-"nhập."
+"Trang không tồn tại hoặc bạn không có quyền truy cập."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"

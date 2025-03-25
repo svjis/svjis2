@@ -621,10 +621,9 @@ msgid "Page not found"
 msgstr "Strona nie została znaleziona"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
 msgstr ""
-"Żądana strona nie istnieje lub nie masz do niej dostępu. Jeśli nie jesteś "
-"zalogowany, spróbuj się zalogować."
+"Żądana strona nie istnieje lub nie masz do niej dostępu."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"

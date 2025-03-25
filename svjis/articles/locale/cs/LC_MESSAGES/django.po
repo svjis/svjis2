@@ -618,10 +618,9 @@ msgid "Page not found"
 msgstr "Stránka nenalezena"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
 msgstr ""
-"Požadovaná stránka buď neexistuje nebo k ní nemáte přístup. Pokud nejste "
-"přihlášení tak se zkuste přihlásit."
+"Požadovaná stránka buď neexistuje nebo k ní nemáte přístup."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"
