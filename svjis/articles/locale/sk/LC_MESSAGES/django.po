@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-25 23:45+0100\n"
+"POT-Creation-Date: 2025-03-27 13:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -693,8 +693,7 @@ msgstr "Prejsť na domovskú stránku"
 msgid "Logout"
 msgstr "Odhlásiť"
 
-#: articles/templates/login.html:16 articles/templates/login_page.html:8
-#: articles/templates/login_page.html:12
+#: articles/templates/login.html:16
 msgid "Login"
 msgstr "Prihlásiť"
 
@@ -710,6 +709,14 @@ msgstr "Prihlásiť"
 #: articles/templates/send_lost_password.html:8
 msgid "Lost password"
 msgstr "Zabudnuté heslo"
+
+#: articles/templates/login_page.html:8
+msgid "Sign in to your account"
+msgstr "Prihláste sa do svojho účtu"
+
+#: articles/templates/login_page.html:12
+msgid "Please sign-in"
+msgstr "Prosím, prihláste sa"
 
 #: articles/templates/paginator.html:8
 msgid "Previous"

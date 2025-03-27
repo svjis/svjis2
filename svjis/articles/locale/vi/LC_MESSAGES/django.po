@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-25 23:46+0100\n"
+"POT-Creation-Date: 2025-03-27 13:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -694,8 +694,7 @@ msgstr "Trở về trang chủ"
 msgid "Logout"
 msgstr "Đăng xuất"
 
-#: articles/templates/login.html:16 articles/templates/login_page.html:8
-#: articles/templates/login_page.html:12
+#: articles/templates/login.html:16
 msgid "Login"
 msgstr "Đăng nhập"
 
@@ -711,6 +710,14 @@ msgstr "Đăng nhập"
 #: articles/templates/send_lost_password.html:8
 msgid "Lost password"
 msgstr "Quên mật khẩu"
+
+#: articles/templates/login_page.html:8
+msgid "Sign in to your account"
+msgstr "Đăng nhập vào tài khoản của bạn"
+
+#: articles/templates/login_page.html:12
+msgid "Please sign-in"
+msgstr "Vui lòng đăng nhập"
 
 #: articles/templates/paginator.html:8
 msgid "Previous"

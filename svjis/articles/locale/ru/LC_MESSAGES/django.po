@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-25 23:45+0100\n"
+"POT-Creation-Date: 2025-03-27 13:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -696,8 +696,7 @@ msgstr "Перейти на главную страницу"
 msgid "Logout"
 msgstr "Выйти"
 
-#: articles/templates/login.html:16 articles/templates/login_page.html:8
-#: articles/templates/login_page.html:12
+#: articles/templates/login.html:16
 msgid "Login"
 msgstr "Войти"
 
@@ -713,6 +712,14 @@ msgstr "Войти"
 #: articles/templates/send_lost_password.html:8
 msgid "Lost password"
 msgstr "Забыли пароль"
+
+#: articles/templates/login_page.html:8
+msgid "Sign in to your account"
+msgstr "Войдите в свой аккаунт"
+
+#: articles/templates/login_page.html:12
+msgid "Please sign-in"
+msgstr "Пожалуйста, войдите"
 
 #: articles/templates/paginator.html:8
 msgid "Previous"
