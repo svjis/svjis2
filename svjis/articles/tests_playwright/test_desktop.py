@@ -37,6 +37,9 @@ class DesktopTests(StaticLiveServerTestCase):
         cls.browser.close()
         cls.playwright.stop()
 
+    def go_to_page(self, page, path):
+        page.goto(f"{self.app_url}{path}" if self.app_url is not None else f"{self.live_server_url}{path}")
+
     def test_all(self):
         context = self.browser.new_context(
             viewport={"width": self.device_width, "height": self.device_height},
@@ -45,7 +48,7 @@ class DesktopTests(StaticLiveServerTestCase):
         )
         activate(self.locale)
         page = context.new_page()
-        page.goto(self.app_url if self.app_url is not None else f"{self.live_server_url}/")
+        self.go_to_page(page, '/')
         # Parametrization
         cmd.login(self, page, 'admin', self.user_password)
         cmd.fill_company(self, page)
@@ -75,6 +78,7 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.login(self, page, 'petr', self.user_password)
         cmd.show_survey_results(self, page)
         cmd.logout(self, page)
+        cmd.show_article_with_login_redirect(self, page, 'jana', self.user_password)
         # Contact
         cmd.login(self, page, 'jana', self.user_password)
         cmd.show_contact(self, page)

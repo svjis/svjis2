@@ -406,6 +406,16 @@ def create_articles(cls, page):
             'visible': ['id_visible_for_all'],
             'attachments': [],
         },
+        {
+            'header': 'Výdej nových čipů',
+            'perex': 'Vážení vlastníci, výdej nových čipů proběhne v pátek 27.3.2025 ' 'v kanceláři SVJ.',
+            'body': 'Váš výbor.',
+            'menu': 'Vývěska',
+            'comments': False,
+            'publish': True,
+            'visible': ['Vlastník-input'],
+            'attachments': [],
+        },
     ]
     for e in data:
         menu(page, _('Redaction'), _('Articles'), True)
@@ -617,6 +627,19 @@ def show_survey_results(cls, page):
     scrshot(page, get_filename(cls, 'survey-results'))
     click_link_in_row(page, 'Jste spokojeni s novou úklidovou firmou?', 1)
     scrshot(page, get_filename(cls, 'survey-results'), True)
+
+
+def show_article_with_login_redirect(cls, page, user, password):
+    cls.go_to_page(page, '/article/vydej-novych-cipu/')
+    scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
+    expect(page.locator('.main-content').get_by_text(_('Sign in to your account'))).to_be_visible()
+    page.fill('[id=username-input]', user)
+    page.fill('[id=pwd-input]', password)
+    scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
+    page.click('id=login-submit')
+    scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
+    expect(page.locator('.article-title').get_by_text('Výdej nových čipů')).to_be_visible()
+    logout(cls, page)
 
 
 # Contact
