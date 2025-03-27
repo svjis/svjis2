@@ -5,11 +5,11 @@
 {% block sitecontent %}
 <div class="main-content">
 
-    <h1 class="page-title">{% translate 'Login' %}</h1>
+    <h1 class="page-title">{% translate 'Sign in to your account' %}</h1>
 
     <form action="{% url 'user_login' %}" method="post">
         <fieldset>
-            <legend>{% translate 'Login' %}</legend>
+            <legend>{% translate 'Please sign-in' %}</legend>
 
             {% csrf_token %}
             {% if next_page %}
