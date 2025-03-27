@@ -660,12 +660,14 @@ def create_faults(cls, page):
         {
             'subject': 'Nefunguje výtah',
             'entrance': None,
-            'description': 'Od pondělí nejezdí výtah. Prosím o opravu.',
+            'description': 'Od pondělí nejezdí výtah. Prosím o opravu.\n{vytah.jpg}',
+            'attachments': ['vytah.jpg'],
         },
         {
             'subject': 'Nesvítí světlo na chodbě',
             'entrance': 'vchod 1, Práčská 1',
             'description': 'Prosím o opravu.\n\nDěkuji',
+            'attachments': [],
         },
     ]
     for e in data:
@@ -681,6 +683,12 @@ def create_faults(cls, page):
         scrshot(page, get_filename(cls, 'faults'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
         expect(page.locator('.main-content').get_by_text(e['subject'])).to_be_visible()
+
+        for f in e['attachments']:
+            page.fill('[id=id_description]', f)
+            page.set_input_files('[id=id_file]', f'articles/tests_playwright/assets/{f}')
+            page.click('id=submit2')
+            scrshot(page, get_filename(cls, 'faults'), True)
 
 
 def create_fault_comment(cls, page, subject, comment):
