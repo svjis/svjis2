@@ -636,7 +636,7 @@ def show_article_with_login_redirect(cls, page, user, password):
     page.fill('[id=username-input]', user)
     page.fill('[id=pwd-input]', password)
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
-    page.click('id=login-submit')
+    page.click('id=sign-in')
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
     expect(page.locator('.article-title').get_by_text('Výdej nových čipů')).to_be_visible()
     logout(cls, page)
