@@ -7,6 +7,7 @@ from django.core.management import call_command
 from django.conf import settings
 from django.test import override_settings
 from django.utils.translation import activate
+from django.utils.translation import gettext as _
 from playwright.sync_api import sync_playwright
 from ..utils import generate_password
 
@@ -78,7 +79,18 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.login(self, page, 'petr', self.user_password)
         cmd.show_survey_results(self, page)
         cmd.logout(self, page)
-        cmd.show_article_with_login_redirect(self, page, 'jana', self.user_password)
+        cmd.show_article_with_login_redirect(
+            self,
+            page,
+            'jana',
+            self.user_password,
+            '/article/vydej-novych-cipu/',
+            '.article-title',
+            'Výdej nových čipů',
+        )
+        cmd.show_article_with_login_redirect(
+            self, page, 'karel', self.user_password, '/article/vydej-novych-cipu/', '.page-title', _('Page not found')
+        )
         # Contact
         cmd.login(self, page, 'jana', self.user_password)
         cmd.show_contact(self, page)

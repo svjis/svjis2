@@ -629,8 +629,8 @@ def show_survey_results(cls, page):
     scrshot(page, get_filename(cls, 'survey-results'), True)
 
 
-def show_article_with_login_redirect(cls, page, user, password):
-    cls.go_to_page(page, '/article/vydej-novych-cipu/')
+def show_article_with_login_redirect(cls, page, user, password, path, cls_loc, text):
+    cls.go_to_page(page, path)
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
     expect(page.locator('.main-content').get_by_text(_('Sign in to your account'))).to_be_visible()
     page.fill('[id=username-input]', user)
@@ -638,7 +638,8 @@ def show_article_with_login_redirect(cls, page, user, password):
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
     page.click('id=sign-in')
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
-    expect(page.locator('.article-title').get_by_text('Výdej nových čipů')).to_be_visible()
+    expect(page.locator(cls_loc).get_by_text(text)).to_be_visible()
+    cls.go_to_page(page, '/')
     logout(cls, page)
 
 
