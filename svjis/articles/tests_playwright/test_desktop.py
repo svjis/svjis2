@@ -79,6 +79,7 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.login(self, page, 'petr', self.user_password)
         cmd.show_survey_results(self, page)
         cmd.logout(self, page)
+        # Login redirects - article
         cmd.show_article_with_login_redirect(
             self,
             page,
@@ -90,6 +91,19 @@ class DesktopTests(StaticLiveServerTestCase):
         )
         cmd.show_article_with_login_redirect(
             self, page, 'karel', self.user_password, '/article/vydej-novych-cipu/', '.page-title', _('Page not found')
+        )
+        # Login redirects - menu
+        cmd.show_article_with_login_redirect(
+            self,
+            page,
+            'jiri',
+            self.user_password,
+            '/redaction_article/',
+            '.page-title',
+            _('Article'),
+        )
+        cmd.show_article_with_login_redirect(
+            self, page, 'karel', self.user_password, '/redaction_article/', '.article-page-title', _('All articles')
         )
         # Contact
         cmd.login(self, page, 'jana', self.user_password)
