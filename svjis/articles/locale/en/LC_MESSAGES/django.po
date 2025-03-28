@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 00:03+0100\n"
+"POT-Creation-Date: 2025-03-27 13:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -261,6 +261,7 @@ msgstr "Advert"
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
 #: articles/templates/admin_board_edit.html:13
+#: articles/templates/contact_company.html:63
 #: articles/tests_playwright/commands.py:333 articles/views_admin.py:28
 msgid "Board"
 msgstr "Board"
@@ -493,9 +494,10 @@ msgstr "Contact information"
 msgid "Login information"
 msgstr "Login information"
 
-#: articles/templates/admin_user_edit.html:69
+#: articles/templates/admin_user_edit.html:69 articles/templates/login.html:26
+#: articles/templates/login_page.html:24
 msgid "Password"
-msgstr "Passwod"
+msgstr "Password"
 
 #: articles/templates/admin_user_edit.html:73
 msgid "Send Credentials By E-Mail"
@@ -617,8 +619,8 @@ msgid "Page not found"
 msgstr "Page not found"
 
 #: articles/templates/error_404.html:10
-msgid "Page doesn't exist or you have no access. You can try to login."
-msgstr "Page doesn't exist or you have no access. You can try to login."
+msgid "Page doesn't exist or you have no access."
+msgstr "Page doesn't exist or you have no access."
 
 #: articles/templates/error_404.html:12
 msgid "Continue"
@@ -695,21 +697,26 @@ msgstr "Logout"
 msgid "Login"
 msgstr "Login"
 
-#: articles/templates/login.html:22
+#: articles/templates/login.html:22 articles/templates/login_page.html:20
 msgid "Username"
 msgstr "User"
 
-#: articles/templates/login.html:26
-msgid "Passwod"
-msgstr "Passwod"
-
-#: articles/templates/login.html:30
+#: articles/templates/login.html:30 articles/templates/login_page.html:28
 msgid "Sign in"
 msgstr "Sign in"
 
-#: articles/templates/login.html:33
-msgid "Lost passwod"
-msgstr "Lost passwod"
+#: articles/templates/login.html:33 articles/templates/login_page.html:31
+#: articles/templates/send_lost_password.html:8
+msgid "Lost password"
+msgstr "Lost password"
+
+#: articles/templates/login_page.html:8
+msgid "Sign in to your account"
+msgstr "Sign in to your account"
+
+#: articles/templates/login_page.html:12
+msgid "Please sign-in"
+msgstr "Please sign-in"
 
 #: articles/templates/paginator.html:8
 msgid "Previous"
@@ -789,7 +796,7 @@ msgstr "Level"
 #: articles/tests_playwright/commands.py:561
 #: articles/tests_playwright/commands.py:580
 #: articles/tests_playwright/commands.py:606 articles/utils.py:41
-#: articles/views.py:146 articles/views.py:207 articles/views_redaction.py:24
+#: articles/views.py:147 articles/views.py:211 articles/views_redaction.py:24
 msgid "Articles"
 msgstr "Articles"
 
@@ -884,10 +891,6 @@ msgstr "Useful link"
 msgid "Search"
 msgstr "Search"
 
-#: articles/templates/send_lost_password.html:8
-msgid "Lost password"
-msgstr "Lost passwod"
-
 #: articles/templates/send_lost_password.html:13
 msgid "Send credentials by E-Mail"
 msgstr "Send credentials by E-Mail"
@@ -969,8 +972,8 @@ msgstr "Surveys"
 
 #: articles/tests_playwright/commands.py:561
 #: articles/tests_playwright/commands.py:580
-#: articles/tests_playwright/commands.py:606 articles/views.py:23
-#: articles/views.py:25 articles/views.py:98
+#: articles/tests_playwright/commands.py:606 articles/views.py:24
+#: articles/views.py:26 articles/views.py:99
 msgid "All articles"
 msgstr "All articles"
 
@@ -1015,30 +1018,30 @@ msgstr "Open"
 msgid "All"
 msgstr "All"
 
-#: articles/views.py:107 articles/views_faults.py:71
+#: articles/views.py:108 articles/views_faults.py:71
 #: articles/views_redaction.py:153
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr "Search: Keyword '{}' is too short. Type at least 3 characters."
 
-#: articles/views.py:110 articles/views_faults.py:74
+#: articles/views.py:111 articles/views_faults.py:74
 #: articles/views_redaction.py:156
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "Search: Keyword is too long. Type maximum of 100 characters."
 
-#: articles/views.py:115 articles/views_faults.py:78
+#: articles/views.py:116 articles/views_faults.py:78
 #: articles/views_redaction.py:162
 msgid "Search results"
 msgstr "Search results"
 
-#: articles/views.py:170
+#: articles/views.py:171
 msgid "Please choose an option."
 msgstr "Please choose an option."
 
-#: articles/views.py:268
+#: articles/views.py:288
 msgid "Wrong username or password"
 msgstr "Wrong username or password"
 
-#: articles/views.py:269
+#: articles/views.py:289
 msgid "In case you lost your password use Lost Password link"
 msgstr "In case you lost your password use Lost Password link"
 

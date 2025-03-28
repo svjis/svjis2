@@ -149,7 +149,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/'
+LOGIN_URL = '/login_page/'
 LOGOUT_URL = '/'
 
 # EMAIL values
