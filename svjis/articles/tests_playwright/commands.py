@@ -16,6 +16,10 @@ def get_filename(cls, name):
     return f'{cls.test_output_dir}/{next(cls.numbering):04}-{name}.png'
 
 
+def go_to_page(cls, page, path):
+    page.goto(f"{cls.app_url}{path}" if cls.app_url is not None else f"{cls.live_server_url}{path}")
+
+
 def scrshot(page, path, full_height=False):
     page.wait_for_load_state('load')
     if full_height:
@@ -630,7 +634,7 @@ def show_survey_results(cls, page):
 
 
 def show_article_with_login_redirect(cls, page, user, password, path, cls_loc, text):
-    cls.go_to_page(page, path)
+    go_to_page(cls, page, path)
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
     expect(page.locator('.main-content').get_by_text(_('Sign in to your account'))).to_be_visible()
     page.fill('[id=username-input]', user)
@@ -639,7 +643,7 @@ def show_article_with_login_redirect(cls, page, user, password, path, cls_loc, t
     page.click('id=sign-in')
     scrshot(page, get_filename(cls, 'show-article-with-login-redirect'))
     expect(page.locator(cls_loc).get_by_text(text)).to_be_visible()
-    cls.go_to_page(page, '/')
+    go_to_page(cls, page, '/')
     logout(cls, page)
 
 
