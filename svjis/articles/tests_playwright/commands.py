@@ -688,7 +688,7 @@ def create_faults(cls, page):
         {
             'subject': 'Nefunguje výtah',
             'entrance': None,
-            'description': 'Od pondělí nejezdí výtah. Prosím o opravu.\n{vytah.jpg}',
+            'description': 'Od pondělí nejezdí výtah. Prosím o opravu.\n\n{vytah.jpg}',
             'attachments': ['vytah.jpg'],
         },
         {
