@@ -480,7 +480,8 @@ def create_news(cls, page):
             'publish': True,
         },
         {
-            'body': 'V pátek 2.4.2021 se bude konat Shromáždění vlastníků jednotek.',
+            'body': 'V pátek 2.4.2021 se bude konat Shromáždění vlastníků jednotek.'
+            '<br/>[<a href="#">více v článku</a>]',
             'publish': True,
         },
     ]
