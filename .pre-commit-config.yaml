@@ -42,7 +42,7 @@ repos:
         args: ["--config=setup.cfg"]
 
   - repo: https://github.com/adamchainz/djade-pre-commit
-    rev: 1.3.2
+    rev: 1.4.0
     hooks:
     -   id: djade
         args: [--target-version, "5.2"]
