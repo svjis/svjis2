@@ -946,6 +946,10 @@ footer a:hover {
 
   /* Article */
 
+  .article-detail {
+    overflow: scroll;
+  }
+
   .back_to_list {
     display: block;
   }
