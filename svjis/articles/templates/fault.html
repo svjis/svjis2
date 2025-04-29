@@ -24,6 +24,10 @@
     [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>]
 {% endif %}
 
+{% if perms.articles.svjis_view_fault_menu %}
+    [<a href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View logs' %}</a>]&nbsp;
+{% endif %}
+
 <table class="list full-width" aria-describedby="tbl-desc">
     <tr>
         <th class="list" width="25%" scope="row">{% translate 'Date' %}</th>
