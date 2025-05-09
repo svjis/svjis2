@@ -24,7 +24,7 @@
             {% endif %}
 
         </p>
-        <p>{{ obj.advert.body }}</p>
+        <p>{{ obj.advert.body|replace_url_to_link|linebreaks }}</p>
 
         {% if obj.assets %}
         <p>
