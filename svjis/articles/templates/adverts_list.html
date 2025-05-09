@@ -14,11 +14,15 @@
 {% for obj in object_list %}
 
 <!-- advert -->&nbsp;
-<div class="advert">
-    <div class="advert-desc">
+
+<div class="advert_box advert_c{{ obj.advert.type.id }}">
+    <div class="advert_box_header advert_c{{ obj.advert.type.id }}">
+        {{ obj.advert.type.description }}
+    </div>
+    <div class="advert_box_content">
         <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
         <p class="info">
-            <a href="{% url 'adverts_list' %}?scope={{ obj.advert.type.description }}">{{ obj.advert.type.description }}</a>: <strong>{{ obj.advert.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
+            {% translate 'Date' %}: <strong>{{ obj.advert.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
             {% if obj.advert.created_by_user == user %}
             &nbsp;[<a href="{% url 'adverts_edit' pk=obj.advert.pk %}">{% translate 'Edit' %}</a>]
             {% endif %}
