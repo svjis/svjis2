@@ -4,11 +4,20 @@
         <div class="bar"></div>
         <div class="bar"></div>
     </div>
-    <ul class="menu">
-        {% if tray_menu_items %}
-        {% for obj in tray_menu_items %}
-        <li {% if obj.active %}id="tray-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
-        {% endfor %}
-        {% endif %}
-    </ul>
+    <div class="menu-env">
+        <div class="menu-user">
+            {% if request.user.is_authenticated %}
+            {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}
+            {% else %}
+            [<a href="{% url 'login_page' %}">login</a>]
+            {% endif %}
+        </div>
+        <ul class="menu">
+            {% if tray_menu_items %}
+            {% for obj in tray_menu_items %}
+            <li {% if obj.active %}id="tray-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
 </nav>

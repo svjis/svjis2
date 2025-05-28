@@ -294,6 +294,25 @@ nav a:hover {
   transition: 0.4s;
 }
 
+.menu-user {
+  display: none;
+  color: #94c9e2;
+  font-weight: bold;
+}
+
+.menu-user a {
+  color: #94c9e2;
+  font-weight: bold;
+  float: none;
+  display: inline;
+  padding: 0px;
+  text-decoration: none;
+}
+
+.menu-env {
+  width: 100%;
+}
+
 /*
  *  Main
  */
@@ -933,6 +952,12 @@ footer a:hover {
 
   nav a {
     background: none;
+  }
+
+  .menu-user.active {
+    display: block;
+    flex-direction: row;
+    text-align: center;
   }
 
   /* Main */
