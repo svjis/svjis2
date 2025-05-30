@@ -29,8 +29,10 @@
     <script>
         document.querySelector(".menu-toggle").addEventListener("click", function () {
             const menu = document.querySelector(".menu");
+            const menuuser = document.querySelector(".menu-user");
             const sidemenu = document.querySelector(".side-menu");
             menu.classList.toggle("active");
+            menuuser.classList.toggle("active");
             sidemenu.classList.toggle("active");
         });
     </script>
