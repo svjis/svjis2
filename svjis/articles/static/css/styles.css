@@ -438,6 +438,10 @@ img.article-img {
   margin-bottom: 0 !important;
 }
 
+.advert-desc a {
+  color: #5F5F5F;
+}
+
 .advert-desc .contact {
   color: #5F5F5F;
   line-height: 1.5;
