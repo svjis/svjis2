@@ -79,7 +79,7 @@ class ArticleAsset(models.Model):
         super().delete(*args, **kwargs)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
 
 class ArticleComment(models.Model):
