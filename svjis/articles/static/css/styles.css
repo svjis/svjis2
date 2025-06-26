@@ -367,6 +367,10 @@ main {
   color:#2F2F2F;
 }
 
+.info a.comments {
+  text-decoration: none;
+}
+
 .article-detail {
   line-height: 1.5;
 }
