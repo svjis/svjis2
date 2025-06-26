@@ -14,7 +14,7 @@
 {% for obj in object_list %}
 
 <!-- advert -->&nbsp;
-<div class="advert">
+<div class="advert_c{{ obj.advert.type.id }}">
     <div class="advert-desc">
         <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
         <p class="info">

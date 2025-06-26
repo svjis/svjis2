@@ -417,8 +417,22 @@ img.article-img {
  *  Advert
  */
 
-.advert {
+.advert_c1 {
   background-color: #D7ECF4;
+  padding: 10px 10px 10px 15px;
+  border-radius: 5px;
+  line-height: 1.5;
+}
+
+.advert_c2 {
+  background-color: #ffeaf4;
+  padding: 10px 10px 10px 15px;
+  border-radius: 5px;
+  line-height: 1.5;
+}
+
+.advert_c3 {
+  background-color: #f5fae5;
   padding: 10px 10px 10px 15px;
   border-radius: 5px;
   line-height: 1.5;
