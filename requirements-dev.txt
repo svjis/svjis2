@@ -1,6 +1,6 @@
 -r requirements.txt
 
-django-stubs==5.2.0
+django-stubs==5.2.1
 pre-commit==4.2.0
 factory-boy==3.3.3
 playwright==1.53.0
