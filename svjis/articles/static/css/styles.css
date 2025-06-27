@@ -352,6 +352,10 @@ main {
   margin: 0;
 }
 
+.article-title-list a {
+  text-decoration: none;
+}
+
 .article-desc .info {
   font-size: 85%;
   color: #5F5F5F;
