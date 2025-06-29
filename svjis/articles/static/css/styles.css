@@ -908,6 +908,10 @@ footer a:hover {
 */
 @media (max-width: 960px) {
 
+  h1 {
+    font-size: larger;
+  }
+
   .wrapper2 {
     margin: 0px 5px 0px 5px;
   }
