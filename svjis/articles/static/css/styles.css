@@ -468,6 +468,13 @@ img.article-img {
   margin: 0;
   text-align: justify;
   margin-bottom: 0 !important;
+  padding-bottom: 20px;
+  background: url("../design/dot.gif") 0 100% repeat-x;
+}
+
+.advert-desc .body {
+  padding-bottom: 5px;
+  background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
 .advert-desc a {
