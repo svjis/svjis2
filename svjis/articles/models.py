@@ -70,13 +70,13 @@ class ArticleAsset(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name=_("Article"))
     created_date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"ArticleAsset: {self.description}"
-
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
         super().delete(*args, **kwargs)
+
+    def __str__(self):
+        return f"ArticleAsset: {self.description}"
 
     class Meta:
         ordering = ['id']
