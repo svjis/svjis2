@@ -209,11 +209,9 @@ def article_view(request, slug):
 
     models.ArticleLog.objects.create(article=article, user=user)
 
-    group_list = []
+    group_list = [g.name for g in article.visible_for_group.order_by('name')]
     if article.visible_for_all:
-        group_list.append(gt("Visible for all"))
-    for g in article.visible_for_group.order_by('name'):
-        group_list.append(g.name)
+        group_list.insert(0, gt("Visible for all"))
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
