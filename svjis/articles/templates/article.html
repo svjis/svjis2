@@ -29,8 +29,6 @@
     </table>
     {% endif %}
 
-    <h2 class="comment-title">{% translate 'Permissions' %}:</h2>
-    {{ visible_for }}
 
     {% if obj.comments or obj.allow_comments %}
     <h2 id="comments" class="comment-title">{% translate 'Comments' %}:</h2>
@@ -67,6 +65,9 @@
         </p>
     </form>
     {% endif %}
+
+    <h2 class="comment-title">{% translate 'Permissions' %}:</h2>
+    {{ visible_for }}
 
     <div class="back_to_list">
         [<a href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>]
