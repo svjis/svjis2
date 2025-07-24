@@ -252,7 +252,7 @@ msgstr "Vyřešené"
 #: articles/models.py:395 articles/models.py:412
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
-msgstr "Hlášení závady"
+msgstr "Námět / Závada"
 
 #: articles/models.py:471
 msgid "Advert"
