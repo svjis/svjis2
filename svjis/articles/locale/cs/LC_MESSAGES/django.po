@@ -1003,7 +1003,7 @@ msgstr "Moje jednotky"
 #: articles/views_faults.py:118 articles/views_faults.py:138
 #: articles/views_faults.py:151
 msgid "Fault reporting"
-msgstr "Hlášení závad"
+msgstr "Závady a náměty k řešení"
 
 #: articles/tests_playwright/commands.py:672
 #: articles/tests_playwright/commands.py:687
