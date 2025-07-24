@@ -11,6 +11,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as gt
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
@@ -207,6 +208,11 @@ def article_view(request, slug):
         user = None
 
     models.ArticleLog.objects.create(article=article, user=user)
+
+    group_list = [g.name for g in article.visible_for_group.order_by('name')]
+    if article.visible_for_all:
+        group_list.insert(0, gt("Visible for all"))
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
     ctx['search'] = request.GET.get('search', '')
@@ -216,6 +222,7 @@ def article_view(request, slug):
     ctx['web_title'] = article.header
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
+    ctx['visible_for'] = ", ".join(group_list)
     return render(request, "article.html", ctx)
 
 
