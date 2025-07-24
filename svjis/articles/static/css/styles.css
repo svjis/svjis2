@@ -426,21 +426,31 @@ img.article-img {
  */
 
 .advert_c1 {
-  background-color: #D7ECF4;
+  background-color: #f5fae5;
+  border-color: #cee67e;
+  border-width: 1px;
+  border-style: solid;
+
   padding: 10px 10px 10px 15px;
   border-radius: 5px;
   line-height: 1.5;
 }
 
 .advert_c2 {
-  background-color: #ffeaf4;
+  background-color: #e1f4ff;
+  border-color: #7bcfff;
+  border-width: 1px;
+  border-style: solid;
   padding: 10px 10px 10px 15px;
   border-radius: 5px;
   line-height: 1.5;
 }
 
 .advert_c3 {
-  background-color: #f5fae5;
+  background-color: #fff8d6;
+  border-color: #ffe770;
+  border-width: 1px;
+  border-style: solid;
   padding: 10px 10px 10px 15px;
   border-radius: 5px;
   line-height: 1.5;
@@ -458,6 +468,13 @@ img.article-img {
   margin: 0;
   text-align: justify;
   margin-bottom: 0 !important;
+  padding-bottom: 20px;
+  background: url("../design/dot.gif") 0 100% repeat-x;
+}
+
+.advert-desc .body {
+  padding-bottom: 5px;
+  background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
 .advert-desc a {
