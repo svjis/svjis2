@@ -582,6 +582,7 @@ def admin_user_export_to_excel_view(request):
 
     # Add headers
     headers = [
+        gt("Id"),
         gt("Salutation"),
         gt("First name"),
         gt("Last name"),
@@ -607,6 +608,7 @@ def admin_user_export_to_excel_view(request):
         if hasattr(u, 'userprofile'):
             ws.append(
                 [
+                    u.id,
                     u.userprofile.salutation,
                     u.first_name,
                     u.last_name,
