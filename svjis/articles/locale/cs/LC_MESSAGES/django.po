@@ -252,7 +252,7 @@ msgstr "Vyřešené"
 #: articles/models.py:395 articles/models.py:412
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
-msgstr "Hlášení závady"
+msgstr "Náměty a požadavky"
 
 #: articles/models.py:471
 msgid "Advert"
@@ -1003,7 +1003,7 @@ msgstr "Moje jednotky"
 #: articles/views_faults.py:118 articles/views_faults.py:138
 #: articles/views_faults.py:151
 msgid "Fault reporting"
-msgstr "Hlášení závad"
+msgstr "Náměty a požadavky"
 
 #: articles/tests_playwright/commands.py:672
 #: articles/tests_playwright/commands.py:687
