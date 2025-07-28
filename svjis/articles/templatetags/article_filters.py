@@ -47,3 +47,8 @@ def yes_no(bool_value):
 @register.simple_tag
 def settings_value(name):
     return mark_safe(getattr(settings, name, ""))
+
+
+@register.simple_tag
+def get_languages():
+    return settings.LANGUAGES
