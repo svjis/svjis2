@@ -748,6 +748,15 @@ def close_fault_ticket(cls, page, subject):
     expect(page.locator('.main-content').get_by_text(_('Close ticket'))).not_to_be_visible()
 
 
+def view_fault_log(cls, page, subject, menu_entry):
+    menu(page, _('Fault reporting'), _(menu_entry) + ' (1)', True)
+    click_link_in_row(page, subject, 0)
+    scrshot(page, get_filename(cls, 'view-log'))
+    page.click('text=' + _('View log'))
+    scrshot(page, get_filename(cls, 'view-log'))
+    expect(page.locator('.main-content').get_by_text(_(subject))).to_be_visible()
+
+
 # Adverts
 
 

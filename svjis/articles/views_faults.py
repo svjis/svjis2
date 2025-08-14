@@ -322,22 +322,6 @@ def fault_watch_view(request):
     return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#comments')
 
 
-# Faults - Report Log
-@permission_required("articles.svjis_view_fault_menu")
-@require_GET
-def fault_logs_view(request, slug):
-    fault = get_object_or_404(models.FaultReport, slug=slug)
-    log = models.FaultReportLog.objects.filter(fault_report=fault).order_by('-entry_time')
-
-    ctx = utils.get_context()
-    ctx['aside_menu_name'] = _("Fault reporting log")
-    ctx['aside_menu_items'] = get_side_menu('faults', request.user)
-    ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
-    ctx['obj'] = fault
-    ctx['log'] = log
-    return render(request, "fault_log.html", ctx)
-
-
 # Faults - Take ticket
 @permission_required("articles.svjis_fault_resolver")
 @require_GET
@@ -367,3 +351,19 @@ def faults_fault_close_ticket_view(request, pk):
         )
 
     return redirect(fault_view, slug=fault.slug)
+
+
+# Faults - Report Log
+@permission_required("articles.svjis_view_fault_menu")
+@require_GET
+def fault_logs_view(request, slug):
+    fault = get_object_or_404(models.FaultReport, slug=slug)
+    log = models.FaultReportLog.objects.filter(fault_report=fault).order_by('-entry_time')
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Fault reporting")
+    ctx['aside_menu_items'] = get_side_menu('faults', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
+    ctx['obj'] = fault
+    ctx['log'] = log
+    return render(request, "fault_log.html", ctx)
