@@ -6,12 +6,8 @@
 
 <h1 class="page-title">#{{ obj.pk }} - {{ obj.subject }}</h1>
 
-<div>
-    [<a href="{% url 'fault' slug=obj.slug %}">&lt;&lt;&nbsp{% translate 'Back to ticket' %}</a>]
-</div>
-
 {% if obj.logs.all %}
-    <h2 class="comment-title">{% translate 'Logs' %}:</h2>
+    <h2 class="comment-title">{% translate 'Log' %}:</h2>
     <table class="list full-width" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">{% translate 'User' %}</th>
@@ -29,5 +25,9 @@
     {% endfor %}
     </table>
 {% endif %}
+
+<div  class="back_to_detail">
+    [<a href="{% url 'fault' slug=obj.slug %}">&lt;&lt;&nbsp{% translate 'Back to ticket' %}</a>]
+</div>
 
 {% endblock content %}

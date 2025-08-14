@@ -406,6 +406,9 @@ class FaultReport(models.Model):
             ("svjis_fault_resolver", "Can resolve fault"),
         )
 
+    def log_creating_ticket(self, user: User):
+        FaultReportLog.objects.create(fault_report=self, user=user, resolver=None, type=FaultReportLog.TYPE_CREATED)
+
     def log_taking_ticket(self, user: User):
         FaultReportLog.objects.create(fault_report=self, user=user, resolver=user, type=FaultReportLog.TYPE_ASSIGNED)
 
@@ -468,6 +471,7 @@ class FaultReportLog(models.Model):
         (TYPE_ASSIGNED, _("Assigned")),
         (TYPE_CLOSED, _("Closed")),
         (TYPE_REOPENED, _("Reopened")),
+        (TYPE_CREATED, _("Created")),
     )
 
     fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, related_name='logs')
