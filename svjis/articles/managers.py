@@ -24,7 +24,6 @@ class FaultReportLogManager(models.Manager["FaultReportLog"]):
                         continue
                     _type = self.model.TYPE_MODIFIED if not created else self.model.TYPE_CREATED
                     others_recorded = True
-                print(change)
                 result.append(
                     self.model(
                         fault_report=obj,
