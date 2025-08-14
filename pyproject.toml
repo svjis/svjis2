@@ -1,3 +1,24 @@
+[project]
+name = "svjis2"
+version = "2.20.0.dev1"
+description = "Information system for homeowners' associations (SVJ)"
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.10"
+dynamic = ["dependencies", "optional-dependencies"]
+
+
+[project.urls]
+Homepage = "https://svjis.github.io/"
+Repository = "https://github.com/svjis/svjis2"
+Issues = "https://github.com/svjis/svjis2/issues"
+
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies.dev = { file = ["requirements-dev.txt"] }
+
+
 [tool.black]
 line-length = 119
 target-version = ['py310']

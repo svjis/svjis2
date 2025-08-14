@@ -1,5 +1,7 @@
 # General
 venv/
+.venv/
+*.egg-info/
 *~
 
 # IDE
@@ -18,3 +20,4 @@ svjis/static/
 local_settings.py
 local_requirements.txt
 *.mo
+playwright_output/

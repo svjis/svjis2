@@ -75,7 +75,7 @@ class ArticleListTest(ArticleDataMixin, TestCase):
         )
 
     def test_anonymous_user(self):
-        self.do_user_test('anonymous', '', 200, 404, 404, ['For All'])
+        self.do_user_test('anonymous', '', 200, 302, 302, ['For All'])
 
     def test_top_articles(self):
         # Login board user

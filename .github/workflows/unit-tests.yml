@@ -1,10 +1,14 @@
-name: CI
+name: Unit Tests
 
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   linter:
@@ -57,4 +61,4 @@ jobs:
         run: |
           source venv/bin/activate
           cd svjis
-          python manage.py test
+          python manage.py test articles.tests

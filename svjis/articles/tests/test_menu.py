@@ -50,7 +50,7 @@ class MenuTest(ArticleDataMixin, TestCase):
                 self.assertEqual(response.status_code, 200)
             else:
                 self.assertEqual(response.status_code, 302)
-                self.assertTrue(response.url.startswith('/?next='))
+                self.assertTrue(response.url.startswith('/login_page/?next='))
 
     def test_admin_user(self):
         self.do_menu_test(

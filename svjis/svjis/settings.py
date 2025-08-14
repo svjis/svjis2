@@ -110,8 +110,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGES = (
-    ('en', 'English'),
     ('cs', 'Česky'),
+    ('en', 'English'),
+    ('hu', 'Magyar'),
+    ('pl', 'Polski'),
+    ('ru', 'Русский'),
+    ('sk', 'Slovensky'),
+    ('uk', 'українська'),
+    ('vi', 'Tiếng Việt'),
 )
 
 LANGUAGE_CODE = 'en'
@@ -143,7 +149,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/'
+LOGIN_URL = '/login_page/'
 LOGOUT_URL = '/'
 
 # EMAIL values

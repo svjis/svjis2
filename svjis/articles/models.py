@@ -5,6 +5,7 @@ from .model_utils import unique_slugify
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 
 
@@ -58,7 +59,7 @@ class ArticleLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"ArticleLog: {self.header}"
+        return f"ArticleLog: {self.article} - {self.user}"
 
 
 def article_directory_path(instance, filename):
@@ -71,16 +72,16 @@ class ArticleAsset(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name=_("Article"))
     created_date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"ArticleAsset: {self.description}"
-
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
         super().delete(*args, **kwargs)
 
+    def __str__(self):
+        return f"ArticleAsset: {self.description}"
+
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
 
 class ArticleComment(models.Model):
@@ -90,7 +91,7 @@ class ArticleComment(models.Model):
     body = models.TextField(_("Body"))
 
     def __str__(self):
-        return f"ArticleComment: {self.description}"
+        return f"ArticleComment: {self.article} - {self.body}"
 
     class Meta:
         ordering = ['id']
@@ -184,14 +185,16 @@ class SurveyOption(models.Model):
         return f"SurveyOption: {self.description}"
 
     @property
+    def is_winning(self):
+        winning = self.survey.answers.values('option_id').annotate(total=Count('id')).order_by('-total').first()
+        opt_total = self.total
+        return False if winning is None else winning['total'] == opt_total
+
+    @property
     def pct(self):
         total = self.survey.answers.count()
         opt_total = self.total
         return opt_total / total * 100 if total != 0 else 0
-
-    @property
-    def bar_width(self):
-        return int(self.pct * 2)
 
     @property
     def total(self):
@@ -250,10 +253,16 @@ class MessageQueue(models.Model):
     sending_time = models.DateTimeField(null=True)
     status = models.SmallIntegerField(null=False)
 
+    def __str__(self):
+        return f"MessageQueue: {self.email} - {self.subject}"
+
 
 class Preferences(models.Model):
     key = models.CharField(_("Key"), max_length=50, blank=False, null=False)
     value = models.CharField(_("Value"), max_length=1000, null=False)
+
+    def __str__(self):
+        return f"Preferences: {self.key}"
 
     class Meta:
         permissions = (("svjis_edit_admin_preferences", "Can edit Preferences"),)
@@ -273,13 +282,14 @@ class Company(models.Model):
     registration_no = models.CharField(_("Registration no."), max_length=20, blank=True)
     vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
     internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
-    header_picture = models.FileField(
-        _("Header picture (940 x 94)"), upload_to=company_directory_path, null=True, blank=True
-    )
+    header_picture = models.FileField(_("Header picture"), upload_to=company_directory_path, null=True, blank=True)
 
     @property
     def board(self):
         return self.board_set.all()
+
+    def __str__(self):
+        return f"Company: {self.name}"
 
     class Meta:
         permissions = (("svjis_edit_admin_company", "Can edit Company"),)
@@ -291,6 +301,9 @@ class Building(models.Model):
     post_code = models.CharField(_("Post code"), max_length=10, blank=True)
     land_registry_no = models.CharField(_("Land Registration no."), max_length=50, blank=True)
 
+    def __str__(self):
+        return f"Building: {self.address}"
+
     class Meta:
         permissions = (("svjis_edit_admin_building", "Can edit Building"),)
 
@@ -300,6 +313,9 @@ class Board(models.Model):
     order = models.SmallIntegerField(_("Order"), blank=False)
     member = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     position = models.CharField(_("Position"), max_length=30, blank=False)
+
+    def __str__(self):
+        return f"Board: {self.member.username} - {self.position}"
 
     class Meta:
         ordering = ['order']
@@ -312,12 +328,18 @@ class BuildingEntrance(models.Model):
     description = models.CharField(_("Description"), max_length=50, blank=False)
     address = models.CharField(_("Address"), max_length=50, blank=False)
 
+    def __str__(self):
+        return f"BuildingEntrance: {self.description}"
+
     class Meta:
         ordering = ['description']
 
 
 class BuildingUnitType(models.Model):
     description = models.CharField(_("Description"), max_length=50, blank=False)
+
+    def __str__(self):
+        return f"BuildingUnitType: {self.description}"
 
     class Meta:
         ordering = ['description']
@@ -338,6 +360,9 @@ class BuildingUnit(models.Model):
     numerator = models.IntegerField(_("Numerator"), blank=False)
     denominator = models.IntegerField(_("Denominator"), blank=False)
     owners = models.ManyToManyField(User)
+
+    def __str__(self):
+        return f"BuildingUnit: {self.description}"
 
     class Meta:
         ordering = ['description']
@@ -380,6 +405,9 @@ class FaultReport(models.Model):
             ("svjis_fault_reporter", "Can report fault"),
             ("svjis_fault_resolver", "Can resolve fault"),
         )
+
+    def log_creating_ticket(self, user: User):
+        FaultReportLog.objects.create(fault_report=self, user=user, resolver=None, type=FaultReportLog.TYPE_CREATED)
 
     def log_taking_ticket(self, user: User):
         FaultReportLog.objects.create(fault_report=self, user=user, resolver=user, type=FaultReportLog.TYPE_ASSIGNED)
@@ -424,7 +452,7 @@ class FaultComment(models.Model):
     body = models.TextField(_("Body"))
 
     def __str__(self):
-        return f"FaultComment: {self.description}"
+        return f"FaultComment: {self.fault_report} - {self.body}"
 
     class Meta:
         ordering = ['id']
@@ -443,6 +471,7 @@ class FaultReportLog(models.Model):
         (TYPE_ASSIGNED, _("Assigned")),
         (TYPE_CLOSED, _("Closed")),
         (TYPE_REOPENED, _("Reopened")),
+        (TYPE_CREATED, _("Created")),
     )
 
     fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, related_name='logs')

@@ -375,7 +375,7 @@ class AdvertForm(forms.ModelForm):
         fields = ("type", "header", "body", "phone", "email", "published")
         widgets = {
             'type': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'header': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '80'}),
+            'header': forms.widgets.TextInput(attrs={'class': 'common-input full-width', 'size': '80'}),
             'body': forms.widgets.Textarea(
                 attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}
             ),

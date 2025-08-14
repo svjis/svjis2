@@ -25,7 +25,7 @@
 {% endif %}
 
 {% if perms.articles.svjis_view_fault_menu %}
-    [<a href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View logs' %}</a>]&nbsp;
+    [<a href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View log' %}</a>]&nbsp;
 {% endif %}
 
 <table class="list full-width" aria-describedby="tbl-desc">
@@ -51,7 +51,7 @@
     </tr>
     <tr>
         <th class="list" scope="row">{% translate 'Description' %}</th>
-        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|highlight:search }}</td>
+        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
     </tr>
 </table>
 

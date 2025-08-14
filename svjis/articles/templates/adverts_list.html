@@ -14,7 +14,7 @@
 {% for obj in object_list %}
 
 <!-- advert -->&nbsp;
-<div class="advert">
+<div class="advert_c{{ obj.advert.type.id }}">
     <div class="advert-desc">
         <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
         <p class="info">
@@ -24,17 +24,19 @@
             {% endif %}
 
         </p>
-        <p>{{ obj.advert.body }}</p>
+        <div class="body">
+            <p>{{ obj.advert.body|replace_url_to_link|linebreaks }}</p>
 
-        {% if obj.assets %}
-        <p>
-        {% for a in obj.assets %}
-            <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
-        {% endfor %}
-        </p>
-        {% endif %}
+            {% if obj.assets %}
+            <p>
+            {% for a in obj.assets %}
+                <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
+            {% endfor %}
+            </p>
+            {% endif %}
+        </div>
         <p class="contact">
-            {% if obj.advert.phone %}{% translate 'Phone' %}:&nbsp;<strong>{{ obj.advert.phone }}</strong>{% endif %}<br>
+            {% if obj.advert.phone %}{% translate 'Phone' %}:&nbsp;<strong>{{ obj.advert.phone }}</strong><br>{% endif %}
             {% if obj.advert.email %}{% translate 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.advert.email }}">{{ obj.advert.email }}</a></strong>{% endif %}
         </p>
     </div>
