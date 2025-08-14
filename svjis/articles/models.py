@@ -406,9 +406,6 @@ class FaultReport(models.Model):
             ("svjis_fault_resolver", "Can resolve fault"),
         )
 
-    def log_creating_ticket(self, user: User):
-        FaultReportLog.objects.create(fault_report=self, user=user, resolver=None, type=FaultReportLog.TYPE_CREATED)
-
     def log_taking_ticket(self, user: User):
         FaultReportLog.objects.create(fault_report=self, user=user, resolver=user, type=FaultReportLog.TYPE_ASSIGNED)
 

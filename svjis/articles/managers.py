@@ -7,8 +7,9 @@ if typing.TYPE_CHECKING:
 
 
 class FaultReportLogManager(models.Manager["FaultReportLog"]):
-    def log_actions(self, request, form, queryset) -> None:
+    def log_actions(self, request, form, queryset, created=False) -> None:
         result = []
+        others_recorded = False
         for obj in queryset:
             for change in form.changed_data:
                 if change == 'assigned_to_user':
@@ -19,7 +20,11 @@ class FaultReportLogManager(models.Manager["FaultReportLog"]):
                     else:
                         _type = self.model.TYPE_REOPENED
                 else:
-                    _type = self.model.TYPE_MODIFIED
+                    if others_recorded:
+                        continue
+                    _type = self.model.TYPE_MODIFIED if not created else self.model.TYPE_CREATED
+                    others_recorded = True
+                print(change)
                 result.append(
                     self.model(
                         fault_report=obj,

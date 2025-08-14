@@ -176,7 +176,12 @@ def faults_fault_create_save_view(request):
             obj.assigned_to_user = None
             obj.closed = False
         obj.save()
-        obj.log_creating_ticket(request.user)
+        models.FaultReportLog.objects.log_actions(
+            request=request,
+            form=form,
+            queryset=[obj],
+            created=True,
+        )
 
         # Set watching users
         obj.watching_users.add(obj.created_by_user)
