@@ -1,42 +1,49 @@
-# Přispívání do projektu
+# Contributing to the Project
 
-Pokud chcete přispět do projektu a zlepšit jej, Vaše pomoc je velmi vítána. Přispívat můžete různými způsoby:
+If you want to contribute to the project and improve it, your help is very welcome. You can contribute in various ways:
 
-* můžete nahlásit závadu nebo požadavek v [issues](https://github.com/svjis/svjis2/issues);
-* můžete diskutovat a odpovídat na dotazy v [diskuzích](https://github.com/orgs/svjis/discussions);
-* můžete testovat nově přidané funkcionality;
-* můžete si udělat fork projektu, udělat úpravy a poslat je zpět formou [pull-requestu](https://github.com/svjis/svjis2/pulls)
+* You can report a bug or request in the [issues](https://github.com/svjis/svjis2/issues);
+* You can discuss and answer questions in the [discussions](https://github.com/orgs/svjis/discussions);
+* You can maintain translations to any language (see `svjis/articles/locale`);
+* You can test newly added functionalities;
+* You can fork the project, make modifications, and send them back as a [pull-request](https://github.com/svjis/svjis2/pulls)
 
 
-## Před vytvořením pull-requestu
+## Before Creating a Pull Request
 
-Než vytvoříte pull-request, tak si nainstalujte nástroj `pre-commit`.
-
-Nainstalujte si závislosti pro vývoj:
+Install the development dependencies:
 
 ```bash
 pip install -r requirements-dev.txt
 ```
 
-Pro kontrolu kvality kódu a dodržování konvencí používáme nástroj `pre-commit`. Pro jeho instalaci použijte příkaz:
+We use the `pre-commit` tool for code quality checks and adherence to conventions. To install it, use the command:
 
 ```bash
 pre-commit install
 ```
 
-Před odesláním změn je důležité ověřit, že Váš kód nezpůsobuje žádné chyby. To můžete udělat pomocí unit testů:
+Before submitting changes, it is important to verify that your code does not cause any errors. You can do this using unit tests:
 
 ```bash
-python manage.py test
+python manage.py test articles.tests
 ```
 
-Před odesláním změn se ujistěte, že jste provedli všechny potřebné kroky:
+To run Playwright tests, follow these steps:
 
-1. Ověřte, že Váš kód splňuje všechny požadavky `pre-commit`.
-1. Ověřte, že všechny testy procházejí.
-1. Vytvořte novou větev pro Vaše změny.
-1. Commitněte a pushněte Vaše změny.
-1. Vytvořte pull request.
+```bash
+playwright install
+python manage.py test articles.tests_playwright
+```
 
+Before submitting changes, make sure you have completed all necessary steps:
 
-Děkujeme za Váš příspěvek do projektu! :octocat:
+1. Verify that your code meets all `pre-commit` requirements.
+1. Ensure that all tests pass.
+1. Create a new branch for your changes.
+1. Commit and push your changes.
+1. Create a pull request.
+
+In case of any uncertainties, feel free to ask a question in the [discussions](https://github.com/orgs/svjis/discussions).
+
+Thank you for your contribution to the project! :octocat:

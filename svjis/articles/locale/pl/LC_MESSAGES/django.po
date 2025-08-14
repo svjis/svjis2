@@ -1,0 +1,1099 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-27 13:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: articles/forms.py:327 articles/models.py:333 articles/models.py:361
+#: articles/templates/admin_building_unit.html:36
+#: articles/templates/admin_building_unit.html:60
+#: articles/templates/admin_entrance_edit.html:13
+#: articles/templates/fault.html:45 articles/templates/faults_list.html:19
+msgid "Entrance"
+msgstr "Wejście"
+
+#: articles/forms.py:335 articles/templates/fault.html:37
+#: articles/templates/faults_list.html:21
+msgid "Resolver"
+msgstr "Rozwiązywacz"
+
+#: articles/forms.py:340
+msgid "On Behalf Of"
+msgstr "W imieniu użytkownika"
+
+#: articles/models.py:15 articles/models.py:131 articles/models.py:441
+#: articles/templates/redaction_useful_link.html:14
+msgid "Header"
+msgstr "Nagłówek"
+
+#: articles/models.py:19 articles/models.py:119 articles/models.py:134
+#: articles/models.py:149 articles/models.py:447
+#: articles/templates/redaction_article.html:19
+#: articles/templates/redaction_news.html:16
+#: articles/templates/redaction_survey.html:20
+#: articles/templates/redaction_useful_link.html:17
+msgid "Published"
+msgstr "Opublikować"
+
+#: articles/models.py:20
+msgid "Perex"
+msgstr "Akapit wprowadzający"
+
+#: articles/models.py:21 articles/models.py:89 articles/models.py:120
+#: articles/models.py:249 articles/models.py:415 articles/models.py:442
+#: articles/templates/redaction_news.html:17
+msgid "Body"
+msgstr "Treść"
+
+#: articles/models.py:23
+msgid "Allow comments"
+msgstr "Zezwolić na komentarze"
+
+#: articles/models.py:25
+msgid "Visible for all"
+msgstr "Widoczny dla wszystkich"
+
+#: articles/models.py:68 articles/models.py:100 articles/models.py:146
+#: articles/models.py:180 articles/models.py:311 articles/models.py:319
+#: articles/models.py:336 articles/models.py:352 articles/models.py:393
+#: articles/models.py:430 articles/models.py:469
+#: articles/templates/admin_building_unit.html:62
+#: articles/templates/admin_entrance.html:15
+#: articles/templates/admin_user_ownes_edit.html:14
+#: articles/templates/advert_edit.html:57 articles/templates/fault.html:49
+#: articles/templates/fault.html:62
+#: articles/templates/personal_my_units.html:14
+#: articles/templates/redaction_article_edit.html:70
+#: articles/templates/redaction_survey.html:16
+#: articles/templates/redaction_survey_results.html:16
+msgid "Description"
+msgstr "Opis"
+
+#: articles/models.py:69 articles/models.py:394 articles/models.py:470
+#: articles/templates/advert_edit.html:58 articles/templates/article.html:21
+#: articles/templates/fault.html:61
+msgid "File"
+msgstr "Plik"
+
+#: articles/models.py:70 articles/models.py:86
+#: articles/templates/redaction_article.html:15
+#: articles/templates/redaction_article_edit.html:9
+#: articles/views_redaction.py:165
+msgid "Article"
+msgstr "Artykuł"
+
+#: articles/models.py:101 articles/templates/redaction_menu.html:17
+msgid "Hide"
+msgstr "Ukryj"
+
+#: articles/models.py:132 articles/templates/redaction_useful_link.html:15
+msgid "Link"
+msgstr "Odnośnik"
+
+#: articles/models.py:133 articles/models.py:299
+#: articles/templates/redaction_useful_link.html:16
+msgid "Order"
+msgstr "Kolejność"
+
+#: articles/models.py:147
+msgid "Starting day"
+msgstr "Data początkowa"
+
+#: articles/models.py:148
+msgid "Ending day"
+msgstr "Data końcowa"
+
+#: articles/models.py:224
+msgid "Salutation"
+msgstr "Pozdrowienie"
+
+#: articles/models.py:225 articles/models.py:269 articles/models.py:288
+#: articles/models.py:312 articles/templates/admin_entrance.html:16
+#: articles/templates/contact_company.html:12
+msgid "Address"
+msgstr "Adres"
+
+#: articles/models.py:226 articles/models.py:270 articles/models.py:289
+#: articles/templates/contact_company.html:18
+msgid "City"
+msgstr "Miasto"
+
+#: articles/models.py:227 articles/models.py:271 articles/models.py:290
+#: articles/templates/contact_company.html:24
+msgid "Post code"
+msgstr "Kod pocztowy"
+
+#: articles/models.py:228
+msgid "Country"
+msgstr "Kraj"
+
+#: articles/models.py:229 articles/models.py:272 articles/models.py:444
+#: articles/templates/adverts_list.html:37
+#: articles/templates/contact_company.html:30
+#: articles/templates/contact_phonelist.html:13
+msgid "Phone"
+msgstr "Telefon"
+
+#: articles/models.py:230
+msgid "Show in phonelist"
+msgstr "Pokaż w spisie telefonów"
+
+#: articles/models.py:231
+msgid "Internal note"
+msgstr "Notatka wewnętrzna"
+
+#: articles/models.py:247 articles/models.py:273 articles/models.py:445
+#: articles/templates/admin_user.html:54
+#: articles/templates/adverts_list.html:38
+#: articles/templates/contact_company.html:36
+#: articles/templates/contact_phonelist.html:14
+#: articles/templates/redaction_article_notifications.html:19
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: articles/models.py:248 articles/models.py:350
+#: articles/templates/admin_messages.html:13
+#: articles/templates/faults_list.html:18
+msgid "Subject"
+msgstr "Temat"
+
+#: articles/models.py:256 articles/templates/admin_preferences.html:15
+msgid "Key"
+msgstr "Klucz"
+
+#: articles/models.py:257 articles/templates/admin_preferences.html:16
+msgid "Value"
+msgstr "Wartość"
+
+#: articles/models.py:268 articles/templates/admin_group.html:16
+#: articles/templates/contact_phonelist.html:12
+#: articles/templates/redaction_article_edit.html:69
+#: articles/templates/redaction_menu.html:14
+msgid "Name"
+msgstr "Nazwa"
+
+#: articles/models.py:274
+msgid "Registration no."
+msgstr "Nr rejestracyjny"
+
+#: articles/models.py:275
+msgid "VAT Registration no."
+msgstr "Nr rejestracji VAT"
+
+#: articles/models.py:276 articles/templates/contact_company.html:54
+msgid "Internet domain"
+msgstr "Domena internetowa"
+
+#: articles/models.py:277
+msgid "Header picture"
+msgstr "Obraz w nagłówku"
+
+#: articles/models.py:291
+msgid "Land Registration no."
+msgstr "Identyfikator w rejestrze gruntów"
+
+#: articles/models.py:298 articles/templates/admin_company_edit.html:7
+#: articles/templates/admin_company_edit.html:11
+#: articles/tests_playwright/commands.py:82 articles/views_admin.py:20
+msgid "Company"
+msgstr "Spółdzielnia"
+
+#: articles/models.py:301 articles/templates/admin_board.html:16
+msgid "Position"
+msgstr "Stanowisko"
+
+#: articles/models.py:309 articles/models.py:327
+#: articles/templates/admin_building_edit.html:7
+#: articles/templates/admin_building_edit.html:11
+#: articles/tests_playwright/commands.py:100 articles/views_admin.py:36
+msgid "Building"
+msgstr "Budynek"
+
+#: articles/models.py:330 articles/models.py:440
+#: articles/templates/admin_building_unit.html:19
+#: articles/templates/admin_building_unit.html:59
+#: articles/templates/admin_user_ownes_edit.html:12
+#: articles/templates/personal_my_units.html:12
+msgid "Type"
+msgstr "Typ"
+
+#: articles/models.py:335 articles/templates/admin_building_unit.html:61
+#: articles/templates/admin_user_ownes_edit.html:13
+#: articles/templates/personal_my_units.html:13
+msgid "Registration Id"
+msgstr "Identyfikator rejestracyjny"
+
+#: articles/models.py:337 articles/templates/admin_building_unit.html:63
+msgid "Numerator"
+msgstr "Licznik"
+
+#: articles/models.py:338 articles/templates/admin_building_unit.html:64
+msgid "Denominator"
+msgstr "Mianownik"
+
+#: articles/models.py:359 articles/templates/fault.html:41
+#: articles/views_faults.py:45
+msgid "Closed"
+msgstr "Zamknięte"
+
+#: articles/models.py:395 articles/models.py:412
+#: articles/templates/faults_create.html:7
+msgid "Fault report"
+msgstr "Zgłoszenie usterki"
+
+#: articles/models.py:471
+msgid "Advert"
+msgstr "Ogłoszenie"
+
+#: articles/templates/admin_board.html:7
+#: articles/templates/admin_board_edit.html:7
+#: articles/templates/admin_board_edit.html:13
+#: articles/templates/contact_company.html:63
+#: articles/tests_playwright/commands.py:333 articles/views_admin.py:28
+msgid "Board"
+msgstr "Zarząd"
+
+#: articles/templates/admin_board.html:8
+#: articles/tests_playwright/commands.py:336
+msgid "Add new member"
+msgstr "Dodaj nowego członka"
+
+#: articles/templates/admin_board.html:15
+msgid "Member"
+msgstr "Członek"
+
+#: articles/templates/admin_board.html:23
+#: articles/templates/admin_building_unit.html:71
+#: articles/templates/admin_entrance.html:23
+#: articles/templates/admin_group.html:23
+#: articles/templates/admin_preferences.html:23
+#: articles/templates/admin_user.html:62
+#: articles/templates/adverts_list.html:23 articles/templates/fault.html:10
+#: articles/templates/redaction_article.html:26
+#: articles/templates/redaction_menu.html:24
+#: articles/templates/redaction_news.html:23
+#: articles/templates/redaction_survey.html:27
+#: articles/templates/redaction_useful_link.html:23
+msgid "Edit"
+msgstr "Edytuj"
+
+#: articles/templates/admin_board.html:24
+#: articles/templates/admin_building_unit.html:73
+#: articles/templates/admin_building_unit_owners_edit.html:23
+#: articles/templates/admin_entrance.html:24
+#: articles/templates/admin_group.html:25
+#: articles/templates/admin_preferences.html:24
+#: articles/templates/admin_user_ownes_edit.html:25
+#: articles/templates/advert_edit.html:66 articles/templates/fault.html:75
+#: articles/templates/redaction_article_edit.html:74
+#: articles/templates/redaction_menu.html:27
+msgid "Do you want to delete"
+msgstr "Czy chcesz usunąć"
+
+#: articles/templates/admin_board.html:24
+#: articles/templates/admin_building_unit.html:73
+#: articles/templates/admin_building_unit_owners_edit.html:23
+#: articles/templates/admin_entrance.html:24
+#: articles/templates/admin_group.html:25
+#: articles/templates/admin_preferences.html:24
+#: articles/templates/admin_user_ownes_edit.html:25
+#: articles/templates/advert_edit.html:66 articles/templates/fault.html:75
+#: articles/templates/redaction_article_edit.html:74
+#: articles/templates/redaction_menu.html:27
+#: articles/templates/redaction_news.html:24
+#: articles/templates/redaction_survey.html:30
+#: articles/templates/redaction_survey_edit.html:28
+#: articles/templates/redaction_useful_link.html:24
+msgid "Delete"
+msgstr "Usuń"
+
+#: articles/templates/admin_board_edit.html:28
+#: articles/templates/admin_building_edit.html:30
+#: articles/templates/admin_building_unit_edit.html:41
+#: articles/templates/admin_company_edit.html:57
+#: articles/templates/admin_entrance_edit.html:25
+#: articles/templates/admin_group_edit.html:32
+#: articles/templates/admin_preferences_edit.html:27
+#: articles/templates/admin_user_edit.html:94
+#: articles/templates/advert_edit.html:41
+#: articles/templates/faults_create.html:37
+#: articles/templates/faults_edit.html:35
+#: articles/templates/personal_settings_edit.html:58
+#: articles/templates/personal_settings_password.html:26
+#: articles/templates/redaction_article_edit.html:56
+#: articles/templates/redaction_menu_edit.html:28
+#: articles/templates/redaction_news_edit.html:23
+#: articles/templates/redaction_survey_edit.html:70
+#: articles/templates/redaction_useful_link_edit.html:31
+msgid "Save"
+msgstr "Zapisz"
+
+#: articles/templates/admin_building_unit.html:7
+#: articles/tests_playwright/commands.py:176 articles/views_admin.py:52
+msgid "Building units"
+msgstr "Jednostki budynku"
+
+#: articles/templates/admin_building_unit.html:13
+#: articles/tests_playwright/commands.py:179
+msgid "Add new unit"
+msgstr "Dodaj nową jednostkę"
+
+#: articles/templates/admin_building_unit.html:14
+#: articles/templates/admin_user.html:14
+msgid "Export to Excel"
+msgstr "Eksportuj do Excela"
+
+#: articles/templates/admin_building_unit.html:72
+msgid "Owners"
+msgstr "Właściciele"
+
+#: articles/templates/admin_building_unit_edit.html:7
+#: articles/templates/admin_building_unit_edit.html:13
+msgid "Building unit"
+msgstr "Jednostka budynku"
+
+#: articles/templates/admin_building_unit_owners_edit.html:12
+#: articles/templates/redaction_article_notifications.html:18
+msgid "First Name"
+msgstr "Imię"
+
+#: articles/templates/admin_building_unit_owners_edit.html:13
+#: articles/templates/redaction_article_notifications.html:17
+msgid "Last Name"
+msgstr "Nazwisko"
+
+#: articles/templates/admin_building_unit_owners_edit.html:39
+#: articles/templates/admin_user_ownes_edit.html:41
+msgid "Add"
+msgstr "Dodaj"
+
+#: articles/templates/admin_company_edit.html:53
+msgid "Company header"
+msgstr "Nagłówek spółdzielni"
+
+#: articles/templates/admin_company_edit.html:58
+msgid "Do you want to delete logo?"
+msgstr "Czy chcesz usunąć logo?"
+
+#: articles/templates/admin_company_edit.html:58
+msgid "Delete logo"
+msgstr "Usuń logo"
+
+#: articles/templates/admin_entrance.html:7
+#: articles/templates/admin_entrance_edit.html:7
+#: articles/tests_playwright/commands.py:113 articles/views_admin.py:44
+msgid "Entrances"
+msgstr "Lista wejść"
+
+#: articles/templates/admin_entrance.html:8
+#: articles/tests_playwright/commands.py:116
+msgid "Add new entrance"
+msgstr "Dodaj nowe wejście"
+
+#: articles/templates/admin_group.html:7
+#: articles/templates/admin_group_edit.html:7
+#: articles/templates/admin_group_edit.html:13
+#: articles/templates/admin_user.html:30
+msgid "Group"
+msgstr "Grupa"
+
+#: articles/templates/admin_group.html:8
+msgid "Create new group"
+msgstr "Utwórz nową grupę"
+
+#: articles/templates/admin_group.html:24
+msgid "List of users"
+msgstr "Lista użytkowników"
+
+#: articles/templates/admin_group_edit.html:21
+msgid "Permissions"
+msgstr "Uprawnienia"
+
+#: articles/templates/admin_messages.html:7 articles/views_admin.py:84
+msgid "Waiting messages"
+msgstr "Oczekujące wiadomości"
+
+#: articles/templates/admin_messages.html:12
+msgid "Recipient"
+msgstr "Odbiorca"
+
+#: articles/templates/admin_messages.html:14
+msgid "Creation time"
+msgstr "Czas utworzenia"
+
+#: articles/templates/admin_preferences.html:7
+#: articles/templates/admin_preferences_edit.html:7
+#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:76
+msgid "Preferences"
+msgstr "Ustawienia"
+
+#: articles/templates/admin_preferences.html:8
+msgid "Create new entry"
+msgstr "Utwórz nowy wpis"
+
+#: articles/templates/admin_user.html:7
+#: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:63
+#: articles/templates/login.html:5
+#: articles/templates/redaction_survey_results.html:39
+msgid "User"
+msgstr "Użytkownik"
+
+#: articles/templates/admin_user.html:13
+#: articles/tests_playwright/commands.py:300
+msgid "Create new user"
+msgstr "Nowy użytkownik"
+
+#: articles/templates/admin_user.html:19
+msgid "Deactivated users"
+msgstr "Dezaktywowani użytkownicy"
+
+#: articles/templates/admin_user.html:51
+msgid "Last name"
+msgstr "Nazwisko"
+
+#: articles/templates/admin_user.html:52
+msgid "First name"
+msgstr "Imię"
+
+#: articles/templates/admin_user.html:53
+msgid "Active"
+msgstr "Aktywny"
+
+#: articles/templates/admin_user.html:55
+msgid "Last login"
+msgstr "Ostatnie logowanie"
+
+#: articles/templates/admin_user.html:63
+msgid "Units"
+msgstr "Jednostki"
+
+#: articles/templates/admin_user_edit.html:13
+#: articles/templates/personal_settings_edit.html:12
+msgid "Person"
+msgstr "Osoba"
+
+#: articles/templates/admin_user_edit.html:32
+#: articles/templates/personal_settings_edit.html:27
+msgid "Contact information"
+msgstr "Informacje kontaktowe"
+
+#: articles/templates/admin_user_edit.html:63
+msgid "Login information"
+msgstr "Informacje logowania"
+
+#: articles/templates/admin_user_edit.html:69 articles/templates/login.html:26
+#: articles/templates/login_page.html:24
+msgid "Password"
+msgstr "Hasło"
+
+#: articles/templates/admin_user_edit.html:73
+msgid "Send Credentials By E-Mail"
+msgstr "Wyślij dane logowania e-mailem"
+
+#: articles/templates/admin_user_edit.html:83
+msgid "Member of"
+msgstr "Jest członkiem"
+
+#: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
+#: articles/tests_playwright/commands.py:733
+#: articles/tests_playwright/commands.py:745 articles/utils.py:80
+#: articles/views_adverts.py:73 articles/views_adverts.py:95
+msgid "Adverts"
+msgstr "Ogłoszenia"
+
+#: articles/templates/advert_edit.html:26
+#: articles/templates/redaction_article_edit.html:26
+#: articles/templates/redaction_news_edit.html:16
+#: articles/templates/redaction_survey_edit.html:55
+msgid "Properties"
+msgstr "Właściwości"
+
+#: articles/templates/advert_edit.html:46
+#: articles/templates/advert_edit.html:51 articles/templates/article.html:17
+#: articles/templates/fault.html:56
+#: articles/templates/redaction_article_edit.html:62
+#: articles/templates/redaction_article_edit.html:88
+msgid "Assets"
+msgstr "Załączniki"
+
+#: articles/templates/advert_edit.html:82 articles/templates/fault.html:100
+#: articles/templates/redaction_article_edit.html:99
+msgid "Upload"
+msgstr "Prześlij plik"
+
+#: articles/templates/adverts_list.html:10
+#: articles/tests_playwright/commands.py:735
+msgid "Create new advert"
+msgstr "Utwórz nowe ogłoszenie"
+
+#: articles/templates/adverts_list.html:21 articles/templates/article.html:10
+#: articles/templates/faults_list.html:20 articles/templates/main.html:21
+#: articles/templates/redaction_article.html:17
+#: articles/templates/redaction_news.html:15
+#: articles/templates/redaction_survey.html:19
+msgid "Author"
+msgstr "Autor"
+
+#: articles/templates/article.html:33 articles/templates/fault.html:106
+msgid "Comments"
+msgstr "Komentarze"
+
+#: articles/templates/article.html:45
+msgid "Stop watching discussion"
+msgstr "Przestań obserwować dyskusję"
+
+#: articles/templates/article.html:47
+msgid "Start watching discussion"
+msgstr "Rozpocznij obserwację dyskusji"
+
+#: articles/templates/article.html:63 articles/templates/fault.html:127
+msgid "Insert comment"
+msgstr "Dodaj komentarz"
+
+#: articles/templates/article.html:69
+msgid "Back to article list"
+msgstr "Wróć do listy artykułów"
+
+#: articles/templates/box-news.html:7
+#: articles/templates/redaction_news_edit.html:7
+#: articles/tests_playwright/commands.py:474 articles/views_redaction.py:32
+#: articles/views_redaction.py:334
+msgid "News"
+msgstr "Aktualności"
+
+#: articles/templates/box-survey.html:8
+#: articles/templates/redaction_survey_edit.html:7
+#: articles/views_redaction.py:584
+msgid "Survey"
+msgstr "Ankieta"
+
+#: articles/templates/box-survey.html:25
+msgid "Vote"
+msgstr "Głosuj"
+
+#: articles/templates/box-survey.html:36
+msgid "Number of votes"
+msgstr "Liczba głosów"
+
+#: articles/templates/box-top-articles.html:7
+msgid "Top articles"
+msgstr "Najczęściej czytane artykuły"
+
+#: articles/templates/box-useful-links.html:7
+#: articles/tests_playwright/commands.py:536 articles/views_redaction.py:40
+msgid "Useful Links"
+msgstr "Przydatne linki"
+
+#: articles/templates/box-useful-links.html:14
+msgid "Paper clip"
+msgstr "Spinacz biurowy"
+
+#: articles/templates/contact_company.html:42
+msgid "Registration No."
+msgstr "Numer rejestracyjny"
+
+#: articles/templates/contact_company.html:48
+msgid "VAT Registration No."
+msgstr "Numer VAT"
+
+#: articles/templates/contact_phonelist.html:7
+#: articles/tests_playwright/commands.py:628 articles/views_contact.py:23
+msgid "Phonelist"
+msgstr "Lista kontaktów"
+
+#: articles/templates/error_404.html:8
+msgid "Page not found"
+msgstr "Strona nie została znaleziona"
+
+#: articles/templates/error_404.html:10
+msgid "Page doesn't exist or you have no access."
+msgstr "Żądana strona nie istnieje lub nie masz do niej dostępu."
+
+#: articles/templates/error_404.html:12
+msgid "Continue"
+msgstr "Kontynuuj"
+
+#: articles/templates/error_404.html:12
+msgid "here"
+msgstr "tutaj"
+
+#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:700
+msgid "Take ticket"
+msgstr "Przejmij zgłoszenie"
+
+#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:702
+#: articles/tests_playwright/commands.py:709
+#: articles/tests_playwright/commands.py:711
+msgid "Close ticket"
+msgstr "Zamknij zgłoszenie"
+
+#: articles/templates/fault.html:22
+msgid "Stop watching ticket"
+msgstr "Przestań obserwować zgłoszenie"
+
+#: articles/templates/fault.html:24
+msgid "Start watching ticket"
+msgstr "Rozpocznij obserwację zgłoszenia"
+
+#: articles/templates/fault.html:29 articles/templates/faults_list.html:17
+#: articles/templates/redaction_article.html:18
+#: articles/templates/redaction_news.html:14
+msgid "Date"
+msgstr "Data"
+
+#: articles/templates/fault.html:33
+msgid "Creator"
+msgstr "Twórca"
+
+#: articles/templates/fault.html:64
+#: articles/templates/redaction_survey_results.html:38
+msgid "Time"
+msgstr "Czas"
+
+#: articles/templates/fault.html:89
+msgid "Add asset"
+msgstr "Dodaj załącznik"
+
+#: articles/templates/fault.html:133
+msgid "Back to fault list"
+msgstr "Wróć do listy zgłoszeń"
+
+#: articles/templates/faults_list.html:10
+#: articles/tests_playwright/commands.py:674
+msgid "Report fault or request"
+msgstr "Zgłoś usterkę lub prośbę"
+
+#: articles/templates/faults_list.html:16
+msgid "Ticket no."
+msgstr "Numer zgłoszenia"
+
+#: articles/templates/faults_list.html:27
+#: articles/templates/redaction_article.html:25
+msgid "View"
+msgstr "Wyświetl"
+
+#: articles/templates/header.html:7
+msgid "Go to homepage"
+msgstr "Przejdź na stronę główną"
+
+#: articles/templates/login.html:11
+msgid "Logout"
+msgstr "Wyloguj"
+
+#: articles/templates/login.html:16
+msgid "Login"
+msgstr "Zaloguj"
+
+#: articles/templates/login.html:22 articles/templates/login_page.html:20
+msgid "Username"
+msgstr "Użytkownik"
+
+#: articles/templates/login.html:30 articles/templates/login_page.html:28
+msgid "Sign in"
+msgstr "Zaloguj się"
+
+#: articles/templates/login.html:33 articles/templates/login_page.html:31
+#: articles/templates/send_lost_password.html:8
+msgid "Lost password"
+msgstr "Zapomniane hasło"
+
+#: articles/templates/login_page.html:8
+msgid "Sign in to your account"
+msgstr "Zaloguj się do swojego konta"
+
+#: articles/templates/login_page.html:12
+msgid "Please sign-in"
+msgstr "Proszę się zalogować"
+
+#: articles/templates/paginator.html:8
+msgid "Previous"
+msgstr "Poprzedni"
+
+#: articles/templates/paginator.html:35
+msgid "Next"
+msgstr "Następny"
+
+#: articles/templates/personal_settings_password.html:11
+#: articles/tests_playwright/commands.py:651
+#: articles/views_personal_settings.py:37
+msgid "Password change"
+msgstr "Zmiana hasła"
+
+#: articles/templates/personal_settings_password.html:13
+msgid "Current password"
+msgstr "Obecne hasło"
+
+#: articles/templates/personal_settings_password.html:17
+msgid "New password"
+msgstr "Nowe hasło"
+
+#: articles/templates/personal_settings_password.html:21
+msgid "New password once again"
+msgstr "Powtórz nowe hasło"
+
+#: articles/templates/redaction_article.html:8
+#: articles/tests_playwright/commands.py:413
+msgid "Create new article"
+msgstr "Utwórz nowy artykuł"
+
+#: articles/templates/redaction_article.html:16
+#: articles/templates/redaction_menu.html:7
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:56
+msgid "Menu"
+msgstr "Menu"
+
+#: articles/templates/redaction_article.html:27
+#: articles/templates/redaction_article_notifications.html:7
+#: articles/templates/redaction_article_notifications_sent.html:7
+msgid "Send notifications"
+msgstr "Wyślij powiadomienia"
+
+#: articles/templates/redaction_article_edit.html:41
+msgid "Visible for"
+msgstr "Widoczny dla"
+
+#: articles/templates/redaction_article_notifications.html:34
+#: articles/templates/send_lost_password.html:19
+msgid "Submit"
+msgstr "Wyślij"
+
+#: articles/templates/redaction_article_notifications_sent.html:9
+msgid "notifications has been send"
+msgstr "powiadomienie zostało wysłane"
+
+#: articles/templates/redaction_article_notifications_sent.html:10
+msgid "Continue here"
+msgstr "Kontynuuj tutaj"
+
+#: articles/templates/redaction_menu.html:8
+msgid "Create new menu entry"
+msgstr "Utwórz nowy wpis w menu"
+
+#: articles/templates/redaction_menu.html:15
+msgid "Parent"
+msgstr "Rodzic"
+
+#: articles/templates/redaction_menu.html:16
+msgid "Level"
+msgstr "Poziom"
+
+#: articles/templates/redaction_menu.html:18
+#: articles/tests_playwright/commands.py:411
+#: articles/tests_playwright/commands.py:453
+#: articles/tests_playwright/commands.py:561
+#: articles/tests_playwright/commands.py:580
+#: articles/tests_playwright/commands.py:606 articles/utils.py:41
+#: articles/views.py:147 articles/views.py:211 articles/views_redaction.py:24
+msgid "Articles"
+msgstr "Artykuły"
+
+#: articles/templates/redaction_menu_edit.html:13
+msgid "Menu entry"
+msgstr "Wpis w menu"
+
+#: articles/templates/redaction_news.html:8
+#: articles/tests_playwright/commands.py:476
+msgid "Create new news"
+msgstr "Utwórz nową aktualność"
+
+#: articles/templates/redaction_news.html:24
+msgid "Do you want to delete this news"
+msgstr "Czy chcesz usunąć tę wiadomość?"
+
+#: articles/templates/redaction_survey.html:8
+#: articles/tests_playwright/commands.py:497
+msgid "Create new survey"
+msgstr "Utwórz nową ankietę"
+
+#: articles/templates/redaction_survey.html:17
+msgid "Starting date"
+msgstr "Data rozpoczęcia"
+
+#: articles/templates/redaction_survey.html:18
+msgid "Ending date"
+msgstr "Data zakończenia"
+
+#: articles/templates/redaction_survey.html:28
+msgid "Results"
+msgstr "Wyniki"
+
+#: articles/templates/redaction_survey.html:29
+msgid "Export results to Excel"
+msgstr "Eksportuj wyniki do Excela"
+
+#: articles/templates/redaction_survey.html:30
+msgid "Do you want to delete this survey"
+msgstr "Czy chcesz usunąć tę ankietę?"
+
+#: articles/templates/redaction_survey_edit.html:16
+msgid "Options"
+msgstr "Opcje"
+
+#: articles/templates/redaction_survey_edit.html:23
+#: articles/templates/redaction_survey_edit.html:33
+#: articles/templates/redaction_survey_results.html:40
+msgid "Option"
+msgstr "Opcja"
+
+#: articles/templates/redaction_survey_edit.html:28
+msgid "Do you want to delete this option"
+msgstr "Czy chcesz usunąć tę opcję?"
+
+#: articles/templates/redaction_survey_edit.html:45
+msgid "Add option"
+msgstr "Dodaj opcję"
+
+#: articles/templates/redaction_survey_edit.html:48
+msgid "Remove option"
+msgstr "Usuń opcję"
+
+#: articles/templates/redaction_survey_results.html:11
+msgid "Result"
+msgstr "Wyniki"
+
+#: articles/templates/redaction_survey_results.html:17
+#: articles/templates/redaction_survey_results.html:18
+msgid "Votes"
+msgstr "Głosy"
+
+#: articles/templates/redaction_survey_results.html:33
+msgid "Voting log"
+msgstr "Logowanie głosowania"
+
+#: articles/templates/redaction_useful_link.html:8
+#: articles/tests_playwright/commands.py:538
+msgid "Create new useful link"
+msgstr "Utwórz nowy przydatny link"
+
+#: articles/templates/redaction_useful_link.html:24
+msgid "Do you want to delete this useful link"
+msgstr "Czy chcesz usunąć ten przydatny link?"
+
+#: articles/templates/redaction_useful_link_edit.html:7
+#: articles/templates/redaction_useful_link_edit.html:12
+msgid "Useful link"
+msgstr "Przydatny link"
+
+#: articles/templates/search.html:5 articles/templates/search.html:9
+msgid "Search"
+msgstr "Szukaj"
+
+#: articles/templates/send_lost_password.html:13
+msgid "Send credentials by E-Mail"
+msgstr "Wyślij dane logowania e-mailem"
+
+#: articles/templates/send_lost_password.html:15
+msgid "Your E-Mail"
+msgstr "Twój adres e-mail"
+
+#: articles/tests_playwright/commands.py:82
+#: articles/tests_playwright/commands.py:100
+#: articles/tests_playwright/commands.py:113
+#: articles/tests_playwright/commands.py:176
+#: articles/tests_playwright/commands.py:297
+#: articles/tests_playwright/commands.py:333
+#: articles/tests_playwright/commands.py:358 articles/utils.py:88
+#: articles/views_admin.py:99 articles/views_admin.py:138
+#: articles/views_admin.py:155 articles/views_admin.py:198
+#: articles/views_admin.py:225 articles/views_admin.py:242
+#: articles/views_admin.py:296 articles/views_admin.py:317
+#: articles/views_admin.py:361 articles/views_admin.py:446
+#: articles/views_admin.py:478 articles/views_admin.py:541
+#: articles/views_admin.py:636 articles/views_admin.py:663
+#: articles/views_admin.py:716 articles/views_admin.py:733
+#: articles/views_admin.py:773
+msgid "Administration"
+msgstr "Administracja"
+
+#: articles/tests_playwright/commands.py:96
+#: articles/tests_playwright/commands.py:108
+#: articles/tests_playwright/commands.py:122
+#: articles/tests_playwright/commands.py:189
+#: articles/tests_playwright/commands.py:323
+#: articles/tests_playwright/commands.py:343
+#: articles/tests_playwright/commands.py:436
+#: articles/tests_playwright/commands.py:483
+#: articles/tests_playwright/commands.py:511
+#: articles/tests_playwright/commands.py:547
+#: articles/tests_playwright/commands.py:642
+#: articles/tests_playwright/commands.py:682
+#: articles/tests_playwright/commands.py:744 articles/views_admin.py:113
+#: articles/views_admin.py:126 articles/views_admin.py:176
+#: articles/views_admin.py:212 articles/views_admin.py:263
+#: articles/views_admin.py:338 articles/views_admin.py:531
+#: articles/views_admin.py:694 articles/views_admin.py:752
+#: articles/views_adverts.py:122 articles/views_adverts.py:144
+#: articles/views_faults.py:199 articles/views_faults.py:245
+#: articles/views_personal_settings.py:70 articles/views_redaction.py:128
+#: articles/views_redaction.py:249 articles/views_redaction.py:390
+#: articles/views_redaction.py:463 articles/views_redaction.py:557
+msgid "Saved"
+msgstr "Zapisano"
+
+#: articles/tests_playwright/commands.py:297
+#: articles/tests_playwright/commands.py:358 articles/views_admin.py:60
+msgid "Users"
+msgstr "Użytkownicy"
+
+#: articles/tests_playwright/commands.py:411
+#: articles/tests_playwright/commands.py:453
+#: articles/tests_playwright/commands.py:474
+#: articles/tests_playwright/commands.py:495
+#: articles/tests_playwright/commands.py:536
+#: articles/tests_playwright/commands.py:616 articles/utils.py:64
+#: articles/views_redaction.py:91 articles/views_redaction.py:108
+#: articles/views_redaction.py:179 articles/views_redaction.py:207
+#: articles/views_redaction.py:277 articles/views_redaction.py:297
+#: articles/views_redaction.py:347 articles/views_redaction.py:367
+#: articles/views_redaction.py:423 articles/views_redaction.py:443
+#: articles/views_redaction.py:496 articles/views_redaction.py:518
+#: articles/views_redaction.py:587
+msgid "Redaction"
+msgstr "Redakcja"
+
+#: articles/tests_playwright/commands.py:495
+#: articles/tests_playwright/commands.py:616 articles/views_redaction.py:48
+#: articles/views_redaction.py:483
+msgid "Surveys"
+msgstr "Ankiety"
+
+#: articles/tests_playwright/commands.py:561
+#: articles/tests_playwright/commands.py:580
+#: articles/tests_playwright/commands.py:606 articles/views.py:24
+#: articles/views.py:26 articles/views.py:99
+msgid "All articles"
+msgstr "Wszystkie artykuły"
+
+#: articles/tests_playwright/commands.py:626
+#: articles/tests_playwright/commands.py:628 articles/utils.py:48
+#: articles/views_contact.py:15 articles/views_contact.py:36
+#: articles/views_contact.py:53
+msgid "Contact"
+msgstr "Kontakt"
+
+#: articles/tests_playwright/commands.py:636
+#: articles/tests_playwright/commands.py:646
+#: articles/tests_playwright/commands.py:651 articles/utils.py:56
+msgid "Personal settings"
+msgstr "Ustawienia osobiste"
+
+#: articles/tests_playwright/commands.py:646
+#: articles/views_personal_settings.py:29
+msgid "My units"
+msgstr "Moje jednostki"
+
+#: articles/tests_playwright/commands.py:672
+#: articles/tests_playwright/commands.py:687
+#: articles/tests_playwright/commands.py:697
+#: articles/tests_playwright/commands.py:706 articles/utils.py:72
+#: articles/views_faults.py:81 articles/views_faults.py:95
+#: articles/views_faults.py:118 articles/views_faults.py:138
+#: articles/views_faults.py:151
+msgid "Fault reporting"
+msgstr "Zgłaszanie usterek"
+
+#: articles/tests_playwright/commands.py:672
+#: articles/tests_playwright/commands.py:687
+#: articles/tests_playwright/commands.py:697
+#: articles/tests_playwright/commands.py:706 articles/views_faults.py:20
+msgid "Open"
+msgstr "Nierozwiązane"
+
+#: articles/tests_playwright/commands.py:733
+#: articles/tests_playwright/commands.py:745 articles/views_adverts.py:17
+#: articles/views_adverts.py:59
+msgid "All"
+msgstr "Wszystko"
+
+#: articles/views.py:108 articles/views_faults.py:71
+#: articles/views_redaction.py:153
+msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
+msgstr ""
+"Wyszukiwanie: Słowo kluczowe '{}' jest zbyt krótkie. Wprowadź co najmniej 3 "
+"znaki."
+
+#: articles/views.py:111 articles/views_faults.py:74
+#: articles/views_redaction.py:156
+msgid "Search: Keyword is too long. Type maximum of 100 characters."
+msgstr ""
+"Wyszukiwanie: Słowo kluczowe jest zbyt długie. Wprowadź maksymalnie 100 "
+"znaków."
+
+#: articles/views.py:116 articles/views_faults.py:78
+#: articles/views_redaction.py:162
+msgid "Search results"
+msgstr "Wyniki wyszukiwania"
+
+#: articles/views.py:171
+msgid "Please choose an option."
+msgstr "Proszę wybrać jedną opcję."
+
+#: articles/views.py:288
+msgid "Wrong username or password"
+msgstr "Nieprawidłowa nazwa użytkownika lub hasło"
+
+#: articles/views.py:289
+msgid "In case you lost your password use Lost Password link"
+msgstr ""
+"W przypadku utraty danych logowania, skorzystaj z linku 'Zapomniane hasło'."
+
+#: articles/views_admin.py:68
+msgid "Groups"
+msgstr "Grupy"
+
+#: articles/views_admin.py:513
+msgid "Credentials has been sent by e-mail"
+msgstr "Dane logowania zostały wysłane e-mailem"
+
+#: articles/views_adverts.py:41 articles/views_adverts.py:63
+#: articles/views_faults.py:28
+msgid "Mine"
+msgstr "Moje"
+
+#: articles/views_faults.py:37
+msgid "Assigned to me"
+msgstr "Przypisane do mnie"
+
+#: articles/views_personal_settings.py:112
+msgid "Wrong password"
+msgstr "Nieprawidłowe hasło"
+
+#: articles/views_personal_settings.py:116
+msgid "Password cannot be enpty"
+msgstr "Hasło nie może być puste"
+
+#: articles/views_personal_settings.py:120
+msgid "New passwords don't match"
+msgstr "Nowe hasła nie są zgodne"
+
+#: articles/views_personal_settings.py:125
+msgid "Password has been changed"
+msgstr "Hasło zostało zmienione"
+
+#: articles/views_personal_settings.py:140
+msgid "E-Mail is not valid"
+msgstr "Niepoprawny adres e-mail"
+
+#: articles/views_personal_settings.py:147
+msgid "Credentials have been sent to your e-mail"
+msgstr "Dane logowania zostały wysłane na Twój adres e-mail"
+
+#: articles/views_redaction.py:410
+msgid "Useful links"
+msgstr "Przydatne linki"

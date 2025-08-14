@@ -11,6 +11,8 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as gt
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
 
@@ -194,7 +196,10 @@ def article_view(request, slug):
         article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
 
     if len(article_qs) == 0:
-        raise Http404
+        if request.user.is_authenticated:
+            raise Http404
+        else:
+            return redirect(reverse(login_page_view) + '?next=' + request.get_full_path())
     else:
         article = article_qs[0]
 
@@ -203,6 +208,11 @@ def article_view(request, slug):
         user = None
 
     models.ArticleLog.objects.create(article=article, user=user)
+
+    group_list = [g.name for g in article.visible_for_group.order_by('name')]
+    if article.visible_for_all:
+        group_list.insert(0, gt("Visible for all"))
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Articles")
     ctx['search'] = request.GET.get('search', '')
@@ -212,6 +222,7 @@ def article_view(request, slug):
     ctx['web_title'] = article.header
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
+    ctx['visible_for'] = ", ".join(group_list)
     return render(request, "article.html", ctx)
 
 
@@ -257,6 +268,19 @@ def article_watch_view(request):
 
 
 # Login
+@require_GET
+def login_page_view(request):
+    if request.user.is_authenticated:
+        return redirect(main_view)
+    else:
+        ctx = utils.get_context()
+        ctx['tray_menu_items'] = utils.get_tray_menu('_', request.user)
+        next_page = request.GET.get('next', None)
+        if next_page is not None:
+            ctx['next_page'] = next_page
+        return render(request, "login_page.html", ctx)
+
+
 @require_POST
 def user_login(request):
     username = request.POST.get('username')
@@ -264,9 +288,13 @@ def user_login(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         login(request, user)
+        next_page = request.POST.get('next_page', None)
+        if next_page is not None and url_has_allowed_host_and_scheme(next_page, allowed_hosts=None):
+            return redirect(next_page)
     else:
         messages.error(request, _("Wrong username or password"))
         messages.info(request, _("In case you lost your password use Lost Password link"))
+        return redirect(login_page_view)
     return redirect(main_view)
 
 

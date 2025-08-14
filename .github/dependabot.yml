@@ -9,6 +9,8 @@ updates:
     # Every weekday
     schedule:
       interval: 'weekly'
+      day: 'thursday'
+      time: '23:00'
 
   # Enable version updates for Python/Pip - Production
   - package-ecosystem: 'pip'
@@ -18,3 +20,5 @@ updates:
     # Every weekday
     schedule:
       interval: 'weekly'
+      day: 'thursday'
+      time: '23:15'

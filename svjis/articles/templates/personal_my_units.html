@@ -15,7 +15,7 @@
     </tr>
 
     {% if user.buildingunit_set.all %}
-    {% for obj in user.buildingunit_set.all %}
+    {% for obj in user.buildingunit_set.all|dictsort:"registration_id" %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
         <td class="list">{{ obj.type.description }}</td>

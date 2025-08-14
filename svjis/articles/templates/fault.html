@@ -51,7 +51,7 @@
     </tr>
     <tr>
         <th class="list" scope="row">{% translate 'Description' %}</th>
-        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|highlight:search }}</td>
+        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
     </tr>
 </table>
 
