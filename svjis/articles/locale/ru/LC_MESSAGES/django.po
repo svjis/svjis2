@@ -260,23 +260,19 @@ msgstr "Отчет о неисправности"
 
 #: articles/models.py:467
 msgid "Modified"
-msgstr ""
+msgstr "Изменён"
 
 #: articles/models.py:468
-#, fuzzy
-#| msgid "Assigned to me"
 msgid "Assigned"
-msgstr "Назначенные мне"
+msgstr "Назначен"
 
 #: articles/models.py:470
 msgid "Reopened"
-msgstr ""
+msgstr "Возобновлён"
 
 #: articles/models.py:471
-#, fuzzy
-#| msgid "Creator"
 msgid "Created"
-msgstr "Автор"
+msgstr "Создан"
 
 #: articles/models.py:532
 msgid "Advert"
@@ -667,10 +663,8 @@ msgid "Close ticket"
 msgstr "Закрыть тикет"
 
 #: articles/templates/fault.html:22 articles/tests_playwright/commands.py:755
-#, fuzzy
-#| msgid "View"
 msgid "View log"
-msgstr "Просмотреть"
+msgstr "Просмотреть журнал"
 
 #: articles/templates/fault.html:26
 msgid "Stop watching ticket"
@@ -704,20 +698,16 @@ msgid "Back to fault list"
 msgstr "Вернуться к списку проблем"
 
 #: articles/templates/fault_log.html:10
-#, fuzzy
-#| msgid "Login"
 msgid "Log"
-msgstr "Войти"
+msgstr "Журнал"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"
-msgstr ""
+msgstr "Событие"
 
 #: articles/templates/fault_log.html:30
-#, fuzzy
-#| msgid "Back to article list"
 msgid "Back to ticket"
-msgstr "Вернуться к списку статей"
+msgstr "Вернуться к тикету"
 
 #: articles/templates/faults_list.html:10
 #: articles/tests_playwright/commands.py:705
@@ -1116,10 +1106,8 @@ msgid "Assigned to me"
 msgstr "Назначенные мне"
 
 #: articles/views_faults.py:46
-#, fuzzy
-#| msgid "Resolver"
 msgid "Resolved"
-msgstr "Решатель"
+msgstr "Решено"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"

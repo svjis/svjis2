@@ -260,23 +260,19 @@ msgstr "Zgłoszenie usterki"
 
 #: articles/models.py:467
 msgid "Modified"
-msgstr ""
+msgstr "Zmodyfikowano"
 
 #: articles/models.py:468
-#, fuzzy
-#| msgid "Assigned to me"
 msgid "Assigned"
-msgstr "Przypisane do mnie"
+msgstr "Przypisano"
 
 #: articles/models.py:470
 msgid "Reopened"
-msgstr ""
+msgstr "Ponownie otwarto"
 
 #: articles/models.py:471
-#, fuzzy
-#| msgid "Creator"
 msgid "Created"
-msgstr "Twórca"
+msgstr "Utworzono"
 
 #: articles/models.py:532
 msgid "Advert"
@@ -667,10 +663,8 @@ msgid "Close ticket"
 msgstr "Zamknij zgłoszenie"
 
 #: articles/templates/fault.html:22 articles/tests_playwright/commands.py:755
-#, fuzzy
-#| msgid "View"
 msgid "View log"
-msgstr "Wyświetl"
+msgstr "Wyświetl dziennik"
 
 #: articles/templates/fault.html:26
 msgid "Stop watching ticket"
@@ -704,20 +698,16 @@ msgid "Back to fault list"
 msgstr "Wróć do listy zgłoszeń"
 
 #: articles/templates/fault_log.html:10
-#, fuzzy
-#| msgid "Login"
 msgid "Log"
-msgstr "Zaloguj"
+msgstr "Dziennik"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"
-msgstr ""
+msgstr "Zdarzenie"
 
 #: articles/templates/fault_log.html:30
-#, fuzzy
-#| msgid "Back to article list"
 msgid "Back to ticket"
-msgstr "Wróć do listy artykułów"
+msgstr "Powrót do zgłoszenia"
 
 #: articles/templates/faults_list.html:10
 #: articles/tests_playwright/commands.py:705
@@ -1119,10 +1109,8 @@ msgid "Assigned to me"
 msgstr "Przypisane do mnie"
 
 #: articles/views_faults.py:46
-#, fuzzy
-#| msgid "Resolver"
 msgid "Resolved"
-msgstr "Rozwiązywacz"
+msgstr "Rozwiązane"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"

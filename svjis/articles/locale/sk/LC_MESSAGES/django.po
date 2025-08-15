@@ -257,23 +257,19 @@ msgstr "Hlásenie poruchy"
 
 #: articles/models.py:467
 msgid "Modified"
-msgstr ""
+msgstr "Upravené"
 
 #: articles/models.py:468
-#, fuzzy
-#| msgid "Assigned to me"
 msgid "Assigned"
-msgstr "Priradené mne"
+msgstr "Pridelené"
 
 #: articles/models.py:470
 msgid "Reopened"
-msgstr ""
+msgstr "Znovu otvorené"
 
 #: articles/models.py:471
-#, fuzzy
-#| msgid "Creator"
 msgid "Created"
-msgstr "Zadavateľ"
+msgstr "Vytvorené"
 
 #: articles/models.py:532
 msgid "Advert"
@@ -664,10 +660,8 @@ msgid "Close ticket"
 msgstr "Uzavrieť tiket"
 
 #: articles/templates/fault.html:22 articles/tests_playwright/commands.py:755
-#, fuzzy
-#| msgid "View"
 msgid "View log"
-msgstr "Zobraziť"
+msgstr "Zobraziť protokol"
 
 #: articles/templates/fault.html:26
 msgid "Stop watching ticket"
@@ -701,20 +695,16 @@ msgid "Back to fault list"
 msgstr "Späť na zoznam porúch"
 
 #: articles/templates/fault_log.html:10
-#, fuzzy
-#| msgid "Login"
 msgid "Log"
-msgstr "Prihlásiť"
+msgstr "Protokol"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"
-msgstr ""
+msgstr "Udalosť"
 
 #: articles/templates/fault_log.html:30
-#, fuzzy
-#| msgid "Back to article list"
 msgid "Back to ticket"
-msgstr "Späť na zoznam článkov"
+msgstr "Späť na tiket"
 
 #: articles/templates/faults_list.html:10
 #: articles/tests_playwright/commands.py:705
@@ -1112,10 +1102,8 @@ msgid "Assigned to me"
 msgstr "Priradené mne"
 
 #: articles/views_faults.py:46
-#, fuzzy
-#| msgid "Resolver"
 msgid "Resolved"
-msgstr "Riešiteľ"
+msgstr "Vyriešené"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"

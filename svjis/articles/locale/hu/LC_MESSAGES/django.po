@@ -258,23 +258,19 @@ msgstr "Hibajelentés"
 
 #: articles/models.py:467
 msgid "Modified"
-msgstr ""
+msgstr "Módosítva"
 
 #: articles/models.py:468
-#, fuzzy
-#| msgid "Assigned to me"
 msgid "Assigned"
-msgstr "Hozzám rendelve"
+msgstr "Kiosztva"
 
 #: articles/models.py:470
 msgid "Reopened"
-msgstr ""
+msgstr "Újra megnyitva"
 
 #: articles/models.py:471
-#, fuzzy
-#| msgid "Creator"
 msgid "Created"
-msgstr "Létrehozó"
+msgstr "Létrehozva"
 
 #: articles/models.py:532
 msgid "Advert"
@@ -665,10 +661,8 @@ msgid "Close ticket"
 msgstr "Jegy lezárása"
 
 #: articles/templates/fault.html:22 articles/tests_playwright/commands.py:755
-#, fuzzy
-#| msgid "View"
 msgid "View log"
-msgstr "Megtekintés"
+msgstr "Napló megtekintése"
 
 #: articles/templates/fault.html:26
 msgid "Stop watching ticket"
@@ -702,20 +696,16 @@ msgid "Back to fault list"
 msgstr "Vissza a hibajegy-listához"
 
 #: articles/templates/fault_log.html:10
-#, fuzzy
-#| msgid "Login"
 msgid "Log"
-msgstr "Bejelentkezés"
+msgstr "Napló"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"
-msgstr ""
+msgstr "Esemény"
 
 #: articles/templates/fault_log.html:30
-#, fuzzy
-#| msgid "Back to article list"
 msgid "Back to ticket"
-msgstr "Vissza a cikklistához"
+msgstr "Vissza a jegyhez"
 
 #: articles/templates/faults_list.html:10
 #: articles/tests_playwright/commands.py:705
@@ -1112,10 +1102,8 @@ msgid "Assigned to me"
 msgstr "Hozzám rendelve"
 
 #: articles/views_faults.py:46
-#, fuzzy
-#| msgid "Resolver"
 msgid "Resolved"
-msgstr "Megoldó"
+msgstr "Megoldva"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"

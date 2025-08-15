@@ -696,7 +696,7 @@ msgstr "Zpět na seznam závad"
 
 #: articles/templates/fault_log.html:10
 msgid "Log"
-msgstr "Historie"
+msgstr "Protokol"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"

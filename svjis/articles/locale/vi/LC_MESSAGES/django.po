@@ -258,23 +258,19 @@ msgstr "Báo cáo lỗi"
 
 #: articles/models.py:467
 msgid "Modified"
-msgstr ""
+msgstr "Đã sửa đổi"
 
 #: articles/models.py:468
-#, fuzzy
-#| msgid "Assigned to me"
 msgid "Assigned"
-msgstr "Được giao cho tôi"
+msgstr "Đã giao"
 
 #: articles/models.py:470
 msgid "Reopened"
-msgstr ""
+msgstr "Đã mở lại"
 
 #: articles/models.py:471
-#, fuzzy
-#| msgid "Creator"
 msgid "Created"
-msgstr "Người tạo"
+msgstr "Đã tạo"
 
 #: articles/models.py:532
 msgid "Advert"
@@ -665,10 +661,8 @@ msgid "Close ticket"
 msgstr "Đóng phiếu"
 
 #: articles/templates/fault.html:22 articles/tests_playwright/commands.py:755
-#, fuzzy
-#| msgid "View"
 msgid "View log"
-msgstr "Xem"
+msgstr "Xem nhật ký"
 
 #: articles/templates/fault.html:26
 msgid "Stop watching ticket"
@@ -702,20 +696,16 @@ msgid "Back to fault list"
 msgstr "Trở về danh sách lỗi"
 
 #: articles/templates/fault_log.html:10
-#, fuzzy
-#| msgid "Login"
 msgid "Log"
-msgstr "Đăng nhập"
+msgstr "Nhật ký"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"
-msgstr ""
+msgstr "Sự kiện"
 
 #: articles/templates/fault_log.html:30
-#, fuzzy
-#| msgid "Back to article list"
 msgid "Back to ticket"
-msgstr "Trở về danh sách bài viết"
+msgstr "Quay lại phiếu"
 
 #: articles/templates/faults_list.html:10
 #: articles/tests_playwright/commands.py:705
@@ -1112,10 +1102,8 @@ msgid "Assigned to me"
 msgstr "Được giao cho tôi"
 
 #: articles/views_faults.py:46
-#, fuzzy
-#| msgid "Resolver"
 msgid "Resolved"
-msgstr "Người giải quyết"
+msgstr "Đã giải quyết"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"

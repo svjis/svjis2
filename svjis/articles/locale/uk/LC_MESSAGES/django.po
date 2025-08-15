@@ -261,23 +261,19 @@ msgstr "Звіт про несправність"
 
 #: articles/models.py:467
 msgid "Modified"
-msgstr ""
+msgstr "Змінено"
 
 #: articles/models.py:468
-#, fuzzy
-#| msgid "Assigned to me"
 msgid "Assigned"
-msgstr "Призначені мені"
+msgstr "Призначено"
 
 #: articles/models.py:470
 msgid "Reopened"
-msgstr ""
+msgstr "Повторно відкрито"
 
 #: articles/models.py:471
-#, fuzzy
-#| msgid "Creator"
 msgid "Created"
-msgstr "Автор"
+msgstr "Створено"
 
 #: articles/models.py:532
 msgid "Advert"
@@ -668,10 +664,8 @@ msgid "Close ticket"
 msgstr "Закрити заявку"
 
 #: articles/templates/fault.html:22 articles/tests_playwright/commands.py:755
-#, fuzzy
-#| msgid "View"
 msgid "View log"
-msgstr "Переглянути"
+msgstr "Переглянути журнал"
 
 #: articles/templates/fault.html:26
 msgid "Stop watching ticket"
@@ -705,20 +699,16 @@ msgid "Back to fault list"
 msgstr "Повернутися до списку заявок"
 
 #: articles/templates/fault_log.html:10
-#, fuzzy
-#| msgid "Login"
 msgid "Log"
-msgstr "Увійти"
+msgstr "Журнал"
 
 #: articles/templates/fault_log.html:14
 msgid "Event"
-msgstr ""
+msgstr "Подія"
 
 #: articles/templates/fault_log.html:30
-#, fuzzy
-#| msgid "Back to article list"
 msgid "Back to ticket"
-msgstr "Повернутися до списку статей"
+msgstr "Назад до заявки"
 
 #: articles/templates/faults_list.html:10
 #: articles/tests_playwright/commands.py:705
@@ -1118,10 +1108,8 @@ msgid "Assigned to me"
 msgstr "Призначені мені"
 
 #: articles/views_faults.py:46
-#, fuzzy
-#| msgid "Resolver"
 msgid "Resolved"
-msgstr "Розв'язувач"
+msgstr "Вирішено"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"
