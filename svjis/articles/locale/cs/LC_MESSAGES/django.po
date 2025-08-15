@@ -248,10 +248,10 @@ msgstr "Jmenovatel"
 
 #: articles/models.py:385 articles/models.py:469
 msgid "Closed"
-msgstr "Vyřešen"
+msgstr "Uzavřen"
 
 #: articles/templates/fault.html:45 articles/views_faults.py:46
-msgid "Closed"
+msgid "Resolved"
 msgstr "Vyřešené"
 
 #: articles/models.py:429 articles/models.py:446
