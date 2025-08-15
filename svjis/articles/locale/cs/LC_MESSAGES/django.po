@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 10:23+0200\n"
+"POT-Creation-Date: 2025-08-15 13:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -227,7 +227,6 @@ msgstr "Budova"
 #: articles/templates/admin_building_unit.html:19
 #: articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:12
-#: articles/templates/fault_log.html:14
 #: articles/templates/personal_my_units.html:12
 msgid "Type"
 msgstr "Typ"
@@ -247,12 +246,9 @@ msgid "Denominator"
 msgstr "Jmenovatel"
 
 #: articles/models.py:385 articles/models.py:469
+#: articles/templates/fault.html:45
 msgid "Closed"
 msgstr "Uzavřen"
-
-#: articles/templates/fault.html:45 articles/views_faults.py:46
-msgid "Resolved"
-msgstr "Vyřešené"
 
 #: articles/models.py:429 articles/models.py:446
 #: articles/templates/faults_create.html:7
@@ -702,6 +698,10 @@ msgstr "Zpět na seznam závad"
 msgid "Log"
 msgstr "Historie"
 
+#: articles/templates/fault_log.html:14
+msgid "Event"
+msgstr "Událost"
+
 #: articles/templates/fault_log.html:30
 msgid "Back to ticket"
 msgstr "Zpět do tiketu"
@@ -1102,6 +1102,10 @@ msgstr "Moje"
 #: articles/views_faults.py:38
 msgid "Assigned to me"
 msgstr "Přiřazené mě"
+
+#: articles/views_faults.py:46
+msgid "Resolved"
+msgstr "Vyřešené"
 
 #: articles/views_personal_settings.py:112
 msgid "Wrong password"
