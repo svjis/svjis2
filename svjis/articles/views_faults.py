@@ -43,7 +43,7 @@ def get_side_menu(active_item, user):
             )
         result.append(
             {
-                'description': _("Closed") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
+                'description': _("Resolved") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
                 'link': reverse(faults_list_view) + '?scope=closed',
                 'active': True if active_item == 'closed' else False,
             }
