@@ -466,7 +466,7 @@ class FaultReportLog(models.Model):
     TYPE_CHOICES = (
         (TYPE_MODIFIED, _("Modified")),
         (TYPE_ASSIGNED, _("Assigned")),
-        (TYPE_CLOSED, _("Closed")),
+        (TYPE_CLOSED, _("Resolved")),
         (TYPE_REOPENED, _("Reopened")),
         (TYPE_CREATED, _("Created")),
     )
