@@ -247,6 +247,9 @@ msgid "Denominator"
 msgstr "Jmenovatel"
 
 #: articles/models.py:385 articles/models.py:469
+msgid "Closed"
+msgstr "Vyřešen"
+
 #: articles/templates/fault.html:45 articles/views_faults.py:46
 msgid "Closed"
 msgstr "Vyřešené"
