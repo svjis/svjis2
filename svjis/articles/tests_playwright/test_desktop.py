@@ -122,7 +122,7 @@ class DesktopTests(StaticLiveServerTestCase):
         cmd.login(self, page, 'karel', self.user_password)
         cmd.create_fault_comment(self, page, 'Nefunguje výtah', 'Opraveno')
         cmd.close_fault_ticket(self, page, 'Nefunguje výtah')
-        cmd.view_fault_log(self, page, 'Nefunguje výtah', 'Closed')
+        cmd.view_fault_log(self, page, 'Nefunguje výtah', 'Resolved')
         cmd.logout(self, page)
         # Adverts
         cmd.login(self, page, 'jana', self.user_password)
