@@ -20,7 +20,7 @@
             <td class="list">{{ log.user.first_name }}&nbsp;{{ log.user.last_name }}</td>
             <td class="list">{{ log.get_type_display }}</td>
             <td class="list">{{ log.resolver.first_name }}&nbsp;{{ log.resolver.last_name }}</td>
-            <td class="list">{{ log.entry_time|date:"d.m.Y H:i" }}</td>
+            <td class="list">{{ log.entry_time|date:"d.m.Y" }}&nbsp;{{ log.entry_time|date:"H:i" }}</td>
         </tr>
     {% endfor %}
     </table>
