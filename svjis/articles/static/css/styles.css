@@ -193,6 +193,7 @@ legend.hidden-legend {display: none;}
   max-width: 960px;
   margin: auto;
   background-color: #fff;
+  -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.6);
 }
 
 .wrapper2 {
