@@ -50,8 +50,7 @@
         <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% translate 'Description' %}</th>
-        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
+        <td class="list" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
     </tr>
 </table>
 
