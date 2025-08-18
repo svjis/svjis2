@@ -69,13 +69,11 @@ msgstr "Hiển thị cho tất cả mọi người"
 
 #: articles/models.py:44
 msgid "Can view Redaction menu"
-msgstr ""
+msgstr "Có thể xem menu Biên tập"
 
 #: articles/models.py:45
-#, fuzzy
-#| msgid "Create new article"
 msgid "Can edit Article"
-msgstr "Tạo bài viết mới"
+msgstr "Có thể chỉnh sửa Bài viết"
 
 #: articles/models.py:70 articles/models.py:102 articles/models.py:148
 #: articles/models.py:182 articles/models.py:328 articles/models.py:339
@@ -108,7 +106,7 @@ msgstr "Bài viết"
 
 #: articles/models.py:98
 msgid "Can add Article comment"
-msgstr ""
+msgstr "Có thể thêm bình luận về Bài viết"
 
 #: articles/models.py:103 articles/templates/redaction_menu.html:17
 msgid "Hide"
@@ -116,11 +114,11 @@ msgstr "Ẩn"
 
 #: articles/models.py:115
 msgid "Can edit Menu"
-msgstr ""
+msgstr "Có thể chỉnh sửa Menu"
 
 #: articles/models.py:129
 msgid "Can edit News"
-msgstr ""
+msgstr "Có thể chỉnh sửa Tin tức"
 
 #: articles/models.py:134 articles/templates/redaction_useful_link.html:15
 msgid "Link"
@@ -132,10 +130,8 @@ msgid "Order"
 msgstr "Thứ tự"
 
 #: articles/models.py:143
-#, fuzzy
-#| msgid "Useful Links"
 msgid "Can edit Useful Links"
-msgstr "Liên kết hữu ích"
+msgstr "Có thể chỉnh sửa Liên kết Hữu ích"
 
 #: articles/models.py:149
 msgid "Starting day"
@@ -146,16 +142,12 @@ msgid "Ending day"
 msgstr "Ngày kết thúc"
 
 #: articles/models.py:175
-#, fuzzy
-#| msgid "Create new survey"
 msgid "Can answer Survey"
-msgstr "Tạo khảo sát mới"
+msgstr "Có thể trả lời Khảo sát"
 
 #: articles/models.py:176
-#, fuzzy
-#| msgid "Create new survey"
 msgid "Can edit Survey"
-msgstr "Tạo khảo sát mới"
+msgstr "Có thể chỉnh sửa Khảo sát"
 
 #: articles/models.py:226
 msgid "Salutation"
@@ -197,30 +189,24 @@ msgid "Internal note"
 msgstr "Ghi chú nội bộ"
 
 #: articles/models.py:240
-#, fuzzy
-#| msgid "Administration"
 msgid "Can view Administration menu"
-msgstr "Quản trị"
+msgstr "Có thể xem menu Quản trị"
 
 #: articles/models.py:241
 msgid "Can edit Users"
-msgstr ""
+msgstr "Có thể chỉnh sửa Người dùng"
 
 #: articles/models.py:242
 msgid "Can edit Groups"
-msgstr ""
+msgstr "Có thể chỉnh sửa Nhóm"
 
 #: articles/models.py:243
-#, fuzzy
-#| msgid "Personal settings"
 msgid "Can view Personal settings menu"
-msgstr "Cài đặt cá nhân"
+msgstr "Có thể xem menu Cài đặt Cá nhân"
 
 #: articles/models.py:244
-#, fuzzy
-#| msgid "Phonelist"
 msgid "Can view Phonelist"
-msgstr "Danh bạ điện thoại"
+msgstr "Có thể xem Danh bạ điện thoại"
 
 #: articles/models.py:249 articles/models.py:281 articles/models.py:506
 #: articles/templates/admin_user.html:54
@@ -246,10 +232,8 @@ msgid "Value"
 msgstr "Giá trị"
 
 #: articles/models.py:268
-#, fuzzy
-#| msgid "Preferences"
 msgid "Can edit Preferences"
-msgstr "Tùy chọn"
+msgstr "Có thể chỉnh sửa Tùy chọn"
 
 #: articles/models.py:276 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
@@ -275,20 +259,16 @@ msgid "Header picture"
 msgstr "Hình ảnh tiêu đề"
 
 #: articles/models.py:295
-#, fuzzy
-#| msgid "Company"
 msgid "Can edit Company"
-msgstr "Công ty"
+msgstr "Có thể chỉnh sửa Công ty"
 
 #: articles/models.py:302
 msgid "Land Registration no."
 msgstr "Số đăng ký đất đai"
 
 #: articles/models.py:308
-#, fuzzy
-#| msgid "Building"
 msgid "Can edit Building"
-msgstr "Tòa nhà"
+msgstr "Có thể chỉnh sửa Tòa nhà"
 
 #: articles/models.py:312 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
@@ -336,15 +316,15 @@ msgstr "Đã đóng"
 
 #: articles/models.py:404
 msgid "Can view Faults menu"
-msgstr ""
+msgstr "Có thể xem menu Lỗi"
 
 #: articles/models.py:405
 msgid "Can report fault"
-msgstr ""
+msgstr "Có thể báo cáo lỗi"
 
 #: articles/models.py:406
 msgid "Can resolve fault"
-msgstr ""
+msgstr "Có thể khắc phục lỗi"
 
 #: articles/models.py:429 articles/models.py:446
 #: articles/templates/faults_create.html:7
@@ -353,7 +333,7 @@ msgstr "Báo cáo lỗi"
 
 #: articles/models.py:456
 msgid "Can add Fault comment"
-msgstr ""
+msgstr "Có thể thêm bình luận về Lỗi"
 
 #: articles/models.py:467
 msgid "Modified"
@@ -373,13 +353,11 @@ msgstr "Đã tạo"
 
 #: articles/models.py:520
 msgid "Can view Adverts menu"
-msgstr ""
+msgstr "Có thể xem menu Quảng cáo"
 
 #: articles/models.py:521
-#, fuzzy
-#| msgid "Create new advert"
 msgid "Can add Advert"
-msgstr "Tạo quảng cáo mới"
+msgstr "Có thể thêm Quảng cáo"
 
 #: articles/models.py:532
 msgid "Advert"
