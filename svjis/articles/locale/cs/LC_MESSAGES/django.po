@@ -189,7 +189,7 @@ msgstr "Interní poznámka"
 
 #: articles/models.py:240
 msgid "Can view Administration menu"
-msgstr "Může vidět menu Administrace"
+msgstr "Vidí menu Administrace"
 
 #: articles/models.py:241
 msgid "Can edit Users"
@@ -352,7 +352,7 @@ msgstr "Vytvořen"
 
 #: articles/models.py:520
 msgid "Can view Adverts menu"
-msgstr "Může vidět menu Inzeráty"
+msgstr "Vidí menu Inzeráty"
 
 #: articles/models.py:521
 msgid "Can add Advert"
