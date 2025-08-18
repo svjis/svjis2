@@ -22,8 +22,8 @@
         {% if permission_list %}
         {% for obj in permission_list %}
         <p>
-            <label class="common-label" id="{{ obj.name }}-label" for="{{ obj.name }}-input">{{ obj.name }}</label>
-            <input class="common-input-chck" id="{{ obj.name }}-input" type="checkbox" name="{{ obj.name }}" {% if obj.checked %}checked{% endif %}/>
+            <label class="common-label" id="{{ obj.codename }}-label" for="{{ obj.codename }}-input">{{ obj.name }}</label>
+            <input class="common-input-chck" id="{{ obj.codename }}-input" type="checkbox" name="{{ obj.codename }}" {% if obj.checked %}checked{% endif %}/>
         </p>
         {% endfor %}
         {% endif %}

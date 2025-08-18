@@ -658,7 +658,7 @@ def admin_group_edit_view(request, pk):
         group_perm_list = Permission.objects.filter(group__id=i.id)
     for p in Permission.objects.all():
         if p.codename.startswith('svjis_'):
-            item = {'name': p.codename, 'checked': p in group_perm_list}
+            item = {'codename': p.codename, 'name': p.name, 'checked': p in group_perm_list}
             permission_list.append(item)
 
     ctx = utils.get_context()
