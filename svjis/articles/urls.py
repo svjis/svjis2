@@ -209,6 +209,7 @@ urlpatterns = [
     path('lost_password/', views_personal_settings.lost_password_view, name='lost_password'),
     path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
     path('tinymce/', include('tinymce.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),  # Language switching
 ]
 
 if settings.DEBUG:
