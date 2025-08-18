@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 16:08+0200\n"
+"POT-Creation-Date: 2025-08-18 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,16 @@ msgstr "Дозволити коментарі"
 msgid "Visible for all"
 msgstr "Видимий для всіх"
 
+#: articles/models.py:44
+msgid "Can view Redaction menu"
+msgstr ""
+
+#: articles/models.py:45
+#, fuzzy
+#| msgid "Create new article"
+msgid "Can edit Article"
+msgstr "Створити нову статтю"
+
 #: articles/models.py:70 articles/models.py:102 articles/models.py:148
 #: articles/models.py:182 articles/models.py:328 articles/models.py:339
 #: articles/models.py:359 articles/models.py:378 articles/models.py:427
@@ -99,9 +109,21 @@ msgstr "Файл"
 msgid "Article"
 msgstr "Стаття"
 
+#: articles/models.py:98
+msgid "Can add Article comment"
+msgstr ""
+
 #: articles/models.py:103 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Приховати"
+
+#: articles/models.py:115
+msgid "Can edit Menu"
+msgstr ""
+
+#: articles/models.py:129
+msgid "Can edit News"
+msgstr ""
 
 #: articles/models.py:134 articles/templates/redaction_useful_link.html:15
 msgid "Link"
@@ -112,6 +134,12 @@ msgstr "Посилання"
 msgid "Order"
 msgstr "Порядок"
 
+#: articles/models.py:143
+#, fuzzy
+#| msgid "Useful Links"
+msgid "Can edit Useful Links"
+msgstr "Корисні посилання"
+
 #: articles/models.py:149
 msgid "Starting day"
 msgstr "Початкова дата"
@@ -119,6 +147,18 @@ msgstr "Початкова дата"
 #: articles/models.py:150
 msgid "Ending day"
 msgstr "Кінцева дата"
+
+#: articles/models.py:175
+#, fuzzy
+#| msgid "Create new survey"
+msgid "Can answer Survey"
+msgstr "Створити нове опитування"
+
+#: articles/models.py:176
+#, fuzzy
+#| msgid "Create new survey"
+msgid "Can edit Survey"
+msgstr "Створити нове опитування"
 
 #: articles/models.py:226
 msgid "Salutation"
@@ -159,6 +199,32 @@ msgstr "Показувати в телефонному довіднику"
 msgid "Internal note"
 msgstr "Внутрішня примітка"
 
+#: articles/models.py:240
+#, fuzzy
+#| msgid "Administration"
+msgid "Can view Administration menu"
+msgstr "Адміністрування"
+
+#: articles/models.py:241
+msgid "Can edit Users"
+msgstr ""
+
+#: articles/models.py:242
+msgid "Can edit Groups"
+msgstr ""
+
+#: articles/models.py:243
+#, fuzzy
+#| msgid "Personal settings"
+msgid "Can view Personal settings menu"
+msgstr "Особисті налаштування"
+
+#: articles/models.py:244
+#, fuzzy
+#| msgid "Phonelist"
+msgid "Can view Phonelist"
+msgstr "Телефонний довідник"
+
 #: articles/models.py:249 articles/models.py:281 articles/models.py:506
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
@@ -181,6 +247,12 @@ msgstr "Ключ"
 #: articles/models.py:262 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Значення"
+
+#: articles/models.py:268
+#, fuzzy
+#| msgid "Preferences"
+msgid "Can edit Preferences"
+msgstr "Налаштування"
 
 #: articles/models.py:276 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
@@ -205,9 +277,21 @@ msgstr "Інтернет домен"
 msgid "Header picture"
 msgstr "Зображення заголовка"
 
+#: articles/models.py:295
+#, fuzzy
+#| msgid "Company"
+msgid "Can edit Company"
+msgstr "Компанія"
+
 #: articles/models.py:302
 msgid "Land Registration no."
 msgstr "Номер реєстрації землі"
+
+#: articles/models.py:308
+#, fuzzy
+#| msgid "Building"
+msgid "Can edit Building"
+msgstr "Будівля"
 
 #: articles/models.py:312 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
@@ -253,10 +337,26 @@ msgstr "Знаменник"
 msgid "Closed"
 msgstr "Вирішені"
 
+#: articles/models.py:404
+msgid "Can view Faults menu"
+msgstr ""
+
+#: articles/models.py:405
+msgid "Can report fault"
+msgstr ""
+
+#: articles/models.py:406
+msgid "Can resolve fault"
+msgstr ""
+
 #: articles/models.py:429 articles/models.py:446
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Звіт про несправність"
+
+#: articles/models.py:456
+msgid "Can add Fault comment"
+msgstr ""
 
 #: articles/models.py:467
 msgid "Modified"
@@ -273,6 +373,16 @@ msgstr "Повторно відкрито"
 #: articles/models.py:471
 msgid "Created"
 msgstr "Створено"
+
+#: articles/models.py:520
+msgid "Can view Adverts menu"
+msgstr ""
+
+#: articles/models.py:521
+#, fuzzy
+#| msgid "Create new advert"
+msgid "Can add Advert"
+msgstr "Створити нове оголошення"
 
 #: articles/models.py:532
 msgid "Advert"
