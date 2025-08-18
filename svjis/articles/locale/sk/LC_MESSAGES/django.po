@@ -68,7 +68,7 @@ msgstr "Viditeľné pre všetkých"
 
 #: articles/models.py:44
 msgid "Can view Redaction menu"
-msgstr "Môže zobraziť menu Redigovanie"
+msgstr "Môže zobraziť menu Redakcia"
 
 #: articles/models.py:45
 msgid "Can edit Article"
