@@ -128,6 +128,7 @@ urlpatterns = [
     ),
     path('fault_comment_save/', views_faults.fault_comment_save_view, name='fault_comment_save'),
     path('fault_watch/', views_faults.fault_watch_view, name='fault_watch'),
+    path('faults_fault_logs/<str:slug>/', views_faults.fault_logs_view, name='faults_fault_logs'),
     path('adverts_list/', views_adverts.adverts_list_view, name='adverts_list'),
     path('adverts_edit/<int:pk>/', views_adverts.adverts_edit_view, name='adverts_edit'),
     path('adverts_save/', views_adverts.adverts_save_view, name='adverts_save'),
