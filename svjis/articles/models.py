@@ -1,4 +1,6 @@
 import os
+
+from . import managers
 from .model_utils import unique_slugify
 from datetime import date
 from django.db import models
@@ -404,6 +406,14 @@ class FaultReport(models.Model):
             ("svjis_fault_resolver", _("Can resolve fault")),
         )
 
+    def log_taking_ticket(self, user: User):
+        FaultReportLog.objects.create(fault_report=self, user=user, resolver=user, type=FaultReportLog.TYPE_ASSIGNED)
+
+    def log_closing_ticket(self, user: User):
+        FaultReportLog.objects.create(
+            fault_report=self, user=user, resolver=self.assigned_to_user, type=FaultReportLog.TYPE_CLOSED
+        )
+
     def save(self, **kwargs):
         unique_slugify(self, self.subject)
         super().save(**kwargs)
@@ -444,6 +454,33 @@ class FaultComment(models.Model):
     class Meta:
         ordering = ['id']
         permissions = (("svjis_add_fault_comment", _("Can add Fault comment")),)
+
+
+class FaultReportLog(models.Model):
+    TYPE_MODIFIED = "modified"
+    TYPE_ASSIGNED = "assigned"
+    TYPE_CLOSED = "closed"
+    TYPE_REOPENED = "reopened"
+    TYPE_CREATED = "created"
+
+    TYPE_CHOICES = (
+        (TYPE_MODIFIED, _("Modified")),
+        (TYPE_ASSIGNED, _("Assigned")),
+        (TYPE_CLOSED, _("Closed")),
+        (TYPE_REOPENED, _("Reopened")),
+        (TYPE_CREATED, _("Created")),
+    )
+
+    fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, related_name='logs')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_fault_report_logs', null=True)
+    resolver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='resolved_fault_report_logs', null=True)
+    type = models.CharField(_("Type"), max_length=10, choices=TYPE_CHOICES, default=TYPE_MODIFIED)
+    entry_time = models.DateTimeField(auto_now_add=True)
+
+    objects = managers.FaultReportLogManager()
+
+    def __str__(self):
+        return f"FaultReportLog: {self.fault_report} ({self.type})"
 
 
 # Adverts
