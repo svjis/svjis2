@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 13:54+0200\n"
+"POT-Creation-Date: 2025-08-18 16:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,8 +76,7 @@ msgstr "Видимый для всех"
 #: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:14
-#: articles/templates/advert_edit.html:57 articles/templates/fault.html:53
-#: articles/templates/fault.html:66
+#: articles/templates/advert_edit.html:57 articles/templates/fault.html:65
 #: articles/templates/personal_my_units.html:14
 #: articles/templates/redaction_article_edit.html:70
 #: articles/templates/redaction_survey.html:16
@@ -87,7 +86,7 @@ msgstr "Описание"
 
 #: articles/models.py:71 articles/models.py:428 articles/models.py:531
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
-#: articles/templates/fault.html:65
+#: articles/templates/fault.html:64
 msgid "File"
 msgstr "Файл"
 
@@ -317,7 +316,7 @@ msgstr "Редактировать"
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
 #: articles/templates/admin_user_ownes_edit.html:25
-#: articles/templates/advert_edit.html:66 articles/templates/fault.html:79
+#: articles/templates/advert_edit.html:66 articles/templates/fault.html:78
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
 msgid "Do you want to delete"
@@ -330,7 +329,7 @@ msgstr "Вы хотите удалить"
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
 #: articles/templates/admin_user_ownes_edit.html:25
-#: articles/templates/advert_edit.html:66 articles/templates/fault.html:79
+#: articles/templates/advert_edit.html:66 articles/templates/fault.html:78
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
 #: articles/templates/redaction_news.html:24
@@ -466,7 +465,7 @@ msgid "Create new entry"
 msgstr "Создать новую запись"
 
 #: articles/templates/admin_user.html:7
-#: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:67
+#: articles/templates/admin_user_edit.html:7 articles/templates/fault.html:66
 #: articles/templates/fault_log.html:13 articles/templates/login.html:5
 #: articles/templates/redaction_survey_results.html:39
 msgid "User"
@@ -544,13 +543,13 @@ msgstr "Свойства"
 
 #: articles/templates/advert_edit.html:46
 #: articles/templates/advert_edit.html:51 articles/templates/article.html:17
-#: articles/templates/fault.html:60
+#: articles/templates/fault.html:59
 #: articles/templates/redaction_article_edit.html:62
 #: articles/templates/redaction_article_edit.html:88
 msgid "Assets"
 msgstr "Вложения"
 
-#: articles/templates/advert_edit.html:82 articles/templates/fault.html:104
+#: articles/templates/advert_edit.html:82 articles/templates/fault.html:103
 #: articles/templates/redaction_article_edit.html:99
 msgid "Upload"
 msgstr "Загрузить файл"
@@ -568,7 +567,7 @@ msgstr "Создать новое объявление"
 msgid "Author"
 msgstr "Автор"
 
-#: articles/templates/article.html:36 articles/templates/fault.html:110
+#: articles/templates/article.html:36 articles/templates/fault.html:109
 msgid "Comments"
 msgstr "Комментарии"
 
@@ -580,7 +579,7 @@ msgstr "Прекратить отслеживание обсуждения"
 msgid "Start watching discussion"
 msgstr "Начать отслеживание обсуждения"
 
-#: articles/templates/article.html:66 articles/templates/fault.html:131
+#: articles/templates/article.html:66 articles/templates/fault.html:130
 msgid "Insert comment"
 msgstr "Добавить комментарий"
 
@@ -684,16 +683,16 @@ msgstr "Дата"
 msgid "Creator"
 msgstr "Автор"
 
-#: articles/templates/fault.html:68 articles/templates/fault_log.html:16
+#: articles/templates/fault.html:67 articles/templates/fault_log.html:16
 #: articles/templates/redaction_survey_results.html:38
 msgid "Time"
 msgstr "Время"
 
-#: articles/templates/fault.html:93
+#: articles/templates/fault.html:92
 msgid "Add asset"
 msgstr "Добавить вложение"
 
-#: articles/templates/fault.html:137
+#: articles/templates/fault.html:136
 msgid "Back to fault list"
 msgstr "Вернуться к списку проблем"
 
@@ -764,6 +763,14 @@ msgstr "Предыдущая"
 #: articles/templates/paginator.html:35
 msgid "Next"
 msgstr "Следующая"
+
+#: articles/templates/personal_settings_edit.html:65
+msgid "Language"
+msgstr "Язык"
+
+#: articles/templates/personal_settings_edit.html:67
+msgid "Preferred language"
+msgstr "Предпочитаемый язык"
 
 #: articles/templates/personal_settings_password.html:11
 #: articles/tests_playwright/commands.py:680
