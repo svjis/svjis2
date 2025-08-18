@@ -68,13 +68,11 @@ msgstr "Viditeľné pre všetkých"
 
 #: articles/models.py:44
 msgid "Can view Redaction menu"
-msgstr ""
+msgstr "Môže zobraziť menu Redigovanie"
 
 #: articles/models.py:45
-#, fuzzy
-#| msgid "Create new article"
 msgid "Can edit Article"
-msgstr "Vytvoriť nový článok"
+msgstr "Môže upraviť článok"
 
 #: articles/models.py:70 articles/models.py:102 articles/models.py:148
 #: articles/models.py:182 articles/models.py:328 articles/models.py:339
@@ -107,7 +105,7 @@ msgstr "Článok"
 
 #: articles/models.py:98
 msgid "Can add Article comment"
-msgstr ""
+msgstr "Môže pridať komentár k článku"
 
 #: articles/models.py:103 articles/templates/redaction_menu.html:17
 msgid "Hide"
@@ -115,11 +113,11 @@ msgstr "Skryť"
 
 #: articles/models.py:115
 msgid "Can edit Menu"
-msgstr ""
+msgstr "Môže upraviť menu"
 
 #: articles/models.py:129
 msgid "Can edit News"
-msgstr ""
+msgstr "Môže upraviť Novinky"
 
 #: articles/models.py:134 articles/templates/redaction_useful_link.html:15
 msgid "Link"
@@ -131,10 +129,8 @@ msgid "Order"
 msgstr "Poradie"
 
 #: articles/models.py:143
-#, fuzzy
-#| msgid "Useful Links"
 msgid "Can edit Useful Links"
-msgstr "Užitočné odkazy"
+msgstr "Môže upraviť Užitočné odkazy"
 
 #: articles/models.py:149
 msgid "Starting day"
@@ -145,16 +141,12 @@ msgid "Ending day"
 msgstr "Koncový dátum"
 
 #: articles/models.py:175
-#, fuzzy
-#| msgid "Create new survey"
 msgid "Can answer Survey"
-msgstr "Vytvoriť novú anketu"
+msgstr "Môže odpovedať na prieskum"
 
 #: articles/models.py:176
-#, fuzzy
-#| msgid "Create new survey"
 msgid "Can edit Survey"
-msgstr "Vytvoriť novú anketu"
+msgstr "Môže upraviť prieskum"
 
 #: articles/models.py:226
 msgid "Salutation"
@@ -196,30 +188,24 @@ msgid "Internal note"
 msgstr "Interná poznámka"
 
 #: articles/models.py:240
-#, fuzzy
-#| msgid "Administration"
 msgid "Can view Administration menu"
-msgstr "Administrácia"
+msgstr "Môže zobraziť menu Administrácia"
 
 #: articles/models.py:241
 msgid "Can edit Users"
-msgstr ""
+msgstr "Môže upraviť Používateľov"
 
 #: articles/models.py:242
 msgid "Can edit Groups"
-msgstr ""
+msgstr "Môže upraviť Skupiny"
 
 #: articles/models.py:243
-#, fuzzy
-#| msgid "Personal settings"
 msgid "Can view Personal settings menu"
-msgstr "Osobné nastavenia"
+msgstr "Môže zobraziť menu Osobné nastavenia"
 
 #: articles/models.py:244
-#, fuzzy
-#| msgid "Phonelist"
 msgid "Can view Phonelist"
-msgstr "Zoznam kontaktov"
+msgstr "Môže zobraziť telefónny zoznam"
 
 #: articles/models.py:249 articles/models.py:281 articles/models.py:506
 #: articles/templates/admin_user.html:54
@@ -245,10 +231,8 @@ msgid "Value"
 msgstr "Hodnota"
 
 #: articles/models.py:268
-#, fuzzy
-#| msgid "Preferences"
 msgid "Can edit Preferences"
-msgstr "Nastavenia"
+msgstr "Môže upraviť Predvoľby"
 
 #: articles/models.py:276 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
@@ -277,17 +261,15 @@ msgstr "Obrázok domu v hlavičke"
 #, fuzzy
 #| msgid "Company"
 msgid "Can edit Company"
-msgstr "Spoločenstvo"
+msgstr "Môže upraviť Spoločnosť"
 
 #: articles/models.py:302
 msgid "Land Registration no."
 msgstr "ID v katastri nehnuteľností"
 
 #: articles/models.py:308
-#, fuzzy
-#| msgid "Building"
 msgid "Can edit Building"
-msgstr "Budova"
+msgstr "Môže upraviť Budovu"
 
 #: articles/models.py:312 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
@@ -335,15 +317,15 @@ msgstr "Vyriešené"
 
 #: articles/models.py:404
 msgid "Can view Faults menu"
-msgstr ""
+msgstr "Môže zobraziť menu Poruchy"
 
 #: articles/models.py:405
 msgid "Can report fault"
-msgstr ""
+msgstr "Môže nahlásiť poruchu"
 
 #: articles/models.py:406
 msgid "Can resolve fault"
-msgstr ""
+msgstr "Môže vyriešiť poruchu"
 
 #: articles/models.py:429 articles/models.py:446
 #: articles/templates/faults_create.html:7
@@ -352,7 +334,7 @@ msgstr "Hlásenie poruchy"
 
 #: articles/models.py:456
 msgid "Can add Fault comment"
-msgstr ""
+msgstr "Môže pridať komentár k poruche"
 
 #: articles/models.py:467
 msgid "Modified"
@@ -372,13 +354,11 @@ msgstr "Vytvorené"
 
 #: articles/models.py:520
 msgid "Can view Adverts menu"
-msgstr ""
+msgstr "Môže zobraziť menu Inzeráty"
 
 #: articles/models.py:521
-#, fuzzy
-#| msgid "Create new advert"
 msgid "Can add Advert"
-msgstr "Vytvoriť nový inzerát"
+msgstr "Môže pridať inzerát"
 
 #: articles/models.py:532
 msgid "Advert"
