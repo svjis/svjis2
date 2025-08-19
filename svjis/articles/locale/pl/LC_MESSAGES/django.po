@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 16:08+0200\n"
+"POT-Creation-Date: 2025-08-18 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,14 @@ msgstr "Zezwolić na komentarze"
 msgid "Visible for all"
 msgstr "Widoczny dla wszystkich"
 
+#: articles/models.py:44
+msgid "Can view Redaction menu"
+msgstr "Możliwość przeglądania menu Redakcja"
+
+#: articles/models.py:45
+msgid "Can edit Article"
+msgstr "Możliwość edycji artykułu"
+
 #: articles/models.py:70 articles/models.py:102 articles/models.py:148
 #: articles/models.py:182 articles/models.py:328 articles/models.py:339
 #: articles/models.py:359 articles/models.py:378 articles/models.py:427
@@ -98,9 +106,21 @@ msgstr "Plik"
 msgid "Article"
 msgstr "Artykuł"
 
+#: articles/models.py:98
+msgid "Can add Article comment"
+msgstr "Możliwość dodawania komentarzy do artykułu"
+
 #: articles/models.py:103 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Ukryj"
+
+#: articles/models.py:115
+msgid "Can edit Menu"
+msgstr "Możliwość edycji menu"
+
+#: articles/models.py:129
+msgid "Can edit News"
+msgstr "Możliwość edycji wiadomości"
 
 #: articles/models.py:134 articles/templates/redaction_useful_link.html:15
 msgid "Link"
@@ -111,6 +131,10 @@ msgstr "Odnośnik"
 msgid "Order"
 msgstr "Kolejność"
 
+#: articles/models.py:143
+msgid "Can edit Useful Links"
+msgstr "Możliwość edycji przydatnych linków"
+
 #: articles/models.py:149
 msgid "Starting day"
 msgstr "Data początkowa"
@@ -118,6 +142,14 @@ msgstr "Data początkowa"
 #: articles/models.py:150
 msgid "Ending day"
 msgstr "Data końcowa"
+
+#: articles/models.py:175
+msgid "Can answer Survey"
+msgstr "Możliwość odpowiadania na ankiety"
+
+#: articles/models.py:176
+msgid "Can edit Survey"
+msgstr "Możliwość edycji ankiet"
 
 #: articles/models.py:226
 msgid "Salutation"
@@ -158,6 +190,26 @@ msgstr "Pokaż w spisie telefonów"
 msgid "Internal note"
 msgstr "Notatka wewnętrzna"
 
+#: articles/models.py:240
+msgid "Can view Administration menu"
+msgstr "Możliwość przeglądania menu Administracja"
+
+#: articles/models.py:241
+msgid "Can edit Users"
+msgstr "Możliwość edycji użytkowników"
+
+#: articles/models.py:242
+msgid "Can edit Groups"
+msgstr "Możliwość edycji grup"
+
+#: articles/models.py:243
+msgid "Can view Personal settings menu"
+msgstr "Możliwość przeglądania menu Ustawienia osobiste"
+
+#: articles/models.py:244
+msgid "Can view Phonelist"
+msgstr "Możliwość przeglądania listy telefonów"
+
 #: articles/models.py:249 articles/models.py:281 articles/models.py:506
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
@@ -180,6 +232,10 @@ msgstr "Klucz"
 #: articles/models.py:262 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Wartość"
+
+#: articles/models.py:268
+msgid "Can edit Preferences"
+msgstr "Możliwość edycji preferencji"
 
 #: articles/models.py:276 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
@@ -204,9 +260,17 @@ msgstr "Domena internetowa"
 msgid "Header picture"
 msgstr "Obraz w nagłówku"
 
+#: articles/models.py:295
+msgid "Can edit Company"
+msgstr "Możliwość edycji firmy"
+
 #: articles/models.py:302
 msgid "Land Registration no."
 msgstr "Identyfikator w rejestrze gruntów"
+
+#: articles/models.py:308
+msgid "Can edit Building"
+msgstr "Możliwość edycji budynku"
 
 #: articles/models.py:312 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
@@ -252,10 +316,26 @@ msgstr "Mianownik"
 msgid "Closed"
 msgstr "Zamknięte"
 
+#: articles/models.py:404
+msgid "Can view Faults menu"
+msgstr "Możliwość przeglądania menu Usterki"
+
+#: articles/models.py:405
+msgid "Can report fault"
+msgstr "Możliwość zgłaszania usterek"
+
+#: articles/models.py:406
+msgid "Can resolve fault"
+msgstr "Możliwość rozwiązywania usterek"
+
 #: articles/models.py:429 articles/models.py:446
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Zgłoszenie usterki"
+
+#: articles/models.py:456
+msgid "Can add Fault comment"
+msgstr "Możliwość dodawania komentarzy do usterek"
 
 #: articles/models.py:467
 msgid "Modified"
@@ -272,6 +352,14 @@ msgstr "Ponownie otwarto"
 #: articles/models.py:471
 msgid "Created"
 msgstr "Utworzono"
+
+#: articles/models.py:520
+msgid "Can view Adverts menu"
+msgstr "Możliwość przeglądania menu Ogłoszenia"
+
+#: articles/models.py:521
+msgid "Can add Advert"
+msgstr "Możliwość dodawania ogłoszeń"
 
 #: articles/models.py:532
 msgid "Advert"

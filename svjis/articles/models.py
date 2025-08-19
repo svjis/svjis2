@@ -41,8 +41,8 @@ class Article(models.Model):
     class Meta:
         ordering = ['-id']
         permissions = (
-            ("svjis_view_redaction_menu", "Can view Redaction menu"),
-            ("svjis_edit_article", "Can edit Article"),
+            ("svjis_view_redaction_menu", _("Can view Redaction menu")),
+            ("svjis_edit_article", _("Can edit Article")),
         )
 
     def save(self, **kwargs):
@@ -95,7 +95,7 @@ class ArticleComment(models.Model):
 
     class Meta:
         ordering = ['id']
-        permissions = (("svjis_add_article_comment", "Can add Article comment"),)
+        permissions = (("svjis_add_article_comment", _("Can add Article comment")),)
 
 
 class ArticleMenu(models.Model):
@@ -112,7 +112,7 @@ class ArticleMenu(models.Model):
 
     class Meta:
         ordering = ['description']
-        permissions = (("svjis_edit_article_menu", "Can edit Menu"),)
+        permissions = (("svjis_edit_article_menu", _("Can edit Menu")),)
 
 
 class News(models.Model):
@@ -126,7 +126,7 @@ class News(models.Model):
 
     class Meta:
         ordering = ['-id']
-        permissions = (("svjis_edit_article_news", "Can edit News"),)
+        permissions = (("svjis_edit_article_news", _("Can edit News")),)
 
 
 class UsefulLink(models.Model):
@@ -140,7 +140,7 @@ class UsefulLink(models.Model):
 
     class Meta:
         ordering = ['order']
-        permissions = (("svjis_edit_useful_link", "Can edit Useful Links"),)
+        permissions = (("svjis_edit_useful_link", _("Can edit Useful Links")),)
 
 
 class Survey(models.Model):
@@ -172,8 +172,8 @@ class Survey(models.Model):
     class Meta:
         ordering = ['-id']
         permissions = (
-            ("svjis_answer_survey", "Can answer Survey"),
-            ("svjis_edit_survey", "Can edit Survey"),
+            ("svjis_answer_survey", _("Can answer Survey")),
+            ("svjis_edit_survey", _("Can edit Survey")),
         )
 
 
@@ -237,11 +237,11 @@ class UserProfile(models.Model):
 
     class Meta:
         permissions = (
-            ("svjis_view_admin_menu", "Can view Administration menu"),
-            ("svjis_edit_admin_users", "Can edit Users"),
-            ("svjis_edit_admin_groups", "Can edit Groups"),
-            ("svjis_view_personal_menu", "Can view Personal settings menu"),
-            ("svjis_view_phonelist", "Can view Phonelist"),
+            ("svjis_view_admin_menu", _("Can view Administration menu")),
+            ("svjis_edit_admin_users", _("Can edit Users")),
+            ("svjis_edit_admin_groups", _("Can edit Groups")),
+            ("svjis_view_personal_menu", _("Can view Personal settings menu")),
+            ("svjis_view_phonelist", _("Can view Phonelist")),
         )
 
 
@@ -265,7 +265,7 @@ class Preferences(models.Model):
         return f"Preferences: {self.key}"
 
     class Meta:
-        permissions = (("svjis_edit_admin_preferences", "Can edit Preferences"),)
+        permissions = (("svjis_edit_admin_preferences", _("Can edit Preferences")),)
 
 
 def company_directory_path(instance, filename):
@@ -292,7 +292,7 @@ class Company(models.Model):
         return f"Company: {self.name}"
 
     class Meta:
-        permissions = (("svjis_edit_admin_company", "Can edit Company"),)
+        permissions = (("svjis_edit_admin_company", _("Can edit Company")),)
 
 
 class Building(models.Model):
@@ -305,7 +305,7 @@ class Building(models.Model):
         return f"Building: {self.address}"
 
     class Meta:
-        permissions = (("svjis_edit_admin_building", "Can edit Building"),)
+        permissions = (("svjis_edit_admin_building", _("Can edit Building")),)
 
 
 class Board(models.Model):
@@ -401,9 +401,9 @@ class FaultReport(models.Model):
     class Meta:
         ordering = ['-id']
         permissions = (
-            ("svjis_view_fault_menu", "Can view Faults menu"),
-            ("svjis_fault_reporter", "Can report fault"),
-            ("svjis_fault_resolver", "Can resolve fault"),
+            ("svjis_view_fault_menu", _("Can view Faults menu")),
+            ("svjis_fault_reporter", _("Can report fault")),
+            ("svjis_fault_resolver", _("Can resolve fault")),
         )
 
     def log_taking_ticket(self, user: User):
@@ -453,7 +453,7 @@ class FaultComment(models.Model):
 
     class Meta:
         ordering = ['id']
-        permissions = (("svjis_add_fault_comment", "Can add Fault comment"),)
+        permissions = (("svjis_add_fault_comment", _("Can add Fault comment")),)
 
 
 class FaultReportLog(models.Model):
@@ -517,8 +517,8 @@ class Advert(models.Model):
     class Meta:
         ordering = ['-id']
         permissions = (
-            ("svjis_view_adverts_menu", "Can view Adverts menu"),
-            ("svjis_add_advert", "Can add Advert"),
+            ("svjis_view_adverts_menu", _("Can view Adverts menu")),
+            ("svjis_add_advert", _("Can add Advert")),
         )
 
 

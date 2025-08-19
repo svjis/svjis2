@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 16:08+0200\n"
+"POT-Creation-Date: 2025-08-18 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,14 @@ msgstr "Разрешить комментарии"
 msgid "Visible for all"
 msgstr "Видимый для всех"
 
+#: articles/models.py:44
+msgid "Can view Redaction menu"
+msgstr "Может просматривать меню редактирования"
+
+#: articles/models.py:45
+msgid "Can edit Article"
+msgstr "Может редактировать статью"
+
 #: articles/models.py:70 articles/models.py:102 articles/models.py:148
 #: articles/models.py:182 articles/models.py:328 articles/models.py:339
 #: articles/models.py:359 articles/models.py:378 articles/models.py:427
@@ -98,9 +106,21 @@ msgstr "Файл"
 msgid "Article"
 msgstr "Статья"
 
+#: articles/models.py:98
+msgid "Can add Article comment"
+msgstr "Может добавлять комментарии к статье"
+
 #: articles/models.py:103 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Скрыть"
+
+#: articles/models.py:115
+msgid "Can edit Menu"
+msgstr "Может редактировать меню"
+
+#: articles/models.py:129
+msgid "Can edit News"
+msgstr "Может редактировать новости"
 
 #: articles/models.py:134 articles/templates/redaction_useful_link.html:15
 msgid "Link"
@@ -111,6 +131,10 @@ msgstr "Ссылка"
 msgid "Order"
 msgstr "Порядок"
 
+#: articles/models.py:143
+msgid "Can edit Useful Links"
+msgstr "Может редактировать полезные ссылки"
+
 #: articles/models.py:149
 msgid "Starting day"
 msgstr "Начальная дата"
@@ -118,6 +142,14 @@ msgstr "Начальная дата"
 #: articles/models.py:150
 msgid "Ending day"
 msgstr "Конечная дата"
+
+#: articles/models.py:175
+msgid "Can answer Survey"
+msgstr "Может отвечать на опросы"
+
+#: articles/models.py:176
+msgid "Can edit Survey"
+msgstr "Может редактировать опросы"
 
 #: articles/models.py:226
 msgid "Salutation"
@@ -158,6 +190,26 @@ msgstr "Показать в телефонном справочнике"
 msgid "Internal note"
 msgstr "Внутренняя заметка"
 
+#: articles/models.py:240
+msgid "Can view Administration menu"
+msgstr "Может просматривать меню администрирования"
+
+#: articles/models.py:241
+msgid "Can edit Users"
+msgstr "Может редактировать пользователей"
+
+#: articles/models.py:242
+msgid "Can edit Groups"
+msgstr "Может редактировать группы"
+
+#: articles/models.py:243
+msgid "Can view Personal settings menu"
+msgstr "Может просматривать меню личных настроек"
+
+#: articles/models.py:244
+msgid "Can view Phonelist"
+msgstr "Может просматривать список телефонов"
+
 #: articles/models.py:249 articles/models.py:281 articles/models.py:506
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
@@ -180,6 +232,10 @@ msgstr "Ключ"
 #: articles/models.py:262 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Значение"
+
+#: articles/models.py:268
+msgid "Can edit Preferences"
+msgstr "Может редактировать настройки"
 
 #: articles/models.py:276 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
@@ -204,9 +260,17 @@ msgstr "Интернет домен"
 msgid "Header picture"
 msgstr "Изображение в шапке"
 
+#: articles/models.py:295
+msgid "Can edit Company"
+msgstr "Может редактировать компанию"
+
 #: articles/models.py:302
 msgid "Land Registration no."
 msgstr "Идентификатор в земельном кадастре"
+
+#: articles/models.py:308
+msgid "Can edit Building"
+msgstr "Может редактировать здание"
 
 #: articles/models.py:312 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
@@ -252,10 +316,26 @@ msgstr "Знаменатель"
 msgid "Closed"
 msgstr "Закрыто"
 
+#: articles/models.py:404
+msgid "Can view Faults menu"
+msgstr "Может просматривать меню неисправностей"
+
+#: articles/models.py:405
+msgid "Can report fault"
+msgstr "Может сообщать об ошибках"
+
+#: articles/models.py:406
+msgid "Can resolve fault"
+msgstr "Может устранять ошибки"
+
 #: articles/models.py:429 articles/models.py:446
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Отчет о неисправности"
+
+#: articles/models.py:456
+msgid "Can add Fault comment"
+msgstr "Может добавлять комментарии к ошибкам"
 
 #: articles/models.py:467
 msgid "Modified"
@@ -272,6 +352,14 @@ msgstr "Возобновлён"
 #: articles/models.py:471
 msgid "Created"
 msgstr "Создан"
+
+#: articles/models.py:520
+msgid "Can view Adverts menu"
+msgstr "Может просматривать меню рекламы"
+
+#: articles/models.py:521
+msgid "Can add Advert"
+msgstr "Может добавлять рекламу"
 
 #: articles/models.py:532
 msgid "Advert"
