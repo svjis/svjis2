@@ -3,7 +3,7 @@
  */
 body {
   font-family: Arial, sans-serif;
-  font-size: 80%;
+  font-size: 13px;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -193,6 +193,7 @@ legend.hidden-legend {display: none;}
   max-width: 960px;
   margin: auto;
   background-color: #fff;
+  -webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.6);
 }
 
 .wrapper2 {
@@ -1069,7 +1070,7 @@ footer a:hover {
 
   /* Body */
   body {
-    font-size: 100%;
+    font-size: 16px;
   }
 
   /* Header */
