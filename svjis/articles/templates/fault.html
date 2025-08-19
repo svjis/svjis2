@@ -18,6 +18,10 @@
     [<a href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% translate 'Close ticket' %}</a>]&nbsp;
 {% endif %}
 
+{% if perms.articles.svjis_view_fault_menu %}
+    [<a href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View log' %}</a>]&nbsp;
+{% endif %}
+
 {% if user in obj.watching_users.all %}
     [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching ticket' %}</a>]
     {% else %}
@@ -46,8 +50,7 @@
         <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% translate 'Description' %}</th>
-        <td class="list">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
+        <td class="list" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
     </tr>
 </table>
 
