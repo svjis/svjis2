@@ -656,10 +656,9 @@ def admin_group_edit_view(request, pk):
     group_perm_list = []
     if pk != 0:
         group_perm_list = Permission.objects.filter(group__id=i.id)
-    for p in Permission.objects.all():
-        if p.codename.startswith('svjis_'):
-            item = {'codename': p.codename, 'name': p.name, 'checked': p in group_perm_list}
-            permission_list.append(item)
+    for p in Permission.objects.filter(codename__startswith='svjis_'):
+        item = {'codename': p.codename, 'name': p.name, 'checked': p in group_perm_list}
+        permission_list.append(item)
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
