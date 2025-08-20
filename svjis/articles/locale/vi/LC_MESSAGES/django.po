@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 16:29+0200\n"
+"POT-Creation-Date: 2025-08-20 13:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -850,17 +850,17 @@ msgstr "Trước"
 msgid "Next"
 msgstr "Tiếp"
 
-#: articles/templates/personal_settings_edit.html:65
+#: articles/templates/personal_settings_language.html:12
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: articles/templates/personal_settings_edit.html:67
+#: articles/templates/personal_settings_language.html:14
 msgid "Preferred language"
 msgstr "Ngôn ngữ ưa thích"
 
 #: articles/templates/personal_settings_password.html:11
 #: articles/tests_playwright/commands.py:680
-#: articles/views_personal_settings.py:37
+#: articles/views_personal_settings.py:42
 msgid "Password change"
 msgstr "Đổi mật khẩu"
 
@@ -1044,9 +1044,9 @@ msgstr "Email của bạn"
 #: articles/views_admin.py:296 articles/views_admin.py:317
 #: articles/views_admin.py:361 articles/views_admin.py:446
 #: articles/views_admin.py:478 articles/views_admin.py:541
-#: articles/views_admin.py:638 articles/views_admin.py:665
-#: articles/views_admin.py:718 articles/views_admin.py:735
-#: articles/views_admin.py:775
+#: articles/views_admin.py:638 articles/views_admin.py:664
+#: articles/views_admin.py:717 articles/views_admin.py:734
+#: articles/views_admin.py:774
 msgid "Administration"
 msgstr "Quản trị"
 
@@ -1066,10 +1066,10 @@ msgstr "Quản trị"
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:531
-#: articles/views_admin.py:696 articles/views_admin.py:754
+#: articles/views_admin.py:695 articles/views_admin.py:753
 #: articles/views_adverts.py:122 articles/views_adverts.py:144
 #: articles/views_faults.py:205 articles/views_faults.py:257
-#: articles/views_personal_settings.py:70 articles/views_redaction.py:128
+#: articles/views_personal_settings.py:75 articles/views_redaction.py:128
 #: articles/views_redaction.py:249 articles/views_redaction.py:390
 #: articles/views_redaction.py:463 articles/views_redaction.py:557
 msgid "Saved"
@@ -1124,7 +1124,7 @@ msgid "Personal settings"
 msgstr "Cài đặt cá nhân"
 
 #: articles/tests_playwright/commands.py:675
-#: articles/views_personal_settings.py:29
+#: articles/views_personal_settings.py:35
 msgid "My units"
 msgstr "Đơn vị của tôi"
 
@@ -1200,27 +1200,31 @@ msgstr "Được giao cho tôi"
 msgid "Resolved"
 msgstr "Đã giải quyết"
 
-#: articles/views_personal_settings.py:112
+#: articles/views_personal_settings.py:28
+msgid "Language settings"
+msgstr "Cài đặt ngôn ngữ"
+
+#: articles/views_personal_settings.py:128
 msgid "Wrong password"
 msgstr "Mật khẩu không đúng"
 
-#: articles/views_personal_settings.py:116
+#: articles/views_personal_settings.py:132
 msgid "Password cannot be enpty"
 msgstr "Mật khẩu không được để trống"
 
-#: articles/views_personal_settings.py:120
+#: articles/views_personal_settings.py:136
 msgid "New passwords don't match"
 msgstr "Mật khẩu mới không khớp"
 
-#: articles/views_personal_settings.py:125
+#: articles/views_personal_settings.py:141
 msgid "Password has been changed"
 msgstr "Mật khẩu đã được thay đổi"
 
-#: articles/views_personal_settings.py:140
+#: articles/views_personal_settings.py:156
 msgid "E-Mail is not valid"
 msgstr "Email không hợp lệ"
 
-#: articles/views_personal_settings.py:147
+#: articles/views_personal_settings.py:163
 msgid "Credentials have been sent to your e-mail"
 msgstr "Thông tin đăng nhập đã được gửi đến email của bạn"
 
