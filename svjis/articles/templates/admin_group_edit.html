@@ -10,24 +10,26 @@
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
-        <legend>{% translate 'Group' %}</legend>
         <p>
             <label class="common-label" for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
             {{ form.name }}
         </p>
     </fieldset>
 
+    {% if permission_list %}
+    {% for g in permission_list %}
+
     <fieldset>
-        <legend>{% translate 'Permissions' %}</legend>
-        {% if permission_list %}
-        {% for obj in permission_list %}
+        <legend>{% translate g.name %}</legend>
+        {% for obj in g.perms %}
         <p>
             <label class="common-label" style="width: 20em;" id="{{ obj.codename }}-label" for="{{ obj.codename }}-input">{% translate obj.name %}</label>
             <input class="common-input-chck" id="{{ obj.codename }}-input" type="checkbox" name="{{ obj.codename }}" {% if obj.checked %}checked{% endif %}/>
         </p>
         {% endfor %}
-        {% endif %}
     </fieldset>
+    {% endfor %}
+    {% endif %}
     <p>
         <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
