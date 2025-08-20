@@ -25,7 +25,7 @@ def get_side_menu(active_item, user):
         )
         result.append(
             {
-                'description': _("Preferred language"),
+                'description': _("Language settings"),
                 'link': reverse(personal_settings_lang_view),
                 'active': True if active_item == 'lang' else False,
             }
