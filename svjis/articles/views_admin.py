@@ -652,13 +652,54 @@ def admin_group_edit_view(request, pk):
         i = Group
         form = forms.GroupEditForm
 
-    permission_list = []
+    permission_list = [
+        {
+            'name': 'Articles',
+            'perms': [{'codename': 'svjis_add_article_comment'}, {'codename': 'svjis_answer_survey'}],
+        },
+        {'name': 'Contact', 'perms': [{'codename': 'svjis_view_phonelist'}]},
+        {'name': 'Personal settings', 'perms': [{'codename': 'svjis_view_personal_menu'}]},
+        {
+            'name': 'Redaction',
+            'perms': [
+                {'codename': 'svjis_view_redaction_menu'},
+                {'codename': 'svjis_edit_article'},
+                {'codename': 'svjis_edit_article_news'},
+                {'codename': 'svjis_edit_useful_link'},
+                {'codename': 'svjis_edit_survey'},
+                {'codename': 'svjis_edit_article_menu'},
+            ],
+        },
+        {
+            'name': 'Fault reporting',
+            'perms': [
+                {'codename': 'svjis_view_fault_menu'},
+                {'codename': 'svjis_add_fault_comment'},
+                {'codename': 'svjis_fault_reporter'},
+                {'codename': 'svjis_fault_resolver'},
+            ],
+        },
+        {'name': 'Adverts', 'perms': [{'codename': 'svjis_view_adverts_menu'}, {'codename': 'svjis_add_advert'}]},
+        {
+            'name': 'Administration',
+            'perms': [
+                {'codename': 'svjis_view_admin_menu'},
+                {'codename': 'svjis_edit_admin_company'},
+                {'codename': 'svjis_edit_admin_building'},
+                {'codename': 'svjis_edit_admin_users'},
+                {'codename': 'svjis_edit_admin_groups'},
+                {'codename': 'svjis_edit_admin_preferences'},
+            ],
+        },
+    ]
     group_perm_list = []
     if pk != 0:
         group_perm_list = Permission.objects.filter(group__id=i.id)
-    for p in Permission.objects.filter(codename__startswith='svjis_'):
-        item = {'codename': p.codename, 'name': p.name, 'checked': p in group_perm_list}
-        permission_list.append(item)
+    for m in permission_list:
+        for p in m['perms']:
+            perm = Permission.objects.filter(codename=p['codename']).first()
+            p['name'] = perm.name
+            p['checked'] = perm in group_perm_list
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")

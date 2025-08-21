@@ -19,12 +19,19 @@
 
     <fieldset>
         <legend>{% translate 'Permissions' %}</legend>
+
         {% if permission_list %}
-        {% for obj in permission_list %}
-        <p>
-            <label class="common-label" style="width: 20em;" id="{{ obj.codename }}-label" for="{{ obj.codename }}-input">{% translate obj.name %}</label>
-            <input class="common-input-chck" id="{{ obj.codename }}-input" type="checkbox" name="{{ obj.codename }}" {% if obj.checked %}checked{% endif %}/>
-        </p>
+        {% for g in permission_list %}
+
+        <fieldset>
+            <legend>{% translate g.name %}</legend>
+            {% for obj in g.perms %}
+            <p>
+                <label class="common-label" style="width: 20em;" id="{{ obj.codename }}-label" for="{{ obj.codename }}-input">{% translate obj.name %}</label>
+                <input class="common-input-chck" id="{{ obj.codename }}-input" type="checkbox" name="{{ obj.codename }}" {% if obj.checked %}checked{% endif %}/>
+            </p>
+            {% endfor %}
+        </fieldset>
         {% endfor %}
         {% endif %}
     </fieldset>
