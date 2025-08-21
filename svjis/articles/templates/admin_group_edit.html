@@ -10,11 +10,12 @@
     <input type="hidden" name="pk" value="{{ pk }}">
 
     <fieldset>
+        <legend>{% translate 'Group' %}</legend>
         <p>
             <label class="common-label" for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
             {{ form.name }}
         </p>
-    </fieldset>
+
 
     {% if permission_list %}
     {% for g in permission_list %}
@@ -30,6 +31,7 @@
     </fieldset>
     {% endfor %}
     {% endif %}
+    </fieldset>
     <p>
         <input class="black-submit" id="submit" type="submit" value="{% translate 'Save' %}" />
     </p>
