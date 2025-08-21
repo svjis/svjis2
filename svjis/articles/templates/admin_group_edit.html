@@ -15,7 +15,10 @@
             <label class="common-label" for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
             {{ form.name }}
         </p>
+    </fieldset>
 
+    <fieldset>
+        <legend>{% translate 'Permissions' %}</legend>
 
         {% if permission_list %}
         {% for g in permission_list %}
