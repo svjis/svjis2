@@ -116,6 +116,15 @@ legend.hidden-legend {display: none;}
   padding: 0;
 }
 
+.common-label-groups {
+  width: 20em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+  padding: 0;
+}
+
 .common-input {
   color: #000000;
   background: #ffffff;
@@ -953,6 +962,13 @@ footer a:hover {
   }
 
   .common-label {
+    text-align: left;
+    color:#5F5F5F;
+    font-weight: bold;
+  }
+
+  .common-label-groups {
+    width: 14em;
     text-align: left;
     color:#5F5F5F;
     font-weight: bold;
