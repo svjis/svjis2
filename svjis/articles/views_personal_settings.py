@@ -23,7 +23,13 @@ def get_side_menu(active_item, user):
                 'active': True if active_item == 'settings' else False,
             }
         )
-    if user.has_perm('articles.svjis_view_personal_menu'):
+        result.append(
+            {
+                'description': _("Language settings"),
+                'link': reverse(personal_settings_lang_view),
+                'active': True if active_item == 'lang' else False,
+            }
+        )
         result.append(
             {
                 'description': _("My units"),
@@ -31,7 +37,6 @@ def get_side_menu(active_item, user):
                 'active': True if active_item == 'units' else False,
             }
         )
-    if user.has_perm('articles.svjis_view_personal_menu'):
         result.append(
             {
                 'description': _("Password change"),
@@ -75,6 +80,17 @@ def personal_settings_save_view(request):
             messages.error(request, f"{_('Form validation error')}: {error}")
 
     return redirect(personal_settings_edit_view)
+
+
+# Personal settings - preferred language
+@permission_required("articles.svjis_view_personal_menu")
+@require_GET
+def personal_settings_lang_view(request):
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _(PERSONAL_SETTINGS_TEXT)
+    ctx['aside_menu_items'] = get_side_menu('lang', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('personal_settings', request.user)
+    return render(request, "personal_settings_language.html", ctx)
 
 
 # Personal settings - my building units

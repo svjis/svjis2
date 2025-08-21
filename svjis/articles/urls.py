@@ -21,6 +21,9 @@ urlpatterns = [
     path(
         'personal_settings_save/', views_personal_settings.personal_settings_save_view, name='personal_settings_save'
     ),
+    path(
+        'personal_settings_lang/', views_personal_settings.personal_settings_lang_view, name='personal_settings_lang'
+    ),
     path('personal_my_units/', views_personal_settings.personal_my_units_view, name='personal_my_units'),
     path(
         'personal_settings_password/',

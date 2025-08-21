@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 16:29+0200\n"
+"POT-Creation-Date: 2025-08-21 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -430,7 +430,7 @@ msgstr "Törlés"
 #: articles/templates/admin_building_unit_edit.html:41
 #: articles/templates/admin_company_edit.html:57
 #: articles/templates/admin_entrance_edit.html:25
-#: articles/templates/admin_group_edit.html:32
+#: articles/templates/admin_group_edit.html:39
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
@@ -850,17 +850,17 @@ msgstr "Előző"
 msgid "Next"
 msgstr "Következő"
 
-#: articles/templates/personal_settings_edit.html:65
+#: articles/templates/personal_settings_language.html:12
 msgid "Language"
 msgstr "Nyelv"
 
-#: articles/templates/personal_settings_edit.html:67
+#: articles/templates/personal_settings_language.html:14
 msgid "Preferred language"
 msgstr "Előnyben részesített nyelv"
 
 #: articles/templates/personal_settings_password.html:11
 #: articles/tests_playwright/commands.py:680
-#: articles/views_personal_settings.py:37
+#: articles/views_personal_settings.py:42
 msgid "Password change"
 msgstr "Jelszóváltoztatás"
 
@@ -1044,9 +1044,9 @@ msgstr "Az Ön e-mail címe"
 #: articles/views_admin.py:296 articles/views_admin.py:317
 #: articles/views_admin.py:361 articles/views_admin.py:446
 #: articles/views_admin.py:478 articles/views_admin.py:541
-#: articles/views_admin.py:638 articles/views_admin.py:665
-#: articles/views_admin.py:718 articles/views_admin.py:735
-#: articles/views_admin.py:775
+#: articles/views_admin.py:638 articles/views_admin.py:705
+#: articles/views_admin.py:758 articles/views_admin.py:775
+#: articles/views_admin.py:815
 msgid "Administration"
 msgstr "Adminisztráció"
 
@@ -1066,10 +1066,10 @@ msgstr "Adminisztráció"
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:531
-#: articles/views_admin.py:696 articles/views_admin.py:754
+#: articles/views_admin.py:736 articles/views_admin.py:794
 #: articles/views_adverts.py:122 articles/views_adverts.py:144
 #: articles/views_faults.py:205 articles/views_faults.py:257
-#: articles/views_personal_settings.py:70 articles/views_redaction.py:128
+#: articles/views_personal_settings.py:75 articles/views_redaction.py:128
 #: articles/views_redaction.py:249 articles/views_redaction.py:390
 #: articles/views_redaction.py:463 articles/views_redaction.py:557
 msgid "Saved"
@@ -1124,7 +1124,7 @@ msgid "Personal settings"
 msgstr "Személyes beállítások"
 
 #: articles/tests_playwright/commands.py:675
-#: articles/views_personal_settings.py:29
+#: articles/views_personal_settings.py:35
 msgid "My units"
 msgstr "Egységeim"
 
@@ -1200,27 +1200,31 @@ msgstr "Hozzám rendelve"
 msgid "Resolved"
 msgstr "Megoldva"
 
-#: articles/views_personal_settings.py:112
+#: articles/views_personal_settings.py:28
+msgid "Language settings"
+msgstr "Nyelvi beállítások"
+
+#: articles/views_personal_settings.py:128
 msgid "Wrong password"
 msgstr "Helytelen jelszó"
 
-#: articles/views_personal_settings.py:116
+#: articles/views_personal_settings.py:132
 msgid "Password cannot be enpty"
 msgstr "A jelszó nem lehet üres"
 
-#: articles/views_personal_settings.py:120
+#: articles/views_personal_settings.py:136
 msgid "New passwords don't match"
 msgstr "Az új jelszavak nem egyeznek"
 
-#: articles/views_personal_settings.py:125
+#: articles/views_personal_settings.py:141
 msgid "Password has been changed"
 msgstr "A jelszó megváltoztatva"
 
-#: articles/views_personal_settings.py:140
+#: articles/views_personal_settings.py:156
 msgid "E-Mail is not valid"
 msgstr "Érvénytelen e-mail cím"
 
-#: articles/views_personal_settings.py:147
+#: articles/views_personal_settings.py:163
 msgid "Credentials have been sent to your e-mail"
 msgstr "A bejelentkezési adatok elküldve az Ön e-mail címére"
 

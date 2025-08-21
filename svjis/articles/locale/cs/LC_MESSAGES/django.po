@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 16:29+0200\n"
+"POT-Creation-Date: 2025-08-21 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -429,7 +429,7 @@ msgstr "Smazat"
 #: articles/templates/admin_building_unit_edit.html:41
 #: articles/templates/admin_company_edit.html:57
 #: articles/templates/admin_entrance_edit.html:25
-#: articles/templates/admin_group_edit.html:32
+#: articles/templates/admin_group_edit.html:39
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
@@ -849,17 +849,17 @@ msgstr "Předchozí"
 msgid "Next"
 msgstr "Následující"
 
-#: articles/templates/personal_settings_edit.html:65
+#: articles/templates/personal_settings_language.html:12
 msgid "Language"
 msgstr "Jazyk"
 
-#: articles/templates/personal_settings_edit.html:67
+#: articles/templates/personal_settings_language.html:14
 msgid "Preferred language"
 msgstr "Preferovaný jazyk"
 
 #: articles/templates/personal_settings_password.html:11
 #: articles/tests_playwright/commands.py:680
-#: articles/views_personal_settings.py:37
+#: articles/views_personal_settings.py:42
 msgid "Password change"
 msgstr "Změna hesla"
 
@@ -1043,9 +1043,9 @@ msgstr "Váš E-Mail"
 #: articles/views_admin.py:296 articles/views_admin.py:317
 #: articles/views_admin.py:361 articles/views_admin.py:446
 #: articles/views_admin.py:478 articles/views_admin.py:541
-#: articles/views_admin.py:638 articles/views_admin.py:665
-#: articles/views_admin.py:718 articles/views_admin.py:735
-#: articles/views_admin.py:775
+#: articles/views_admin.py:638 articles/views_admin.py:705
+#: articles/views_admin.py:758 articles/views_admin.py:775
+#: articles/views_admin.py:815
 msgid "Administration"
 msgstr "Administrace"
 
@@ -1065,10 +1065,10 @@ msgstr "Administrace"
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:531
-#: articles/views_admin.py:696 articles/views_admin.py:754
+#: articles/views_admin.py:736 articles/views_admin.py:794
 #: articles/views_adverts.py:122 articles/views_adverts.py:144
 #: articles/views_faults.py:205 articles/views_faults.py:257
-#: articles/views_personal_settings.py:70 articles/views_redaction.py:128
+#: articles/views_personal_settings.py:75 articles/views_redaction.py:128
 #: articles/views_redaction.py:249 articles/views_redaction.py:390
 #: articles/views_redaction.py:463 articles/views_redaction.py:557
 msgid "Saved"
@@ -1123,7 +1123,7 @@ msgid "Personal settings"
 msgstr "Osobní nastavení"
 
 #: articles/tests_playwright/commands.py:675
-#: articles/views_personal_settings.py:29
+#: articles/views_personal_settings.py:35
 msgid "My units"
 msgstr "Moje jednotky"
 
@@ -1202,27 +1202,31 @@ msgstr "Přiřazené mě"
 msgid "Resolved"
 msgstr "Vyřešené"
 
-#: articles/views_personal_settings.py:112
+#: articles/views_personal_settings.py:28
+msgid "Language settings"
+msgstr "Nastavení jazyka"
+
+#: articles/views_personal_settings.py:128
 msgid "Wrong password"
 msgstr "Nesprávné heslo"
 
-#: articles/views_personal_settings.py:116
+#: articles/views_personal_settings.py:132
 msgid "Password cannot be enpty"
 msgstr "Heslo nemůže být prázdné"
 
-#: articles/views_personal_settings.py:120
+#: articles/views_personal_settings.py:136
 msgid "New passwords don't match"
 msgstr "Nová hesla se neshodují"
 
-#: articles/views_personal_settings.py:125
+#: articles/views_personal_settings.py:141
 msgid "Password has been changed"
 msgstr "Heslo bylo změněno"
 
-#: articles/views_personal_settings.py:140
+#: articles/views_personal_settings.py:156
 msgid "E-Mail is not valid"
 msgstr "Neplatný e-mail"
 
-#: articles/views_personal_settings.py:147
+#: articles/views_personal_settings.py:163
 msgid "Credentials have been sent to your e-mail"
 msgstr "Přihlašovací údaje byly odeslány na Váš e-mail"
 
