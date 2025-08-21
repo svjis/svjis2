@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 13:21+0200\n"
+"POT-Creation-Date: 2025-08-21 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -430,7 +430,7 @@ msgstr "Törlés"
 #: articles/templates/admin_building_unit_edit.html:41
 #: articles/templates/admin_company_edit.html:57
 #: articles/templates/admin_entrance_edit.html:25
-#: articles/templates/admin_group_edit.html:32
+#: articles/templates/admin_group_edit.html:39
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
@@ -1044,9 +1044,9 @@ msgstr "Az Ön e-mail címe"
 #: articles/views_admin.py:296 articles/views_admin.py:317
 #: articles/views_admin.py:361 articles/views_admin.py:446
 #: articles/views_admin.py:478 articles/views_admin.py:541
-#: articles/views_admin.py:638 articles/views_admin.py:664
-#: articles/views_admin.py:717 articles/views_admin.py:734
-#: articles/views_admin.py:774
+#: articles/views_admin.py:638 articles/views_admin.py:705
+#: articles/views_admin.py:758 articles/views_admin.py:775
+#: articles/views_admin.py:815
 msgid "Administration"
 msgstr "Adminisztráció"
 
@@ -1066,7 +1066,7 @@ msgstr "Adminisztráció"
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:531
-#: articles/views_admin.py:695 articles/views_admin.py:753
+#: articles/views_admin.py:736 articles/views_admin.py:794
 #: articles/views_adverts.py:122 articles/views_adverts.py:144
 #: articles/views_faults.py:205 articles/views_faults.py:257
 #: articles/views_personal_settings.py:75 articles/views_redaction.py:128
