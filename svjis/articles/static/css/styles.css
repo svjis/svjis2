@@ -105,6 +105,10 @@ legend {
   border-radius: 5px;
 }
 
+legend.legend-permissions {
+  text-align: center;
+}
+
 legend.hidden-legend {display: none;}
 
 .common-label {
