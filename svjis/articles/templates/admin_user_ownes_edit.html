@@ -9,6 +9,7 @@
 <table class="list" aria-describedby="tbl-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Type' %}</th>
         <th class="list" scope="col">{% translate 'Registration Id' %}</th>
         <th class="list" scope="col">{% translate 'Description' %}</th>
@@ -19,6 +20,7 @@
     {% for obj in u.buildingunit_set.all|dictsort:"registration_id" %}
     <tr>
         <td class="list">{{ forloop.counter }}</td>
+        <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>
         <td class="list">{{ obj.type.description }}</td>
         <td class="list">{{ obj.registration_id }}</td>
         <td class="list">{{ obj.description }}</td>
