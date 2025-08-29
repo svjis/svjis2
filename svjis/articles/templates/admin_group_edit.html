@@ -24,7 +24,7 @@
         {% for g in permission_list %}
 
         <fieldset>
-            <legend>{% translate g.name %}</legend>
+            <legend class="legend-permissions">{% translate g.name %}</legend>
             {% for obj in g.perms %}
             <p>
                 <label class="common-label-groups" id="{{ obj.codename }}-label" for="{{ obj.codename }}-input">{% translate obj.name %}</label>
