@@ -15,8 +15,11 @@ It is assumed that you have Python version 3.10 or higher installed on your comp
 python --version
 ```
 
-Install `uv` tool:  
-https://docs.astral.sh/uv/getting-started/installation/
+Make sure you have `uv` tool installed:
+```
+uv --version
+```
+If not, install it from: https://docs.astral.sh/uv/getting-started/installation/
 
 
 Clone the project
