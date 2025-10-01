@@ -21,7 +21,7 @@ git clone https://github.com/svjis/svjis2.git
 cd svjis2
 ```
 
-Inatall `uv`
+Install `uv` tool:
 https://docs.astral.sh/uv/getting-started/installation/
 
 

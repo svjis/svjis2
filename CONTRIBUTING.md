@@ -14,7 +14,7 @@ If you want to contribute to the project and improve it, your help is very welco
 Install the development dependencies:
 
 ```bash
-uv sync --dev
+uv sync
 source .venv/bin/activate
 ```
 
