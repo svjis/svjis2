@@ -21,18 +21,21 @@ git clone https://github.com/svjis/svjis2.git
 cd svjis2
 ```
 
-Create a virtual environment and switch to it
+Inatall `uv`
+https://docs.astral.sh/uv/getting-started/installation/
+
+
+Install the dependencies
 ```
-python -m venv venv
+uv sync
 # in Linuxu
-source venv/bin/activate
+source .venv/bin/activate
 # in Windows
-source venv/Scripts/activate
+source .venv/Scripts/activate
 ```
 
-Install the dependencies and create the configuration
+Create the configuration
 ```
-pip install -r requirements.txt
 cd svjis
 python manage.py migrate
 python manage.py svjis_setup --password <password for admin user>

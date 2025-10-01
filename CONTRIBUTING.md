@@ -14,7 +14,8 @@ If you want to contribute to the project and improve it, your help is very welco
 Install the development dependencies:
 
 ```bash
-pip install -r requirements-dev.txt
+uv sync --dev
+source .venv/bin/activate
 ```
 
 We use the `pre-commit` tool for code quality checks and adherence to conventions. To install it, use the command:
