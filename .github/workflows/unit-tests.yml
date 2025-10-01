@@ -27,7 +27,8 @@ jobs:
           python-version: '3.11'
 
       - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
+        # v3.0.1
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd
 
   unit-test:
     runs-on: ubuntu-latest
