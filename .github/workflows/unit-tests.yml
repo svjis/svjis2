@@ -49,7 +49,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          uv sync --all
+          uv sync --dev
 
       - name: Setup Application
         run: |
