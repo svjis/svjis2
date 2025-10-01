@@ -27,7 +27,7 @@ https://docs.astral.sh/uv/getting-started/installation/
 
 Install the dependencies
 ```
-uv sync
+uv sync --no-dev
 # in Linux
 source .venv/bin/activate
 # in Windows
