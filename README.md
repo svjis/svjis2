@@ -15,15 +15,15 @@ It is assumed that you have Python version 3.10 or higher installed on your comp
 python --version
 ```
 
+Install `uv` tool:  
+https://docs.astral.sh/uv/getting-started/installation/
+
+
 Clone the project
 ```
 git clone https://github.com/svjis/svjis2.git
 cd svjis2
 ```
-
-Install `uv` tool:
-https://docs.astral.sh/uv/getting-started/installation/
-
 
 Install the dependencies
 ```
