@@ -19,9 +19,6 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
-        with:
-          version: "0.8.22"
-          checksum: "741ff1f5742c5a4a25d2f829e8395355e43f7a5ae2ebc6368e9ae2df0efb69cf"
 
       - name: Set up Python
         uses: actions/setup-python@v5
