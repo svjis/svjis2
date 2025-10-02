@@ -19,7 +19,7 @@ jobs:
       uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.12'
 
