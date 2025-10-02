@@ -15,24 +15,30 @@ It is assumed that you have Python version 3.10 or higher installed on your comp
 python --version
 ```
 
+Make sure you have `uv` tool installed:
+```
+uv --version
+```
+If not, install it from: https://docs.astral.sh/uv/getting-started/installation/
+
+
 Clone the project
 ```
 git clone https://github.com/svjis/svjis2.git
 cd svjis2
 ```
 
-Create a virtual environment and switch to it
+Install the dependencies
 ```
-python -m venv venv
-# in Linuxu
-source venv/bin/activate
+uv sync --no-dev
+# in Linux
+source .venv/bin/activate
 # in Windows
-source venv/Scripts/activate
+source .venv/Scripts/activate
 ```
 
-Install the dependencies and create the configuration
+Create the configuration
 ```
-pip install -r requirements.txt
 cd svjis
 python manage.py migrate
 python manage.py svjis_setup --password <password for admin user>

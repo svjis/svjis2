@@ -17,14 +17,18 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v5
 
+      - name: Install uv
+        # v6.8.0
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: "pip"
 
       - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
+        # v3.0.1
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd
 
   unit-test:
     runs-on: ubuntu-latest
@@ -37,28 +41,28 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v5
 
+      - name: Install uv
+        # v6.8.0
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
 
       - name: Install Dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+          uv sync
 
       - name: Setup Application
         run: |
-          source venv/bin/activate
+          source .venv/bin/activate
           cd svjis
           python manage.py migrate
           python manage.py svjis_setup
 
       - name: Run Tests
         run: |
-          source venv/bin/activate
+          source .venv/bin/activate
           cd svjis
           python manage.py test articles.tests

@@ -18,30 +18,31 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v5
 
+      - name: Install uv
+        # v6.8.0
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-          cache: "pip"
 
       - name: Install Dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+          uv sync
+          source .venv/bin/activate
           playwright install
 
       - name: Compile Messages
         run: |
           sudo apt-get install gettext
-          source venv/bin/activate
+          source .venv/bin/activate
           cd svjis/
           python manage.py compilemessages
 
       - name: Run Tests
         run: |
-          source venv/bin/activate
+          source .venv/bin/activate
           cd svjis
           python manage.py test articles.tests_playwright
 
