@@ -310,7 +310,7 @@ def fault_watch_view(request):
         pk = int(request.GET.get('id'))
         watch = int(request.GET.get('watch'))
     except TypeError:
-        raise Http404
+        raise Http404 from None
 
     fault = get_object_or_404(models.FaultReport, pk=pk)
 

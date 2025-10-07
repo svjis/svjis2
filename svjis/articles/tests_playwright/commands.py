@@ -36,7 +36,7 @@ def scrshot(page, path, full_height=False):
 def click_link_in_row(page, text_to_find, i):
     rows = page.query_selector_all("table tr")
 
-    for index, row in enumerate(rows):
+    for __, row in enumerate(rows):
         if text_to_find in row.inner_text():
             links = row.query_selector_all("a")
             if len(links) >= i:
@@ -412,7 +412,7 @@ def create_articles(cls, page):
         },
         {
             'header': 'Výdej nových čipů',
-            'perex': 'Vážení vlastníci, výdej nových čipů proběhne v pátek 27.3.2025 ' 'v kanceláři SVJ.',
+            'perex': 'Vážení vlastníci, výdej nových čipů proběhne v pátek 27.3.2025 v kanceláři SVJ.',
             'body': 'Váš výbor.',
             'menu': 'Vývěska',
             'comments': False,
