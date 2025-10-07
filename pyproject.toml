@@ -17,18 +17,6 @@ Homepage = "https://svjis.github.io/"
 Repository = "https://github.com/svjis/svjis2"
 Issues = "https://github.com/svjis/svjis2/issues"
 
-[tool.black]
-line-length = 119
-target-version = ['py310']
-include = '\.pyi?$'
-skip-string-normalization = 1
-force-exclude = '''
-/(
-  \.venv
-  | migrations
-)/
-'''
-
 [tool.django-stubs]
 django_settings_module = "svjis.svjis.settings"
 
