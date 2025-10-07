@@ -44,6 +44,7 @@ dev = [
 [tool.ruff]
 line-length = 119
 indent-width = 4
+extend-exclude = ["svjis/svjis/settings.py", "svjis/articles/migrations"]
 
 [tool.ruff.lint]
 # 1. Enable flake8-bugbear (`B`) rules, in addition to the defaults.
