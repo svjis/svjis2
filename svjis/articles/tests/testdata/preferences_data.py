@@ -2,10 +2,8 @@ from ..factories import PreferencesFactory, CompanyFactory, AdvertTypeFactory
 
 
 class PreferencesDataMixin:
-
     @classmethod
     def setUpTestData(cls):
-
         cls.company = CompanyFactory(name="Testing company", internet_domain="www.test.cz")
 
         cls.advert_types = [

@@ -14,7 +14,6 @@ from ..utils import generate_password
 
 @override_settings(MEDIA_ROOT=tempfile.TemporaryDirectory(prefix='mediatest').name)
 class DesktopTests(StaticLiveServerTestCase):
-
     device_width = 1280
     device_height = 720
     test_output_dir = 'playwright_output/desktop'

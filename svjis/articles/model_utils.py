@@ -68,5 +68,5 @@ def _slug_strip(value, separator='-'):
     if separator:
         if separator != '-':
             re_sep = re.escape(separator)
-        value = re.sub(fr'^{re_sep}+|{re_sep}+$', '', value)
+        value = re.sub(rf'^{re_sep}+|{re_sep}+$', '', value)
     return value

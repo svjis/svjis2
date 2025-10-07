@@ -14,7 +14,6 @@ from .testdata import ArticleDataMixin
 
 
 class MenuTest(ArticleDataMixin, TestCase):
-
     def do_menu_test(self, username, password, menu_list):
         menu = [
             {'item': 'Articles', 'link': reverse(views.main_view)},

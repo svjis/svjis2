@@ -6,7 +6,6 @@ from .testdata import UserDataMixin, PreferencesDataMixin
 
 
 class FaultsTest(UserDataMixin, PreferencesDataMixin, TestCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
