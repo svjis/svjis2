@@ -3,7 +3,6 @@ from .user_data import UserDataMixin
 
 
 class ArticleDataMixin(UserDataMixin):
-
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()

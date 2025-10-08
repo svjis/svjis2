@@ -5,7 +5,6 @@ from .testdata import ArticleDataMixin
 
 
 class ArticleListTest(ArticleDataMixin, TestCase):
-
     def do_user_test(self, username, password, for_all, for_owners, for_board, article_list):
         # Login user
         if username == 'anonymous':

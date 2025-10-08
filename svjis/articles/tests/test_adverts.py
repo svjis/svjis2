@@ -5,7 +5,6 @@ from .testdata import UserDataMixin
 
 
 class AdvertsTest(UserDataMixin, TestCase):
-
     def create_advert(self, username, password, advert_form, expected_status):
         logged_in = self.client.login(username=username, password=password)
         self.assertTrue(logged_in)

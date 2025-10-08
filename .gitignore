@@ -3,6 +3,7 @@ venv/
 .venv/
 *.egg-info/
 *~
+.ruff_cache
 
 # IDE
 .idea/

@@ -250,7 +250,7 @@ def article_watch_view(request):
         pk = int(request.GET.get('id'))
         watch = int(request.GET.get('watch'))
     except TypeError:
-        raise Http404
+        raise Http404 from None
 
     q = get_article_filter(request.user)
     article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()

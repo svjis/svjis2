@@ -30,10 +30,11 @@ repos:
       - id: pyupgrade
         args: [--py310-plus]
 
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.13.3
     hooks:
-      - id: black
+      - id: ruff-check
+      - id: ruff-format
 
   - repo: https://github.com/PyCQA/flake8
     rev: 7.1.1
@@ -44,5 +45,5 @@ repos:
   - repo: https://github.com/adamchainz/djade-pre-commit
     rev: 1.4.0
     hooks:
-    -   id: djade
+      - id: djade
         args: [--target-version, "5.2"]

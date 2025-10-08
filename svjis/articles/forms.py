@@ -9,7 +9,6 @@ SELECT_ENTRANCE_TEXT = "Select the entranance (if does it make sense)"
 
 
 class ArticleMenuForm(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['parent'].queryset = models.ArticleMenu.objects.exclude(pk=self.instance.pk)
@@ -369,7 +368,6 @@ class FaultAssetForm(forms.ModelForm):
 
 
 class AdvertForm(forms.ModelForm):
-
     class Meta:
         model = models.Advert
         fields = ("type", "header", "body", "phone", "email", "published")

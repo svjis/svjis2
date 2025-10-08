@@ -4,7 +4,6 @@ from ...utils import generate_password
 
 
 class UserDataMixin(PreferencesDataMixin):
-
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
