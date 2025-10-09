@@ -12,7 +12,7 @@ class FaultReportLogManager(models.Manager["FaultReportLog"]):
         others_recorded = False
         for obj in queryset:
             for change in form.changed_data:
-                if change == 'assigned_to_user':
+                if change == 'assigned_to_user' and not created:
                     _type = self.model.TYPE_ASSIGNED
                 elif change == 'closed':
                     if form.cleaned_data['closed']:
