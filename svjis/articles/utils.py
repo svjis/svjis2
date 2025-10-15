@@ -95,7 +95,7 @@ def get_tray_menu(active_item: str, user) -> list:
 
 def generate_password(len: int) -> str:
     alphabet = string.ascii_letters + string.digits
-    password = ''.join(secrets.choice(alphabet) for i in range(len))
+    password = ''.join(secrets.choice(alphabet) for __ in range(len))
     return password
 
 

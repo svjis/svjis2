@@ -144,7 +144,7 @@ def create_groups():
     print("Done")
 
 
-def create_admin_user(password: str = None):
+def create_admin_user(password: str):
     print("Creating admin user...")
     u = User.objects.create_superuser(username='admin', email='admin@test.cz', password=password, last_name='admin')
     g = Group.objects.get(name='Administrátor')
