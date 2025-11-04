@@ -93,6 +93,10 @@ def get_tray_menu(active_item: str, user) -> list:
     return result
 
 
+def trim_str(s, limit=100, ellipsis='…'):
+    return s if len(s) <= limit else s[: limit - len(ellipsis)] + ellipsis
+
+
 def generate_password(len: int) -> str:
     alphabet = string.ascii_letters + string.digits
     password = ''.join(secrets.choice(alphabet) for __ in range(len))
