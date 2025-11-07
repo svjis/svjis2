@@ -29,5 +29,5 @@ jobs:
     - name: Archive uv.lock
       uses: actions/upload-artifact@v5
       with:
-        name: Messages
+        name: uv-lock
         path: uv.lock
