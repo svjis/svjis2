@@ -1,0 +1,25 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load article_filters i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+
+<table class="list full-width" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" scope="col">{% translate 'Count' %}</th>
+        <th class="list" scope="col">{% translate 'User-Agent' %}</th>
+    </tr>
+
+    {% if object_list %}
+    {% for obj in object_list %}
+    <tr>
+        <td class="list">{{ obj.total }}</td>
+        <td class="list">{{ obj.user_agent }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock content %}

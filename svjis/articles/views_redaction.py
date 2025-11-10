@@ -4,14 +4,16 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group, User
 from django.core.paginator import Paginator, InvalidPage
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone, dateformat
+from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import gettext as gt
 from django.views.decorators.http import require_GET, require_POST
+from datetime import datetime, timedelta
 from openpyxl import Workbook
 from openpyxl.styles import Font
 
@@ -56,6 +58,14 @@ def get_side_menu(active_item, user):
                 'description': _("Menu"),
                 'link': reverse(redaction_menu_view),
                 'active': True if active_item == 'menu' else False,
+            }
+        )
+    if user.has_perm('articles.svjis_view_redaction_menu'):
+        result.append(
+            {
+                'description': _("Analytics"),
+                'link': reverse(redaction_analytics_view),
+                'active': True if active_item == 'analytics' else False,
             }
         )
     return result
@@ -645,3 +655,26 @@ def redaction_survey_results_export_to_excel_view(request, pk):
     utils.adjust_worksheet_columns_width(ws, 50)
     wb.save(response)
     return response
+
+
+# Redaction - Analytics
+@permission_required("articles.svjis_view_redaction_menu")
+@require_GET
+def redaction_analytics_view(request):
+    header = _("Analytics")
+    top_history_from = make_aware(
+        datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365))
+    )
+    data = (
+        models.ArticleLog.objects.filter(entry_time__gte=top_history_from)
+        .exclude(user_agent='')
+        .values('user_agent')
+        .annotate(total=Count('*'))
+    )
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['object_list'] = data
+    ctx['header'] = header
+    ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_analytics.html", ctx)

@@ -107,6 +107,7 @@ urlpatterns = [
         views_redaction.redaction_survey_results_export_to_excel_view,
         name='redaction_survey_results_export_to_excel',
     ),
+    path('redaction_analytics/', views_redaction.redaction_analytics_view, name='redaction_analytics'),
     path('fault/<str:slug>/', views_faults.fault_view, name='fault'),
     path('faults_list/', views_faults.faults_list_view, name='faults_list'),
     path('faults_fault_create/', views_faults.faults_fault_create_view, name='faults_fault_create'),
