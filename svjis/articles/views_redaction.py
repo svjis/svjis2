@@ -16,6 +16,7 @@ from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
 from openpyxl import Workbook
 from openpyxl.styles import Font
+from .user_agent import get_browser, get_os
 
 
 def get_side_menu(active_item, user):
@@ -671,9 +672,19 @@ def redaction_analytics_view(request):
         .values('user_agent')
         .annotate(total=Count('*'))
     )
+    object_list = []
+    for d in data:
+        object_list.append(
+            {
+                "user_agent": d["user_agent"][:120],
+                "total": d["total"],
+                "browser": get_browser(d["user_agent"])["browser"],
+                "os": get_os(d["user_agent"]),
+            }
+        )
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
-    ctx['object_list'] = data
+    ctx['object_list'] = object_list
     ctx['header'] = header
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
