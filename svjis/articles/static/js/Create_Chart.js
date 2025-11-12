@@ -13,10 +13,9 @@ function createChartConfig(type, data, options = {}) {
             labels: labelsWithPercentages,
             datasets: [{
                 data: data.values,
-                backgroundColor: data.colors || generateColors(data.values.length),
-                borderColor: '#ffffff',
+                // backgroundColor: data.colors || generateColors(data.values.length),
+                // borderColor: '#ffffff',
                 borderWidth: 2,
-                ...options.dataset
             }]
         },
         options: {
