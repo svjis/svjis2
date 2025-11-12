@@ -673,17 +673,25 @@ def redaction_analytics_view(request):
         .annotate(total=Count('*'))
     )
     object_list = []
+    bsd = {}
+    osd = {}
     for d in data:
+        browser = get_browser(d["user_agent"])["browser"]
+        ops = get_os(d["user_agent"])
         object_list.append(
             {
                 "user_agent": d["user_agent"][:120],
                 "total": d["total"],
-                "browser": get_browser(d["user_agent"])["browser"],
-                "os": get_os(d["user_agent"]),
+                "browser": browser,
+                "os": ops,
             }
         )
+        bsd[browser] = bsd.get(browser, 0) + d["total"]
+        osd[ops] = osd.get(ops, 0) + d["total"]
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
+    ctx['bsd'] = bsd
+    ctx['osd'] = osd
     ctx['object_list'] = object_list
     ctx['header'] = header
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)

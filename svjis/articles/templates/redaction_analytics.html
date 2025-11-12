@@ -6,6 +6,89 @@
 
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="browserChart"></canvas>
+</div>
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="osChart"></canvas>
+</div>
+
+<script>
+    const browserCtx = document.getElementById('browserChart').getContext('2d');
+    const browserChart = new Chart(browserCtx, {
+        type: 'pie',
+        data: {
+            labels: [{% for key, value in bsd.items %}'{{ key }}', {% endfor %}],
+            datasets: [{
+                label: 'Browser',
+                data: [{% for key, value in bsd.items %}{{ value }}, {% endfor %}],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Browser'
+                },
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const osCtx = document.getElementById('osChart').getContext('2d');
+    const osChart = new Chart(osCtx, {
+        type: 'pie',
+        data: {
+            labels: [{% for key, value in osd.items %}'{{ key }}', {% endfor %}],
+            datasets: [{
+                label: 'Browser',
+                data: [{% for key, value in osd.items %}{{ value }}, {% endfor %}],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'System'
+                },
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 <table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
     <tr>
         <th class="list" scope="col">{% translate 'Count' %}</th>
