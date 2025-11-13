@@ -683,14 +683,15 @@ def redaction_analytics_view(request):
         os = get_os(d["user_agent"])
         ops = os["os"]
         pls = os["platform"]
-        object_list.append(
-            {
-                "user_agent": d["user_agent"][:120],
-                "total": d["total"],
-                "browser": browser,
-                "os": ops,
-            }
-        )
+        if browser == 'Unknown' or ops == 'Unknown OS':
+            object_list.append(
+                {
+                    "user_agent": d["user_agent"][:120],
+                    "total": d["total"],
+                    "browser": browser,
+                    "os": ops,
+                }
+            )
         bsd[browser] = bsd.get(browser, 0) + d["total"]
         osd[ops] = osd.get(ops, 0) + d["total"]
         pld[pls] = pld.get(pls, 0) + d["total"]
