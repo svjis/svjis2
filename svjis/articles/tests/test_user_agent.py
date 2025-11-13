@@ -74,6 +74,16 @@ class UserAgentTests(TestCase):
             "browser": "Chrome",
             "os": {'os': 'macOS', 'platform': 'Desktop'},
         },
+        {
+            "agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/29.0 Chrome/136.0.0.0 Mobile Safari/537.36",  # noqa
+            "browser": "Samsung Browser",
+            "os": {'os': 'Android', 'platform': 'Mobile'},
+        },
+        {
+            "agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 26_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/142.0.7444.128 Mobile/15E148 Safari/604.1",  # noqa
+            "browser": "Crios",
+            "os": {'os': 'iOS', 'platform': 'Mobile'},
+        },
     ]
 
     def test_browser(self):
