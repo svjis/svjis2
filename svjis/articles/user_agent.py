@@ -28,8 +28,8 @@ def get_os(user_agent: str) -> dict:
     ua = user_agent.lower()
     patterns = {
         r'windows nt': 'Windows:Desktop',
-        r'mac os x': 'macOS:Desktop',
         r'iphone os': 'iOS:Mobile',
+        r'mac os x': 'macOS:Desktop',
         r'android': 'Android:Mobile',
         r'linux': 'Linux:Desktop',
         r'ubuntu': 'Ubuntu:Desktop',
