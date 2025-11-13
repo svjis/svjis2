@@ -17,10 +17,10 @@
 </div>
 
 <script>
-    const browserData = {
+    const browserData = sortDataInPlace({
         labels: [{% for key, value in bsd.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in bsd.items %}{{ value }}, {% endfor %}],
-    };
+    });
 
     const browserChart = new Chart(
         document.getElementById('browserChart').getContext('2d'),
@@ -30,10 +30,10 @@
         })
     );
 
-    const osData = {
+    const osData = sortDataInPlace({
         labels: [{% for key, value in osd.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in osd.items %}{{ value }}, {% endfor %}],
-    };
+    });
 
     const osChart = new Chart(
         document.getElementById('osChart').getContext('2d'),

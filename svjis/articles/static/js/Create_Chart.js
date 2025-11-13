@@ -13,8 +13,6 @@ function createChartConfig(type, data, options = {}) {
             labels: labelsWithPercentages,
             datasets: [{
                 data: data.values,
-                // backgroundColor: data.colors || generateColors(data.values.length),
-                // borderColor: '#ffffff',
                 borderWidth: 2,
             }]
         },
@@ -42,10 +40,21 @@ function createChartConfig(type, data, options = {}) {
 }
 
 
-function generateColors(count) {
-    const colors = [
-        '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-        '#DDA0DD', '#98D8C8', '#FFB347', '#F0E68C', '#87CEEB'
-    ];
-    return colors.slice(0, count);
+function sortDataInPlace(data) {
+    const pairs = data.labels.map((label, index) => ({
+        label: label,
+        value: data.values[index]
+    }));
+
+    pairs.sort((a, b) => b.value - a.value);
+
+    data.labels.length = 0;
+    data.values.length = 0;
+
+    pairs.forEach(pair => {
+        data.labels.push(pair.label);
+        data.values.push(pair.value);
+    });
+
+    return data;
 }
