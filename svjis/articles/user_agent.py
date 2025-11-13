@@ -38,11 +38,7 @@ def get_os(user_agent: str) -> dict:
     for pattern, result in patterns.items():
         match = re.search(pattern, ua)
         if match:
-            if callable(result):
-                res = result(match)
-            else:
-                res = str(result)
-            r = res.split(':')
+            r = str(result).split(':')
             return {'os': r[0], 'platform': r[1]}
 
     return {'os': 'Unknown OS', 'platform': 'Unknown'}
