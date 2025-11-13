@@ -27,9 +27,8 @@ def get_browser(user_agent: str) -> dict:
 def get_os(user_agent: str) -> str:
     ua = user_agent.lower()
     patterns = {
-        r'windows nt 10\.0': 'Windows',
-        r'windows nt 6\.1': 'Windows 7',
-        r'mac os x 10': 'macOS 10',
+        r'windows nt': 'Windows',
+        r'mac os x': 'macOS',
         r'iphone os': 'iOS',
         r'android': 'Android',
         r'linux': 'Linux',
