@@ -10,6 +10,9 @@
 <script src="/static/js/Create_Chart.js"></script>
 
 <div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="platformChart"></canvas>
+</div>
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
     <canvas id="browserChart"></canvas>
 </div>
 <div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
@@ -17,6 +20,19 @@
 </div>
 
 <script>
+    const platformData = sortDataInPlace({
+        labels: [{% for key, value in pld.items %}'{{ key }}', {% endfor %}],
+        values: [{% for key, value in pld.items %}{{ value }}, {% endfor %}],
+    });
+
+    const platformChart = new Chart(
+        document.getElementById('platformChart').getContext('2d'),
+        createChartConfig('pie', platformData, {
+            title: '{% translate 'Platform' %}',
+            legendPosition: 'right'
+        })
+    );
+
     const browserData = sortDataInPlace({
         labels: [{% for key, value in bsd.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in bsd.items %}{{ value }}, {% endfor %}],

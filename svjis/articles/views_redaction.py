@@ -677,9 +677,12 @@ def redaction_analytics_view(request):
     object_list = []
     bsd = {}
     osd = {}
+    pld = {}
     for d in data:
         browser = get_browser(d["user_agent"])["browser"]
-        ops = get_os(d["user_agent"])
+        os = get_os(d["user_agent"])
+        ops = os["os"]
+        pls = os["platform"]
         object_list.append(
             {
                 "user_agent": d["user_agent"][:120],
@@ -690,8 +693,10 @@ def redaction_analytics_view(request):
         )
         bsd[browser] = bsd.get(browser, 0) + d["total"]
         osd[ops] = osd.get(ops, 0) + d["total"]
+        pld[pls] = pld.get(pls, 0) + d["total"]
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
+    ctx['pld'] = pld
     ctx['bsd'] = bsd
     ctx['osd'] = osd
     ctx['object_list'] = object_list

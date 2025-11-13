@@ -24,22 +24,25 @@ def get_browser(user_agent: str) -> dict:
     return {'browser': 'Unknown', 'version': 'Unknown', 'user_agent': user_agent}
 
 
-def get_os(user_agent: str) -> str:
+def get_os(user_agent: str) -> dict:
     ua = user_agent.lower()
     patterns = {
-        r'windows nt': 'Windows',
-        r'mac os x': 'macOS',
-        r'iphone os': 'iOS',
-        r'android': 'Android',
-        r'linux': 'Linux',
-        r'ubuntu': 'Ubuntu',
+        r'windows nt': 'Windows:Desktop',
+        r'mac os x': 'macOS:Desktop',
+        r'iphone os': 'iOS:Mobile',
+        r'android': 'Android:Mobile',
+        r'linux': 'Linux:Desktop',
+        r'ubuntu': 'Ubuntu:Desktop',
     }
 
     for pattern, result in patterns.items():
         match = re.search(pattern, ua)
         if match:
             if callable(result):
-                return result(match)
-            return str(result)
+                res = result(match)
+            else:
+                res = str(result)
+            r = res.split(':')
+            return {'os': r[0], 'platform': r[1]}
 
-    return 'Unknown OS'
+    return {'os': 'Unknown OS', 'platform': 'Unknown'}
