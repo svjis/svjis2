@@ -21,6 +21,14 @@ class UserAgentTests(TestCase):
             "browser": "Firefox",
             "os": {'os': 'Windows', 'platform': 'Desktop'},
         },
+        # Firefox on Android
+        {
+            "agent": [
+                "Mozilla/5.0 (Android 15; Mobile; rv:144.0) Gecko/144.0 Firefox/144.0",  # noqa
+            ],
+            "browser": "Firefox",
+            "os": {'os': 'Android', 'platform': 'Mobile'},
+        },
         # Safari on iOS
         {
             "agent": [
@@ -31,6 +39,15 @@ class UserAgentTests(TestCase):
             ],
             "browser": "Safari",
             "os": {'os': 'iOS', 'platform': 'Mobile'},
+        },
+        # Safari on Macintosh
+        {
+            "agent": [
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Safari/605.1.15",  # noqa
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15",  # noqa
+            ],
+            "browser": "Safari",
+            "os": {'os': 'macOS', 'platform': 'Desktop'},
         },
         # Chrome on Android
         {
@@ -58,7 +75,7 @@ class UserAgentTests(TestCase):
             "browser": "Chrome",
             "os": {'os': 'Linux', 'platform': 'Desktop'},
         },
-        # Chrome on MacOS
+        # Chrome on Macintosh
         {
             "agent": [
                 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",  # noqa
