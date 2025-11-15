@@ -676,17 +676,20 @@ def redaction_analytics_view(request):
     bsd = {}
     osd = {}
     pld = {}
+    bot = {}
     for d in data:
         browser = get_browser(d["user_agent"])["browser"]
         osystem_dict = get_os(d["user_agent"])
         osystem = osystem_dict["os"]
         platform = osystem_dict["platform"]
 
-        if browser != 'Unknown' and osystem != 'Unknown OS':
+        if browser != 'Unknown' and osystem != 'Unknown':
             bsd[browser] = bsd.get(browser, 0) + d["total"]
             osd[osystem] = osd.get(osystem, 0) + d["total"]
             pld[platform] = pld.get(platform, 0) + d["total"]
+            bot["human"] = bot.get("human", 0) + d["total"]
         else:
+            bot["bot"] = bot.get("bot", 0) + d["total"]
             object_list.append(
                 {
                     "user_agent": d["user_agent"][:120],
@@ -701,6 +704,7 @@ def redaction_analytics_view(request):
     ctx['pld'] = pld
     ctx['bsd'] = bsd
     ctx['osd'] = osd
+    ctx['bot'] = bot
     ctx['object_list'] = object_list
     ctx['header'] = header
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)

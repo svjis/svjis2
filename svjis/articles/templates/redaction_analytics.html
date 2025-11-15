@@ -18,6 +18,9 @@
 <div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
     <canvas id="osChart"></canvas>
 </div>
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="botChart"></canvas>
+</div>
 
 <script>
     const platformData = sortDataInPlace({
@@ -55,6 +58,18 @@
         document.getElementById('osChart').getContext('2d'),
         createChartConfig('pie', osData, {
             title: '{% translate 'Operating System' %}',
+            legendPosition: 'right'
+        })
+    );
+    const botData = sortDataInPlace({
+        labels: [{% for key, value in bot.items %}'{{ key }}', {% endfor %}],
+        values: [{% for key, value in bot.items %}{{ value }}, {% endfor %}],
+    });
+
+    const botChart = new Chart(
+        document.getElementById('botChart').getContext('2d'),
+        createChartConfig('pie', botData, {
+            title: '{% translate 'Bots' %}',
             legendPosition: 'right'
         })
     );

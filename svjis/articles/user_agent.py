@@ -43,4 +43,4 @@ def get_os(user_agent: str) -> dict:
             r = str(result).split(':')
             return {'os': r[0], 'platform': r[1]}
 
-    return {'os': 'Unknown OS', 'platform': 'Unknown'}
+    return {'os': 'Unknown', 'platform': 'Unknown'}
