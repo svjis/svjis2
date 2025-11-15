@@ -127,10 +127,10 @@ class UserAgentTests(TestCase):
         for case in self.cases:
             for a in case.get("agent"):
                 result = get_browser(a)
-                self.assertEqual(result.get("browser", ""), case.get("browser", ""))
+                self.assertEqual(result.get("browser", ""), case.get("browser", ""), f"User-agent: {a}")
 
     def test_os(self):
         for case in self.cases:
             for a in case.get("agent"):
                 result = get_os(a)
-                self.assertEqual(result, case.get("os", ""))
+                self.assertEqual(result, case.get("os", ""), f"User-agent: {a}")
