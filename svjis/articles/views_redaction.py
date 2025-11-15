@@ -669,8 +669,6 @@ def redaction_analytics_view(request):
     data = (
         models.ArticleLog.objects.filter(entry_time__gte=top_history_from)
         .exclude(user_agent='')
-        .exclude(user_agent__icontains='bot')
-        .exclude(user_agent__icontains='crawler')
         .values('user_agent')
         .annotate(total=Count('*'))
     )
@@ -680,21 +678,24 @@ def redaction_analytics_view(request):
     pld = {}
     for d in data:
         browser = get_browser(d["user_agent"])["browser"]
-        os = get_os(d["user_agent"])
-        ops = os["os"]
-        pls = os["platform"]
-        if browser == 'Unknown' or ops == 'Unknown OS':
+        osystem_dict = get_os(d["user_agent"])
+        osystem = osystem_dict["os"]
+        platform = osystem_dict["platform"]
+
+        if browser != 'Unknown' and osystem != 'Unknown OS':
+            bsd[browser] = bsd.get(browser, 0) + d["total"]
+            osd[osystem] = osd.get(osystem, 0) + d["total"]
+            pld[platform] = pld.get(platform, 0) + d["total"]
+        else:
             object_list.append(
                 {
                     "user_agent": d["user_agent"][:120],
                     "total": d["total"],
                     "browser": browser,
-                    "os": ops,
+                    "os": osystem,
                 }
             )
-        bsd[browser] = bsd.get(browser, 0) + d["total"]
-        osd[ops] = osd.get(ops, 0) + d["total"]
-        pld[pls] = pld.get(pls, 0) + d["total"]
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['pld'] = pld

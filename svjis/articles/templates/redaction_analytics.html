@@ -64,18 +64,12 @@
 <table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
     <tr>
         <th class="list" scope="col">{% translate 'Count' %}</th>
-        <th class="list" scope="col">{% translate 'Browser' %}</th>
-        <th class="list" scope="col">{% translate 'Os' %}</th>
+        <th class="list" scope="col">{% translate 'Bot' %}</th>
     </tr>
     {% for obj in object_list %}
     <tr>
         <td class="list">{{ obj.total }}</td>
-        <td class="list">{{ obj.browser }}</td>
-        <td class="list">{{ obj.os }}</td>
-    </tr>
-    <tr>
-        <td class="list">{{ obj.total }}</td>
-        <td class="list" colspan="3">{{ obj.user_agent }}</td>
+        <td class="list">{{ obj.user_agent }}</td>
     </tr>
     {% endfor %}
 </table>
