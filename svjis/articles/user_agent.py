@@ -4,6 +4,9 @@ import re
 def is_bot(user_agent: str) -> bool:
     bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy']
 
+    if not re.search(r'Mozilla/5\.0 \(', user_agent):
+        return True
+
     for b in bots:
         if re.search(b, user_agent, re.IGNORECASE):
             return True
