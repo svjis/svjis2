@@ -117,6 +117,7 @@ class UserAgentTests(TestCase):
                 "Sidetrade indexer bot",
                 "Sidetrade indexer Bot",
                 "Mozilla/5.0 X11; Ubuntu; Linux x86_64; rv:126.0 Gecko/20100101 Firefox/126.0",  # noqa
+                "\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36\"",  # noqa
             ],
             "browser": "Unknown",
             "os": {'os': 'Unknown', 'platform': 'Unknown'},
