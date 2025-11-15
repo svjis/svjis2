@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..user_agent import get_browser, get_os, is_bot
+from ..user_agent import get_browser, get_os
 
 
 class UserAgentTests(TestCase):
@@ -107,6 +107,20 @@ class UserAgentTests(TestCase):
             "browser": "Crios",
             "os": {'os': 'iOS', 'platform': 'Mobile'},
         },
+        # Bots
+        {
+            "agent": [
+                "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116",  # noqa
+                "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot",  # noqa
+                "Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)",  # noqa
+                "Mozilla/5.0 (compatible; Barkrowler/0.9; +https://babbar.tech/crawler)",  # noqa
+                "Sidetrade indexer bot",
+                "Sidetrade indexer Bot",
+                "Mozilla/5.0 X11; Ubuntu; Linux x86_64; rv:126.0 Gecko/20100101 Firefox/126.0",  # noqa
+            ],
+            "browser": "Unknown",
+            "os": {'os': 'Unknown', 'platform': 'Unknown'},
+        },
     ]
 
     def test_browser(self):
@@ -120,17 +134,3 @@ class UserAgentTests(TestCase):
             for a in case.get("agent"):
                 result = get_os(a)
                 self.assertEqual(result, case.get("os", ""))
-
-    def test_bot(self):
-        bots = [
-            "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116",  # noqa
-            "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot",  # noqa
-            "Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)",  # noqa
-            "Mozilla/5.0 (compatible; Barkrowler/0.9; +https://babbar.tech/crawler)",  # noqa
-            "Sidetrade indexer bot",
-            "Sidetrade indexer Bot",
-            "Mozilla/5.0 X11; Ubuntu; Linux x86_64; rv:126.0 Gecko/20100101 Firefox/126.0",  # noqa
-        ]
-
-        for b in bots:
-            self.assertEqual(is_bot(b), True)
