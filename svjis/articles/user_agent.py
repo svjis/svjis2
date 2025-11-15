@@ -7,7 +7,7 @@ def get_browser(user_agent: str) -> dict:
         'opera': r'Opera\/(\d+\.?\d*)|OPR\/(\d+\.?\d*)',
         'firefox': r'Firefox\/(\d+\.?\d*)',
         'safari': r'Version\/(\d+\.?\d*)',
-        'samsung browser': r'SamsungBrowser\/(\d+\.?\d*)',
+        'samsung': r'SamsungBrowser\/(\d+\.?\d*)',
         'crios': r'CriOS\/(\d+\.?\d*)',
         'ie': r'MSIE (\d+\.?\d*)|Trident.*rv:(\d+\.?\d*)',
         'chrome': r'Chrome\/(\d+\.?\d*)',

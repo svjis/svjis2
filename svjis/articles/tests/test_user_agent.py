@@ -96,7 +96,7 @@ class UserAgentTests(TestCase):
             "agent": [
                 "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/29.0 Chrome/136.0.0.0 Mobile Safari/537.36",  # noqa
             ],
-            "browser": "Samsung Browser",
+            "browser": "Samsung",
             "os": {'os': 'Android', 'platform': 'Mobile'},
         },
         # CriOS on iOS
