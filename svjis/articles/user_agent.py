@@ -2,7 +2,7 @@ import re
 
 
 def is_bot(user_agent: str) -> bool:
-    bots = [r'crawler', r'bot']
+    bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy']
 
     for b in bots:
         if re.search(b, user_agent, re.IGNORECASE):
