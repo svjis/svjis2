@@ -692,7 +692,7 @@ def redaction_analytics_view(request):
             bot["bot"] = bot.get("bot", 0) + d["total"]
             object_list.append(
                 {
-                    "user_agent": d["user_agent"][:120],
+                    "user_agent": d["user_agent"],
                     "total": d["total"],
                     "browser": browser,
                     "os": osystem,
