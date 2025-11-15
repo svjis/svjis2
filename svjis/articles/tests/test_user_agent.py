@@ -7,7 +7,7 @@ class UserAgentTests(TestCase):
         # Firefox on Linux
         {
             "agent": [
-                "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0",  # noqa
+                "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:144.0) Gecko/20100101 Firefox/144.0",  # noqa
             ],
             "browser": "Firefox",
             "os": {'os': 'Linux', 'platform': 'Desktop'},

@@ -672,7 +672,8 @@ def redaction_analytics_view(request):
         .values('user_agent')
         .annotate(total=Count('*'))
     )
-    object_list = []
+    human_ua = []
+    bot_ua = []
     bsd = {}
     osd = {}
     pld = {}
@@ -688,16 +689,23 @@ def redaction_analytics_view(request):
             osd[osystem] = osd.get(osystem, 0) + d["total"]
             pld[platform] = pld.get(platform, 0) + d["total"]
             bot["human"] = bot.get("human", 0) + d["total"]
-        else:
-            bot["bot"] = bot.get("bot", 0) + d["total"]
-            object_list.append(
+            human_ua.append(
                 {
                     "user_agent": d["user_agent"],
                     "total": d["total"],
-                    "browser": browser,
-                    "os": osystem,
                 }
             )
+        else:
+            bot["bot"] = bot.get("bot", 0) + d["total"]
+            bot_ua.append(
+                {
+                    "user_agent": d["user_agent"],
+                    "total": d["total"],
+                }
+            )
+
+    bot_ua.sort(key=lambda ua: ua["total"], reverse=True)
+    human_ua.sort(key=lambda ua: ua["total"], reverse=True)
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
@@ -705,7 +713,8 @@ def redaction_analytics_view(request):
     ctx['bsd'] = bsd
     ctx['osd'] = osd
     ctx['bot'] = bot
-    ctx['object_list'] = object_list
+    ctx['bot_ua'] = bot_ua
+    ctx['human_ua'] = human_ua
     ctx['header'] = header
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)

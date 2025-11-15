@@ -75,13 +75,30 @@
     );
 </script>
 
-{% if object_list %}
+<h3>{% translate 'Bots' %}</h3>
+{% if bot_ua %}
 <table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
     <tr>
         <th class="list" scope="col">{% translate 'Count' %}</th>
         <th class="list" scope="col">{% translate 'Bot' %}</th>
     </tr>
-    {% for obj in object_list %}
+    {% for obj in bot_ua %}
+    <tr>
+        <td class="list">{{ obj.total }}</td>
+        <td class="list">{{ obj.user_agent }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<h3>{% translate 'Humans' %}</h3>
+{% if human_ua %}
+<table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
+    <tr>
+        <th class="list" scope="col">{% translate 'Count' %}</th>
+        <th class="list" scope="col">{% translate 'Human' %}</th>
+    </tr>
+    {% for obj in human_ua %}
     <tr>
         <td class="list">{{ obj.total }}</td>
         <td class="list">{{ obj.user_agent }}</td>
