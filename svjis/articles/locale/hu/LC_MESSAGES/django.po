@@ -909,7 +909,7 @@ msgstr "Botok"
 
 #: articles/templates/redaction_analytics.html:94
 msgid "Humans"
-msgstr Emberek"
+msgstr "Emberek"
 
 #: articles/templates/redaction_analytics.html:99
 msgid "Human"
