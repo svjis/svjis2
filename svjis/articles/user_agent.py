@@ -3,7 +3,8 @@ import re
 
 def is_bot(user_agent: str) -> bool:
     spoofing = [
-        'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'  # noqa
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',  # noqa
+        'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0',  # noqa
     ]
     bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy']
 
