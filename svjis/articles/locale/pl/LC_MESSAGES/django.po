@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-21 15:27+0200\n"
+"POT-Creation-Date: 2025-11-18 14:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: articles/forms.py:327 articles/models.py:356 articles/models.py:387
+#: articles/forms.py:326 articles/models.py:362 articles/models.py:393
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -28,22 +28,22 @@ msgstr ""
 msgid "Entrance"
 msgstr "Wejście"
 
-#: articles/forms.py:335 articles/templates/fault.html:41
+#: articles/forms.py:334 articles/templates/fault.html:41
 #: articles/templates/fault_log.html:15 articles/templates/faults_list.html:21
 msgid "Resolver"
 msgstr "Rozwiązywacz"
 
-#: articles/forms.py:340
+#: articles/forms.py:339
 msgid "On Behalf Of"
 msgstr "W imieniu użytkownika"
 
-#: articles/models.py:17 articles/models.py:133 articles/models.py:502
+#: articles/models.py:17 articles/models.py:139 articles/models.py:508
 #: articles/templates/redaction_useful_link.html:14
 msgid "Header"
 msgstr "Nagłówek"
 
-#: articles/models.py:21 articles/models.py:121 articles/models.py:136
-#: articles/models.py:151 articles/models.py:508
+#: articles/models.py:21 articles/models.py:127 articles/models.py:142
+#: articles/models.py:157 articles/models.py:514
 #: articles/templates/redaction_article.html:19
 #: articles/templates/redaction_news.html:16
 #: articles/templates/redaction_survey.html:20
@@ -55,8 +55,8 @@ msgstr "Opublikować"
 msgid "Perex"
 msgstr "Akapit wprowadzający"
 
-#: articles/models.py:23 articles/models.py:91 articles/models.py:122
-#: articles/models.py:251 articles/models.py:449 articles/models.py:503
+#: articles/models.py:23 articles/models.py:97 articles/models.py:128
+#: articles/models.py:257 articles/models.py:455 articles/models.py:509
 #: articles/templates/redaction_news.html:17
 msgid "Body"
 msgstr "Treść"
@@ -77,13 +77,17 @@ msgstr "Możliwość przeglądania menu Redakcja"
 msgid "Can edit Article"
 msgstr "Możliwość edycji artykułu"
 
-#: articles/models.py:70 articles/models.py:102 articles/models.py:148
-#: articles/models.py:182 articles/models.py:328 articles/models.py:339
-#: articles/models.py:359 articles/models.py:378 articles/models.py:427
-#: articles/models.py:491 articles/models.py:530
+#: articles/models.py:60
+msgid "UserAgent"
+msgstr "UserAgent"
+
+#: articles/models.py:76 articles/models.py:108 articles/models.py:154
+#: articles/models.py:188 articles/models.py:334 articles/models.py:345
+#: articles/models.py:365 articles/models.py:384 articles/models.py:433
+#: articles/models.py:497 articles/models.py:536
 #: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance.html:15
-#: articles/templates/admin_user_ownes_edit.html:14
+#: articles/templates/admin_user_ownes_edit.html:15
 #: articles/templates/advert_edit.html:57 articles/templates/fault.html:65
 #: articles/templates/personal_my_units.html:14
 #: articles/templates/redaction_article_edit.html:70
@@ -92,125 +96,124 @@ msgstr "Możliwość edycji artykułu"
 msgid "Description"
 msgstr "Opis"
 
-#: articles/models.py:71 articles/models.py:428 articles/models.py:531
+#: articles/models.py:77 articles/models.py:434 articles/models.py:537
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
 #: articles/templates/fault.html:64
 msgid "File"
 msgstr "Plik"
 
-#: articles/models.py:72 articles/models.py:88
+#: articles/models.py:78 articles/models.py:94
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
-#: articles/tests_playwright/test_desktop.py:100
-#: articles/views_redaction.py:165
+#: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:176
 msgid "Article"
 msgstr "Artykuł"
 
-#: articles/models.py:98
+#: articles/models.py:104
 msgid "Can add Article comment"
 msgstr "Możliwość dodawania komentarzy do artykułu"
 
-#: articles/models.py:103 articles/templates/redaction_menu.html:17
+#: articles/models.py:109 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Ukryj"
 
-#: articles/models.py:115
+#: articles/models.py:121
 msgid "Can edit Menu"
 msgstr "Możliwość edycji menu"
 
-#: articles/models.py:129
+#: articles/models.py:135
 msgid "Can edit News"
 msgstr "Możliwość edycji wiadomości"
 
-#: articles/models.py:134 articles/templates/redaction_useful_link.html:15
+#: articles/models.py:140 articles/templates/redaction_useful_link.html:15
 msgid "Link"
 msgstr "Odnośnik"
 
-#: articles/models.py:135 articles/models.py:313
+#: articles/models.py:141 articles/models.py:319
 #: articles/templates/redaction_useful_link.html:16
 msgid "Order"
 msgstr "Kolejność"
 
-#: articles/models.py:143
+#: articles/models.py:149
 msgid "Can edit Useful Links"
 msgstr "Możliwość edycji przydatnych linków"
 
-#: articles/models.py:149
+#: articles/models.py:155
 msgid "Starting day"
 msgstr "Data początkowa"
 
-#: articles/models.py:150
+#: articles/models.py:156
 msgid "Ending day"
 msgstr "Data końcowa"
 
-#: articles/models.py:175
+#: articles/models.py:181
 msgid "Can answer Survey"
 msgstr "Możliwość odpowiadania na ankiety"
 
-#: articles/models.py:176
+#: articles/models.py:182
 msgid "Can edit Survey"
 msgstr "Możliwość edycji ankiet"
 
-#: articles/models.py:226
+#: articles/models.py:232
 msgid "Salutation"
 msgstr "Pozdrowienie"
 
-#: articles/models.py:227 articles/models.py:277 articles/models.py:299
-#: articles/models.py:329 articles/templates/admin_entrance.html:16
+#: articles/models.py:233 articles/models.py:283 articles/models.py:305
+#: articles/models.py:335 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Adres"
 
-#: articles/models.py:228 articles/models.py:278 articles/models.py:300
+#: articles/models.py:234 articles/models.py:284 articles/models.py:306
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "Miasto"
 
-#: articles/models.py:229 articles/models.py:279 articles/models.py:301
+#: articles/models.py:235 articles/models.py:285 articles/models.py:307
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "Kod pocztowy"
 
-#: articles/models.py:230
+#: articles/models.py:236
 msgid "Country"
 msgstr "Kraj"
 
-#: articles/models.py:231 articles/models.py:280 articles/models.py:505
+#: articles/models.py:237 articles/models.py:286 articles/models.py:511
 #: articles/templates/adverts_list.html:39
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:13
 msgid "Phone"
 msgstr "Telefon"
 
-#: articles/models.py:232
+#: articles/models.py:238
 msgid "Show in phonelist"
 msgstr "Pokaż w spisie telefonów"
 
-#: articles/models.py:233
+#: articles/models.py:239
 msgid "Internal note"
 msgstr "Notatka wewnętrzna"
 
-#: articles/models.py:240
+#: articles/models.py:246
 msgid "Can view Administration menu"
 msgstr "Możliwość przeglądania menu Administracja"
 
-#: articles/models.py:241
+#: articles/models.py:247
 msgid "Can edit Users"
 msgstr "Możliwość edycji użytkowników"
 
-#: articles/models.py:242
+#: articles/models.py:248
 msgid "Can edit Groups"
 msgstr "Możliwość edycji grup"
 
-#: articles/models.py:243
+#: articles/models.py:249
 msgid "Can view Personal settings menu"
 msgstr "Możliwość przeglądania menu Ustawienia osobiste"
 
-#: articles/models.py:244
+#: articles/models.py:250
 msgid "Can view Phonelist"
 msgstr "Możliwość przeglądania listy telefonów"
 
-#: articles/models.py:249 articles/models.py:281 articles/models.py:506
+#: articles/models.py:255 articles/models.py:287 articles/models.py:512
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -219,149 +222,149 @@ msgstr "Możliwość przeglądania listy telefonów"
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: articles/models.py:250 articles/models.py:376
+#: articles/models.py:256 articles/models.py:382
 #: articles/templates/admin_messages.html:13
 #: articles/templates/faults_list.html:18
 msgid "Subject"
 msgstr "Temat"
 
-#: articles/models.py:261 articles/templates/admin_preferences.html:15
+#: articles/models.py:267 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Klucz"
 
-#: articles/models.py:262 articles/templates/admin_preferences.html:16
+#: articles/models.py:268 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Wartość"
 
-#: articles/models.py:268
+#: articles/models.py:274
 msgid "Can edit Preferences"
 msgstr "Możliwość edycji preferencji"
 
-#: articles/models.py:276 articles/templates/admin_group.html:16
+#: articles/models.py:282 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:14
 msgid "Name"
 msgstr "Nazwa"
 
-#: articles/models.py:282
+#: articles/models.py:288
 msgid "Registration no."
 msgstr "Nr rejestracyjny"
 
-#: articles/models.py:283
+#: articles/models.py:289
 msgid "VAT Registration no."
 msgstr "Nr rejestracji VAT"
 
-#: articles/models.py:284 articles/templates/contact_company.html:54
+#: articles/models.py:290 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Domena internetowa"
 
-#: articles/models.py:285
+#: articles/models.py:291
 msgid "Header picture"
 msgstr "Obraz w nagłówku"
 
-#: articles/models.py:295
+#: articles/models.py:301
 msgid "Can edit Company"
 msgstr "Możliwość edycji firmy"
 
-#: articles/models.py:302
+#: articles/models.py:308
 msgid "Land Registration no."
 msgstr "Identyfikator w rejestrze gruntów"
 
-#: articles/models.py:308
+#: articles/models.py:314
 msgid "Can edit Building"
 msgstr "Możliwość edycji budynku"
 
-#: articles/models.py:312 articles/templates/admin_company_edit.html:7
+#: articles/models.py:318 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
 #: articles/tests_playwright/commands.py:86 articles/views_admin.py:20
 msgid "Company"
 msgstr "Spółdzielnia"
 
-#: articles/models.py:315 articles/templates/admin_board.html:16
+#: articles/models.py:321 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Stanowisko"
 
-#: articles/models.py:326 articles/models.py:350
+#: articles/models.py:332 articles/models.py:356
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11
 #: articles/tests_playwright/commands.py:104 articles/views_admin.py:36
 msgid "Building"
 msgstr "Budynek"
 
-#: articles/models.py:353 articles/models.py:477 articles/models.py:501
+#: articles/models.py:359 articles/models.py:483 articles/models.py:507
 #: articles/templates/admin_building_unit.html:19
 #: articles/templates/admin_building_unit.html:59
-#: articles/templates/admin_user_ownes_edit.html:12
+#: articles/templates/admin_user_ownes_edit.html:13
 #: articles/templates/personal_my_units.html:12
 msgid "Type"
 msgstr "Typ"
 
-#: articles/models.py:358 articles/templates/admin_building_unit.html:61
-#: articles/templates/admin_user_ownes_edit.html:13
+#: articles/models.py:364 articles/templates/admin_building_unit.html:61
+#: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "Identyfikator rejestracyjny"
 
-#: articles/models.py:360 articles/templates/admin_building_unit.html:63
+#: articles/models.py:366 articles/templates/admin_building_unit.html:63
 msgid "Numerator"
 msgstr "Licznik"
 
-#: articles/models.py:361 articles/templates/admin_building_unit.html:64
+#: articles/models.py:367 articles/templates/admin_building_unit.html:64
 msgid "Denominator"
 msgstr "Mianownik"
 
-#: articles/models.py:385 articles/models.py:469
+#: articles/models.py:391 articles/models.py:475
 #: articles/templates/fault.html:45
 msgid "Closed"
 msgstr "Zamknięte"
 
-#: articles/models.py:404
+#: articles/models.py:410
 msgid "Can view Faults menu"
 msgstr "Możliwość przeglądania menu Usterki"
 
-#: articles/models.py:405
+#: articles/models.py:411
 msgid "Can report fault"
 msgstr "Możliwość zgłaszania usterek"
 
-#: articles/models.py:406
+#: articles/models.py:412
 msgid "Can resolve fault"
 msgstr "Możliwość rozwiązywania usterek"
 
-#: articles/models.py:429 articles/models.py:446
+#: articles/models.py:435 articles/models.py:452
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Zgłoszenie usterki"
 
-#: articles/models.py:456
+#: articles/models.py:462
 msgid "Can add Fault comment"
 msgstr "Możliwość dodawania komentarzy do usterek"
 
-#: articles/models.py:467
+#: articles/models.py:473
 msgid "Modified"
 msgstr "Zmodyfikowano"
 
-#: articles/models.py:468
+#: articles/models.py:474
 msgid "Assigned"
 msgstr "Przypisano"
 
-#: articles/models.py:470
+#: articles/models.py:476
 msgid "Reopened"
 msgstr "Ponownie otwarto"
 
-#: articles/models.py:471
+#: articles/models.py:477
 msgid "Created"
 msgstr "Utworzono"
 
-#: articles/models.py:520
+#: articles/models.py:526
 msgid "Can view Adverts menu"
 msgstr "Możliwość przeglądania menu Ogłoszenia"
 
-#: articles/models.py:521
+#: articles/models.py:527
 msgid "Can add Advert"
 msgstr "Możliwość dodawania ogłoszeń"
 
-#: articles/models.py:532
+#: articles/models.py:538
 msgid "Advert"
 msgstr "Ogłoszenie"
 
@@ -399,11 +402,11 @@ msgstr "Edytuj"
 
 #: articles/templates/admin_board.html:24
 #: articles/templates/admin_building_unit.html:73
-#: articles/templates/admin_building_unit_owners_edit.html:23
+#: articles/templates/admin_building_unit_owners_edit.html:25
 #: articles/templates/admin_entrance.html:24
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
-#: articles/templates/admin_user_ownes_edit.html:25
+#: articles/templates/admin_user_ownes_edit.html:27
 #: articles/templates/advert_edit.html:66 articles/templates/fault.html:78
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
@@ -412,11 +415,11 @@ msgstr "Czy chcesz usunąć"
 
 #: articles/templates/admin_board.html:24
 #: articles/templates/admin_building_unit.html:73
-#: articles/templates/admin_building_unit_owners_edit.html:23
+#: articles/templates/admin_building_unit_owners_edit.html:25
 #: articles/templates/admin_entrance.html:24
 #: articles/templates/admin_group.html:25
 #: articles/templates/admin_preferences.html:24
-#: articles/templates/admin_user_ownes_edit.html:25
+#: articles/templates/admin_user_ownes_edit.html:27
 #: articles/templates/advert_edit.html:66 articles/templates/fault.html:78
 #: articles/templates/redaction_article_edit.html:74
 #: articles/templates/redaction_menu.html:27
@@ -464,6 +467,7 @@ msgid "Export to Excel"
 msgstr "Eksportuj do Excela"
 
 #: articles/templates/admin_building_unit.html:72
+#: articles/templates/admin_user_ownes_edit.html:23
 msgid "Owners"
 msgstr "Właściciele"
 
@@ -472,18 +476,23 @@ msgstr "Właściciele"
 msgid "Building unit"
 msgstr "Jednostka budynku"
 
-#: articles/templates/admin_building_unit_owners_edit.html:12
+#: articles/templates/admin_building_unit_owners_edit.html:13
 #: articles/templates/redaction_article_notifications.html:18
 msgid "First Name"
 msgstr "Imię"
 
-#: articles/templates/admin_building_unit_owners_edit.html:13
+#: articles/templates/admin_building_unit_owners_edit.html:14
 #: articles/templates/redaction_article_notifications.html:17
 msgid "Last Name"
 msgstr "Nazwisko"
 
-#: articles/templates/admin_building_unit_owners_edit.html:39
-#: articles/templates/admin_user_ownes_edit.html:41
+#: articles/templates/admin_building_unit_owners_edit.html:22
+#: articles/templates/admin_user.html:63
+msgid "Units"
+msgstr "Jednostki"
+
+#: articles/templates/admin_building_unit_owners_edit.html:41
+#: articles/templates/admin_user_ownes_edit.html:43
 msgid "Add"
 msgstr "Dodaj"
 
@@ -584,10 +593,6 @@ msgstr "Aktywny"
 msgid "Last login"
 msgstr "Ostatnie logowanie"
 
-#: articles/templates/admin_user.html:63
-msgid "Units"
-msgstr "Jednostki"
-
 #: articles/templates/admin_user_edit.html:13
 #: articles/templates/personal_settings_edit.html:12
 msgid "Person"
@@ -677,14 +682,14 @@ msgstr "Wróć do listy artykułów"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
-#: articles/tests_playwright/commands.py:489 articles/views_redaction.py:32
-#: articles/views_redaction.py:334
+#: articles/tests_playwright/commands.py:489 articles/views_redaction.py:35
+#: articles/views_redaction.py:345
 msgid "News"
 msgstr "Aktualności"
 
 #: articles/templates/box-survey.html:8
 #: articles/templates/redaction_survey_edit.html:7
-#: articles/views_redaction.py:584
+#: articles/views_redaction.py:595
 msgid "Survey"
 msgstr "Ankieta"
 
@@ -701,7 +706,7 @@ msgid "Top articles"
 msgstr "Najczęściej czytane artykuły"
 
 #: articles/templates/box-useful-links.html:7
-#: articles/tests_playwright/commands.py:551 articles/views_redaction.py:40
+#: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
 msgid "Useful Links"
 msgstr "Przydatne linki"
 
@@ -723,7 +728,7 @@ msgid "Phonelist"
 msgstr "Lista kontaktów"
 
 #: articles/templates/error_404.html:8
-#: articles/tests_playwright/test_desktop.py:90
+#: articles/tests_playwright/test_desktop.py:89
 msgid "Page not found"
 msgstr "Strona nie została znaleziona"
 
@@ -878,6 +883,39 @@ msgstr "Nowe hasło"
 msgid "New password once again"
 msgstr "Powtórz nowe hasło"
 
+#: articles/templates/redaction_analytics.html:34
+msgid "Platform"
+msgstr "Platforma"
+
+#: articles/templates/redaction_analytics.html:47
+msgid "Browser"
+msgstr "Przeglądarka"
+
+#: articles/templates/redaction_analytics.html:60
+msgid "Operating System"
+msgstr "System operacyjny"
+
+#: articles/templates/redaction_analytics.html:72
+#: articles/templates/redaction_analytics.html:78
+msgid "Bots"
+msgstr "Boty"
+
+#: articles/templates/redaction_analytics.html:82
+msgid "Count"
+msgstr "Liczba"
+
+#: articles/templates/redaction_analytics.html:83
+msgid "Bot"
+msgstr "Bot"
+
+#: articles/templates/redaction_analytics.html:94
+msgid "Humans"
+msgstr "Ludzie"
+
+#: articles/templates/redaction_analytics.html:99
+msgid "Human"
+msgstr "Człowiek"
+
 #: articles/templates/redaction_article.html:8
 #: articles/tests_playwright/commands.py:427
 msgid "Create new article"
@@ -885,7 +923,7 @@ msgstr "Utwórz nowy artykuł"
 
 #: articles/templates/redaction_article.html:16
 #: articles/templates/redaction_menu.html:7
-#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:56
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:59
 msgid "Menu"
 msgstr "Menu"
 
@@ -930,7 +968,7 @@ msgstr "Poziom"
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
 #: articles/tests_playwright/commands.py:621 articles/utils.py:41
-#: articles/views.py:148 articles/views.py:217 articles/views_redaction.py:24
+#: articles/views.py:148 articles/views.py:218 articles/views_redaction.py:27
 msgid "Articles"
 msgstr "Artykuły"
 
@@ -1071,9 +1109,9 @@ msgstr "Administracja"
 #: articles/views_admin.py:736 articles/views_admin.py:794
 #: articles/views_adverts.py:122 articles/views_adverts.py:144
 #: articles/views_faults.py:205 articles/views_faults.py:257
-#: articles/views_personal_settings.py:75 articles/views_redaction.py:128
-#: articles/views_redaction.py:249 articles/views_redaction.py:390
-#: articles/views_redaction.py:463 articles/views_redaction.py:557
+#: articles/views_personal_settings.py:75 articles/views_redaction.py:139
+#: articles/views_redaction.py:260 articles/views_redaction.py:401
+#: articles/views_redaction.py:474 articles/views_redaction.py:568
 msgid "Saved"
 msgstr "Zapisano"
 
@@ -1088,26 +1126,26 @@ msgstr "Użytkownicy"
 #: articles/tests_playwright/commands.py:510
 #: articles/tests_playwright/commands.py:551
 #: articles/tests_playwright/commands.py:631 articles/utils.py:64
-#: articles/views_redaction.py:91 articles/views_redaction.py:108
-#: articles/views_redaction.py:179 articles/views_redaction.py:207
-#: articles/views_redaction.py:277 articles/views_redaction.py:297
-#: articles/views_redaction.py:347 articles/views_redaction.py:367
-#: articles/views_redaction.py:423 articles/views_redaction.py:443
-#: articles/views_redaction.py:496 articles/views_redaction.py:518
-#: articles/views_redaction.py:587
+#: articles/views_redaction.py:102 articles/views_redaction.py:119
+#: articles/views_redaction.py:190 articles/views_redaction.py:218
+#: articles/views_redaction.py:288 articles/views_redaction.py:308
+#: articles/views_redaction.py:358 articles/views_redaction.py:378
+#: articles/views_redaction.py:434 articles/views_redaction.py:454
+#: articles/views_redaction.py:507 articles/views_redaction.py:529
+#: articles/views_redaction.py:598 articles/views_redaction.py:711
 msgid "Redaction"
 msgstr "Redakcja"
 
 #: articles/tests_playwright/commands.py:510
-#: articles/tests_playwright/commands.py:631 articles/views_redaction.py:48
-#: articles/views_redaction.py:483
+#: articles/tests_playwright/commands.py:631 articles/views_redaction.py:51
+#: articles/views_redaction.py:494
 msgid "Surveys"
 msgstr "Ankiety"
 
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
 #: articles/tests_playwright/commands.py:621
-#: articles/tests_playwright/test_desktop.py:103 articles/views.py:25
+#: articles/tests_playwright/test_desktop.py:102 articles/views.py:25
 #: articles/views.py:27 articles/views.py:100
 msgid "All articles"
 msgstr "Wszystkie artykuły"
@@ -1155,21 +1193,21 @@ msgid "All"
 msgstr "Wszystko"
 
 #: articles/views.py:109 articles/views_faults.py:72
-#: articles/views_redaction.py:153
+#: articles/views_redaction.py:164
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr ""
 "Wyszukiwanie: Słowo kluczowe '{}' jest zbyt krótkie. Wprowadź co najmniej 3 "
 "znaki."
 
 #: articles/views.py:112 articles/views_faults.py:75
-#: articles/views_redaction.py:156
+#: articles/views_redaction.py:167
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr ""
 "Wyszukiwanie: Słowo kluczowe jest zbyt długie. Wprowadź maksymalnie 100 "
 "znaków."
 
 #: articles/views.py:117 articles/views_faults.py:79
-#: articles/views_redaction.py:162
+#: articles/views_redaction.py:173
 msgid "Search results"
 msgstr "Wyniki wyszukiwania"
 
@@ -1177,11 +1215,11 @@ msgstr "Wyniki wyszukiwania"
 msgid "Please choose an option."
 msgstr "Proszę wybrać jedną opcję."
 
-#: articles/views.py:295
+#: articles/views.py:296
 msgid "Wrong username or password"
 msgstr "Nieprawidłowa nazwa użytkownika lub hasło"
 
-#: articles/views.py:296
+#: articles/views.py:297
 msgid "In case you lost your password use Lost Password link"
 msgstr ""
 "W przypadku utraty danych logowania, skorzystaj z linku 'Zapomniane hasło'."
@@ -1235,6 +1273,10 @@ msgstr "Niepoprawny adres e-mail"
 msgid "Credentials have been sent to your e-mail"
 msgstr "Dane logowania zostały wysłane na Twój adres e-mail"
 
-#: articles/views_redaction.py:410
+#: articles/views_redaction.py:67 articles/views_redaction.py:665
+msgid "Analytics"
+msgstr "Analiza"
+
+#: articles/views_redaction.py:421
 msgid "Useful links"
 msgstr "Przydatne linki"
