@@ -688,7 +688,7 @@ def redaction_analytics_view(request):
             bsd[browser] = bsd.get(browser, 0) + d["total"]
             osd[osystem] = osd.get(osystem, 0) + d["total"]
             pld[platform] = pld.get(platform, 0) + d["total"]
-            bot["human"] = bot.get("human", 0) + d["total"]
+            bot[_("Human")] = bot.get(_("Human"), 0) + d["total"]
             human_ua.append(
                 {
                     "user_agent": d["user_agent"],
@@ -696,7 +696,7 @@ def redaction_analytics_view(request):
                 }
             )
         else:
-            bot["bot"] = bot.get("bot", 0) + d["total"]
+            bot[_("Bot")] = bot.get(_("Bot"), 0) + d["total"]
             bot_ua.append(
                 {
                     "user_agent": d["user_agent"],

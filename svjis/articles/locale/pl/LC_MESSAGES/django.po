@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-18 14:16+0100\n"
+"POT-Creation-Date: 2025-11-18 15:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -901,6 +901,7 @@ msgid "Bots"
 msgstr "Boty"
 
 #: articles/templates/redaction_analytics.html:82
+#: articles/templates/redaction_analytics.html:98
 msgid "Count"
 msgstr "Liczba"
 
