@@ -1,27 +1,47 @@
 import re
 
 
+def is_bot(user_agent: str) -> bool:
+    spoofing = [
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'  # noqa
+    ]
+    bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy']
+
+    if not re.search(r'^Mozilla/5\.0 \(', user_agent):
+        return True
+
+    if user_agent in spoofing:
+        return True
+
+    for b in bots:
+        if re.search(b, user_agent, re.IGNORECASE):
+            return True
+
+    return False
+
+
 def get_browser(user_agent: str) -> dict:
     browsers = {
         'edge': r'Edg\/(\d+\.?\d*)',
         'opera': r'Opera\/(\d+\.?\d*)|OPR\/(\d+\.?\d*)',
         'firefox': r'Firefox\/(\d+\.?\d*)',
         'safari': r'Version\/(\d+\.?\d*)',
-        'samsung browser': r'SamsungBrowser\/(\d+\.?\d*)',
+        'samsung': r'SamsungBrowser\/(\d+\.?\d*)',
         'crios': r'CriOS\/(\d+\.?\d*)',
         'ie': r'MSIE (\d+\.?\d*)|Trident.*rv:(\d+\.?\d*)',
         'chrome': r'Chrome\/(\d+\.?\d*)',
     }
 
-    for browser, pattern in browsers.items():
-        match = re.search(pattern, user_agent)
-        if match:
-            version = (
-                match.group(1) or match.group(2)
-                if match.lastindex is not None and match.lastindex > 1
-                else match.group(1)
-            )
-            return {'browser': browser.title(), 'version': version, 'user_agent': user_agent}
+    if not is_bot(user_agent):
+        for browser, pattern in browsers.items():
+            match = re.search(pattern, user_agent)
+            if match:
+                version = (
+                    match.group(1) or match.group(2)
+                    if match.lastindex is not None and match.lastindex > 1
+                    else match.group(1)
+                )
+                return {'browser': browser.title(), 'version': version, 'user_agent': user_agent}
 
     return {'browser': 'Unknown', 'version': 'Unknown', 'user_agent': user_agent}
 
@@ -37,10 +57,11 @@ def get_os(user_agent: str) -> dict:
         r'ubuntu': 'Ubuntu:Desktop',
     }
 
-    for pattern, result in patterns.items():
-        match = re.search(pattern, ua)
-        if match:
-            r = str(result).split(':')
-            return {'os': r[0], 'platform': r[1]}
+    if not is_bot(user_agent):
+        for pattern, result in patterns.items():
+            match = re.search(pattern, ua)
+            if match:
+                r = str(result).split(':')
+                return {'os': r[0], 'platform': r[1]}
 
-    return {'os': 'Unknown OS', 'platform': 'Unknown'}
+    return {'os': 'Unknown', 'platform': 'Unknown'}
