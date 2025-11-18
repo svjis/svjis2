@@ -669,6 +669,7 @@ def redaction_analytics_view(request):
     data = (
         models.ArticleLog.objects.filter(entry_time__gte=top_history_from)
         .exclude(user_agent='')
+        # .exclude(user__isnull=True)
         .values('user_agent')
         .annotate(total=Count('*'))
     )
