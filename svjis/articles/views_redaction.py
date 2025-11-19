@@ -666,13 +666,13 @@ def redaction_analytics_view(request):
     top_history_from = make_aware(
         datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365))
     )
-    data = (
-        models.ArticleLog.objects.filter(entry_time__gte=top_history_from)
-        .exclude(user_agent='')
-        # .exclude(user__isnull=True)
-        .values('user_agent')
-        .annotate(total=Count('*'))
-    )
+
+    data = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).exclude(user_agent='')
+    scope = request.GET.get('scope', 'all')
+    if scope == 'logged':
+        data = data.exclude(user__isnull=True)
+    data = data.values('user_agent').annotate(total=Count('*'))
+
     human_ua = []
     bot_ua = []
     bsd = {}
@@ -710,6 +710,7 @@ def redaction_analytics_view(request):
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
+    ctx['scope'] = scope
     ctx['pld'] = pld
     ctx['bsd'] = bsd
     ctx['osd'] = osd
