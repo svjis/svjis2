@@ -6,7 +6,7 @@
 
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 
-[{% if scope == 'logged' %}<a href="{% url 'redaction_analytics' %}">{% translate 'All users' %}</a>{% else %}<a href="{% url 'redaction_analytics' %}?scope=logged">{% translate 'Logged users only' %}</a>{% endif %}]
+[{% if scope == 'logged' %}<a href="{% url 'redaction_analytics' %}">{% translate 'Show all users' %}</a>{% else %}<a href="{% url 'redaction_analytics' %}?scope=logged">{% translate 'Show logged users only' %}</a>{% endif %}]
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/static/js/Create_Chart.js"></script>
