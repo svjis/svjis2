@@ -673,12 +673,12 @@ def redaction_analytics_view(request):
         data = data.exclude(user__isnull=True)
     data = data.values('user_agent').annotate(total=Count('*'))
 
-    human_ua = []
-    bot_ua = []
-    bsd = {}
-    osd = {}
-    pld = {}
-    bot = {}
+    human_ua_table = []
+    bot_ua_table = []
+    browser_chart = {}
+    os_chart = {}
+    platform_chart = {}
+    bot_chart = {}
     for d in data:
         browser = get_browser(d["user_agent"])["browser"]
         osystem_dict = get_os(d["user_agent"])
@@ -686,37 +686,37 @@ def redaction_analytics_view(request):
         platform = osystem_dict["platform"]
 
         if browser != 'Unknown' and osystem != 'Unknown':
-            bsd[browser] = bsd.get(browser, 0) + d["total"]
-            osd[osystem] = osd.get(osystem, 0) + d["total"]
-            pld[platform] = pld.get(platform, 0) + d["total"]
-            bot[_("Human")] = bot.get(_("Human"), 0) + d["total"]
-            human_ua.append(
+            browser_chart[browser] = browser_chart.get(browser, 0) + d["total"]
+            os_chart[osystem] = os_chart.get(osystem, 0) + d["total"]
+            platform_chart[platform] = platform_chart.get(platform, 0) + d["total"]
+            bot_chart[_("Human")] = bot_chart.get(_("Human"), 0) + d["total"]
+            human_ua_table.append(
                 {
                     "user_agent": d["user_agent"],
                     "total": d["total"],
                 }
             )
         else:
-            bot[_("Bot")] = bot.get(_("Bot"), 0) + d["total"]
-            bot_ua.append(
+            bot_chart[_("Bot")] = bot_chart.get(_("Bot"), 0) + d["total"]
+            bot_ua_table.append(
                 {
                     "user_agent": d["user_agent"],
                     "total": d["total"],
                 }
             )
 
-    bot_ua.sort(key=lambda ua: ua["total"], reverse=True)
-    human_ua.sort(key=lambda ua: ua["total"], reverse=True)
+    bot_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
+    human_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['scope'] = scope
-    ctx['pld'] = pld
-    ctx['bsd'] = bsd
-    ctx['osd'] = osd
-    ctx['bot'] = bot
-    ctx['bot_ua'] = bot_ua
-    ctx['human_ua'] = human_ua
+    ctx['platform_chart'] = platform_chart
+    ctx['browser_chart'] = browser_chart
+    ctx['os_chart'] = os_chart
+    ctx['bot_chart'] = bot_chart
+    ctx['bot_ua_table'] = bot_ua_table
+    ctx['human_ua_table'] = human_ua_table
     ctx['header'] = header
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
