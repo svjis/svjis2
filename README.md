@@ -41,7 +41,7 @@ Create the configuration
 ```
 cd svjis
 python manage.py migrate
-python manage.py svjis_setup --password <password for admin user>
+python manage.py svjis_setup --password <choose password for admin user>
 ```
 
 > [!NOTE]
@@ -60,7 +60,7 @@ The application runs at the address http://127.0.0.1:8000/ with the user `admin`
 
 The method of starting mentioned is suitable for quickly testing the application on your computer or for developers. If you want to deploy SVJIS on a production server, please read the [Django documentation](https://docs.djangoproject.com/en/5.0/howto/deployment/).
 
-On the project pages, you will find a step-by-step [example of installation on a server (Debian, Apache, Postgres)](https://svjis.github.io/Instalace/).
+On the project pages, you will find a step-by-step [example of installation on a server (Debian or Raspberry Pi)](https://svjis.github.io/Instalace/).
 
 ## 3 Parameterization
 
