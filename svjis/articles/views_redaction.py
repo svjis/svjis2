@@ -663,9 +663,9 @@ def redaction_survey_results_export_to_excel_view(request, pk):
 @require_GET
 def redaction_analytics_view(request):
     header = _("Analytics")
-    top_history_from = make_aware(
-        datetime.now() - timedelta(days=getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365))
-    )
+    history_in_days = getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365)
+    time_span_info = _("Data for last {} days.").format(history_in_days)
+    top_history_from = make_aware(datetime.now() - timedelta(days=history_in_days))
 
     data = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).exclude(user_agent='')
     scope = request.GET.get('scope', 'all')
@@ -718,6 +718,7 @@ def redaction_analytics_view(request):
     ctx['bot_ua_table'] = bot_ua_table
     ctx['human_ua_table'] = human_ua_table
     ctx['header'] = header
+    ctx['time_span_info'] = time_span_info
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
     return render(request, "redaction_analytics.html", ctx)
