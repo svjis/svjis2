@@ -38,23 +38,3 @@ function createChartConfig(type, data, options = {}) {
         }
     };
 }
-
-
-function sortDataInPlace(data) {
-    const pairs = data.labels.map((label, index) => ({
-        label: label,
-        value: data.values[index]
-    }));
-
-    pairs.sort((a, b) => b.value - a.value);
-
-    data.labels.length = 0;
-    data.values.length = 0;
-
-    pairs.forEach(pair => {
-        data.labels.push(pair.label);
-        data.values.push(pair.value);
-    });
-
-    return data;
-}

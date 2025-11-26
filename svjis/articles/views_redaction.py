@@ -711,10 +711,10 @@ def redaction_analytics_view(request):
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['scope'] = scope
-    ctx['platform_chart'] = platform_chart
-    ctx['browser_chart'] = browser_chart
-    ctx['os_chart'] = os_chart
-    ctx['bot_chart'] = bot_chart
+    ctx['platform_chart'] = dict(sorted(platform_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['browser_chart'] = dict(sorted(browser_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['os_chart'] = dict(sorted(os_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['bot_chart'] = dict(sorted(bot_chart.items(), key=lambda item: item[1], reverse=True))
     ctx['bot_ua_table'] = bot_ua_table
     ctx['human_ua_table'] = human_ua_table
     ctx['header'] = header

@@ -25,10 +25,10 @@
 </div>
 
 <script>
-    const platformData = sortDataInPlace({
+    const platformData = {
         labels: [{% for key, value in platform_chart.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in platform_chart.items %}{{ value }}, {% endfor %}],
-    });
+    };
 
     const platformChart = new Chart(
         document.getElementById('platformChart').getContext('2d'),
@@ -38,10 +38,10 @@
         })
     );
 
-    const browserData = sortDataInPlace({
+    const browserData = {
         labels: [{% for key, value in browser_chart.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in browser_chart.items %}{{ value }}, {% endfor %}],
-    });
+    };
 
     const browserChart = new Chart(
         document.getElementById('browserChart').getContext('2d'),
@@ -51,10 +51,10 @@
         })
     );
 
-    const osData = sortDataInPlace({
+    const osData = {
         labels: [{% for key, value in os_chart.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in os_chart.items %}{{ value }}, {% endfor %}],
-    });
+    };
 
     const osChart = new Chart(
         document.getElementById('osChart').getContext('2d'),
@@ -63,10 +63,10 @@
             legendPosition: 'right'
         })
     );
-    const botData = sortDataInPlace({
+    const botData = {
         labels: [{% for key, value in bot_chart.items %}'{{ key }}', {% endfor %}],
         values: [{% for key, value in bot_chart.items %}{{ value }}, {% endfor %}],
-    });
+    };
 
     const botChart = new Chart(
         document.getElementById('botChart').getContext('2d'),
