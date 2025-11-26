@@ -113,7 +113,7 @@ LANGUAGES = (
     ('cs', 'Česky'),
     ('en', 'English'),
     ('hu', 'Magyar'),
-    ('nl', 'Nederlands'),
+    ('nl', 'Dutch'),
     ('pl', 'Polski'),
     ('ru', 'Русский'),
     ('sk', 'Slovensky'),
