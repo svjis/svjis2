@@ -882,11 +882,11 @@ msgstr "Nové heslo ještě jednou"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show all users"
-msgstr ""
+msgstr "Ukázat všechny uživatele"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show logged users only"
-msgstr ""
+msgstr "Ukázat jen přihlášené uživatele"
 
 #: articles/templates/redaction_analytics.html:38
 msgid "Platform"
@@ -1289,4 +1289,4 @@ msgstr "Užitečné odkazy"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."
-msgstr ""
+msgstr "Data za posledních {} dní."

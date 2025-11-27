@@ -882,11 +882,11 @@ msgstr "New password once again"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show all users"
-msgstr ""
+msgstr "Show all users"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show logged users only"
-msgstr ""
+msgstr "Show logged users only"
 
 #: articles/templates/redaction_analytics.html:38
 msgid "Platform"
@@ -1286,4 +1286,4 @@ msgstr "Useful links"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."
-msgstr ""
+msgstr "Data for last {} days."
