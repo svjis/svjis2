@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-18 14:16+0100\n"
+"POT-Creation-Date: 2025-11-27 23:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -880,37 +880,47 @@ msgstr "Nové heslo"
 msgid "New password once again"
 msgstr "Nové heslo znovu"
 
-#: articles/templates/redaction_analytics.html:34
+#: articles/templates/redaction_analytics.html:11
+msgid "Show all users"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:11
+msgid "Show logged users only"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:38
 msgid "Platform"
 msgstr "Platforma"
 
-#: articles/templates/redaction_analytics.html:47
+#: articles/templates/redaction_analytics.html:51
 msgid "Browser"
 msgstr "Prehliadač"
 
-#: articles/templates/redaction_analytics.html:60
+#: articles/templates/redaction_analytics.html:64
 msgid "Operating System"
 msgstr "Operačný systém"
 
-#: articles/templates/redaction_analytics.html:72
-#: articles/templates/redaction_analytics.html:78
+#: articles/templates/redaction_analytics.html:76
+#: articles/templates/redaction_analytics.html:83
 msgid "Bots"
 msgstr "Boti"
 
-#: articles/templates/redaction_analytics.html:82
-#: articles/templates/redaction_analytics.html:98
+#: articles/templates/redaction_analytics.html:86
+#: articles/templates/redaction_analytics.html:102
 msgid "Count"
 msgstr "Počet"
 
-#: articles/templates/redaction_analytics.html:83
+#: articles/templates/redaction_analytics.html:87
+#: articles/views_redaction.py:700
 msgid "Bot"
 msgstr "Boti"
 
-#: articles/templates/redaction_analytics.html:94
+#: articles/templates/redaction_analytics.html:99
 msgid "Humans"
 msgstr "Ľudia"
 
-#: articles/templates/redaction_analytics.html:99
+#: articles/templates/redaction_analytics.html:103
+#: articles/views_redaction.py:692
 msgid "Human"
 msgstr "Človek"
 
@@ -1130,7 +1140,7 @@ msgstr "Používatelia"
 #: articles/views_redaction.py:358 articles/views_redaction.py:378
 #: articles/views_redaction.py:434 articles/views_redaction.py:454
 #: articles/views_redaction.py:507 articles/views_redaction.py:529
-#: articles/views_redaction.py:598 articles/views_redaction.py:711
+#: articles/views_redaction.py:598 articles/views_redaction.py:712
 msgid "Redaction"
 msgstr "Redakcia"
 
@@ -1274,3 +1284,7 @@ msgstr "Analytika"
 #: articles/views_redaction.py:421
 msgid "Useful links"
 msgstr "Užitočné odkazy"
+
+#: articles/views_redaction.py:667
+msgid "Data for last {} days."
+msgstr ""
