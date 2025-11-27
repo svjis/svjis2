@@ -1,12 +1,9 @@
 import re
+from django.conf import settings
 
 
 def is_bot(user_agent: str) -> bool:
-    spoofing = [
-        'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',  # noqa
-        'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0',  # noqa
-        'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.6478.114 Safari/537.36',  # noqa
-    ]
+    spoofing = getattr(settings, 'SVJIS_SPOOFING_USER_AGENTS', [])
     bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy', r'agency']
 
     if not re.search(r'^Mozilla/5\.0 \(', user_agent):
