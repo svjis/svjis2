@@ -1,6 +1,6 @@
 # SVJIS2
 
-[![UnitTests](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=svjis_svjis-py&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=svjis_svjis-py)
+[![UnitTests](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=svjis_svjis-py&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=svjis_svjis-py) [![Translation Status](https://translate.codeberg.org/widget/svjis/svjis2/svg-badge.svg)](https://translate.codeberg.org/engage/svjis/)
 
 Information system for homeowners' associations (SVJ). :house_with_garden:
 
