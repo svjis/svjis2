@@ -418,7 +418,7 @@ def redaction_news_delete_view(request, pk):
 @require_GET
 def redaction_useful_link_view(request):
     useful_link_list = models.UsefulLink.objects.all()
-    header = _("Useful links")
+    header = _("Useful Links")
 
     # Paginator
     is_paginated = len(useful_link_list) > getattr(settings, 'SVJIS_USEFUL_LIST_PAGE_SIZE', 10)
