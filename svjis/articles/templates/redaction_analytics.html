@@ -1,0 +1,114 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load article_filters i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+
+<p>{{ time_span_info }}</p>
+
+[{% if scope == 'logged' %}<a href="{% url 'redaction_analytics' %}">{% translate 'Show all users' %}</a>{% else %}<a href="{% url 'redaction_analytics' %}?scope=logged">{% translate 'Show logged users only' %}</a>{% endif %}]
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/Create_Chart.js"></script>
+
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="platformChart"></canvas>
+</div>
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="browserChart"></canvas>
+</div>
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="osChart"></canvas>
+</div>
+<div style="max-width: 400px; max-height: 400px; margin: 0 auto;">
+    <canvas id="botChart"></canvas>
+</div>
+
+<script>
+    const platformData = {
+        labels: [{% for key, value in platform_chart.items %}'{{ key }}', {% endfor %}],
+        values: [{% for key, value in platform_chart.items %}{{ value }}, {% endfor %}],
+    };
+
+    const platformChart = new Chart(
+        document.getElementById('platformChart').getContext('2d'),
+        createChartConfig('pie', platformData, {
+            title: '{% translate 'Platform' %}',
+            legendPosition: 'right'
+        })
+    );
+
+    const browserData = {
+        labels: [{% for key, value in browser_chart.items %}'{{ key }}', {% endfor %}],
+        values: [{% for key, value in browser_chart.items %}{{ value }}, {% endfor %}],
+    };
+
+    const browserChart = new Chart(
+        document.getElementById('browserChart').getContext('2d'),
+        createChartConfig('pie', browserData, {
+            title: '{% translate 'Browser' %}',
+            legendPosition: 'right'
+        })
+    );
+
+    const osData = {
+        labels: [{% for key, value in os_chart.items %}'{{ key }}', {% endfor %}],
+        values: [{% for key, value in os_chart.items %}{{ value }}, {% endfor %}],
+    };
+
+    const osChart = new Chart(
+        document.getElementById('osChart').getContext('2d'),
+        createChartConfig('pie', osData, {
+            title: '{% translate 'Operating System' %}',
+            legendPosition: 'right'
+        })
+    );
+    const botData = {
+        labels: [{% for key, value in bot_chart.items %}'{{ key }}', {% endfor %}],
+        values: [{% for key, value in bot_chart.items %}{{ value }}, {% endfor %}],
+    };
+
+    const botChart = new Chart(
+        document.getElementById('botChart').getContext('2d'),
+        createChartConfig('pie', botData, {
+            title: '{% translate 'Bots' %}',
+            legendPosition: 'right'
+        })
+    );
+</script>
+
+{% if bot_ua_table %}
+<h3>{% translate 'Bots' %}</h3>
+<table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
+    <tr>
+        <th class="list" scope="col">{% translate 'Count' %}</th>
+        <th class="list" scope="col">{% translate 'Bot' %}</th>
+    </tr>
+    {% for obj in bot_ua_table %}
+    <tr>
+        <td class="list">{{ obj.total }}</td>
+        <td class="list">{{ obj.user_agent }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% if human_ua_table %}
+<h3>{% translate 'Humans' %}</h3>
+<table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
+    <tr>
+        <th class="list" scope="col">{% translate 'Count' %}</th>
+        <th class="list" scope="col">{% translate 'Human' %}</th>
+    </tr>
+    {% for obj in human_ua_table %}
+    <tr>
+        <td class="list">{{ obj.total }}</td>
+        <td class="list">{{ obj.user_agent }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock content %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-26 19:38+0100\n"
+"POT-Creation-Date: 2025-11-27 23:51+0100\n"
 "PO-Revision-Date: 2025-11-26 22:04+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/svjis/svjis2/"
@@ -104,7 +104,7 @@ msgstr "Bestand"
 #: articles/models.py:78 articles/models.py:94
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
-#: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:165
+#: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:176
 msgid "Article"
 msgstr "Artikel"
 
@@ -681,14 +681,14 @@ msgstr "Terug naar artikellijst"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
-#: articles/tests_playwright/commands.py:489 articles/views_redaction.py:32
-#: articles/views_redaction.py:334
+#: articles/tests_playwright/commands.py:489 articles/views_redaction.py:35
+#: articles/views_redaction.py:345
 msgid "News"
 msgstr "Nieuws"
 
 #: articles/templates/box-survey.html:8
 #: articles/templates/redaction_survey_edit.html:7
-#: articles/views_redaction.py:584
+#: articles/views_redaction.py:595
 msgid "Survey"
 msgstr "Vragenlijst"
 
@@ -705,7 +705,7 @@ msgid "Top articles"
 msgstr "Topartikelen"
 
 #: articles/templates/box-useful-links.html:7
-#: articles/tests_playwright/commands.py:551 articles/views_redaction.py:40
+#: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
 msgid "Useful Links"
 msgstr "Nuttige links"
 
@@ -883,6 +883,50 @@ msgstr "Nieuw wachtwoord"
 msgid "New password once again"
 msgstr "Nieuw wachtwoord herhalen"
 
+#: articles/templates/redaction_analytics.html:11
+msgid "Show all users"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:11
+msgid "Show logged users only"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:38
+msgid "Platform"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:51
+msgid "Browser"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:64
+msgid "Operating System"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:76
+#: articles/templates/redaction_analytics.html:83
+msgid "Bots"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:86
+#: articles/templates/redaction_analytics.html:102
+msgid "Count"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:87
+#: articles/views_redaction.py:700
+msgid "Bot"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:99
+msgid "Humans"
+msgstr ""
+
+#: articles/templates/redaction_analytics.html:103
+#: articles/views_redaction.py:692
+msgid "Human"
+msgstr ""
+
 #: articles/templates/redaction_article.html:8
 #: articles/tests_playwright/commands.py:427
 msgid "Create new article"
@@ -890,7 +934,7 @@ msgstr "Artikel opstellen"
 
 #: articles/templates/redaction_article.html:16
 #: articles/templates/redaction_menu.html:7
-#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:56
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:59
 msgid "Menu"
 msgstr "Menu"
 
@@ -935,7 +979,7 @@ msgstr "Niveau"
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
 #: articles/tests_playwright/commands.py:621 articles/utils.py:41
-#: articles/views.py:148 articles/views.py:218 articles/views_redaction.py:24
+#: articles/views.py:148 articles/views.py:218 articles/views_redaction.py:27
 msgid "Articles"
 msgstr "Artikelen"
 
@@ -1076,9 +1120,9 @@ msgstr "Beheer"
 #: articles/views_admin.py:736 articles/views_admin.py:794
 #: articles/views_adverts.py:122 articles/views_adverts.py:144
 #: articles/views_faults.py:205 articles/views_faults.py:257
-#: articles/views_personal_settings.py:75 articles/views_redaction.py:128
-#: articles/views_redaction.py:249 articles/views_redaction.py:390
-#: articles/views_redaction.py:463 articles/views_redaction.py:557
+#: articles/views_personal_settings.py:75 articles/views_redaction.py:139
+#: articles/views_redaction.py:260 articles/views_redaction.py:401
+#: articles/views_redaction.py:474 articles/views_redaction.py:568
 msgid "Saved"
 msgstr "Opgeslagen"
 
@@ -1093,19 +1137,19 @@ msgstr "Gebruikers"
 #: articles/tests_playwright/commands.py:510
 #: articles/tests_playwright/commands.py:551
 #: articles/tests_playwright/commands.py:631 articles/utils.py:64
-#: articles/views_redaction.py:91 articles/views_redaction.py:108
-#: articles/views_redaction.py:179 articles/views_redaction.py:207
-#: articles/views_redaction.py:277 articles/views_redaction.py:297
-#: articles/views_redaction.py:347 articles/views_redaction.py:367
-#: articles/views_redaction.py:423 articles/views_redaction.py:443
-#: articles/views_redaction.py:496 articles/views_redaction.py:518
-#: articles/views_redaction.py:587
+#: articles/views_redaction.py:102 articles/views_redaction.py:119
+#: articles/views_redaction.py:190 articles/views_redaction.py:218
+#: articles/views_redaction.py:288 articles/views_redaction.py:308
+#: articles/views_redaction.py:358 articles/views_redaction.py:378
+#: articles/views_redaction.py:434 articles/views_redaction.py:454
+#: articles/views_redaction.py:507 articles/views_redaction.py:529
+#: articles/views_redaction.py:598 articles/views_redaction.py:712
 msgid "Redaction"
 msgstr "Redactie"
 
 #: articles/tests_playwright/commands.py:510
-#: articles/tests_playwright/commands.py:631 articles/views_redaction.py:48
-#: articles/views_redaction.py:483
+#: articles/tests_playwright/commands.py:631 articles/views_redaction.py:51
+#: articles/views_redaction.py:494
 msgid "Surveys"
 msgstr "Vragenlijsten"
 
@@ -1160,17 +1204,17 @@ msgid "All"
 msgstr "Alles"
 
 #: articles/views.py:109 articles/views_faults.py:72
-#: articles/views_redaction.py:153
+#: articles/views_redaction.py:164
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr "De zoekopdracht “{}” is te kort. Voer minimaal drie tekens in."
 
 #: articles/views.py:112 articles/views_faults.py:75
-#: articles/views_redaction.py:156
+#: articles/views_redaction.py:167
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "De zoekopdracht is te lang. Voer maximaal honderd tekens in."
 
 #: articles/views.py:117 articles/views_faults.py:79
-#: articles/views_redaction.py:162
+#: articles/views_redaction.py:173
 msgid "Search results"
 msgstr "Zoekresultaten"
 
@@ -1235,6 +1279,14 @@ msgstr "Het e-mailadres is ongeldig"
 msgid "Credentials have been sent to your e-mail"
 msgstr "De aanmeldgegevens zijn per e-mail verstuurd"
 
-#: articles/views_redaction.py:410
+#: articles/views_redaction.py:67 articles/views_redaction.py:665
+msgid "Analytics"
+msgstr ""
+
+#: articles/views_redaction.py:421
 msgid "Useful links"
 msgstr "Nuttige links"
+
+#: articles/views_redaction.py:667
+msgid "Data for last {} days."
+msgstr ""

@@ -4,16 +4,19 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group, User
 from django.core.paginator import Paginator, InvalidPage
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone, dateformat
+from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import gettext as gt
 from django.views.decorators.http import require_GET, require_POST
+from datetime import datetime, timedelta
 from openpyxl import Workbook
 from openpyxl.styles import Font
+from .user_agent import get_browser, get_os
 
 
 def get_side_menu(active_item, user):
@@ -56,6 +59,14 @@ def get_side_menu(active_item, user):
                 'description': _("Menu"),
                 'link': reverse(redaction_menu_view),
                 'active': True if active_item == 'menu' else False,
+            }
+        )
+    if user.has_perm('articles.svjis_view_redaction_menu'):
+        result.append(
+            {
+                'description': _("Analytics"),
+                'link': reverse(redaction_analytics_view),
+                'active': True if active_item == 'analytics' else False,
             }
         )
     return result
@@ -645,3 +656,69 @@ def redaction_survey_results_export_to_excel_view(request, pk):
     utils.adjust_worksheet_columns_width(ws, 50)
     wb.save(response)
     return response
+
+
+# Redaction - Analytics
+@permission_required("articles.svjis_view_redaction_menu")
+@require_GET
+def redaction_analytics_view(request):
+    header = _("Analytics")
+    history_in_days = getattr(settings, 'SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS', 365)
+    time_span_info = _("Data for last {} days.").format(history_in_days)
+    top_history_from = make_aware(datetime.now() - timedelta(days=history_in_days))
+
+    data = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).exclude(user_agent='')
+    scope = request.GET.get('scope', 'all')
+    if scope == 'logged':
+        data = data.exclude(user__isnull=True)
+    data = data.values('user_agent').annotate(total=Count('*'))
+
+    human_ua_table = []
+    bot_ua_table = []
+    browser_chart = {}
+    os_chart = {}
+    platform_chart = {}
+    bot_chart = {}
+    for d in data:
+        browser = get_browser(d["user_agent"])["browser"]
+        osystem_dict = get_os(d["user_agent"])
+        osystem = osystem_dict["os"]
+        platform = osystem_dict["platform"]
+
+        if browser != 'Unknown' and osystem != 'Unknown':
+            browser_chart[browser] = browser_chart.get(browser, 0) + d["total"]
+            os_chart[osystem] = os_chart.get(osystem, 0) + d["total"]
+            platform_chart[platform] = platform_chart.get(platform, 0) + d["total"]
+            bot_chart[_("Human")] = bot_chart.get(_("Human"), 0) + d["total"]
+            human_ua_table.append(
+                {
+                    "user_agent": d["user_agent"],
+                    "total": d["total"],
+                }
+            )
+        else:
+            bot_chart[_("Bot")] = bot_chart.get(_("Bot"), 0) + d["total"]
+            bot_ua_table.append(
+                {
+                    "user_agent": d["user_agent"],
+                    "total": d["total"],
+                }
+            )
+
+    bot_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
+    human_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Redaction")
+    ctx['scope'] = scope
+    ctx['platform_chart'] = dict(sorted(platform_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['browser_chart'] = dict(sorted(browser_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['os_chart'] = dict(sorted(os_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['bot_chart'] = dict(sorted(bot_chart.items(), key=lambda item: item[1], reverse=True))
+    ctx['bot_ua_table'] = bot_ua_table
+    ctx['human_ua_table'] = human_ua_table
+    ctx['header'] = header
+    ctx['time_span_info'] = time_span_info
+    ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('redaction', request.user)
+    return render(request, "redaction_analytics.html", ctx)
