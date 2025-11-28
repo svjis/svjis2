@@ -4,7 +4,7 @@ If you want to contribute to the project and improve it, your help is very welco
 
 * You can report a bug or request in the [issues](https://github.com/svjis/svjis2/issues);
 * You can discuss and answer questions in the [discussions](https://github.com/orgs/svjis/discussions);
-* You can maintain translations to any language (see `svjis/articles/locale`);
+* You can maintain translations to any language in the [weblate](https://translate.codeberg.org/engage/svjis/);
 * You can test newly added functionalities;
 * You can fork the project, make modifications, and send them back as a [pull-request](https://github.com/svjis/svjis2/pulls)
 
