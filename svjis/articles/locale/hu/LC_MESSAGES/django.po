@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-27 23:51+0100\n"
+"POT-Creation-Date: 2025-11-29 00:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,12 +244,12 @@ msgstr "Szerkesztheti a beállításokat"
 msgid "Name"
 msgstr "Név"
 
-#: articles/models.py:288
-msgid "Registration no."
-msgstr "Regisztrációs szám"
+#: articles/models.py:288 articles/templates/contact_company.html:42
+msgid "Registration No."
+msgstr "Cégjegyzékszám"
 
-#: articles/models.py:289
-msgid "VAT Registration no."
+#: articles/models.py:289 articles/templates/contact_company.html:48
+msgid "VAT Registration No."
 msgstr "Adószám"
 
 #: articles/models.py:290 articles/templates/contact_company.html:54
@@ -265,7 +265,7 @@ msgid "Can edit Company"
 msgstr "Szerkesztheti a céget"
 
 #: articles/models.py:308
-msgid "Land Registration no."
+msgid "Land Registration No."
 msgstr "Ingatlan-nyilvántartási azonosító"
 
 #: articles/models.py:314
@@ -474,13 +474,15 @@ msgid "Building unit"
 msgstr "Lakás"
 
 #: articles/templates/admin_building_unit_owners_edit.html:13
+#: articles/templates/admin_user.html:52
 #: articles/templates/redaction_article_notifications.html:18
-msgid "First Name"
+msgid "First name"
 msgstr "Keresztnév"
 
 #: articles/templates/admin_building_unit_owners_edit.html:14
+#: articles/templates/admin_user.html:51
 #: articles/templates/redaction_article_notifications.html:17
-msgid "Last Name"
+msgid "Last name"
 msgstr "Vezetéknév"
 
 #: articles/templates/admin_building_unit_owners_edit.html:22
@@ -573,14 +575,6 @@ msgstr "Új felhasználó létrehozása"
 #: articles/templates/admin_user.html:19
 msgid "Deactivated users"
 msgstr "Inaktivált felhasználók"
-
-#: articles/templates/admin_user.html:51
-msgid "Last name"
-msgstr "Vezetéknév"
-
-#: articles/templates/admin_user.html:52
-msgid "First name"
-msgstr "Keresztnév"
 
 #: articles/templates/admin_user.html:53
 msgid "Active"
@@ -704,20 +698,13 @@ msgstr "Legnépszerűbb cikkek"
 
 #: articles/templates/box-useful-links.html:7
 #: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
+#: articles/views_redaction.py:421
 msgid "Useful Links"
 msgstr "Hasznos linkek"
 
 #: articles/templates/box-useful-links.html:14
 msgid "Paper clip"
 msgstr "Gemkapocs"
-
-#: articles/templates/contact_company.html:42
-msgid "Registration No."
-msgstr "Cégjegyzékszám"
-
-#: articles/templates/contact_company.html:48
-msgid "VAT Registration No."
-msgstr "Adószám"
 
 #: articles/templates/contact_phonelist.html:7
 #: articles/tests_playwright/commands.py:657 articles/views_contact.py:23
@@ -804,7 +791,7 @@ msgid "Report fault or request"
 msgstr "Hiba vagy kérés jelentése"
 
 #: articles/templates/faults_list.html:16
-msgid "Ticket no."
+msgid "Ticket No."
 msgstr "Jegyszám"
 
 #: articles/templates/faults_list.html:27
@@ -1279,10 +1266,6 @@ msgstr "A bejelentkezési adatok elküldve az Ön e-mail címére"
 #: articles/views_redaction.py:67 articles/views_redaction.py:665
 msgid "Analytics"
 msgstr "Analytics"
-
-#: articles/views_redaction.py:421
-msgid "Useful links"
-msgstr "Hasznos linkek"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."

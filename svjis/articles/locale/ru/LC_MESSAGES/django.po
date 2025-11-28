@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-27 23:51+0100\n"
+"POT-Creation-Date: 2025-11-29 00:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,13 +246,13 @@ msgstr "Может редактировать настройки"
 msgid "Name"
 msgstr "Имя"
 
-#: articles/models.py:288
-msgid "Registration no."
-msgstr "Регистрационный номер"
+#: articles/models.py:288 articles/templates/contact_company.html:42
+msgid "Registration No."
+msgstr "ИНН"
 
-#: articles/models.py:289
-msgid "VAT Registration no."
-msgstr "НДС регистрационный номер"
+#: articles/models.py:289 articles/templates/contact_company.html:48
+msgid "VAT Registration No."
+msgstr "НДС номер"
 
 #: articles/models.py:290 articles/templates/contact_company.html:54
 msgid "Internet domain"
@@ -267,7 +267,7 @@ msgid "Can edit Company"
 msgstr "Может редактировать компанию"
 
 #: articles/models.py:308
-msgid "Land Registration no."
+msgid "Land Registration No."
 msgstr "Идентификатор в земельном кадастре"
 
 #: articles/models.py:314
@@ -476,13 +476,15 @@ msgid "Building unit"
 msgstr "Единица здания"
 
 #: articles/templates/admin_building_unit_owners_edit.html:13
+#: articles/templates/admin_user.html:52
 #: articles/templates/redaction_article_notifications.html:18
-msgid "First Name"
+msgid "First name"
 msgstr "Имя"
 
 #: articles/templates/admin_building_unit_owners_edit.html:14
+#: articles/templates/admin_user.html:51
 #: articles/templates/redaction_article_notifications.html:17
-msgid "Last Name"
+msgid "Last name"
 msgstr "Фамилия"
 
 #: articles/templates/admin_building_unit_owners_edit.html:22
@@ -575,14 +577,6 @@ msgstr "Новый пользователь"
 #: articles/templates/admin_user.html:19
 msgid "Deactivated users"
 msgstr "Деактивированные пользователи"
-
-#: articles/templates/admin_user.html:51
-msgid "Last name"
-msgstr "Фамилия"
-
-#: articles/templates/admin_user.html:52
-msgid "First name"
-msgstr "Имя"
 
 #: articles/templates/admin_user.html:53
 msgid "Active"
@@ -706,20 +700,13 @@ msgstr "Популярные статьи"
 
 #: articles/templates/box-useful-links.html:7
 #: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
+#: articles/views_redaction.py:421
 msgid "Useful Links"
 msgstr "Полезные ссылки"
 
 #: articles/templates/box-useful-links.html:14
 msgid "Paper clip"
 msgstr "Скрепка"
-
-#: articles/templates/contact_company.html:42
-msgid "Registration No."
-msgstr "ИНН"
-
-#: articles/templates/contact_company.html:48
-msgid "VAT Registration No."
-msgstr "НДС номер"
 
 #: articles/templates/contact_phonelist.html:7
 #: articles/tests_playwright/commands.py:657 articles/views_contact.py:23
@@ -806,7 +793,7 @@ msgid "Report fault or request"
 msgstr "Сообщить о проблеме или запросе"
 
 #: articles/templates/faults_list.html:16
-msgid "Ticket no."
+msgid "Ticket No."
 msgstr "Номер тикета"
 
 #: articles/templates/faults_list.html:27
@@ -1283,10 +1270,6 @@ msgstr "Учетные данные были отправлены на ваш а
 #: articles/views_redaction.py:67 articles/views_redaction.py:665
 msgid "Analytics"
 msgstr "Аналитика"
-
-#: articles/views_redaction.py:421
-msgid "Useful links"
-msgstr "Полезные ссылки"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."
