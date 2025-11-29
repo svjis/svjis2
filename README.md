@@ -1,6 +1,6 @@
 # SVJIS2
 
-[![Translation Status](https://translate.codeberg.org/widget/svjis/svjis2/svg-badge.svg)](https://translate.codeberg.org/engage/svjis/) [![UnitTests](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=svjis_svjis-py&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=svjis_svjis-py)
+[![UnitTests](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/svjis/svjis2/actions/workflows/unit-tests.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=svjis_svjis-py&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=svjis_svjis-py) [![Translation Status](https://translate.codeberg.org/widget/svjis/svjis2/svg-badge.svg)](https://translate.codeberg.org/engage/svjis/)
 
 Information system for homeowners' associations (SVJ). :house_with_garden:
 
@@ -103,3 +103,9 @@ If you encounter any issues, do not hesitate to ask a question in the [project d
 
 Any form of collaboration is welcome. :octocat:  
 More information can be found in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### 5.1 Translation status
+
+Help us with translations.
+
+[![Translation status](https://translate.codeberg.org/widget/svjis/multi-auto.svg)](https://translate.codeberg.org/engage/svjis/)
