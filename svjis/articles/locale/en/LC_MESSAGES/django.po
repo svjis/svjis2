@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-27 23:51+0100\n"
+"POT-Creation-Date: 2025-11-29 00:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -244,13 +244,13 @@ msgstr "Can edit Preferences"
 msgid "Name"
 msgstr "Name"
 
-#: articles/models.py:288
-msgid "Registration no."
-msgstr "Registration no."
+#: articles/models.py:288 articles/templates/contact_company.html:42
+msgid "Registration No."
+msgstr "Registration No."
 
-#: articles/models.py:289
-msgid "VAT Registration no."
-msgstr "VAT Registration no."
+#: articles/models.py:289 articles/templates/contact_company.html:48
+msgid "VAT Registration No."
+msgstr "VAT Registration No."
 
 #: articles/models.py:290 articles/templates/contact_company.html:54
 msgid "Internet domain"
@@ -265,7 +265,7 @@ msgid "Can edit Company"
 msgstr "Can edit Company"
 
 #: articles/models.py:308
-msgid "Land Registration no."
+msgid "Land Registration No."
 msgstr "Land Registration no."
 
 #: articles/models.py:314
@@ -474,13 +474,15 @@ msgid "Building unit"
 msgstr "Building unit"
 
 #: articles/templates/admin_building_unit_owners_edit.html:13
+#: articles/templates/admin_user.html:52
 #: articles/templates/redaction_article_notifications.html:18
-msgid "First Name"
+msgid "First name"
 msgstr "First name"
 
 #: articles/templates/admin_building_unit_owners_edit.html:14
+#: articles/templates/admin_user.html:51
 #: articles/templates/redaction_article_notifications.html:17
-msgid "Last Name"
+msgid "Last name"
 msgstr "Last name"
 
 #: articles/templates/admin_building_unit_owners_edit.html:22
@@ -573,14 +575,6 @@ msgstr "Create new user"
 #: articles/templates/admin_user.html:19
 msgid "Deactivated users"
 msgstr "Deactivated users"
-
-#: articles/templates/admin_user.html:51
-msgid "Last name"
-msgstr "Last name"
-
-#: articles/templates/admin_user.html:52
-msgid "First name"
-msgstr "First name"
 
 #: articles/templates/admin_user.html:53
 msgid "Active"
@@ -704,20 +698,13 @@ msgstr "Top articles"
 
 #: articles/templates/box-useful-links.html:7
 #: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
+#: articles/views_redaction.py:421
 msgid "Useful Links"
 msgstr "Useful Links"
 
 #: articles/templates/box-useful-links.html:14
 msgid "Paper clip"
 msgstr "Paper clip"
-
-#: articles/templates/contact_company.html:42
-msgid "Registration No."
-msgstr "Registration No."
-
-#: articles/templates/contact_company.html:48
-msgid "VAT Registration No."
-msgstr "VAT Registration No."
 
 #: articles/templates/contact_phonelist.html:7
 #: articles/tests_playwright/commands.py:657 articles/views_contact.py:23
@@ -804,7 +791,7 @@ msgid "Report fault or request"
 msgstr "Report fault or request"
 
 #: articles/templates/faults_list.html:16
-msgid "Ticket no."
+msgid "Ticket No."
 msgstr "Ticket no."
 
 #: articles/templates/faults_list.html:27
@@ -1279,10 +1266,6 @@ msgstr "Credentials have been sent to your e-mail"
 #: articles/views_redaction.py:67 articles/views_redaction.py:665
 msgid "Analytics"
 msgstr "Analytics"
-
-#: articles/views_redaction.py:421
-msgid "Useful links"
-msgstr "Useful links"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."

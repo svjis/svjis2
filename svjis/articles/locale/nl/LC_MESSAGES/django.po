@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-27 23:51+0100\n"
-"PO-Revision-Date: 2025-11-28 23:27+0000\n"
+"POT-Creation-Date: 2025-11-29 00:33+0100\n"
+"PO-Revision-Date: 2025-11-26 22:04+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/svjis/svjis2/"
 "nl/>\n"
@@ -246,12 +246,12 @@ msgstr "Mag de instellingen aanpassen"
 msgid "Name"
 msgstr "Naam"
 
-#: articles/models.py:288
-msgid "Registration no."
+#: articles/models.py:288 articles/templates/contact_company.html:42
+msgid "Registration No."
 msgstr "Registratienr."
 
-#: articles/models.py:289
-msgid "VAT Registration no."
+#: articles/models.py:289 articles/templates/contact_company.html:48
+msgid "VAT Registration No."
 msgstr "BTW-registratienr."
 
 #: articles/models.py:290 articles/templates/contact_company.html:54
@@ -267,7 +267,7 @@ msgid "Can edit Company"
 msgstr "Mag het bedrijf bewerken"
 
 #: articles/models.py:308
-msgid "Land Registration no."
+msgid "Land Registration No."
 msgstr "Landsregistratienr."
 
 #: articles/models.py:314
@@ -476,13 +476,15 @@ msgid "Building unit"
 msgstr "Gebouweenheid"
 
 #: articles/templates/admin_building_unit_owners_edit.html:13
+#: articles/templates/admin_user.html:52
 #: articles/templates/redaction_article_notifications.html:18
-msgid "First Name"
+msgid "First name"
 msgstr "Voornaam"
 
 #: articles/templates/admin_building_unit_owners_edit.html:14
+#: articles/templates/admin_user.html:51
 #: articles/templates/redaction_article_notifications.html:17
-msgid "Last Name"
+msgid "Last name"
 msgstr "Achternaam"
 
 #: articles/templates/admin_building_unit_owners_edit.html:22
@@ -575,14 +577,6 @@ msgstr "Gebruiker toevoegen"
 #: articles/templates/admin_user.html:19
 msgid "Deactivated users"
 msgstr "Uitgeschakelde gebruikers"
-
-#: articles/templates/admin_user.html:51
-msgid "Last name"
-msgstr "Achternaam"
-
-#: articles/templates/admin_user.html:52
-msgid "First name"
-msgstr "Voornaam"
 
 #: articles/templates/admin_user.html:53
 msgid "Active"
@@ -706,20 +700,13 @@ msgstr "Topartikelen"
 
 #: articles/templates/box-useful-links.html:7
 #: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
+#: articles/views_redaction.py:421
 msgid "Useful Links"
 msgstr "Nuttige links"
 
 #: articles/templates/box-useful-links.html:14
 msgid "Paper clip"
 msgstr "Paperclip"
-
-#: articles/templates/contact_company.html:42
-msgid "Registration No."
-msgstr "Registratienr."
-
-#: articles/templates/contact_company.html:48
-msgid "VAT Registration No."
-msgstr "BTW-registratienr."
 
 #: articles/templates/contact_phonelist.html:7
 #: articles/tests_playwright/commands.py:657 articles/views_contact.py:23
@@ -807,7 +794,7 @@ msgid "Report fault or request"
 msgstr "Reparatie of verzoek melden"
 
 #: articles/templates/faults_list.html:16
-msgid "Ticket no."
+msgid "Ticket No."
 msgstr "Ticketnr."
 
 #: articles/templates/faults_list.html:27
@@ -1282,10 +1269,6 @@ msgstr "De aanmeldgegevens zijn per e-mail verstuurd"
 #: articles/views_redaction.py:67 articles/views_redaction.py:665
 msgid "Analytics"
 msgstr "Statistieken"
-
-#: articles/views_redaction.py:421
-msgid "Useful links"
-msgstr "Nuttige links"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."

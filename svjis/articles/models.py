@@ -285,8 +285,8 @@ class Company(models.Model):
     post_code = models.CharField(_("Post code"), max_length=10, blank=True)
     phone = models.CharField(_("Phone"), max_length=30, blank=True)
     email = models.CharField(_("E-Mail"), max_length=50, blank=True)
-    registration_no = models.CharField(_("Registration no."), max_length=20, blank=True)
-    vat_registration_no = models.CharField(_("VAT Registration no."), max_length=20, blank=True)
+    registration_no = models.CharField(_("Registration No."), max_length=20, blank=True)
+    vat_registration_no = models.CharField(_("VAT Registration No."), max_length=20, blank=True)
     internet_domain = models.CharField(_("Internet domain"), max_length=50, blank=True)
     header_picture = models.FileField(_("Header picture"), upload_to=company_directory_path, null=True, blank=True)
 
@@ -305,7 +305,7 @@ class Building(models.Model):
     address = models.CharField(_("Address"), max_length=50, blank=True)
     city = models.CharField(_("City"), max_length=50, blank=True)
     post_code = models.CharField(_("Post code"), max_length=10, blank=True)
-    land_registry_no = models.CharField(_("Land Registration no."), max_length=50, blank=True)
+    land_registry_no = models.CharField(_("Land Registration No."), max_length=50, blank=True)
 
     def __str__(self):
         return f"Building: {self.address}"
