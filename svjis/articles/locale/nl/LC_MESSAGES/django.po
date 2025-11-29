@@ -872,47 +872,47 @@ msgstr "Nieuw wachtwoord herhalen"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show all users"
-msgstr ""
+msgstr "Alle gebruikers tonen"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show logged users only"
-msgstr ""
+msgstr "Alleen ingelogde gebruikers tonen"
 
 #: articles/templates/redaction_analytics.html:38
 msgid "Platform"
-msgstr ""
+msgstr "Platform"
 
 #: articles/templates/redaction_analytics.html:51
 msgid "Browser"
-msgstr ""
+msgstr "Browser"
 
 #: articles/templates/redaction_analytics.html:64
 msgid "Operating System"
-msgstr ""
+msgstr "Besturingssysteem"
 
 #: articles/templates/redaction_analytics.html:76
 #: articles/templates/redaction_analytics.html:83
 msgid "Bots"
-msgstr ""
+msgstr "Bots"
 
 #: articles/templates/redaction_analytics.html:86
 #: articles/templates/redaction_analytics.html:102
 msgid "Count"
-msgstr ""
+msgstr "Aantal"
 
 #: articles/templates/redaction_analytics.html:87
 #: articles/views_redaction.py:700
 msgid "Bot"
-msgstr ""
+msgstr "Bot"
 
 #: articles/templates/redaction_analytics.html:99
 msgid "Humans"
-msgstr ""
+msgstr "Mensen"
 
 #: articles/templates/redaction_analytics.html:103
 #: articles/views_redaction.py:692
 msgid "Human"
-msgstr ""
+msgstr "Mens"
 
 #: articles/templates/redaction_article.html:8
 #: articles/tests_playwright/commands.py:427
@@ -1268,8 +1268,8 @@ msgstr "De aanmeldgegevens zijn per e-mail verstuurd"
 
 #: articles/views_redaction.py:67 articles/views_redaction.py:665
 msgid "Analytics"
-msgstr ""
+msgstr "Statistieken"
 
 #: articles/views_redaction.py:667
 msgid "Data for last {} days."
-msgstr ""
+msgstr "Gegevens van de afgelopen {} dagen."

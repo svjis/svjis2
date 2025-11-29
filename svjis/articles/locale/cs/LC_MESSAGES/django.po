@@ -16,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.14\n"
 
 #: articles/forms.py:326 articles/models.py:362 articles/models.py:393
 #: articles/templates/admin_building_unit.html:36
@@ -1209,13 +1210,13 @@ msgstr "Prosím zvolte jednu možnost."
 
 #: articles/views.py:296
 msgid "Wrong username or password"
-msgstr "Nesprávné uživatelské jméno nebo heslo."
+msgstr "Nesprávné uživatelské jméno nebo heslo"
 
 #: articles/views.py:297
 msgid "In case you lost your password use Lost Password link"
 msgstr ""
 "V případě, že jste zapomněli Vaše přihlašovací údaje, použijte volbu "
-"'Zapomenuté heslo'."
+"'Zapomenuté heslo'"
 
 #: articles/views_admin.py:68
 msgid "Groups"
