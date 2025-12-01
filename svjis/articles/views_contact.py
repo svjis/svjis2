@@ -9,23 +9,21 @@ from . import utils, models
 
 
 def get_side_menu(active_item, user):
-    result = []
-    result.append(
+    side_menu = [
         {
+            'perms': None,
             'description': _("Contact"),
             'link': reverse(contact_view),
             'active': True if active_item == 'company' else False,
-        }
-    )
-    if user.has_perm('articles.svjis_view_phonelist'):
-        result.append(
-            {
-                'description': _("Phonelist"),
-                'link': reverse(phonelist_view),
-                'active': True if active_item == 'phonelist' else False,
-            }
-        )
-    return result
+        },
+        {
+            'perms': 'articles.svjis_view_phonelist',
+            'description': _("Phonelist"),
+            'link': reverse(phonelist_view),
+            'active': True if active_item == 'phonelist' else False,
+        },
+    ]
+    return [x for x in side_menu if x['perms'] is None or user.has_perm(x['perms'])]
 
 
 # Contact - company

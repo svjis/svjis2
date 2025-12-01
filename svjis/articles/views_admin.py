@@ -69,7 +69,7 @@ def get_side_menu(active_item, user):
             'active': True if active_item == 'messages' else False,
         },
     ]
-    return [x for x in side_menu if user.has_perm(x['perms'])]
+    return [x for x in side_menu if x['perms'] is None or user.has_perm(x['perms'])]
 
 
 # Administration - Company
