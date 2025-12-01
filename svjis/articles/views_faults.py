@@ -36,7 +36,7 @@ def get_side_menu(active_item, user):
             'active': True if active_item == 'assigned' else False,
         },
         {
-            'perms': None,
+            'perms': 'articles.svjis_view_fault_menu',
             'description': _("Resolved") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
             'link': reverse(faults_list_view) + '?scope=closed',
             'active': True if active_item == 'closed' else False,

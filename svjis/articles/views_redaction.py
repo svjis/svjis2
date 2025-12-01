@@ -20,56 +20,45 @@ from .user_agent import get_browser, get_os
 
 
 def get_side_menu(active_item, user):
-    result = []
-    if user.has_perm('articles.svjis_edit_article'):
-        result.append(
-            {
-                'description': _("Articles"),
-                'link': reverse(redaction_article_view),
-                'active': True if active_item == 'article' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_article_news'):
-        result.append(
-            {
-                'description': _("News"),
-                'link': reverse(redaction_news_view),
-                'active': True if active_item == 'news' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_useful_link'):
-        result.append(
-            {
-                'description': _("Useful Links"),
-                'link': reverse(redaction_useful_link_view),
-                'active': True if active_item == 'links' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_survey'):
-        result.append(
-            {
-                'description': _("Surveys"),
-                'link': reverse(redaction_survey_view),
-                'active': True if active_item == 'surveys' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_article_menu'):
-        result.append(
-            {
-                'description': _("Menu"),
-                'link': reverse(redaction_menu_view),
-                'active': True if active_item == 'menu' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_view_redaction_menu'):
-        result.append(
-            {
-                'description': _("Analytics"),
-                'link': reverse(redaction_analytics_view),
-                'active': True if active_item == 'analytics' else False,
-            }
-        )
-    return result
+    side_menu = [
+        {
+            'perms': 'articles.svjis_edit_article',
+            'description': _("Articles"),
+            'link': reverse(redaction_article_view),
+            'active': True if active_item == 'article' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_article_news',
+            'description': _("News"),
+            'link': reverse(redaction_news_view),
+            'active': True if active_item == 'news' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_useful_link',
+            'description': _("Useful Links"),
+            'link': reverse(redaction_useful_link_view),
+            'active': True if active_item == 'links' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_survey',
+            'description': _("Surveys"),
+            'link': reverse(redaction_survey_view),
+            'active': True if active_item == 'surveys' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_article_menu',
+            'description': _("Menu"),
+            'link': reverse(redaction_menu_view),
+            'active': True if active_item == 'menu' else False,
+        },
+        {
+            'perms': 'articles.svjis_view_redaction_menu',
+            'description': _("Analytics"),
+            'link': reverse(redaction_analytics_view),
+            'active': True if active_item == 'analytics' else False,
+        },
+    ]
+    return [x for x in side_menu if x['perms'] is None or user.has_perm(x['perms'])]
 
 
 # Redaction - Article Menu
