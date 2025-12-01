@@ -15,6 +15,7 @@ from django.utils.translation import gettext as gt
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
 from datetime import datetime, timedelta
+from .permissions import svjis_edit_article, svjis_answer_survey, svjis_add_article_comment
 
 
 def get_side_menu(ctx):
@@ -162,7 +163,7 @@ def main_filtered_view(request, menu):
     return render(request, "main.html", ctx)
 
 
-@permission_required("articles.svjis_answer_survey")
+@permission_required(svjis_answer_survey)
 @require_POST
 def article_survey_vote_view(request):
     try:
@@ -189,7 +190,7 @@ def article_survey_vote_view(request):
 
 @require_GET
 def article_view(request, slug):
-    if request.user.has_perm("articles.svjis_edit_article"):
+    if request.user.has_perm(svjis_edit_article):
         article_qs = models.Article.objects.filter(slug=slug)
     else:
         q = get_article_filter(request.user)
@@ -227,7 +228,7 @@ def article_view(request, slug):
     return render(request, "article.html", ctx)
 
 
-@permission_required("articles.svjis_add_article_comment")
+@permission_required(svjis_add_article_comment)
 @require_POST
 def article_comment_save_view(request):
     article_pk = int(request.POST.get('article_pk'))
@@ -244,7 +245,7 @@ def article_comment_save_view(request):
     return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
 
 
-@permission_required("articles.svjis_add_article_comment")
+@permission_required(svjis_add_article_comment)
 @require_GET
 def article_watch_view(request):
     try:

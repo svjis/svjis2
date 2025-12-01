@@ -11,32 +11,33 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
+from .permissions import svjis_view_fault_menu, svjis_fault_reporter, svjis_fault_resolver, svjis_add_fault_comment
 
 
 def get_side_menu(active_item, user):
     side_menu = [
         {
-            'perms': 'articles.svjis_view_fault_menu',
+            'perms': svjis_view_fault_menu,
             'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
             'link': reverse(faults_list_view) + '?scope=open',
             'active': True if active_item == 'open' else False,
         },
         {
-            'perms': 'articles.svjis_fault_reporter',
+            'perms': svjis_fault_reporter,
             'description': _("Mine")
             + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
             'link': reverse(faults_list_view) + '?scope=mine',
             'active': True if active_item == 'mine' else False,
         },
         {
-            'perms': 'articles.svjis_fault_resolver',
+            'perms': svjis_fault_resolver,
             'description': _("Assigned to me")
             + f' ({models.FaultReport.objects.filter(closed=False, assigned_to_user=user).count()})',
             'link': reverse(faults_list_view) + '?scope=assigned',
             'active': True if active_item == 'assigned' else False,
         },
         {
-            'perms': 'articles.svjis_view_fault_menu',
+            'perms': svjis_view_fault_menu,
             'description': _("Resolved") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
             'link': reverse(faults_list_view) + '?scope=closed',
             'active': True if active_item == 'closed' else False,
@@ -46,7 +47,7 @@ def get_side_menu(active_item, user):
 
 
 # Faults - Fault report
-@permission_required("articles.svjis_view_fault_menu")
+@permission_required(svjis_view_fault_menu)
 @require_GET
 def faults_list_view(request):
     fault_list = models.FaultReport.objects.select_related('created_by_user', 'assigned_to_user')
@@ -100,7 +101,7 @@ def faults_list_view(request):
     return render(request, "faults_list.html", ctx)
 
 
-@permission_required("articles.svjis_view_fault_menu")
+@permission_required(svjis_view_fault_menu)
 @require_GET
 def fault_view(request, slug):
     fault = get_object_or_404(models.FaultReport, slug=slug)
@@ -116,7 +117,7 @@ def fault_view(request, slug):
     return render(request, "fault.html", ctx)
 
 
-@permission_required("articles.svjis_fault_resolver")
+@permission_required(svjis_fault_resolver)
 @require_GET
 def faults_fault_edit_view(request, pk):
     if pk != 0:
@@ -134,7 +135,7 @@ def faults_fault_edit_view(request, pk):
     return render(request, "faults_edit.html", ctx)
 
 
-@permission_required("articles.svjis_fault_reporter")
+@permission_required(svjis_fault_reporter)
 @require_GET
 def faults_fault_create_view(request):
     form = forms.FaultReportForm(initial={'created_by_user': request.user.pk})
@@ -147,7 +148,7 @@ def faults_fault_create_view(request):
     return render(request, "faults_create.html", ctx)
 
 
-@permission_required("articles.svjis_fault_reporter")
+@permission_required(svjis_fault_reporter)
 @require_POST
 def faults_fault_create_save_view(request):
     pk = int(request.POST['pk'])
@@ -163,10 +164,10 @@ def faults_fault_create_save_view(request):
         if (
             "created_by_user" not in form.data
             or form.data["created_by_user"] == ''
-            or not request.user.has_perm('articles.svjis_fault_resolver')
+            or not request.user.has_perm(svjis_fault_resolver)
         ):
             obj.created_by_user = request.user
-        if not request.user.has_perm('articles.svjis_fault_resolver'):
+        if not request.user.has_perm(svjis_fault_resolver):
             obj.assigned_to_user = None
             obj.closed = False
         obj.save()
@@ -200,7 +201,7 @@ def faults_fault_create_save_view(request):
     return redirect(fault_view, slug=obj.slug)
 
 
-@permission_required("articles.svjis_fault_resolver")
+@permission_required(svjis_fault_resolver)
 @require_POST
 def faults_fault_update_view(request):
     pk = int(request.POST['pk'])
@@ -253,7 +254,7 @@ def faults_fault_update_view(request):
 
 
 # Faults - FaultAsset
-@permission_required("articles.svjis_fault_reporter")
+@permission_required(svjis_fault_reporter)
 @require_POST
 def faults_fault_asset_save_view(request):
     fault_pk = int(request.POST.get('fault_pk'))
@@ -270,7 +271,7 @@ def faults_fault_asset_save_view(request):
     return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#assets')
 
 
-@permission_required("articles.svjis_fault_reporter")
+@permission_required(svjis_fault_reporter)
 @require_GET
 def faults_fault_asset_delete_view(request, pk):
     obj = get_object_or_404(models.FaultAsset, pk=pk)
@@ -281,7 +282,7 @@ def faults_fault_asset_delete_view(request, pk):
 
 
 # Faults - FaultComment
-@permission_required("articles.svjis_add_fault_comment")
+@permission_required(svjis_add_fault_comment)
 @require_POST
 def fault_comment_save_view(request):
     fault_pk = int(request.POST.get('fault_pk'))
@@ -297,7 +298,7 @@ def fault_comment_save_view(request):
 
 
 # Faults - FaultWatching
-@permission_required("articles.svjis_view_fault_menu")
+@permission_required(svjis_view_fault_menu)
 @require_GET
 def fault_watch_view(request):
     try:
@@ -317,7 +318,7 @@ def fault_watch_view(request):
 
 
 # Faults - Take ticket
-@permission_required("articles.svjis_fault_resolver")
+@permission_required(svjis_fault_resolver)
 @require_GET
 def faults_fault_take_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
@@ -329,7 +330,7 @@ def faults_fault_take_ticket_view(request, pk):
 
 
 # Faults - Close ticket
-@permission_required("articles.svjis_fault_resolver")
+@permission_required(svjis_fault_resolver)
 @require_GET
 def faults_fault_close_ticket_view(request, pk):
     fault = get_object_or_404(models.FaultReport, pk=pk)
@@ -348,7 +349,7 @@ def faults_fault_close_ticket_view(request, pk):
 
 
 # Faults - Report Log
-@permission_required("articles.svjis_view_fault_menu")
+@permission_required(svjis_view_fault_menu)
 @require_GET
 def fault_logs_view(request, slug):
     fault = get_object_or_404(models.FaultReport, slug=slug)

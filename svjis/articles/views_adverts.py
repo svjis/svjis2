@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
+from .permissions import svjis_view_adverts_menu, svjis_add_advert
 
 
 def get_side_menu(active_item, user):
@@ -34,7 +35,7 @@ def get_side_menu(active_item, user):
             }
         )
 
-    if user.has_perm('articles.svjis_add_advert'):
+    if user.has_perm(svjis_add_advert):
         result.append(
             {
                 'description': description_template.format(
@@ -49,7 +50,7 @@ def get_side_menu(active_item, user):
 
 
 # Adverts
-@permission_required("articles.svjis_view_adverts_menu")
+@permission_required(svjis_view_adverts_menu)
 @require_GET
 def adverts_list_view(request):
     advert_list = models.Advert.objects.select_related('type', 'created_by_user').filter(
@@ -78,7 +79,7 @@ def adverts_list_view(request):
     return render(request, "adverts_list.html", ctx)
 
 
-@permission_required("articles.svjis_add_advert")
+@permission_required(svjis_add_advert)
 @require_GET
 def adverts_edit_view(request, pk):
     if pk != 0:
@@ -102,7 +103,7 @@ def adverts_edit_view(request, pk):
     return render(request, "advert_edit.html", ctx)
 
 
-@permission_required("articles.svjis_add_advert")
+@permission_required(svjis_add_advert)
 @require_POST
 def adverts_save_view(request):
     pk = int(request.POST['pk'])
@@ -128,7 +129,7 @@ def adverts_save_view(request):
 
 
 # Adverts - AdvertAsset
-@permission_required("articles.svjis_add_advert")
+@permission_required(svjis_add_advert)
 @require_POST
 def adverts_asset_save_view(request):
     advert_pk = int(request.POST.get('advert_pk'))
@@ -148,7 +149,7 @@ def adverts_asset_save_view(request):
     return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')
 
 
-@permission_required("articles.svjis_add_advert")
+@permission_required(svjis_add_advert)
 @require_GET
 def adverts_asset_delete_view(request, pk):
     obj = get_object_or_404(models.AdvertAsset, pk=pk)

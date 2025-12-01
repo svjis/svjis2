@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET
 
 from . import utils, models
+from .permissions import svjis_view_phonelist
 
 
 def get_side_menu(active_item, user):
@@ -17,7 +18,7 @@ def get_side_menu(active_item, user):
             'active': True if active_item == 'company' else False,
         },
         {
-            'perms': 'articles.svjis_view_phonelist',
+            'perms': svjis_view_phonelist,
             'description': _("Phonelist"),
             'link': reverse(phonelist_view),
             'active': True if active_item == 'phonelist' else False,
@@ -39,7 +40,7 @@ def contact_view(request):
 
 
 # Contact - phonelist
-@permission_required("articles.svjis_view_phonelist")
+@permission_required(svjis_view_phonelist)
 @require_GET
 def phonelist_view(request):
     phone_list = (

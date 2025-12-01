@@ -17,42 +17,50 @@ from datetime import datetime, timedelta
 from openpyxl import Workbook
 from openpyxl.styles import Font
 from .user_agent import get_browser, get_os
+from .permissions import (
+    svjis_view_redaction_menu,
+    svjis_edit_article,
+    svjis_edit_survey,
+    svjis_edit_article_menu,
+    svjis_edit_article_news,
+    svjis_edit_useful_link,
+)
 
 
 def get_side_menu(active_item, user):
     side_menu = [
         {
-            'perms': 'articles.svjis_edit_article',
+            'perms': svjis_edit_article,
             'description': _("Articles"),
             'link': reverse(redaction_article_view),
             'active': True if active_item == 'article' else False,
         },
         {
-            'perms': 'articles.svjis_edit_article_news',
+            'perms': svjis_edit_article_news,
             'description': _("News"),
             'link': reverse(redaction_news_view),
             'active': True if active_item == 'news' else False,
         },
         {
-            'perms': 'articles.svjis_edit_useful_link',
+            'perms': svjis_edit_useful_link,
             'description': _("Useful Links"),
             'link': reverse(redaction_useful_link_view),
             'active': True if active_item == 'links' else False,
         },
         {
-            'perms': 'articles.svjis_edit_survey',
+            'perms': svjis_edit_survey,
             'description': _("Surveys"),
             'link': reverse(redaction_survey_view),
             'active': True if active_item == 'surveys' else False,
         },
         {
-            'perms': 'articles.svjis_edit_article_menu',
+            'perms': svjis_edit_article_menu,
             'description': _("Menu"),
             'link': reverse(redaction_menu_view),
             'active': True if active_item == 'menu' else False,
         },
         {
-            'perms': 'articles.svjis_view_redaction_menu',
+            'perms': svjis_view_redaction_menu,
             'description': _("Analytics"),
             'link': reverse(redaction_analytics_view),
             'active': True if active_item == 'analytics' else False,
@@ -84,7 +92,7 @@ def get_article_submenu(parent, menu_items, level):
     return result
 
 
-@permission_required("articles.svjis_edit_article_menu")
+@permission_required(svjis_edit_article_menu)
 @require_GET
 def redaction_menu_view(request):
     ctx = utils.get_context()
@@ -95,7 +103,7 @@ def redaction_menu_view(request):
     return render(request, "redaction_menu.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article_menu")
+@permission_required(svjis_edit_article_menu)
 @require_GET
 def redaction_menu_edit_view(request, pk):
     if pk != 0:
@@ -113,7 +121,7 @@ def redaction_menu_edit_view(request, pk):
     return render(request, "redaction_menu_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article_menu")
+@permission_required(svjis_edit_article_menu)
 @require_POST
 def redaction_menu_save_view(request):
     pk = int(request.POST['pk'])
@@ -133,7 +141,7 @@ def redaction_menu_save_view(request):
     return redirect(redaction_menu_view)
 
 
-@permission_required("articles.svjis_edit_article_menu")
+@permission_required(svjis_edit_article_menu)
 @require_GET
 def redaction_menu_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleMenu, pk=pk)
@@ -142,7 +150,7 @@ def redaction_menu_delete_view(request, pk):
 
 
 # Redaction - Article
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_GET
 def redaction_article_view(request):
     article_list = models.Article.objects.select_related('author', 'menu')
@@ -189,7 +197,7 @@ def redaction_article_view(request):
     return render(request, "redaction_article.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_GET
 def redaction_article_edit_view(request, pk):
     if pk != 0:
@@ -216,7 +224,7 @@ def redaction_article_edit_view(request, pk):
     return render(request, "redaction_article_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_POST
 def redaction_article_save_view(request):
     pk = int(request.POST['pk'])
@@ -265,7 +273,7 @@ def get_users_for_notification(article):
     return users
 
 
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_GET
 def redaction_article_notifications_view(request, pk):
     article = get_object_or_404(models.Article, pk=pk)
@@ -280,7 +288,7 @@ def redaction_article_notifications_view(request, pk):
     return render(request, "redaction_article_notifications.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_POST
 def redaction_article_notifications_send_view(request):
     pk = int(request.POST['pk'])
@@ -301,7 +309,7 @@ def redaction_article_notifications_send_view(request):
 
 
 # Redaction - ArticleAsset
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_POST
 def redaction_article_asset_save_view(request):
     article_pk = int(request.POST.get('article_pk'))
@@ -317,7 +325,7 @@ def redaction_article_asset_save_view(request):
     return redirect(reverse('redaction_article_edit', kwargs={'pk': article_pk}) + '#assets')
 
 
-@permission_required("articles.svjis_edit_article")
+@permission_required(svjis_edit_article)
 @require_GET
 def redaction_article_asset_delete_view(request, pk):
     obj = get_object_or_404(models.ArticleAsset, pk=pk)
@@ -327,7 +335,7 @@ def redaction_article_asset_delete_view(request, pk):
 
 
 # Redaction - MiniNews
-@permission_required("articles.svjis_edit_article_news")
+@permission_required(svjis_edit_article_news)
 @require_GET
 def redaction_news_view(request):
     news_list = models.News.objects.select_related('author')
@@ -354,7 +362,7 @@ def redaction_news_view(request):
     return render(request, "redaction_news.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article_news")
+@permission_required(svjis_edit_article_news)
 @require_GET
 def redaction_news_edit_view(request, pk):
     if pk != 0:
@@ -372,7 +380,7 @@ def redaction_news_edit_view(request, pk):
     return render(request, "redaction_news_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_article_news")
+@permission_required(svjis_edit_article_news)
 @require_POST
 def redaction_news_save_view(request):
     pk = int(request.POST['pk'])
@@ -394,7 +402,7 @@ def redaction_news_save_view(request):
     return redirect(redaction_news_view)
 
 
-@permission_required("articles.svjis_edit_article_news")
+@permission_required(svjis_edit_article_news)
 @require_GET
 def redaction_news_delete_view(request, pk):
     obj = get_object_or_404(models.News, pk=pk)
@@ -403,7 +411,7 @@ def redaction_news_delete_view(request, pk):
 
 
 # Redaction - UsefulLink
-@permission_required("articles.svjis_edit_useful_link")
+@permission_required(svjis_edit_useful_link)
 @require_GET
 def redaction_useful_link_view(request):
     useful_link_list = models.UsefulLink.objects.all()
@@ -430,7 +438,7 @@ def redaction_useful_link_view(request):
     return render(request, "redaction_useful_link.html", ctx)
 
 
-@permission_required("articles.svjis_edit_useful_link")
+@permission_required(svjis_edit_useful_link)
 @require_GET
 def redaction_useful_link_edit_view(request, pk):
     if pk != 0:
@@ -448,7 +456,7 @@ def redaction_useful_link_edit_view(request, pk):
     return render(request, "redaction_useful_link_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_useful_link")
+@permission_required(svjis_edit_useful_link)
 @require_POST
 def redaction_useful_link_save_view(request):
     pk = int(request.POST['pk'])
@@ -467,7 +475,7 @@ def redaction_useful_link_save_view(request):
     return redirect(redaction_useful_link_view)
 
 
-@permission_required("articles.svjis_edit_useful_link")
+@permission_required(svjis_edit_useful_link)
 @require_GET
 def redaction_useful_link_delete_view(request, pk):
     obj = get_object_or_404(models.UsefulLink, pk=pk)
@@ -476,7 +484,7 @@ def redaction_useful_link_delete_view(request, pk):
 
 
 # Redaction - Surveys
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_view(request):
     survey_list = models.Survey.objects.select_related('author')
@@ -503,7 +511,7 @@ def redaction_survey_view(request):
     return render(request, "redaction_survey.html", ctx)
 
 
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_edit_view(request, pk):
     if pk != 0:
@@ -524,7 +532,7 @@ def redaction_survey_edit_view(request, pk):
     return render(request, "redaction_survey_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_POST
 def redaction_survey_save_view(request):
     pk = int(request.POST['pk'])
@@ -561,7 +569,7 @@ def redaction_survey_save_view(request):
     return redirect(redaction_survey_view)
 
 
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_delete_view(request, pk):
     obj = get_object_or_404(models.Survey, pk=pk)
@@ -569,7 +577,7 @@ def redaction_survey_delete_view(request, pk):
     return redirect(redaction_survey_view)
 
 
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_option_delete_view(request, pk):
     obj = get_object_or_404(models.SurveyOption, pk=pk)
@@ -578,7 +586,7 @@ def redaction_survey_option_delete_view(request, pk):
     return redirect(redaction_survey_edit_view, pk=survey_pk)
 
 
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_results_view(request, pk):
     header = _("Survey")
@@ -592,7 +600,7 @@ def redaction_survey_results_view(request, pk):
     return render(request, "redaction_survey_results.html", ctx)
 
 
-@permission_required("articles.svjis_edit_survey")
+@permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_results_export_to_excel_view(request, pk):
     response = HttpResponse(content_type='application/ms-excel')
@@ -648,7 +656,7 @@ def redaction_survey_results_export_to_excel_view(request, pk):
 
 
 # Redaction - Analytics
-@permission_required("articles.svjis_view_redaction_menu")
+@permission_required(svjis_view_redaction_menu)
 @require_GET
 def redaction_analytics_view(request):
     header = _("Analytics")

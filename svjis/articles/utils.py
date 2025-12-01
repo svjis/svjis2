@@ -19,6 +19,13 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from openpyxl.styles import NamedStyle, Font, Border, Side, PatternFill
+from .permissions import (
+    svjis_view_redaction_menu,
+    svjis_view_admin_menu,
+    svjis_view_personal_menu,
+    svjis_view_fault_menu,
+    svjis_view_adverts_menu,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -50,7 +57,7 @@ def get_tray_menu(active_item: str, user) -> list:
             'active': True if active_item == 'contact' else False,
         }
     )
-    if user.has_perm('articles.svjis_view_personal_menu'):
+    if user.has_perm(svjis_view_personal_menu):
         result.append(
             {
                 'description': _("Personal settings"),
@@ -58,7 +65,7 @@ def get_tray_menu(active_item: str, user) -> list:
                 'active': True if active_item == 'personal_settings' else False,
             }
         )
-    if user.has_perm('articles.svjis_view_redaction_menu'):
+    if user.has_perm(svjis_view_redaction_menu):
         result.append(
             {
                 'description': _("Redaction"),
@@ -66,7 +73,7 @@ def get_tray_menu(active_item: str, user) -> list:
                 'active': True if active_item == 'redaction' else False,
             }
         )
-    if user.has_perm('articles.svjis_view_fault_menu'):
+    if user.has_perm(svjis_view_fault_menu):
         result.append(
             {
                 'description': _("Fault reporting"),
@@ -74,7 +81,7 @@ def get_tray_menu(active_item: str, user) -> list:
                 'active': True if active_item == 'faults' else False,
             }
         )
-    if user.has_perm('articles.svjis_view_adverts_menu'):
+    if user.has_perm(svjis_view_adverts_menu):
         result.append(
             {
                 'description': _("Adverts"),
@@ -82,7 +89,7 @@ def get_tray_menu(active_item: str, user) -> list:
                 'active': True if active_item == 'adverts' else False,
             }
         )
-    if user.has_perm('articles.svjis_view_admin_menu'):
+    if user.has_perm(svjis_view_admin_menu):
         result.append(
             {
                 'description': _("Administration"),

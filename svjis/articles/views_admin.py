@@ -10,60 +10,68 @@ from django.utils.translation import gettext as gt
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
 from openpyxl import Workbook
+from .permissions import (
+    svjis_view_admin_menu,
+    svjis_edit_admin_users,
+    svjis_edit_admin_groups,
+    svjis_edit_admin_preferences,
+    svjis_edit_admin_company,
+    svjis_edit_admin_building,
+)
 
 
 def get_side_menu(active_item, user):
     side_menu = [
         {
-            'perms': 'articles.svjis_edit_admin_company',
+            'perms': svjis_edit_admin_company,
             'description': _("Company"),
             'link': reverse(admin_company_edit_view),
             'active': True if active_item == 'company' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_company',
+            'perms': svjis_edit_admin_company,
             'description': _("Board") + f' ({models.Board.objects.count()})',
             'link': reverse(admin_board_view),
             'active': True if active_item == 'board' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_building',
+            'perms': svjis_edit_admin_building,
             'description': _("Building"),
             'link': reverse(admin_building_edit_view),
             'active': True if active_item == 'building' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_building',
+            'perms': svjis_edit_admin_building,
             'description': _("Entrances") + f' ({models.BuildingEntrance.objects.count()})',
             'link': reverse(admin_entrance_view),
             'active': True if active_item == 'entrances' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_building',
+            'perms': svjis_edit_admin_building,
             'description': _("Building units") + f' ({models.BuildingUnit.objects.count()})',
             'link': reverse(admin_building_unit_view),
             'active': True if active_item == 'units' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_users',
+            'perms': svjis_edit_admin_users,
             'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
             'link': reverse(admin_user_view),
             'active': True if active_item == 'users' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_groups',
+            'perms': svjis_edit_admin_groups,
             'description': _("Groups"),
             'link': reverse(admin_group_view),
             'active': True if active_item == 'groups' else False,
         },
         {
-            'perms': 'articles.svjis_edit_admin_preferences',
+            'perms': svjis_edit_admin_preferences,
             'description': _("Preferences"),
             'link': reverse(admin_preferences_view),
             'active': True if active_item == 'preferences' else False,
         },
         {
-            'perms': 'articles.svjis_view_admin_menu',
+            'perms': svjis_view_admin_menu,
             'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
             'link': reverse(admin_messages_view),
             'active': True if active_item == 'messages' else False,
@@ -73,7 +81,7 @@ def get_side_menu(active_item, user):
 
 
 # Administration - Company
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_GET
 def admin_company_edit_view(request):
     instance, _created = models.Company.objects.get_or_create(pk=1)
@@ -86,7 +94,7 @@ def admin_company_edit_view(request):
     return render(request, "admin_company_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_POST
 def admin_company_save_view(request):
     instance, _created = models.Company.objects.get_or_create(pk=1)
@@ -100,7 +108,7 @@ def admin_company_save_view(request):
     return redirect(admin_company_edit_view)
 
 
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_GET
 def admin_company_remove_logo_view(request):
     instance, _created = models.Company.objects.get_or_create(pk=1)
@@ -113,7 +121,7 @@ def admin_company_remove_logo_view(request):
 # Administration - Board
 
 
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_GET
 def admin_board_view(request):
     board_list = models.Board.objects.select_related('member')
@@ -125,7 +133,7 @@ def admin_board_view(request):
     return render(request, "admin_board.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_GET
 def admin_board_edit_view(request, pk):
     if pk != 0:
@@ -143,7 +151,7 @@ def admin_board_edit_view(request, pk):
     return render(request, "admin_board_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_POST
 def admin_board_save_view(request):
     pk = int(request.POST['pk'])
@@ -163,7 +171,7 @@ def admin_board_save_view(request):
     return redirect(admin_board_view)
 
 
-@permission_required("articles.svjis_edit_admin_company")
+@permission_required(svjis_edit_admin_company)
 @require_GET
 def admin_board_delete_view(request, pk):
     obj = get_object_or_404(models.Board, pk=pk)
@@ -172,7 +180,7 @@ def admin_board_delete_view(request, pk):
 
 
 # Administration - Building
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_edit_view(request):
     instance, _created = models.Building.objects.get_or_create(pk=1)
@@ -185,7 +193,7 @@ def admin_building_edit_view(request):
     return render(request, "admin_building_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_POST
 def admin_building_save_view(request):
     instance, _created = models.Building.objects.get_or_create(pk=1)
@@ -200,7 +208,7 @@ def admin_building_save_view(request):
 
 
 # Administration - BuildingEntrance
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_entrance_view(request):
     entrance_list = models.BuildingEntrance.objects.all()
@@ -212,7 +220,7 @@ def admin_entrance_view(request):
     return render(request, "admin_entrance.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_entrance_edit_view(request, pk):
     if pk != 0:
@@ -230,7 +238,7 @@ def admin_entrance_edit_view(request, pk):
     return render(request, "admin_entrance_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_POST
 def admin_entrance_save_view(request):
     pk = int(request.POST['pk'])
@@ -251,7 +259,7 @@ def admin_entrance_save_view(request):
     return redirect(admin_entrance_view)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_entrance_delete_view(request, pk):
     obj = get_object_or_404(models.BuildingEntrance, pk=pk)
@@ -260,7 +268,7 @@ def admin_entrance_delete_view(request, pk):
 
 
 # Administration - BuildingUnit
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_view(request):
     unit_list = models.BuildingUnit.objects.select_related('type', 'entrance')
@@ -287,7 +295,7 @@ def admin_building_unit_view(request):
     return render(request, "admin_building_unit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_edit_view(request, pk):
     if pk != 0:
@@ -305,7 +313,7 @@ def admin_building_unit_edit_view(request, pk):
     return render(request, "admin_building_unit_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_POST
 def admin_building_unit_save_view(request):
     pk = int(request.POST['pk'])
@@ -326,7 +334,7 @@ def admin_building_unit_save_view(request):
     return redirect(admin_building_unit_view)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_delete_view(request, pk):
     obj = get_object_or_404(models.BuildingUnit, pk=pk)
@@ -334,7 +342,7 @@ def admin_building_unit_delete_view(request, pk):
     return redirect(admin_building_unit_view)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_owners_view(request, pk):
     bu = get_object_or_404(models.BuildingUnit, pk=pk)
@@ -350,7 +358,7 @@ def admin_building_unit_owners_view(request, pk):
     return render(request, "admin_building_unit_owners_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_POST
 def admin_building_unit_owners_save_view(request):
     pk = int(request.POST['pk'])
@@ -364,7 +372,7 @@ def admin_building_unit_owners_save_view(request):
     return redirect(admin_building_unit_owners_view, pk=pk)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_owners_delete_view(request, pk, owner):
     bu = get_object_or_404(models.BuildingUnit, pk=pk)
@@ -373,7 +381,7 @@ def admin_building_unit_owners_delete_view(request, pk, owner):
     return redirect(admin_building_unit_owners_view, pk=pk)
 
 
-@permission_required("articles.svjis_edit_admin_building")
+@permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_export_to_excel_view(request):
     response = HttpResponse(content_type='application/ms-excel')
@@ -414,7 +422,7 @@ def admin_building_unit_export_to_excel_view(request):
 
 
 # Administration - User
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_view(request):
     deactivated_users = request.GET.get('deactivated_users', False) == 'on'
@@ -436,7 +444,7 @@ def admin_user_view(request):
     return render(request, "admin_user.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_edit_view(request, pk):
     if pk != 0:
@@ -468,7 +476,7 @@ def admin_user_edit_view(request, pk):
     return render(request, "admin_user_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_POST
 def admin_user_save_view(request):
     pk = int(request.POST['pk'])
@@ -515,7 +523,7 @@ def admin_user_save_view(request):
     return redirect(admin_user_view)
 
 
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_owns_view(request, pk):
     u = get_object_or_404(User, pk=pk)
@@ -530,7 +538,7 @@ def admin_user_owns_view(request, pk):
     return render(request, "admin_user_ownes_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_POST
 def admin_user_owns_save_view(request):
     pk = int(request.POST['pk'])
@@ -544,7 +552,7 @@ def admin_user_owns_save_view(request):
     return redirect(admin_user_owns_view, pk=pk)
 
 
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_owns_delete_view(request, pk, owner):
     u = get_object_or_404(User, pk=pk)
@@ -553,7 +561,7 @@ def admin_user_owns_delete_view(request, pk, owner):
     return redirect(admin_user_owns_view, pk=pk)
 
 
-@permission_required("articles.svjis_edit_admin_users")
+@permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_export_to_excel_view(request):
     response = HttpResponse(content_type='application/ms-excel')
@@ -613,7 +621,7 @@ def admin_user_export_to_excel_view(request):
 
 
 # Administration - Group
-@permission_required("articles.svjis_edit_admin_groups")
+@permission_required(svjis_edit_admin_groups)
 @require_GET
 def admin_group_view(request):
     group_list = Group.objects.all()
@@ -625,7 +633,7 @@ def admin_group_view(request):
     return render(request, "admin_group.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_groups")
+@permission_required(svjis_edit_admin_groups)
 @require_GET
 def admin_group_edit_view(request, pk):
     if pk != 0:
@@ -695,7 +703,7 @@ def admin_group_edit_view(request, pk):
     return render(request, "admin_group_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_groups")
+@permission_required(svjis_edit_admin_groups)
 @require_POST
 def admin_group_save_view(request):
     pk = int(request.POST['pk'])
@@ -724,7 +732,7 @@ def admin_group_save_view(request):
     return redirect(admin_group_view)
 
 
-@permission_required("articles.svjis_edit_admin_groups")
+@permission_required(svjis_edit_admin_groups)
 @require_GET
 def admin_group_delete_view(request, pk):
     obj = get_object_or_404(Group, pk=pk)
@@ -733,7 +741,7 @@ def admin_group_delete_view(request, pk):
 
 
 # Administration - Preferences
-@permission_required("articles.svjis_edit_admin_preferences")
+@permission_required(svjis_edit_admin_preferences)
 @require_GET
 def admin_preferences_view(request):
     property_list = models.Preferences.objects.all()
@@ -745,7 +753,7 @@ def admin_preferences_view(request):
     return render(request, "admin_preferences.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_preferences")
+@permission_required(svjis_edit_admin_preferences)
 @require_GET
 def admin_preferences_edit_view(request, pk):
     if pk != 0:
@@ -763,7 +771,7 @@ def admin_preferences_edit_view(request, pk):
     return render(request, "admin_preferences_edit.html", ctx)
 
 
-@permission_required("articles.svjis_edit_admin_preferences")
+@permission_required(svjis_edit_admin_preferences)
 @require_POST
 def admin_preferences_save_view(request):
     pk = int(request.POST['pk'])
@@ -781,7 +789,7 @@ def admin_preferences_save_view(request):
     return redirect(admin_preferences_view)
 
 
-@permission_required("articles.svjis_edit_admin_preferences")
+@permission_required(svjis_edit_admin_preferences)
 @require_GET
 def admin_preferences_delete_view(request, pk):
     obj = get_object_or_404(models.Preferences, pk=pk)
@@ -790,7 +798,7 @@ def admin_preferences_delete_view(request, pk):
 
 
 # Administration - Waiting messages
-@permission_required("articles.svjis_view_admin_menu")
+@permission_required(svjis_view_admin_menu)
 @require_GET
 def admin_messages_view(request):
     message_list = models.MessageQueue.objects.filter(status=0)

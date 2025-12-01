@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
+from .permissions import svjis_view_personal_menu
 
 
 PERSONAL_SETTINGS_TEXT = "Personal settings"
@@ -16,25 +17,25 @@ PERSONAL_SETTINGS_TEXT = "Personal settings"
 def get_side_menu(active_item, user):
     side_menu = [
         {
-            'perms': 'articles.svjis_view_personal_menu',
+            'perms': svjis_view_personal_menu,
             'description': _(PERSONAL_SETTINGS_TEXT),
             'link': reverse(personal_settings_edit_view),
             'active': True if active_item == 'settings' else False,
         },
         {
-            'perms': 'articles.svjis_view_personal_menu',
+            'perms': svjis_view_personal_menu,
             'description': _("Language settings"),
             'link': reverse(personal_settings_lang_view),
             'active': True if active_item == 'lang' else False,
         },
         {
-            'perms': 'articles.svjis_view_personal_menu',
+            'perms': svjis_view_personal_menu,
             'description': _("My units"),
             'link': reverse(personal_my_units_view),
             'active': True if active_item == 'units' else False,
         },
         {
-            'perms': 'articles.svjis_view_personal_menu',
+            'perms': svjis_view_personal_menu,
             'description': _("Password change"),
             'link': reverse(personal_settings_password_view),
             'active': True if active_item == 'password' else False,
@@ -44,7 +45,7 @@ def get_side_menu(active_item, user):
 
 
 # Personal settings - profile
-@permission_required("articles.svjis_view_personal_menu")
+@permission_required(svjis_view_personal_menu)
 @require_GET
 def personal_settings_edit_view(request):
     uform = forms.PersonalUserForm(instance=request.user)
@@ -59,7 +60,7 @@ def personal_settings_edit_view(request):
     return render(request, "personal_settings_edit.html", ctx)
 
 
-@permission_required("articles.svjis_view_personal_menu")
+@permission_required(svjis_view_personal_menu)
 @require_POST
 def personal_settings_save_view(request):
     uform = forms.PersonalUserForm(request.POST, instance=request.user)
@@ -79,7 +80,7 @@ def personal_settings_save_view(request):
 
 
 # Personal settings - preferred language
-@permission_required("articles.svjis_view_personal_menu")
+@permission_required(svjis_view_personal_menu)
 @require_GET
 def personal_settings_lang_view(request):
     ctx = utils.get_context()
@@ -90,7 +91,7 @@ def personal_settings_lang_view(request):
 
 
 # Personal settings - my building units
-@permission_required("articles.svjis_view_personal_menu")
+@permission_required(svjis_view_personal_menu)
 @require_GET
 def personal_my_units_view(request):
     ctx = utils.get_context()
@@ -101,7 +102,7 @@ def personal_my_units_view(request):
 
 
 # Personal settings - password
-@permission_required("articles.svjis_view_personal_menu")
+@permission_required(svjis_view_personal_menu)
 @require_GET
 def personal_settings_password_view(request):
     ctx = utils.get_context()
@@ -111,7 +112,7 @@ def personal_settings_password_view(request):
     return render(request, "personal_settings_password.html", ctx)
 
 
-@permission_required("articles.svjis_view_personal_menu")
+@permission_required(svjis_view_personal_menu)
 @require_POST
 def personal_settings_password_save_view(request):
     username = request.user.username

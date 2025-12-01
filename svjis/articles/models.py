@@ -7,6 +7,7 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
+from .permissions import svjis_answer_survey
 
 
 # Article / Redaction
@@ -169,7 +170,7 @@ class Survey(models.Model):
         return self.published and self.starting_date <= now and self.ending_date >= now
 
     def is_user_open_for_voting(self, user):
-        return self.answers.filter(user=user).count() == 0 and user.has_perm('articles.svjis_answer_survey')
+        return self.answers.filter(user=user).count() == 0 and user.has_perm(svjis_answer_survey)
 
     @property
     def answers(self):
