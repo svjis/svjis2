@@ -14,41 +14,35 @@ from django.views.decorators.http import require_GET, require_POST
 
 
 def get_side_menu(active_item, user):
-    result = []
-    if user.has_perm('articles.svjis_view_fault_menu'):
-        result.append(
-            {
-                'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
-                'link': reverse(faults_list_view) + '?scope=open',
-                'active': True if active_item == 'open' else False,
-            }
-        )
-        if user.has_perm('articles.svjis_fault_reporter'):
-            result.append(
-                {
-                    'description': _("Mine")
-                    + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
-                    'link': reverse(faults_list_view) + '?scope=mine',
-                    'active': True if active_item == 'mine' else False,
-                }
-            )
-        if user.has_perm('articles.svjis_fault_resolver'):
-            result.append(
-                {
-                    'description': _("Assigned to me")
-                    + f' ({models.FaultReport.objects.filter(closed=False, assigned_to_user=user).count()})',
-                    'link': reverse(faults_list_view) + '?scope=assigned',
-                    'active': True if active_item == 'assigned' else False,
-                }
-            )
-        result.append(
-            {
-                'description': _("Resolved") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
-                'link': reverse(faults_list_view) + '?scope=closed',
-                'active': True if active_item == 'closed' else False,
-            }
-        )
-    return result
+    side_menu = [
+        {
+            'perms': 'articles.svjis_view_fault_menu',
+            'description': _("Open") + f' ({models.FaultReport.objects.filter(closed=False).count()})',
+            'link': reverse(faults_list_view) + '?scope=open',
+            'active': True if active_item == 'open' else False,
+        },
+        {
+            'perms': 'articles.svjis_fault_reporter',
+            'description': _("Mine")
+            + f' ({models.FaultReport.objects.filter(closed=False, created_by_user=user).count()})',
+            'link': reverse(faults_list_view) + '?scope=mine',
+            'active': True if active_item == 'mine' else False,
+        },
+        {
+            'perms': 'articles.svjis_fault_resolver',
+            'description': _("Assigned to me")
+            + f' ({models.FaultReport.objects.filter(closed=False, assigned_to_user=user).count()})',
+            'link': reverse(faults_list_view) + '?scope=assigned',
+            'active': True if active_item == 'assigned' else False,
+        },
+        {
+            'perms': None,
+            'description': _("Resolved") + f' ({models.FaultReport.objects.filter(closed=True).count()})',
+            'link': reverse(faults_list_view) + '?scope=closed',
+            'active': True if active_item == 'closed' else False,
+        },
+    ]
+    return [x for x in side_menu if x['perms'] is None or user.has_perm(x['perms'])]
 
 
 # Faults - Fault report
