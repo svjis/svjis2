@@ -13,80 +13,63 @@ from openpyxl import Workbook
 
 
 def get_side_menu(active_item, user):
-    result = []
-    if user.has_perm('articles.svjis_edit_admin_company'):
-        result.append(
-            {
-                'description': _("Company"),
-                'link': reverse(admin_company_edit_view),
-                'active': True if active_item == 'company' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_company'):
-        result.append(
-            {
-                'description': _("Board") + f' ({models.Board.objects.count()})',
-                'link': reverse(admin_board_view),
-                'active': True if active_item == 'board' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append(
-            {
-                'description': _("Building"),
-                'link': reverse(admin_building_edit_view),
-                'active': True if active_item == 'building' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append(
-            {
-                'description': _("Entrances") + f' ({models.BuildingEntrance.objects.count()})',
-                'link': reverse(admin_entrance_view),
-                'active': True if active_item == 'entrances' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_building'):
-        result.append(
-            {
-                'description': _("Building units") + f' ({models.BuildingUnit.objects.count()})',
-                'link': reverse(admin_building_unit_view),
-                'active': True if active_item == 'units' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_users'):
-        result.append(
-            {
-                'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
-                'link': reverse(admin_user_view),
-                'active': True if active_item == 'users' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_groups'):
-        result.append(
-            {
-                'description': _("Groups"),
-                'link': reverse(admin_group_view),
-                'active': True if active_item == 'groups' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_edit_admin_preferences'):
-        result.append(
-            {
-                'description': _("Preferences"),
-                'link': reverse(admin_preferences_view),
-                'active': True if active_item == 'preferences' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_view_admin_menu'):
-        result.append(
-            {
-                'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
-                'link': reverse(admin_messages_view),
-                'active': True if active_item == 'messages' else False,
-            }
-        )
-    return result
+    side_menu = [
+        {
+            'perms': 'articles.svjis_edit_admin_company',
+            'description': _("Company"),
+            'link': reverse(admin_company_edit_view),
+            'active': True if active_item == 'company' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_company',
+            'description': _("Board") + f' ({models.Board.objects.count()})',
+            'link': reverse(admin_board_view),
+            'active': True if active_item == 'board' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_building',
+            'description': _("Building"),
+            'link': reverse(admin_building_edit_view),
+            'active': True if active_item == 'building' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_building',
+            'description': _("Entrances") + f' ({models.BuildingEntrance.objects.count()})',
+            'link': reverse(admin_entrance_view),
+            'active': True if active_item == 'entrances' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_building',
+            'description': _("Building units") + f' ({models.BuildingUnit.objects.count()})',
+            'link': reverse(admin_building_unit_view),
+            'active': True if active_item == 'units' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_users',
+            'description': _("Users") + f' ({User.objects.filter(is_active=True).count()})',
+            'link': reverse(admin_user_view),
+            'active': True if active_item == 'users' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_groups',
+            'description': _("Groups"),
+            'link': reverse(admin_group_view),
+            'active': True if active_item == 'groups' else False,
+        },
+        {
+            'perms': 'articles.svjis_edit_admin_preferences',
+            'description': _("Preferences"),
+            'link': reverse(admin_preferences_view),
+            'active': True if active_item == 'preferences' else False,
+        },
+        {
+            'perms': 'articles.svjis_view_admin_menu',
+            'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
+            'link': reverse(admin_messages_view),
+            'active': True if active_item == 'messages' else False,
+        },
+    ]
+    return [x for x in side_menu if user.has_perm(x['perms'])]
 
 
 # Administration - Company
