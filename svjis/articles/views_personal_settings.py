@@ -14,37 +14,33 @@ PERSONAL_SETTINGS_TEXT = "Personal settings"
 
 
 def get_side_menu(active_item, user):
-    result = []
-    if user.has_perm('articles.svjis_view_personal_menu'):
-        result.append(
-            {
-                'description': _(PERSONAL_SETTINGS_TEXT),
-                'link': reverse(personal_settings_edit_view),
-                'active': True if active_item == 'settings' else False,
-            }
-        )
-        result.append(
-            {
-                'description': _("Language settings"),
-                'link': reverse(personal_settings_lang_view),
-                'active': True if active_item == 'lang' else False,
-            }
-        )
-        result.append(
-            {
-                'description': _("My units"),
-                'link': reverse(personal_my_units_view),
-                'active': True if active_item == 'units' else False,
-            }
-        )
-        result.append(
-            {
-                'description': _("Password change"),
-                'link': reverse(personal_settings_password_view),
-                'active': True if active_item == 'password' else False,
-            }
-        )
-    return result
+    side_menu = [
+        {
+            'perms': 'articles.svjis_view_personal_menu',
+            'description': _(PERSONAL_SETTINGS_TEXT),
+            'link': reverse(personal_settings_edit_view),
+            'active': True if active_item == 'settings' else False,
+        },
+        {
+            'perms': 'articles.svjis_view_personal_menu',
+            'description': _("Language settings"),
+            'link': reverse(personal_settings_lang_view),
+            'active': True if active_item == 'lang' else False,
+        },
+        {
+            'perms': 'articles.svjis_view_personal_menu',
+            'description': _("My units"),
+            'link': reverse(personal_my_units_view),
+            'active': True if active_item == 'units' else False,
+        },
+        {
+            'perms': 'articles.svjis_view_personal_menu',
+            'description': _("Password change"),
+            'link': reverse(personal_settings_password_view),
+            'active': True if active_item == 'password' else False,
+        },
+    ]
+    return [x for x in side_menu if x['perms'] is None or user.has_perm(x['perms'])]
 
 
 # Personal settings - profile
