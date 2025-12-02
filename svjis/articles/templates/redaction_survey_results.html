@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+<h1 class="page-title">{{ header }}</h1>
 
 <p>{{ obj.description|safe }}</p>
 
-<h2 class="page-title" id="tbl2-desc">{% translate 'Result' %}</h2>
+<h2 class="page-title" id="tbl-desc">{% translate 'Result' %}</h2>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
@@ -32,7 +32,7 @@
 
 <h2 class="page-title" id="tbl2-desc">{% translate 'Voting log' %}</h2>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list" aria-describedby="tbl2-desc">
     <tr>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Time' %}</th>
