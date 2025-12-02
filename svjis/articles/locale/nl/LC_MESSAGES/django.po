@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-29 00:33+0100\n"
+"POT-Creation-Date: 2025-12-02 18:46+0100\n"
 "PO-Revision-Date: 2025-11-26 22:04+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/svjis/svjis2/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.14\n"
 
-#: articles/forms.py:326 articles/models.py:362 articles/models.py:393
+#: articles/forms.py:326 articles/models.py:363 articles/models.py:394
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -36,13 +36,13 @@ msgstr "Opgelost door"
 msgid "On Behalf Of"
 msgstr "Namens"
 
-#: articles/models.py:17 articles/models.py:139 articles/models.py:508
+#: articles/models.py:18 articles/models.py:140 articles/models.py:509
 #: articles/templates/redaction_useful_link.html:14
 msgid "Header"
 msgstr "Kop"
 
-#: articles/models.py:21 articles/models.py:127 articles/models.py:142
-#: articles/models.py:157 articles/models.py:514
+#: articles/models.py:22 articles/models.py:128 articles/models.py:143
+#: articles/models.py:158 articles/models.py:515
 #: articles/templates/redaction_article.html:19
 #: articles/templates/redaction_news.html:16
 #: articles/templates/redaction_survey.html:20
@@ -50,40 +50,40 @@ msgstr "Kop"
 msgid "Published"
 msgstr "Gepubliceerd op"
 
-#: articles/models.py:22
+#: articles/models.py:23
 msgid "Perex"
 msgstr "Perex"
 
-#: articles/models.py:23 articles/models.py:97 articles/models.py:128
-#: articles/models.py:257 articles/models.py:455 articles/models.py:509
+#: articles/models.py:24 articles/models.py:98 articles/models.py:129
+#: articles/models.py:258 articles/models.py:456 articles/models.py:510
 #: articles/templates/redaction_news.html:17
 msgid "Body"
 msgstr "Inhoud"
 
-#: articles/models.py:25
+#: articles/models.py:26
 msgid "Allow comments"
 msgstr "Reacties toestaan"
 
-#: articles/models.py:27
+#: articles/models.py:28
 msgid "Visible for all"
 msgstr "Zichtbaar voor iedereen"
 
-#: articles/models.py:44
+#: articles/models.py:45
 msgid "Can view Redaction menu"
 msgstr "Mag het redactiemenu openen"
 
-#: articles/models.py:45
+#: articles/models.py:46
 msgid "Can edit Article"
 msgstr "Mag het artikel bewerken"
 
-#: articles/models.py:60
+#: articles/models.py:61
 msgid "UserAgent"
 msgstr "Gebruikersagent"
 
-#: articles/models.py:76 articles/models.py:108 articles/models.py:154
-#: articles/models.py:188 articles/models.py:334 articles/models.py:345
-#: articles/models.py:365 articles/models.py:384 articles/models.py:433
-#: articles/models.py:497 articles/models.py:536
+#: articles/models.py:77 articles/models.py:109 articles/models.py:155
+#: articles/models.py:189 articles/models.py:335 articles/models.py:346
+#: articles/models.py:366 articles/models.py:385 articles/models.py:434
+#: articles/models.py:498 articles/models.py:537
 #: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:15
@@ -95,124 +95,124 @@ msgstr "Gebruikersagent"
 msgid "Description"
 msgstr "Beschrijving"
 
-#: articles/models.py:77 articles/models.py:434 articles/models.py:537
+#: articles/models.py:78 articles/models.py:435 articles/models.py:538
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
 #: articles/templates/fault.html:64
 msgid "File"
 msgstr "Bestand"
 
-#: articles/models.py:78 articles/models.py:94
+#: articles/models.py:79 articles/models.py:95
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
-#: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:176
+#: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:173
 msgid "Article"
 msgstr "Artikel"
 
-#: articles/models.py:104
+#: articles/models.py:105
 msgid "Can add Article comment"
 msgstr "Mag reageren op het artikel"
 
-#: articles/models.py:109 articles/templates/redaction_menu.html:17
+#: articles/models.py:110 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Verbergen"
 
-#: articles/models.py:121
+#: articles/models.py:122
 msgid "Can edit Menu"
 msgstr "Mag het menu bewerken"
 
-#: articles/models.py:135
+#: articles/models.py:136
 msgid "Can edit News"
 msgstr "Mag het nieuws bewerken"
 
-#: articles/models.py:140 articles/templates/redaction_useful_link.html:15
+#: articles/models.py:141 articles/templates/redaction_useful_link.html:15
 msgid "Link"
 msgstr "Link"
 
-#: articles/models.py:141 articles/models.py:319
+#: articles/models.py:142 articles/models.py:320
 #: articles/templates/redaction_useful_link.html:16
 msgid "Order"
 msgstr "Volgorde"
 
-#: articles/models.py:149
+#: articles/models.py:150
 msgid "Can edit Useful Links"
 msgstr "Mag de nuttige links bewerken"
 
-#: articles/models.py:155
+#: articles/models.py:156
 msgid "Starting day"
 msgstr "Begindatum"
 
-#: articles/models.py:156
+#: articles/models.py:157
 msgid "Ending day"
 msgstr "Einddatum"
 
-#: articles/models.py:181
+#: articles/models.py:182
 msgid "Can answer Survey"
 msgstr "Mag de vragenlijst beantwoorden"
 
-#: articles/models.py:182
+#: articles/models.py:183
 msgid "Can edit Survey"
 msgstr "Mag de vragenlijst bewerken"
 
-#: articles/models.py:232
+#: articles/models.py:233
 msgid "Salutation"
 msgstr "Aanhef"
 
-#: articles/models.py:233 articles/models.py:283 articles/models.py:305
-#: articles/models.py:335 articles/templates/admin_entrance.html:16
+#: articles/models.py:234 articles/models.py:284 articles/models.py:306
+#: articles/models.py:336 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Adres"
 
-#: articles/models.py:234 articles/models.py:284 articles/models.py:306
+#: articles/models.py:235 articles/models.py:285 articles/models.py:307
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "Plaatsnaam"
 
-#: articles/models.py:235 articles/models.py:285 articles/models.py:307
+#: articles/models.py:236 articles/models.py:286 articles/models.py:308
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "Postcode"
 
-#: articles/models.py:236
+#: articles/models.py:237
 msgid "Country"
 msgstr "Land"
 
-#: articles/models.py:237 articles/models.py:286 articles/models.py:511
+#: articles/models.py:238 articles/models.py:287 articles/models.py:512
 #: articles/templates/adverts_list.html:39
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:13
 msgid "Phone"
 msgstr "Telefoonnummer"
 
-#: articles/models.py:238
+#: articles/models.py:239
 msgid "Show in phonelist"
 msgstr "Tonen op bellijst"
 
-#: articles/models.py:239
+#: articles/models.py:240
 msgid "Internal note"
 msgstr "Interne aantekening"
 
-#: articles/models.py:246
+#: articles/models.py:247
 msgid "Can view Administration menu"
 msgstr "Mag het beheermenu bekijken"
 
-#: articles/models.py:247
+#: articles/models.py:248
 msgid "Can edit Users"
 msgstr "Mag gebruikers bewerken"
 
-#: articles/models.py:248
+#: articles/models.py:249
 msgid "Can edit Groups"
 msgstr "Mag groepen bewerken"
 
-#: articles/models.py:249
+#: articles/models.py:250
 msgid "Can view Personal settings menu"
 msgstr "Mag het persoonlijke instellingenmenu bekijken"
 
-#: articles/models.py:250
+#: articles/models.py:251
 msgid "Can view Phonelist"
 msgstr "Mag de bellijst bekijken"
 
-#: articles/models.py:255 articles/models.py:287 articles/models.py:512
+#: articles/models.py:256 articles/models.py:288 articles/models.py:513
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -221,77 +221,77 @@ msgstr "Mag de bellijst bekijken"
 msgid "E-Mail"
 msgstr "E-mailadres"
 
-#: articles/models.py:256 articles/models.py:382
+#: articles/models.py:257 articles/models.py:383
 #: articles/templates/admin_messages.html:13
 #: articles/templates/faults_list.html:18
 msgid "Subject"
 msgstr "Onderwerp"
 
-#: articles/models.py:267 articles/templates/admin_preferences.html:15
+#: articles/models.py:268 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Sleutel"
 
-#: articles/models.py:268 articles/templates/admin_preferences.html:16
+#: articles/models.py:269 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Waarde"
 
-#: articles/models.py:274
+#: articles/models.py:275
 msgid "Can edit Preferences"
 msgstr "Mag de instellingen aanpassen"
 
-#: articles/models.py:282 articles/templates/admin_group.html:16
+#: articles/models.py:283 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:14
 msgid "Name"
 msgstr "Naam"
 
-#: articles/models.py:288 articles/templates/contact_company.html:42
+#: articles/models.py:289 articles/templates/contact_company.html:42
 msgid "Registration No."
 msgstr "Registratienr."
 
-#: articles/models.py:289 articles/templates/contact_company.html:48
+#: articles/models.py:290 articles/templates/contact_company.html:48
 msgid "VAT Registration No."
 msgstr "BTW-registratienr."
 
-#: articles/models.py:290 articles/templates/contact_company.html:54
+#: articles/models.py:291 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Internetdomein"
 
-#: articles/models.py:291
+#: articles/models.py:292
 msgid "Header picture"
 msgstr "Banier"
 
-#: articles/models.py:301
+#: articles/models.py:302
 msgid "Can edit Company"
 msgstr "Mag het bedrijf bewerken"
 
-#: articles/models.py:308
+#: articles/models.py:309
 msgid "Land Registration No."
 msgstr "Landsregistratienr."
 
-#: articles/models.py:314
+#: articles/models.py:315
 msgid "Can edit Building"
 msgstr "Mag het gebouw bewerken"
 
-#: articles/models.py:318 articles/templates/admin_company_edit.html:7
+#: articles/models.py:319 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
-#: articles/tests_playwright/commands.py:86 articles/views_admin.py:20
+#: articles/tests_playwright/commands.py:86 articles/views_admin.py:27
 msgid "Company"
 msgstr "Bedrijf"
 
-#: articles/models.py:321 articles/templates/admin_board.html:16
+#: articles/models.py:322 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Positie"
 
-#: articles/models.py:332 articles/models.py:356
+#: articles/models.py:333 articles/models.py:357
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11
-#: articles/tests_playwright/commands.py:104 articles/views_admin.py:36
+#: articles/tests_playwright/commands.py:104 articles/views_admin.py:39
 msgid "Building"
 msgstr "Gebouw"
 
-#: articles/models.py:359 articles/models.py:483 articles/models.py:507
+#: articles/models.py:360 articles/models.py:484 articles/models.py:508
 #: articles/templates/admin_building_unit.html:19
 #: articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:13
@@ -299,71 +299,71 @@ msgstr "Gebouw"
 msgid "Type"
 msgstr "Type"
 
-#: articles/models.py:364 articles/templates/admin_building_unit.html:61
+#: articles/models.py:365 articles/templates/admin_building_unit.html:61
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "Registratie-id"
 
-#: articles/models.py:366 articles/templates/admin_building_unit.html:63
+#: articles/models.py:367 articles/templates/admin_building_unit.html:63
 msgid "Numerator"
 msgstr "Teller"
 
-#: articles/models.py:367 articles/templates/admin_building_unit.html:64
+#: articles/models.py:368 articles/templates/admin_building_unit.html:64
 msgid "Denominator"
 msgstr "Noemer"
 
-#: articles/models.py:391 articles/models.py:475
+#: articles/models.py:392 articles/models.py:476
 #: articles/templates/fault.html:45
 msgid "Closed"
 msgstr "Gesloten"
 
-#: articles/models.py:410
+#: articles/models.py:411
 msgid "Can view Faults menu"
 msgstr "Mag het reparatiemenu openen"
 
-#: articles/models.py:411
+#: articles/models.py:412
 msgid "Can report fault"
 msgstr "Mag een reparatie aanmelden"
 
-#: articles/models.py:412
+#: articles/models.py:413
 msgid "Can resolve fault"
 msgstr "Mag een reparatie oplossen"
 
-#: articles/models.py:435 articles/models.py:452
+#: articles/models.py:436 articles/models.py:453
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Storingsverslag"
 
-#: articles/models.py:462
+#: articles/models.py:463
 msgid "Can add Fault comment"
 msgstr "Mag reageren op de storing"
 
-#: articles/models.py:473
+#: articles/models.py:474
 msgid "Modified"
 msgstr "Bewerkt"
 
-#: articles/models.py:474
+#: articles/models.py:475
 msgid "Assigned"
 msgstr "Toegewezen"
 
-#: articles/models.py:476
+#: articles/models.py:477
 msgid "Reopened"
 msgstr "Heropend"
 
-#: articles/models.py:477
+#: articles/models.py:478
 msgid "Created"
 msgstr "Aangemaakt op"
 
-#: articles/models.py:526
+#: articles/models.py:527
 msgid "Can view Adverts menu"
 msgstr "Mag het reclamemenu openen"
 
-#: articles/models.py:527
+#: articles/models.py:528
 msgid "Can add Advert"
 msgstr "Mag reclame toevoegen"
 
-#: articles/models.py:538
+#: articles/models.py:539
 msgid "Advert"
 msgstr "Reclame"
 
@@ -371,7 +371,7 @@ msgstr "Reclame"
 #: articles/templates/admin_board_edit.html:7
 #: articles/templates/admin_board_edit.html:13
 #: articles/templates/contact_company.html:63
-#: articles/tests_playwright/commands.py:337 articles/views_admin.py:28
+#: articles/tests_playwright/commands.py:337 articles/views_admin.py:33
 msgid "Board"
 msgstr "Bord"
 
@@ -451,7 +451,7 @@ msgid "Save"
 msgstr "Opslaan"
 
 #: articles/templates/admin_building_unit.html:7
-#: articles/tests_playwright/commands.py:180 articles/views_admin.py:52
+#: articles/tests_playwright/commands.py:180 articles/views_admin.py:51
 msgid "Building units"
 msgstr "Gebouweenheden"
 
@@ -511,7 +511,7 @@ msgstr "Logo verwijderen"
 
 #: articles/templates/admin_entrance.html:7
 #: articles/templates/admin_entrance_edit.html:7
-#: articles/tests_playwright/commands.py:117 articles/views_admin.py:44
+#: articles/tests_playwright/commands.py:117 articles/views_admin.py:45
 msgid "Entrances"
 msgstr "Entrees"
 
@@ -540,7 +540,7 @@ msgstr "Lijst met gebruikers"
 msgid "Permissions"
 msgstr "Bevoegdheden"
 
-#: articles/templates/admin_messages.html:7 articles/views_admin.py:84
+#: articles/templates/admin_messages.html:7 articles/views_admin.py:75
 msgid "Waiting messages"
 msgstr "Wachtberichten"
 
@@ -554,7 +554,7 @@ msgstr "Aangemaakt om"
 
 #: articles/templates/admin_preferences.html:7
 #: articles/templates/admin_preferences_edit.html:7
-#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:76
+#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:69
 msgid "Preferences"
 msgstr "Instellingen"
 
@@ -615,8 +615,8 @@ msgstr "Lid van"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
 #: articles/tests_playwright/commands.py:779
-#: articles/tests_playwright/commands.py:791 articles/utils.py:80
-#: articles/views_adverts.py:73 articles/views_adverts.py:95
+#: articles/tests_playwright/commands.py:791 articles/utils.py:78
+#: articles/views_adverts.py:74 articles/views_adverts.py:96
 msgid "Adverts"
 msgstr "Reclames"
 
@@ -675,14 +675,14 @@ msgstr "Terug naar artikellijst"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
-#: articles/tests_playwright/commands.py:489 articles/views_redaction.py:35
-#: articles/views_redaction.py:345
+#: articles/tests_playwright/commands.py:489 articles/views_redaction.py:40
+#: articles/views_redaction.py:342
 msgid "News"
 msgstr "Nieuws"
 
 #: articles/templates/box-survey.html:8
 #: articles/templates/redaction_survey_edit.html:7
-#: articles/views_redaction.py:595
+#: articles/views_redaction.py:592
 msgid "Survey"
 msgstr "Vragenlijst"
 
@@ -699,8 +699,8 @@ msgid "Top articles"
 msgstr "Topartikelen"
 
 #: articles/templates/box-useful-links.html:7
-#: articles/tests_playwright/commands.py:551 articles/views_redaction.py:43
-#: articles/views_redaction.py:421
+#: articles/tests_playwright/commands.py:551 articles/views_redaction.py:46
+#: articles/views_redaction.py:418
 msgid "Useful Links"
 msgstr "Nuttige links"
 
@@ -709,7 +709,7 @@ msgid "Paper clip"
 msgstr "Paperclip"
 
 #: articles/templates/contact_phonelist.html:7
-#: articles/tests_playwright/commands.py:657 articles/views_contact.py:23
+#: articles/tests_playwright/commands.py:657 articles/views_contact.py:22
 msgid "Phonelist"
 msgstr "Bellijst"
 
@@ -854,7 +854,7 @@ msgstr "Voorkeurstaal"
 
 #: articles/templates/personal_settings_password.html:11
 #: articles/tests_playwright/commands.py:680
-#: articles/views_personal_settings.py:42
+#: articles/views_personal_settings.py:39
 msgid "Password change"
 msgstr "Wachtwoord wĳzigen"
 
@@ -901,7 +901,7 @@ msgid "Count"
 msgstr "Aantal"
 
 #: articles/templates/redaction_analytics.html:87
-#: articles/views_redaction.py:700
+#: articles/views_redaction.py:697
 msgid "Bot"
 msgstr "Bot"
 
@@ -910,7 +910,7 @@ msgid "Humans"
 msgstr "Mensen"
 
 #: articles/templates/redaction_analytics.html:103
-#: articles/views_redaction.py:692
+#: articles/views_redaction.py:689
 msgid "Human"
 msgstr "Mens"
 
@@ -921,7 +921,7 @@ msgstr "Artikel opstellen"
 
 #: articles/templates/redaction_article.html:16
 #: articles/templates/redaction_menu.html:7
-#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:59
+#: articles/templates/redaction_menu_edit.html:7 articles/views_redaction.py:58
 msgid "Menu"
 msgstr "Menu"
 
@@ -965,8 +965,8 @@ msgstr "Niveau"
 #: articles/tests_playwright/commands.py:467
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
-#: articles/tests_playwright/commands.py:621 articles/utils.py:41
-#: articles/views.py:148 articles/views.py:218 articles/views_redaction.py:27
+#: articles/tests_playwright/commands.py:621 articles/utils.py:48
+#: articles/views.py:149 articles/views.py:219 articles/views_redaction.py:34
 msgid "Articles"
 msgstr "Artikelen"
 
@@ -1075,16 +1075,16 @@ msgstr "Mijn e-mailadres"
 #: articles/tests_playwright/commands.py:180
 #: articles/tests_playwright/commands.py:301
 #: articles/tests_playwright/commands.py:337
-#: articles/tests_playwright/commands.py:362 articles/utils.py:88
-#: articles/views_admin.py:99 articles/views_admin.py:138
-#: articles/views_admin.py:155 articles/views_admin.py:198
-#: articles/views_admin.py:225 articles/views_admin.py:242
-#: articles/views_admin.py:296 articles/views_admin.py:317
-#: articles/views_admin.py:361 articles/views_admin.py:446
-#: articles/views_admin.py:478 articles/views_admin.py:541
-#: articles/views_admin.py:638 articles/views_admin.py:705
-#: articles/views_admin.py:758 articles/views_admin.py:775
-#: articles/views_admin.py:815
+#: articles/tests_playwright/commands.py:362 articles/utils.py:84
+#: articles/views_admin.py:90 articles/views_admin.py:129
+#: articles/views_admin.py:146 articles/views_admin.py:189
+#: articles/views_admin.py:216 articles/views_admin.py:233
+#: articles/views_admin.py:287 articles/views_admin.py:308
+#: articles/views_admin.py:352 articles/views_admin.py:437
+#: articles/views_admin.py:469 articles/views_admin.py:532
+#: articles/views_admin.py:629 articles/views_admin.py:696
+#: articles/views_admin.py:749 articles/views_admin.py:766
+#: articles/views_admin.py:806
 msgid "Administration"
 msgstr "Beheer"
 
@@ -1100,21 +1100,21 @@ msgstr "Beheer"
 #: articles/tests_playwright/commands.py:562
 #: articles/tests_playwright/commands.py:671
 #: articles/tests_playwright/commands.py:713
-#: articles/tests_playwright/commands.py:790 articles/views_admin.py:113
-#: articles/views_admin.py:126 articles/views_admin.py:176
-#: articles/views_admin.py:212 articles/views_admin.py:263
-#: articles/views_admin.py:338 articles/views_admin.py:531
-#: articles/views_admin.py:736 articles/views_admin.py:794
-#: articles/views_adverts.py:122 articles/views_adverts.py:144
-#: articles/views_faults.py:205 articles/views_faults.py:257
-#: articles/views_personal_settings.py:75 articles/views_redaction.py:139
-#: articles/views_redaction.py:260 articles/views_redaction.py:401
-#: articles/views_redaction.py:474 articles/views_redaction.py:568
+#: articles/tests_playwright/commands.py:790 articles/views_admin.py:104
+#: articles/views_admin.py:117 articles/views_admin.py:167
+#: articles/views_admin.py:203 articles/views_admin.py:254
+#: articles/views_admin.py:329 articles/views_admin.py:522
+#: articles/views_admin.py:727 articles/views_admin.py:785
+#: articles/views_adverts.py:123 articles/views_adverts.py:145
+#: articles/views_faults.py:200 articles/views_faults.py:252
+#: articles/views_personal_settings.py:72 articles/views_redaction.py:136
+#: articles/views_redaction.py:257 articles/views_redaction.py:398
+#: articles/views_redaction.py:471 articles/views_redaction.py:565
 msgid "Saved"
 msgstr "Opgeslagen"
 
 #: articles/tests_playwright/commands.py:301
-#: articles/tests_playwright/commands.py:362 articles/views_admin.py:60
+#: articles/tests_playwright/commands.py:362 articles/views_admin.py:57
 msgid "Users"
 msgstr "Gebruikers"
 
@@ -1123,46 +1123,46 @@ msgstr "Gebruikers"
 #: articles/tests_playwright/commands.py:489
 #: articles/tests_playwright/commands.py:510
 #: articles/tests_playwright/commands.py:551
-#: articles/tests_playwright/commands.py:631 articles/utils.py:64
-#: articles/views_redaction.py:102 articles/views_redaction.py:119
-#: articles/views_redaction.py:190 articles/views_redaction.py:218
-#: articles/views_redaction.py:288 articles/views_redaction.py:308
-#: articles/views_redaction.py:358 articles/views_redaction.py:378
-#: articles/views_redaction.py:434 articles/views_redaction.py:454
-#: articles/views_redaction.py:507 articles/views_redaction.py:529
-#: articles/views_redaction.py:598 articles/views_redaction.py:712
+#: articles/tests_playwright/commands.py:631 articles/utils.py:66
+#: articles/views_redaction.py:99 articles/views_redaction.py:116
+#: articles/views_redaction.py:187 articles/views_redaction.py:215
+#: articles/views_redaction.py:285 articles/views_redaction.py:305
+#: articles/views_redaction.py:355 articles/views_redaction.py:375
+#: articles/views_redaction.py:431 articles/views_redaction.py:451
+#: articles/views_redaction.py:504 articles/views_redaction.py:526
+#: articles/views_redaction.py:595 articles/views_redaction.py:709
 msgid "Redaction"
 msgstr "Redactie"
 
 #: articles/tests_playwright/commands.py:510
-#: articles/tests_playwright/commands.py:631 articles/views_redaction.py:51
-#: articles/views_redaction.py:494
+#: articles/tests_playwright/commands.py:631 articles/views_redaction.py:52
+#: articles/views_redaction.py:491
 msgid "Surveys"
 msgstr "Vragenlijsten"
 
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
 #: articles/tests_playwright/commands.py:621
-#: articles/tests_playwright/test_desktop.py:102 articles/views.py:25
-#: articles/views.py:27 articles/views.py:100
+#: articles/tests_playwright/test_desktop.py:102 articles/views.py:26
+#: articles/views.py:28 articles/views.py:101
 msgid "All articles"
 msgstr "Alle artikelen"
 
 #: articles/tests_playwright/commands.py:655
-#: articles/tests_playwright/commands.py:657 articles/utils.py:48
-#: articles/views_contact.py:15 articles/views_contact.py:36
-#: articles/views_contact.py:53
+#: articles/tests_playwright/commands.py:657 articles/utils.py:54
+#: articles/views_contact.py:16 articles/views_contact.py:35
+#: articles/views_contact.py:52
 msgid "Contact"
 msgstr "Contactinformatie"
 
 #: articles/tests_playwright/commands.py:665
 #: articles/tests_playwright/commands.py:675
-#: articles/tests_playwright/commands.py:680 articles/utils.py:56
+#: articles/tests_playwright/commands.py:680 articles/utils.py:60
 msgid "Personal settings"
 msgstr "Persoonlijke instellingen"
 
 #: articles/tests_playwright/commands.py:675
-#: articles/views_personal_settings.py:35
+#: articles/views_personal_settings.py:33
 msgid "My units"
 msgstr "Mijn eenheden"
 
@@ -1171,9 +1171,9 @@ msgstr "Mijn eenheden"
 #: articles/tests_playwright/commands.py:734
 #: articles/tests_playwright/commands.py:743
 #: articles/tests_playwright/commands.py:752 articles/utils.py:72
-#: articles/views_faults.py:82 articles/views_faults.py:96
-#: articles/views_faults.py:115 articles/views_faults.py:135
-#: articles/views_faults.py:148 articles/views_faults.py:364
+#: articles/views_faults.py:77 articles/views_faults.py:91
+#: articles/views_faults.py:110 articles/views_faults.py:130
+#: articles/views_faults.py:143 articles/views_faults.py:359
 msgid "Fault reporting"
 msgstr "Reparatiemelding"
 
@@ -1185,91 +1185,91 @@ msgid "Open"
 msgstr "Openen"
 
 #: articles/tests_playwright/commands.py:779
-#: articles/tests_playwright/commands.py:791 articles/views_adverts.py:17
-#: articles/views_adverts.py:59
+#: articles/tests_playwright/commands.py:791 articles/views_adverts.py:18
+#: articles/views_adverts.py:60
 msgid "All"
 msgstr "Alles"
 
-#: articles/views.py:109 articles/views_faults.py:72
-#: articles/views_redaction.py:164
+#: articles/views.py:110 articles/views_faults.py:67
+#: articles/views_redaction.py:161
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
 msgstr "De zoekopdracht “{}” is te kort. Voer minimaal drie tekens in."
 
-#: articles/views.py:112 articles/views_faults.py:75
-#: articles/views_redaction.py:167
+#: articles/views.py:113 articles/views_faults.py:70
+#: articles/views_redaction.py:164
 msgid "Search: Keyword is too long. Type maximum of 100 characters."
 msgstr "De zoekopdracht is te lang. Voer maximaal honderd tekens in."
 
-#: articles/views.py:117 articles/views_faults.py:79
-#: articles/views_redaction.py:173
+#: articles/views.py:118 articles/views_faults.py:74
+#: articles/views_redaction.py:170
 msgid "Search results"
 msgstr "Zoekresultaten"
 
-#: articles/views.py:172
+#: articles/views.py:173
 msgid "Please choose an option."
 msgstr "Kies een optie."
 
-#: articles/views.py:296
+#: articles/views.py:297
 msgid "Wrong username or password"
 msgstr "Verkeerde gebruikersnaam of wachtwoord"
 
-#: articles/views.py:297
+#: articles/views.py:298
 msgid "In case you lost your password use Lost Password link"
 msgstr "Klik op ‘wachtwoord vergeten’ als u uw wachtwoord niet meer weet"
 
-#: articles/views_admin.py:68
+#: articles/views_admin.py:63
 msgid "Groups"
 msgstr "Groepen"
 
-#: articles/views_admin.py:513
+#: articles/views_admin.py:504
 msgid "Credentials has been sent by e-mail"
 msgstr "De aanmeldgegevens zijn per e-mail verstuurd"
 
-#: articles/views_adverts.py:41 articles/views_adverts.py:63
-#: articles/views_faults.py:29
+#: articles/views_adverts.py:42 articles/views_adverts.py:64
+#: articles/views_faults.py:27
 msgid "Mine"
 msgstr "Mijn"
 
-#: articles/views_faults.py:38
+#: articles/views_faults.py:34
 msgid "Assigned to me"
 msgstr "Toegewezen aan mij"
 
-#: articles/views_faults.py:46
+#: articles/views_faults.py:41
 msgid "Resolved"
 msgstr "Opgelost"
 
-#: articles/views_personal_settings.py:28
+#: articles/views_personal_settings.py:27
 msgid "Language settings"
 msgstr "Taalinstellingen"
 
-#: articles/views_personal_settings.py:128
+#: articles/views_personal_settings.py:125
 msgid "Wrong password"
 msgstr "Verkeerd wachtwoord"
 
-#: articles/views_personal_settings.py:132
+#: articles/views_personal_settings.py:129
 msgid "Password cannot be enpty"
 msgstr "Voer een wachtwoord in"
 
-#: articles/views_personal_settings.py:136
+#: articles/views_personal_settings.py:133
 msgid "New passwords don't match"
 msgstr "De nieuwe wachtwoorden komen niet overeen"
 
-#: articles/views_personal_settings.py:141
+#: articles/views_personal_settings.py:138
 msgid "Password has been changed"
 msgstr "Het wachtwoord is gewijzigd"
 
-#: articles/views_personal_settings.py:156
+#: articles/views_personal_settings.py:153
 msgid "E-Mail is not valid"
 msgstr "Het e-mailadres is ongeldig"
 
-#: articles/views_personal_settings.py:163
+#: articles/views_personal_settings.py:160
 msgid "Credentials have been sent to your e-mail"
 msgstr "De aanmeldgegevens zijn per e-mail verstuurd"
 
-#: articles/views_redaction.py:67 articles/views_redaction.py:665
+#: articles/views_redaction.py:64 articles/views_redaction.py:662
 msgid "Analytics"
 msgstr "Statistieken"
 
-#: articles/views_redaction.py:667
+#: articles/views_redaction.py:664
 msgid "Data for last {} days."
 msgstr "Gegevens van de afgelopen {} dagen."
