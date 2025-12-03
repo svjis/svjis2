@@ -19,6 +19,13 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from openpyxl.styles import NamedStyle, Font, Border, Side, PatternFill
+from .permissions import (
+    svjis_view_redaction_menu,
+    svjis_view_admin_menu,
+    svjis_view_personal_menu,
+    svjis_view_fault_menu,
+    svjis_view_adverts_menu,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -35,62 +42,51 @@ def get_context():
 
 
 def get_tray_menu(active_item: str, user) -> list:
-    result = []
-    result.append(
+    tray_menu = [
         {
+            'perms': None,
             'description': _("Articles"),
             'link': reverse(views.main_view),
             'active': True if active_item == 'articles' else False,
-        }
-    )
-    result.append(
+        },
         {
+            'perms': None,
             'description': _("Contact"),
             'link': reverse(views_contact.contact_view),
             'active': True if active_item == 'contact' else False,
-        }
-    )
-    if user.has_perm('articles.svjis_view_personal_menu'):
-        result.append(
-            {
-                'description': _("Personal settings"),
-                'link': reverse(views_personal_settings.personal_settings_edit_view),
-                'active': True if active_item == 'personal_settings' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_view_redaction_menu'):
-        result.append(
-            {
-                'description': _("Redaction"),
-                'link': reverse(views_redaction.redaction_article_view),
-                'active': True if active_item == 'redaction' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_view_fault_menu'):
-        result.append(
-            {
-                'description': _("Fault reporting"),
-                'link': reverse(views_faults.faults_list_view) + '?scope=open',
-                'active': True if active_item == 'faults' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_view_adverts_menu'):
-        result.append(
-            {
-                'description': _("Adverts"),
-                'link': reverse(views_adverts.adverts_list_view) + '?scope=all',
-                'active': True if active_item == 'adverts' else False,
-            }
-        )
-    if user.has_perm('articles.svjis_view_admin_menu'):
-        result.append(
-            {
-                'description': _("Administration"),
-                'link': reverse(views_admin.admin_company_edit_view),
-                'active': True if active_item == 'admin' else False,
-            }
-        )
-    return result
+        },
+        {
+            'perms': svjis_view_personal_menu,
+            'description': _("Personal settings"),
+            'link': reverse(views_personal_settings.personal_settings_edit_view),
+            'active': True if active_item == 'personal_settings' else False,
+        },
+        {
+            'perms': svjis_view_redaction_menu,
+            'description': _("Redaction"),
+            'link': reverse(views_redaction.redaction_article_view),
+            'active': True if active_item == 'redaction' else False,
+        },
+        {
+            'perms': svjis_view_fault_menu,
+            'description': _("Fault reporting"),
+            'link': reverse(views_faults.faults_list_view) + '?scope=open',
+            'active': True if active_item == 'faults' else False,
+        },
+        {
+            'perms': svjis_view_adverts_menu,
+            'description': _("Adverts"),
+            'link': reverse(views_adverts.adverts_list_view) + '?scope=all',
+            'active': True if active_item == 'adverts' else False,
+        },
+        {
+            'perms': svjis_view_admin_menu,
+            'description': _("Administration"),
+            'link': reverse(views_admin.admin_company_edit_view),
+            'active': True if active_item == 'admin' else False,
+        },
+    ]
+    return [x for x in tray_menu if x['perms'] is None or user.has_perm(x['perms'])]
 
 
 def generate_password(len: int) -> str:
