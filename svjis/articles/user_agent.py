@@ -21,8 +21,9 @@ def is_bot(user_agent: str) -> bool:
 
 def get_browser(user_agent: str) -> dict:
     browsers = {
-        'edge': r'Edg\/(\d+\.?\d*)',
-        'opera': r'Opera\/(\d+\.?\d*)|OPR\/(\d+\.?\d*)',
+        'yabrowser': r'YaBrowser\/(\d+\.?\d*)',
+        'edge': r'Edg\/(\d+\.?\d*)|EdgiOS\/(\d+\.?\d*)',
+        'opera': r'Opera\/(\d+\.?\d*)|OPR\/(\d+\.?\d*)|OPT\/(\d+\.?\d*)',
         'firefox': r'Firefox\/(\d+\.?\d*)',
         'safari': r'Version\/(\d+\.?\d*)',
         'samsung': r'SamsungBrowser\/(\d+\.?\d*)',

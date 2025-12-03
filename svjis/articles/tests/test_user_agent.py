@@ -82,7 +82,15 @@ class UserAgentTests(TestCase):
             "browser": "Chrome",
             "os": {'os': 'macOS', 'platform': 'Desktop'},
         },
-        # Edge on Windows
+        # Edge on iOS
+        {
+            "agent": [
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 17_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/119.0.2151.65 Version/17.0 Mobile/15E148 Safari/604.1",  # noqa
+            ],
+            "browser": "Edge",
+            "os": {'os': 'iOS', 'platform': 'Mobile'},
+        },
+        # Edge on iOS
         {
             "agent": [
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0",  # noqa
@@ -105,6 +113,22 @@ class UserAgentTests(TestCase):
             ],
             "browser": "Crios",
             "os": {'os': 'iOS', 'platform': 'Mobile'},
+        },
+        # Opera on iOS
+        {
+            "agent": [
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1 OPT/4.2.3",  # noqa
+            ],
+            "browser": "Opera",
+            "os": {'os': 'iOS', 'platform': 'Mobile'},
+        },
+        # YaBrowser on Windows
+        {
+            "agent": [
+                "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 YaBrowser/22.7.0 Yowser/2.5 Safari/537.36",  # noqa
+            ],
+            "browser": "Yabrowser",
+            "os": {'os': 'Windows', 'platform': 'Desktop'},
         },
         # Bots
         {
