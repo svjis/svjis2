@@ -9,7 +9,7 @@ Information system for homeowners' associations (SVJ). :house_with_garden:
 SVJIS is a CMS for Homeowners' Associations. The system provides a content management system :memo:, discussions under articles, polls :bar_chart:, reporting and tracking of issues, advertisements, and a database of owners :family_man_woman_boy: including records of units and shares. More on the [project website](https://svjis.github.io/Vlastnosti/).
 
 ## 1 Installation
-It is assumed that you have Python version 3.10 or higher installed on your computer.
+It is assumed that you have Python version 3.12 or higher installed on your computer.
 
 ```
 python --version
