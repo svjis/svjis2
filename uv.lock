@@ -339,7 +339,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django", specifier = ">=6.0,<7.0" },
+    { name = "django", specifier = ">=5.2.6,<7.0" },
     { name = "django-tinymce", specifier = ">=4.1.0" },
     { name = "openpyxl", specifier = ">=3.1.5" },
     { name = "psycopg", specifier = ">=3.2.10" },
