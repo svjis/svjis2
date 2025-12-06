@@ -27,6 +27,9 @@ dev = [
     "playwright>=1.55.0",
     "pre-commit>=4.3.0",
 ]
+linux-server = [
+    "gunicorn>=23.0.0",
+]
 
 [tool.ruff]
 line-length = 119
