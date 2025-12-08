@@ -57,12 +57,14 @@ RUN uv sync --no-dev --group linux-server
 RUN ln -s .venv/bin/python svjis/python \
  && ln -s .venv/bin/gunicorn svjis/gunicorn
 
+RUN pwd && ls -la
+
 # Collect static files.
-RUN pwd && ls -la && cd svjis && ls -la && ./python manage.py collectstatic --noinput --clear
+RUN ./python manage.py collectstatic --noinput --clear
 
 # Compile messages
 
-RUN cd svjis && ./python manage.py compilemessages
+RUN ./python manage.py compilemessages
 
 # Runtime command that executes when "docker run" is called, it does the
 # following:
