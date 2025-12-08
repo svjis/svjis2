@@ -69,4 +69,4 @@ RUN .venv/bin/python svjis/manage.py compilemessages
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
 #   SVJIS instance can be started with a simple "docker run" command.
-CMD set -xe; .venv/bin/python svjis/python manage.py migrate --noinput; cd svjis && ../.venv/bin/gunicorn svjis.wsgi:application
+CMD set -xe; .venv/bin/python svjis/manage.py migrate --noinput; cd svjis && ../.venv/bin/gunicorn svjis.wsgi:application
