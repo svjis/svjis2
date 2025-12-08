@@ -37,11 +37,11 @@ RUN chown svjisuser:svjisuser /app
 # Copy the source code of the project into the container.
 COPY --chown=svjisuser:svjisuser . .
 
-# Use user "wagtail" to run the build commands below and the server itself.
-USER svjisuser
-
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Use user "wagtail" to run the build commands below and the server itself.
+USER svjisuser
 
 # Install packages.
 RUN uv sync --no-dev --group linux-server
