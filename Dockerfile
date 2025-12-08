@@ -52,14 +52,13 @@ USER svjisuser
 
 # Install packages.
 RUN uv sync --no-dev --group linux-server
-RUN source .venv/bin/activate
 
 # Collect static files.
-RUN python manage.py collectstatic --noinput --clear
+RUN .venv/bin/python manage.py collectstatic --noinput --clear
 
 # Compile messages
 
-RUN python manage.py compilemessages
+RUN .venv/bin/python manage.py compilemessages
 
 # Runtime command that executes when "docker run" is called, it does the
 # following:
@@ -70,4 +69,4 @@ RUN python manage.py compilemessages
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
 #   SVJIS instance can be started with a simple "docker run" command.
-CMD set -xe; cd svjis; python manage.py migrate --noinput; gunicorn svjis.wsgi:application
+CMD set -xe; cd svjis; ../.venv/bin/python manage.py migrate --noinput; ../.venv/bin/gunicorn svjis.wsgi:application
