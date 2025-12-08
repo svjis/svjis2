@@ -38,7 +38,7 @@ RUN chown svjisuser:svjisuser /app
 RUN chown svjisuser:svjisuser /home
 
 # Copy the source code of the project into the container.
-COPY --chown=svjisuser:svjisuser ./svjis .
+COPY --chown=svjisuser:svjisuser ./svjis ./svjis
 COPY --chown=svjisuser:svjisuser ./pyproject.toml .
 COPY --chown=svjisuser:svjisuser ./uv.lock .
 
@@ -53,18 +53,12 @@ USER svjisuser
 # Install packages.
 RUN uv sync --no-dev --group linux-server
 
-# Install shortcuts.
-RUN ln -s .venv/bin/python svjis/python \
- && ln -s .venv/bin/gunicorn svjis/gunicorn
-
-RUN pwd && ls -la
-
 # Collect static files.
-RUN ./python manage.py collectstatic --noinput --clear
+RUN .venv/bin/python svjis/manage.py collectstatic --noinput --clear
 
 # Compile messages
 
-RUN ./python manage.py compilemessages
+RUN .venv/bin/python svjis/manage.py compilemessages
 
 # Runtime command that executes when "docker run" is called, it does the
 # following:
@@ -75,4 +69,4 @@ RUN ./python manage.py compilemessages
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
 #   SVJIS instance can be started with a simple "docker run" command.
-CMD set -xe; cd svjis && ./python manage.py migrate --noinput; cd svjis && ./gunicorn svjis.wsgi:application
+CMD set -xe; .venv/bin/python svjis/python manage.py migrate --noinput; cd svjis && ../.venv/bin/gunicorn svjis.wsgi:application
