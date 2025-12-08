@@ -1,8 +1,8 @@
 # Django project
-/media/
-/playwright_output/
-/static/
-*.sqlite3
+/svjis/media/
+/svjis/playwright_output/
+/svjis/static/
+/svjis/*.sqlite3
 
 # Python and others
 __pycache__
@@ -19,3 +19,4 @@ node_modules/
 .vscode
 coverage
 .python-version
+/svjis2-data/

@@ -95,16 +95,32 @@ python manage.py svjis_send_messages
 
 During application testing, you can run it manually. In a production setup, you need to configure a system scheduler (like cron) to run it at certain intervals (for example, every 5 minutes).
 
-## 4 Troubleshooting
+## 4 Docker
+
+You can also use `docker-compose` to run svjis application.
+
+Create following directories and files:
+
+* `./svjis2-data/static/`
+* `./svjis2-data/media/`
+* `./svjis2-data/svjis/local_settings.py`
+
+Run docker compose.
+
+```
+docker-compose up
+```
+
+## 5 Troubleshooting
 
 If you encounter any issues, do not hesitate to ask a question in the [project discussions](https://github.com/orgs/svjis/discussions).
 
-## 5 Collaboration
+## 6 Collaboration
 
 Any form of collaboration is welcome. :octocat:  
 More information can be found in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### 5.1 Translation status
+### 6.1 Translation status
 
 Help us with translations.
 

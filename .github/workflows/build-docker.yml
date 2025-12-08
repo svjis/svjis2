@@ -20,9 +20,9 @@ jobs:
         run: |
           docker build -t berk76/svjis2-app:latest .
 
-      - name: Tag version and push
-        run: |
-          TAG="test4"
-          docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
-          docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-          docker push berk76/svjis2-app:$TAG
+      # - name: Tag version and push
+      #   run: |
+      #     TAG="test4"
+      #     docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
+      #     docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+      #     docker push berk76/svjis2-app:$TAG
