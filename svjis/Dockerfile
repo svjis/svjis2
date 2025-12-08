@@ -24,6 +24,8 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     libwebp-dev \
     gettext \
     curl \
+    ca-certificates \
+ && update-ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
 # Use /app folder as a directory where the source code is stored.
@@ -37,11 +39,11 @@ RUN chown svjisuser:svjisuser /app
 # Copy the source code of the project into the container.
 COPY --chown=svjisuser:svjisuser . .
 
-# Install uv.
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-
 # Use user "wagtail" to run the build commands below and the server itself.
 USER svjisuser
+
+# Install uv.
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Install packages.
 RUN uv sync --no-dev --group linux-server
