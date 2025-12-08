@@ -12,3 +12,4 @@ services:
       - ./svjis2-data/static:/app/svjis/static
       - ./svjis2-data/media:/app/svjis/media
       - ./svjis2-data/svjis/local_settings.py:/app/svjis/svjis/local_settings.py
+      - ./svjis2-data/db.sqlite3:/app/svjis/db.sqlite3

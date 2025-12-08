@@ -104,6 +104,7 @@ Create following directories and files:
 * `./svjis2-data/static/`
 * `./svjis2-data/media/`
 * `./svjis2-data/svjis/local_settings.py`
+* `./svjis2-data/db.sqlite3`
 
 Run docker compose.
 
