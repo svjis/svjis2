@@ -42,9 +42,9 @@ COPY --chown=svjisuser:svjisuser . .
 
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-RUN ln -s /bin/uv /home/root/.local/bin/uv
+RUN ln -s /bin/uv /root/.local/bin/uv
 
-# Use user "wagtail" to run the build commands below and the server itself.
+# Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
 
 # Install packages.
@@ -65,5 +65,5 @@ RUN uv run manage.py compilemessages
 #   Migrating database at the same time as starting the server IS NOT THE BEST
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
-#   Wagtail instance can be started with a simple "docker run" command.
+#   SVJIS instance can be started with a simple "docker run" command.
 CMD set -xe; uv run manage.py migrate --noinput; uv run gunicorn svjis.wsgi:application
