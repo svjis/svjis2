@@ -41,8 +41,9 @@ RUN chown svjisuser:svjisuser /home
 COPY --chown=svjisuser:svjisuser . .
 
 # Install uv.
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-RUN ln -s /root/.local/bin/uv /bin/uv && ls -la / && ls -la /root/.local/bin/uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
+ && cp /root/.local/bin/uv /bin/uv \
+ && rm -Rf /root/.local
 
 # Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
