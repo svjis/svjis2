@@ -39,6 +39,8 @@ RUN chown svjisuser:svjisuser /home
 
 # Copy the source code of the project into the container.
 COPY --chown=svjisuser:svjisuser . .
+COPY --chown=svjisuser:svjisuser ../pyproject.toml .
+COPY --chown=svjisuser:svjisuser ../uv.lock .
 
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
