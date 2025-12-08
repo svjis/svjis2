@@ -112,6 +112,18 @@ Run docker compose.
 docker-compose up
 ```
 
+If you run it for the first time and database is empty login into container and create basic parametrization including admin account.
+
+```
+docker exec -it svjis2_app bash
+.venv/bin/python svjis/manage.py svjis_setup --password <choose password for admin user>
+```
+
+If you want to use different database like Postgres modify local settings file `./svjis2-data/svjis/local_settings.py`.
+
+> [!NOTE]
+> By default application in container runs with `DEBUG = True`. If you want to run application in production override at least `SECRET_KEY`, `ALLOWED_HOSTS` and set `DEBUG = False` in `./svjis2-data/svjis/local_settings.py` file. Also you will need `Nginx` or `Apache` reverse proxy which will take care about static files and certificate. `Postgres` database backend is recommended for production.
+
 ## 5 Troubleshooting
 
 If you encounter any issues, do not hesitate to ask a question in the [project discussions](https://github.com/orgs/svjis/discussions).
