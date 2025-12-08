@@ -122,7 +122,7 @@ docker exec -it svjis2_app bash
 If you want to use different database like Postgres modify local settings file `./svjis2-data/svjis/local_settings.py`.
 
 > [!NOTE]
-> By default application in container runs with `DEBUG = True`. If you want to run application in production override at least `SECRET_KEY`, `ALLOWED_HOSTS` and set `DEBUG = False` in `./svjis2-data/svjis/local_settings.py` file. Also you will need `Nginx` or `Apache` reverse proxy which will take care about static files and certificate. `Postgres` database backend is recommended for production.
+> By default application in container runs with `DEBUG = True`. If you want to run application in production override at least `SECRET_KEY`, `ALLOWED_HOSTS` and set `DEBUG = False` in `./svjis2-data/svjis/local_settings.py` file. Also you will need `Nginx` or `Apache` reverse proxy which will be serving static files and will take care about tls certificate. `Postgres` database backend is recommended for production.
 
 ## 5 Troubleshooting
 
