@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   svjis-app:
-    image: berk76/svjis2-app:test4
+    image: berk76/svjis2-app:latest
     container_name: svjis2_app
     restart: unless-stopped
     ports:

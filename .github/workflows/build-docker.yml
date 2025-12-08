@@ -1,10 +1,9 @@
 name: Build Docker Image
 
 on:
-  workflow_dispatch:
   push:
-  pull_request:
-    branches: [ "master" ]
+    tags:
+    - 'v*'
 
 permissions:
   contents: read
@@ -20,9 +19,10 @@ jobs:
         run: |
           docker build -t berk76/svjis2-app:latest .
 
-      # - name: Tag version and push
-      #   run: |
-      #     TAG="test4"
-      #     docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
-      #     docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-      #     docker push berk76/svjis2-app:$TAG
+      - name: Tag version and push
+        run: |
+          TAG=`echo ${{ github.ref }} | sed -n 's/.*\(v.*$\)/\1/p'`
+          docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
+          docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push berk76/svjis2-app:$TAG
+          docker push berk76/svjis2-app:latest
