@@ -29,16 +29,16 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
 
-# Set this directory to be owned by the "wagtail" user. This Wagtail project
+# Set this directory to be owned by the "svjisuser" user. This project
 # uses SQLite, the folder needs to be owned by the user that
 # will be writing to the database file.
-RUN chown wagtail:wagtail /app
+RUN chown svjisuser:svjisuser /app
 
 # Copy the source code of the project into the container.
-COPY --chown=wagtail:wagtail . .
+COPY --chown=svjisuser:svjisuser . .
 
 # Use user "wagtail" to run the build commands below and the server itself.
-USER wagtail
+USER svjisuser
 
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh

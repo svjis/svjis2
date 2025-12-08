@@ -9,9 +9,8 @@ on:
 permissions:
   contents: read
 
-
 jobs:
-  playwright-tests:
+  build_docker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code Repository
