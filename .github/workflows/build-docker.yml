@@ -18,5 +18,4 @@ jobs:
 
       - name: Build docker image
         run: |
-          cd svjis
           docker build -t berk76/svjis-app:latest .
