@@ -35,6 +35,7 @@ WORKDIR /app
 # uses SQLite, the folder needs to be owned by the user that
 # will be writing to the database file.
 RUN chown svjisuser:svjisuser /app
+RUN chown svjisuser:svjisuser /home
 
 # Copy the source code of the project into the container.
 COPY --chown=svjisuser:svjisuser . .
