@@ -58,7 +58,7 @@ RUN ln -s .venv/bin/python svjis/python \
  && ln -s .venv/bin/gunicorn svjis/gunicorn
 
 # Collect static files.
-RUN cd svjis && ./python manage.py collectstatic --noinput --clear
+RUN pwd && cd svjis && ./python manage.py collectstatic --noinput --clear
 
 # Compile messages
 
