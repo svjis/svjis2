@@ -1,9 +1,15 @@
 name: Build Docker Image
 
 on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
   push:
+    branches:
+      - master
     tags:
-    - 'v*'
+      - 'v*'
 
 permissions:
   contents: read
@@ -20,6 +26,9 @@ jobs:
           docker build -t berk76/svjis2-app:latest .
 
       - name: Tag version and push
+        if: |
+          github.ref_type == 'tag' &&
+          startsWith(github.ref_name, 'v')
         run: |
           TAG=`echo ${{ github.ref }} | sed -n 's/.*\(v.*$\)/\1/p'`
           docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
