@@ -51,7 +51,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 USER svjisuser
 
 # Install packages.
-RUN uv sync --no-dev --group linux-server --python 3.14
+RUN uv sync --no-dev --group linux-server --python 3.13
 
 # Collect static files.
 RUN .venv/bin/python svjis/manage.py collectstatic --noinput --clear
