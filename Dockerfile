@@ -52,7 +52,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 # Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
 
-ENV PATH="${PATH}:/home/svjisuser/.local/bin"
+ENV PATH="${PATH}:/app/.venv/bin"
 
 # Install packages.
 RUN uv python install 3.13 --default \
