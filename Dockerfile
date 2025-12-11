@@ -18,7 +18,8 @@ EXPOSE 8000
 # 2. Set PORT variable that is used by Gunicorn. This should match "EXPOSE"
 #    command.
 ENV PYTHONUNBUFFERED=1 \
-    PORT=8000
+    PORT=8000 \
+    PATH="${PATH}:/app/.venv/bin"
 
 # Install system packages required by Django.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
@@ -52,11 +53,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 # Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
 
-ENV PATH="${PATH}:/app/.venv/bin"
-
 # Install packages.
-RUN uv python install 3.13 --default \
- && uv sync --no-dev --group linux-server
+RUN uv sync --no-dev --group linux-server --python 3.13
 
 # Collect static files.
 RUN python svjis/manage.py collectstatic --noinput --clear
