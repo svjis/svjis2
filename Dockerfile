@@ -7,7 +7,8 @@ WORKDIR /app
 # Add user that will be used in the container.
 ARG UID=1000
 ARG GID=1000
-RUN useradd --create-home --no-log-init -u "${UID}" -g "${GID}" svjisuser
+RUN groupadd -g "${GID}" svjisuser \
+ && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" svjisuser
 
 # Port used by this container to serve HTTP.
 EXPOSE 8000
