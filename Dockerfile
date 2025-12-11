@@ -35,6 +35,11 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
  && update-ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
+# Install uv.
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
+ && cp /root/.local/bin/uv /bin/uv \
+ && rm -Rf /root/.local
+
 # Set this directory to be owned by the "svjisuser" user. This project
 # uses SQLite, the folder needs to be owned by the user that
 # will be writing to the database file.
@@ -44,11 +49,6 @@ RUN chown svjisuser:svjisuser /app
 COPY --chown=svjisuser:svjisuser ./svjis ./svjis
 COPY --chown=svjisuser:svjisuser ./pyproject.toml .
 COPY --chown=svjisuser:svjisuser ./uv.lock .
-
-# Install uv.
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
- && cp /root/.local/bin/uv /bin/uv \
- && rm -Rf /root/.local
 
 # Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
