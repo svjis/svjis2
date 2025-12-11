@@ -112,6 +112,8 @@ Run docker compose.
 docker-compose up
 ```
 
+The application runs at the address http://127.0.0.1:8000/.
+
 If you run it for the first time and database is empty login into container and create basic parametrization including admin account.
 
 ```
