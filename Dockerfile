@@ -1,8 +1,13 @@
 # Use an official Debian 12 "bookworm" as a base image.
 FROM debian:bookworm-slim
 
+# Use /app folder as a directory where the source code is stored.
+WORKDIR /app
+
 # Add user that will be used in the container.
-RUN useradd svjisuser
+ARG UID=1000
+ARG GID=1000
+RUN useradd --create-home --no-log-init -u "${UID}" -g "${GID}" svjisuser
 
 # Port used by this container to serve HTTP.
 EXPOSE 8000
@@ -28,14 +33,10 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
  && update-ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
-# Use /app folder as a directory where the source code is stored.
-WORKDIR /app
-
 # Set this directory to be owned by the "svjisuser" user. This project
 # uses SQLite, the folder needs to be owned by the user that
 # will be writing to the database file.
 RUN chown svjisuser:svjisuser /app
-RUN chown svjisuser:svjisuser /home
 
 # Copy the source code of the project into the container.
 COPY --chown=svjisuser:svjisuser ./svjis ./svjis
@@ -50,15 +51,18 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 # Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
 
+ENV PATH="${PATH}:/home/svjisuser/.local/bin"
+
 # Install packages.
-RUN uv sync --no-dev --group linux-server --python 3.13
+RUN uv python install 3.13 --default \
+ && uv sync --no-dev --group linux-server
 
 # Collect static files.
-RUN .venv/bin/python svjis/manage.py collectstatic --noinput --clear
+RUN python svjis/manage.py collectstatic --noinput --clear
 
 # Compile messages
 
-RUN .venv/bin/python svjis/manage.py compilemessages
+RUN python svjis/manage.py compilemessages
 
 # Runtime command that executes when "docker run" is called, it does the
 # following:
@@ -69,4 +73,4 @@ RUN .venv/bin/python svjis/manage.py compilemessages
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
 #   SVJIS instance can be started with a simple "docker run" command.
-CMD set -xe; .venv/bin/python svjis/manage.py migrate --noinput; cd svjis && ../.venv/bin/gunicorn svjis.wsgi:application
+CMD set -xe; python svjis/manage.py migrate --noinput; cd svjis && gunicorn svjis.wsgi:application
