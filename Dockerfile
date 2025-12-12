@@ -46,9 +46,9 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 RUN chown svjisuser:svjisuser /app
 
 # Copy the source code of the project into the container.
-COPY --chown=svjisuser:svjisuser ./svjis ./svjis
-COPY --chown=svjisuser:svjisuser ./pyproject.toml .
-COPY --chown=svjisuser:svjisuser ./uv.lock .
+COPY --chown=svjisuser:svjisuser --chmod=755 ./svjis ./svjis
+COPY --chown=root:root --chmod=755 ./pyproject.toml .
+COPY --chown=root:root --chmod=755 ./uv.lock .
 
 # Use user "svjisuser" to run the build commands below and the server itself.
 USER svjisuser
