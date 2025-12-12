@@ -1,0 +1,24 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="page-title" id="tbl-desc">{% translate 'About application' %}</h1>
+
+<table class="list full-width" aria-describedby="tbl-desc">
+    <tr>
+        <th scope="row">SVJIS</th>
+        <td>{{ svjis_version }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Django</th>
+        <td>{{ django_version }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Python</th>
+        <td>{{ python_version }}</td>
+    </tr>
+</table>
+
+{% endblock content %}
