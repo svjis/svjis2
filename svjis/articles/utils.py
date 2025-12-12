@@ -3,6 +3,7 @@ import re
 import secrets
 import string
 import os.path
+import svjis
 from . import (
     views,
     views_contact,
@@ -33,6 +34,7 @@ logger = logging.getLogger(__name__)
 
 def get_context():
     ctx = {}
+    ctx['svjis_version'] = svjis.__version__
     company, _created = models.Company.objects.get_or_create(pk=1)
     if company is not None:
         ctx['company_picture'] = company.header_picture
