@@ -3,7 +3,6 @@ import re
 import secrets
 import string
 import os.path
-import svjis
 from . import (
     views,
     views_contact,
@@ -27,6 +26,7 @@ from .permissions import (
     svjis_view_fault_menu,
     svjis_view_adverts_menu,
 )
+from svjis import __version__ as svjis_version
 
 
 logger = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 def get_context():
     ctx = {}
-    ctx['svjis_version'] = svjis.__version__
+    ctx['svjis_version'] = svjis_version
     company, _created = models.Company.objects.get_or_create(pk=1)
     if company is not None:
         ctx['company_picture'] = company.header_picture
