@@ -95,16 +95,46 @@ python manage.py svjis_send_messages
 
 During application testing, you can run it manually. In a production setup, you need to configure a system scheduler (like cron) to run it at certain intervals (for example, every 5 minutes).
 
-## 4 Troubleshooting
+## 4 Docker
+
+You can also use `docker-compose` to run svjis application.
+
+Create following directories and files:
+
+* `./svjis2-data/static/`
+* `./svjis2-data/media/`
+* `./svjis2-data/svjis/local_settings.py`
+* `./svjis2-data/db.sqlite3`
+
+Run docker compose.
+
+```
+docker-compose up
+```
+
+The application runs at the address http://127.0.0.1:8000/.
+
+If you run it for the first time and database is empty login into container and create basic parametrization including admin account.
+
+```
+docker exec svjis2_app bash -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
+```
+
+If you want to use different database like Postgres modify local settings file `./svjis2-data/svjis/local_settings.py`.
+
+> [!NOTE]
+> By default application in container runs with `DEBUG = True`. If you want to run application in production override at least `SECRET_KEY`, `ALLOWED_HOSTS` and set `DEBUG = False` in `./svjis2-data/svjis/local_settings.py` file. Also you will need `Nginx` or `Apache` reverse proxy which will be serving static files and will take care about tls certificate. `Postgres` database backend is recommended for production.
+
+## 5 Troubleshooting
 
 If you encounter any issues, do not hesitate to ask a question in the [project discussions](https://github.com/orgs/svjis/discussions).
 
-## 5 Collaboration
+## 6 Collaboration
 
 Any form of collaboration is welcome. :octocat:  
 More information can be found in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### 5.1 Translation status
+### 6.1 Translation status
 
 Help us with translations.
 

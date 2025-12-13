@@ -1,0 +1,70 @@
+name: Build Docker Image
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  build_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v6
+
+      - name: Build docker image
+        run: |
+          docker build -t berk76/svjis2-app:latest .
+
+      - name: Create directories and files
+        run: |
+          mkdir -p ./svjis2-data/static
+          mkdir -p ./svjis2-data/media
+          mkdir -p ./svjis2-data/svjis
+          touch ./svjis2-data/svjis/local_settings.py
+          touch ./svjis2-data/db.sqlite3
+          chmod -R ugo+rwx ./svjis2-data
+
+      - name: Start docker compose
+        run: |
+          docker compose up -d
+          sleep 5  # Wait for migrations to be finished
+
+      - name: Run basic parametrization
+        run: |
+          docker exec svjis2_app bash -c "python svjis/manage.py svjis_setup --password changeIt"
+
+      - name: Test if application is running
+        run: |
+          string="Smlouvy"
+          if curl -s "http://localhost:8000" | grep -q "$string"; then
+              echo "'$string' found"
+          else
+              echo "'$string' not found"
+              exit 1
+          fi
+
+      - name: Stop docker compose
+        if: always()
+        run: |
+          docker compose down
+
+      - name: Tag version and push
+        if: |
+          github.ref_type == 'tag' &&
+          startsWith(github.ref_name, 'v')
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          TAG=`echo ${{ github.ref }} | sed -n 's/.*\(v.*$\)/\1/p'`
+          docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
+          docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
+          docker push berk76/svjis2-app:$TAG
+          docker push berk76/svjis2-app:latest
