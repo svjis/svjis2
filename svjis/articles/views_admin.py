@@ -1,4 +1,5 @@
 from . import utils, forms, models
+from django import __version__ as django_version
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User, Group, Permission
@@ -10,6 +11,7 @@ from django.utils.translation import gettext as gt
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
 from openpyxl import Workbook
+import sys
 from .permissions import (
     svjis_view_admin_menu,
     svjis_edit_admin_users,
@@ -75,6 +77,12 @@ def get_side_menu(active_item, user):
             'description': _("Waiting messages") + f' ({models.MessageQueue.objects.filter(status=0).count()})',
             'link': reverse(admin_messages_view),
             'active': True if active_item == 'messages' else False,
+        },
+        {
+            'perms': svjis_view_admin_menu,
+            'description': _("About application"),
+            'link': reverse(admin_about_view),
+            'active': True if active_item == 'about' else False,
         },
     ]
     return [x for x in side_menu if x['perms'] is None or user.has_perm(x['perms'])]
@@ -808,3 +816,16 @@ def admin_messages_view(request):
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['object_list'] = message_list.order_by('pk')
     return render(request, "admin_messages.html", ctx)
+
+
+# Administration - About application
+@permission_required(svjis_view_admin_menu)
+@require_GET
+def admin_about_view(request):
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
+    ctx['aside_menu_items'] = get_side_menu('about', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    ctx['django_version'] = django_version
+    ctx['python_version'] = sys.version
+    return render(request, "admin_about.html", ctx)

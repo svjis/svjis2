@@ -23,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
+          python-version: '3.13'
 
       - name: Run pre-commit
         uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd
@@ -33,7 +33,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [ '3.10', '3.11', '3.12', '3.13', '3.14' ]
+        python-version: [ '3.12', '3.13', '3.14' ]
 
     steps:
       - name: Checkout Code Repository

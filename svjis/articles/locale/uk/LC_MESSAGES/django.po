@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-02 18:46+0100\n"
+"POT-Creation-Date: 2025-12-12 22:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,7 +277,7 @@ msgstr "Може редагувати будівлю"
 
 #: articles/models.py:319 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
-#: articles/tests_playwright/commands.py:86 articles/views_admin.py:27
+#: articles/tests_playwright/commands.py:86 articles/views_admin.py:29
 msgid "Company"
 msgstr "Компанія"
 
@@ -288,7 +288,7 @@ msgstr "Позиція"
 #: articles/models.py:333 articles/models.py:357
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11
-#: articles/tests_playwright/commands.py:104 articles/views_admin.py:39
+#: articles/tests_playwright/commands.py:104 articles/views_admin.py:41
 msgid "Building"
 msgstr "Будівля"
 
@@ -368,11 +368,15 @@ msgstr "Може додавати оголошення"
 msgid "Advert"
 msgstr "Оголошення"
 
+#: articles/templates/admin_about.html:7 articles/views_admin.py:83
+msgid "About application"
+msgstr ""
+
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
 #: articles/templates/admin_board_edit.html:13
 #: articles/templates/contact_company.html:63
-#: articles/tests_playwright/commands.py:337 articles/views_admin.py:33
+#: articles/tests_playwright/commands.py:337 articles/views_admin.py:35
 msgid "Board"
 msgstr "Правління"
 
@@ -452,7 +456,7 @@ msgid "Save"
 msgstr "Зберегти"
 
 #: articles/templates/admin_building_unit.html:7
-#: articles/tests_playwright/commands.py:180 articles/views_admin.py:51
+#: articles/tests_playwright/commands.py:180 articles/views_admin.py:53
 msgid "Building units"
 msgstr "Помешкання"
 
@@ -512,7 +516,7 @@ msgstr "Видалити логотип"
 
 #: articles/templates/admin_entrance.html:7
 #: articles/templates/admin_entrance_edit.html:7
-#: articles/tests_playwright/commands.py:117 articles/views_admin.py:45
+#: articles/tests_playwright/commands.py:117 articles/views_admin.py:47
 msgid "Entrances"
 msgstr "Список входів"
 
@@ -541,7 +545,7 @@ msgstr "Список користувачів"
 msgid "Permissions"
 msgstr "Права доступу"
 
-#: articles/templates/admin_messages.html:7 articles/views_admin.py:75
+#: articles/templates/admin_messages.html:7 articles/views_admin.py:77
 msgid "Waiting messages"
 msgstr "Очікувані повідомлення"
 
@@ -555,7 +559,7 @@ msgstr "Час створення"
 
 #: articles/templates/admin_preferences.html:7
 #: articles/templates/admin_preferences_edit.html:7
-#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:69
+#: articles/templates/admin_preferences_edit.html:14 articles/views_admin.py:71
 msgid "Preferences"
 msgstr "Налаштування"
 
@@ -616,7 +620,7 @@ msgstr "Є членом"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
 #: articles/tests_playwright/commands.py:779
-#: articles/tests_playwright/commands.py:791 articles/utils.py:78
+#: articles/tests_playwright/commands.py:791 articles/utils.py:80
 #: articles/views_adverts.py:74 articles/views_adverts.py:96
 msgid "Adverts"
 msgstr "Оголошення"
@@ -965,7 +969,7 @@ msgstr "Рівень"
 #: articles/tests_playwright/commands.py:467
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
-#: articles/tests_playwright/commands.py:621 articles/utils.py:48
+#: articles/tests_playwright/commands.py:621 articles/utils.py:50
 #: articles/views.py:149 articles/views.py:219 articles/views_redaction.py:34
 msgid "Articles"
 msgstr "Статті"
@@ -1075,16 +1079,16 @@ msgstr "Ваша електронна адреса"
 #: articles/tests_playwright/commands.py:180
 #: articles/tests_playwright/commands.py:301
 #: articles/tests_playwright/commands.py:337
-#: articles/tests_playwright/commands.py:362 articles/utils.py:84
-#: articles/views_admin.py:90 articles/views_admin.py:129
-#: articles/views_admin.py:146 articles/views_admin.py:189
-#: articles/views_admin.py:216 articles/views_admin.py:233
-#: articles/views_admin.py:287 articles/views_admin.py:308
-#: articles/views_admin.py:352 articles/views_admin.py:437
-#: articles/views_admin.py:469 articles/views_admin.py:532
-#: articles/views_admin.py:629 articles/views_admin.py:696
-#: articles/views_admin.py:749 articles/views_admin.py:766
-#: articles/views_admin.py:806
+#: articles/tests_playwright/commands.py:362 articles/utils.py:86
+#: articles/views_admin.py:98 articles/views_admin.py:137
+#: articles/views_admin.py:154 articles/views_admin.py:197
+#: articles/views_admin.py:224 articles/views_admin.py:241
+#: articles/views_admin.py:295 articles/views_admin.py:316
+#: articles/views_admin.py:360 articles/views_admin.py:445
+#: articles/views_admin.py:477 articles/views_admin.py:540
+#: articles/views_admin.py:637 articles/views_admin.py:704
+#: articles/views_admin.py:757 articles/views_admin.py:774
+#: articles/views_admin.py:814 articles/views_admin.py:826
 msgid "Administration"
 msgstr "Адміністрування"
 
@@ -1100,11 +1104,11 @@ msgstr "Адміністрування"
 #: articles/tests_playwright/commands.py:562
 #: articles/tests_playwright/commands.py:671
 #: articles/tests_playwright/commands.py:713
-#: articles/tests_playwright/commands.py:790 articles/views_admin.py:104
-#: articles/views_admin.py:117 articles/views_admin.py:167
-#: articles/views_admin.py:203 articles/views_admin.py:254
-#: articles/views_admin.py:329 articles/views_admin.py:522
-#: articles/views_admin.py:727 articles/views_admin.py:785
+#: articles/tests_playwright/commands.py:790 articles/views_admin.py:112
+#: articles/views_admin.py:125 articles/views_admin.py:175
+#: articles/views_admin.py:211 articles/views_admin.py:262
+#: articles/views_admin.py:337 articles/views_admin.py:530
+#: articles/views_admin.py:735 articles/views_admin.py:793
 #: articles/views_adverts.py:123 articles/views_adverts.py:145
 #: articles/views_faults.py:200 articles/views_faults.py:252
 #: articles/views_personal_settings.py:72 articles/views_redaction.py:136
@@ -1114,7 +1118,7 @@ msgid "Saved"
 msgstr "Збережено"
 
 #: articles/tests_playwright/commands.py:301
-#: articles/tests_playwright/commands.py:362 articles/views_admin.py:57
+#: articles/tests_playwright/commands.py:362 articles/views_admin.py:59
 msgid "Users"
 msgstr "Користувачі"
 
@@ -1123,7 +1127,7 @@ msgstr "Користувачі"
 #: articles/tests_playwright/commands.py:489
 #: articles/tests_playwright/commands.py:510
 #: articles/tests_playwright/commands.py:551
-#: articles/tests_playwright/commands.py:631 articles/utils.py:66
+#: articles/tests_playwright/commands.py:631 articles/utils.py:68
 #: articles/views_redaction.py:99 articles/views_redaction.py:116
 #: articles/views_redaction.py:187 articles/views_redaction.py:215
 #: articles/views_redaction.py:285 articles/views_redaction.py:305
@@ -1149,7 +1153,7 @@ msgid "All articles"
 msgstr "Всі статті"
 
 #: articles/tests_playwright/commands.py:655
-#: articles/tests_playwright/commands.py:657 articles/utils.py:54
+#: articles/tests_playwright/commands.py:657 articles/utils.py:56
 #: articles/views_contact.py:16 articles/views_contact.py:35
 #: articles/views_contact.py:52
 msgid "Contact"
@@ -1157,7 +1161,7 @@ msgstr "Контакти"
 
 #: articles/tests_playwright/commands.py:665
 #: articles/tests_playwright/commands.py:675
-#: articles/tests_playwright/commands.py:680 articles/utils.py:60
+#: articles/tests_playwright/commands.py:680 articles/utils.py:62
 msgid "Personal settings"
 msgstr "Особисті налаштування"
 
@@ -1170,7 +1174,7 @@ msgstr "Мої одиниці"
 #: articles/tests_playwright/commands.py:724
 #: articles/tests_playwright/commands.py:734
 #: articles/tests_playwright/commands.py:743
-#: articles/tests_playwright/commands.py:752 articles/utils.py:72
+#: articles/tests_playwright/commands.py:752 articles/utils.py:74
 #: articles/views_faults.py:77 articles/views_faults.py:91
 #: articles/views_faults.py:110 articles/views_faults.py:130
 #: articles/views_faults.py:143 articles/views_faults.py:359
@@ -1220,11 +1224,11 @@ msgstr ""
 "Якщо ви забули свої дані для входу, скористайтеся посиланням 'Забутий "
 "пароль'."
 
-#: articles/views_admin.py:63
+#: articles/views_admin.py:65
 msgid "Groups"
 msgstr "Групи"
 
-#: articles/views_admin.py:504
+#: articles/views_admin.py:512
 msgid "Credentials has been sent by e-mail"
 msgstr "Дані для входу надіслані електронною поштою"
 

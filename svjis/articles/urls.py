@@ -210,6 +210,7 @@ urlpatterns = [
         name='admin_preferences_delete',
     ),
     path('admin_messages/', views_admin.admin_messages_view, name='admin_messages'),
+    path('admin_about/', views_admin.admin_about_view, name='admin_about'),
     path('login_page/', views.login_page_view, name='login_page'),
     path('lost_password/', views_personal_settings.lost_password_view, name='lost_password'),
     path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
