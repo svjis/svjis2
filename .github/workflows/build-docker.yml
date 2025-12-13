@@ -27,11 +27,12 @@ jobs:
 
       - name: Create directories and files
         run: |
-          mkdir -p svjis2-data/static
-          mkdir -p svjis2-data/media
-          mkdir -p svjis2-data/svjis
-          touch svjis2-data/svjis/local_settings.py
-          touch svjis2-data/db.sqlite3
+          mkdir -p ./svjis2-data/static
+          mkdir -p ./svjis2-data/media
+          mkdir -p ./svjis2-data/svjis
+          touch ./svjis2-data/svjis/local_settings.py
+          touch ./svjis2-data/db.sqlite3
+          chmod -R ugo+rwx ./svjis2-data
 
       - name: Start docker compose
         run: |
