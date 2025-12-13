@@ -16,7 +16,7 @@ from .permissions import svjis_answer_survey
 
 class Article(models.Model):
     header = models.CharField(_("Header"), max_length=50)
-    slug = models.CharField(max_length=50)
+    slug = models.CharField(max_length=50, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(_("Published"), default=False)
@@ -381,7 +381,7 @@ class BuildingUnit(models.Model):
 
 class FaultReport(models.Model):
     subject = models.CharField(_("Subject"), max_length=50)
-    slug = models.CharField(max_length=50)
+    slug = models.CharField(max_length=50, unique=True)
     description = models.TextField(_("Description"))
     created_date = models.DateTimeField(auto_now_add=True)
     created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)

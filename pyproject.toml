@@ -1,6 +1,6 @@
 [project]
 name = "svjis2"
-version = "2.23.0"
+version = "2.24.0.dev1"
 description = "Information system for homeowners' associations (SVJ)"
 readme = "README.md"
 license = {text = "GPL-3.0-or-later"}
