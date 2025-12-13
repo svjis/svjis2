@@ -25,20 +25,6 @@ jobs:
         run: |
           docker build -t berk76/svjis2-app:latest .
 
-      - name: Tag version and push
-        if: |
-          github.ref_type == 'tag' &&
-          startsWith(github.ref_name, 'v')
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: |
-          TAG=`echo ${{ github.ref }} | sed -n 's/.*\(v.*$\)/\1/p'`
-          docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
-          docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
-          docker push berk76/svjis2-app:$TAG
-          docker push berk76/svjis2-app:latest
-
       - name: Start containers
         run: |
           docker compose up -d
@@ -62,3 +48,17 @@ jobs:
         if: always()
         run: |
           docker compose down
+
+      - name: Tag version and push
+        if: |
+          github.ref_type == 'tag' &&
+          startsWith(github.ref_name, 'v')
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          TAG=`echo ${{ github.ref }} | sed -n 's/.*\(v.*$\)/\1/p'`
+          docker tag berk76/svjis2-app:latest berk76/svjis2-app:$TAG
+          docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
+          docker push berk76/svjis2-app:$TAG
+          docker push berk76/svjis2-app:latest
