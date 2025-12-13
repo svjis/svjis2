@@ -41,7 +41,7 @@ jobs:
 
       - name: Start containers
         run: |
-          docker-compose up -d
+          docker compose up -d
 
       - name: Run basic parametrization
         run: |
@@ -60,4 +60,4 @@ jobs:
       - name: Stop containers
         if: always()
         run: |
-          docker-compose down
+          docker compose down
