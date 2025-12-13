@@ -50,7 +50,7 @@ jobs:
 
       - name: Test of docker-compose
         run: |
-          string="Dokumenty"
+          string="Smlouvy"
           if curl -s "http://localhost:8000" | grep -q "$string"; then
               echo "'$string' found"
           else
