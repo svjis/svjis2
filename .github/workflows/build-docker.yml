@@ -32,7 +32,7 @@ jobs:
           mkdir -p ./svjis2-data/svjis
           touch ./svjis2-data/svjis/local_settings.py
           touch ./svjis2-data/db.sqlite3
-          chmod -R ugo+rwx ./svjis2-data
+          # chmod -R ugo+rwx ./svjis2-data
 
       - name: Start docker compose
         run: |
