@@ -25,7 +25,7 @@ jobs:
         run: |
           docker build -t berk76/svjis2-app:latest .
 
-      - name: Start containers
+      - name: Start docker compose
         run: |
           docker compose up -d
           sleep 5  # Wait for migrations to be finished
@@ -34,7 +34,7 @@ jobs:
         run: |
           docker exec svjis2_app bash -c "python svjis/manage.py svjis_setup --password changeIt"
 
-      - name: Test of docker-compose
+      - name: Test if application is running
         run: |
           string="Smlouvy"
           if curl -s "http://localhost:8000" | grep -q "$string"; then
@@ -44,7 +44,7 @@ jobs:
               exit 1
           fi
 
-      - name: Stop containers
+      - name: Stop docker compose
         if: always()
         run: |
           docker compose down
