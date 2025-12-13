@@ -45,7 +45,7 @@ jobs:
 
       - name: Run basic parametrization
         run: |
-          docker exec svjis2_app bash "cd /app && .venv/bin/python svjis/manage.py svjis_setup --password changeIt"
+          docker exec svjis2_app bash -c "python svjis/manage.py svjis_setup --password changeIt"
 
       - name: Test of docker-compose
         run: |
