@@ -31,7 +31,7 @@ jobs:
           mkdir -p svjis2-data/media
           mkdir -p svjis2-data/svjis
           touch svjis2-data/svjis/local_settings.py
-          touch svjis2-data/db.sqlite3:
+          touch svjis2-data/db.sqlite3
 
       - name: Start docker compose
         run: |
