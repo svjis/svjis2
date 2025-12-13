@@ -118,7 +118,7 @@ If you run it for the first time and database is empty login into container and 
 
 ```
 docker exec -it svjis2_app bash
-.venv/bin/python svjis/manage.py svjis_setup --password <choose password for admin user>
+python svjis/manage.py svjis_setup --password <choose password for admin user>
 ```
 
 If you want to use different database like Postgres modify local settings file `./svjis2-data/svjis/local_settings.py`.
