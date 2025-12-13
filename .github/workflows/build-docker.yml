@@ -42,7 +42,7 @@ jobs:
       - name: Start containers
         run: |
           docker compose up -d
-          pause 5  # Wait for migrations to be finished
+          sleep 5  # Wait for migrations to be finished
 
       - name: Run basic parametrization
         run: |
