@@ -25,6 +25,14 @@ jobs:
         run: |
           docker build -t berk76/svjis2-app:latest .
 
+      - name: Create directories and files
+        run: |
+          mkdir -p svjis2-data/static
+          mkdir -p svjis2-data/media
+          mkdir -p svjis2-data/svjis
+          touch svjis2-data/svjis/local_settings.py
+          touch svjis2-data/db.sqlite3:
+
       - name: Start docker compose
         run: |
           docker compose up -d
