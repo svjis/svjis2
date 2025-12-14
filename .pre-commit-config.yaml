@@ -19,10 +19,10 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: '1.24.0'
+    rev: '1.29.1'
     hooks:
       - id: django-upgrade
-        args: ['--target-version', '5.2']
+        args: ['--target-version', '6.0']
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.19.0
@@ -43,10 +43,10 @@ repos:
         args: ["--config=setup.cfg"]
 
   - repo: https://github.com/adamchainz/djade-pre-commit
-    rev: 1.4.0
+    rev: 1.7.0
     hooks:
       - id: djade
-        args: [--target-version, "5.2"]
+        args: [--target-version, "6.0"]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.18.2
