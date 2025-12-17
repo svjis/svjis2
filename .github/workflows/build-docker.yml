@@ -7,8 +7,9 @@ on:
       - master
     paths:
       - '.github/workflows/build-docker.yml'
-      - 'Dockerfile'
       - '.dockerignore'
+      - 'docker-compose.yaml'
+      - 'Dockerfile'
   push:
     branches:
       - master
