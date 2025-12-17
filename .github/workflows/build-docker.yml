@@ -34,7 +34,6 @@ jobs:
         run: |
           mkdir -p ./svjis2-data/static
           mkdir -p ./svjis2-data/media
-          mkdir -p ./svjis2-data/svjis
           echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'svjis_db','USER': 'svjis_user','PASSWORD': 'change-it','HOST': 'svjis-db','PORT': '5432',}}" > ./svjis2-data/svjis/local_settings.py
           chmod -R ugo+rwx ./svjis2-data
 
