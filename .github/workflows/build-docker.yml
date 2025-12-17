@@ -35,13 +35,16 @@ jobs:
           mkdir -p ./svjis2-data/static
           mkdir -p ./svjis2-data/media
           mkdir -p ./svjis2-data/svjis
-          touch ./svjis2-data/svjis/local_settings.py
-          touch ./svjis2-data/db.sqlite3
+          echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'svjis_db','USER': 'svjis_user','PASSWORD': 'change-it','HOST': 'svjis-db','PORT': '5432',}}" > ./svjis2-data/svjis/local_settings.py
           chmod -R ugo+rwx ./svjis2-data
 
       - name: Start docker compose
         run: |
           docker compose up -d
+
+      - name: Create database
+        run: |
+          docker exec svjis-db psql -U svjis_user -d postgres -c "CREATE DATABASE svjis_db;"
           sleep 5  # Wait for migrations to be finished
 
       - name: Run basic parametrization
