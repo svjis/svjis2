@@ -3,7 +3,7 @@ default_stages: [pre-commit]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
         exclude: '.md$'
@@ -19,36 +19,36 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: '1.24.0'
+    rev: '1.29.1'
     hooks:
       - id: django-upgrade
-        args: ['--target-version', '5.2']
+        args: ['--target-version', '6.0']
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.0
+    rev: v3.21.2
     hooks:
       - id: pyupgrade
-        args: [--py310-plus]
+        args: [--py312-plus]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.13.3
+    rev: v0.14.9
     hooks:
       - id: ruff-check
       - id: ruff-format
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 7.1.1
+    rev: 7.3.0
     hooks:
       - id: flake8
         args: ["--config=setup.cfg"]
 
   - repo: https://github.com/adamchainz/djade-pre-commit
-    rev: 1.4.0
+    rev: 1.7.0
     hooks:
       - id: djade
-        args: [--target-version, "5.2"]
+        args: [--target-version, "6.0"]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.2
+    rev: v1.19.0
     hooks:
       - id: mypy

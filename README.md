@@ -9,11 +9,6 @@ Information system for homeowners' associations (SVJ). :house_with_garden:
 SVJIS is a CMS for Homeowners' Associations. The system provides a content management system :memo:, discussions under articles, polls :bar_chart:, reporting and tracking of issues, advertisements, and a database of owners :family_man_woman_boy: including records of units and shares. More on the [project website](https://svjis.github.io/Vlastnosti/).
 
 ## 1 Installation
-It is assumed that you have Python version 3.12 or higher installed on your computer.
-
-```
-python --version
-```
 
 Make sure you have `uv` tool installed:
 ```
@@ -97,7 +92,7 @@ During application testing, you can run it manually. In a production setup, you 
 
 ## 4 Docker
 
-You can also use `docker-compose` to run svjis application.
+You can also use `docker compose` to run svjis application.
 
 Create following directories and files:
 
@@ -109,7 +104,7 @@ Create following directories and files:
 Run docker compose.
 
 ```
-docker-compose up
+docker compose up
 ```
 
 The application runs at the address http://127.0.0.1:8000/.
