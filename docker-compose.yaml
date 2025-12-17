@@ -1,7 +1,7 @@
 # Run
 # docker-compose up -d
-# docker-compose exec svjis-db psql -U svjis_user -d postgres -c "CREATE DATABASE svjis_db;"
-# docker-compose exec svjis-app -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
+# docker-compose exec postgres_db psql -U svjis_user -d postgres -c "CREATE DATABASE svjis_db;"
+# docker-compose exec svjis2_app -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
 
 services:
 
