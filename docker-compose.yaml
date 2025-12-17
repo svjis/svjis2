@@ -1,6 +1,5 @@
 # Run
 # docker-compose up -d
-# docker-compose exec postgres_db psql -U svjis_user -d postgres -c "CREATE DATABASE svjis_db;"
 # docker-compose exec svjis2_app -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
 
 services:
@@ -11,7 +10,7 @@ services:
         condition: service_healthy
     image: berk76/svjis2-app:latest
     container_name: svjis2_app
-    restart: unless-stopped
+    # restart: unless-stopped
     ports:
       - 8000:8000
     volumes:
@@ -31,11 +30,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U svjis_user -d svjis_db"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
 volumes:
   postgres_data:
