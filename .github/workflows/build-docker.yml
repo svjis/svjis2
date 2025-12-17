@@ -44,7 +44,7 @@ jobs:
 
       - name: Create database
         run: |
-          docker exec postgres_db psql -U svjis_user -d postgres -c "CREATE DATABASE svjis_db;"
+          docker exec postgres_db psql -U svjis_user -d postgres -c "SELECT 'CREATE DATABASE svjis_db' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'svjis_db')\gexec;"
           sleep 5  # Wait for migrations to be finished
 
       - name: Run basic parametrization
