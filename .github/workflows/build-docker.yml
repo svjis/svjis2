@@ -35,18 +35,13 @@ jobs:
           mkdir -p ./svjis2-data/static
           mkdir -p ./svjis2-data/media
           mkdir -p ./svjis2-data/svjis
-          echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'svjis_db','USER': 'svjis_user','PASSWORD': 'change-it','HOST': 'svjis-db','PORT': '5432',}}" > ./svjis2-data/svjis/local_settings.py
+          echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'svjis_db','USER': 'svjis_user','PASSWORD': 'change-it2','HOST': 'svjis-db','PORT': '5432',}}" > ./svjis2-data/svjis/local_settings.py
           chmod -R ugo+rwx ./svjis2-data
 
       - name: Start docker compose
         run: |
           docker compose up -d
           sleep 5  # Wait for migrations to be finished
-
-      # - name: Create database
-      #   run: |
-      #     docker exec postgres_db psql -U svjis_user -d postgres -c "SELECT 'CREATE DATABASE svjis_db' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'svjis_db')\\gexec;"
-      #     sleep 5  # Wait for migrations to be finished
 
       - name: Run basic parametrization
         run: |
