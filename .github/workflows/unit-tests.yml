@@ -1,10 +1,17 @@
 name: Unit Tests
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
+    paths:
+      - '.github/workflows/unit-tests.yml'
+      - 'svjis/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+  push:
+    branches:
+      - master
 
 permissions:
   contents: read
