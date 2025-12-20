@@ -943,7 +943,11 @@ footer a:hover {
 * TinyMCE - stop showing promotion
 */
 
-.tox-promotion {
+.tox .tox-promotion {
+  display: none;
+}
+
+.tox .tox-statusbar__branding {
   display: none;
 }
 
