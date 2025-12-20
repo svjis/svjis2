@@ -153,7 +153,7 @@ LOGOUT_URL = '/'
 TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
     "height": 500,
-    "menubar": False,
+    "menubar": "edit view format table help",
     "plugins": "advlist,autolink,lists,link,image,charmap,preview,anchor,"
     "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,"
     "code,help,wordcount",
@@ -161,7 +161,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "bold italic backcolor | alignleft aligncenter "
     "alignright alignjustify | bullist numlist outdent indent | "
     "removeformat | help",
-    'paste_as_text': True,
+    "paste_as_text": True,
 }
 
 # EMAIL values
