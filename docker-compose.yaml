@@ -1,6 +1,8 @@
 # Run
-# docker-compose up -d
-# docker-compose exec svjis2_app -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
+# docker compose up -d
+#
+# If you run it for the first time run also:
+# docker compose exec svjis2_app -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
 
 services:
 
