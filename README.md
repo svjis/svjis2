@@ -92,33 +92,35 @@ During application testing, you can run it manually. In a production setup, you 
 
 ## 4 Docker
 
-You can also use `docker compose` to run svjis application.
+You can also use `docker compose` to run svjis application. Here is an example of SVJIS with Postgres.
 
 Create following directories and files:
 
-* `./svjis2-data/static/`
-* `./svjis2-data/media/`
-* `./svjis2-data/svjis/local_settings.py`
-* `./svjis2-data/db.sqlite3`
-
-Run docker compose.
-
 ```
-docker compose up
+mkdir -p ./svjis2-data/static
+mkdir -p ./svjis2-data/media
+echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'svjis_db','USER': 'svjis_user','PASSWORD': 'change-it','HOST': 'svjis-db','PORT': '5432',}}" > ./svjis2-data/local_settings.py
+chmod -R ugo+rwx ./svjis2-data
 ```
 
-The application runs at the address http://127.0.0.1:8000/.
+Run docker compose:
 
-If you run it for the first time and database is empty login into container and create basic parametrization including admin account.
+```
+docker compose up -d
+```
+
+If you run it for the first time and database is empty create basic parametrization including admin account:
 
 ```
 docker exec svjis2_app bash -c "python svjis/manage.py svjis_setup --password <choose password for admin user>"
 ```
 
-If you want to use different database like Postgres modify local settings file `./svjis2-data/svjis/local_settings.py`.
+The application runs at the address http://127.0.0.1:8000/. You can stop it by command `docker compose down`
+
+If you want to use different database or setup any other parameters modify local settings file `./svjis2-data/local_settings.py`.
 
 > [!NOTE]
-> By default application in container runs with `DEBUG = True`. If you want to run application in production override at least `SECRET_KEY`, `ALLOWED_HOSTS` and set `DEBUG = False` in `./svjis2-data/svjis/local_settings.py` file. Also you will need `Nginx` or `Apache` reverse proxy which will be serving static files and will take care about tls certificate. `Postgres` database backend is recommended for production.
+> By default application in container runs with `DEBUG = True`. If you want to run application in production edit `./svjis2-data/local_settings.py` file and override at least `SECRET_KEY`, `ALLOWED_HOSTS` and set `DEBUG = False`. You will aslo need `Nginx` or `Apache` reverse proxy which will be serving static files and will take care about tls certificate.
 
 ## 5 Troubleshooting
 
