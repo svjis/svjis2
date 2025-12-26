@@ -940,6 +940,18 @@ footer a:hover {
 }
 
 /*
+* TinyMCE - stop showing promotion
+*/
+
+.tox .tox-promotion {
+  display: none;
+}
+
+.tox .tox-statusbar__branding {
+  display: none;
+}
+
+/*
 *  Tablet Styles (481px — 768px)
 */
 @media (max-width: 960px) {
