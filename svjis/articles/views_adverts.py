@@ -66,15 +66,11 @@ def adverts_list_view(request):
         advert_list = advert_list.filter(type__description=scope)
         scope_description = scope
 
-    ad_list = []
-    for ad in advert_list:
-        ad_list.append({'advert': ad, 'assets': utils.wrap_assets(ad.assets)})
-
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Adverts")
     ctx['aside_menu_items'] = get_side_menu(scope, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('adverts', request.user)
-    ctx['object_list'] = ad_list
+    ctx['object_list'] = advert_list
     ctx['scope_description'] = scope_description
     return render(request, "adverts_list.html", ctx)
 
@@ -87,16 +83,13 @@ def adverts_edit_view(request, pk):
         if i.created_by_user != request.user:
             raise Http404
         form = forms.AdvertForm(instance=i)
-        assets = utils.wrap_assets(i.assets)
     else:
         form = forms.AdvertForm({'phone': request.user.userprofile.phone, 'email': request.user.email})
-        assets = None
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Adverts")
     ctx['form'] = form
     ctx['pk'] = pk
-    ctx['assets'] = assets
     ctx['asset_form'] = forms.AdvertAssetForm
     ctx['aside_menu_items'] = get_side_menu(None, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('adverts', request.user)

@@ -10,6 +10,16 @@ from django.utils.translation import gettext_lazy as _
 from .permissions import svjis_answer_survey
 
 
+def get_asset_icon(basename):
+    supported_icons = ['doc', 'docx', 'gif', 'htm', 'html', 'jpeg', 'jpg', 'pdf', 'pps', 'txt', 'xls', 'xlsx', 'zip']
+    _file_name, file_extension = os.path.splitext(basename)
+    file_extension = file_extension[1:]
+    if file_extension.lower() in supported_icons:
+        return f'Files_{file_extension.lower()}.gif'
+    else:
+        return 'Files_unknown.gif'
+
+
 # Article / Redaction
 #####################
 
@@ -86,6 +96,14 @@ class ArticleAsset(models.Model):
 
     def __str__(self):
         return f"ArticleAsset: {self.description}"
+
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
 
     class Meta:
         ordering = ['id']
@@ -440,6 +458,14 @@ class FaultAsset(models.Model):
     def __str__(self):
         return f"FaultAsset: {self.description}"
 
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
+
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
@@ -542,6 +568,14 @@ class AdvertAsset(models.Model):
 
     def __str__(self):
         return f"AdvertAsset: {self.description}"
+
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
 
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
