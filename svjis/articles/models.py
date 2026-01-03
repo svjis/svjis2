@@ -1,23 +1,13 @@
 import os
 
 from . import managers
-from .model_utils import unique_slugify
+from .model_utils import unique_slugify, get_asset_icon
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from .permissions import svjis_answer_survey
-
-
-def get_asset_icon(basename):
-    supported_icons = ['doc', 'docx', 'gif', 'htm', 'html', 'jpeg', 'jpg', 'pdf', 'pps', 'txt', 'xls', 'xlsx', 'zip']
-    _file_name, file_extension = os.path.splitext(basename)
-    file_extension = file_extension[1:]
-    if file_extension.lower() in supported_icons:
-        return f'Files_{file_extension.lower()}.gif'
-    else:
-        return 'Files_unknown.gif'
 
 
 # Article / Redaction
