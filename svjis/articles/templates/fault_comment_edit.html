@@ -6,7 +6,7 @@
 
 <h1 class="article-title">{% translate 'Modify comment' %}</h1>
 
-<form action="{% url 'article_comment_modify' %}" method="post">
+<form action="{% url 'fault_comment_modify' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="comment_pk" value="{{ obj.pk }}">
     <p>

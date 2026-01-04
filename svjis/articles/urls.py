@@ -134,6 +134,8 @@ urlpatterns = [
         name='faults_fault_asset_delete',
     ),
     path('fault_comment_save/', views_faults.fault_comment_save_view, name='fault_comment_save'),
+    path('fault_comment_edit/<int:pk>/', views_faults.fault_comment_edit_view, name='fault_comment_edit'),
+    path('fault_comment_modify/', views_faults.fault_comment_modify_view, name='fault_comment_modify'),
     path('fault_watch/', views_faults.fault_watch_view, name='fault_watch'),
     path('faults_fault_logs/<str:slug>/', views_faults.fault_logs_view, name='faults_fault_logs'),
     path('adverts_list/', views_adverts.adverts_list_view, name='adverts_list'),
