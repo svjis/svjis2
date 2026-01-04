@@ -663,10 +663,8 @@ msgid "Comments"
 msgstr "Komentáře"
 
 #: articles/templates/article.html:40 articles/templates/fault.html:113
-#, fuzzy
-#| msgid "Modified"
 msgid "Modify"
-msgstr "Upraven"
+msgstr ""
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -686,10 +684,8 @@ msgstr "Zpět na seznam článků"
 
 #: articles/templates/article_comment_edit.html:7
 #: articles/templates/fault_comment_edit.html:7
-#, fuzzy
-#| msgid "Allow comments"
 msgid "Modify comment"
-msgstr "Povolit komentáře"
+msgstr ""
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
