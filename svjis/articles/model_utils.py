@@ -1,6 +1,7 @@
 import os
 import re
 from django.template.defaultfilters import slugify
+from django.utils import timezone
 
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None, slug_separator='-'):
@@ -81,3 +82,12 @@ def get_asset_icon(basename):
         return f'Files_{file_extension.lower()}.gif'
     else:
         return 'Files_unknown.gif'
+
+
+def get_age_in_minutes(timestamp_from_model):
+    current_time = timezone.now()
+    if timestamp_from_model:
+        time_difference = current_time - timestamp_from_model
+        return int(time_difference.total_seconds() / 60)
+    else:
+        return None

@@ -1,7 +1,7 @@
 import os
 
 from . import managers
-from .model_utils import unique_slugify, get_asset_icon
+from .model_utils import unique_slugify, get_asset_icon, get_age_in_minutes
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
@@ -107,6 +107,10 @@ class ArticleComment(models.Model):
 
     def __str__(self):
         return f"ArticleComment: {self.article} - {self.body}"
+
+    @property
+    def age_in_minutes(self):
+        return get_age_in_minutes(self.created_date)
 
     class Meta:
         ordering = ['id']
@@ -473,6 +477,10 @@ class FaultComment(models.Model):
 
     def __str__(self):
         return f"FaultComment: {self.fault_report} - {self.body}"
+
+    @property
+    def age_in_minutes(self):
+        return get_age_in_minutes(self.created_date)
 
     class Meta:
         ordering = ['id']
