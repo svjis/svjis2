@@ -1,3 +1,4 @@
+import os
 import re
 from django.template.defaultfilters import slugify
 
@@ -70,3 +71,13 @@ def _slug_strip(value, separator='-'):
             re_sep = re.escape(separator)
         value = re.sub(rf'^{re_sep}+|{re_sep}+$', '', value)
     return value
+
+
+def get_asset_icon(basename):
+    supported_icons = ['doc', 'docx', 'gif', 'htm', 'html', 'jpeg', 'jpg', 'pdf', 'pps', 'txt', 'xls', 'xlsx', 'zip']
+    _file_name, file_extension = os.path.splitext(basename)
+    file_extension = file_extension[1:]
+    if file_extension.lower() in supported_icons:
+        return f'Files_{file_extension.lower()}.gif'
+    else:
+        return 'Files_unknown.gif'

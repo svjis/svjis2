@@ -112,7 +112,6 @@ def fault_view(request, slug):
     ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
     ctx['obj'] = fault
     ctx['search'] = request.GET.get('search', '')
-    ctx['assets'] = utils.wrap_assets(fault.assets)
     ctx['asset_form'] = forms.FaultAssetForm
     return render(request, "fault.html", ctx)
 

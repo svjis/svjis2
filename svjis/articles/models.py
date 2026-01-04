@@ -1,7 +1,7 @@
 import os
 
 from . import managers
-from .model_utils import unique_slugify
+from .model_utils import unique_slugify, get_asset_icon
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import User, Group
@@ -86,6 +86,14 @@ class ArticleAsset(models.Model):
 
     def __str__(self):
         return f"ArticleAsset: {self.description}"
+
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
 
     class Meta:
         ordering = ['id']
@@ -440,6 +448,14 @@ class FaultAsset(models.Model):
     def __str__(self):
         return f"FaultAsset: {self.description}"
 
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
+
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
@@ -542,6 +558,14 @@ class AdvertAsset(models.Model):
 
     def __str__(self):
         return f"AdvertAsset: {self.description}"
+
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
 
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
