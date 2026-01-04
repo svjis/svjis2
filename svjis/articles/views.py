@@ -248,12 +248,16 @@ def article_comment_save_view(request):
 @require_GET
 def article_comment_edit_view(request, pk):
     comment = get_object_or_404(models.ArticleComment, pk=pk)
-    ctx = utils.get_context()
-    ctx['aside_menu_name'] = _("Articles")
-    ctx['obj'] = comment
-    ctx['aside_menu_items'] = get_side_menu(ctx)
-    ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
-    return render(request, "article_comment_edit.html", ctx)
+    if comment.author == request.user and comment.is_editable:
+        ctx = utils.get_context()
+        ctx['aside_menu_name'] = _("Articles")
+        ctx['obj'] = comment
+        ctx['aside_menu_items'] = get_side_menu(ctx)
+        ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
+        return render(request, "article_comment_edit.html", ctx)
+    else:
+        messages.error(request, _('Comment cannot be modified anymore'))
+        return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
 
 
 @permission_required(svjis_add_article_comment)

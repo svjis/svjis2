@@ -300,12 +300,16 @@ def fault_comment_save_view(request):
 @require_GET
 def fault_comment_edit_view(request, pk):
     comment = get_object_or_404(models.FaultComment, pk=pk)
-    ctx = utils.get_context()
-    ctx['aside_menu_name'] = _("Fault reporting")
-    ctx['obj'] = comment
-    ctx['aside_menu_items'] = get_side_menu('faults', request.user)
-    ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
-    return render(request, "fault_comment_edit.html", ctx)
+    if comment.author == request.user and comment.is_editable:
+        ctx = utils.get_context()
+        ctx['aside_menu_name'] = _("Fault reporting")
+        ctx['obj'] = comment
+        ctx['aside_menu_items'] = get_side_menu('faults', request.user)
+        ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
+        return render(request, "fault_comment_edit.html", ctx)
+    else:
+        messages.error(request, _('Comment cannot be modified anymore'))
+        return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
 
 
 @permission_required(svjis_add_fault_comment)
