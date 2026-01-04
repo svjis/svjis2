@@ -10,6 +10,9 @@ from django.utils.translation import gettext_lazy as _
 from .permissions import svjis_answer_survey
 
 
+COMMENT_IS_EDITABLE_MINUTES = 10
+
+
 # Article / Redaction
 #####################
 
@@ -109,8 +112,12 @@ class ArticleComment(models.Model):
         return f"ArticleComment: {self.article} - {self.body}"
 
     @property
-    def age_in_minutes(self):
-        return get_age_in_minutes(self.created_date)
+    def is_editable(self) -> bool:
+        age = get_age_in_minutes(self.created_date)
+        if age is not None:
+            return age <= COMMENT_IS_EDITABLE_MINUTES
+        else:
+            return False
 
     class Meta:
         ordering = ['id']
@@ -479,8 +486,12 @@ class FaultComment(models.Model):
         return f"FaultComment: {self.fault_report} - {self.body}"
 
     @property
-    def age_in_minutes(self):
-        return get_age_in_minutes(self.created_date)
+    def is_editable(self) -> bool:
+        age = get_age_in_minutes(self.created_date)
+        if age is not None:
+            return age <= COMMENT_IS_EDITABLE_MINUTES
+        else:
+            return False
 
     class Meta:
         ordering = ['id']

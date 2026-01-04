@@ -84,7 +84,7 @@ def get_asset_icon(basename):
         return 'Files_unknown.gif'
 
 
-def get_age_in_minutes(timestamp_from_model):
+def get_age_in_minutes(timestamp_from_model) -> int | None:
     current_time = timezone.now()
     if timestamp_from_model:
         time_difference = current_time - timestamp_from_model
