@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 22:53+0100\n"
-"PO-Revision-Date: 2025-12-14 19:10+0000\n"
+"PO-Revision-Date: 2026-01-06 12:21+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
 "cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.14.3\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: articles/forms.py:326 articles/models.py:382 articles/models.py:413
 #: articles/templates/admin_building_unit.html:36
@@ -665,7 +665,7 @@ msgstr "Komentáře"
 
 #: articles/templates/article.html:40 articles/templates/fault.html:113
 msgid "Modify"
-msgstr ""
+msgstr "Upravit"
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -686,7 +686,7 @@ msgstr "Zpět na seznam článků"
 #: articles/templates/article_comment_edit.html:7
 #: articles/templates/fault_comment_edit.html:7
 msgid "Modify comment"
-msgstr ""
+msgstr "Upravit komentář"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
@@ -1229,7 +1229,7 @@ msgstr "Prosím zvolte jednu možnost."
 #: articles/views.py:259 articles/views.py:273 articles/views_faults.py:311
 #: articles/views_faults.py:325
 msgid "Comment cannot be modified anymore"
-msgstr ""
+msgstr "Komentář už nelze upravovat"
 
 #: articles/views.py:326
 msgid "Wrong username or password"
