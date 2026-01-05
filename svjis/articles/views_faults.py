@@ -309,7 +309,7 @@ def fault_comment_edit_view(request, pk):
         return render(request, "fault_comment_edit.html", ctx)
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
-        return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
+        return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
 
 
 @permission_required(svjis_add_fault_comment)
@@ -321,9 +321,10 @@ def fault_comment_modify_view(request):
         body = request.POST.get('body', '')
         comment.body = body
         comment.save()
+        return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
-    return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
+        return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
 
 
 # Faults - FaultWatching

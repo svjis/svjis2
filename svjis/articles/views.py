@@ -257,7 +257,7 @@ def article_comment_edit_view(request, pk):
         return render(request, "article_comment_edit.html", ctx)
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
-        return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
+        return redirect(reverse('article', kwargs={'slug': comment.article.slug}))
 
 
 @permission_required(svjis_add_article_comment)
@@ -269,9 +269,10 @@ def article_comment_modify_view(request):
         body = request.POST.get('body', '')
         comment.body = body
         comment.save()
+        return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
-    return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
+        return redirect(reverse('article', kwargs={'slug': comment.article.slug}))
 
 
 @permission_required(svjis_add_article_comment)

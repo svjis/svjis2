@@ -4,13 +4,14 @@ from . import managers
 from .model_utils import unique_slugify, get_asset_icon, get_age_in_minutes
 from datetime import date
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from .permissions import svjis_answer_survey
 
 
-COMMENT_IS_EDITABLE_MINUTES = 10
+COMMENT_IS_EDITABLE_MINUTES = getattr(settings, "SVJIS_COMMENT_IS_EDITABLE_MINUTES", 10)
 
 
 # Article / Redaction
