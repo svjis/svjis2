@@ -7,10 +7,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', views.main_view, name='main'),
-    path('main/<int:menu>', views.main_filtered_view, name='main_filtered'),
+    path('main/<int:menu>/', views.main_filtered_view, name='main_filtered'),
     path('article_survey_vote/', views.article_survey_vote_view, name='article_survey_vote'),
     path('article/<str:slug>/', views.article_view, name='article'),
     path('article_comment_save/', views.article_comment_save_view, name='article_comment_save'),
+    path('article_comment_edit/<int:pk>/', views.article_comment_edit_view, name='article_comment_edit'),
+    path('article_comment_modify/', views.article_comment_modify_view, name='article_comment_modify'),
     path('article_watch/', views.article_watch_view, name='article_watch'),
     path('user_login/', views.user_login, name='user_login'),
     path('user_logout/', views.user_logout, name='user_logout'),
@@ -132,6 +134,8 @@ urlpatterns = [
         name='faults_fault_asset_delete',
     ),
     path('fault_comment_save/', views_faults.fault_comment_save_view, name='fault_comment_save'),
+    path('fault_comment_edit/<int:pk>/', views_faults.fault_comment_edit_view, name='fault_comment_edit'),
+    path('fault_comment_modify/', views_faults.fault_comment_modify_view, name='fault_comment_modify'),
     path('fault_watch/', views_faults.fault_watch_view, name='fault_watch'),
     path('faults_fault_logs/<str:slug>/', views_faults.fault_logs_view, name='faults_fault_logs'),
     path('adverts_list/', views_adverts.adverts_list_view, name='adverts_list'),

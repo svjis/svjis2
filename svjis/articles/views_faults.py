@@ -296,6 +296,37 @@ def fault_comment_save_view(request):
     return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
 
 
+@permission_required(svjis_add_fault_comment)
+@require_GET
+def fault_comment_edit_view(request, pk):
+    comment = get_object_or_404(models.FaultComment, pk=pk)
+    if comment.author == request.user and comment.is_editable:
+        ctx = utils.get_context()
+        ctx['aside_menu_name'] = _("Fault reporting")
+        ctx['obj'] = comment
+        ctx['aside_menu_items'] = get_side_menu('faults', request.user)
+        ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
+        return render(request, "fault_comment_edit.html", ctx)
+    else:
+        messages.error(request, _('Comment cannot be modified anymore'))
+        return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
+
+
+@permission_required(svjis_add_fault_comment)
+@require_POST
+def fault_comment_modify_view(request):
+    comment_pk = int(request.POST.get('comment_pk'))
+    comment = get_object_or_404(models.FaultComment, pk=comment_pk)
+    if comment.author == request.user and comment.is_editable:
+        body = request.POST.get('body', '')
+        comment.body = body
+        comment.save()
+        return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
+    else:
+        messages.error(request, _('Comment cannot be modified anymore'))
+        return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
+
+
 # Faults - FaultWatching
 @permission_required(svjis_view_fault_menu)
 @require_GET
