@@ -594,7 +594,7 @@ def create_comments(cls, page):
     for e in data:
         menu(page, _('Articles'), _('All articles'), True)
         page.click('text=' + e['header'])
-        page.fill('[id=body]', e['comment'])
+        page.fill('[id=id_body]', e['comment'])
         scrshot(page, get_filename(cls, 'redaction-article-comment'))
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'redaction-article-comment'))
@@ -723,7 +723,7 @@ def create_faults(cls, page):
 def create_fault_comment(cls, page, subject, comment):
     menu(page, _('Fault reporting'), _('Open'), False)
     click_link_in_row(page, subject, 0)
-    page.fill('[id=body]', comment)
+    page.fill('[id=id_body]', comment)
     scrshot(page, get_filename(cls, 'fault-comment'))
     page.click('id=submit')
     scrshot(page, get_filename(cls, 'fault-comment'))
