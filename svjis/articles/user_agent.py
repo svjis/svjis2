@@ -21,15 +21,17 @@ def is_bot(user_agent: str) -> bool:
 
 def get_browser(user_agent: str) -> dict:
     browsers = {
-        'yabrowser': r'YaBrowser\/(\d+\.?\d*)',
-        'edge': r'Edg\/(\d+\.?\d*)|EdgiOS\/(\d+\.?\d*)',
-        'opera': r'Opera\/(\d+\.?\d*)|OPR\/(\d+\.?\d*)|OPT\/(\d+\.?\d*)',
-        'firefox': r'Firefox\/(\d+\.?\d*)',
-        'safari': r'Version\/(\d+\.?\d*)',
-        'samsung': r'SamsungBrowser\/(\d+\.?\d*)',
-        'crios': r'CriOS\/(\d+\.?\d*)',
-        'ie': r'MSIE (\d+\.?\d*)|Trident.*rv:(\d+\.?\d*)',
-        'chrome': r'Chrome\/(\d+\.?\d*)',
+        'SznProhlizec': r'SznProhlizec\/(\d+\.?\d*)',
+        'DuckDuckGo': r'Ddg\/(\d+\.?\d*)',
+        'Yabrowser': r'YaBrowser\/(\d+\.?\d*)',
+        'Edge': r'Edg\/(\d+\.?\d*)|EdgiOS\/(\d+\.?\d*)',
+        'Opera': r'Opera\/(\d+\.?\d*)|OPR\/(\d+\.?\d*)|OPT\/(\d+\.?\d*)',
+        'Firefox': r'Firefox\/(\d+\.?\d*)',
+        'Safari': r'Version\/(\d+\.?\d*)',
+        'Samsung': r'SamsungBrowser\/(\d+\.?\d*)',
+        'Crios': r'CriOS\/(\d+\.?\d*)',
+        'IE': r'MSIE (\d+\.?\d*)|Trident.*rv:(\d+\.?\d*)',
+        'Chrome': r'Chrome\/(\d+\.?\d*)',
     }
 
     if not is_bot(user_agent):
@@ -41,7 +43,7 @@ def get_browser(user_agent: str) -> dict:
                     if match.lastindex is not None and match.lastindex > 1
                     else match.group(1)
                 )
-                return {'browser': browser.title(), 'version': version, 'user_agent': user_agent}
+                return {'browser': browser, 'version': version, 'user_agent': user_agent}
 
     return {'browser': 'Unknown', 'version': 'Unknown', 'user_agent': user_agent}
 
