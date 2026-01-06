@@ -14,30 +14,30 @@
 {% for obj in object_list %}
 
 <!-- advert -->&nbsp;
-<div class="advert_c{{ obj.advert.type.id }}">
+<div class="advert_c{{ obj.type.id }}">
     <div class="advert-desc">
-        <h2 {% if not obj.advert.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.advert.header }}</h2>
+        <h2 {% if not obj.published %}style="text-decoration: line-through;"{% endif %}>{{ obj.header }}</h2>
         <p class="info">
-            <a href="{% url 'adverts_list' %}?scope={{ obj.advert.type.description }}">{{ obj.advert.type.description }}</a>: <strong>{{ obj.advert.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.advert.created_by_user.first_name }}&nbsp;{{ obj.advert.created_by_user.last_name }}</strong>
-            {% if obj.advert.created_by_user == user %}
-            &nbsp;[<a href="{% url 'adverts_edit' pk=obj.advert.pk %}">{% translate 'Edit' %}</a>]
+            <a href="{% url 'adverts_list' %}?scope={{ obj.type.description }}">{{ obj.type.description }}</a>: <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
+            {% if obj.created_by_user == user %}
+            &nbsp;[<a href="{% url 'adverts_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>]
             {% endif %}
 
         </p>
         <div class="body">
-            <p>{{ obj.advert.body|replace_url_to_link|linebreaks }}</p>
+            <p>{{ obj.body|replace_url_to_link|linebreaks }}</p>
 
             {% if obj.assets %}
             <p>
             {% for a in obj.assets %}
-                <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.asset.file }}">{{ a.basename }}</a>&nbsp;
+                <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.file }}">{{ a.basename }}</a>&nbsp;
             {% endfor %}
             </p>
             {% endif %}
         </div>
         <p class="contact">
-            {% if obj.advert.phone %}{% translate 'Phone' %}:&nbsp;<strong>{{ obj.advert.phone }}</strong><br>{% endif %}
-            {% if obj.advert.email %}{% translate 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.advert.email }}">{{ obj.advert.email }}</a></strong>{% endif %}
+            {% if obj.phone %}{% translate 'Phone' %}:&nbsp;<strong>{{ obj.phone }}</strong><br>{% endif %}
+            {% if obj.email %}{% translate 'E-Mail' %}:&nbsp;<strong><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></strong>{% endif %}
         </p>
     </div>
 </div>

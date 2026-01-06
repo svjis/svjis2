@@ -10,20 +10,20 @@
         <a href="{% url 'main_filtered' menu=obj.menu.id %}">{{ obj.menu.description }}</a>:  <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</strong>
     </p>
     {{ obj.perex|highlight:search|safe }}
-    {{ obj.body|inject_pictures:assets|highlight:search|safe }}
+    {{ obj.body|inject_pictures:obj.assets|highlight:search|safe }}
 
 
-    {% if assets %}
+    {% if obj.assets %}
     <h2 class="comment-title">{% translate 'Assets' %}:</h2>
     <table class="list" aria-describedby="tbl-desc">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
             <th class="list" scope="col">{% translate 'File' %}</th>
         </tr>
-        {% for a in assets %}
+        {% for a in obj.assets %}
         <tr>
             <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-            <td class="list"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
+            <td class="list"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -36,6 +36,9 @@
     <h2 id="comments" class="comment-title">{% translate 'Comments' %}:</h2>
     {% for comment in obj.comments %}
     <div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
+        {% if comment.author == user and comment.is_editable %}
+            [<a href="{% url 'article_comment_edit' pk=comment.id %}">{% translate 'Modify' %}</a>]
+        {% endif %}
         <br>{{ comment.body|replace_url_to_link|linebreaks }}
     </div>
     {% endfor %}

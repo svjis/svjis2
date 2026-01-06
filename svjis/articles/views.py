@@ -220,7 +220,6 @@ def article_view(request, slug):
     ctx['search'] = request.GET.get('search', '')
     ctx['header'] = article.menu.description
     ctx['obj'] = article
-    ctx['assets'] = utils.wrap_assets(article.assets)
     ctx['web_title'] = article.header
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
@@ -243,6 +242,37 @@ def article_comment_save_view(request):
         )
 
     return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
+
+
+@permission_required(svjis_add_article_comment)
+@require_GET
+def article_comment_edit_view(request, pk):
+    comment = get_object_or_404(models.ArticleComment, pk=pk)
+    if comment.author == request.user and comment.is_editable:
+        ctx = utils.get_context()
+        ctx['aside_menu_name'] = _("Articles")
+        ctx['obj'] = comment
+        ctx['aside_menu_items'] = get_side_menu(ctx)
+        ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
+        return render(request, "article_comment_edit.html", ctx)
+    else:
+        messages.error(request, _('Comment cannot be modified anymore'))
+        return redirect(reverse('article', kwargs={'slug': comment.article.slug}))
+
+
+@permission_required(svjis_add_article_comment)
+@require_POST
+def article_comment_modify_view(request):
+    comment_pk = int(request.POST.get('comment_pk'))
+    comment = get_object_or_404(models.ArticleComment, pk=comment_pk)
+    if comment.author == request.user and comment.is_editable:
+        body = request.POST.get('body', '')
+        comment.body = body
+        comment.save()
+        return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
+    else:
+        messages.error(request, _('Comment cannot be modified anymore'))
+        return redirect(reverse('article', kwargs={'slug': comment.article.slug}))
 
 
 @permission_required(svjis_add_article_comment)

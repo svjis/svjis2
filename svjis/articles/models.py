@@ -1,13 +1,17 @@
 import os
 
 from . import managers
-from .model_utils import unique_slugify
+from .model_utils import unique_slugify, get_asset_icon, get_age_in_minutes
 from datetime import date
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from .permissions import svjis_answer_survey
+
+
+COMMENT_IS_EDITABLE_MINUTES = getattr(settings, "SVJIS_COMMENT_IS_EDITABLE_MINUTES", 10)
 
 
 # Article / Redaction
@@ -87,6 +91,14 @@ class ArticleAsset(models.Model):
     def __str__(self):
         return f"ArticleAsset: {self.description}"
 
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
+
     class Meta:
         ordering = ['id']
 
@@ -99,6 +111,14 @@ class ArticleComment(models.Model):
 
     def __str__(self):
         return f"ArticleComment: {self.article} - {self.body}"
+
+    @property
+    def is_editable(self) -> bool:
+        age = get_age_in_minutes(self.created_date)
+        if age is not None:
+            return age <= COMMENT_IS_EDITABLE_MINUTES
+        else:
+            return False
 
     class Meta:
         ordering = ['id']
@@ -440,6 +460,14 @@ class FaultAsset(models.Model):
     def __str__(self):
         return f"FaultAsset: {self.description}"
 
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
+
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
@@ -457,6 +485,14 @@ class FaultComment(models.Model):
 
     def __str__(self):
         return f"FaultComment: {self.fault_report} - {self.body}"
+
+    @property
+    def is_editable(self) -> bool:
+        age = get_age_in_minutes(self.created_date)
+        if age is not None:
+            return age <= COMMENT_IS_EDITABLE_MINUTES
+        else:
+            return False
 
     class Meta:
         ordering = ['id']
@@ -542,6 +578,14 @@ class AdvertAsset(models.Model):
 
     def __str__(self):
         return f"AdvertAsset: {self.description}"
+
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
 
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):

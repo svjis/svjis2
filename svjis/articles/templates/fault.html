@@ -50,14 +50,14 @@
         <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <td class="list" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:assets|highlight:search }}</td>
+        <td class="list" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
     </tr>
 </table>
 
 
 {% if pk != 0 %}
     <h2 class="comment-title" id="assets">{% translate 'Assets' %}:</h2>
-    {% if assets %}
+    {% if obj.assets %}
     <table class="list full-width" aria-describedby="tbl-desc">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
@@ -67,15 +67,15 @@
             <th class="list hide-in-mobile" scope="col">{% translate 'Time' %}</th>
             <th class="list" scope="col">&nbsp;</th>
         </tr>
-        {% for a in assets %}
+        {% for a in obj.assets %}
         <tr>
             <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-            <td class="list" id="asset_file_{{ a.asset.pk }}"><a href="/media/{{ a.asset.file }}">{{ a.basename }}</a></td>
-            <td class="list" id="asset_name_{{ a.asset.pk }}">{{ a.asset.description }}</td>
-            <td class="list" id="asset_user_{{ a.asset.pk }}">{{ a.asset.created_by_user.first_name }}&nbsp;{{ a.asset.created_by_user.last_name }}</td>
-            <td class="list hide-in-mobile" id="asset_time_{{ a.asset.pk }}">{{ a.asset.created_date|date:"d.m.Y H:i" }}</td>
-            {% if a.asset.created_by_user == user %}
-            <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.asset.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.asset.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+            <td class="list" id="asset_file_{{ a.pk }}"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
+            <td class="list" id="asset_name_{{ a.pk }}">{{ a.description }}</td>
+            <td class="list" id="asset_user_{{ a.pk }}">{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}</td>
+            <td class="list hide-in-mobile" id="asset_time_{{ a.pk }}">{{ a.created_date|date:"d.m.Y H:i" }}</td>
+            {% if a.created_by_user == user %}
+            <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
             {% else %}
             <td class="list">&nbsp;</td>
             {% endif %}
@@ -109,6 +109,9 @@
 <h2 id="comments" class="comment-title">{% translate 'Comments' %}:</h2>
 {% for comment in obj.comments %}
 <div class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
+    {% if comment.author == user and comment.is_editable %}
+        [<a href="{% url 'fault_comment_edit' pk=comment.id %}">{% translate 'Modify' %}</a>]
+    {% endif %}
     <br>{{ comment.body|replace_url_to_link|linebreaks }}
 </div>
 {% endfor %}
