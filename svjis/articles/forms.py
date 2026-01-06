@@ -69,6 +69,15 @@ class ArticleAssetForm(forms.ModelForm):
         }
 
 
+class ArticleCommentForm(forms.ModelForm):
+    class Meta:
+        model = models.ArticleComment
+        fields = ("body",)
+        widgets = {
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '7', 'wrap': True}),
+        }
+
+
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
