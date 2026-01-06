@@ -130,6 +130,31 @@ class UserAgentTests(TestCase):
             "browser": "Yabrowser",
             "os": {'os': 'Windows', 'platform': 'Desktop'},
         },
+        # SznProhlizec on Android
+        {
+            "agent": [
+                "Mozilla/5.0 (Linux; Android 15; SM-S721B Build/AP3A.240905.015.A2) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 SznProhlizec/12.6.0a",  # noqa
+            ],
+            "browser": "SznProhlizec",
+            "os": {'os': 'Android', 'platform': 'Mobile'},
+        },
+        # SznProhlizec on Macintosh
+        {
+            "agent": [
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.7.2 Safari/605.1.15 SznProhlizec/15.1.0i",  # noqa
+                "Mozilla/5.0 (iPhone; CPU OS 26_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Mobile/15e148 Safari/605.1.15 SznProhlizec/15.1.0i",  # noqa
+            ],
+            "browser": "SznProhlizec",
+            "os": {'os': 'macOS', 'platform': 'Desktop'},
+        },
+        # DuckDuckGo on iOS
+        {
+            "agent": [
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 16_7_12 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.7 Mobile/15E148 Safari/604.1 Ddg/16.7",  # noqa
+            ],
+            "browser": "DuckDuckGo",
+            "os": {'os': 'iOS', 'platform': 'Mobile'},
+        },
         # Bots
         {
             "agent": [

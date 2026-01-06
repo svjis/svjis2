@@ -367,7 +367,7 @@ msgstr "Advert"
 
 #: articles/templates/admin_about.html:7 articles/views_admin.py:83
 msgid "About application"
-msgstr ""
+msgstr "About application"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
@@ -663,7 +663,7 @@ msgstr "Comments"
 
 #: articles/templates/article.html:40 articles/templates/fault.html:113
 msgid "Modify"
-msgstr ""
+msgstr "Modify"
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -684,7 +684,7 @@ msgstr "Back to article list"
 #: articles/templates/article_comment_edit.html:7
 #: articles/templates/fault_comment_edit.html:7
 msgid "Modify comment"
-msgstr ""
+msgstr "Modify comment"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
@@ -1226,7 +1226,7 @@ msgstr "Please choose an option."
 #: articles/views.py:259 articles/views.py:273 articles/views_faults.py:311
 #: articles/views_faults.py:325
 msgid "Comment cannot be modified anymore"
-msgstr ""
+msgstr "Comment cannot be modified anymore"
 
 #: articles/views.py:326
 msgid "Wrong username or password"

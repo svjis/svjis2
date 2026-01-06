@@ -1,4 +1,4 @@
-from . import utils, models
+from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required
@@ -224,6 +224,7 @@ def article_view(request, slug):
     ctx['aside_menu_items'] = get_side_menu(ctx)
     ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
     ctx['visible_for'] = ", ".join(group_list)
+    ctx['comment_form'] = forms.ArticleCommentForm
     return render(request, "article.html", ctx)
 
 
@@ -231,17 +232,19 @@ def article_view(request, slug):
 @require_POST
 def article_comment_save_view(request):
     article_pk = int(request.POST.get('article_pk'))
-    body = request.POST.get('body', '')
-    if body != '':
-        article = get_object_or_404(models.Article, pk=article_pk)
-        comment = models.ArticleComment.objects.create(body=body, article=article, author=request.user)
-
+    article = get_object_or_404(models.Article, pk=article_pk)
+    form = forms.ArticleCommentForm(request.POST)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.article = article
+        obj.author = request.user
+        obj.save()
         recipients = [u for u in article.watching_users.all() if u != request.user]
-        utils.send_article_comment_notification(
-            recipients, f"{request.scheme}://{request.get_host()}", article, comment
-        )
-
-    return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
+        utils.send_article_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", article, obj)
+        return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
+    else:
+        messages.error(request, form.errors)
+        return redirect(reverse('article', kwargs={'slug': article.slug}))
 
 
 @permission_required(svjis_add_article_comment)
@@ -251,7 +254,7 @@ def article_comment_edit_view(request, pk):
     if comment.author == request.user and comment.is_editable:
         ctx = utils.get_context()
         ctx['aside_menu_name'] = _("Articles")
-        ctx['obj'] = comment
+        ctx['form'] = forms.ArticleCommentForm(instance=comment)
         ctx['aside_menu_items'] = get_side_menu(ctx)
         ctx['tray_menu_items'] = utils.get_tray_menu('articles', request.user)
         return render(request, "article_comment_edit.html", ctx)
@@ -266,9 +269,11 @@ def article_comment_modify_view(request):
     comment_pk = int(request.POST.get('comment_pk'))
     comment = get_object_or_404(models.ArticleComment, pk=comment_pk)
     if comment.author == request.user and comment.is_editable:
-        body = request.POST.get('body', '')
-        comment.body = body
-        comment.save()
+        form = forms.ArticleCommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+        else:
+            messages.error(request, form.errors)
         return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))

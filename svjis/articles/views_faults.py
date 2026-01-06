@@ -113,6 +113,7 @@ def fault_view(request, slug):
     ctx['obj'] = fault
     ctx['search'] = request.GET.get('search', '')
     ctx['asset_form'] = forms.FaultAssetForm
+    ctx['comment_form'] = forms.FaultCommentForm
     return render(request, "fault.html", ctx)
 
 
@@ -285,15 +286,19 @@ def faults_fault_asset_delete_view(request, pk):
 @require_POST
 def fault_comment_save_view(request):
     fault_pk = int(request.POST.get('fault_pk'))
-    body = request.POST.get('body', '')
-    if body != '':
-        fault = get_object_or_404(models.FaultReport, pk=fault_pk)
-        comment = models.FaultComment.objects.create(body=body, fault_report=fault, author=request.user)
-
+    fault = get_object_or_404(models.FaultReport, pk=fault_pk)
+    form = forms.FaultCommentForm(request.POST)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.fault_report = fault
+        obj.author = request.user
+        obj.save()
         recipients = [u for u in fault.watching_users.all() if u != request.user]
-        utils.send_fault_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", fault, comment)
-
-    return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
+        utils.send_fault_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", fault, obj)
+        return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
+    else:
+        messages.error(request, form.errors)
+        return redirect(reverse('fault', kwargs={'slug': fault.slug}))
 
 
 @permission_required(svjis_add_fault_comment)
@@ -303,7 +308,7 @@ def fault_comment_edit_view(request, pk):
     if comment.author == request.user and comment.is_editable:
         ctx = utils.get_context()
         ctx['aside_menu_name'] = _("Fault reporting")
-        ctx['obj'] = comment
+        ctx['form'] = forms.FaultCommentForm(instance=comment)
         ctx['aside_menu_items'] = get_side_menu('faults', request.user)
         ctx['tray_menu_items'] = utils.get_tray_menu('faults', request.user)
         return render(request, "fault_comment_edit.html", ctx)
@@ -318,9 +323,11 @@ def fault_comment_modify_view(request):
     comment_pk = int(request.POST.get('comment_pk'))
     comment = get_object_or_404(models.FaultComment, pk=comment_pk)
     if comment.author == request.user and comment.is_editable:
-        body = request.POST.get('body', '')
-        comment.body = body
-        comment.save()
+        form = forms.FaultCommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+        else:
+            messages.error(request, form.errors)
         return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))

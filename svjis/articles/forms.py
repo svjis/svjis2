@@ -69,6 +69,15 @@ class ArticleAssetForm(forms.ModelForm):
         }
 
 
+class ArticleCommentForm(forms.ModelForm):
+    class Meta:
+        model = models.ArticleComment
+        fields = ("body",)
+        widgets = {
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '7', 'wrap': True}),
+        }
+
+
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
@@ -364,6 +373,15 @@ class FaultAssetForm(forms.ModelForm):
         widgets = {
             'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'file': forms.widgets.FileInput(attrs={'class': 'common-input', 'size': '50'}),
+        }
+
+
+class FaultCommentForm(forms.ModelForm):
+    class Meta:
+        model = models.FaultComment
+        fields = ("body",)
+        widgets = {
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '7', 'wrap': True}),
         }
 
 
