@@ -376,6 +376,15 @@ class FaultAssetForm(forms.ModelForm):
         }
 
 
+class FaultCommentForm(forms.ModelForm):
+    class Meta:
+        model = models.FaultComment
+        fields = ("body",)
+        widgets = {
+            'body': forms.widgets.Textarea(attrs={'class': 'common-textarea', 'rows': '7', 'wrap': True}),
+        }
+
+
 class AdvertForm(forms.ModelForm):
     class Meta:
         model = models.Advert
