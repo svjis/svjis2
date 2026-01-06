@@ -19,7 +19,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: articles/forms.py:326 articles/models.py:382 articles/models.py:413
+#: articles/forms.py:335 articles/models.py:383 articles/models.py:414
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -27,22 +27,22 @@ msgstr ""
 msgid "Entrance"
 msgstr "Вход"
 
-#: articles/forms.py:334 articles/templates/fault.html:41
+#: articles/forms.py:343 articles/templates/fault.html:41
 #: articles/templates/fault_log.html:15 articles/templates/faults_list.html:21
 msgid "Resolver"
 msgstr "Решатель"
 
-#: articles/forms.py:339
+#: articles/forms.py:348
 msgid "On Behalf Of"
 msgstr "От имени пользователя"
 
-#: articles/models.py:21 articles/models.py:159 articles/models.py:544
+#: articles/models.py:22 articles/models.py:160 articles/models.py:545
 #: articles/templates/redaction_useful_link.html:14
 msgid "Header"
 msgstr "Заголовок"
 
-#: articles/models.py:25 articles/models.py:147 articles/models.py:162
-#: articles/models.py:177 articles/models.py:550
+#: articles/models.py:26 articles/models.py:148 articles/models.py:163
+#: articles/models.py:178 articles/models.py:551
 #: articles/templates/redaction_article.html:19
 #: articles/templates/redaction_news.html:16
 #: articles/templates/redaction_survey.html:20
@@ -50,40 +50,40 @@ msgstr "Заголовок"
 msgid "Published"
 msgstr "Опубликовать"
 
-#: articles/models.py:26
+#: articles/models.py:27
 msgid "Perex"
 msgstr "Перекс"
 
-#: articles/models.py:27 articles/models.py:109 articles/models.py:148
-#: articles/models.py:277 articles/models.py:483 articles/models.py:545
+#: articles/models.py:28 articles/models.py:110 articles/models.py:149
+#: articles/models.py:278 articles/models.py:484 articles/models.py:546
 #: articles/templates/redaction_news.html:17
 msgid "Body"
 msgstr "Тело"
 
-#: articles/models.py:29
+#: articles/models.py:30
 msgid "Allow comments"
 msgstr "Разрешить комментарии"
 
-#: articles/models.py:31
+#: articles/models.py:32
 msgid "Visible for all"
 msgstr "Видимый для всех"
 
-#: articles/models.py:48
+#: articles/models.py:49
 msgid "Can view Redaction menu"
 msgstr "Может просматривать меню редактирования"
 
-#: articles/models.py:49
+#: articles/models.py:50
 msgid "Can edit Article"
 msgstr "Может редактировать статью"
 
-#: articles/models.py:64
+#: articles/models.py:65
 msgid "UserAgent"
 msgstr "UserAgent"
 
-#: articles/models.py:80 articles/models.py:128 articles/models.py:174
-#: articles/models.py:208 articles/models.py:354 articles/models.py:365
-#: articles/models.py:385 articles/models.py:404 articles/models.py:453
-#: articles/models.py:533 articles/models.py:572
+#: articles/models.py:81 articles/models.py:129 articles/models.py:175
+#: articles/models.py:209 articles/models.py:355 articles/models.py:366
+#: articles/models.py:386 articles/models.py:405 articles/models.py:454
+#: articles/models.py:534 articles/models.py:573
 #: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:15
@@ -95,124 +95,124 @@ msgstr "UserAgent"
 msgid "Description"
 msgstr "Описание"
 
-#: articles/models.py:81 articles/models.py:454 articles/models.py:573
+#: articles/models.py:82 articles/models.py:455 articles/models.py:574
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
 #: articles/templates/fault.html:64
 msgid "File"
 msgstr "Файл"
 
-#: articles/models.py:82 articles/models.py:106
+#: articles/models.py:83 articles/models.py:107
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
 #: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:173
 msgid "Article"
 msgstr "Статья"
 
-#: articles/models.py:124
+#: articles/models.py:125
 msgid "Can add Article comment"
 msgstr "Может добавлять комментарии к статье"
 
-#: articles/models.py:129 articles/templates/redaction_menu.html:17
+#: articles/models.py:130 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Скрыть"
 
-#: articles/models.py:141
+#: articles/models.py:142
 msgid "Can edit Menu"
 msgstr "Может редактировать меню"
 
-#: articles/models.py:155
+#: articles/models.py:156
 msgid "Can edit News"
 msgstr "Может редактировать новости"
 
-#: articles/models.py:160 articles/templates/redaction_useful_link.html:15
+#: articles/models.py:161 articles/templates/redaction_useful_link.html:15
 msgid "Link"
 msgstr "Ссылка"
 
-#: articles/models.py:161 articles/models.py:339
+#: articles/models.py:162 articles/models.py:340
 #: articles/templates/redaction_useful_link.html:16
 msgid "Order"
 msgstr "Порядок"
 
-#: articles/models.py:169
+#: articles/models.py:170
 msgid "Can edit Useful Links"
 msgstr "Может редактировать полезные ссылки"
 
-#: articles/models.py:175
+#: articles/models.py:176
 msgid "Starting day"
 msgstr "Начальная дата"
 
-#: articles/models.py:176
+#: articles/models.py:177
 msgid "Ending day"
 msgstr "Конечная дата"
 
-#: articles/models.py:201
+#: articles/models.py:202
 msgid "Can answer Survey"
 msgstr "Может отвечать на опросы"
 
-#: articles/models.py:202
+#: articles/models.py:203
 msgid "Can edit Survey"
 msgstr "Может редактировать опросы"
 
-#: articles/models.py:252
+#: articles/models.py:253
 msgid "Salutation"
 msgstr "Приветствие"
 
-#: articles/models.py:253 articles/models.py:303 articles/models.py:325
-#: articles/models.py:355 articles/templates/admin_entrance.html:16
+#: articles/models.py:254 articles/models.py:304 articles/models.py:326
+#: articles/models.py:356 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Адрес"
 
-#: articles/models.py:254 articles/models.py:304 articles/models.py:326
+#: articles/models.py:255 articles/models.py:305 articles/models.py:327
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "Город"
 
-#: articles/models.py:255 articles/models.py:305 articles/models.py:327
+#: articles/models.py:256 articles/models.py:306 articles/models.py:328
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "Почтовый индекс"
 
-#: articles/models.py:256
+#: articles/models.py:257
 msgid "Country"
 msgstr "Страна"
 
-#: articles/models.py:257 articles/models.py:306 articles/models.py:547
+#: articles/models.py:258 articles/models.py:307 articles/models.py:548
 #: articles/templates/adverts_list.html:39
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:13
 msgid "Phone"
 msgstr "Телефон"
 
-#: articles/models.py:258
+#: articles/models.py:259
 msgid "Show in phonelist"
 msgstr "Показать в телефонном справочнике"
 
-#: articles/models.py:259
+#: articles/models.py:260
 msgid "Internal note"
 msgstr "Внутренняя заметка"
 
-#: articles/models.py:266
+#: articles/models.py:267
 msgid "Can view Administration menu"
 msgstr "Может просматривать меню администрирования"
 
-#: articles/models.py:267
+#: articles/models.py:268
 msgid "Can edit Users"
 msgstr "Может редактировать пользователей"
 
-#: articles/models.py:268
+#: articles/models.py:269
 msgid "Can edit Groups"
 msgstr "Может редактировать группы"
 
-#: articles/models.py:269
+#: articles/models.py:270
 msgid "Can view Personal settings menu"
 msgstr "Может просматривать меню личных настроек"
 
-#: articles/models.py:270
+#: articles/models.py:271
 msgid "Can view Phonelist"
 msgstr "Может просматривать список телефонов"
 
-#: articles/models.py:275 articles/models.py:307 articles/models.py:548
+#: articles/models.py:276 articles/models.py:308 articles/models.py:549
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -221,77 +221,77 @@ msgstr "Может просматривать список телефонов"
 msgid "E-Mail"
 msgstr "Электронная почта"
 
-#: articles/models.py:276 articles/models.py:402
+#: articles/models.py:277 articles/models.py:403
 #: articles/templates/admin_messages.html:13
 #: articles/templates/faults_list.html:18
 msgid "Subject"
 msgstr "Тема"
 
-#: articles/models.py:287 articles/templates/admin_preferences.html:15
+#: articles/models.py:288 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Ключ"
 
-#: articles/models.py:288 articles/templates/admin_preferences.html:16
+#: articles/models.py:289 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Значение"
 
-#: articles/models.py:294
+#: articles/models.py:295
 msgid "Can edit Preferences"
 msgstr "Может редактировать настройки"
 
-#: articles/models.py:302 articles/templates/admin_group.html:16
+#: articles/models.py:303 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:14
 msgid "Name"
 msgstr "Имя"
 
-#: articles/models.py:308 articles/templates/contact_company.html:42
+#: articles/models.py:309 articles/templates/contact_company.html:42
 msgid "Registration No."
 msgstr "ИНН"
 
-#: articles/models.py:309 articles/templates/contact_company.html:48
+#: articles/models.py:310 articles/templates/contact_company.html:48
 msgid "VAT Registration No."
 msgstr "НДС номер"
 
-#: articles/models.py:310 articles/templates/contact_company.html:54
+#: articles/models.py:311 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Интернет домен"
 
-#: articles/models.py:311
+#: articles/models.py:312
 msgid "Header picture"
 msgstr "Изображение в шапке"
 
-#: articles/models.py:321
+#: articles/models.py:322
 msgid "Can edit Company"
 msgstr "Может редактировать компанию"
 
-#: articles/models.py:328
+#: articles/models.py:329
 msgid "Land Registration No."
 msgstr "Идентификатор в земельном кадастре"
 
-#: articles/models.py:334
+#: articles/models.py:335
 msgid "Can edit Building"
 msgstr "Может редактировать здание"
 
-#: articles/models.py:338 articles/templates/admin_company_edit.html:7
+#: articles/models.py:339 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
 #: articles/tests_playwright/commands.py:86 articles/views_admin.py:29
 msgid "Company"
 msgstr "Общество"
 
-#: articles/models.py:341 articles/templates/admin_board.html:16
+#: articles/models.py:342 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Должность"
 
-#: articles/models.py:352 articles/models.py:376
+#: articles/models.py:353 articles/models.py:377
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11
 #: articles/tests_playwright/commands.py:104 articles/views_admin.py:41
 msgid "Building"
 msgstr "Здание"
 
-#: articles/models.py:379 articles/models.py:519 articles/models.py:543
+#: articles/models.py:380 articles/models.py:520 articles/models.py:544
 #: articles/templates/admin_building_unit.html:19
 #: articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:13
@@ -299,71 +299,71 @@ msgstr "Здание"
 msgid "Type"
 msgstr "Тип"
 
-#: articles/models.py:384 articles/templates/admin_building_unit.html:61
+#: articles/models.py:385 articles/templates/admin_building_unit.html:61
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "ID в кадастре"
 
-#: articles/models.py:386 articles/templates/admin_building_unit.html:63
+#: articles/models.py:387 articles/templates/admin_building_unit.html:63
 msgid "Numerator"
 msgstr "Числитель"
 
-#: articles/models.py:387 articles/templates/admin_building_unit.html:64
+#: articles/models.py:388 articles/templates/admin_building_unit.html:64
 msgid "Denominator"
 msgstr "Знаменатель"
 
-#: articles/models.py:411 articles/models.py:511
+#: articles/models.py:412 articles/models.py:512
 #: articles/templates/fault.html:45
 msgid "Closed"
 msgstr "Закрыто"
 
-#: articles/models.py:430
+#: articles/models.py:431
 msgid "Can view Faults menu"
 msgstr "Может просматривать меню неисправностей"
 
-#: articles/models.py:431
+#: articles/models.py:432
 msgid "Can report fault"
 msgstr "Может сообщать об ошибках"
 
-#: articles/models.py:432
+#: articles/models.py:433
 msgid "Can resolve fault"
 msgstr "Может устранять ошибки"
 
-#: articles/models.py:455 articles/models.py:480
+#: articles/models.py:456 articles/models.py:481
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Отчет о неисправности"
 
-#: articles/models.py:498
+#: articles/models.py:499
 msgid "Can add Fault comment"
 msgstr "Может добавлять комментарии к ошибкам"
 
-#: articles/models.py:509
+#: articles/models.py:510
 msgid "Modified"
 msgstr "Изменён"
 
-#: articles/models.py:510
+#: articles/models.py:511
 msgid "Assigned"
 msgstr "Назначен"
 
-#: articles/models.py:512
+#: articles/models.py:513
 msgid "Reopened"
 msgstr "Возобновлён"
 
-#: articles/models.py:513
+#: articles/models.py:514
 msgid "Created"
 msgstr "Создан"
 
-#: articles/models.py:562
+#: articles/models.py:563
 msgid "Can view Adverts menu"
 msgstr "Может просматривать меню рекламы"
 
-#: articles/models.py:563
+#: articles/models.py:564
 msgid "Can add Advert"
 msgstr "Может добавлять рекламу"
 
-#: articles/models.py:574
+#: articles/models.py:575
 msgid "Advert"
 msgstr "Объявление"
 
@@ -442,8 +442,8 @@ msgstr "Удалить"
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
-#: articles/templates/article_comment_edit.html:22
-#: articles/templates/fault_comment_edit.html:22
+#: articles/templates/article_comment_edit.html:14
+#: articles/templates/fault_comment_edit.html:14
 #: articles/templates/faults_create.html:37
 #: articles/templates/faults_edit.html:35
 #: articles/templates/personal_settings_edit.html:58
@@ -675,11 +675,11 @@ msgstr "Прекратить отслеживание обсуждения"
 msgid "Start watching discussion"
 msgstr "Начать отслеживание обсуждения"
 
-#: articles/templates/article.html:69 articles/templates/fault.html:133
+#: articles/templates/article.html:63 articles/templates/fault.html:127
 msgid "Insert comment"
 msgstr "Добавить комментарий"
 
-#: articles/templates/article.html:75
+#: articles/templates/article.html:69
 msgid "Back to article list"
 msgstr "Вернуться к списку статей"
 
@@ -786,7 +786,7 @@ msgstr "Время"
 msgid "Add asset"
 msgstr "Добавить вложение"
 
-#: articles/templates/fault.html:139
+#: articles/templates/fault.html:133
 msgid "Back to fault list"
 msgstr "Вернуться к списку проблем"
 
@@ -980,7 +980,7 @@ msgstr "Уровень"
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
 #: articles/tests_playwright/commands.py:621 articles/utils.py:49
-#: articles/views.py:149 articles/views.py:219 articles/views.py:253
+#: articles/views.py:149 articles/views.py:219 articles/views.py:256
 #: articles/views_redaction.py:34
 msgid "Articles"
 msgstr "Статьи"
@@ -1121,7 +1121,7 @@ msgstr "Администрирование"
 #: articles/views_admin.py:337 articles/views_admin.py:530
 #: articles/views_admin.py:735 articles/views_admin.py:793
 #: articles/views_adverts.py:116 articles/views_adverts.py:138
-#: articles/views_faults.py:199 articles/views_faults.py:251
+#: articles/views_faults.py:200 articles/views_faults.py:252
 #: articles/views_personal_settings.py:72 articles/views_redaction.py:136
 #: articles/views_redaction.py:255 articles/views_redaction.py:396
 #: articles/views_redaction.py:469 articles/views_redaction.py:563
@@ -1187,9 +1187,9 @@ msgstr "Мои единицы"
 #: articles/tests_playwright/commands.py:743
 #: articles/tests_playwright/commands.py:752 articles/utils.py:73
 #: articles/views_faults.py:77 articles/views_faults.py:91
-#: articles/views_faults.py:110 articles/views_faults.py:129
-#: articles/views_faults.py:142 articles/views_faults.py:305
-#: articles/views_faults.py:388
+#: articles/views_faults.py:110 articles/views_faults.py:130
+#: articles/views_faults.py:143 articles/views_faults.py:310
+#: articles/views_faults.py:396
 msgid "Fault reporting"
 msgstr "Отчет о неисправности"
 
@@ -1226,16 +1226,16 @@ msgstr "Результаты поиска"
 msgid "Please choose an option."
 msgstr "Пожалуйста, выберите вариант."
 
-#: articles/views.py:259 articles/views.py:273 articles/views_faults.py:311
-#: articles/views_faults.py:325
+#: articles/views.py:262 articles/views.py:279 articles/views_faults.py:316
+#: articles/views_faults.py:333
 msgid "Comment cannot be modified anymore"
 msgstr ""
 
-#: articles/views.py:326
+#: articles/views.py:332
 msgid "Wrong username or password"
 msgstr "Неправильное имя пользователя или пароль"
 
-#: articles/views.py:327
+#: articles/views.py:333
 msgid "In case you lost your password use Lost Password link"
 msgstr ""
 "Если вы забыли свои учетные данные, используйте ссылку 'Забыли пароль'."
