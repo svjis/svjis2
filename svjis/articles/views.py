@@ -241,7 +241,7 @@ def article_comment_save_view(request):
         obj.save()
         recipients = [u for u in article.watching_users.all() if u != request.user]
         utils.send_article_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", article, obj)
-        return redirect(reverse(article_watch_view) + f"?id={article_pk}&watch=1")
+        return redirect(reverse(article_watch_view) + f"?id={article_pk}&comment_id={obj.pk}&watch=1")
     else:
         messages.error(request, form.errors)
         return redirect(reverse('article', kwargs={'slug': article.slug}))
@@ -274,7 +274,7 @@ def article_comment_modify_view(request):
             form.save()
         else:
             messages.error(request, form.errors)
-        return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&watch=1")
+        return redirect(reverse(article_watch_view) + f"?id={comment.article.pk}&comment_id={comment.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
         return redirect(reverse('article', kwargs={'slug': comment.article.slug}))
@@ -285,6 +285,7 @@ def article_comment_modify_view(request):
 def article_watch_view(request):
     try:
         pk = int(request.GET.get('id'))
+        comment_pk = int(request.GET.get('comment_id', 0))
         watch = int(request.GET.get('watch'))
     except TypeError:
         raise Http404 from None
@@ -301,7 +302,14 @@ def article_watch_view(request):
     else:
         article.watching_users.add(request.user)
 
-    return redirect(reverse('article', kwargs={'slug': article.slug}) + '#comments')
+    if comment_pk > 0:
+        qs = f'#comment_{comment_pk}'
+    elif len(article.comments) > 0:
+        qs = f'#comment_{article.comments.last().pk}'
+    else:
+        qs = '#comments'
+
+    return redirect(reverse('article', kwargs={'slug': article.slug}) + qs)
 
 
 # Login

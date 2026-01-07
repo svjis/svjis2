@@ -295,7 +295,7 @@ def fault_comment_save_view(request):
         obj.save()
         recipients = [u for u in fault.watching_users.all() if u != request.user]
         utils.send_fault_comment_notification(recipients, f"{request.scheme}://{request.get_host()}", fault, obj)
-        return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&watch=1")
+        return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&comment_id={obj.pk}&watch=1")
     else:
         messages.error(request, form.errors)
         return redirect(reverse('fault', kwargs={'slug': fault.slug}))
@@ -328,7 +328,7 @@ def fault_comment_modify_view(request):
             form.save()
         else:
             messages.error(request, form.errors)
-        return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&watch=1")
+        return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&comment_id={comment.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
         return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
@@ -340,6 +340,7 @@ def fault_comment_modify_view(request):
 def fault_watch_view(request):
     try:
         pk = int(request.GET.get('id'))
+        comment_pk = int(request.GET.get('comment_id', 0))
         watch = int(request.GET.get('watch'))
     except TypeError:
         raise Http404 from None
@@ -351,7 +352,8 @@ def fault_watch_view(request):
     else:
         fault.watching_users.add(request.user)
 
-    return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#comments')
+    qs = f'#comment_{comment_pk}' if comment_pk > 0 else ''
+    return redirect(reverse('fault', kwargs={'slug': fault.slug}) + qs)
 
 
 # Faults - Take ticket
