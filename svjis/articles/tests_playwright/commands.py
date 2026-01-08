@@ -369,6 +369,12 @@ def fill_user_units(cls, page):
         expect(page.locator('.main-content').get_by_text(e['description'])).to_be_visible()
 
 
+def show_about(cls, page):
+    menu(page, _('Administration'), _('About application'), True)
+    scrshot(page, get_filename(cls, 'admin-about'))
+    expect(page.locator('table.list').get_by_text('Django')).to_be_visible()
+
+
 # Redaction
 
 
