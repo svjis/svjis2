@@ -8,16 +8,18 @@ msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 22:53+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-01-06 12:21+0000\n"
+"Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
+"Language-Team: Slovak <https://translate.codeberg.org/projects/svjis/svjis2/"
+"sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.15.1\n"
 
-#: articles/forms.py:326 articles/models.py:382 articles/models.py:413
+#: articles/forms.py:335 articles/models.py:383 articles/models.py:414
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -25,22 +27,22 @@ msgstr ""
 msgid "Entrance"
 msgstr "Vstup"
 
-#: articles/forms.py:334 articles/templates/fault.html:41
+#: articles/forms.py:343 articles/templates/fault.html:41
 #: articles/templates/fault_log.html:15 articles/templates/faults_list.html:21
 msgid "Resolver"
 msgstr "Riešiteľ"
 
-#: articles/forms.py:339
+#: articles/forms.py:348
 msgid "On Behalf Of"
 msgstr "V mene používateľa"
 
-#: articles/models.py:21 articles/models.py:159 articles/models.py:544
+#: articles/models.py:22 articles/models.py:160 articles/models.py:545
 #: articles/templates/redaction_useful_link.html:14
 msgid "Header"
 msgstr "Nadpis"
 
-#: articles/models.py:25 articles/models.py:147 articles/models.py:162
-#: articles/models.py:177 articles/models.py:550
+#: articles/models.py:26 articles/models.py:148 articles/models.py:163
+#: articles/models.py:178 articles/models.py:551
 #: articles/templates/redaction_article.html:19
 #: articles/templates/redaction_news.html:16
 #: articles/templates/redaction_survey.html:20
@@ -48,40 +50,40 @@ msgstr "Nadpis"
 msgid "Published"
 msgstr "Zverejniť"
 
-#: articles/models.py:26
+#: articles/models.py:27
 msgid "Perex"
 msgstr "Perex"
 
-#: articles/models.py:27 articles/models.py:109 articles/models.py:148
-#: articles/models.py:277 articles/models.py:483 articles/models.py:545
+#: articles/models.py:28 articles/models.py:110 articles/models.py:149
+#: articles/models.py:278 articles/models.py:484 articles/models.py:546
 #: articles/templates/redaction_news.html:17
 msgid "Body"
 msgstr "Telo"
 
-#: articles/models.py:29
+#: articles/models.py:30
 msgid "Allow comments"
 msgstr "Povoliť komentáre"
 
-#: articles/models.py:31
+#: articles/models.py:32
 msgid "Visible for all"
 msgstr "Viditeľné pre všetkých"
 
-#: articles/models.py:48
+#: articles/models.py:49
 msgid "Can view Redaction menu"
 msgstr "Môže zobraziť menu Redakcia"
 
-#: articles/models.py:49
+#: articles/models.py:50
 msgid "Can edit Article"
 msgstr "Môže upraviť článok"
 
-#: articles/models.py:64
+#: articles/models.py:65
 msgid "UserAgent"
 msgstr "Používateľský agent"
 
-#: articles/models.py:80 articles/models.py:128 articles/models.py:174
-#: articles/models.py:208 articles/models.py:354 articles/models.py:365
-#: articles/models.py:385 articles/models.py:404 articles/models.py:453
-#: articles/models.py:533 articles/models.py:572
+#: articles/models.py:81 articles/models.py:129 articles/models.py:175
+#: articles/models.py:209 articles/models.py:355 articles/models.py:366
+#: articles/models.py:386 articles/models.py:405 articles/models.py:454
+#: articles/models.py:534 articles/models.py:573
 #: articles/templates/admin_building_unit.html:62
 #: articles/templates/admin_entrance.html:15
 #: articles/templates/admin_user_ownes_edit.html:15
@@ -93,124 +95,124 @@ msgstr "Používateľský agent"
 msgid "Description"
 msgstr "Popis"
 
-#: articles/models.py:81 articles/models.py:454 articles/models.py:573
+#: articles/models.py:82 articles/models.py:455 articles/models.py:574
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
 #: articles/templates/fault.html:64
 msgid "File"
 msgstr "Súbor"
 
-#: articles/models.py:82 articles/models.py:106
+#: articles/models.py:83 articles/models.py:107
 #: articles/templates/redaction_article.html:15
 #: articles/templates/redaction_article_edit.html:9
 #: articles/tests_playwright/test_desktop.py:99 articles/views_redaction.py:173
 msgid "Article"
 msgstr "Článok"
 
-#: articles/models.py:124
+#: articles/models.py:125
 msgid "Can add Article comment"
 msgstr "Môže pridať komentár k článku"
 
-#: articles/models.py:129 articles/templates/redaction_menu.html:17
+#: articles/models.py:130 articles/templates/redaction_menu.html:17
 msgid "Hide"
 msgstr "Skryť"
 
-#: articles/models.py:141
+#: articles/models.py:142
 msgid "Can edit Menu"
 msgstr "Môže upraviť menu"
 
-#: articles/models.py:155
+#: articles/models.py:156
 msgid "Can edit News"
 msgstr "Môže upraviť Novinky"
 
-#: articles/models.py:160 articles/templates/redaction_useful_link.html:15
+#: articles/models.py:161 articles/templates/redaction_useful_link.html:15
 msgid "Link"
 msgstr "Odkaz"
 
-#: articles/models.py:161 articles/models.py:339
+#: articles/models.py:162 articles/models.py:340
 #: articles/templates/redaction_useful_link.html:16
 msgid "Order"
 msgstr "Poradie"
 
-#: articles/models.py:169
+#: articles/models.py:170
 msgid "Can edit Useful Links"
 msgstr "Môže upraviť Užitočné odkazy"
 
-#: articles/models.py:175
+#: articles/models.py:176
 msgid "Starting day"
 msgstr "Počiatočný dátum"
 
-#: articles/models.py:176
+#: articles/models.py:177
 msgid "Ending day"
 msgstr "Koncový dátum"
 
-#: articles/models.py:201
+#: articles/models.py:202
 msgid "Can answer Survey"
 msgstr "Môže odpovedať na prieskum"
 
-#: articles/models.py:202
+#: articles/models.py:203
 msgid "Can edit Survey"
 msgstr "Môže upraviť prieskum"
 
-#: articles/models.py:252
+#: articles/models.py:253
 msgid "Salutation"
 msgstr "Oslovenie"
 
-#: articles/models.py:253 articles/models.py:303 articles/models.py:325
-#: articles/models.py:355 articles/templates/admin_entrance.html:16
+#: articles/models.py:254 articles/models.py:304 articles/models.py:326
+#: articles/models.py:356 articles/templates/admin_entrance.html:16
 #: articles/templates/contact_company.html:12
 msgid "Address"
 msgstr "Adresa"
 
-#: articles/models.py:254 articles/models.py:304 articles/models.py:326
+#: articles/models.py:255 articles/models.py:305 articles/models.py:327
 #: articles/templates/contact_company.html:18
 msgid "City"
 msgstr "Mesto"
 
-#: articles/models.py:255 articles/models.py:305 articles/models.py:327
+#: articles/models.py:256 articles/models.py:306 articles/models.py:328
 #: articles/templates/contact_company.html:24
 msgid "Post code"
 msgstr "PSČ"
 
-#: articles/models.py:256
+#: articles/models.py:257
 msgid "Country"
 msgstr "Krajina"
 
-#: articles/models.py:257 articles/models.py:306 articles/models.py:547
+#: articles/models.py:258 articles/models.py:307 articles/models.py:548
 #: articles/templates/adverts_list.html:39
 #: articles/templates/contact_company.html:30
 #: articles/templates/contact_phonelist.html:13
 msgid "Phone"
 msgstr "Telefón"
 
-#: articles/models.py:258
+#: articles/models.py:259
 msgid "Show in phonelist"
 msgstr "Zobraziť v zozname kontaktov"
 
-#: articles/models.py:259
+#: articles/models.py:260
 msgid "Internal note"
 msgstr "Interná poznámka"
 
-#: articles/models.py:266
+#: articles/models.py:267
 msgid "Can view Administration menu"
 msgstr "Môže zobraziť menu Administrácia"
 
-#: articles/models.py:267
+#: articles/models.py:268
 msgid "Can edit Users"
 msgstr "Môže upraviť Používateľov"
 
-#: articles/models.py:268
+#: articles/models.py:269
 msgid "Can edit Groups"
 msgstr "Môže upraviť Skupiny"
 
-#: articles/models.py:269
+#: articles/models.py:270
 msgid "Can view Personal settings menu"
 msgstr "Môže zobraziť menu Osobné nastavenia"
 
-#: articles/models.py:270
+#: articles/models.py:271
 msgid "Can view Phonelist"
 msgstr "Môže zobraziť telefónny zoznam"
 
-#: articles/models.py:275 articles/models.py:307 articles/models.py:548
+#: articles/models.py:276 articles/models.py:308 articles/models.py:549
 #: articles/templates/admin_user.html:54
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -219,77 +221,77 @@ msgstr "Môže zobraziť telefónny zoznam"
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: articles/models.py:276 articles/models.py:402
+#: articles/models.py:277 articles/models.py:403
 #: articles/templates/admin_messages.html:13
 #: articles/templates/faults_list.html:18
 msgid "Subject"
 msgstr "Predmet"
 
-#: articles/models.py:287 articles/templates/admin_preferences.html:15
+#: articles/models.py:288 articles/templates/admin_preferences.html:15
 msgid "Key"
 msgstr "Kľúč"
 
-#: articles/models.py:288 articles/templates/admin_preferences.html:16
+#: articles/models.py:289 articles/templates/admin_preferences.html:16
 msgid "Value"
 msgstr "Hodnota"
 
-#: articles/models.py:294
+#: articles/models.py:295
 msgid "Can edit Preferences"
 msgstr "Môže upraviť Predvoľby"
 
-#: articles/models.py:302 articles/templates/admin_group.html:16
+#: articles/models.py:303 articles/templates/admin_group.html:16
 #: articles/templates/contact_phonelist.html:12
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:14
 msgid "Name"
 msgstr "Názov"
 
-#: articles/models.py:308 articles/templates/contact_company.html:42
+#: articles/models.py:309 articles/templates/contact_company.html:42
 msgid "Registration No."
 msgstr "IČO"
 
-#: articles/models.py:309 articles/templates/contact_company.html:48
+#: articles/models.py:310 articles/templates/contact_company.html:48
 msgid "VAT Registration No."
 msgstr "DIČ"
 
-#: articles/models.py:310 articles/templates/contact_company.html:54
+#: articles/models.py:311 articles/templates/contact_company.html:54
 msgid "Internet domain"
 msgstr "Internetová adresa"
 
-#: articles/models.py:311
+#: articles/models.py:312
 msgid "Header picture"
 msgstr "Obrázok domu v hlavičke"
 
-#: articles/models.py:321
+#: articles/models.py:322
 msgid "Can edit Company"
 msgstr "Môže upraviť Spoločnosť"
 
-#: articles/models.py:328
+#: articles/models.py:329
 msgid "Land Registration No."
 msgstr "ID v katastri nehnuteľností"
 
-#: articles/models.py:334
+#: articles/models.py:335
 msgid "Can edit Building"
 msgstr "Môže upraviť Budovu"
 
-#: articles/models.py:338 articles/templates/admin_company_edit.html:7
+#: articles/models.py:339 articles/templates/admin_company_edit.html:7
 #: articles/templates/admin_company_edit.html:11
 #: articles/tests_playwright/commands.py:86 articles/views_admin.py:29
 msgid "Company"
 msgstr "Spoločenstvo"
 
-#: articles/models.py:341 articles/templates/admin_board.html:16
+#: articles/models.py:342 articles/templates/admin_board.html:16
 msgid "Position"
 msgstr "Funkcia"
 
-#: articles/models.py:352 articles/models.py:376
+#: articles/models.py:353 articles/models.py:377
 #: articles/templates/admin_building_edit.html:7
 #: articles/templates/admin_building_edit.html:11
 #: articles/tests_playwright/commands.py:104 articles/views_admin.py:41
 msgid "Building"
 msgstr "Budova"
 
-#: articles/models.py:379 articles/models.py:519 articles/models.py:543
+#: articles/models.py:380 articles/models.py:520 articles/models.py:544
 #: articles/templates/admin_building_unit.html:19
 #: articles/templates/admin_building_unit.html:59
 #: articles/templates/admin_user_ownes_edit.html:13
@@ -297,77 +299,77 @@ msgstr "Budova"
 msgid "Type"
 msgstr "Typ"
 
-#: articles/models.py:384 articles/templates/admin_building_unit.html:61
+#: articles/models.py:385 articles/templates/admin_building_unit.html:61
 #: articles/templates/admin_user_ownes_edit.html:14
 #: articles/templates/personal_my_units.html:13
 msgid "Registration Id"
 msgstr "ID v katastri"
 
-#: articles/models.py:386 articles/templates/admin_building_unit.html:63
+#: articles/models.py:387 articles/templates/admin_building_unit.html:63
 msgid "Numerator"
 msgstr "Čitateľ"
 
-#: articles/models.py:387 articles/templates/admin_building_unit.html:64
+#: articles/models.py:388 articles/templates/admin_building_unit.html:64
 msgid "Denominator"
 msgstr "Menovateľ"
 
-#: articles/models.py:411 articles/models.py:511
+#: articles/models.py:412 articles/models.py:512
 #: articles/templates/fault.html:45
 msgid "Closed"
 msgstr "Vyriešené"
 
-#: articles/models.py:430
+#: articles/models.py:431
 msgid "Can view Faults menu"
 msgstr "Môže zobraziť menu Poruchy"
 
-#: articles/models.py:431
+#: articles/models.py:432
 msgid "Can report fault"
 msgstr "Môže nahlásiť poruchu"
 
-#: articles/models.py:432
+#: articles/models.py:433
 msgid "Can resolve fault"
 msgstr "Môže vyriešiť poruchu"
 
-#: articles/models.py:455 articles/models.py:480
+#: articles/models.py:456 articles/models.py:481
 #: articles/templates/faults_create.html:7
 msgid "Fault report"
 msgstr "Hlásenie poruchy"
 
-#: articles/models.py:498
+#: articles/models.py:499
 msgid "Can add Fault comment"
 msgstr "Môže pridať komentár k poruche"
 
-#: articles/models.py:509
+#: articles/models.py:510
 msgid "Modified"
 msgstr "Upravené"
 
-#: articles/models.py:510
+#: articles/models.py:511
 msgid "Assigned"
 msgstr "Pridelené"
 
-#: articles/models.py:512
+#: articles/models.py:513
 msgid "Reopened"
 msgstr "Znovu otvorené"
 
-#: articles/models.py:513
+#: articles/models.py:514
 msgid "Created"
 msgstr "Vytvorené"
 
-#: articles/models.py:562
+#: articles/models.py:563
 msgid "Can view Adverts menu"
 msgstr "Môže zobraziť menu Inzeráty"
 
-#: articles/models.py:563
+#: articles/models.py:564
 msgid "Can add Advert"
 msgstr "Môže pridať inzerát"
 
-#: articles/models.py:574
+#: articles/models.py:575
 msgid "Advert"
 msgstr "Inzerát"
 
 #: articles/templates/admin_about.html:7 articles/views_admin.py:83
 msgid "About application"
-msgstr ""
+msgstr "O aplikácii"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
@@ -440,8 +442,8 @@ msgstr "Odstrániť"
 #: articles/templates/admin_preferences_edit.html:27
 #: articles/templates/admin_user_edit.html:94
 #: articles/templates/advert_edit.html:41
-#: articles/templates/article_comment_edit.html:22
-#: articles/templates/fault_comment_edit.html:22
+#: articles/templates/article_comment_edit.html:14
+#: articles/templates/fault_comment_edit.html:14
 #: articles/templates/faults_create.html:37
 #: articles/templates/faults_edit.html:35
 #: articles/templates/personal_settings_edit.html:58
@@ -663,7 +665,7 @@ msgstr "Komentáre"
 
 #: articles/templates/article.html:40 articles/templates/fault.html:113
 msgid "Modify"
-msgstr ""
+msgstr "Upraviť"
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -673,18 +675,18 @@ msgstr "Prestať sledovať diskusiu"
 msgid "Start watching discussion"
 msgstr "Začať sledovať diskusiu"
 
-#: articles/templates/article.html:69 articles/templates/fault.html:133
+#: articles/templates/article.html:63 articles/templates/fault.html:127
 msgid "Insert comment"
 msgstr "Vložiť komentár"
 
-#: articles/templates/article.html:75
+#: articles/templates/article.html:69
 msgid "Back to article list"
 msgstr "Späť na zoznam článkov"
 
 #: articles/templates/article_comment_edit.html:7
 #: articles/templates/fault_comment_edit.html:7
 msgid "Modify comment"
-msgstr ""
+msgstr "Upraviť komentár"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
@@ -784,7 +786,7 @@ msgstr "Čas"
 msgid "Add asset"
 msgstr "Pridať prílohu"
 
-#: articles/templates/fault.html:139
+#: articles/templates/fault.html:133
 msgid "Back to fault list"
 msgstr "Späť na zoznam porúch"
 
@@ -884,11 +886,11 @@ msgstr "Nové heslo znovu"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show all users"
-msgstr ""
+msgstr "Zobraziť všetkých používateľov"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show logged users only"
-msgstr ""
+msgstr "Zobraziť iba prihlásených používateľov"
 
 #: articles/templates/redaction_analytics.html:38
 msgid "Platform"
@@ -978,7 +980,7 @@ msgstr "Úroveň"
 #: articles/tests_playwright/commands.py:576
 #: articles/tests_playwright/commands.py:595
 #: articles/tests_playwright/commands.py:621 articles/utils.py:49
-#: articles/views.py:149 articles/views.py:219 articles/views.py:253
+#: articles/views.py:149 articles/views.py:219 articles/views.py:256
 #: articles/views_redaction.py:34
 msgid "Articles"
 msgstr "Články"
@@ -1119,7 +1121,7 @@ msgstr "Administrácia"
 #: articles/views_admin.py:337 articles/views_admin.py:530
 #: articles/views_admin.py:735 articles/views_admin.py:793
 #: articles/views_adverts.py:116 articles/views_adverts.py:138
-#: articles/views_faults.py:199 articles/views_faults.py:251
+#: articles/views_faults.py:200 articles/views_faults.py:252
 #: articles/views_personal_settings.py:72 articles/views_redaction.py:136
 #: articles/views_redaction.py:255 articles/views_redaction.py:396
 #: articles/views_redaction.py:469 articles/views_redaction.py:563
@@ -1185,9 +1187,9 @@ msgstr "Moje jednotky"
 #: articles/tests_playwright/commands.py:743
 #: articles/tests_playwright/commands.py:752 articles/utils.py:73
 #: articles/views_faults.py:77 articles/views_faults.py:91
-#: articles/views_faults.py:110 articles/views_faults.py:129
-#: articles/views_faults.py:142 articles/views_faults.py:305
-#: articles/views_faults.py:388
+#: articles/views_faults.py:110 articles/views_faults.py:130
+#: articles/views_faults.py:143 articles/views_faults.py:310
+#: articles/views_faults.py:396
 msgid "Fault reporting"
 msgstr "Hlášenie porúch"
 
@@ -1223,16 +1225,16 @@ msgstr "Výsledky hľadania"
 msgid "Please choose an option."
 msgstr "Prosím, vyberte jednu možnosť."
 
-#: articles/views.py:259 articles/views.py:273 articles/views_faults.py:311
-#: articles/views_faults.py:325
+#: articles/views.py:262 articles/views.py:279 articles/views_faults.py:316
+#: articles/views_faults.py:333
 msgid "Comment cannot be modified anymore"
-msgstr ""
+msgstr "Komentár už nie je možné upravovať"
 
-#: articles/views.py:326
+#: articles/views.py:332
 msgid "Wrong username or password"
 msgstr "Nesprávne používateľské meno alebo heslo."
 
-#: articles/views.py:327
+#: articles/views.py:333
 msgid "In case you lost your password use Lost Password link"
 msgstr ""
 "Ak ste zabudli svoje prihlasovacie údaje, použite odkaz 'Zabudnuté heslo'."
@@ -1292,4 +1294,4 @@ msgstr "Analytika"
 
 #: articles/views_redaction.py:662
 msgid "Data for last {} days."
-msgstr ""
+msgstr "Údaje za posledných {} dní."
