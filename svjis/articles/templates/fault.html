@@ -61,7 +61,6 @@
     <table class="list full-width" aria-describedby="tbl-desc">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
-            <th class="list" scope="col">{% translate 'File' %}</th>
             <th class="list" scope="col">{% translate 'Description' %}</th>
             <th class="list" scope="col">{% translate 'User' %}</th>
             <th class="list hide-in-mobile" scope="col">{% translate 'Time' %}</th>
@@ -70,8 +69,7 @@
         {% for a in obj.assets %}
         <tr>
             <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-            <td class="list" id="asset_file_{{ a.pk }}"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
-            <td class="list" id="asset_name_{{ a.pk }}">{{ a.description }}</td>
+            <td class="list" id="asset_file_{{ a.pk }}"><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
             <td class="list" id="asset_user_{{ a.pk }}">{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}</td>
             <td class="list hide-in-mobile" id="asset_time_{{ a.pk }}">{{ a.created_date|date:"d.m.Y H:i" }}</td>
             {% if a.created_by_user == user %}
