@@ -23,7 +23,7 @@
         {% for a in obj.assets %}
         <tr>
             <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-            <td class="list"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
+            <td class="list"><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
         </tr>
         {% endfor %}
     </table>
