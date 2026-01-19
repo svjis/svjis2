@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 def is_bot(user_agent: str) -> bool:
-    spoofing = getattr(settings, 'SVJIS_SPOOFING_USER_AGENTS', [])
+    spoofing = getattr(settings, 'SVJIS_ANALYTICS_SPOOFING_USER_AGENTS', [])
     bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy', r'agency']
 
     if not re.search(r'^Mozilla/5\.0 \(', user_agent):
