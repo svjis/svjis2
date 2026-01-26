@@ -20,6 +20,7 @@ from .permissions import (
     svjis_edit_admin_company,
     svjis_edit_admin_building,
 )
+from svjis import __homepage_url__, __repository_url__, __issues_url__, __translations_url__
 
 
 def get_side_menu(active_item, user):
@@ -828,4 +829,8 @@ def admin_about_view(request):
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['django_version'] = django_version
     ctx['python_version'] = sys.version
+    ctx['svjis_homepage'] = __homepage_url__
+    ctx['svjis_repository'] = __repository_url__
+    ctx['svjis_issues'] = __issues_url__
+    ctx['svjis_translations'] = __translations_url__
     return render(request, "admin_about.html", ctx)
