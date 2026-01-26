@@ -4,8 +4,9 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% translate 'About application' %}</h1>
+<h1 class="page-title">{% translate 'About application' %}</h1>
 
+<h3 id="tbl-desc">{% translate 'Version' %}</h3>
 <table class="list full-width" aria-describedby="tbl-desc">
     <tr>
         <th scope="row">SVJIS</th>
@@ -19,6 +20,28 @@
         <th scope="row">Python</th>
         <td>{{ python_version }}</td>
     </tr>
+</table>
+
+<h3 id="tbl2-desc">{% translate 'Project URLs' %}</h3>
+
+<table class="list full-width" aria-describedby="tbl2-desc">
+    <tr>
+        <th scope="row">{% translate 'Homepage' %}</th>
+        <td><a href="{{ svjis_homepage }}" target="_blank">{{ svjis_homepage }}</a></td>
+    </tr>
+    <tr>
+        <th scope="row">{% translate 'Source code' %}</th>
+        <td><a href="{{ svjis_repository }}" target="_blank">{{ svjis_repository }}</a></td>
+    </tr>
+    <tr>
+        <th scope="row">{% translate 'Issues' %}</th>
+        <td><a href="{{ svjis_issues }}" target="_blank">{{ svjis_issues }}</a></td>
+    </tr>
+    <tr>
+        <th scope="row">{% translate 'Translations' %}</th>
+        <td><a href="{{ svjis_translations }}" target="_blank">{{ svjis_translations }}</a></td>
+    </tr>
+
 </table>
 
 {% endblock content %}
