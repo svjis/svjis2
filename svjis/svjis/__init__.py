@@ -17,7 +17,12 @@ def get_value_from_pyproject_toml(table: str, key: str) -> str:
         return ""
 
 
-__version__: str = get_value_from_pyproject_toml("project", "version")
+def get_version() -> str:
+    """Get SVJIS version"""
+    return get_value_from_pyproject_toml("project", "version")
+
+
+__version__: str = get_version()
 __homepage_url__: str = get_value_from_pyproject_toml("project.urls", "Homepage")
 __repository_url__: str = get_value_from_pyproject_toml("project.urls", "Repository")
 __issues_url__: str = get_value_from_pyproject_toml("project.urls", "Issues")
