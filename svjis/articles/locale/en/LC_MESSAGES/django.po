@@ -373,27 +373,27 @@ msgstr "About application"
 
 #: articles/templates/admin_about.html:9
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: articles/templates/admin_about.html:25
 msgid "Project URLs"
-msgstr ""
+msgstr "Project URLs"
 
 #: articles/templates/admin_about.html:29
 msgid "Homepage"
-msgstr ""
+msgstr "Homepage"
 
 #: articles/templates/admin_about.html:33
 msgid "Source code"
-msgstr ""
+msgstr "Source code"
 
 #: articles/templates/admin_about.html:37
 msgid "Issues"
-msgstr ""
+msgstr "Issues"
 
 #: articles/templates/admin_about.html:41
 msgid "Translations"
-msgstr ""
+msgstr "Translations"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
