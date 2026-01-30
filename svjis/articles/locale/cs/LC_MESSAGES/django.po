@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 22:53+0100\n"
-"PO-Revision-Date: 2026-01-30 14:25+0000\n"
+"PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
 "cs/>\n"
@@ -375,27 +375,27 @@ msgstr "O aplikaci"
 
 #: articles/templates/admin_about.html:9
 msgid "Version"
-msgstr ""
+msgstr "Verze"
 
 #: articles/templates/admin_about.html:25
 msgid "Project URLs"
-msgstr ""
+msgstr "Stránky projektu"
 
 #: articles/templates/admin_about.html:29
 msgid "Homepage"
-msgstr ""
+msgstr "Domovská stránka"
 
 #: articles/templates/admin_about.html:33
 msgid "Source code"
-msgstr ""
+msgstr "Zdrojový kód"
 
 #: articles/templates/admin_about.html:37
 msgid "Issues"
-msgstr ""
+msgstr "Hlášení chyb"
 
 #: articles/templates/admin_about.html:41
 msgid "Translations"
-msgstr ""
+msgstr "Překlady"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
