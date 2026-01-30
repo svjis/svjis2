@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 22:53+0100\n"
-"PO-Revision-Date: 2026-01-06 12:21+0000\n"
-"Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-01-30 14:25+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
 "cs/>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: articles/forms.py:335 articles/models.py:383 articles/models.py:414
 #: articles/templates/admin_building_unit.html:36
@@ -1236,8 +1236,7 @@ msgstr "Vše"
 #: articles/views.py:110 articles/views_faults.py:67
 #: articles/views_redaction.py:161
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
-msgstr ""
-"Vyhledat: Klíčové slovo '{}' je příliš krátké. Zadejte alespoň 3 znaky."
+msgstr "Vyhledat: Klíčové slovo '{}' je příliš krátké. Zadejte alespoň 3 znaky."
 
 #: articles/views.py:113 articles/views_faults.py:70
 #: articles/views_redaction.py:164
