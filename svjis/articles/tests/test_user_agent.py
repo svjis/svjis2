@@ -155,6 +155,14 @@ class UserAgentTests(TestCase):
             "browser": "DuckDuckGo",
             "os": {'os': 'iOS', 'platform': 'Mobile'},
         },
+        # HuaweiBrowser on HarmonyOS
+        {
+            "agent": [
+                "Mozilla/5.0 (Linux; Android 12; HarmonyOS; CLS-AL30; HMSCore 6.15.4.332) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 HuaweiBrowser/16.0.12.301 Mobile Safari/537.36",  # noqa
+            ],
+            "browser": "HuaweiBrowser",
+            "os": {'os': 'HarmonyOS', 'platform': 'Mobile'},
+        },
         # Bots
         {
             "agent": [

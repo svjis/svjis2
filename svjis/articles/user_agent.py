@@ -21,6 +21,7 @@ def is_bot(user_agent: str) -> bool:
 
 def get_browser(user_agent: str) -> dict:
     browsers = {
+        'HuaweiBrowser': r'HuaweiBrowser\/(\d+\.?\d*)',
         'SznProhlizec': r'SznProhlizec\/(\d+\.?\d*)',
         'DuckDuckGo': r'Ddg\/(\d+\.?\d*)',
         'Yabrowser': r'YaBrowser\/(\d+\.?\d*)',
@@ -54,6 +55,7 @@ def get_os(user_agent: str) -> dict:
         r'windows nt': 'Windows:Desktop',
         r'iphone os': 'iOS:Mobile',
         r'mac os x': 'macOS:Desktop',
+        r'harmonyos': 'HarmonyOS:Mobile',
         r'android': 'Android:Mobile',
         r'linux': 'Linux:Desktop',
         r'ubuntu': 'Ubuntu:Desktop',
