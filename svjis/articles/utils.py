@@ -188,7 +188,7 @@ def send_article_comment_notification(user_list, host, article, comment):
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/article/{article.slug}/'>{article.header}</a>"
+    link = f"<a href='{host}/article/{article.slug}/#comment_{comment.pk}'>{article.header}</a>"
     send_mails(
         [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {article.header}',
@@ -222,7 +222,7 @@ def send_fault_comment_notification(user_list, host, fault_report, comment):
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    link = f"<a href='{host}/fault/{fault_report.slug}/#comment_{comment.pk}'>{fault_report.subject}</a>"
     send_mails(
         [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
