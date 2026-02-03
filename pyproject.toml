@@ -1,6 +1,6 @@
 [project]
 name = "svjis2"
-version = "2.24.0.dev1"
+version = "2.25.0.dev1"
 description = "Information system for homeowners' associations (SVJ)"
 readme = "README.md"
 license = {text = "GPL-3.0-or-later"}
@@ -16,6 +16,7 @@ dependencies = [
 Homepage = "https://svjis.github.io/"
 Repository = "https://github.com/svjis/svjis2"
 Issues = "https://github.com/svjis/svjis2/issues"
+Translations = "https://translate.codeberg.org/engage/svjis/"
 
 [tool.django-stubs]
 django_settings_module = "svjis.svjis.settings"
