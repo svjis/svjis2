@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 22:53+0100\n"
-"PO-Revision-Date: 2026-01-06 12:21+0000\n"
+"PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/svjis/svjis2/"
 "nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: articles/forms.py:335 articles/models.py:383 articles/models.py:414
 #: articles/templates/admin_building_unit.html:36
@@ -375,27 +375,27 @@ msgstr "Over dit programma"
 
 #: articles/templates/admin_about.html:9
 msgid "Version"
-msgstr ""
+msgstr "Versie"
 
 #: articles/templates/admin_about.html:25
 msgid "Project URLs"
-msgstr ""
+msgstr "Projectlinks"
 
 #: articles/templates/admin_about.html:29
 msgid "Homepage"
-msgstr ""
+msgstr "Website"
 
 #: articles/templates/admin_about.html:33
 msgid "Source code"
-msgstr ""
+msgstr "Broncode"
 
 #: articles/templates/admin_about.html:37
 msgid "Issues"
-msgstr ""
+msgstr "Problemen"
 
 #: articles/templates/admin_about.html:41
 msgid "Translations"
-msgstr ""
+msgstr "Vertalingen"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7

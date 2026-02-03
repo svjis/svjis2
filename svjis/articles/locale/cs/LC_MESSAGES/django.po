@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-12 22:53+0100\n"
-"PO-Revision-Date: 2026-01-06 12:21+0000\n"
+"PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
 "cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: articles/forms.py:335 articles/models.py:383 articles/models.py:414
 #: articles/templates/admin_building_unit.html:36
@@ -375,27 +375,27 @@ msgstr "O aplikaci"
 
 #: articles/templates/admin_about.html:9
 msgid "Version"
-msgstr ""
+msgstr "Verze"
 
 #: articles/templates/admin_about.html:25
 msgid "Project URLs"
-msgstr ""
+msgstr "Stránky projektu"
 
 #: articles/templates/admin_about.html:29
 msgid "Homepage"
-msgstr ""
+msgstr "Domovská stránka"
 
 #: articles/templates/admin_about.html:33
 msgid "Source code"
-msgstr ""
+msgstr "Zdrojový kód"
 
 #: articles/templates/admin_about.html:37
 msgid "Issues"
-msgstr ""
+msgstr "Hlášení chyb"
 
 #: articles/templates/admin_about.html:41
 msgid "Translations"
-msgstr ""
+msgstr "Překlady"
 
 #: articles/templates/admin_board.html:7
 #: articles/templates/admin_board_edit.html:7
@@ -1236,8 +1236,7 @@ msgstr "Vše"
 #: articles/views.py:110 articles/views_faults.py:67
 #: articles/views_redaction.py:161
 msgid "Search: Keyword '{}' is too short. Type at least 3 characters."
-msgstr ""
-"Vyhledat: Klíčové slovo '{}' je příliš krátké. Zadejte alespoň 3 znaky."
+msgstr "Vyhledat: Klíčové slovo '{}' je příliš krátké. Zadejte alespoň 3 znaky."
 
 #: articles/views.py:113 articles/views_faults.py:70
 #: articles/views_redaction.py:164
