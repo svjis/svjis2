@@ -21,7 +21,7 @@ class AdvertsTest(UserDataMixin, TestCase):
 
             adverts = response.context['object_list']
             self.assertEqual(len(adverts), 1)
-            return adverts.first()
+            return adverts[0]
         else:
             self.assertEqual(response.status_code, expected_status)
             return None
@@ -53,7 +53,7 @@ class AdvertsTest(UserDataMixin, TestCase):
         adverts = response.context['object_list']
         self.assertEqual(len(adverts), 1)
 
-        advert = adverts.first()
+        advert = adverts[0]
         self.assertEqual(advert.created_by_user, self.u_peter)
 
         # disable advert owner
