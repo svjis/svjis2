@@ -51,7 +51,7 @@ class Article(models.Model):
         )
 
     def save(self, **kwargs):
-        if self.slug is None or self.slug == "":
+        if not self.slug:
             unique_slugify(self, self.header)
         super().save(**kwargs)
 
@@ -443,7 +443,7 @@ class FaultReport(models.Model):
         )
 
     def save(self, **kwargs):
-        if self.slug is None or self.slug == "":
+        if not self.slug:
             unique_slugify(self, self.subject)
         super().save(**kwargs)
 
