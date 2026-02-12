@@ -3,52 +3,49 @@ name = "svjis2"
 version = "2.26.0.dev1"
 description = "Information system for homeowners' associations (SVJ)"
 readme = "README.md"
-license = {text = "GPL-3.0-or-later"}
+license = { text = "GPL-3.0-or-later" }
 requires-python = ">=3.12"
-dependencies = [
-    "django>=6.0,<7.0",
-    "django-tinymce>=4.1.0",
-    "openpyxl>=3.1.5",
-    "psycopg>=3.2.10",
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
-
-[project.urls]
-Homepage = "https://svjis.github.io/"
-Repository = "https://github.com/svjis/svjis2"
-Issues = "https://github.com/svjis/svjis2/issues"
-Translations = "https://translate.codeberg.org/engage/svjis/"
-
-[tool.django-stubs]
-django_settings_module = "svjis.svjis.settings"
+dependencies = [
+  "django>=6,<7",
+  "django-tinymce>=4.1",
+  "openpyxl>=3.1.5",
+  "psycopg>=3.2.10",
+]
+urls.Homepage = "https://svjis.github.io/"
+urls.Issues = "https://github.com/svjis/svjis2/issues"
+urls.Repository = "https://github.com/svjis/svjis2"
+urls.Translations = "https://translate.codeberg.org/engage/svjis/"
 
 [dependency-groups]
 dev = [
-    "django-stubs>=5.2.5",
-    "factory-boy>=3.3.3",
-    "playwright>=1.55.0",
-    "pre-commit>=4.3.0",
+  "django-stubs>=5.2.5",
+  "factory-boy>=3.3.3",
+  "playwright>=1.55",
+  "pre-commit>=4.3",
 ]
 linux-server = [
-    "gunicorn>=23.0.0",
+  "gunicorn>=23",
 ]
 
 [tool.ruff]
 line-length = 119
 indent-width = 4
-extend-exclude = ["svjis/manage.py", "svjis/svjis/settings.py", "svjis/articles/migrations"]
-
-[tool.ruff.lint]
-# Enable flake8-bugbear (`B`) rules, in addition to the defaults.
-select = ["E4", "E7", "E9", "F", "B"]
-
-# Avoid trying to fix flake8-bugbear (`B`) violations.
-unfixable = ["B"]
-
-# Ignore `E402` (import violations) in all `__init__.py` files, and in selected subdirectories.
-[tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["E402"]
-"**/{tests,docs,tools}/*" = ["E402"]
-
-[tool.ruff.format]
+extend-exclude = [ "svjis/articles/migrations", "svjis/manage.py", "svjis/svjis/settings.py" ]
 # Preserve quotes in `ruff format`.
-quote-style = "preserve"
+format.quote-style = "preserve"
+# Enable flake8-bugbear (`B`) rules, in addition to the defaults.
+lint.select = [ "B", "E4", "E7", "E9", "F" ]
+lint.per-file-ignores."**/{tests,docs,tools}/*" = [ "E402" ]
+# Ignore `E402` (import violations) in all `__init__.py` files, and in selected subdirectories.
+lint.per-file-ignores."__init__.py" = [ "E402" ]
+# Avoid trying to fix flake8-bugbear (`B`) violations.
+lint.unfixable = [ "B" ]
+
+[tool.django-stubs]
+django_settings_module = "svjis.svjis.settings"
