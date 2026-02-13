@@ -1,5 +1,5 @@
-# Use an official Debian 12 "bookworm" as a base image.
-FROM debian:bookworm-slim
+# Use an official Debian 13 "trixie" as a base image.
+FROM debian:trixie-slim
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
