@@ -51,7 +51,8 @@ class Article(models.Model):
         )
 
     def save(self, **kwargs):
-        unique_slugify(self, self.header)
+        if not self.slug:
+            unique_slugify(self, self.header)
         super().save(**kwargs)
 
     def get_absolute_url(self):
@@ -442,7 +443,8 @@ class FaultReport(models.Model):
         )
 
     def save(self, **kwargs):
-        unique_slugify(self, self.subject)
+        if not self.slug:
+            unique_slugify(self, self.subject)
         super().save(**kwargs)
 
 
