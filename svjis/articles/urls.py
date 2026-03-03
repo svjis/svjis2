@@ -1,6 +1,7 @@
 from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_adverts, views_admin
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
@@ -224,3 +225,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(f"{settings.MEDIA_URL}company/", document_root=f"{settings.MEDIA_ROOT}/company/")
