@@ -181,4 +181,4 @@ def get_advert_asset(request, advert_id, filename):
 
     # Get file
     asset = get_object_or_404(models.AdvertAsset, advert_id=advert_id, file__endswith=f"/{safe_name}")
-    return FileResponse(asset.file.open("rb"), as_attachment=True, filename=safe_name)
+    return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)

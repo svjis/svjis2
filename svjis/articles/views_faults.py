@@ -415,4 +415,4 @@ def get_fault_asset(request, slug, filename):
 
     # Get file
     asset = get_object_or_404(models.FaultAsset, fault_report__slug=slug, file__endswith=f"/{safe_name}")
-    return FileResponse(asset.file.open("rb"), as_attachment=True, filename=safe_name)
+    return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)
