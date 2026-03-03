@@ -189,15 +189,19 @@ def article_survey_vote_view(request):
     return redirect(main_view)
 
 
-@require_GET
-def article_view(request, slug):
-    if request.user.has_perm(svjis_edit_article):
+def get_article(slug, user):
+    if user.has_perm(svjis_edit_article):
         article_qs = models.Article.objects.filter(slug=slug)
     else:
-        q = get_article_filter(request.user)
+        q = get_article_filter(user)
         article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
 
-    article = article_qs.first()
+    return article_qs.first()
+
+
+@require_GET
+def article_view(request, slug):
+    article = get_article(slug, request.user)
     if article is None:
         if request.user.is_authenticated:
             raise Http404
@@ -321,13 +325,7 @@ def get_article_asset(request, slug, filename):
         raise Http404()
 
     # Get article to verify access
-    if request.user.has_perm(svjis_edit_article):
-        article_qs = models.Article.objects.filter(slug=slug)
-    else:
-        q = get_article_filter(request.user)
-        article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
-
-    article = article_qs.first()
+    article = get_article(slug, request.user)
     if article is None:
         if request.user.is_authenticated:
             raise Http404
