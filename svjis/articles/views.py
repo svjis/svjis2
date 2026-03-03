@@ -197,13 +197,12 @@ def article_view(request, slug):
         q = get_article_filter(request.user)
         article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
 
-    if len(article_qs) == 0:
+    article = article_qs.first()
+    if article is None:
         if request.user.is_authenticated:
             raise Http404
         else:
             return redirect(reverse(login_page_view) + '?next=' + request.get_full_path())
-    else:
-        article = article_qs[0]
 
     user = request.user
     if user.is_anonymous:
@@ -327,13 +326,12 @@ def get_article_asset(request, slug, filename):
         q = get_article_filter(request.user)
         article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
 
-    if len(article_qs) == 0:
+    article = article_qs.first()
+    if article is None:
         if request.user.is_authenticated:
             raise Http404
         else:
             return redirect(reverse(login_page_view) + '?next=' + request.get_full_path())
-    else:
-        article = article_qs[0]
 
     # Get file
     asset = get_object_or_404(models.ArticleAsset, article=article, file__endswith=f"/{safe_name}")
