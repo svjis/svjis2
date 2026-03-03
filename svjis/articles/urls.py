@@ -1,7 +1,6 @@
 from . import views, views_contact, views_personal_settings, views_redaction, views_faults, views_adverts, views_admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
@@ -220,8 +219,8 @@ urlpatterns = [
     path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switching
+    path("media/articles/<str:slug>/<str:filename>/", views.get_article_asset, name="get_article_asset"),
 ]
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

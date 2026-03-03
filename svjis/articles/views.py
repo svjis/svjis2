@@ -1,3 +1,4 @@
+from pathlib import PurePosixPath
 from . import utils, models, forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
@@ -7,7 +8,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Q, Count
 from django.conf import settings
-from django.http import Http404
+from django.http import FileResponse, Http404
 from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
@@ -310,6 +311,34 @@ def article_watch_view(request):
         qs = '#comments'
 
     return redirect(reverse('article', kwargs={'slug': article.slug}) + qs)
+
+
+# Media
+def get_article_asset(request, slug, filename):
+    # Block path traversal attempts like ../../secret.txt
+    safe_name = PurePosixPath(filename).name
+    if safe_name != filename:
+        raise Http404()
+
+    # Get article to verify access
+    if request.user.has_perm(svjis_edit_article):
+        article_qs = models.Article.objects.filter(slug=slug)
+    else:
+        q = get_article_filter(request.user)
+        article_qs = models.Article.objects.filter(Q(slug=slug) & q).distinct()
+
+    if len(article_qs) == 0:
+        if request.user.is_authenticated:
+            raise Http404
+        else:
+            return redirect(reverse(login_page_view) + '?next=' + request.get_full_path())
+    else:
+        article = article_qs[0]
+
+    # Get file
+    asset = get_object_or_404(models.ArticleAsset, article=article, file__endswith=f"/{safe_name}")
+
+    return FileResponse(asset.file.open("rb"), as_attachment=True, filename=safe_name)
 
 
 # Login
