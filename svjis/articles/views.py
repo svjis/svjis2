@@ -313,6 +313,7 @@ def article_watch_view(request):
 
 
 # Media
+@require_GET
 def get_article_asset(request, slug, filename):
     # Block path traversal attempts like ../../secret.txt
     safe_name = PurePosixPath(filename).name
