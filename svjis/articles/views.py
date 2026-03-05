@@ -296,10 +296,9 @@ def article_watch_view(request):
 
     q = get_article_filter(request.user)
     article_qs = models.Article.objects.filter(Q(pk=pk) & q).distinct()
-    if len(article_qs) == 0:
+    article = article_qs.first()
+    if article is None:
         raise Http404
-    else:
-        article = article_qs[0]
 
     if watch == 0:
         article.watching_users.remove(request.user)
