@@ -220,9 +220,9 @@ urlpatterns = [
     path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switching
-    path("media/articles/<str:slug>/<str:filename>/", views.get_article_asset, name="get_article_asset"),
-    path("media/faults/<str:slug>/<str:filename>/", views_faults.get_fault_asset, name="get_fault_asset"),
-    path("media/adverts/<int:advert_id>/<str:filename>/", views_adverts.get_advert_asset, name="get_advert_asset"),
+    path("media/articles/<str:slug>/<str:filename>", views.get_article_asset, name="get_article_asset"),
+    path("media/faults/<str:slug>/<str:filename>", views_faults.get_fault_asset, name="get_fault_asset"),
+    path("media/adverts/<int:advert_id>/<str:filename>", views_adverts.get_advert_asset, name="get_advert_asset"),
 ]
 
 if settings.DEBUG:
