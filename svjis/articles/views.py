@@ -304,7 +304,7 @@ def article_watch_view(request):
 
     if comment_pk > 0:
         qs = f'#comment_{comment_pk}'
-    elif len(article.comments) > 0:
+    elif article.comments.exists():
         qs = f'#comment_{article.comments.last().pk}'
     else:
         qs = '#comments'
