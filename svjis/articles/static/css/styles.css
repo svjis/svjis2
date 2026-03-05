@@ -10,8 +10,8 @@ body {
   background-color: #d7ecf4;
 }
 
-a {color:#739D13;}
-a:hover {color:#516F0D;}
+a {color:#739D13; text-decoration: none;}
+a:hover {color:#516F0D; text-decoration: underline;}
 
 h1, h2, h3, h4, h5, h6, p, address, blockquote, table, dl, fieldset {margin:15px 0;}
 
@@ -275,7 +275,6 @@ nav li {
 
 nav a {
   color: #fff;
-  text-decoration: underline;
   display: block;
   float: left;
   padding: 0 15px 0 10px;
@@ -284,7 +283,7 @@ nav a {
 
 nav a:hover {
   color: #fff;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .tray li#tray-active a {
@@ -364,10 +363,6 @@ main {
   font-weight: normal;
   padding: 0;
   margin: 0;
-}
-
-.article-title-list a {
-  text-decoration: none;
 }
 
 .article-desc .info {
@@ -574,7 +569,7 @@ p.contact a {
 }
 
 .side-menu__nav a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 /*
