@@ -1,9 +1,10 @@
+from pathlib import PurePosixPath
 from . import utils, forms, models
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage
-from django.http import Http404
+from django.http import FileResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -167,3 +168,17 @@ def adverts_asset_delete_view(request, pk):
         raise Http404
     obj.delete()
     return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')
+
+
+# Media
+@permission_required(svjis_view_adverts_menu)
+@require_GET
+def get_advert_asset(request, advert_id, filename):
+    # Block path traversal attempts like ../../secret.txt
+    safe_name = PurePosixPath(filename).name
+    if safe_name != filename:
+        raise Http404()
+
+    # Get file
+    asset = get_object_or_404(models.AdvertAsset, advert_id=advert_id, file__endswith=f"/{safe_name}")
+    return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)
