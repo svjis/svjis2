@@ -65,7 +65,7 @@ def adverts_list_view(request):
     if scope == 'mine':
         advert_list = models.Advert.objects.filter(created_by_user=request.user)
         scope_description = _('Mine')
-    elif models.AdvertType.objects.filter(description=scope).count() > 0:
+    elif models.AdvertType.objects.filter(description=scope).exists():
         advert_list = advert_list.filter(type__description=scope)
         scope_description = scope
 
