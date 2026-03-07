@@ -323,16 +323,17 @@ def get_article_asset(request, slug, filename):
     if safe_name != filename:
         raise Http404()
 
+    # Get file
+    asset = get_object_or_404(models.ArticleAsset, file=f"articles/{slug}/{safe_name}")
+
     # Get article to verify access
-    article = get_article(slug, request.user)
+    article = get_article(asset.article.slug, request.user)
     if article is None:
         if request.user.is_authenticated:
             raise Http404
         else:
             return redirect(reverse(login_page_view) + '?next=' + request.get_full_path())
 
-    # Get file
-    asset = get_object_or_404(models.ArticleAsset, article=article, file__endswith=f"/{safe_name}")
     return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)
 
 
