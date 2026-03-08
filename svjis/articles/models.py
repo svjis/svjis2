@@ -12,6 +12,10 @@ from .permissions import svjis_answer_survey
 
 
 COMMENT_IS_EDITABLE_MINUTES = getattr(settings, "SVJIS_COMMENT_IS_EDITABLE_MINUTES", 10)
+MEDIA_ADVERT_ASSETS_DIR = 'adverts'
+MEDIA_ARTICLE_ASSETS_DIR = 'articles'
+MEDIA_COMPANY_ASSETS_DIR = 'company'
+MEDIA_FAULT_ASSETS_DIR = 'faults'
 
 
 # Article / Redaction
@@ -75,7 +79,7 @@ class ArticleLog(models.Model):
 
 
 def article_directory_path(instance, filename):
-    return f'articles/{instance.article.slug}/{filename}'
+    return f'{MEDIA_ARTICLE_ASSETS_DIR}/{instance.article.slug}/{filename}'
 
 
 class ArticleAsset(models.Model):
@@ -297,7 +301,7 @@ class Preferences(models.Model):
 
 
 def company_directory_path(instance, filename):
-    return f'company/{filename}'
+    return f'{MEDIA_COMPANY_ASSETS_DIR}/{filename}'
 
 
 class Company(models.Model):
@@ -449,7 +453,7 @@ class FaultReport(models.Model):
 
 
 def fault_directory_path(instance, filename):
-    return f'faults/{instance.fault_report.slug}/{filename}'
+    return f'{MEDIA_FAULT_ASSETS_DIR}/{instance.fault_report.slug}/{filename}'
 
 
 class FaultAsset(models.Model):
@@ -568,7 +572,7 @@ class Advert(models.Model):
 
 
 def advert_directory_path(instance, filename):
-    return f'adverts/{instance.advert.pk}/{filename}'
+    return f'{MEDIA_ADVERT_ASSETS_DIR}/{instance.advert.pk}/{filename}'
 
 
 class AdvertAsset(models.Model):
