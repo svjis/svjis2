@@ -40,10 +40,10 @@
 
 <script>
     $(document).ready(function() {
-        $('#id_entrance').select2({dropdownAutoWidth: true});
+        $('#id_entrance').select2();
         {% if perms.articles.svjis_fault_resolver %}
-        $('#id_created_by_user').select2({dropdownAutoWidth: true});
-        $('#id_assigned_to_user').select2({dropdownAutoWidth: true});
+        $('#id_created_by_user').select2();
+        $('#id_assigned_to_user').select2();
         {% endif %}
     });
 </script>
