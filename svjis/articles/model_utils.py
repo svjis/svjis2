@@ -76,7 +76,7 @@ def _slug_strip(value, separator='-'):
 
 def get_asset_icon(basename):
     document_icons = ['doc', 'docx', 'htm', 'html', 'pdf', 'pps', 'ppsx', 'txt', 'xls', 'xlsx', 'zip']
-    picture_icons = ['gif', 'jpeg', 'jpg', 'png']
+    picture_icons = ['gif', 'jpeg', 'jpg', 'png', 'webp']
     video_icons = ['mpg', 'mpeg', 'mov', 'mp4', 'avi', 'wmv']
     _file_name, file_extension = os.path.splitext(basename)
     file_extension = file_extension[1:]
