@@ -32,7 +32,7 @@
     <div class="filter-item">
         <p>
         <form action="{% url 'admin_user' %}" method="get">
-            <select name='group_filter' onchange='this.form.submit()'>
+            <select name='group_filter' class='common-input' onchange='this.form.submit()'>
                 <option value="0">-------</option>
                 {% for r in group_list %}
                 <option value="{{ r.pk }}" {% if group_filter == r.pk %}selected{% endif %}>{{ r.name }}</option>
