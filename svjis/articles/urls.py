@@ -189,6 +189,7 @@ urlpatterns = [
         name='admin_building_unit_export_to_excel',
     ),
     path('admin_user/', views_admin.admin_user_view, name='admin_user'),
+    path('admin_user_detail/<int:pk>/', views_admin.admin_user_detail_view, name='admin_user_detail'),
     path('admin_user_edit/<int:pk>/', views_admin.admin_user_edit_view, name='admin_user_edit'),
     path('admin_user_save/', views_admin.admin_user_save_view, name='admin_user_save'),
     path('admin_user_owns/<int:pk>/', views_admin.admin_user_owns_view, name='admin_user_owns'),

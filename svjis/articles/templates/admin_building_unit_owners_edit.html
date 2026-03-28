@@ -10,6 +10,7 @@
     <tr>
         <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
+        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'First name' %}</th>
         <th class="list" scope="col">{% translate 'Last name' %}</th>
         <th class="list" scope="col">&nbsp;</th>
@@ -20,6 +21,7 @@
     <tr>
         <td class="list">{{ forloop.counter }}</td>
         <td class="list"><a href="{% url 'admin_user_owns' pk=obj.pk %}"><img src="/static/gfx/house.png" class="led" title="{% translate 'Units' %}" alt="{% translate 'Units' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_user_detail' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'User' %}" alt="{% translate 'User' %}"></a></td>
         <td class="list">{{ obj.first_name }}</td>
         <td class="list">{{ obj.last_name }}</td>
         <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.first_name }}&nbsp;{{ obj.last_name }} ?')) return false;" href="{% url 'admin_building_unit_owners_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>

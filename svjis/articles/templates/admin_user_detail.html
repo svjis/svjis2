@@ -1,0 +1,81 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load article_filters i18n %}
+
+{% block content %}
+
+<h1 class="page-title">{{ user.first_name }} {{ user.last_name }}</h1>
+
+<table class="list full-width" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Salutation' %}</th>
+        <td class="list" width="75%">{{ profile.salutation }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'First name' %}</th>
+        <td class="list" width="75%">{{ user.first_name }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Last name' %}</th>
+        <td class="list" width="75%">{{ user.last_name }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Internal note' %}</th>
+        <td class="list" width="75%">{{ profile.internal_note }}</td>
+    </tr>
+</table>
+
+{% translate 'Contact information' %}
+
+<table class="list full-width" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Address' %}</th>
+        <td class="list" width="75%">{{ profile.address }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'City' %}</th>
+        <td class="list" width="75%">{{ profile.city }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Post code' %}</th>
+        <td class="list" width="75%">{{ profile.post_code }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Country' %}</th>
+        <td class="list" width="75%">{{ profile.country }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Phone' %}</th>
+        <td class="list" width="75%">{{ profile.phone }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'E-Mail' %}</th>
+        <td class="list" width="75%">{{ user.email }}</td>
+    </tr>
+</table>
+
+{% translate 'Login information' %}
+
+<table class="list full-width" aria-describedby="tbl-desc">
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Username' %}</th>
+        <td class="list" width="75%">{{ user.username }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Active' %}</th>
+        <td class="list" width="75%">{{ user.is_active|yes_no }}</td>
+    </tr>
+    <tr>
+        <th class="list" width="25%" scope="row">{% translate 'Member of' %}</th>
+        <td class="list" width="75%">
+            <ul>
+                {% for grp in user_group_list %}
+                <li>{{ grp.name }}</li>
+                {% endfor %}
+            </ul>
+
+        </td>
+    </tr>
+</table>
+
+{% endblock content %}

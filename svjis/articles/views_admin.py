@@ -455,6 +455,23 @@ def admin_user_view(request):
 
 @permission_required(svjis_edit_admin_users)
 @require_GET
+def admin_user_detail_view(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    profile, _created = models.UserProfile.objects.get_or_create(user=user)
+    user_group_list = Group.objects.filter(user__id=user.id)
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
+    ctx['user'] = user
+    ctx['profile'] = profile
+    ctx['user_group_list'] = user_group_list
+    ctx['aside_menu_items'] = get_side_menu('users', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_user_detail.html", ctx)
+
+
+@permission_required(svjis_edit_admin_users)
+@require_GET
 def admin_user_edit_view(request, pk):
     if pk != 0:
         instance = get_object_or_404(User, pk=pk)
