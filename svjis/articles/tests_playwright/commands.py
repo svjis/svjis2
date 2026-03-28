@@ -360,7 +360,7 @@ def fill_user_units(cls, page):
     ]
     for e in data:
         menu(page, _('Administration'), _('Users'), False)
-        click_link_in_row(page, e['user'], 1)
+        click_link_in_row(page, e['user'], 2)
         scrshot(page, get_filename(cls, 'admin-user-units'))
         page.select_option('[id=owner-input]', label=e['unit'])
         page.click('id=submit')
