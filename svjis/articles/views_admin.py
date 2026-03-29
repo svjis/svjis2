@@ -418,7 +418,7 @@ def admin_building_unit_export_to_excel_view(request):
             cell.style = header_st
 
     # Add data from the model
-    unit_list = models.BuildingUnit.objects.all().order_by('id')
+    unit_list = models.BuildingUnit.objects.select_related('user').order_by('id')
     for u in unit_list:
         unit_entrance = u.entrance.description if u.entrance else ''
         ws.append([u.type.description, unit_entrance, u.registration_id, u.description, u.numerator, u.denominator])
@@ -620,7 +620,7 @@ def admin_user_export_to_excel_view(request):
             cell.style = header_st
 
     # Add data from the model
-    user_list = User.objects.filter(is_active=True).order_by('last_name', 'first_name')
+    user_list = User.objects.filter(is_active=True).select_related('userprofile').order_by('last_name', 'first_name')
     for u in user_list:
         if hasattr(u, 'userprofile'):
             ws.append(
