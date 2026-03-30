@@ -71,6 +71,29 @@ table.list td.closed-ticket {
   text-decoration: line-through;
 }
 
+table.detail {
+  border:1px solid #c3c3c3;
+  border-collapse:collapse;
+}
+
+table.detail th {
+  background-color:#f2f3f4;
+  border:1px solid #c3c3c3;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+  width: 25%;
+}
+
+table.detail td {
+  background-color:#ffffff;
+  border:1px solid #c3c3c3;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+  width: 75%;
+}
+
 .black-submit {
   font-family:"arial",sans-serif;
   color: #ffffff; /* barva textu */

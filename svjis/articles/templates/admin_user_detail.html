@@ -6,68 +6,68 @@
 
 <h1 class="page-title">{{ user.first_name }} {{ user.last_name }}</h1>
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="detail full-width" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Salutation' %}</th>
-        <td class="list" width="75%">{{ profile.salutation }}</td>
+        <th class="detail" scope="row">{% translate 'Salutation' %}</th>
+        <td class="detail">{{ profile.salutation }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'First name' %}</th>
-        <td class="list" width="75%">{{ user.first_name }}</td>
+        <th class="detail" scope="row">{% translate 'First name' %}</th>
+        <td class="detail">{{ user.first_name }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Last name' %}</th>
-        <td class="list" width="75%">{{ user.last_name }}</td>
+        <th class="detail" scope="row">{% translate 'Last name' %}</th>
+        <td class="detail">{{ user.last_name }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Internal note' %}</th>
-        <td class="list" width="75%">{{ profile.internal_note }}</td>
+        <th class="detail" scope="row">{% translate 'Internal note' %}</th>
+        <td class="detail">{{ profile.internal_note }}</td>
     </tr>
 </table>
 
 {% translate 'Contact information' %}
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="detail full-width" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Address' %}</th>
-        <td class="list" width="75%">{{ profile.address }}</td>
+        <th class="detail" scope="row">{% translate 'Address' %}</th>
+        <td class="detail">{{ profile.address }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'City' %}</th>
-        <td class="list" width="75%">{{ profile.city }}</td>
+        <th class="detail" scope="row">{% translate 'City' %}</th>
+        <td class="detail">{{ profile.city }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Post code' %}</th>
-        <td class="list" width="75%">{{ profile.post_code }}</td>
+        <th class="detail" scope="row">{% translate 'Post code' %}</th>
+        <td class="detail">{{ profile.post_code }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Country' %}</th>
-        <td class="list" width="75%">{{ profile.country }}</td>
+        <th class="detail" scope="row">{% translate 'Country' %}</th>
+        <td class="detail">{{ profile.country }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Phone' %}</th>
-        <td class="list" width="75%">{{ profile.phone }}</td>
+        <th class="detail" scope="row">{% translate 'Phone' %}</th>
+        <td class="detail">{{ profile.phone }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'E-Mail' %}</th>
-        <td class="list" width="75%">{{ user.email }}</td>
+        <th class="detail" scope="row">{% translate 'E-Mail' %}</th>
+        <td class="detail">{{ user.email }}</td>
     </tr>
 </table>
 
 {% translate 'Login information' %}
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="detail full-width" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Username' %}</th>
-        <td class="list" width="75%">{{ user.username }}</td>
+        <th class="detail" scope="row">{% translate 'Username' %}</th>
+        <td class="detail">{{ user.username }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Active' %}</th>
-        <td class="list" width="75%">{{ user.is_active|yes_no }}</td>
+        <th class="detail" scope="row">{% translate 'Active' %}</th>
+        <td class="detail">{{ user.is_active|yes_no }}</td>
     </tr>
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Member of' %}</th>
-        <td class="list" width="75%">
+        <th class="detail" scope="row">{% translate 'Member of' %}</th>
+        <td class="detail">
             <ul>
                 {% for grp in user_group_list %}
                 <li>{{ grp.name }}</li>
