@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 id="person" class="page-title">{{ usr.first_name }} {{ usr.last_name }}</h1>
-[<a href="{% url 'admin_user_edit' pk=usr.pk %}">{% translate 'Edit' %}</a>]
+[<a href="{% url 'admin_user_edit' pk=usr.pk %}">{% translate 'Modify' %}</a>]
 
 <table class="detail full-width" aria-describedby="person">
     <tr>
@@ -80,7 +80,7 @@
 </table>
 
 <h2 id="units">{% translate 'Building units' %}</h2>
-[<a href="{% url 'admin_user_owns' pk=usr.pk %}">{% translate 'Edit' %}</a>]
+[<a href="{% url 'admin_user_owns' pk=usr.pk %}">{% translate 'Modify' %}</a>]
 
 <table class="detail full-width" aria-describedby="units">
     <tr>
