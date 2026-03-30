@@ -372,7 +372,7 @@ def fill_user_units(cls, page):
 def show_about(cls, page):
     menu(page, _('Administration'), _('About application'), True)
     scrshot(page, get_filename(cls, 'admin-about'))
-    expect(page.locator('table.list').get_by_text('Django')).to_be_visible()
+    expect(page.locator('table.detail').get_by_text('Django')).to_be_visible()
 
 
 # Redaction
