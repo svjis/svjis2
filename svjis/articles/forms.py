@@ -256,14 +256,16 @@ class MemberModelChoiceField(forms.ModelChoiceField):
 
 
 class BoardForm(forms.ModelForm):
-    member = MemberModelChoiceField(queryset=User.objects.filter(is_active=True).order_by('last_name', 'first_name'))
+    member = MemberModelChoiceField(
+        queryset=User.objects.filter(is_active=True).order_by('last_name', 'first_name'),
+        widget=forms.widgets.Select(attrs={'class': 'common-input'}),
+    )
 
     class Meta:
         model = models.Board
         fields = ("order", "member", "position")
         widgets = {
             'order': forms.widgets.NumberInput(attrs={'class': 'common-input'}),
-            'member': forms.widgets.Select(attrs={'class': 'common-input'}),
             'position': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
         }
 
@@ -301,19 +303,21 @@ class BuildingEntranceChoiceField(forms.ModelChoiceField):
 
 
 class BuildingUnitForm(forms.ModelForm):
-    type = BuildingUnitTypeModelChoiceField(queryset=models.BuildingUnitType.objects.all().order_by('description'))
+    type = BuildingUnitTypeModelChoiceField(
+        queryset=models.BuildingUnitType.objects.all().order_by('description'),
+        widget=forms.widgets.Select(attrs={'class': 'common-input'}),
+    )
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
         help_text=_(SELECT_ENTRANCE_TEXT),
+        widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
 
     class Meta:
         model = models.BuildingUnit
         fields = ("type", "entrance", "registration_id", "description", "numerator", "denominator")
         widgets = {
-            'type': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
             'registration_id': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'description': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
             'address': forms.widgets.TextInput(attrs={'class': 'common-input', 'size': '50'}),
@@ -333,6 +337,7 @@ class FaultReportForm(forms.ModelForm):
         required=False,
         help_text=_(SELECT_ENTRANCE_TEXT),
         label=_("Entrance"),
+        widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
     assigned_to_user = UserChoiceField(
         queryset=User.objects.filter(groups__permissions__codename='svjis_fault_resolver')
@@ -341,11 +346,13 @@ class FaultReportForm(forms.ModelForm):
         .order_by('last_name', 'first_name'),
         required=False,
         label=_("Resolver"),
+        widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
     created_by_user = UserChoiceField(
         queryset=User.objects.exclude(is_active=False).distinct().order_by('last_name', 'first_name'),
         required=False,
         label=_("On Behalf Of"),
+        widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
 
     class Meta:
@@ -353,12 +360,9 @@ class FaultReportForm(forms.ModelForm):
         fields = ("subject", "entrance", "description", "created_by_user", "assigned_to_user", "closed")
         widgets = {
             'subject': forms.widgets.TextInput(attrs={'class': 'common-input full-width', 'size': '80'}),
-            'entrance': forms.widgets.Select(attrs={'class': 'common-input'}),
             'description': forms.widgets.Textarea(
                 attrs={'class': 'common-textarea', 'rows': '5', 'cols': '80', 'wrap': True}
             ),
-            'created_by_user': forms.widgets.Select(attrs={'class': 'common-input'}),
-            'assigned_to_user': forms.widgets.Select(attrs={'class': 'common-input'}),
             'closed': forms.widgets.CheckboxInput(attrs={'class': 'common-input-chck', 'size': '50'}),
         }
 

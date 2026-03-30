@@ -40,6 +40,13 @@
     </select>
     <input id="submit" type="submit" value="{% translate 'Add' %}" />
 </form>
+
+<script>
+    $(document).ready(function() {
+    $('#owner-input').select2({width: '250px'});
+});
+</script>
+
 {% endif %}
 
 {% endblock content %}

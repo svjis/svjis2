@@ -38,4 +38,14 @@
     </p>
 </form>
 
+<script>
+    $(document).ready(function() {
+        $('#id_entrance').select2({width: '250px'});
+        {% if perms.articles.svjis_fault_resolver %}
+        $('#id_created_by_user').select2({width: '250px'});
+        $('#id_assigned_to_user').select2({width: '250px'});
+        {% endif %}
+    });
+</script>
+
 {% endblock content %}
