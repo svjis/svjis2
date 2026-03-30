@@ -28,29 +28,29 @@
     [<a href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>]
 {% endif %}
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="detail full-width" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" width="25%" scope="row">{% translate 'Date' %}</th>
-        <td class="list" width="75%">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
+        <th class="detail" scope="row">{% translate 'Date' %}</th>
+        <td class="detail">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% translate 'Creator' %}</th>
-        <td class="list">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+        <th class="detail" scope="row">{% translate 'Creator' %}</th>
+        <td class="detail">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% translate 'Resolver' %}</th>
-        <td class="list">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+        <th class="detail" scope="row">{% translate 'Resolver' %}</th>
+        <td class="detail">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% translate 'Closed' %}</th>
-        <td class="list">{{ obj.closed|yes_no }}</td>
+        <th class="detail" scope="row">{% translate 'Closed' %}</th>
+        <td class="detail">{{ obj.closed|yes_no }}</td>
     </tr>
     <tr>
-        <th class="list" scope="row">{% translate 'Entrance' %}</th>
-        <td class="list">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
+        <th class="detail" scope="row">{% translate 'Entrance' %}</th>
+        <td class="detail">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <td class="list" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
+        <td class="detail" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
     </tr>
 </table>
 
