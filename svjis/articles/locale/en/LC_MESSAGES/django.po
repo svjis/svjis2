@@ -626,7 +626,7 @@ msgstr "Last login"
 
 #: articles/templates/admin_user.html:63
 msgid "Detail"
-msgstr ""
+msgstr "Detail"
 
 #: articles/templates/admin_user_detail.html:28
 #: articles/templates/admin_user_edit.html:32
@@ -650,10 +650,8 @@ msgid "Member of"
 msgstr "Member of"
 
 #: articles/templates/admin_user_detail.html:82
-#, fuzzy
-#| msgid "Back to fault list"
 msgid "Back to list"
-msgstr "Back to fault list"
+msgstr "Back to list"
 
 #: articles/templates/admin_user_edit.html:13
 #: articles/templates/personal_settings_edit.html:12
