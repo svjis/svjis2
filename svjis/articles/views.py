@@ -324,7 +324,7 @@ def get_article_asset(request, slug, filename):
         raise Http404()
 
     # Get file
-    asset = get_object_or_404(models.ArticleAsset, file=f"articles/{slug}/{safe_name}")
+    asset = get_object_or_404(models.ArticleAsset, file=f"{models.MEDIA_ARTICLE_ASSETS_DIR}/{slug}/{safe_name}")
 
     # Get article to verify access
     article = get_article(asset.article.slug, request.user)
