@@ -463,7 +463,7 @@ def admin_user_detail_view(request, pk):
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
-    ctx['user'] = user
+    ctx['usr'] = user
     ctx['profile'] = profile
     ctx['user_group_list'] = user_group_list
     ctx['aside_menu_items'] = get_side_menu('users', request.user)
