@@ -547,15 +547,16 @@ def admin_user_save_view(request):
         return redirect(reverse('admin_user_edit', kwargs={'pk': pk}))
 
     messages.info(request, _('Saved'))
-    qs = f"#user_{u.id}"
-    return redirect(reverse(admin_user_view) + qs)
+    return redirect(admin_user_detail_view, pk=u.pk)
 
 
 @permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_owns_view(request, pk):
     u = get_object_or_404(User, pk=pk)
-    bu_list = [bu for bu in models.BuildingUnit.objects.all().order_by('id') if bu not in u.buildingunit_set.all()]
+    bu_list = list(
+        models.BuildingUnit.objects.exclude(id__in=u.buildingunit_set.values_list("id", flat=True)).order_by("id")
+    )
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['u'] = u
