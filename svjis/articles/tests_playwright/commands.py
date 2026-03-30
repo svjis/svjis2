@@ -325,7 +325,7 @@ def fill_users(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-users'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
-        page.click('text=' + _('Users'))
+        page.click('text=' + _('Back to list'))
 
 
 def fill_board(cls, page):
