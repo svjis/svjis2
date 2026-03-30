@@ -414,5 +414,5 @@ def get_fault_asset(request, slug, filename):
         raise Http404()
 
     # Get file
-    asset = get_object_or_404(models.FaultAsset, file=f"faults/{slug}/{safe_name}")
+    asset = get_object_or_404(models.FaultAsset, file=f"{models.MEDIA_FAULT_ASSETS_DIR}/{slug}/{safe_name}")
     return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)
