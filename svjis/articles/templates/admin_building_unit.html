@@ -66,7 +66,7 @@
 
     {% if object_list %}
     {% for obj in object_list %}
-    <tr>
+    <tr id="unit_{{ obj.pk }}">
         <td class="list hide-in-mobile">{{ forloop.counter }}</td>
         <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>

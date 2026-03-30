@@ -340,7 +340,8 @@ def admin_building_unit_save_view(request):
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
 
-    return redirect(admin_building_unit_view)
+    qs = f"#unit_{obj.pk}"
+    return redirect(reverse(admin_building_unit_view) + qs)
 
 
 @permission_required(svjis_edit_admin_building)
@@ -546,7 +547,8 @@ def admin_user_save_view(request):
         return redirect(reverse('admin_user_edit', kwargs={'pk': pk}))
 
     messages.info(request, _('Saved'))
-    return redirect(admin_user_view)
+    qs = f"#user_{u.id}"
+    return redirect(reverse(admin_user_view) + qs)
 
 
 @permission_required(svjis_edit_admin_users)

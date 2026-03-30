@@ -453,7 +453,6 @@ img.article-img {
 }
 
 .back_to_list {
-  display: none;
   text-align: center;
   padding: 15px 0px;
 }
@@ -1080,10 +1079,6 @@ footer a:hover {
 
   .article-detail {
     overflow: scroll;
-  }
-
-  .back_to_list {
-    display: block;
   }
 
   /* Advert */
