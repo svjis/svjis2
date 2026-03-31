@@ -111,6 +111,23 @@ table.detail td {
   cursor: default;
 }
 
+.black-button {
+  font-family:"arial",sans-serif;
+  color: #ffffff; /* barva textu */
+  text-decoration: none; /* odebrat podtržení u odkazů */
+  user-select: none; /* zakázat označování textu */
+  background: #2F2F2F; /* pozadí tlačítka */
+  padding: .3em .6em; /* odsazení od textu */
+  border: none;
+  border-radius: 5px;
+}
+
+.black-button:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: default;
+}
+
 fieldset {
   border: 1px solid #c3c3c3;
   width: 100%;
