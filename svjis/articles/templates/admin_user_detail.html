@@ -97,7 +97,7 @@
 </table>
 
 <div class="back_to_list">
-    [<a href="{% url 'admin_user' %}#user_{{ usr.id }}">&lt;&lt;&nbsp{% translate 'Back to list' %}</a>]
+    <a class="black-button" href="{% url 'admin_user' %}#user_{{ usr.id }}">&lt;&lt;&nbsp{% translate 'Back to list' %}</a>
 </div>
 
 {% endblock content %}
