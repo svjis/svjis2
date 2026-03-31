@@ -1,0 +1,103 @@
+{% extends "base-with-aside-menu-content.html" %}
+
+{% load article_filters i18n %}
+
+{% block content %}
+
+<h1 id="person" class="page-title">{{ usr.first_name }} {{ usr.last_name }}</h1>
+<a class="black-button" href="{% url 'admin_user_edit' pk=usr.pk %}">{% translate 'Modify user' %}</a>
+
+<table class="detail full-width" aria-describedby="person">
+    <tr>
+        <th class="detail" scope="row">{% translate 'Salutation' %}</th>
+        <td class="detail">{{ profile.salutation }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'First name' %}</th>
+        <td class="detail">{{ usr.first_name }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Last name' %}</th>
+        <td class="detail">{{ usr.last_name }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Internal note' %}</th>
+        <td class="detail">{{ profile.internal_note }}</td>
+    </tr>
+</table>
+
+<h2 id="contact">{% translate 'Contact information' %}</h2>
+
+<table class="detail full-width" aria-describedby="contact">
+    <tr>
+        <th class="detail" scope="row">{% translate 'Address' %}</th>
+        <td class="detail">{{ profile.address }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'City' %}</th>
+        <td class="detail">{{ profile.city }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Post code' %}</th>
+        <td class="detail">{{ profile.post_code }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Country' %}</th>
+        <td class="detail">{{ profile.country }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Phone' %}</th>
+        <td class="detail">{{ profile.phone }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'E-Mail' %}</th>
+        <td class="detail"><a href="mailto:{{ usr.email }}">{{ usr.email }}</a></td>
+    </tr>
+</table>
+
+<h2 id="account">{% translate 'Login information' %}</h2>
+
+<table class="detail full-width" aria-describedby="account">
+    <tr>
+        <th class="detail" scope="row">{% translate 'Username' %}</th>
+        <td class="detail">{{ usr.username }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Active' %}</th>
+        <td class="detail">{{ usr.is_active|yes_no }}</td>
+    </tr>
+    <tr>
+        <th class="detail" scope="row">{% translate 'Member of' %}</th>
+        <td class="detail">
+            <ul>
+                {% for grp in user_group_list %}
+                <li>{{ grp.name }}</li>
+                {% endfor %}
+            </ul>
+
+        </td>
+    </tr>
+</table>
+
+<h2 id="units">{% translate 'Building units' %}</h2>
+<a class="black-button" href="{% url 'admin_user_owns' pk=usr.pk %}">{% translate 'Modify units' %}</a>
+
+<table class="detail full-width" aria-describedby="units">
+    <tr>
+        <th class="detail" scope="row">{% translate 'Units' %}</th>
+        <td class="detail">
+            <ul>
+                {% for unit in usr.buildingunit_set.all|dictsort:'id' %}
+                <li><a href="{% url 'admin_building_unit_owners' pk=unit.pk %}">{{ unit.type.description }} - {{ unit.registration_id }} - {{ unit.description }}</a></li>
+                {% endfor %}
+            </ul>
+
+        </td>
+    </tr>
+</table>
+
+<div class="back_to_list">
+    [<a href="{% url 'admin_user' %}#user_{{ usr.id }}">&lt;&lt;&nbsp{% translate 'Back to list' %}</a>]
+</div>
+
+{% endblock content %}

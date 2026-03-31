@@ -325,6 +325,7 @@ def fill_users(cls, page):
         page.click('id=submit')
         scrshot(page, get_filename(cls, 'admin-users'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
+        page.click('text=' + _('Back to list'))
 
 
 def fill_board(cls, page):
@@ -360,7 +361,8 @@ def fill_user_units(cls, page):
     ]
     for e in data:
         menu(page, _('Administration'), _('Users'), False)
-        click_link_in_row(page, e['user'], 1)
+        click_link_in_row(page, e['user'], 0)
+        page.get_by_text(_('Modify units')).click()
         scrshot(page, get_filename(cls, 'admin-user-units'))
         page.select_option('[id=owner-input]', label=e['unit'])
         page.click('id=submit')
@@ -372,7 +374,7 @@ def fill_user_units(cls, page):
 def show_about(cls, page):
     menu(page, _('Administration'), _('About application'), True)
     scrshot(page, get_filename(cls, 'admin-about'))
-    expect(page.locator('table.list').get_by_text('Django')).to_be_visible()
+    expect(page.locator('table.detail').get_by_text('Django')).to_be_visible()
 
 
 # Redaction
