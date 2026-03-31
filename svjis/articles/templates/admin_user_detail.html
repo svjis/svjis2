@@ -88,7 +88,7 @@
         <td class="detail">
             <ul>
                 {% for unit in usr.buildingunit_set.all|dictsort:'id' %}
-                <li>{{ unit.type.description }} - {{ unit.registration_id }} - {{ unit.description }}</li>
+                <li><a href="{% url 'admin_building_unit_owners' pk=unit.pk %}">{{ unit.type.description }} - {{ unit.registration_id }} - {{ unit.description }}</a></li>
                 {% endfor %}
             </ul>
 
