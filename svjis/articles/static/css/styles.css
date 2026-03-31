@@ -963,7 +963,7 @@ footer a:hover {
   border-color: #ff8ec4;
   border-width: 1px;
   border-style: solid;
-  padding:10px 15px 15px 10px;
+  padding:10px 15px 10px 15px;
   position:relative;
   margin:10px 0 0 0;
 }
@@ -973,7 +973,7 @@ footer a:hover {
   border-color: #cee67e;
   border-width: 1px;
   border-style: solid;
-  padding:10px 15px 15px 10px;
+  padding:10px 15px 10px 15px;
   position:relative;
   margin:10px 0 0 0;
 }
