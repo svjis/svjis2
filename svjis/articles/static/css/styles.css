@@ -117,7 +117,7 @@ table.detail td {
   text-decoration: none; /* odebrat podtržení u odkazů */
   user-select: none; /* zakázat označování textu */
   background: #2F2F2F; /* pozadí tlačítka */
-  padding: .3em .6em; /* odsazení od textu */
+  padding: .3em 1.2em; /* odsazení od textu */
   border: none;
   border-radius: 5px;
 }
