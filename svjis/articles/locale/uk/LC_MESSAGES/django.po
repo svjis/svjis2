@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-31 10:39+0200\n"
+"POT-Creation-Date: 2026-03-31 14:11+0200\n"
 "PO-Revision-Date: 2026-01-30 14:25+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/svjis/"
@@ -220,7 +220,7 @@ msgid "Can view Phonelist"
 msgstr "Може переглядати список телефонів"
 
 #: articles/models.py:281 articles/models.py:313 articles/models.py:555
-#: articles/templates/admin_user.html:55
+#: articles/templates/admin_user.html:53
 #: articles/templates/admin_user_detail.html:53
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -376,7 +376,7 @@ msgid "Advert"
 msgstr "Оголошення"
 
 #: articles/templates/admin_about.html:7
-#: articles/tests_playwright/commands.py:374 articles/views_admin.py:84
+#: articles/tests_playwright/commands.py:375 articles/views_admin.py:84
 msgid "About application"
 msgstr ""
 
@@ -422,7 +422,6 @@ msgstr "Член"
 #: articles/templates/admin_entrance.html:23
 #: articles/templates/admin_group.html:23
 #: articles/templates/admin_preferences.html:23
-#: articles/templates/admin_user.html:64
 #: articles/templates/adverts_list.html:23 articles/templates/fault.html:10
 #: articles/templates/redaction_article.html:26
 #: articles/templates/redaction_menu.html:24
@@ -502,6 +501,7 @@ msgid "Export to Excel"
 msgstr "Експорт в Excel"
 
 #: articles/templates/admin_building_unit.html:72
+#: articles/templates/admin_building_unit_owners_edit.html:13
 #: articles/templates/admin_user_ownes_edit.html:23
 msgid "Owners"
 msgstr "Власники"
@@ -511,14 +511,7 @@ msgstr "Власники"
 msgid "Building unit"
 msgstr "Помешкання"
 
-#: articles/templates/admin_building_unit_owners_edit.html:13
-#, fuzzy
-#| msgid "Owners"
-msgid "Owner"
-msgstr "Власники"
-
 #: articles/templates/admin_building_unit_owners_edit.html:21
-#: articles/templates/admin_user.html:65
 #: articles/templates/admin_user_detail.html:87
 msgid "Units"
 msgstr "Одиниці"
@@ -609,36 +602,36 @@ msgstr "Новий користувач"
 msgid "Deactivated users"
 msgstr "Деактивовані користувачі"
 
-#: articles/templates/admin_user.html:52
+#: articles/templates/admin_user.html:50
 #: articles/templates/admin_user_detail.html:20
 #: articles/templates/redaction_article_notifications.html:17
 msgid "Last name"
 msgstr "Прізвище"
 
-#: articles/templates/admin_user.html:53
+#: articles/templates/admin_user.html:51
 #: articles/templates/admin_user_detail.html:16
 #: articles/templates/redaction_article_notifications.html:18
 msgid "First name"
 msgstr "Ім'я"
 
-#: articles/templates/admin_user.html:54
+#: articles/templates/admin_user.html:52
 #: articles/templates/admin_user_detail.html:66
 msgid "Active"
 msgstr "Активний"
 
-#: articles/templates/admin_user.html:56
+#: articles/templates/admin_user.html:54
 msgid "Last login"
 msgstr "Останній вхід"
 
-#: articles/templates/admin_user.html:63
+#: articles/templates/admin_user.html:61
 msgid "Detail"
 msgstr ""
 
 #: articles/templates/admin_user_detail.html:8
-#: articles/templates/admin_user_detail.html:83
-#: articles/templates/article.html:40 articles/templates/fault.html:111
-msgid "Modify"
-msgstr ""
+#, fuzzy
+#| msgid "Modified"
+msgid "Modify user"
+msgstr "Змінено"
 
 #: articles/templates/admin_user_detail.html:29
 #: articles/templates/admin_user_edit.html:32
@@ -660,6 +653,13 @@ msgstr "Користувач"
 #: articles/templates/admin_user_edit.html:83
 msgid "Member of"
 msgstr "Є членом"
+
+#: articles/templates/admin_user_detail.html:83
+#: articles/tests_playwright/commands.py:365
+#, fuzzy
+#| msgid "My units"
+msgid "Modify units"
+msgstr "Мої одиниці"
 
 #: articles/templates/admin_user_detail.html:100
 #: articles/tests_playwright/commands.py:328
@@ -689,8 +689,8 @@ msgid "Back to user"
 msgstr "Повернутися до списку заявок"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
-#: articles/tests_playwright/commands.py:786
-#: articles/tests_playwright/commands.py:798 articles/utils.py:79
+#: articles/tests_playwright/commands.py:787
+#: articles/tests_playwright/commands.py:799 articles/utils.py:79
 #: articles/views_adverts.py:84 articles/views_adverts.py:107
 msgid "Adverts"
 msgstr "Оголошення"
@@ -716,7 +716,7 @@ msgid "Upload"
 msgstr "Завантажити файл"
 
 #: articles/templates/adverts_list.html:10
-#: articles/tests_playwright/commands.py:788
+#: articles/tests_playwright/commands.py:789
 msgid "Create new advert"
 msgstr "Створити нове оголошення"
 
@@ -731,6 +731,10 @@ msgstr "Автор"
 #: articles/templates/article.html:36 articles/templates/fault.html:107
 msgid "Comments"
 msgstr "Коментарі"
+
+#: articles/templates/article.html:40 articles/templates/fault.html:111
+msgid "Modify"
+msgstr ""
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -755,7 +759,7 @@ msgstr ""
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
-#: articles/tests_playwright/commands.py:496 articles/views_redaction.py:40
+#: articles/tests_playwright/commands.py:497 articles/views_redaction.py:40
 #: articles/views_redaction.py:340
 msgid "News"
 msgstr "Актуальне"
@@ -779,7 +783,7 @@ msgid "Top articles"
 msgstr "Найпопулярніші статті"
 
 #: articles/templates/box-useful-links.html:7
-#: articles/tests_playwright/commands.py:558 articles/views_redaction.py:46
+#: articles/tests_playwright/commands.py:559 articles/views_redaction.py:46
 #: articles/views_redaction.py:416
 msgid "Useful Links"
 msgstr "Корисні посилання"
@@ -789,7 +793,7 @@ msgid "Paper clip"
 msgstr "Канцелярська скрепка"
 
 #: articles/templates/contact_phonelist.html:7
-#: articles/tests_playwright/commands.py:664 articles/views_contact.py:22
+#: articles/tests_playwright/commands.py:665 articles/views_contact.py:22
 msgid "Phonelist"
 msgstr "Телефонний довідник"
 
@@ -810,17 +814,17 @@ msgstr "Продовжити"
 msgid "here"
 msgstr "тут"
 
-#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:744
+#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:745
 msgid "Take ticket"
 msgstr "Взяти заявку на розв'язання"
 
-#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:746
-#: articles/tests_playwright/commands.py:753
-#: articles/tests_playwright/commands.py:755
+#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:747
+#: articles/tests_playwright/commands.py:754
+#: articles/tests_playwright/commands.py:756
 msgid "Close ticket"
 msgstr "Закрити заявку"
 
-#: articles/templates/fault.html:22 articles/tests_playwright/commands.py:762
+#: articles/templates/fault.html:22 articles/tests_playwright/commands.py:763
 msgid "View log"
 msgstr "Переглянути журнал"
 
@@ -868,7 +872,7 @@ msgid "Back to ticket"
 msgstr "Назад до заявки"
 
 #: articles/templates/faults_list.html:10
-#: articles/tests_playwright/commands.py:712
+#: articles/tests_playwright/commands.py:713
 msgid "Report fault or request"
 msgstr "Повідомити про несправність або подати запит"
 
@@ -903,7 +907,7 @@ msgid "Lost password"
 msgstr "Забули пароль"
 
 #: articles/templates/login_page.html:8
-#: articles/tests_playwright/commands.py:647
+#: articles/tests_playwright/commands.py:648
 msgid "Sign in to your account"
 msgstr "Увійдіть до свого облікового запису"
 
@@ -928,7 +932,7 @@ msgid "Preferred language"
 msgstr "Бажана мова"
 
 #: articles/templates/personal_settings_password.html:11
-#: articles/tests_playwright/commands.py:687
+#: articles/tests_playwright/commands.py:688
 #: articles/views_personal_settings.py:39
 msgid "Password change"
 msgstr "Зміна пароля"
@@ -990,7 +994,7 @@ msgid "Human"
 msgstr "Людина"
 
 #: articles/templates/redaction_article.html:8
-#: articles/tests_playwright/commands.py:434
+#: articles/tests_playwright/commands.py:435
 msgid "Create new article"
 msgstr "Створити нову статтю"
 
@@ -1036,11 +1040,11 @@ msgid "Level"
 msgstr "Рівень"
 
 #: articles/templates/redaction_menu.html:18
-#: articles/tests_playwright/commands.py:432
-#: articles/tests_playwright/commands.py:474
-#: articles/tests_playwright/commands.py:583
-#: articles/tests_playwright/commands.py:602
-#: articles/tests_playwright/commands.py:628 articles/utils.py:49
+#: articles/tests_playwright/commands.py:433
+#: articles/tests_playwright/commands.py:475
+#: articles/tests_playwright/commands.py:584
+#: articles/tests_playwright/commands.py:603
+#: articles/tests_playwright/commands.py:629 articles/utils.py:49
 #: articles/views.py:150 articles/views.py:223 articles/views.py:260
 #: articles/views_redaction.py:34
 msgid "Articles"
@@ -1051,7 +1055,7 @@ msgid "Menu entry"
 msgstr "Пункт меню"
 
 #: articles/templates/redaction_news.html:8
-#: articles/tests_playwright/commands.py:498
+#: articles/tests_playwright/commands.py:499
 msgid "Create new news"
 msgstr "Створити новину"
 
@@ -1060,7 +1064,7 @@ msgid "Do you want to delete this news"
 msgstr "Ви хочете видалити цю новину"
 
 #: articles/templates/redaction_survey.html:8
-#: articles/tests_playwright/commands.py:519
+#: articles/tests_playwright/commands.py:520
 msgid "Create new survey"
 msgstr "Створити нове опитування"
 
@@ -1120,7 +1124,7 @@ msgid "Voting log"
 msgstr "Журнал голосувань"
 
 #: articles/templates/redaction_useful_link.html:8
-#: articles/tests_playwright/commands.py:560
+#: articles/tests_playwright/commands.py:561
 msgid "Create new useful link"
 msgstr "Створити нове корисне посилання"
 
@@ -1152,7 +1156,7 @@ msgstr "Ваша електронна адреса"
 #: articles/tests_playwright/commands.py:301
 #: articles/tests_playwright/commands.py:338
 #: articles/tests_playwright/commands.py:363
-#: articles/tests_playwright/commands.py:374 articles/utils.py:85
+#: articles/tests_playwright/commands.py:375 articles/utils.py:85
 #: articles/views_admin.py:99 articles/views_admin.py:138
 #: articles/views_admin.py:155 articles/views_admin.py:198
 #: articles/views_admin.py:225 articles/views_admin.py:242
@@ -1172,13 +1176,13 @@ msgstr "Адміністрування"
 #: articles/tests_playwright/commands.py:193
 #: articles/tests_playwright/commands.py:327
 #: articles/tests_playwright/commands.py:348
-#: articles/tests_playwright/commands.py:457
-#: articles/tests_playwright/commands.py:505
-#: articles/tests_playwright/commands.py:533
-#: articles/tests_playwright/commands.py:569
-#: articles/tests_playwright/commands.py:678
-#: articles/tests_playwright/commands.py:720
-#: articles/tests_playwright/commands.py:797 articles/views_admin.py:113
+#: articles/tests_playwright/commands.py:458
+#: articles/tests_playwright/commands.py:506
+#: articles/tests_playwright/commands.py:534
+#: articles/tests_playwright/commands.py:570
+#: articles/tests_playwright/commands.py:679
+#: articles/tests_playwright/commands.py:721
+#: articles/tests_playwright/commands.py:798 articles/views_admin.py:113
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:549
@@ -1196,12 +1200,12 @@ msgstr "Збережено"
 msgid "Users"
 msgstr "Користувачі"
 
-#: articles/tests_playwright/commands.py:432
-#: articles/tests_playwright/commands.py:474
-#: articles/tests_playwright/commands.py:496
-#: articles/tests_playwright/commands.py:517
-#: articles/tests_playwright/commands.py:558
-#: articles/tests_playwright/commands.py:638 articles/utils.py:67
+#: articles/tests_playwright/commands.py:433
+#: articles/tests_playwright/commands.py:475
+#: articles/tests_playwright/commands.py:497
+#: articles/tests_playwright/commands.py:518
+#: articles/tests_playwright/commands.py:559
+#: articles/tests_playwright/commands.py:639 articles/utils.py:67
 #: articles/views_redaction.py:99 articles/views_redaction.py:116
 #: articles/views_redaction.py:187 articles/views_redaction.py:215
 #: articles/views_redaction.py:283 articles/views_redaction.py:303
@@ -1212,43 +1216,43 @@ msgstr "Користувачі"
 msgid "Redaction"
 msgstr "Редакція"
 
-#: articles/tests_playwright/commands.py:517
-#: articles/tests_playwright/commands.py:638 articles/views_redaction.py:52
+#: articles/tests_playwright/commands.py:518
+#: articles/tests_playwright/commands.py:639 articles/views_redaction.py:52
 #: articles/views_redaction.py:489
 msgid "Surveys"
 msgstr "Опитування"
 
-#: articles/tests_playwright/commands.py:583
-#: articles/tests_playwright/commands.py:602
-#: articles/tests_playwright/commands.py:628
+#: articles/tests_playwright/commands.py:584
+#: articles/tests_playwright/commands.py:603
+#: articles/tests_playwright/commands.py:629
 #: articles/tests_playwright/test_desktop.py:106 articles/views.py:27
 #: articles/views.py:29 articles/views.py:102
 msgid "All articles"
 msgstr "Всі статті"
 
-#: articles/tests_playwright/commands.py:662
-#: articles/tests_playwright/commands.py:664 articles/utils.py:55
+#: articles/tests_playwright/commands.py:663
+#: articles/tests_playwright/commands.py:665 articles/utils.py:55
 #: articles/views_contact.py:16 articles/views_contact.py:35
 #: articles/views_contact.py:52
 msgid "Contact"
 msgstr "Контакти"
 
-#: articles/tests_playwright/commands.py:672
-#: articles/tests_playwright/commands.py:682
-#: articles/tests_playwright/commands.py:687 articles/utils.py:61
+#: articles/tests_playwright/commands.py:673
+#: articles/tests_playwright/commands.py:683
+#: articles/tests_playwright/commands.py:688 articles/utils.py:61
 msgid "Personal settings"
 msgstr "Особисті налаштування"
 
-#: articles/tests_playwright/commands.py:682
+#: articles/tests_playwright/commands.py:683
 #: articles/views_personal_settings.py:33
 msgid "My units"
 msgstr "Мої одиниці"
 
-#: articles/tests_playwright/commands.py:710
-#: articles/tests_playwright/commands.py:731
-#: articles/tests_playwright/commands.py:741
-#: articles/tests_playwright/commands.py:750
-#: articles/tests_playwright/commands.py:759 articles/utils.py:73
+#: articles/tests_playwright/commands.py:711
+#: articles/tests_playwright/commands.py:732
+#: articles/tests_playwright/commands.py:742
+#: articles/tests_playwright/commands.py:751
+#: articles/tests_playwright/commands.py:760 articles/utils.py:73
 #: articles/views_faults.py:78 articles/views_faults.py:92
 #: articles/views_faults.py:111 articles/views_faults.py:131
 #: articles/views_faults.py:144 articles/views_faults.py:311
@@ -1256,15 +1260,15 @@ msgstr "Мої одиниці"
 msgid "Fault reporting"
 msgstr "Звітування про несправності"
 
-#: articles/tests_playwright/commands.py:710
-#: articles/tests_playwright/commands.py:731
-#: articles/tests_playwright/commands.py:741
-#: articles/tests_playwright/commands.py:750 articles/views_faults.py:22
+#: articles/tests_playwright/commands.py:711
+#: articles/tests_playwright/commands.py:732
+#: articles/tests_playwright/commands.py:742
+#: articles/tests_playwright/commands.py:751 articles/views_faults.py:22
 msgid "Open"
 msgstr "Невирішені"
 
-#: articles/tests_playwright/commands.py:786
-#: articles/tests_playwright/commands.py:798 articles/views_adverts.py:21
+#: articles/tests_playwright/commands.py:787
+#: articles/tests_playwright/commands.py:799 articles/views_adverts.py:21
 #: articles/views_adverts.py:63
 msgid "All"
 msgstr "Всі"
@@ -1360,3 +1364,8 @@ msgstr "Аналітика"
 #: articles/views_redaction.py:662
 msgid "Data for last {} days."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Owners"
+#~ msgid "Owner"
+#~ msgstr "Власники"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-31 10:39+0200\n"
+"POT-Creation-Date: 2026-03-31 14:11+0200\n"
 "PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/svjis/svjis2/"
@@ -217,7 +217,7 @@ msgid "Can view Phonelist"
 msgstr "Mag de bellijst bekijken"
 
 #: articles/models.py:281 articles/models.py:313 articles/models.py:555
-#: articles/templates/admin_user.html:55
+#: articles/templates/admin_user.html:53
 #: articles/templates/admin_user_detail.html:53
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -373,7 +373,7 @@ msgid "Advert"
 msgstr "Reclame"
 
 #: articles/templates/admin_about.html:7
-#: articles/tests_playwright/commands.py:374 articles/views_admin.py:84
+#: articles/tests_playwright/commands.py:375 articles/views_admin.py:84
 msgid "About application"
 msgstr "Over dit programma"
 
@@ -419,7 +419,6 @@ msgstr "Lid"
 #: articles/templates/admin_entrance.html:23
 #: articles/templates/admin_group.html:23
 #: articles/templates/admin_preferences.html:23
-#: articles/templates/admin_user.html:64
 #: articles/templates/adverts_list.html:23 articles/templates/fault.html:10
 #: articles/templates/redaction_article.html:26
 #: articles/templates/redaction_menu.html:24
@@ -499,6 +498,7 @@ msgid "Export to Excel"
 msgstr "Exporteren naar Excel"
 
 #: articles/templates/admin_building_unit.html:72
+#: articles/templates/admin_building_unit_owners_edit.html:13
 #: articles/templates/admin_user_ownes_edit.html:23
 msgid "Owners"
 msgstr "Eigenaars"
@@ -508,14 +508,7 @@ msgstr "Eigenaars"
 msgid "Building unit"
 msgstr "Gebouweenheid"
 
-#: articles/templates/admin_building_unit_owners_edit.html:13
-#, fuzzy
-#| msgid "Owners"
-msgid "Owner"
-msgstr "Eigenaars"
-
 #: articles/templates/admin_building_unit_owners_edit.html:21
-#: articles/templates/admin_user.html:65
 #: articles/templates/admin_user_detail.html:87
 msgid "Units"
 msgstr "Eenheden"
@@ -606,35 +599,35 @@ msgstr "Gebruiker toevoegen"
 msgid "Deactivated users"
 msgstr "Uitgeschakelde gebruikers"
 
-#: articles/templates/admin_user.html:52
+#: articles/templates/admin_user.html:50
 #: articles/templates/admin_user_detail.html:20
 #: articles/templates/redaction_article_notifications.html:17
 msgid "Last name"
 msgstr "Achternaam"
 
-#: articles/templates/admin_user.html:53
+#: articles/templates/admin_user.html:51
 #: articles/templates/admin_user_detail.html:16
 #: articles/templates/redaction_article_notifications.html:18
 msgid "First name"
 msgstr "Voornaam"
 
-#: articles/templates/admin_user.html:54
+#: articles/templates/admin_user.html:52
 #: articles/templates/admin_user_detail.html:66
 msgid "Active"
 msgstr "Actief"
 
-#: articles/templates/admin_user.html:56
+#: articles/templates/admin_user.html:54
 msgid "Last login"
 msgstr "Recentste aanmelding"
 
-#: articles/templates/admin_user.html:63
+#: articles/templates/admin_user.html:61
 msgid "Detail"
 msgstr ""
 
 #: articles/templates/admin_user_detail.html:8
-#: articles/templates/admin_user_detail.html:83
-#: articles/templates/article.html:40 articles/templates/fault.html:111
-msgid "Modify"
+#, fuzzy
+#| msgid "Modify"
+msgid "Modify user"
 msgstr "Bewerken"
 
 #: articles/templates/admin_user_detail.html:29
@@ -657,6 +650,13 @@ msgstr "Gebruikersnaam"
 #: articles/templates/admin_user_edit.html:83
 msgid "Member of"
 msgstr "Lid van"
+
+#: articles/templates/admin_user_detail.html:83
+#: articles/tests_playwright/commands.py:365
+#, fuzzy
+#| msgid "My units"
+msgid "Modify units"
+msgstr "Mijn eenheden"
 
 #: articles/templates/admin_user_detail.html:100
 #: articles/tests_playwright/commands.py:328
@@ -686,8 +686,8 @@ msgid "Back to user"
 msgstr "Terug naar reparatielijst"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
-#: articles/tests_playwright/commands.py:786
-#: articles/tests_playwright/commands.py:798 articles/utils.py:79
+#: articles/tests_playwright/commands.py:787
+#: articles/tests_playwright/commands.py:799 articles/utils.py:79
 #: articles/views_adverts.py:84 articles/views_adverts.py:107
 msgid "Adverts"
 msgstr "Reclames"
@@ -713,7 +713,7 @@ msgid "Upload"
 msgstr "Uploaden"
 
 #: articles/templates/adverts_list.html:10
-#: articles/tests_playwright/commands.py:788
+#: articles/tests_playwright/commands.py:789
 msgid "Create new advert"
 msgstr "Reclame maken"
 
@@ -728,6 +728,10 @@ msgstr "Maker"
 #: articles/templates/article.html:36 articles/templates/fault.html:107
 msgid "Comments"
 msgstr "Reacties"
+
+#: articles/templates/article.html:40 articles/templates/fault.html:111
+msgid "Modify"
+msgstr "Bewerken"
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -752,7 +756,7 @@ msgstr "Reactie bewerken"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
-#: articles/tests_playwright/commands.py:496 articles/views_redaction.py:40
+#: articles/tests_playwright/commands.py:497 articles/views_redaction.py:40
 #: articles/views_redaction.py:340
 msgid "News"
 msgstr "Nieuws"
@@ -776,7 +780,7 @@ msgid "Top articles"
 msgstr "Topartikelen"
 
 #: articles/templates/box-useful-links.html:7
-#: articles/tests_playwright/commands.py:558 articles/views_redaction.py:46
+#: articles/tests_playwright/commands.py:559 articles/views_redaction.py:46
 #: articles/views_redaction.py:416
 msgid "Useful Links"
 msgstr "Nuttige links"
@@ -786,7 +790,7 @@ msgid "Paper clip"
 msgstr "Paperclip"
 
 #: articles/templates/contact_phonelist.html:7
-#: articles/tests_playwright/commands.py:664 articles/views_contact.py:22
+#: articles/tests_playwright/commands.py:665 articles/views_contact.py:22
 msgid "Phonelist"
 msgstr "Bellijst"
 
@@ -808,17 +812,17 @@ msgstr "Doorgaan"
 msgid "here"
 msgstr "hier"
 
-#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:744
+#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:745
 msgid "Take ticket"
 msgstr "Ticket aannemen"
 
-#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:746
-#: articles/tests_playwright/commands.py:753
-#: articles/tests_playwright/commands.py:755
+#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:747
+#: articles/tests_playwright/commands.py:754
+#: articles/tests_playwright/commands.py:756
 msgid "Close ticket"
 msgstr "Ticket sluiten"
 
-#: articles/templates/fault.html:22 articles/tests_playwright/commands.py:762
+#: articles/templates/fault.html:22 articles/tests_playwright/commands.py:763
 msgid "View log"
 msgstr "Logboek bekijken"
 
@@ -866,7 +870,7 @@ msgid "Back to ticket"
 msgstr "Terug naar ticket"
 
 #: articles/templates/faults_list.html:10
-#: articles/tests_playwright/commands.py:712
+#: articles/tests_playwright/commands.py:713
 msgid "Report fault or request"
 msgstr "Reparatie of verzoek melden"
 
@@ -901,7 +905,7 @@ msgid "Lost password"
 msgstr "Wachtwoord vergeten"
 
 #: articles/templates/login_page.html:8
-#: articles/tests_playwright/commands.py:647
+#: articles/tests_playwright/commands.py:648
 msgid "Sign in to your account"
 msgstr "Meld u aan met uw account"
 
@@ -926,7 +930,7 @@ msgid "Preferred language"
 msgstr "Voorkeurstaal"
 
 #: articles/templates/personal_settings_password.html:11
-#: articles/tests_playwright/commands.py:687
+#: articles/tests_playwright/commands.py:688
 #: articles/views_personal_settings.py:39
 msgid "Password change"
 msgstr "Wachtwoord wĳzigen"
@@ -988,7 +992,7 @@ msgid "Human"
 msgstr "Mens"
 
 #: articles/templates/redaction_article.html:8
-#: articles/tests_playwright/commands.py:434
+#: articles/tests_playwright/commands.py:435
 msgid "Create new article"
 msgstr "Artikel opstellen"
 
@@ -1034,11 +1038,11 @@ msgid "Level"
 msgstr "Niveau"
 
 #: articles/templates/redaction_menu.html:18
-#: articles/tests_playwright/commands.py:432
-#: articles/tests_playwright/commands.py:474
-#: articles/tests_playwright/commands.py:583
-#: articles/tests_playwright/commands.py:602
-#: articles/tests_playwright/commands.py:628 articles/utils.py:49
+#: articles/tests_playwright/commands.py:433
+#: articles/tests_playwright/commands.py:475
+#: articles/tests_playwright/commands.py:584
+#: articles/tests_playwright/commands.py:603
+#: articles/tests_playwright/commands.py:629 articles/utils.py:49
 #: articles/views.py:150 articles/views.py:223 articles/views.py:260
 #: articles/views_redaction.py:34
 msgid "Articles"
@@ -1049,7 +1053,7 @@ msgid "Menu entry"
 msgstr "Menu-item"
 
 #: articles/templates/redaction_news.html:8
-#: articles/tests_playwright/commands.py:498
+#: articles/tests_playwright/commands.py:499
 msgid "Create new news"
 msgstr "Nieuws toevoegen"
 
@@ -1058,7 +1062,7 @@ msgid "Do you want to delete this news"
 msgstr "Bevestig de verwijdering van"
 
 #: articles/templates/redaction_survey.html:8
-#: articles/tests_playwright/commands.py:519
+#: articles/tests_playwright/commands.py:520
 msgid "Create new survey"
 msgstr "Vragenlijst opstellen"
 
@@ -1118,7 +1122,7 @@ msgid "Voting log"
 msgstr "Stemlogboek"
 
 #: articles/templates/redaction_useful_link.html:8
-#: articles/tests_playwright/commands.py:560
+#: articles/tests_playwright/commands.py:561
 msgid "Create new useful link"
 msgstr "Nuttige link toevoegen"
 
@@ -1150,7 +1154,7 @@ msgstr "Mijn e-mailadres"
 #: articles/tests_playwright/commands.py:301
 #: articles/tests_playwright/commands.py:338
 #: articles/tests_playwright/commands.py:363
-#: articles/tests_playwright/commands.py:374 articles/utils.py:85
+#: articles/tests_playwright/commands.py:375 articles/utils.py:85
 #: articles/views_admin.py:99 articles/views_admin.py:138
 #: articles/views_admin.py:155 articles/views_admin.py:198
 #: articles/views_admin.py:225 articles/views_admin.py:242
@@ -1170,13 +1174,13 @@ msgstr "Beheer"
 #: articles/tests_playwright/commands.py:193
 #: articles/tests_playwright/commands.py:327
 #: articles/tests_playwright/commands.py:348
-#: articles/tests_playwright/commands.py:457
-#: articles/tests_playwright/commands.py:505
-#: articles/tests_playwright/commands.py:533
-#: articles/tests_playwright/commands.py:569
-#: articles/tests_playwright/commands.py:678
-#: articles/tests_playwright/commands.py:720
-#: articles/tests_playwright/commands.py:797 articles/views_admin.py:113
+#: articles/tests_playwright/commands.py:458
+#: articles/tests_playwright/commands.py:506
+#: articles/tests_playwright/commands.py:534
+#: articles/tests_playwright/commands.py:570
+#: articles/tests_playwright/commands.py:679
+#: articles/tests_playwright/commands.py:721
+#: articles/tests_playwright/commands.py:798 articles/views_admin.py:113
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:549
@@ -1194,12 +1198,12 @@ msgstr "Opgeslagen"
 msgid "Users"
 msgstr "Gebruikers"
 
-#: articles/tests_playwright/commands.py:432
-#: articles/tests_playwright/commands.py:474
-#: articles/tests_playwright/commands.py:496
-#: articles/tests_playwright/commands.py:517
-#: articles/tests_playwright/commands.py:558
-#: articles/tests_playwright/commands.py:638 articles/utils.py:67
+#: articles/tests_playwright/commands.py:433
+#: articles/tests_playwright/commands.py:475
+#: articles/tests_playwright/commands.py:497
+#: articles/tests_playwright/commands.py:518
+#: articles/tests_playwright/commands.py:559
+#: articles/tests_playwright/commands.py:639 articles/utils.py:67
 #: articles/views_redaction.py:99 articles/views_redaction.py:116
 #: articles/views_redaction.py:187 articles/views_redaction.py:215
 #: articles/views_redaction.py:283 articles/views_redaction.py:303
@@ -1210,43 +1214,43 @@ msgstr "Gebruikers"
 msgid "Redaction"
 msgstr "Redactie"
 
-#: articles/tests_playwright/commands.py:517
-#: articles/tests_playwright/commands.py:638 articles/views_redaction.py:52
+#: articles/tests_playwright/commands.py:518
+#: articles/tests_playwright/commands.py:639 articles/views_redaction.py:52
 #: articles/views_redaction.py:489
 msgid "Surveys"
 msgstr "Vragenlijsten"
 
-#: articles/tests_playwright/commands.py:583
-#: articles/tests_playwright/commands.py:602
-#: articles/tests_playwright/commands.py:628
+#: articles/tests_playwright/commands.py:584
+#: articles/tests_playwright/commands.py:603
+#: articles/tests_playwright/commands.py:629
 #: articles/tests_playwright/test_desktop.py:106 articles/views.py:27
 #: articles/views.py:29 articles/views.py:102
 msgid "All articles"
 msgstr "Alle artikelen"
 
-#: articles/tests_playwright/commands.py:662
-#: articles/tests_playwright/commands.py:664 articles/utils.py:55
+#: articles/tests_playwright/commands.py:663
+#: articles/tests_playwright/commands.py:665 articles/utils.py:55
 #: articles/views_contact.py:16 articles/views_contact.py:35
 #: articles/views_contact.py:52
 msgid "Contact"
 msgstr "Contactinformatie"
 
-#: articles/tests_playwright/commands.py:672
-#: articles/tests_playwright/commands.py:682
-#: articles/tests_playwright/commands.py:687 articles/utils.py:61
+#: articles/tests_playwright/commands.py:673
+#: articles/tests_playwright/commands.py:683
+#: articles/tests_playwright/commands.py:688 articles/utils.py:61
 msgid "Personal settings"
 msgstr "Persoonlijke instellingen"
 
-#: articles/tests_playwright/commands.py:682
+#: articles/tests_playwright/commands.py:683
 #: articles/views_personal_settings.py:33
 msgid "My units"
 msgstr "Mijn eenheden"
 
-#: articles/tests_playwright/commands.py:710
-#: articles/tests_playwright/commands.py:731
-#: articles/tests_playwright/commands.py:741
-#: articles/tests_playwright/commands.py:750
-#: articles/tests_playwright/commands.py:759 articles/utils.py:73
+#: articles/tests_playwright/commands.py:711
+#: articles/tests_playwright/commands.py:732
+#: articles/tests_playwright/commands.py:742
+#: articles/tests_playwright/commands.py:751
+#: articles/tests_playwright/commands.py:760 articles/utils.py:73
 #: articles/views_faults.py:78 articles/views_faults.py:92
 #: articles/views_faults.py:111 articles/views_faults.py:131
 #: articles/views_faults.py:144 articles/views_faults.py:311
@@ -1254,15 +1258,15 @@ msgstr "Mijn eenheden"
 msgid "Fault reporting"
 msgstr "Reparatiemelding"
 
-#: articles/tests_playwright/commands.py:710
-#: articles/tests_playwright/commands.py:731
-#: articles/tests_playwright/commands.py:741
-#: articles/tests_playwright/commands.py:750 articles/views_faults.py:22
+#: articles/tests_playwright/commands.py:711
+#: articles/tests_playwright/commands.py:732
+#: articles/tests_playwright/commands.py:742
+#: articles/tests_playwright/commands.py:751 articles/views_faults.py:22
 msgid "Open"
 msgstr "Openen"
 
-#: articles/tests_playwright/commands.py:786
-#: articles/tests_playwright/commands.py:798 articles/views_adverts.py:21
+#: articles/tests_playwright/commands.py:787
+#: articles/tests_playwright/commands.py:799 articles/views_adverts.py:21
 #: articles/views_adverts.py:63
 msgid "All"
 msgstr "Alles"
@@ -1355,6 +1359,11 @@ msgstr "Statistieken"
 #: articles/views_redaction.py:662
 msgid "Data for last {} days."
 msgstr "Gegevens van de afgelopen {} dagen."
+
+#, fuzzy
+#~| msgid "Owners"
+#~ msgid "Owner"
+#~ msgstr "Eigenaars"
 
 #~ msgid "Version"
 #~ msgstr "Versie"

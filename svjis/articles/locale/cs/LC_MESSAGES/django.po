@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-31 10:39+0200\n"
+"POT-Creation-Date: 2026-03-31 14:11+0200\n"
 "PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
@@ -217,7 +217,7 @@ msgid "Can view Phonelist"
 msgstr "Vidí seznam kontaktů"
 
 #: articles/models.py:281 articles/models.py:313 articles/models.py:555
-#: articles/templates/admin_user.html:55
+#: articles/templates/admin_user.html:53
 #: articles/templates/admin_user_detail.html:53
 #: articles/templates/adverts_list.html:40
 #: articles/templates/contact_company.html:36
@@ -373,7 +373,7 @@ msgid "Advert"
 msgstr "Inzerát"
 
 #: articles/templates/admin_about.html:7
-#: articles/tests_playwright/commands.py:374 articles/views_admin.py:84
+#: articles/tests_playwright/commands.py:375 articles/views_admin.py:84
 msgid "About application"
 msgstr "O aplikaci"
 
@@ -419,7 +419,6 @@ msgstr "Člen"
 #: articles/templates/admin_entrance.html:23
 #: articles/templates/admin_group.html:23
 #: articles/templates/admin_preferences.html:23
-#: articles/templates/admin_user.html:64
 #: articles/templates/adverts_list.html:23 articles/templates/fault.html:10
 #: articles/templates/redaction_article.html:26
 #: articles/templates/redaction_menu.html:24
@@ -499,6 +498,7 @@ msgid "Export to Excel"
 msgstr "Export do Excelu"
 
 #: articles/templates/admin_building_unit.html:72
+#: articles/templates/admin_building_unit_owners_edit.html:13
 #: articles/templates/admin_user_ownes_edit.html:23
 msgid "Owners"
 msgstr "Vlastníci"
@@ -508,12 +508,7 @@ msgstr "Vlastníci"
 msgid "Building unit"
 msgstr "Jednotka"
 
-#: articles/templates/admin_building_unit_owners_edit.html:13
-msgid "Owner"
-msgstr "Vlastník"
-
 #: articles/templates/admin_building_unit_owners_edit.html:21
-#: articles/templates/admin_user.html:65
 #: articles/templates/admin_user_detail.html:87
 msgid "Units"
 msgstr "Jednotky"
@@ -604,36 +599,34 @@ msgstr "Nový uživatel"
 msgid "Deactivated users"
 msgstr "Deaktivovaní uživatelé"
 
-#: articles/templates/admin_user.html:52
+#: articles/templates/admin_user.html:50
 #: articles/templates/admin_user_detail.html:20
 #: articles/templates/redaction_article_notifications.html:17
 msgid "Last name"
 msgstr "Příjmení"
 
-#: articles/templates/admin_user.html:53
+#: articles/templates/admin_user.html:51
 #: articles/templates/admin_user_detail.html:16
 #: articles/templates/redaction_article_notifications.html:18
 msgid "First name"
 msgstr "Křestní jméno"
 
-#: articles/templates/admin_user.html:54
+#: articles/templates/admin_user.html:52
 #: articles/templates/admin_user_detail.html:66
 msgid "Active"
 msgstr "Aktivní"
 
-#: articles/templates/admin_user.html:56
+#: articles/templates/admin_user.html:54
 msgid "Last login"
 msgstr "Poslední přihlášení"
 
-#: articles/templates/admin_user.html:63
+#: articles/templates/admin_user.html:61
 msgid "Detail"
 msgstr "Detail"
 
 #: articles/templates/admin_user_detail.html:8
-#: articles/templates/admin_user_detail.html:83
-#: articles/templates/article.html:40 articles/templates/fault.html:111
-msgid "Modify"
-msgstr "Upravit"
+msgid "Modify user"
+msgstr "Upravit uživatele"
 
 #: articles/templates/admin_user_detail.html:29
 #: articles/templates/admin_user_edit.html:32
@@ -655,6 +648,11 @@ msgstr "Uživatel"
 #: articles/templates/admin_user_edit.html:83
 msgid "Member of"
 msgstr "Je členem"
+
+#: articles/templates/admin_user_detail.html:83
+#: articles/tests_playwright/commands.py:365
+msgid "Modify units"
+msgstr "Upravit jednotky"
 
 #: articles/templates/admin_user_detail.html:100
 #: articles/tests_playwright/commands.py:328
@@ -680,8 +678,8 @@ msgid "Back to user"
 msgstr "Zpět na uživatele"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
-#: articles/tests_playwright/commands.py:786
-#: articles/tests_playwright/commands.py:798 articles/utils.py:79
+#: articles/tests_playwright/commands.py:787
+#: articles/tests_playwright/commands.py:799 articles/utils.py:79
 #: articles/views_adverts.py:84 articles/views_adverts.py:107
 msgid "Adverts"
 msgstr "Inzeráty"
@@ -707,7 +705,7 @@ msgid "Upload"
 msgstr "Nahrát soubor"
 
 #: articles/templates/adverts_list.html:10
-#: articles/tests_playwright/commands.py:788
+#: articles/tests_playwright/commands.py:789
 msgid "Create new advert"
 msgstr "Vytvořit nový inzerát"
 
@@ -722,6 +720,10 @@ msgstr "Autor"
 #: articles/templates/article.html:36 articles/templates/fault.html:107
 msgid "Comments"
 msgstr "Komentáře"
+
+#: articles/templates/article.html:40 articles/templates/fault.html:111
+msgid "Modify"
+msgstr "Upravit"
 
 #: articles/templates/article.html:51
 msgid "Stop watching discussion"
@@ -746,7 +748,7 @@ msgstr "Upravit komentář"
 
 #: articles/templates/box-news.html:7
 #: articles/templates/redaction_news_edit.html:7
-#: articles/tests_playwright/commands.py:496 articles/views_redaction.py:40
+#: articles/tests_playwright/commands.py:497 articles/views_redaction.py:40
 #: articles/views_redaction.py:340
 msgid "News"
 msgstr "Aktuálně"
@@ -770,7 +772,7 @@ msgid "Top articles"
 msgstr "Nejčtenější články"
 
 #: articles/templates/box-useful-links.html:7
-#: articles/tests_playwright/commands.py:558 articles/views_redaction.py:46
+#: articles/tests_playwright/commands.py:559 articles/views_redaction.py:46
 #: articles/views_redaction.py:416
 msgid "Useful Links"
 msgstr "Užitečné odkazy"
@@ -780,7 +782,7 @@ msgid "Paper clip"
 msgstr "Kancelářská sponka"
 
 #: articles/templates/contact_phonelist.html:7
-#: articles/tests_playwright/commands.py:664 articles/views_contact.py:22
+#: articles/tests_playwright/commands.py:665 articles/views_contact.py:22
 msgid "Phonelist"
 msgstr "Seznam kontaktů"
 
@@ -801,17 +803,17 @@ msgstr "Pokračujte"
 msgid "here"
 msgstr "zde"
 
-#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:744
+#: articles/templates/fault.html:14 articles/tests_playwright/commands.py:745
 msgid "Take ticket"
 msgstr "Vzít si tiket k řešení"
 
-#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:746
-#: articles/tests_playwright/commands.py:753
-#: articles/tests_playwright/commands.py:755
+#: articles/templates/fault.html:18 articles/tests_playwright/commands.py:747
+#: articles/tests_playwright/commands.py:754
+#: articles/tests_playwright/commands.py:756
 msgid "Close ticket"
 msgstr "Uzavřít tiket"
 
-#: articles/templates/fault.html:22 articles/tests_playwright/commands.py:762
+#: articles/templates/fault.html:22 articles/tests_playwright/commands.py:763
 msgid "View log"
 msgstr "Zobrazit log"
 
@@ -859,7 +861,7 @@ msgid "Back to ticket"
 msgstr "Zpět do tiketu"
 
 #: articles/templates/faults_list.html:10
-#: articles/tests_playwright/commands.py:712
+#: articles/tests_playwright/commands.py:713
 msgid "Report fault or request"
 msgstr "Nahlásit závadu nebo požadavek"
 
@@ -894,7 +896,7 @@ msgid "Lost password"
 msgstr "Zapomenuté heslo"
 
 #: articles/templates/login_page.html:8
-#: articles/tests_playwright/commands.py:647
+#: articles/tests_playwright/commands.py:648
 msgid "Sign in to your account"
 msgstr "Přihlaste se ke svému účtu"
 
@@ -919,7 +921,7 @@ msgid "Preferred language"
 msgstr "Preferovaný jazyk"
 
 #: articles/templates/personal_settings_password.html:11
-#: articles/tests_playwright/commands.py:687
+#: articles/tests_playwright/commands.py:688
 #: articles/views_personal_settings.py:39
 msgid "Password change"
 msgstr "Změna hesla"
@@ -981,7 +983,7 @@ msgid "Human"
 msgstr "Člověk"
 
 #: articles/templates/redaction_article.html:8
-#: articles/tests_playwright/commands.py:434
+#: articles/tests_playwright/commands.py:435
 msgid "Create new article"
 msgstr "Vytvořit nový článek"
 
@@ -1027,11 +1029,11 @@ msgid "Level"
 msgstr "Úroveň"
 
 #: articles/templates/redaction_menu.html:18
-#: articles/tests_playwright/commands.py:432
-#: articles/tests_playwright/commands.py:474
-#: articles/tests_playwright/commands.py:583
-#: articles/tests_playwright/commands.py:602
-#: articles/tests_playwright/commands.py:628 articles/utils.py:49
+#: articles/tests_playwright/commands.py:433
+#: articles/tests_playwright/commands.py:475
+#: articles/tests_playwright/commands.py:584
+#: articles/tests_playwright/commands.py:603
+#: articles/tests_playwright/commands.py:629 articles/utils.py:49
 #: articles/views.py:150 articles/views.py:223 articles/views.py:260
 #: articles/views_redaction.py:34
 msgid "Articles"
@@ -1042,7 +1044,7 @@ msgid "Menu entry"
 msgstr "Položka menu"
 
 #: articles/templates/redaction_news.html:8
-#: articles/tests_playwright/commands.py:498
+#: articles/tests_playwright/commands.py:499
 msgid "Create new news"
 msgstr "Vytvořit novinku"
 
@@ -1051,7 +1053,7 @@ msgid "Do you want to delete this news"
 msgstr "Chcete smazat tuto novinku"
 
 #: articles/templates/redaction_survey.html:8
-#: articles/tests_playwright/commands.py:519
+#: articles/tests_playwright/commands.py:520
 msgid "Create new survey"
 msgstr "Vytvořit novou anketu"
 
@@ -1111,7 +1113,7 @@ msgid "Voting log"
 msgstr "Záznam hlasování"
 
 #: articles/templates/redaction_useful_link.html:8
-#: articles/tests_playwright/commands.py:560
+#: articles/tests_playwright/commands.py:561
 msgid "Create new useful link"
 msgstr "Nový užitečný odkaz"
 
@@ -1143,7 +1145,7 @@ msgstr "Váš E-Mail"
 #: articles/tests_playwright/commands.py:301
 #: articles/tests_playwright/commands.py:338
 #: articles/tests_playwright/commands.py:363
-#: articles/tests_playwright/commands.py:374 articles/utils.py:85
+#: articles/tests_playwright/commands.py:375 articles/utils.py:85
 #: articles/views_admin.py:99 articles/views_admin.py:138
 #: articles/views_admin.py:155 articles/views_admin.py:198
 #: articles/views_admin.py:225 articles/views_admin.py:242
@@ -1163,13 +1165,13 @@ msgstr "Administrace"
 #: articles/tests_playwright/commands.py:193
 #: articles/tests_playwright/commands.py:327
 #: articles/tests_playwright/commands.py:348
-#: articles/tests_playwright/commands.py:457
-#: articles/tests_playwright/commands.py:505
-#: articles/tests_playwright/commands.py:533
-#: articles/tests_playwright/commands.py:569
-#: articles/tests_playwright/commands.py:678
-#: articles/tests_playwright/commands.py:720
-#: articles/tests_playwright/commands.py:797 articles/views_admin.py:113
+#: articles/tests_playwright/commands.py:458
+#: articles/tests_playwright/commands.py:506
+#: articles/tests_playwright/commands.py:534
+#: articles/tests_playwright/commands.py:570
+#: articles/tests_playwright/commands.py:679
+#: articles/tests_playwright/commands.py:721
+#: articles/tests_playwright/commands.py:798 articles/views_admin.py:113
 #: articles/views_admin.py:126 articles/views_admin.py:176
 #: articles/views_admin.py:212 articles/views_admin.py:263
 #: articles/views_admin.py:338 articles/views_admin.py:549
@@ -1187,12 +1189,12 @@ msgstr "Uloženo"
 msgid "Users"
 msgstr "Uživatelé"
 
-#: articles/tests_playwright/commands.py:432
-#: articles/tests_playwright/commands.py:474
-#: articles/tests_playwright/commands.py:496
-#: articles/tests_playwright/commands.py:517
-#: articles/tests_playwright/commands.py:558
-#: articles/tests_playwright/commands.py:638 articles/utils.py:67
+#: articles/tests_playwright/commands.py:433
+#: articles/tests_playwright/commands.py:475
+#: articles/tests_playwright/commands.py:497
+#: articles/tests_playwright/commands.py:518
+#: articles/tests_playwright/commands.py:559
+#: articles/tests_playwright/commands.py:639 articles/utils.py:67
 #: articles/views_redaction.py:99 articles/views_redaction.py:116
 #: articles/views_redaction.py:187 articles/views_redaction.py:215
 #: articles/views_redaction.py:283 articles/views_redaction.py:303
@@ -1203,43 +1205,43 @@ msgstr "Uživatelé"
 msgid "Redaction"
 msgstr "Redakce"
 
-#: articles/tests_playwright/commands.py:517
-#: articles/tests_playwright/commands.py:638 articles/views_redaction.py:52
+#: articles/tests_playwright/commands.py:518
+#: articles/tests_playwright/commands.py:639 articles/views_redaction.py:52
 #: articles/views_redaction.py:489
 msgid "Surveys"
 msgstr "Ankety"
 
-#: articles/tests_playwright/commands.py:583
-#: articles/tests_playwright/commands.py:602
-#: articles/tests_playwright/commands.py:628
+#: articles/tests_playwright/commands.py:584
+#: articles/tests_playwright/commands.py:603
+#: articles/tests_playwright/commands.py:629
 #: articles/tests_playwright/test_desktop.py:106 articles/views.py:27
 #: articles/views.py:29 articles/views.py:102
 msgid "All articles"
 msgstr "Všechny články"
 
-#: articles/tests_playwright/commands.py:662
-#: articles/tests_playwright/commands.py:664 articles/utils.py:55
+#: articles/tests_playwright/commands.py:663
+#: articles/tests_playwright/commands.py:665 articles/utils.py:55
 #: articles/views_contact.py:16 articles/views_contact.py:35
 #: articles/views_contact.py:52
 msgid "Contact"
 msgstr "Kontakt"
 
-#: articles/tests_playwright/commands.py:672
-#: articles/tests_playwright/commands.py:682
-#: articles/tests_playwright/commands.py:687 articles/utils.py:61
+#: articles/tests_playwright/commands.py:673
+#: articles/tests_playwright/commands.py:683
+#: articles/tests_playwright/commands.py:688 articles/utils.py:61
 msgid "Personal settings"
 msgstr "Osobní nastavení"
 
-#: articles/tests_playwright/commands.py:682
+#: articles/tests_playwright/commands.py:683
 #: articles/views_personal_settings.py:33
 msgid "My units"
 msgstr "Moje jednotky"
 
-#: articles/tests_playwright/commands.py:710
-#: articles/tests_playwright/commands.py:731
-#: articles/tests_playwright/commands.py:741
-#: articles/tests_playwright/commands.py:750
-#: articles/tests_playwright/commands.py:759 articles/utils.py:73
+#: articles/tests_playwright/commands.py:711
+#: articles/tests_playwright/commands.py:732
+#: articles/tests_playwright/commands.py:742
+#: articles/tests_playwright/commands.py:751
+#: articles/tests_playwright/commands.py:760 articles/utils.py:73
 #: articles/views_faults.py:78 articles/views_faults.py:92
 #: articles/views_faults.py:111 articles/views_faults.py:131
 #: articles/views_faults.py:144 articles/views_faults.py:311
@@ -1247,15 +1249,15 @@ msgstr "Moje jednotky"
 msgid "Fault reporting"
 msgstr "Náměty a požadavky"
 
-#: articles/tests_playwright/commands.py:710
-#: articles/tests_playwright/commands.py:731
-#: articles/tests_playwright/commands.py:741
-#: articles/tests_playwright/commands.py:750 articles/views_faults.py:22
+#: articles/tests_playwright/commands.py:711
+#: articles/tests_playwright/commands.py:732
+#: articles/tests_playwright/commands.py:742
+#: articles/tests_playwright/commands.py:751 articles/views_faults.py:22
 msgid "Open"
 msgstr "Nevyřešené"
 
-#: articles/tests_playwright/commands.py:786
-#: articles/tests_playwright/commands.py:798 articles/views_adverts.py:21
+#: articles/tests_playwright/commands.py:787
+#: articles/tests_playwright/commands.py:799 articles/views_adverts.py:21
 #: articles/views_adverts.py:63
 msgid "All"
 msgstr "Vše"
@@ -1351,6 +1353,9 @@ msgstr "Anaýzy"
 #: articles/views_redaction.py:662
 msgid "Data for last {} days."
 msgstr "Data za posledních {} dní."
+
+#~ msgid "Owner"
+#~ msgstr "Vlastník"
 
 #~ msgid "Version"
 #~ msgstr "Verze"
