@@ -1,7 +1,10 @@
+from pathlib import PurePosixPath
 from . import utils, forms, models
+from django.conf import settings
 from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
-from django.http import Http404
+from django.core.paginator import Paginator, InvalidPage
+from django.http import FileResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -62,14 +65,28 @@ def adverts_list_view(request):
     if scope == 'mine':
         advert_list = models.Advert.objects.filter(created_by_user=request.user)
         scope_description = _('Mine')
-    elif models.AdvertType.objects.filter(description=scope).count() > 0:
+    elif models.AdvertType.objects.filter(description=scope).exists():
         advert_list = advert_list.filter(type__description=scope)
         scope_description = scope
+
+    # Paginator
+    is_paginated = len(advert_list) > getattr(settings, 'SVJIS_ADVERTS_PAGE_SIZE', 10)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(advert_list, per_page=getattr(settings, 'SVJIS_ADVERTS_PAGE_SIZE', 10))
+    page_obj = paginator.get_page(page)
+    try:
+        advert_list = paginator.page(page)
+    except InvalidPage:
+        advert_list = paginator.page(paginator.num_pages)
+    page_parameter = f'scope={scope}'
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Adverts")
     ctx['aside_menu_items'] = get_side_menu(scope, request.user)
     ctx['tray_menu_items'] = utils.get_tray_menu('adverts', request.user)
+    ctx['is_paginated'] = is_paginated
+    ctx['page_obj'] = page_obj
+    ctx['page_parameter'] = page_parameter
     ctx['object_list'] = advert_list
     ctx['scope_description'] = scope_description
     return render(request, "adverts_list.html", ctx)
@@ -151,3 +168,17 @@ def adverts_asset_delete_view(request, pk):
         raise Http404
     obj.delete()
     return redirect(reverse('adverts_edit', kwargs={'pk': advert.pk}) + '#assets')
+
+
+# Media
+@permission_required(svjis_view_adverts_menu)
+@require_GET
+def get_advert_asset(request, advert_id, filename):
+    # Block path traversal attempts like ../../secret.txt
+    safe_name = PurePosixPath(filename).name
+    if safe_name != filename:
+        raise Http404()
+
+    # Get file
+    asset = get_object_or_404(models.AdvertAsset, advert_id=advert_id, file__endswith=f"/{safe_name}")
+    return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)

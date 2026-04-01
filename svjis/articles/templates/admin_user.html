@@ -32,7 +32,7 @@
     <div class="filter-item">
         <p>
         <form action="{% url 'admin_user' %}" method="get">
-            <select name='group_filter' onchange='this.form.submit()'>
+            <select name='group_filter' class='common-input' onchange='this.form.submit()'>
                 <option value="0">-------</option>
                 {% for r in group_list %}
                 <option value="{{ r.pk }}" {% if group_filter == r.pk %}selected{% endif %}>{{ r.name }}</option>
@@ -47,7 +47,6 @@
     <tr>
         <th class="list hide-in-mobile" scope="col">&nbsp;</th>
         <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
         <th class="list" scope="col">{% translate 'Last name' %}</th>
         <th class="list" scope="col">{% translate 'First name' %}</th>
         <th class="list hide-in-mobile" scope="col">{% translate 'Active' %}</th>
@@ -57,10 +56,9 @@
 
     {% if object_list %}
     {% for obj in object_list %}
-    <tr>
+    <tr id="user_{{ obj.pk }}">
         <td class="list hide-in-mobile">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_user_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_user_owns' pk=obj.pk %}"><img src="/static/gfx/house.png" class="led" title="{% translate 'Units' %}" alt="{% translate 'Units' %}"></a></td>
+        <td class="list"><a href="{% url 'admin_user_detail' pk=obj.pk %}"><img src="/static/gfx/find.png" class="led" title="{% translate 'Detail' %}" alt="{% translate 'Detail' %}"></a></td>
         <td class="list">{{ obj.last_name }}</td>
         <td class="list">{{ obj.first_name }}</td>
         <td class="list hide-in-mobile">{{ obj.is_active|yes_no }}</td>

@@ -22,7 +22,7 @@
     <div class="filter-item">
         <p>
         <form action="{% url 'admin_building_unit' %}" method="get">
-            <select name='type_filter' onchange='this.form.submit()'>
+            <select name='type_filter' class='common-input' onchange='this.form.submit()'>
                 <option value="0">-------</option>
                 {% for t in type_list %}
                 <option value="{{ t.pk }}" {% if type_filter == t.pk %}selected{% endif %}>{{ t.description }}</option>
@@ -39,7 +39,7 @@
     <div class="filter-item">
         <p>
         <form action="{% url 'admin_building_unit' %}" method="get">
-            <select name='entrance_filter' onchange='this.form.submit()'>
+            <select name='entrance_filter' class='common-input' onchange='this.form.submit()'>
                 <option value="0">-------</option>
                 {% for e in entrance_list %}
                 <option value="{{ e.pk }}" {% if entrance_filter == e.pk %}selected{% endif %}>{{ e.description }}</option>
@@ -66,7 +66,7 @@
 
     {% if object_list %}
     {% for obj in object_list %}
-    <tr>
+    <tr id="unit_{{ obj.pk }}">
         <td class="list hide-in-mobile">{{ forloop.counter }}</td>
         <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
         <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>

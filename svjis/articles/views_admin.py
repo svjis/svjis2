@@ -20,6 +20,7 @@ from .permissions import (
     svjis_edit_admin_company,
     svjis_edit_admin_building,
 )
+from svjis import __homepage_url__, __repository_url__, __issues_url__, __translations_url__
 
 
 def get_side_menu(active_item, user):
@@ -339,7 +340,8 @@ def admin_building_unit_save_view(request):
         for error in form.errors:
             messages.error(request, f"{_('Form validation error')}: {error}")
 
-    return redirect(admin_building_unit_view)
+    qs = f"#unit_{obj.pk}"
+    return redirect(reverse(admin_building_unit_view) + qs)
 
 
 @permission_required(svjis_edit_admin_building)
@@ -417,7 +419,7 @@ def admin_building_unit_export_to_excel_view(request):
             cell.style = header_st
 
     # Add data from the model
-    unit_list = models.BuildingUnit.objects.all().order_by('id')
+    unit_list = models.BuildingUnit.objects.select_related('user').order_by('id')
     for u in unit_list:
         unit_entrance = u.entrance.description if u.entrance else ''
         ws.append([u.type.description, unit_entrance, u.registration_id, u.description, u.numerator, u.denominator])
@@ -450,6 +452,23 @@ def admin_user_view(request):
     ctx['group_filter'] = group_filter
     ctx['deactivated_users'] = deactivated_users
     return render(request, "admin_user.html", ctx)
+
+
+@permission_required(svjis_edit_admin_users)
+@require_GET
+def admin_user_detail_view(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    profile, _created = models.UserProfile.objects.get_or_create(user=user)
+    user_group_list = Group.objects.filter(user__id=user.id)
+
+    ctx = utils.get_context()
+    ctx['aside_menu_name'] = _("Administration")
+    ctx['usr'] = user
+    ctx['profile'] = profile
+    ctx['user_group_list'] = user_group_list
+    ctx['aside_menu_items'] = get_side_menu('users', request.user)
+    ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
+    return render(request, "admin_user_detail.html", ctx)
 
 
 @permission_required(svjis_edit_admin_users)
@@ -528,14 +547,16 @@ def admin_user_save_view(request):
         return redirect(reverse('admin_user_edit', kwargs={'pk': pk}))
 
     messages.info(request, _('Saved'))
-    return redirect(admin_user_view)
+    return redirect(admin_user_detail_view, pk=u.pk)
 
 
 @permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_owns_view(request, pk):
     u = get_object_or_404(User, pk=pk)
-    bu_list = [bu for bu in models.BuildingUnit.objects.all().order_by('id') if bu not in u.buildingunit_set.all()]
+    bu_list = list(
+        models.BuildingUnit.objects.exclude(id__in=u.buildingunit_set.values_list("id", flat=True)).order_by("id")
+    )
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Administration")
     ctx['u'] = u
@@ -602,7 +623,7 @@ def admin_user_export_to_excel_view(request):
             cell.style = header_st
 
     # Add data from the model
-    user_list = User.objects.filter(is_active=True).order_by('last_name', 'first_name')
+    user_list = User.objects.filter(is_active=True).select_related('userprofile').order_by('last_name', 'first_name')
     for u in user_list:
         if hasattr(u, 'userprofile'):
             ws.append(
@@ -828,4 +849,8 @@ def admin_about_view(request):
     ctx['tray_menu_items'] = utils.get_tray_menu('admin', request.user)
     ctx['django_version'] = django_version
     ctx['python_version'] = sys.version
+    ctx['svjis_homepage'] = __homepage_url__
+    ctx['svjis_repository'] = __repository_url__
+    ctx['svjis_issues'] = __issues_url__
+    ctx['svjis_translations'] = __translations_url__
     return render(request, "admin_about.html", ctx)

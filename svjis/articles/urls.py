@@ -189,6 +189,7 @@ urlpatterns = [
         name='admin_building_unit_export_to_excel',
     ),
     path('admin_user/', views_admin.admin_user_view, name='admin_user'),
+    path('admin_user_detail/<int:pk>/', views_admin.admin_user_detail_view, name='admin_user_detail'),
     path('admin_user_edit/<int:pk>/', views_admin.admin_user_edit_view, name='admin_user_edit'),
     path('admin_user_save/', views_admin.admin_user_save_view, name='admin_user_save'),
     path('admin_user_owns/<int:pk>/', views_admin.admin_user_owns_view, name='admin_user_owns'),
@@ -220,8 +221,11 @@ urlpatterns = [
     path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switching
+    path("media/articles/<str:slug>/<str:filename>", views.get_article_asset, name="get_article_asset"),
+    path("media/faults/<str:slug>/<str:filename>", views_faults.get_fault_asset, name="get_fault_asset"),
+    path("media/adverts/<int:advert_id>/<str:filename>", views_adverts.get_advert_asset, name="get_advert_asset"),
 ]
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(f"{settings.MEDIA_URL}company/", document_root=f"{settings.MEDIA_ROOT}/company/")

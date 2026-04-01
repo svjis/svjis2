@@ -71,6 +71,29 @@ table.list td.closed-ticket {
   text-decoration: line-through;
 }
 
+table.detail {
+  border:1px solid #c3c3c3;
+  border-collapse:collapse;
+}
+
+table.detail th {
+  background-color:#f2f3f4;
+  border:1px solid #c3c3c3;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+  width: 25%;
+}
+
+table.detail td {
+  background-color:#ffffff;
+  border:1px solid #c3c3c3;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+  width: 75%;
+}
+
 .black-submit {
   font-family:"arial",sans-serif;
   color: #ffffff; /* barva textu */
@@ -83,6 +106,23 @@ table.list td.closed-ticket {
 }
 
 .black-submit:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: default;
+}
+
+.black-button {
+  font-family:"arial",sans-serif;
+  color: #ffffff; /* barva textu */
+  text-decoration: none; /* odebrat podtržení u odkazů */
+  user-select: none; /* zakázat označování textu */
+  background: #2F2F2F; /* pozadí tlačítka */
+  padding: .3em 1.2em; /* odsazení od textu */
+  border: none;
+  border-radius: 5px;
+}
+
+.black-button:hover {
   color: #ffffff;
   text-decoration: none;
   cursor: default;
@@ -430,7 +470,6 @@ img.article-img {
 }
 
 .back_to_list {
-  display: none;
   text-align: center;
   padding: 15px 0px;
 }
@@ -924,7 +963,7 @@ footer a:hover {
   border-color: #ff8ec4;
   border-width: 1px;
   border-style: solid;
-  padding:10px 15px 15px 10px;
+  padding:10px 15px 10px 15px;
   position:relative;
   margin:10px 0 0 0;
 }
@@ -934,7 +973,7 @@ footer a:hover {
   border-color: #cee67e;
   border-width: 1px;
   border-style: solid;
-  padding:10px 15px 15px 10px;
+  padding:10px 15px 10px 15px;
   position:relative;
   margin:10px 0 0 0;
 }
@@ -1057,10 +1096,6 @@ footer a:hover {
 
   .article-detail {
     overflow: scroll;
-  }
-
-  .back_to_list {
-    display: block;
   }
 
   /* Advert */
