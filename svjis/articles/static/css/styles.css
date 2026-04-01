@@ -106,7 +106,7 @@ table.detail td {
 }
 
 .black-submit:hover {
-  color: #ffffff;
+  color: #94c9e2;
   text-decoration: none;
   cursor: default;
 }
@@ -123,7 +123,7 @@ table.detail td {
 }
 
 .black-button:hover {
-  color: #ffffff;
+  color: #94c9e2;
   text-decoration: none;
   cursor: default;
 }
@@ -208,27 +208,6 @@ legend.hidden-legend {display: none;}
 }
 .common-submit input {
   margin-left: 15em;
-}
-
-.create-button {
-	box-shadow:inset 0px 39px 0px -24px #e67a73;
-	background-color:#e4685d;
-	border-radius:4px;
-	border:1px solid #949294;
-	cursor:pointer;
-	color:#ffffff;
-	padding:6px 15px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
-}
-.create-button:hover {
-	background-color:#eb675e;
-  color:#ffffff;
-}
-.create-button:active {
-	position:relative;
-	top:1px;
-  color:#ffffff;
 }
 
 .filter-container {
@@ -659,6 +638,12 @@ p.contact a {
   background: #2F2F2F;
 }
 
+#search-submit:hover {
+  color: #94c9e2;
+  text-decoration: none;
+  cursor: default;
+}
+
 /*
  *  Side menu - Login
  */
@@ -705,6 +690,13 @@ p.contact a {
   text-align: center;
   border-radius: 5px;
 }
+
+#logout-submit:hover {
+  color: #94c9e2;
+  text-decoration: none;
+  cursor: default;
+}
+
 
 #login-label {
   width: 4em;
@@ -757,6 +749,13 @@ p.contact a {
   margin: 5px 0px 5px 0px;
   text-align: center;
 }
+
+#login-submit:hover {
+  color: #94c9e2;
+  text-decoration: none;
+  cursor: default;
+}
+
 
 /*
  *  Boxes

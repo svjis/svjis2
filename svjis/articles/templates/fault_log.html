@@ -27,7 +27,7 @@
 {% endif %}
 
 <div  class="back_to_detail">
-    [<a href="{% url 'fault' slug=obj.slug %}">&lt;&lt;&nbsp{% translate 'Back to ticket' %}</a>]
+    <a class="black-button" href="{% url 'fault' slug=obj.slug %}">&lt;&lt;&nbsp{% translate 'Back to ticket' %}</a>
 </div>
 
 {% endblock content %}

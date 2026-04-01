@@ -52,7 +52,7 @@
 {% endif %}
 
 <div class="back_to_list">
-    [<a href="{% url 'admin_user_detail' pk=pk %}">&lt;&lt;&nbsp{% translate 'Back to user' %}</a>]
+    <a class="black-button" href="{% url 'admin_user_detail' pk=pk %}">&lt;&lt;&nbsp{% translate 'Back to user' %}</a>
 </div>
 
 {% endblock content %}
