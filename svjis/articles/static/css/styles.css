@@ -113,7 +113,7 @@ table.detail td {
 
 .black-button {
   font-family:"arial",sans-serif;
-  color: #ffffff; /* barva textu */
+  color: #ffffff !important; /* barva textu */
   text-decoration: none; /* odebrat podtržení u odkazů */
   user-select: none; /* zakázat označování textu */
   background: #2F2F2F; /* pozadí tlačítka */
@@ -127,7 +127,7 @@ table.detail td {
 }
 
 .black-button:hover {
-  color: #94c9e2;
+  color: #94c9e2 !important;
   text-decoration: none;
   cursor: default;
 }
