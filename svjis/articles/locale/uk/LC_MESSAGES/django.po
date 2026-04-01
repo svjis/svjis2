@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-31 14:11+0200\n"
-"PO-Revision-Date: 2026-04-01 09:25+0000\n"
+"PO-Revision-Date: 2026-04-01 11:47+0000\n"
 "Last-Translator: SomeTr <sometr@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/svjis/"
 "svjis2/uk/>\n"
@@ -55,7 +55,7 @@ msgstr "Опубліковано"
 
 #: articles/models.py:31
 msgid "Perex"
-msgstr "Перекс"
+msgstr "Вріз"
 
 #: articles/models.py:32 articles/models.py:115 articles/models.py:154
 #: articles/models.py:283 articles/models.py:490 articles/models.py:552
@@ -81,7 +81,7 @@ msgstr "Може редагувати статтю"
 
 #: articles/models.py:70
 msgid "UserAgent"
-msgstr "Агент користувача"
+msgstr "User Agent"
 
 #: articles/models.py:86 articles/models.py:134 articles/models.py:180
 #: articles/models.py:214 articles/models.py:360 articles/models.py:371
@@ -276,7 +276,7 @@ msgstr "Може редагувати компанію"
 
 #: articles/models.py:334
 msgid "Land Registration No."
-msgstr "Номер реєстрації землі"
+msgstr "Кадастровий номер земельної ділянки"
 
 #: articles/models.py:340
 msgid "Can edit Building"
@@ -566,7 +566,7 @@ msgstr "Права доступу"
 
 #: articles/templates/admin_messages.html:7 articles/views_admin.py:78
 msgid "Waiting messages"
-msgstr "Очікувані повідомлення"
+msgstr "Повідомлення в черзі"
 
 #: articles/templates/admin_messages.html:12
 msgid "Recipient"
@@ -947,7 +947,7 @@ msgstr "Показати всіх користувачів"
 
 #: articles/templates/redaction_analytics.html:11
 msgid "Show logged users only"
-msgstr ""
+msgstr "Показати лише користувачів, які ввійшли"
 
 #: articles/templates/redaction_analytics.html:38
 msgid "Platform"
