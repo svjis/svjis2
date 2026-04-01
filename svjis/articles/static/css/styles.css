@@ -918,6 +918,12 @@ p.contact a {
   border-radius: 5px;
 }
 
+#survey-submit:hover {
+  color: #94c9e2 !important;
+  text-decoration: none;
+  cursor: default;
+}
+
 .usefullinks {
   margin: 0;
   list-style: none;
