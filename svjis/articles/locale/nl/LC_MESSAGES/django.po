@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-31 14:11+0200\n"
-"PO-Revision-Date: 2026-01-31 16:29+0000\n"
+"PO-Revision-Date: 2026-04-01 09:25+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/svjis/svjis2/"
 "nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: articles/forms.py:339 articles/models.py:388 articles/models.py:419
 #: articles/templates/admin_building_unit.html:36
@@ -622,13 +622,11 @@ msgstr "Recentste aanmelding"
 
 #: articles/templates/admin_user.html:61
 msgid "Detail"
-msgstr ""
+msgstr "Details"
 
 #: articles/templates/admin_user_detail.html:8
-#, fuzzy
-#| msgid "Modify"
 msgid "Modify user"
-msgstr "Bewerken"
+msgstr "Gebruiker bewerken"
 
 #: articles/templates/admin_user_detail.html:29
 #: articles/templates/admin_user_edit.html:32
@@ -653,17 +651,13 @@ msgstr "Lid van"
 
 #: articles/templates/admin_user_detail.html:83
 #: articles/tests_playwright/commands.py:365
-#, fuzzy
-#| msgid "My units"
 msgid "Modify units"
-msgstr "Mijn eenheden"
+msgstr "Eenheden bewerken"
 
 #: articles/templates/admin_user_detail.html:100
 #: articles/tests_playwright/commands.py:328
-#, fuzzy
-#| msgid "Back to fault list"
 msgid "Back to list"
-msgstr "Terug naar reparatielijst"
+msgstr "Terug naar lijst"
 
 #: articles/templates/admin_user_edit.html:13
 #: articles/templates/personal_settings_edit.html:12
@@ -680,10 +674,8 @@ msgid "Send Credentials By E-Mail"
 msgstr "Aanmeldgegevens per e-mail versturen"
 
 #: articles/templates/admin_user_ownes_edit.html:55
-#, fuzzy
-#| msgid "Back to fault list"
 msgid "Back to user"
-msgstr "Terug naar reparatielijst"
+msgstr "Terug naar gebruiker"
 
 #: articles/templates/advert_edit.html:7 articles/templates/adverts_list.html:7
 #: articles/tests_playwright/commands.py:787
