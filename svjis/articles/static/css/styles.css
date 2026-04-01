@@ -120,6 +120,10 @@ table.detail td {
   padding: .3em 1.2em; /* odsazení od textu */
   border: none;
   border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 2.0;
 }
 
 .black-button:hover {
