@@ -56,9 +56,9 @@
 
 
 {% if pk != 0 %}
-    <h2 class="comment-title" id="assets">{% translate 'Assets' %}:</h2>
+    <h2 id="assets" class="comment-title">{% translate 'Assets' %}:</h2>
     {% if obj.assets %}
-    <table class="list full-width" aria-describedby="tbl-desc">
+    <table class="list full-width" aria-describedby="assets">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
             <th class="list" scope="col">{% translate 'Description' %}</th>
