@@ -7,25 +7,25 @@
 <h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject|highlight:search }}</h1>
 
 {% if perms.articles.svjis_fault_resolver %}
-    <a class="black-button" href="{% url 'faults_fault_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>&nbsp;
+    <a class="secondary-button" href="{% url 'faults_fault_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>&nbsp;
 {% endif %}
 
 {% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user != user %}
-    <a class="black-button" href="{% url 'faults_fault_take_ticket' pk=obj.pk %}">{% translate 'Take ticket' %}</a>&nbsp;
+    <a class="secondary-button" href="{% url 'faults_fault_take_ticket' pk=obj.pk %}">{% translate 'Take ticket' %}</a>&nbsp;
 {% endif %}
 
 {% if perms.articles.svjis_fault_resolver and not obj.closed and obj.assigned_to_user == user %}
-    <a class="black-button" href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% translate 'Close ticket' %}</a>&nbsp;
+    <a class="secondary-button" href="{% url 'faults_fault_close_ticket' pk=obj.pk %}">{% translate 'Close ticket' %}</a>&nbsp;
 {% endif %}
 
 {% if perms.articles.svjis_view_fault_menu %}
-    <a class="black-button" href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View log' %}</a>&nbsp;
+    <a class="secondary-button" href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View log' %}</a>&nbsp;
 {% endif %}
 
 {% if user in obj.watching_users.all %}
-    <a class="black-button" href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching ticket' %}</a>
+    <a class="secondary-button" href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching ticket' %}</a>
     {% else %}
-    <a class="black-button" href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>
+    <a class="secondary-button" href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>
 {% endif %}
 
 <table class="detail full-width" aria-describedby="tbl-desc">
@@ -108,7 +108,7 @@
 {% for comment in obj.comments %}
 <div id="comment_{{ comment.id }}" class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
     {% if comment.author == user and comment.is_editable %}
-        <a class="black-button" href="{% url 'fault_comment_edit' pk=comment.id %}">{% translate 'Modify' %}</a>
+        <a class="secondary-button" href="{% url 'fault_comment_edit' pk=comment.id %}">{% translate 'Modify' %}</a>
     {% endif %}
     <br>{{ comment.body|replace_url_to_link|linebreaks }}
 </div>
@@ -128,7 +128,7 @@
 {% endif %}
 
 <div class="back_to_list">
-    <a class="black-button" href="{% url 'faults_list' %}?scope=open">&lt;&lt;&nbsp{% translate 'Back to fault list' %}</a>
+    <a class="secondary-button" href="{% url 'faults_list' %}?scope=open">&lt;&lt;&nbsp{% translate 'Back to fault list' %}</a>
 </div>
 
 {% endblock content %}

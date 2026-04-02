@@ -7,7 +7,7 @@
 <h1 class="page-title" id="tbl-desc">{% translate 'Adverts' %}: {{ scope_description }}</h1>
 
 {% if perms.articles.svjis_add_advert %}
-<a href="{% url 'adverts_edit' pk=0 %}" class="black-button">{% translate 'Create new advert' %}</a><br>
+<a href="{% url 'adverts_edit' pk=0 %}" class="secondary-button">{% translate 'Create new advert' %}</a><br>
 {% endif %}
 
 {% if object_list %}
@@ -20,7 +20,7 @@
         <p class="info">
             <a href="{% url 'adverts_list' %}?scope={{ obj.type.description }}">{{ obj.type.description }}</a>: <strong>{{ obj.created_date|date:"d.m.Y" }}</strong>, {% translate 'Author' %}: <strong>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</strong>
             {% if obj.created_by_user == user %}
-            &nbsp;<a class="black-button" href="{% url 'adverts_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>
+            &nbsp;<a class="secondary-button" href="{% url 'adverts_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>
             {% endif %}
 
         </p>

@@ -7,7 +7,7 @@
 <h1 class="page-title" id="tbl-desc">{{ header }}</h1>
 
 {% if perms.articles.svjis_fault_reporter %}
-<a href="{% url 'faults_fault_create' %}" class="black-button">{% translate 'Report fault or request' %}</a>
+<a href="{% url 'faults_fault_create' %}" class="secondary-button">{% translate 'Report fault or request' %}</a>
 {% endif %}
 
 <table class="list full-width" aria-describedby="tbl-desc">

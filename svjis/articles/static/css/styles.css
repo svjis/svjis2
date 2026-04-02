@@ -111,14 +111,16 @@ table.detail td {
   cursor: default;
 }
 
-.black-button {
+.secondary-button {
   font-family:"arial",sans-serif;
-  color: #ffffff !important; /* barva textu */
+  font-weight: bold;
+  color: #000 !important; /* barva textu */
   text-decoration: none; /* odebrat podtržení u odkazů */
   user-select: none; /* zakázat označování textu */
-  background: #2F2F2F; /* pozadí tlačítka */
+  background: #f2f3f4; /* pozadí tlačítka */
   padding: .3em 1.2em; /* odsazení od textu */
-  border: none;
+  border: 1px solid;
+  border-color: #000 !important;
   border-radius: 5px;
   white-space: nowrap;
   overflow: hidden;
@@ -126,9 +128,8 @@ table.detail td {
   line-height: 2.0;
 }
 
-.black-button:hover {
-  color: #94c9e2 !important;
-  text-decoration: none;
+.secondary-button:hover {
+  text-decoration: underline;
   cursor: default;
 }
 
