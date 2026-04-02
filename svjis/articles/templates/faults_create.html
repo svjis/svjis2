@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% translate 'Fault report' %}</h1>
+<h1 class="page-title">{% translate 'Fault report' %}</h1>
 
 <form action="{% url 'faults_fault_create_save' %}" method="post">
     {% csrf_token %}

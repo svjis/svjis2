@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% translate 'Adverts' %}: {{ scope_description }}</h1>
+<h1 class="page-title">{% translate 'Adverts' %}: {{ scope_description }}</h1>
 
 {% if perms.articles.svjis_add_advert %}
 <a href="{% url 'adverts_edit' pk=0 %}" class="secondary-button">{% translate 'Create new advert' %}</a><br>

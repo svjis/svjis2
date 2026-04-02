@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">#{{ form.instance.pk }} - {{ form.instance.subject }}</h1>
+<h1 class="page-title">#{{ form.instance.pk }} - {{ form.instance.subject }}</h1>
 
 <form action="{% url 'faults_fault_update' %}" method="post">
     {% csrf_token %}

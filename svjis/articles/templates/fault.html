@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject|highlight:search }}</h1>
+<h1 id="fault" class="page-title"  {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject|highlight:search }}</h1>
 
 {% if perms.articles.svjis_fault_resolver %}
     <a class="secondary-button" href="{% url 'faults_fault_edit' pk=obj.pk %}">{% translate 'Edit' %}</a>&nbsp;
@@ -28,7 +28,7 @@
     <a class="secondary-button" href="{% url 'fault_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching ticket' %}</a>
 {% endif %}
 
-<table class="detail full-width" aria-describedby="tbl-desc">
+<table class="detail full-width" aria-describedby="fault">
     <tr>
         <th class="detail" scope="row">{% translate 'Date' %}</th>
         <td class="detail">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
