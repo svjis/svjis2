@@ -11,7 +11,7 @@
             {% if request.user.is_authenticated %}
             {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}
             {% else %}
-            <a class="secondary-button" href="{% url 'login_page' %}">{% translate 'Login' %}</a>
+            [<a href="{% url 'login_page' %}">{% translate 'Login' %}</a>]
             {% endif %}
         </div>
         <ul class="menu">
