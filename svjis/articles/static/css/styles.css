@@ -106,25 +106,30 @@ table.detail td {
 }
 
 .black-submit:hover {
-  color: #ffffff;
+  color: #94c9e2;
   text-decoration: none;
   cursor: default;
 }
 
-.black-button {
+.secondary-button {
   font-family:"arial",sans-serif;
-  color: #ffffff; /* barva textu */
+  font-weight: bold;
+  color: #000 !important; /* barva textu */
   text-decoration: none; /* odebrat podtržení u odkazů */
   user-select: none; /* zakázat označování textu */
-  background: #2F2F2F; /* pozadí tlačítka */
+  background: #f2f3f4; /* pozadí tlačítka */
   padding: .3em 1.2em; /* odsazení od textu */
-  border: none;
+  border: 1px solid;
+  border-color: #000 !important;
   border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 2.0;
 }
 
-.black-button:hover {
-  color: #ffffff;
-  text-decoration: none;
+.secondary-button:hover {
+  text-decoration: underline;
   cursor: default;
 }
 
@@ -208,27 +213,6 @@ legend.hidden-legend {display: none;}
 }
 .common-submit input {
   margin-left: 15em;
-}
-
-.create-button {
-	box-shadow:inset 0px 39px 0px -24px #e67a73;
-	background-color:#e4685d;
-	border-radius:4px;
-	border:1px solid #949294;
-	cursor:pointer;
-	color:#ffffff;
-	padding:6px 15px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
-}
-.create-button:hover {
-	background-color:#eb675e;
-  color:#ffffff;
-}
-.create-button:active {
-	position:relative;
-	top:1px;
-  color:#ffffff;
 }
 
 .filter-container {
@@ -458,8 +442,7 @@ img.article-img {
 }
 
 .comment-title {
-  margin: 0;
-  padding: 10px 10px 10px 0px;
+  margin: 10px 0px;
   font-weight: normal;
 }
 
@@ -659,6 +642,12 @@ p.contact a {
   background: #2F2F2F;
 }
 
+#search-submit:hover {
+  color: #94c9e2;
+  text-decoration: none;
+  cursor: default;
+}
+
 /*
  *  Side menu - Login
  */
@@ -705,6 +694,13 @@ p.contact a {
   text-align: center;
   border-radius: 5px;
 }
+
+#logout-submit:hover {
+  color: #94c9e2;
+  text-decoration: none;
+  cursor: default;
+}
+
 
 #login-label {
   width: 4em;
@@ -757,6 +753,13 @@ p.contact a {
   margin: 5px 0px 5px 0px;
   text-align: center;
 }
+
+#login-submit:hover {
+  color: #94c9e2;
+  text-decoration: none;
+  cursor: default;
+}
+
 
 /*
  *  Boxes
@@ -915,6 +918,12 @@ p.contact a {
   border-radius: 5px;
 }
 
+#survey-submit:hover {
+  color: #94c9e2 !important;
+  text-decoration: none;
+  cursor: default;
+}
+
 .usefullinks {
   margin: 0;
   list-style: none;
@@ -995,8 +1004,8 @@ footer a:hover {
 */
 @media (max-width: 960px) {
 
-  h1 {font-size: 20px;}
-  h2 {font-size: 18px;}
+  h1 {font-size: 23px;}
+  h2 {font-size: 20px;}
   h3 {font-size: 16px;}
 
   .wrapper2 {

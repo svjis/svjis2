@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 class="page-title" id="tbl-desc">{% translate 'Board' %}</h1>
-[<a href="{% url 'admin_board_edit' pk=0 %}">{% translate 'Add new member' %}</a>]
+<a class="secondary-button" href="{% url 'admin_board_edit' pk=0 %}">{% translate 'Add new member' %}</a>
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>

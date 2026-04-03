@@ -14,8 +14,8 @@
 
 
     {% if obj.assets %}
-    <h2 class="comment-title">{% translate 'Assets' %}:</h2>
-    <table class="list" aria-describedby="tbl-desc">
+    <h2 id="assets" class="comment-title">{% translate 'Assets' %}:</h2>
+    <table class="list" aria-describedby="assets">
         <tr>
             <th class="list" scope="col">&nbsp;</th>
             <th class="list" scope="col">{% translate 'File' %}</th>
@@ -37,7 +37,7 @@
     {% for comment in obj.comments %}
     <div id="comment_{{ comment.id }}" class="comment-box"><strong>{{ comment.author.first_name }}&nbsp;{{ comment.author.last_name }} {{ comment.created_date|date:"d.m.Y H:i" }}</strong>
         {% if comment.author == user and comment.is_editable %}
-            [<a href="{% url 'article_comment_edit' pk=comment.id %}">{% translate 'Modify' %}</a>]
+            <a class="secondary-button" href="{% url 'article_comment_edit' pk=comment.id %}">{% translate 'Modify' %}</a>
         {% endif %}
         <br>{{ comment.body|replace_url_to_link|linebreaks }}
     </div>
@@ -48,9 +48,9 @@
     {% if perms.articles.svjis_add_article_comment and obj.allow_comments %}
 
         {% if user in obj.watching_users.all %}
-        [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching discussion' %}</a>]
+        <a class="secondary-button" href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=0">{% translate 'Stop watching discussion' %}</a>
         {% else %}
-        [<a href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching discussion' %}</a>]
+        <a class="secondary-button" href="{% url 'article_watch' %}?id={{ obj.pk }}&watch=1">{% translate 'Start watching discussion' %}</a>
         {% endif %}
 
     <form action="{% url 'article_comment_save' %}" method="post">
@@ -66,7 +66,7 @@
     {% endif %}
 
     <div class="back_to_list">
-        [<a href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>]
+        <a class="secondary-button" href="{% url 'main' %}">&lt;&lt;&nbsp{% translate 'Back to article list' %}</a>
     </div>
 
 </div>
