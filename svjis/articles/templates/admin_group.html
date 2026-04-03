@@ -4,26 +4,26 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% translate 'Group' %}</h1>
+<h1 class="page-title" id="groups">{% translate 'Group' %}</h1>
 <a class="secondary-button" href="{% url 'admin_group_edit' pk=0 %}">{% translate 'Create new group' %}</a>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list" aria-describedby="groups">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Name' %}</th>
+        <th>&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Name' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_group_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_user' %}?group_filter={{ obj.pk }}"><img src="/static/gfx/user.png" class="led" title="{% translate 'List of users' %}" alt="{% translate 'List of users' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.name }} ?')) return false;" href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list">{{ obj.name }}</td>
+        <td>{{ forloop.counter }}</td>
+        <td class="icon"><a href="{% url 'admin_group_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a href="{% url 'admin_user' %}?group_filter={{ obj.pk }}"><img src="/static/gfx/user.png" class="led" title="{% translate 'List of users' %}" alt="{% translate 'List of users' %}"></a></td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.name }} ?')) return false;" href="{% url 'admin_group_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ obj.name }}</td>
     </tr>
     {% endfor %}
     {% endif %}

@@ -4,23 +4,23 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{% translate 'Waiting messages' %}</h1>
+<h1 class="page-title" id="messages">{% translate 'Waiting messages' %}</h1>
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="list full-width" aria-describedby="messages">
     <tr>
-        <th class="list hide-in-mobile" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Recipient' %}</th>
-        <th class="list" scope="col">{% translate 'Subject' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Creation time' %}</th>
+        <th class="hide-in-mobile">&nbsp;</th>
+        <th>{% translate 'Recipient' %}</th>
+        <th>{% translate 'Subject' %}</th>
+        <th class="hide-in-mobile">{% translate 'Creation time' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list hide-in-mobile">{{ forloop.counter }}</td>
-        <td class="list">{{ obj.email }}</td>
-        <td class="list">{{ obj.subject }}</td>
-        <td class="list hide-in-mobile">{{ obj.creation_time|date:"d.m.Y H:i" }}</td>
+        <td class="hide-in-mobile">{{ forloop.counter }}</td>
+        <td>{{ obj.email }}</td>
+        <td>{{ obj.subject }}</td>
+        <td class="hide-in-mobile">{{ obj.creation_time|date:"d.m.Y H:i" }}</td>
     </tr>
     {% endfor %}
     {% endif %}

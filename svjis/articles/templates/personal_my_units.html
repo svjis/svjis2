@@ -4,23 +4,23 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ user.first_name }} {{ user.last_name }}</h1>
+<h1 class="page-title" id="units">{{ user.first_name }} {{ user.last_name }}</h1>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list" aria-describedby="units">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Type' %}</th>
-        <th class="list" scope="col">{% translate 'Registration Id' %}</th>
-        <th class="list" scope="col">{% translate 'Description' %}</th>
+        <th>&nbsp;</th>
+        <th>{% translate 'Type' %}</th>
+        <th>{% translate 'Registration Id' %}</th>
+        <th>{% translate 'Description' %}</th>
     </tr>
 
     {% if user.buildingunit_set.all %}
     {% for obj in user.buildingunit_set.all|dictsort:"registration_id" %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ obj.type.description }}</td>
-        <td class="list">{{ obj.registration_id }}</td>
-        <td class="list">{{ obj.description }}</td>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ obj.type.description }}</td>
+        <td>{{ obj.registration_id }}</td>
+        <td>{{ obj.description }}</td>
     </tr>
     {% endfor %}
     {% endif %}

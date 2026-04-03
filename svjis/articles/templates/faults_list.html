@@ -4,33 +4,33 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+<h1 class="page-title" id="faults">{{ header }}</h1>
 
 {% if perms.articles.svjis_fault_reporter %}
 <a href="{% url 'faults_fault_create' %}" class="secondary-button">{% translate 'Report fault or request' %}</a>
 {% endif %}
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="list full-width" aria-describedby="faults">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Ticket No.' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Date' %}</th>
-        <th class="list" scope="col">{% translate 'Subject' %}</th>
-        <th class="list" scope="col">{% translate 'Entrance' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Author' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Resolver' %}</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Ticket No.' %}</th>
+        <th class="hide-in-mobile">{% translate 'Date' %}</th>
+        <th>{% translate 'Subject' %}</th>
+        <th>{% translate 'Entrance' %}</th>
+        <th class="hide-in-mobile">{% translate 'Author' %}</th>
+        <th class="hide-in-mobile">{% translate 'Resolver' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list {% if obj.closed %}closed-ticket{% endif %}"><a {% if search != '' %} href="{% url 'fault' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'fault' slug=obj.slug %}" {% endif %}><img src="/static/gfx/find.png" class="led" title="{% translate 'View' %}" alt="{% translate 'View' %}"></a></td>
-        <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.pk }}</td>
-        <td class="list hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_date|date:"d.m.Y" }}</td>
-        <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.subject|highlight:search }}</td>
-        <td class="list {% if obj.closed %}closed-ticket{% endif %}">{{ obj.entrance.description }}</td>
-        <td class="list hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
-        <td class="list hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+        <td class="icon {% if obj.closed %}closed-ticket{% endif %}"><a {% if search != '' %} href="{% url 'fault' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'fault' slug=obj.slug %}" {% endif %}><img src="/static/gfx/find.png" class="led" title="{% translate 'View' %}" alt="{% translate 'View' %}"></a></td>
+        <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.pk }}</td>
+        <td class="hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_date|date:"d.m.Y" }}</td>
+        <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.subject|highlight:search }}</td>
+        <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.entrance.description }}</td>
+        <td class="hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+        <td class="hide-in-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
     </tr>
     {% endfor %}
     {% endif %}

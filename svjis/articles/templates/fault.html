@@ -30,27 +30,27 @@
 
 <table class="detail full-width" aria-describedby="fault">
     <tr>
-        <th class="detail" scope="row">{% translate 'Date' %}</th>
-        <td class="detail">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
+        <th scope="row">{% translate 'Date' %}</th>
+        <td>{{ obj.created_date|date:"d.m.Y H:i" }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Creator' %}</th>
-        <td class="detail">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+        <th scope="row">{% translate 'Creator' %}</th>
+        <td>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Resolver' %}</th>
-        <td class="detail">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+        <th scope="row">{% translate 'Resolver' %}</th>
+        <td>{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Closed' %}</th>
-        <td class="detail">{{ obj.closed|yes_no }}</td>
+        <th scope="row">{% translate 'Closed' %}</th>
+        <td>{{ obj.closed|yes_no }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Entrance' %}</th>
-        <td class="detail">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
+        <th scope="row">{% translate 'Entrance' %}</th>
+        <td>{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <td class="detail" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
+        <td colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
     </tr>
 </table>
 
@@ -60,11 +60,11 @@
     {% if obj.assets %}
     <table class="list fixed" aria-describedby="assets">
         <tr>
-            <th class="icon" scope="col">&nbsp;</th>
-            <th scope="col">{% translate 'Description' %}</th>
-            <th class="w20" scope="col">{% translate 'User' %}</th>
-            <th class="w20 hide-in-mobile" scope="col">{% translate 'Time' %}</th>
-            <th class="icon" scope="col">&nbsp;</th>
+            <th class="icon">&nbsp;</th>
+            <th>{% translate 'Description' %}</th>
+            <th class="w20">{% translate 'User' %}</th>
+            <th class="w20 hide-in-mobile">{% translate 'Time' %}</th>
+            <th class="icon">&nbsp;</th>
         </tr>
         {% for a in obj.assets %}
         <tr>

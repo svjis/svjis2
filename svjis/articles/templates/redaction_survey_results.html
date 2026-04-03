@@ -8,45 +8,45 @@
 
 <p>{{ obj.description|safe }}</p>
 
-<h2 class="page-title" id="tbl-desc">{% translate 'Result' %}</h2>
+<h2 class="page-title" id="result">{% translate 'Result' %}</h2>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list" aria-describedby="result">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Description' %}</th>
-        <th class="list" scope="col">{% translate 'Votes' %}</th>
-        <th class="list" scope="col">{% translate 'Votes' %} %</th>
+        <th>&nbsp;</th>
+        <th>{% translate 'Description' %}</th>
+        <th>{% translate 'Votes' %}</th>
+        <th>{% translate 'Votes' %} %</th>
     </tr>
 
     {% if obj.options %}
     {% for o in obj.options %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ o.description }}</td>
-        <td class="list">{{ o.total }}</td>
-        <td class="list">{{ o.pct|floatformat:1 }}%</td>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ o.description }}</td>
+        <td>{{ o.total }}</td>
+        <td>{{ o.pct|floatformat:1 }}%</td>
     </tr>
     {% endfor %}
     {% endif %}
 </table>
 
-<h2 class="page-title" id="tbl2-desc">{% translate 'Voting log' %}</h2>
+<h2 class="page-title" id="log">{% translate 'Voting log' %}</h2>
 
-<table class="list" aria-describedby="tbl2-desc">
+<table class="list" aria-describedby="log">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Time' %}</th>
-        <th class="list" scope="col">{% translate 'User' %}</th>
-        <th class="list" scope="col">{% translate 'Option' %}</th>
+        <th>&nbsp;</th>
+        <th>{% translate 'Time' %}</th>
+        <th>{% translate 'User' %}</th>
+        <th>{% translate 'Option' %}</th>
     </tr>
 
     {% if obj.answers %}
     {% for a in obj.answers %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list">{{ a.time|date:"d.m.Y H:i" }}</td>
-        <td class="list">{{ a.user.first_name }}&nbsp;{{ a.user.last_name }}</td>
-        <td class="list">{{ a.option.description }}</td>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ a.time|date:"d.m.Y H:i" }}</td>
+        <td>{{ a.user.first_name }}&nbsp;{{ a.user.last_name }}</td>
+        <td>{{ a.option.description }}</td>
     </tr>
     {% endfor %}
     {% endif %}
