@@ -45,14 +45,20 @@ table.no-border {
   line-height: 1.6;
 }
 
-table.list {
-  border:1px solid #c3c3c3;
-  border-collapse: collapse;
-}
-
 table.fixed {
   table-layout: fixed;
   width: 100%;
+}
+
+table.fixed td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table.list {
+  border:1px solid #c3c3c3;
+  border-collapse: collapse;
 }
 
 table.list th {
@@ -69,12 +75,6 @@ table.list td {
   padding:3px;
   vertical-align:top;
   text-align:left;
-}
-
-table.fixed td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 table.list td.icon, table.list th.icon {
