@@ -9,21 +9,21 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Member' %}</th>
-        <th class="list" scope="col">{% translate 'Position' %}</th>
+        <th scope="col">&nbsp;</th>
+        <th class="icon" scope="col">&nbsp;</th>
+        <th class="icon" scope="col">&nbsp;</th>
+        <th scope="col">{% translate 'Member' %}</th>
+        <th scope="col">{% translate 'Position' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }} ?')) return false;" href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list">{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
-        <td class="list">{{ obj.position }}</td>
+        <td>{{ forloop.counter }}</td>
+        <td class="icon"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }} ?')) return false;" href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
+        <td>{{ obj.position }}</td>
     </tr>
     {% endfor %}
     {% endif %}

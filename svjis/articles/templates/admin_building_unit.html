@@ -52,31 +52,31 @@
 
 <table class="list full-width" aria-describedby="tbl-desc">
     <tr>
-        <th class="list hide-in-mobile" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Type' %}</th>
-        <th class="list" scope="col">{% translate 'Entrance' %}</th>
-        <th class="list" scope="col">{% translate 'Registration Id' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Description' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Numerator' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Denominator' %}</th>
+        <th class="hide-in-mobile">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Type' %}</th>
+        <th>{% translate 'Entrance' %}</th>
+        <th>{% translate 'Registration Id' %}</th>
+        <th class="hide-in-mobile">{% translate 'Description' %}</th>
+        <th class="hide-in-mobile">{% translate 'Numerator' %}</th>
+        <th class="hide-in-mobile">{% translate 'Denominator' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr id="unit_{{ obj.pk }}">
-        <td class="list hide-in-mobile">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.type.description }} {{ obj.description }} ?')) return false;" href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list">{{ obj.type.description }}</td>
-        <td class="list">{{ obj.entrance.description }}</td>
-        <td class="list">{{ obj.registration_id }}</td>
-        <td class="list hide-in-mobile">{{ obj.description }}</td>
-        <td class="list hide-in-mobile">{{ obj.numerator }}</td>
-        <td class="list hide-in-mobile">{{ obj.denominator }}</td>
+        <td class="hide-in-mobile">{{ forloop.counter }}</td>
+        <td class="icon"><a href="{% url 'admin_building_unit_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.type.description }} {{ obj.description }} ?')) return false;" href="{% url 'admin_building_unit_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ obj.type.description }}</td>
+        <td>{{ obj.entrance.description }}</td>
+        <td>{{ obj.registration_id }}</td>
+        <td class="hide-in-mobile">{{ obj.description }}</td>
+        <td class="hide-in-mobile">{{ obj.numerator }}</td>
+        <td class="hide-in-mobile">{{ obj.denominator }}</td>
     </tr>
     {% endfor %}
     {% endif %}
