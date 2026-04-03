@@ -47,7 +47,8 @@ table.no-border {
 
 table.list {
   border:1px solid #c3c3c3;
-  border-collapse:collapse;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
 table.list th {
@@ -64,6 +65,18 @@ table.list td {
   padding:3px;
   vertical-align:top;
   text-align:left;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table.list td.icon, table.list th.icon {
+  width: 20px !important;
+}
+
+table.list td.w20, table.list th.w20 {
+  width: 20% !important;
 }
 
 table.list td.closed-ticket {
