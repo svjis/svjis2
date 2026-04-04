@@ -72,8 +72,8 @@
     {% for a in form.instance.assets %}
     <tr>
         <td class="icon"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-        <td id="asset_path_{{ a.pk }}"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
-        <td id="asset_name_{{ a.pk }}">{{ a.description }}</td>
+        <td id="asset_path_{{ a.pk }}" title="{{ a.basename }}"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
+        <td id="asset_name_{{ a.pk }}" title="{{ a.description }}">{{ a.description }}</td>
         <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=a.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
