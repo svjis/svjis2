@@ -151,6 +151,7 @@ LOGOUT_URL = '/'
 # TinyMCE
 
 TINYMCE_DEFAULT_CONFIG = {
+    "license_key": "gpl",
     "theme": "silver",
     "height": 500,
     "menubar": "edit view format table help",
