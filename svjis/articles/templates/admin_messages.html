@@ -8,19 +8,19 @@
 
 <table class="list full-width" aria-describedby="messages">
     <tr>
-        <th class="hide-in-mobile">&nbsp;</th>
+        <th class="hide-on-mobile">&nbsp;</th>
         <th>{% translate 'Recipient' %}</th>
         <th>{% translate 'Subject' %}</th>
-        <th class="hide-in-mobile">{% translate 'Creation time' %}</th>
+        <th class="hide-on-mobile">{% translate 'Creation time' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="hide-in-mobile">{{ forloop.counter }}</td>
+        <td class="hide-on-mobile">{{ forloop.counter }}</td>
         <td>{{ obj.email }}</td>
         <td>{{ obj.subject }}</td>
-        <td class="hide-in-mobile">{{ obj.creation_time|date:"d.m.Y H:i" }}</td>
+        <td class="hide-on-mobile">{{ obj.creation_time|date:"d.m.Y H:i" }}</td>
     </tr>
     {% endfor %}
     {% endif %}

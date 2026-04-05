@@ -13,10 +13,10 @@
         <th class="icon">&nbsp;</th>
         <th class="icon">&nbsp;</th>
         <th>{% translate 'Article' %}</th>
-        <th class="hide-in-mobile">{% translate 'Menu' %}</th>
-        <th class="hide-in-mobile">{% translate 'Author' %}</th>
-        <th class="hide-in-mobile">{% translate 'Date' %}</th>
-        <th class="hide-in-mobile">{% translate 'Published' %}</th>
+        <th class="hide-on-mobile">{% translate 'Menu' %}</th>
+        <th class="hide-on-mobile">{% translate 'Author' %}</th>
+        <th class="hide-on-mobile">{% translate 'Date' %}</th>
+        <th class="hide-on-mobile">{% translate 'Published' %}</th>
     </tr>
 
     {% if object_list %}
@@ -26,10 +26,10 @@
         <td class="icon"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
         <td class="icon"><a href="{% url 'redaction_article_notifications' pk=obj.id %}"><img src="/static/gfx/email_open_image.png" class="led" title="{% translate 'Send notifications' %}" alt="{% translate 'Send notifications' %}"></a></td>
         <td>{{ obj.header|highlight:search|safe }}</td>
-        <td class="hide-in-mobile">{{ obj.menu.description }}</td>
-        <td class="hide-in-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
-        <td class="hide-in-mobile">{{ obj.created_date|date:"d.m.Y" }}</td>
-        <td class="hide-in-mobile">{{ obj.published|yes_no }}</td>
+        <td class="hide-on-mobile">{{ obj.menu.description }}</td>
+        <td class="hide-on-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="hide-on-mobile">{{ obj.created_date|date:"d.m.Y" }}</td>
+        <td class="hide-on-mobile">{{ obj.published|yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}

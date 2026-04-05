@@ -8,7 +8,7 @@
 
 <table class="list full-width" aria-describedby="phonelist">
     <tr>
-        <th class="hide-in-mobile">&nbsp;</th>
+        <th class="hide-on-mobile">&nbsp;</th>
         <th>{% translate 'Name' %}</th>
         <th>{% translate 'Phone' %}</th>
         <th>{% translate 'E-Mail' %}</th>
@@ -17,7 +17,7 @@
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="hide-in-mobile">{{ forloop.counter }}</td>
+        <td class="hide-on-mobile">{{ forloop.counter }}</td>
         <td>{{ obj.last_name }} {{ obj.first_name }}</td>
         <td>{{ obj.userprofile.phone }}</td>
         <td><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>

@@ -50,7 +50,7 @@ table.fixed {
   width: 100%;
 }
 
-table.fixed td {
+table.fixed td, table.fixed th {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1176,16 +1176,16 @@ footer a:hover {
     display: none;
   }
 
-  .hide-in-mobile {
+  .hide-on-mobile {
     display: none;
   }
 
-  table.fixed-in-mobile {
+  table.fixed-on-mobile {
     table-layout: fixed;
     width: 100%;
   }
 
-  table.fixed-in-mobile td {
+  table.fixed-on-mobile td, table.fixed-on-mobile th {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

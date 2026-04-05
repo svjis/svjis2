@@ -43,25 +43,25 @@
     </div>
 </div>
 
-<table class="list full-width" aria-describedby="users">
+<table class="list full-width fixed-on-mobile" aria-describedby="users">
     <tr>
-        <th class="hide-in-mobile">&nbsp;</th>
+        <th class="hide-on-mobile">&nbsp;</th>
         <th class="icon">&nbsp;</th>
         <th>{% translate 'Last name' %}</th>
         <th>{% translate 'First name' %}</th>
-        <th class="hide-in-mobile">{% translate 'E-Mail' %}</th>
-        <th class="hide-in-mobile">{% translate 'Last login' %}</th>
+        <th class="hide-on-mobile">{% translate 'E-Mail' %}</th>
+        <th class="hide-on-mobile">{% translate 'Last login' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr id="user_{{ obj.pk }}">
-        <td class="hide-in-mobile">{{ forloop.counter }}</td>
+        <td class="hide-on-mobile">{{ forloop.counter }}</td>
         <td class="icon"><a href="{% url 'admin_user_detail' pk=obj.pk %}"><img src="/static/gfx/find.png" class="led" title="{% translate 'Detail' %}" alt="{% translate 'Detail' %}"></a></td>
         <td>{{ obj.last_name }}</td>
         <td>{{ obj.first_name }}</td>
-        <td class="hide-in-mobile"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
-        <td class="hide-in-mobile">{{ obj.last_login|date:"d.m.Y H:i" }}</td>
+        <td class="hide-on-mobile"><a href="mailto:{{ obj.email }}">{{ obj.email }}</a></td>
+        <td class="hide-on-mobile">{{ obj.last_login|date:"d.m.Y H:i" }}</td>
     </tr>
     {% endfor %}
     {% endif %}

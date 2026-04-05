@@ -7,23 +7,23 @@
 <h1 class="page-title" id="preferences">{% translate 'Preferences' %}</h1>
 <a class="secondary-button" href="{% url 'admin_preferences_edit' pk=0 %}">{% translate 'Create new entry' %}</a>
 
-<table class="list" aria-describedby="preferences">
+<table class="list fixed-on-mobile" aria-describedby="preferences">
     <tr>
-        <th class="list hide-in-mobile">&nbsp;</th>
-        <th class="list">&nbsp;</th>
-        <th class="list">&nbsp;</th>
-        <th class="list">{% translate 'Key' %}</th>
-        <th class="list hide-in-mobile">{% translate 'Value' %}</th>
+        <th class="hide-on-mobile">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Key' %}</th>
+        <th class="list hide-on-mobile">{% translate 'Value' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="hide-in-mobile">{{ forloop.counter }}</td>
-        <td><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.key }} ?')) return false;" href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td class="hide-on-mobile">{{ forloop.counter }}</td>
+        <td class="icon"><a href="{% url 'admin_preferences_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.key }} ?')) return false;" href="{% url 'admin_preferences_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
         <td>{{ obj.key }}</td>
-        <td class="hide-in-mobile">{{ obj.value }}</td>
+        <td class="hide-on-mobile">{{ obj.value }}</td>
     </tr>
     {% endfor %}
     {% endif %}
