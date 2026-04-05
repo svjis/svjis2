@@ -1152,7 +1152,7 @@ footer a:hover {
   }
 
   .box1, .box2 {
-    max-width: 400px;
+    max-width: 800px;
   }
 }
 
@@ -1178,5 +1178,20 @@ footer a:hover {
 
   .hide-in-mobile {
     display: none;
+  }
+
+  table.fixed-in-mobile {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  table.fixed-in-mobile td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .boxes {
+    width: 100%;
   }
 }
