@@ -135,7 +135,7 @@ table.detail td {
   color: #000 !important;
   text-decoration: none;
   user-select: none;
-  background: #cee67e;
+  background: #f5fae5;
   padding: .3em 1.2em;
   border: 1px solid;
   border-color: #000 !important;
@@ -147,7 +147,7 @@ table.detail td {
 }
 
 .secondary-button:hover {
-  background-color: #9fcf00;
+  background-color: #cee67e;
   cursor: default;
 }
 
