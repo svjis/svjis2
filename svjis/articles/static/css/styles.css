@@ -137,13 +137,13 @@ table.detail td {
   user-select: none;
   background: #cee67e;
   padding: .3em 1.2em;
-  border: 1px solid;
+  border: 2px solid;
   border-color: #000 !important;
   border-radius: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 2.0;
+  line-height: 2.5;
 }
 
 .secondary-button:hover {
