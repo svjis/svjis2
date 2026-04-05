@@ -4,27 +4,27 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ u.first_name }} {{ u.last_name }}</h1>
+<h1 class="page-title" id="owners">{{ u.first_name }} {{ u.last_name }}</h1>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list" aria-describedby="owners">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Type' %}</th>
-        <th class="list" scope="col">{% translate 'Registration Id' %}</th>
-        <th class="list" scope="col">{% translate 'Description' %}</th>
-        <th class="list" scope="col">&nbsp;</th>
+        <th>&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Type' %}</th>
+        <th>{% translate 'Registration Id' %}</th>
+        <th>{% translate 'Description' %}</th>
+        <th class="icon">&nbsp;</th>
     </tr>
 
     {% if u.buildingunit_set.all %}
     {% for obj in u.buildingunit_set.all|dictsort:"registration_id" %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>
-        <td class="list">{{ obj.type.description }}</td>
-        <td class="list">{{ obj.registration_id }}</td>
-        <td class="list">{{ obj.description }}</td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.type.description }}&nbsp;{{ obj.registration_id }} ?')) return false;" href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ forloop.counter }}</td>
+        <td class="icon"><a href="{% url 'admin_building_unit_owners' pk=obj.pk %}"><img src="/static/gfx/user.png" class="led" title="{% translate 'Owners' %}" alt="{% translate 'Owners' %}"></a></td>
+        <td>{{ obj.type.description }}</td>
+        <td>{{ obj.registration_id }}</td>
+        <td>{{ obj.description }}</td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.type.description }}&nbsp;{{ obj.registration_id }} ?')) return false;" href="{% url 'admin_user_owns_delete' pk=pk owner=obj.pk %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
     {% endif %}

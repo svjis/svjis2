@@ -9,21 +9,21 @@
 
 <table class="list" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Description' %}</th>
-        <th class="list" scope="col">{% translate 'Address' %}</th>
+        <th>&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Description' %}</th>
+        <th>{% translate 'Address' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_entrance_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.description }} ?')) return false;" href="{% url 'admin_entrance_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list">{{ obj.description }}</td>
-        <td class="list">{{ obj.address }}</td>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'admin_entrance_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.description }} ?')) return false;" href="{% url 'admin_entrance_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ obj.description }}</td>
+        <td>{{ obj.address }}</td>
     </tr>
     {% endfor %}
     {% endif %}

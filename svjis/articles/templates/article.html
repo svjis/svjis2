@@ -15,15 +15,15 @@
 
     {% if obj.assets %}
     <h2 id="assets" class="comment-title">{% translate 'Assets' %}:</h2>
-    <table class="list" aria-describedby="assets">
+    <table class="list fixed-on-mobile" aria-describedby="assets">
         <tr>
-            <th class="list" scope="col">&nbsp;</th>
-            <th class="list" scope="col">{% translate 'File' %}</th>
+            <th class="icon">&nbsp;</th>
+            <th>{% translate 'File' %}</th>
         </tr>
         {% for a in obj.assets %}
         <tr>
-            <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-            <td class="list"><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
+            <td class="icon"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
+            <td><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
         </tr>
         {% endfor %}
     </table>

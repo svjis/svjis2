@@ -45,9 +45,20 @@ table.no-border {
   line-height: 1.6;
 }
 
+table.fixed {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table.fixed td, table.fixed th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 table.list {
   border:1px solid #c3c3c3;
-  border-collapse:collapse;
+  border-collapse: collapse;
 }
 
 table.list th {
@@ -64,6 +75,14 @@ table.list td {
   padding:3px;
   vertical-align:top;
   text-align:left;
+}
+
+table.list td.icon, table.list th.icon {
+  width: 16px !important;
+}
+
+table.list td.w20, table.list th.w20 {
+  width: 20% !important;
 }
 
 table.list td.closed-ticket {
@@ -96,11 +115,11 @@ table.detail td {
 
 .black-submit {
   font-family:"arial",sans-serif;
-  color: #ffffff; /* barva textu */
-  text-decoration: none; /* odebrat podtržení u odkazů */
-  user-select: none; /* zakázat označování textu */
-  background: #2F2F2F; /* pozadí tlačítka */
-  padding: .7em 1.5em; /* odsazení od textu */
+  color: #ffffff;
+  text-decoration: none;
+  user-select: none;
+  background: #2F2F2F;
+  padding: .7em 1.5em;
   border: none;
   border-radius: 5px;
 }
@@ -113,23 +132,22 @@ table.detail td {
 
 .secondary-button {
   font-family:"arial",sans-serif;
-  font-weight: bold;
-  color: #000 !important; /* barva textu */
-  text-decoration: none; /* odebrat podtržení u odkazů */
-  user-select: none; /* zakázat označování textu */
-  background: #f2f3f4; /* pozadí tlačítka */
-  padding: .3em 1.2em; /* odsazení od textu */
+  color: #000 !important;
+  text-decoration: none;
+  user-select: none;
+  background: #f5fae5;
+  padding: .3em 1.2em;
   border: 1px solid;
   border-color: #000 !important;
   border-radius: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 2.0;
+  line-height: 2.2;
 }
 
 .secondary-button:hover {
-  text-decoration: underline;
+  background-color: #cee67e;
   cursor: default;
 }
 
@@ -1134,7 +1152,7 @@ footer a:hover {
   }
 
   .box1, .box2 {
-    max-width: 400px;
+    max-width: 800px;
   }
 }
 
@@ -1158,7 +1176,22 @@ footer a:hover {
     display: none;
   }
 
-  .hide-in-mobile {
+  .hide-on-mobile {
     display: none;
+  }
+
+  table.fixed-on-mobile {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  table.fixed-on-mobile td, table.fixed-on-mobile th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .boxes {
+    width: 100%;
   }
 }

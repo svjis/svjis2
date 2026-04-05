@@ -4,28 +4,28 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+<h1 class="page-title" id="links">{{ header }}</h1>
 <a class="secondary-button" href="{% url 'redaction_useful_link_edit' pk=0 %}">{% translate 'Create new useful link' %}</a>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list" aria-describedby="links">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Header' %}</th>
-        <th class="list" scope="col">{% translate 'Link' %}</th>
-        <th class="list" scope="col">{% translate 'Order' %}</th>
-        <th class="list" scope="col">{% translate 'Published' %}</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Header' %}</th>
+        <th>{% translate 'Link' %}</th>
+        <th>{% translate 'Order' %}</th>
+        <th>{% translate 'Published' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list"><a href="{% url 'redaction_useful_link_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete this useful link' %}?')) return false;" href="{% url 'redaction_useful_link_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list">{{ obj.header }}</td>
-        <td class="list"><a href="{{ obj.link }}">{{ obj.link }}</a></td>
-        <td class="list">{{ obj.order }}</td>
-        <td class="list">{{ obj.published|yes_no }}</td>
+        <td class="icon"><a href="{% url 'redaction_useful_link_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete this useful link' %}?')) return false;" href="{% url 'redaction_useful_link_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ obj.header }}</td>
+        <td><a href="{{ obj.link }}">{{ obj.link }}</a></td>
+        <td>{{ obj.order }}</td>
+        <td>{{ obj.published|yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}

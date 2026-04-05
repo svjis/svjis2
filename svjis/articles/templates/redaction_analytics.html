@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+<h1 class="page-title">{{ header }}</h1>
 
 <p>{{ time_span_info }}</p>
 
@@ -80,32 +80,32 @@
 </script>
 
 {% if bot_ua_table %}
-<h3>{% translate 'Bots' %}</h3>
-<table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
+<h3 id="bots">{% translate 'Bots' %}</h3>
+<table class="list full-width" aria-describedby="bots" style="font-size: 70%;">
     <tr>
-        <th class="list" scope="col">{% translate 'Count' %}</th>
-        <th class="list" scope="col">{% translate 'Bot' %}</th>
+        <th>{% translate 'Count' %}</th>
+        <th>{% translate 'Bot' %}</th>
     </tr>
     {% for obj in bot_ua_table %}
     <tr>
-        <td class="list">{{ obj.total }}</td>
-        <td class="list">{{ obj.user_agent }}</td>
+        <td>{{ obj.total }}</td>
+        <td>{{ obj.user_agent }}</td>
     </tr>
     {% endfor %}
 </table>
 {% endif %}
 
 {% if human_ua_table %}
-<h3>{% translate 'Humans' %}</h3>
-<table class="list full-width" aria-describedby="tbl-desc" style="font-size: 70%;">
+<h3 id="humans">{% translate 'Humans' %}</h3>
+<table class="list full-width" aria-describedby="humans" style="font-size: 70%;">
     <tr>
-        <th class="list" scope="col">{% translate 'Count' %}</th>
-        <th class="list" scope="col">{% translate 'Human' %}</th>
+        <th>{% translate 'Count' %}</th>
+        <th>{% translate 'Human' %}</th>
     </tr>
     {% for obj in human_ua_table %}
     <tr>
-        <td class="list">{{ obj.total }}</td>
-        <td class="list">{{ obj.user_agent }}</td>
+        <td>{{ obj.total }}</td>
+        <td>{{ obj.user_agent }}</td>
     </tr>
     {% endfor %}
 </table>

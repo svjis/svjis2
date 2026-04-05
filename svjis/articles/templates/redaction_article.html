@@ -4,32 +4,32 @@
 
 {% block content %}
 
-<h1 class="page-title" id="tbl-desc">{{ header }}</h1>
+<h1 class="page-title" id="articles">{{ header }}</h1>
 <a class="secondary-button" href="{% url 'redaction_article_edit' pk=0 %}">{% translate 'Create new article' %}</a>
 
-<table class="list full-width" aria-describedby="tbl-desc">
+<table class="list full-width" aria-describedby="articles">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Article' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Menu' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Author' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Date' %}</th>
-        <th class="list hide-in-mobile" scope="col">{% translate 'Published' %}</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Article' %}</th>
+        <th class="hide-on-mobile">{% translate 'Menu' %}</th>
+        <th class="hide-on-mobile">{% translate 'Author' %}</th>
+        <th class="hide-on-mobile">{% translate 'Date' %}</th>
+        <th class="hide-on-mobile">{% translate 'Published' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list"><a href="{% url 'article' slug=obj.slug %}?search={{ search }}"><img src="/static/gfx/find.png" class="led" title="{% translate 'View' %}" alt="{% translate 'View' %}"></a></td>
-        <td class="list"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a href="{% url 'redaction_article_notifications' pk=obj.id %}"><img src="/static/gfx/email_open_image.png" class="led" title="{% translate 'Send notifications' %}" alt="{% translate 'Send notifications' %}"></a></td>
-        <td class="list">{{ obj.header|highlight:search|safe }}</td>
-        <td class="list hide-in-mobile">{{ obj.menu.description }}</td>
-        <td class="list hide-in-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
-        <td class="list hide-in-mobile">{{ obj.created_date|date:"d.m.Y" }}</td>
-        <td class="list hide-in-mobile">{{ obj.published|yes_no }}</td>
+        <td class="icon"><a href="{% url 'article' slug=obj.slug %}?search={{ search }}"><img src="/static/gfx/find.png" class="led" title="{% translate 'View' %}" alt="{% translate 'View' %}"></a></td>
+        <td class="icon"><a href="{% url 'redaction_article_edit' pk=obj.id %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a href="{% url 'redaction_article_notifications' pk=obj.id %}"><img src="/static/gfx/email_open_image.png" class="led" title="{% translate 'Send notifications' %}" alt="{% translate 'Send notifications' %}"></a></td>
+        <td>{{ obj.header|highlight:search|safe }}</td>
+        <td class="hide-on-mobile">{{ obj.menu.description }}</td>
+        <td class="hide-on-mobile">{{ obj.author.first_name }}&nbsp;{{ obj.author.last_name }}</td>
+        <td class="hide-on-mobile">{{ obj.created_date|date:"d.m.Y" }}</td>
+        <td class="hide-on-mobile">{{ obj.published|yes_no }}</td>
     </tr>
     {% endfor %}
     {% endif %}
