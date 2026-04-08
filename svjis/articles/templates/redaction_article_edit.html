@@ -62,19 +62,19 @@
 <h2 id="assets" class="page-title">{% translate 'Assets' %}</h2>
 
 {% if form.instance.assets %}
-<table class="list" aria-describedby="assets">
+<table class="list fixed" aria-describedby="assets">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Name' %}</th>
-        <th class="list" scope="col">{% translate 'Description' %}</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Name' %}</th>
+        <th>{% translate 'Description' %}</th>
+        <th class="icon">&nbsp;</th>
     </tr>
     {% for a in form.instance.assets %}
     <tr>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=a.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-        <td class="list" id="asset_path_{{ a.pk }}"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
-        <td class="list" id="asset_name_{{ a.pk }}">{{ a.description }}</td>
+        <td class="icon"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
+        <td id="asset_path_{{ a.pk }}" title="{{ a.basename }}"><a href="/media/{{ a.file }}">{{ a.basename }}</a></td>
+        <td id="asset_name_{{ a.pk }}" title="{{ a.description }}">{{ a.description }}</td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.description }} ?')) return false;" href="{% url 'redaction_article_asset_delete' pk=a.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
     </tr>
     {% endfor %}
 </table>

@@ -30,27 +30,27 @@
 
 <table class="detail full-width" aria-describedby="fault">
     <tr>
-        <th class="detail" scope="row">{% translate 'Date' %}</th>
-        <td class="detail">{{ obj.created_date|date:"d.m.Y H:i" }}</td>
+        <th scope="row">{% translate 'Date' %}</th>
+        <td>{{ obj.created_date|date:"d.m.Y H:i" }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Creator' %}</th>
-        <td class="detail">{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
+        <th scope="row">{% translate 'Creator' %}</th>
+        <td>{{ obj.created_by_user.first_name }}&nbsp;{{ obj.created_by_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Resolver' %}</th>
-        <td class="detail">{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
+        <th scope="row">{% translate 'Resolver' %}</th>
+        <td>{{ obj.assigned_to_user.first_name }}&nbsp;{{ obj.assigned_to_user.last_name }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Closed' %}</th>
-        <td class="detail">{{ obj.closed|yes_no }}</td>
+        <th scope="row">{% translate 'Closed' %}</th>
+        <td>{{ obj.closed|yes_no }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Entrance' %}</th>
-        <td class="detail">{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
+        <th scope="row">{% translate 'Entrance' %}</th>
+        <td>{{ obj.entrance.description }} - {{ obj.entrance.address }}</td>
     </tr>
     <tr>
-        <td class="detail" colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
+        <td colspan="2">{{ obj.description|replace_url_to_link|linebreaks|inject_pictures:obj.assets|highlight:search }}</td>
     </tr>
 </table>
 
@@ -58,24 +58,24 @@
 {% if pk != 0 %}
     <h2 id="assets" class="comment-title">{% translate 'Assets' %}:</h2>
     {% if obj.assets %}
-    <table class="list full-width" aria-describedby="assets">
+    <table class="list fixed" aria-describedby="assets">
         <tr>
-            <th class="list" scope="col">&nbsp;</th>
-            <th class="list" scope="col">{% translate 'Description' %}</th>
-            <th class="list" scope="col">{% translate 'User' %}</th>
-            <th class="list hide-in-mobile" scope="col">{% translate 'Time' %}</th>
-            <th class="list" scope="col">&nbsp;</th>
+            <th class="icon">&nbsp;</th>
+            <th>{% translate 'Description' %}</th>
+            <th class="w20">{% translate 'User' %}</th>
+            <th class="w20 hide-on-mobile">{% translate 'Time' %}</th>
+            <th class="icon">&nbsp;</th>
         </tr>
         {% for a in obj.assets %}
         <tr>
-            <td class="list"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
-            <td class="list" id="asset_file_{{ a.pk }}"><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
-            <td class="list" id="asset_user_{{ a.pk }}">{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}</td>
-            <td class="list hide-in-mobile" id="asset_time_{{ a.pk }}">{{ a.created_date|date:"d.m.Y H:i" }}</td>
+            <td class="icon"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
+            <td id="asset_file_{{ a.pk }}" title="{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}"><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
+            <td class="w20" id="asset_user_{{ a.pk }}" title="{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}">{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}</td>
+            <td class="w20 hide-on-mobile" id="asset_time_{{ a.pk }}" title="{{ a.created_date|date:'d.m.Y H:i' }}">{{ a.created_date|date:"d.m.Y H:i" }}</td>
             {% if a.created_by_user == user %}
-            <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+            <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ a.description }} ?')) return false;" href="{% url 'faults_fault_asset_delete' pk=a.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
             {% else %}
-            <td class="list">&nbsp;</td>
+            <td class="icon">&nbsp;</td>
             {% endif %}
         </tr>
         {% endfor %}

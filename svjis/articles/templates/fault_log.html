@@ -10,17 +10,17 @@
     <h2 class="comment-title">{% translate 'Log' %}:</h2>
     <table class="list full-width" aria-describedby="log">
     <tr>
-        <th class="list" scope="col">{% translate 'User' %}</th>
-        <th class="list" scope="col">{% translate 'Event' %}</th>
-        <th class="list" scope="col">{% translate 'Resolver' %}</th>
-        <th class="list" scope="col">{% translate 'Time' %}</th>
+        <th>{% translate 'User' %}</th>
+        <th>{% translate 'Event' %}</th>
+        <th>{% translate 'Resolver' %}</th>
+        <th>{% translate 'Time' %}</th>
     </tr>
     {% for log in obj.logs.all %}
         <tr>
-            <td class="list">{{ log.user.first_name }}&nbsp;{{ log.user.last_name }}</td>
-            <td class="list">{{ log.get_type_display }}</td>
-            <td class="list">{{ log.resolver.first_name }}&nbsp;{{ log.resolver.last_name }}</td>
-            <td class="list">{{ log.entry_time|date:"d.m.Y" }}&nbsp;{{ log.entry_time|date:"H:i" }}</td>
+            <td>{{ log.user.first_name }}&nbsp;{{ log.user.last_name }}</td>
+            <td>{{ log.get_type_display }}</td>
+            <td>{{ log.resolver.first_name }}&nbsp;{{ log.resolver.last_name }}</td>
+            <td>{{ log.entry_time|date:"d.m.Y" }}&nbsp;{{ log.entry_time|date:"H:i" }}</td>
         </tr>
     {% endfor %}
     </table>

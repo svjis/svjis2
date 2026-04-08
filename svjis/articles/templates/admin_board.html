@@ -7,23 +7,23 @@
 <h1 class="page-title" id="tbl-desc">{% translate 'Board' %}</h1>
 <a class="secondary-button" href="{% url 'admin_board_edit' pk=0 %}">{% translate 'Add new member' %}</a>
 
-<table class="list" aria-describedby="tbl-desc">
+<table class="list fixed-on-mobile" aria-describedby="tbl-desc">
     <tr>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">&nbsp;</th>
-        <th class="list" scope="col">{% translate 'Member' %}</th>
-        <th class="list" scope="col">{% translate 'Position' %}</th>
+        <th class="hide-on-mobile">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th class="icon">&nbsp;</th>
+        <th>{% translate 'Member' %}</th>
+        <th>{% translate 'Position' %}</th>
     </tr>
 
     {% if object_list %}
     {% for obj in object_list %}
     <tr>
-        <td class="list">{{ forloop.counter }}</td>
-        <td class="list"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
-        <td class="list"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }} ?')) return false;" href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
-        <td class="list">{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
-        <td class="list">{{ obj.position }}</td>
+        <td class="hide-on-mobile">{{ forloop.counter }}</td>
+        <td class="icon"><a href="{% url 'admin_board_edit' pk=obj.pk %}"><img src="/static/gfx/pencil.png" class="led" title="{% translate 'Edit' %}" alt="{% translate 'Edit' %}"></a></td>
+        <td class="icon"><a onclick="if (!confirm('{% translate 'Do you want to delete' %} {{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }} ?')) return false;" href="{% url 'admin_board_delete' pk=obj.id %}"><img src="/static/gfx/delete.png" class="led" title="{% translate 'Delete' %}" alt="{% translate 'Delete' %}"></a></td>
+        <td>{{ obj.member.userprofile.salutation }}&nbsp;{{ obj.member.first_name }}&nbsp;{{ obj.member.last_name }}</td>
+        <td>{{ obj.position }}</td>
     </tr>
     {% endfor %}
     {% endif %}

@@ -9,20 +9,20 @@
 
 <table class="detail full-width" aria-describedby="person">
     <tr>
-        <th class="detail" scope="row">{% translate 'Salutation' %}</th>
-        <td class="detail">{{ profile.salutation }}</td>
+        <th scope="row">{% translate 'Salutation' %}</th>
+        <td>{{ profile.salutation }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'First name' %}</th>
-        <td class="detail">{{ usr.first_name }}</td>
+        <th scope="row">{% translate 'First name' %}</th>
+        <td>{{ usr.first_name }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Last name' %}</th>
-        <td class="detail">{{ usr.last_name }}</td>
+        <th scope="row">{% translate 'Last name' %}</th>
+        <td>{{ usr.last_name }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Internal note' %}</th>
-        <td class="detail">{{ profile.internal_note }}</td>
+        <th scope="row">{% translate 'Internal note' %}</th>
+        <td>{{ profile.internal_note }}</td>
     </tr>
 </table>
 
@@ -30,28 +30,28 @@
 
 <table class="detail full-width" aria-describedby="contact">
     <tr>
-        <th class="detail" scope="row">{% translate 'Address' %}</th>
-        <td class="detail">{{ profile.address }}</td>
+        <th scope="row">{% translate 'Address' %}</th>
+        <td>{{ profile.address }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'City' %}</th>
-        <td class="detail">{{ profile.city }}</td>
+        <th scope="row">{% translate 'City' %}</th>
+        <td>{{ profile.city }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Post code' %}</th>
-        <td class="detail">{{ profile.post_code }}</td>
+        <th scope="row">{% translate 'Post code' %}</th>
+        <td>{{ profile.post_code }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Country' %}</th>
-        <td class="detail">{{ profile.country }}</td>
+        <th scope="row">{% translate 'Country' %}</th>
+        <td>{{ profile.country }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Phone' %}</th>
-        <td class="detail">{{ profile.phone }}</td>
+        <th scope="row">{% translate 'Phone' %}</th>
+        <td>{{ profile.phone }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'E-Mail' %}</th>
-        <td class="detail"><a href="mailto:{{ usr.email }}">{{ usr.email }}</a></td>
+        <th scope="row">{% translate 'E-Mail' %}</th>
+        <td><a href="mailto:{{ usr.email }}">{{ usr.email }}</a></td>
     </tr>
 </table>
 
@@ -59,16 +59,16 @@
 
 <table class="detail full-width" aria-describedby="account">
     <tr>
-        <th class="detail" scope="row">{% translate 'Username' %}</th>
-        <td class="detail">{{ usr.username }}</td>
+        <th scope="row">{% translate 'Username' %}</th>
+        <td>{{ usr.username }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Active' %}</th>
-        <td class="detail">{{ usr.is_active|yes_no }}</td>
+        <th scope="row">{% translate 'Active' %}</th>
+        <td>{{ usr.is_active|yes_no }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Member of' %}</th>
-        <td class="detail">
+        <th scope="row">{% translate 'Member of' %}</th>
+        <td>
             <ul>
                 {% for grp in user_group_list %}
                 <li>{{ grp.name }}</li>
@@ -84,8 +84,8 @@
 
 <table class="detail full-width" aria-describedby="units">
     <tr>
-        <th class="detail" scope="row">{% translate 'Units' %}</th>
-        <td class="detail">
+        <th scope="row">{% translate 'Units' %}</th>
+        <td>
             <ul>
                 {% for unit in usr.buildingunit_set.all|dictsort:'id' %}
                 <li><a href="{% url 'admin_building_unit_owners' pk=unit.pk %}">{{ unit.type.description }} - {{ unit.registration_id }} - {{ unit.description }}</a></li>
