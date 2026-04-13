@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 id="log" class="page-title">#{{ obj.pk }} - {{ obj.subject }}</h1>
+<h1 id="log" class="page-title" {% if obj.closed %}style="text-decoration: line-through;"{% endif %}>#{{ obj.pk }} - {{ obj.subject }}</h1>
 
 {% if obj.logs.all %}
     <h2 class="comment-title">{% translate 'Log' %}:</h2>
