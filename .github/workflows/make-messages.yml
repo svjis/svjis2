@@ -2,6 +2,9 @@ name: Makemessages
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: read
@@ -39,3 +42,5 @@ jobs:
       with:
         name: Messages
         path: svjis/articles/locale/*
+        overwrite: true
+        retention-days: 60
