@@ -67,6 +67,10 @@
         <td>{{ usr.is_active|yes_no }}</td>
     </tr>
     <tr>
+        <th scope="row">{% translate 'Last login' %}</th>
+        <td>{{ usr.last_login|date:"d.m.Y H:i" }}</td>
+    </tr>
+    <tr>
         <th scope="row">{% translate 'Member of' %}</th>
         <td>
             <ul>
