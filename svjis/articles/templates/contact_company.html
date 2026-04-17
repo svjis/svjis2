@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-title" id="contact">{{ company.name }}</h1>
+<h1 class="page-title" id="contact">{{ company.name|safe }}</h1>
 
 <table class="no-border" aria-describedby="contact">
     {% if company.address %}
