@@ -47,5 +47,9 @@ lint.per-file-ignores."__init__.py" = [ "E402" ]
 # Avoid trying to fix flake8-bugbear (`B`) violations.
 lint.unfixable = [ "B" ]
 
+[tool.pyproject-fmt]
+# Keep full version numbers (e.g., 1.0.0 instead of 1.0) in dependency specifiers
+keep_full_version = true
+
 [tool.django-stubs]
 django_settings_module = "svjis.svjis.settings"
