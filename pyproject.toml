@@ -27,7 +27,7 @@ dev = [
   "django-stubs>=5.2.5",
   "factory-boy>=3.3.3",
   "playwright>=1.55",
-  "pre-commit>=4.3",
+  "pre-commit>=4.6.0",
 ]
 linux-server = [
   "gunicorn>=23",
