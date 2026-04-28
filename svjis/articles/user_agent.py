@@ -4,7 +4,7 @@ from django.conf import settings
 
 def is_bot(user_agent: str) -> bool:
     spoofing = getattr(settings, 'SVJIS_ANALYTICS_SPOOFING_USER_AGENTS', [])
-    bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy', r'agency']
+    bots = [r'curl', r'bot', r'crawler', r'spider', r'scrapy', r'agency', r'headless']
 
     if not re.search(r'^Mozilla/5\.0 \(', user_agent):
         return True
@@ -59,6 +59,7 @@ def get_os(user_agent: str) -> dict:
         r'android': 'Android:Mobile',
         r'linux': 'Linux:Desktop',
         r'ubuntu': 'Ubuntu:Desktop',
+        r'cros x86_64': 'ChromeOS:Desktop',
     }
 
     if not is_bot(user_agent):
