@@ -59,6 +59,7 @@ def get_os(user_agent: str) -> dict:
         r'android': 'Android:Mobile',
         r'linux': 'Linux:Desktop',
         r'ubuntu': 'Ubuntu:Desktop',
+        r'cros x86_64': 'ChromeOS:Desktop',
     }
 
     if not is_bot(user_agent):
