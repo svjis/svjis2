@@ -88,7 +88,7 @@
 
 <table class="detail full-width" aria-describedby="units">
     <tr>
-        <th scope="row">{% translate 'Units' %}</th>
+        <th scope="row" class="hide-on-mobile">{% translate 'Units' %}</th>
         <td>
             <ul>
                 {% for unit in usr.buildingunit_set.all|dictsort:'id' %}
