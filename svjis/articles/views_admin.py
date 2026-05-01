@@ -440,7 +440,7 @@ def admin_user_view(request):
     group_filter = int(request.GET.get('group_filter', 0))
     if group_filter != 0:
         g = Group.objects.filter(pk=group_filter)
-        user_list = User.objects.filter(groups__in=g)
+        user_list = user_list.filter(groups__in=g)
     group_list = Group.objects.all()
 
     ctx = utils.get_context()
