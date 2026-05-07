@@ -26,7 +26,7 @@ urls.Translations = "https://translate.codeberg.org/engage/svjis/"
 dev = [
   "django-stubs>=5.2.5",
   "factory-boy>=3.3.3",
-  "playwright>=1.55",
+  "playwright>=1.59.0",
   "pre-commit>=4.3",
 ]
 linux-server = [
