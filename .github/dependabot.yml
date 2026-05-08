@@ -10,21 +10,19 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'thursday'
-      time: '23:00'
+      time: '21:15'
     # Cooldown new versions for security reasons
     cooldown:
       default-days: 7
 
-  # Enable version updates for Python/Pip - Production
+  # Enable version updates for Python/uv - Production
   - package-ecosystem: 'uv'
-    # Look for a `requirements.txt` in the `root` directory
-    # also 'setup.cfg', 'runtime.txt' and 'requirements/*.txt'
     directory: '/'
     # Every weekday
     schedule:
       interval: 'weekly'
       day: 'thursday'
-      time: '23:15'
+      time: '21:00'
     # Cooldown new versions for security reasons
     cooldown:
       default-days: 7
