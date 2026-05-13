@@ -317,7 +317,7 @@ nav li {
 
 nav a {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
   display: block;
   float: left;
   padding: 0 15px 0 10px;
@@ -326,7 +326,7 @@ nav a {
 
 nav a:hover {
   color: #fff;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .tray li#tray-active a {
@@ -611,10 +611,11 @@ p.contact a {
   border-top: 1px solid #e5e5e5;
   background-color: #d0d0d0 !important;
   color: #000 !important;
+  text-decoration: none;
 }
 
 .side-menu__nav a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 /*
