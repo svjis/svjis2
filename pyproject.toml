@@ -30,7 +30,7 @@ dev = [
   "pre-commit>=4.6.0",
 ]
 linux-server = [
-  "gunicorn>=23",
+  "gunicorn>=26.0.0",
 ]
 
 [tool.ruff]
