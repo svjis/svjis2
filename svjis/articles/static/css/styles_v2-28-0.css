@@ -553,6 +553,14 @@ p.contact a {
   text-align: center !important;
 }
 
+.paginator a {
+  text-decoration: none;
+}
+
+.paginator a:hover {
+  text-decoration: underline;
+}
+
 /*
  *  Side menu
  */
