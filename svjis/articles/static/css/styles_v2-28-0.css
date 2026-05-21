@@ -860,6 +860,14 @@ p.contact a {
   float: right !important;
 }
 
+#top_articles a {
+  text-decoration: none;
+}
+
+#top_articles a:hover {
+  text-decoration: underline;
+}
+
 .news_box {
   box-sizing: content-box;
   display: block;
@@ -954,6 +962,14 @@ p.contact a {
 .usefullinks span {
   padding: 0px 10px 0px 0px;
   float: left !important;
+}
+
+.usefullinks a {
+  text-decoration: none;
+}
+
+.usefullinks a:hover {
+  text-decoration: underline;
 }
 
 /*
