@@ -412,6 +412,10 @@ main {
   text-decoration: none;
 }
 
+.article-title-list a:hover {
+  text-decoration: underline;
+}
+
 .article-desc .info {
   font-size: 85%;
   color: #5F5F5F;
