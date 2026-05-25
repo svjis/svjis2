@@ -113,6 +113,14 @@ table.detail td {
   width: 75%;
 }
 
+a.reverse-decoration {
+  text-decoration: none;
+}
+
+a.reverse-decoration:hover {
+  text-decoration: underline;
+}
+
 .black-submit {
   font-family:"arial",sans-serif;
   color: #ffffff;
@@ -298,7 +306,7 @@ img#logo {
 .tray {
   display: flex;
   max-width: 940px;
-  padding: 10px 0px 15px 0px;
+  padding: 12px 0px 13px 0px;
   margin: auto;
   border-radius: 0px 0px 5px 5px;
   background-color: #2f2f2f;
@@ -613,9 +621,6 @@ p.contact a {
   color: #000 !important;
 }
 
-.side-menu__nav a:hover {
-  text-decoration: none;
-}
 
 /*
  *  Side menu - Search

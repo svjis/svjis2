@@ -17,7 +17,7 @@
         <ul class="menu">
             {% if tray_menu_items %}
             {% for obj in tray_menu_items %}
-            <li {% if obj.active %}id="tray-active"{% endif %}><a href="{{ obj.link }}">{{ obj.description }}</a></li>
+            <li {% if obj.active %}id="tray-active"{% endif %}><a class="reverse-decoration" href="{{ obj.link }}">{{ obj.description }}</a></li>
             {% endfor %}
             {% endif %}
         </ul>
