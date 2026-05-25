@@ -488,8 +488,12 @@ def create_news(cls, page):
             'publish': True,
         },
         {
-            'body': 'V pátek 2.4.2021 se bude konat Shromáždění vlastníků jednotek.'
-            '<br/>[<a href="#">více v článku</a>]',
+            'body': '<div>Oznámení termínu konání</div>'
+            '<div style="font-size:large;">Shromáždění vlastníků</div>'
+            '<div style="font-size:larger;color:red">Datum: 2. dubna 2021</div>'
+            '<div>Čas: 18:00-21:00</div>'
+            '<div>Místo: <a href="#" target="blank">Toulcův dvůr</a></div>'
+            '<div>Program a podklady: <a href="#">v&nbsp;článku</a></div>',
             'publish': True,
         },
     ]
