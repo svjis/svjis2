@@ -484,12 +484,19 @@ def search_for_article_in_redaction(cls, page):
 def create_news(cls, page):
     data = [
         {
-            'body': 'Zprovozněny nové stránky výboru.',
+            'body': '<div>Oznámení termínu</div>'
+            '<div style="font-size:large">Čištění garáží</div>'
+            '<div style="font-size:larger;color:red">Ve dnech 18.3 a 19.3.2021</div>'
+            '<div>Více informací: <a href="#">v článku</a></div>',
             'publish': True,
         },
         {
-            'body': 'V pátek 2.4.2021 se bude konat Shromáždění vlastníků jednotek.'
-            '<br/>[<a href="#">více v článku</a>]',
+            'body': '<div>Oznámení termínu konání</div>'
+            '<div style="font-size:large;">Shromáždění vlastníků</div>'
+            '<div style="font-size:larger;color:red">Datum: 2. dubna 2021</div>'
+            '<div>Čas: 18:00-21:00</div>'
+            '<div>Místo: <a href="#" target="blank">Toulcův dvůr</a></div>'
+            '<div>Program a podklady: <a href="#">v&nbsp;článku</a></div>',
             'publish': True,
         },
     ]
