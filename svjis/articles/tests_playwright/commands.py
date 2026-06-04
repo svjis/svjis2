@@ -466,7 +466,7 @@ def create_articles(cls, page):
         if e['comments']:
             menu(page, _('Redaction'), _('Articles'), True)
             click_link_in_row(page, e['header'], 0)
-            expect(page.get_by_text(_('Stop watching discussion'))).to_be_visible()
+            expect(page.locator('.article-detail').get_by_text(_('Stop watching discussion'))).to_be_visible()
 
 
 def search_for_article_in_redaction(cls, page):
@@ -732,6 +732,7 @@ def create_faults(cls, page):
         scrshot(page, get_filename(cls, 'faults'), True)
         expect(page.locator('#msg-info').get_by_text(_('Saved'))).to_be_visible()
         expect(page.locator('.main-content').get_by_text(e['subject'])).to_be_visible()
+        expect(page.locator('.main-content').get_by_text(_('Stop watching ticket'))).to_be_visible()
 
         for f in e['attachments']:
             page.fill('[id=id_description]', f)
