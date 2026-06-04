@@ -466,7 +466,7 @@ def create_articles(cls, page):
         if e['comments']:
             menu(page, _('Redaction'), _('Articles'), True)
             click_link_in_row(page, e['header'], 0)
-            expect(page.get_by_text(_('Start watching discussion'))).to_be_visible()
+            expect(page.get_by_text(_('Stop watching discussion'))).to_be_visible()
 
 
 def search_for_article_in_redaction(cls, page):
