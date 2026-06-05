@@ -249,8 +249,7 @@ def redaction_article_save_view(request):
                 obj.visible_for_group.remove(g)
 
         # Set watching users
-        if pk == 0:
-            obj.watching_users.add(request.user)
+        obj.watching_users.add(request.user)
 
         messages.info(request, _('Saved'))
     else:
