@@ -145,7 +145,7 @@ def admin_board_view(request):
 @permission_required(svjis_edit_admin_company)
 @require_GET
 def admin_board_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(models.Board, pk=pk)
         form = forms.BoardForm(instance=i)
     else:
@@ -232,7 +232,7 @@ def admin_entrance_view(request):
 @permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_entrance_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(models.BuildingEntrance, pk=pk)
         form = forms.BuildingEntranceForm(instance=i)
     else:
@@ -307,7 +307,7 @@ def admin_building_unit_view(request):
 @permission_required(svjis_edit_admin_building)
 @require_GET
 def admin_building_unit_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(models.BuildingUnit, pk=pk)
         form = forms.BuildingUnitForm(instance=i)
     else:
@@ -474,7 +474,7 @@ def admin_user_detail_view(request, pk):
 @permission_required(svjis_edit_admin_users)
 @require_GET
 def admin_user_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         instance = get_object_or_404(User, pk=pk)
         uform = forms.UserForm(instance=instance)
         pinstance, _created = models.UserProfile.objects.get_or_create(user=instance)
@@ -486,7 +486,7 @@ def admin_user_edit_view(request, pk):
 
     group_list = []
     user_group_list = []
-    if pk != 0:
+    if pk:
         user_group_list = Group.objects.filter(user__id=instance.id)
     for g in Group.objects.all().order_by('name'):
         item = {'name': g.name, 'checked': g in user_group_list}
@@ -507,7 +507,7 @@ def admin_user_edit_view(request, pk):
 @require_POST
 def admin_user_save_view(request):
     pk = int(request.POST['pk'])
-    if pk != 0:
+    if pk:
         user_i = get_object_or_404(User, pk=pk)
         user_form = forms.UserForm(request.POST, instance=user_i)
         user_profile_form = forms.UserProfileForm(request.POST, instance=user_i.userprofile)
@@ -665,7 +665,7 @@ def admin_group_view(request):
 @permission_required(svjis_edit_admin_groups)
 @require_GET
 def admin_group_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(Group, pk=pk)
         form = forms.GroupEditForm(instance=i)
     else:
@@ -713,7 +713,7 @@ def admin_group_edit_view(request, pk):
         },
     ]
     group_perm_list = []
-    if pk != 0:
+    if pk:
         group_perm_list = Permission.objects.filter(group__id=i.id)
     for m in permission_list:
         for p in m['perms']:
@@ -785,7 +785,7 @@ def admin_preferences_view(request):
 @permission_required(svjis_edit_admin_preferences)
 @require_GET
 def admin_preferences_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(models.Preferences, pk=pk)
         form = forms.PreferencesForm(instance=i)
     else:

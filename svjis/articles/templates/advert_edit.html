@@ -42,7 +42,7 @@
     </p>
 </form>
 
-{% if pk != 0 %}
+{% if pk %}
     <h2 id="assets">{% translate 'Assets' %}</h2>
     <form action="{% url 'adverts_asset_save' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}

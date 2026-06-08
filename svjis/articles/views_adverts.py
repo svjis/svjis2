@@ -95,7 +95,7 @@ def adverts_list_view(request):
 @permission_required(svjis_add_advert)
 @require_GET
 def adverts_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(models.Advert, pk=pk)
         if i.created_by_user != request.user:
             raise Http404
