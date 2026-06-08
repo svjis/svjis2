@@ -164,7 +164,7 @@ def admin_board_edit_view(request, pk):
 @require_POST
 def admin_board_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.BoardForm(request.POST)
     else:
         instance = get_object_or_404(models.Board, pk=pk)
@@ -251,7 +251,7 @@ def admin_entrance_edit_view(request, pk):
 @require_POST
 def admin_entrance_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.BuildingEntranceForm(request.POST)
     else:
         instance = get_object_or_404(models.BuildingEntrance, pk=pk)
@@ -326,7 +326,7 @@ def admin_building_unit_edit_view(request, pk):
 @require_POST
 def admin_building_unit_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.BuildingUnitForm(request.POST)
     else:
         instance = get_object_or_404(models.BuildingUnit, pk=pk)
@@ -736,7 +736,7 @@ def admin_group_edit_view(request, pk):
 @require_POST
 def admin_group_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.GroupEditForm(request.POST)
     else:
         instance = get_object_or_404(Group, pk=pk)
@@ -804,7 +804,7 @@ def admin_preferences_edit_view(request, pk):
 @require_POST
 def admin_preferences_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.PreferencesForm(request.POST)
     else:
         instance = get_object_or_404(models.Preferences, pk=pk)

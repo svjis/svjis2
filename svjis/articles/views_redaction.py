@@ -125,7 +125,7 @@ def redaction_menu_edit_view(request, pk):
 @require_POST
 def redaction_menu_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.ArticleMenuForm(request.POST)
     else:
         instance = get_object_or_404(models.ArticleMenu, pk=pk)
@@ -226,7 +226,7 @@ def redaction_article_edit_view(request, pk):
 @require_POST
 def redaction_article_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.ArticleForm(request.POST)
     else:
         instance = get_object_or_404(models.Article, pk=pk)
@@ -234,7 +234,7 @@ def redaction_article_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not obj.author_id:
             obj.author = request.user
         obj.save()
         pk = obj.pk
@@ -381,7 +381,7 @@ def redaction_news_edit_view(request, pk):
 @require_POST
 def redaction_news_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.NewsForm(request.POST)
     else:
         instance = get_object_or_404(models.News, pk=pk)
@@ -389,7 +389,7 @@ def redaction_news_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not obj.author_id:
             obj.author = request.user
         obj.save()
         messages.info(request, _('Saved'))
@@ -457,7 +457,7 @@ def redaction_useful_link_edit_view(request, pk):
 @require_POST
 def redaction_useful_link_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.UsefulLinkForm(request.POST)
     else:
         instance = get_object_or_404(models.UsefulLink, pk=pk)
@@ -533,7 +533,7 @@ def redaction_survey_edit_view(request, pk):
 @require_POST
 def redaction_survey_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.SurveyForm(request.POST)
     else:
         instance = get_object_or_404(models.Survey, pk=pk)
@@ -541,7 +541,7 @@ def redaction_survey_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not obj.author_id:
             obj.author = request.user
         obj.save()
 
