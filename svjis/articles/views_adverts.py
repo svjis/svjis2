@@ -127,7 +127,7 @@ def adverts_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if not obj.created_by_user_id:
+        if not pk:
             obj.created_by_user = request.user
         obj.save()
         messages.info(request, _('Saved'))

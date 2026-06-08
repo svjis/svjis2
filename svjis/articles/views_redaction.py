@@ -234,7 +234,7 @@ def redaction_article_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if not obj.author_id:
+        if not pk:
             obj.author = request.user
         obj.save()
         pk = obj.pk
@@ -389,7 +389,7 @@ def redaction_news_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if not obj.author_id:
+        if not pk:
             obj.author = request.user
         obj.save()
         messages.info(request, _('Saved'))
@@ -541,7 +541,7 @@ def redaction_survey_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if not obj.author_id:
+        if not pk:
             obj.author = request.user
         obj.save()
 
