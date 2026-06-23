@@ -133,7 +133,7 @@ table.detail td {
 .secondary-button {
   font-family:"arial",sans-serif;
   color: #000 !important;
-  text-decoration: none;
+  text-decoration: none !important;
   user-select: none;
   background: #f5fae5;
   padding: .3em 1.2em;
@@ -149,7 +149,7 @@ table.detail td {
 .secondary-button:hover {
   background-color: #cee67e;
   cursor: default;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 fieldset {
