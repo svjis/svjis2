@@ -64,7 +64,7 @@ def faults_list_view(request):
 
     # Search
     search = request.GET.get('search')
-    if search is not None and len(search) < 3:
+    if search is not None and not str(search).isdigit() and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
     if search is not None and len(search) > 100:

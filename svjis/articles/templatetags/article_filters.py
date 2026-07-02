@@ -18,6 +18,17 @@ def highlight(text, search):
 
 
 @register.filter()
+def highlight_exact(text, search):
+    if search == '':
+        return text
+    if search == text:
+        highlighted = f'<b style="color:black;background-color:#ffff66">{text}</b>'
+    else:
+        highlighted = text
+    return mark_safe(highlighted)
+
+
+@register.filter()
 def inject_pictures(text, assets):
     for a in assets:
         file = a.file
