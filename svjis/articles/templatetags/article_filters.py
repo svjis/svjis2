@@ -33,7 +33,7 @@ def inject_pictures(text, assets):
         if file_extension in VIDEO_ICONS:
             text = text.replace(
                 '{' + basename + '}',
-                f'<video class="article-video" controls><source src="/media/{file}"'
+                f'<video class="article-video" controls><source src="/media/{file}"  alt="{basename}'
                 f' type="video/{file_extension}" />Your browser does not support the video tag.</video>',
             )
     return mark_safe(text)
