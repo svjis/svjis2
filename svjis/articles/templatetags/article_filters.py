@@ -2,6 +2,8 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as gt
 from django.conf import settings
+from articles.model_utils import PICTURE_ICONS, VIDEO_ICONS
+import os
 import re
 from re import IGNORECASE, compile
 
@@ -22,7 +24,18 @@ def inject_pictures(text, assets):
     for a in assets:
         file = a.file
         basename = a.basename
-        text = text.replace('{' + basename + '}', f'<img class="article-img" src="/media/{file}" alt="{basename}">')
+        _file_name, file_extension = os.path.splitext(basename)
+        file_extension = file_extension[1:].lower()
+        if file_extension in PICTURE_ICONS:
+            text = text.replace(
+                '{' + basename + '}', f'<img class="article-img" src="/media/{file}" alt="{basename}">'
+            )
+        if file_extension in VIDEO_ICONS:
+            text = text.replace(
+                '{' + basename + '}',
+                f'<video class="article-video" controls><source src="/media/{file}"'
+                f' type="video/{file_extension}" />Your browser does not support the video tag.</video>',
+            )
     return mark_safe(text)
 
 

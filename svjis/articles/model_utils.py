@@ -74,17 +74,19 @@ def _slug_strip(value, separator='-'):
     return value
 
 
+DOCUMENT_ICONS = ['doc', 'docx', 'htm', 'html', 'pdf', 'pps', 'ppsx', 'txt', 'xls', 'xlsx', 'zip']
+PICTURE_ICONS = ['gif', 'jpeg', 'jpg', 'png', 'webp']
+VIDEO_ICONS = ['mpg', 'mpeg', 'mov', 'mp4', 'avi', 'wmv', 'webm']
+
+
 def get_asset_icon(basename):
-    document_icons = ['doc', 'docx', 'htm', 'html', 'pdf', 'pps', 'ppsx', 'txt', 'xls', 'xlsx', 'zip']
-    picture_icons = ['gif', 'jpeg', 'jpg', 'png', 'webp']
-    video_icons = ['mpg', 'mpeg', 'mov', 'mp4', 'avi', 'wmv', 'webm']
     _file_name, file_extension = os.path.splitext(basename)
     file_extension = file_extension[1:]
-    if file_extension.lower() in document_icons:
+    if file_extension.lower() in DOCUMENT_ICONS:
         return f'Files_{file_extension.lower()}.gif'
-    elif file_extension.lower() in picture_icons:
+    elif file_extension.lower() in PICTURE_ICONS:
         return 'attach_image.gif'
-    elif file_extension.lower() in video_icons:
+    elif file_extension.lower() in VIDEO_ICONS:
         return 'attach_video.gif'
     else:
         return 'Files_unknown.gif'
