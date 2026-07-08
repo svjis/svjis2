@@ -10,8 +10,8 @@ body {
   background-color: #d7ecf4;
 }
 
-a {color:#739D13;}
-a:hover {color:#516F0D;}
+a {color:#739D13; text-decoration: none;}
+a:hover {color:#516F0D; text-decoration: underline;}
 
 h1, h2, h3, h4, h5, h6, p, address, blockquote, table, dl, fieldset {margin:15px 0;}
 
@@ -133,7 +133,7 @@ table.detail td {
 .secondary-button {
   font-family:"arial",sans-serif;
   color: #000 !important;
-  text-decoration: none;
+  text-decoration: none !important;
   user-select: none;
   background: #f5fae5;
   padding: .3em 1.2em;
@@ -149,6 +149,7 @@ table.detail td {
 .secondary-button:hover {
   background-color: #cee67e;
   cursor: default;
+  text-decoration: none !important;
 }
 
 fieldset {
@@ -317,7 +318,6 @@ nav li {
 
 nav a {
   color: #fff;
-  text-decoration: none;
   display: block;
   float: left;
   padding: 0 15px 0 10px;
@@ -326,7 +326,6 @@ nav a {
 
 nav a:hover {
   color: #fff;
-  text-decoration: underline;
 }
 
 .tray li#tray-active a {
@@ -408,14 +407,6 @@ main {
   margin: 0;
 }
 
-.article-title-list a {
-  text-decoration: none;
-}
-
-.article-title-list a:hover {
-  text-decoration: underline;
-}
-
 .article-desc .info {
   font-size: 85%;
   color: #5F5F5F;
@@ -425,6 +416,7 @@ main {
 
 .info a {
   color: #5F5F5F;
+  text-decoration: underline;
 }
 
 .info a:hover {
@@ -557,14 +549,6 @@ p.contact a {
   text-align: center !important;
 }
 
-.paginator a {
-  text-decoration: none;
-}
-
-.paginator a:hover {
-  text-decoration: underline;
-}
-
 /*
  *  Side menu
  */
@@ -623,11 +607,6 @@ p.contact a {
   border-top: 1px solid #e5e5e5;
   background-color: #d0d0d0 !important;
   color: #000 !important;
-  text-decoration: none;
-}
-
-.side-menu__nav a:hover {
-  text-decoration: underline;
 }
 
 /*
@@ -871,14 +850,6 @@ p.contact a {
   float: right !important;
 }
 
-#top_articles a {
-  text-decoration: none;
-}
-
-#top_articles a:hover {
-  text-decoration: underline;
-}
-
 .news_box {
   box-sizing: content-box;
   display: block;
@@ -973,14 +944,6 @@ p.contact a {
 .usefullinks span {
   padding: 0px 10px 0px 0px;
   float: left !important;
-}
-
-.usefullinks a {
-  text-decoration: none;
-}
-
-.usefullinks a:hover {
-  text-decoration: underline;
 }
 
 /*
