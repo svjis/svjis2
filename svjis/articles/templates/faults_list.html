@@ -25,7 +25,7 @@
     {% for obj in object_list %}
     <tr>
         <td class="icon {% if obj.closed %}closed-ticket{% endif %}"><a {% if search != '' %} href="{% url 'fault' slug=obj.slug %}?search={{ search }}" {% else %} href="{% url 'fault' slug=obj.slug %}" {% endif %}><img src="/static/gfx/find.png" class="led" title="{% translate 'View' %}" alt="{% translate 'View' %}"></a></td>
-        <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.pk }}</td>
+        <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.pk|stringformat:"s"|highlight_exact:search }}</td>
         <td class="hide-on-mobile {% if obj.closed %}closed-ticket{% endif %}">{{ obj.created_date|date:"d.m.Y" }}</td>
         <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.subject|highlight:search }}</td>
         <td class="{% if obj.closed %}closed-ticket{% endif %}">{{ obj.entrance.description }}</td>

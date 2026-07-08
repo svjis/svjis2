@@ -64,14 +64,17 @@ def faults_list_view(request):
 
     # Search
     search = request.GET.get('search')
-    if search is not None and len(search) < 3:
+    if search is not None and not str(search).isdigit() and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
     if search is not None and len(search) > 100:
         messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
         search = None
     if search is not None:
-        fault_list = fault_list.filter(Q(subject__icontains=search) | Q(description__icontains=search))
+        query = Q(subject__icontains=search) | Q(description__icontains=search)
+        if str(search).isdigit():
+            query |= Q(id=int(search))
+        fault_list = fault_list.filter(query)
         header = _("Search results") + f": {search}"
     else:
         search = ''
