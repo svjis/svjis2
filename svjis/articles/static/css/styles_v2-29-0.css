@@ -455,6 +455,13 @@ img.article-img {
   display: block;
 }
 
+video.article-video {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
 .comment-title {
   margin: 10px 0px;
   font-weight: normal;
