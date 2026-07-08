@@ -95,7 +95,7 @@ def adverts_list_view(request):
 @permission_required(svjis_add_advert)
 @require_GET
 def adverts_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         i = get_object_or_404(models.Advert, pk=pk)
         if i.created_by_user != request.user:
             raise Http404
@@ -117,7 +117,7 @@ def adverts_edit_view(request, pk):
 @require_POST
 def adverts_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.AdvertForm(request.POST)
     else:
         instance = get_object_or_404(models.Advert, pk=pk)
@@ -127,7 +127,7 @@ def adverts_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not pk:
             obj.created_by_user = request.user
         obj.save()
         messages.info(request, _('Saved'))

@@ -106,7 +106,7 @@ def redaction_menu_view(request):
 @permission_required(svjis_edit_article_menu)
 @require_GET
 def redaction_menu_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         am = get_object_or_404(models.ArticleMenu, pk=pk)
         form = forms.ArticleMenuForm(instance=am)
     else:
@@ -125,7 +125,7 @@ def redaction_menu_edit_view(request, pk):
 @require_POST
 def redaction_menu_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.ArticleMenuForm(request.POST)
     else:
         instance = get_object_or_404(models.ArticleMenu, pk=pk)
@@ -200,7 +200,7 @@ def redaction_article_view(request):
 @permission_required(svjis_edit_article)
 @require_GET
 def redaction_article_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         a = get_object_or_404(models.Article, pk=pk)
         form = forms.ArticleForm(instance=a)
     else:
@@ -208,7 +208,7 @@ def redaction_article_edit_view(request, pk):
 
     group_list = []
     for g in Group.objects.all().order_by('name'):
-        item = {'name': g.name, 'checked': g in form.instance.visible_for_group.all() if pk != 0 else False}
+        item = {'name': g.name, 'checked': g in form.instance.visible_for_group.all() if pk else False}
         group_list.append(item)
 
     ctx = utils.get_context()
@@ -226,7 +226,7 @@ def redaction_article_edit_view(request, pk):
 @require_POST
 def redaction_article_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.ArticleForm(request.POST)
     else:
         instance = get_object_or_404(models.Article, pk=pk)
@@ -234,7 +234,7 @@ def redaction_article_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not pk:
             obj.author = request.user
         obj.save()
         pk = obj.pk
@@ -362,7 +362,7 @@ def redaction_news_view(request):
 @permission_required(svjis_edit_article_news)
 @require_GET
 def redaction_news_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         a = get_object_or_404(models.News, pk=pk)
         form = forms.NewsForm(instance=a)
     else:
@@ -381,7 +381,7 @@ def redaction_news_edit_view(request, pk):
 @require_POST
 def redaction_news_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.NewsForm(request.POST)
     else:
         instance = get_object_or_404(models.News, pk=pk)
@@ -389,7 +389,7 @@ def redaction_news_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not pk:
             obj.author = request.user
         obj.save()
         messages.info(request, _('Saved'))
@@ -438,7 +438,7 @@ def redaction_useful_link_view(request):
 @permission_required(svjis_edit_useful_link)
 @require_GET
 def redaction_useful_link_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         a = get_object_or_404(models.UsefulLink, pk=pk)
         form = forms.UsefulLinkForm(instance=a)
     else:
@@ -457,7 +457,7 @@ def redaction_useful_link_edit_view(request, pk):
 @require_POST
 def redaction_useful_link_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.UsefulLinkForm(request.POST)
     else:
         instance = get_object_or_404(models.UsefulLink, pk=pk)
@@ -511,7 +511,7 @@ def redaction_survey_view(request):
 @permission_required(svjis_edit_survey)
 @require_GET
 def redaction_survey_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         a = get_object_or_404(models.Survey, pk=pk)
         form = forms.SurveyForm(instance=a)
         n = a.options.count()
@@ -533,7 +533,7 @@ def redaction_survey_edit_view(request, pk):
 @require_POST
 def redaction_survey_save_view(request):
     pk = int(request.POST['pk'])
-    if pk == 0:
+    if not pk:
         form = forms.SurveyForm(request.POST)
     else:
         instance = get_object_or_404(models.Survey, pk=pk)
@@ -541,7 +541,7 @@ def redaction_survey_save_view(request):
 
     if form.is_valid():
         obj = form.save(commit=False)
-        if pk == 0:
+        if not pk:
             obj.author = request.user
         obj.save()
 

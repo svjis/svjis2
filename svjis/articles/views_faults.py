@@ -121,7 +121,7 @@ def fault_view(request, slug):
 @permission_required(svjis_fault_resolver)
 @require_GET
 def faults_fault_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         a = get_object_or_404(models.FaultReport, pk=pk)
         form = forms.FaultReportForm(instance=a)
     else:
