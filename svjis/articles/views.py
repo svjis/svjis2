@@ -212,8 +212,9 @@ def article_view(request, slug):
     if user.is_anonymous:
         user = None
 
-    ua = request.headers.get('user-agent', '')
-    models.ArticleLog.objects.create(article=article, user=user, user_agent=ua)
+    if article.published:
+        ua = request.headers.get('user-agent', '')
+        models.ArticleLog.objects.create(article=article, user=user, user_agent=ua)
 
     group_list = [g.name for g in article.visible_for_group.order_by('name')]
     if article.visible_for_all:
