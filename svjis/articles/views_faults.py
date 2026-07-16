@@ -410,12 +410,12 @@ def fault_logs_view(request, pk):
 # Media
 @permission_required(svjis_view_fault_menu)
 @require_GET
-def get_fault_asset(request, pk, filename):
+def get_fault_asset(request, folder, filename):
     # Block path traversal attempts like ../../secret.txt
     safe_name = PurePosixPath(filename).name
     if safe_name != filename:
         raise Http404()
 
     # Get file
-    asset = get_object_or_404(models.FaultAsset, file=f"{models.MEDIA_FAULT_ASSETS_DIR}/{pk}/{safe_name}")
+    asset = get_object_or_404(models.FaultAsset, file=f"{models.MEDIA_FAULT_ASSETS_DIR}/{folder}/{safe_name}")
     return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)

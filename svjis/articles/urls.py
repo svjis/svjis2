@@ -222,7 +222,7 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switching
     path("media/articles/<str:slug>/<str:filename>", views.get_article_asset, name="get_article_asset"),
-    path("media/faults/<int:pk>/<str:filename>", views_faults.get_fault_asset, name="get_fault_asset"),
+    path("media/faults/<str:folder>/<str:filename>", views_faults.get_fault_asset, name="get_fault_asset"),
     path("media/adverts/<int:advert_id>/<str:filename>", views_adverts.get_advert_asset, name="get_advert_asset"),
 ]
 
