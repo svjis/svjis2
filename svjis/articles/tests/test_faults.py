@@ -12,7 +12,7 @@ class FaultsTest(UserDataMixin, PreferencesDataMixin, TestCase):
         cls.fault = FaultReportFactory(created_by_user=cls.u_jiri, closed=False)
 
         cls.create_url = reverse('faults_fault_create_save')
-        cls.detail_url = reverse('fault', kwargs={'slug': cls.fault.slug})
+        cls.detail_url = reverse('fault', kwargs={'pk': cls.fault.pk})
         cls.update_url = reverse('faults_fault_update')
 
     def create_fault_and_get_created_by(self, username, password, fault_form):

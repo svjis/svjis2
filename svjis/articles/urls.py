@@ -111,7 +111,7 @@ urlpatterns = [
         name='redaction_survey_results_export_to_excel',
     ),
     path('redaction_analytics/', views_redaction.redaction_analytics_view, name='redaction_analytics'),
-    path('fault/<str:slug>/', views_faults.fault_view, name='fault'),
+    path('fault/<int:pk>/', views_faults.fault_view, name='fault'),
     path('faults_list/', views_faults.faults_list_view, name='faults_list'),
     path('faults_fault_create/', views_faults.faults_fault_create_view, name='faults_fault_create'),
     path('faults_fault_edit/<int:pk>/', views_faults.faults_fault_edit_view, name='faults_fault_edit'),
@@ -137,7 +137,7 @@ urlpatterns = [
     path('fault_comment_edit/<int:pk>/', views_faults.fault_comment_edit_view, name='fault_comment_edit'),
     path('fault_comment_modify/', views_faults.fault_comment_modify_view, name='fault_comment_modify'),
     path('fault_watch/', views_faults.fault_watch_view, name='fault_watch'),
-    path('faults_fault_logs/<str:slug>/', views_faults.fault_logs_view, name='faults_fault_logs'),
+    path('faults_fault_logs/<int:pk>/', views_faults.fault_logs_view, name='faults_fault_logs'),
     path('adverts_list/', views_adverts.adverts_list_view, name='adverts_list'),
     path('adverts_edit/<int:pk>/', views_adverts.adverts_edit_view, name='adverts_edit'),
     path('adverts_save/', views_adverts.adverts_save_view, name='adverts_save'),
@@ -221,8 +221,8 @@ urlpatterns = [
     path('lost_password_send/', views_personal_settings.lost_password_send_view, name='lost_password_send'),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switching
-    path("media/articles/<str:slug>/<str:filename>", views.get_article_asset, name="get_article_asset"),
-    path("media/faults/<str:slug>/<str:filename>", views_faults.get_fault_asset, name="get_fault_asset"),
+    path("media/articles/<str:folder>/<str:filename>", views.get_article_asset, name="get_article_asset"),
+    path("media/faults/<str:folder>/<str:filename>", views_faults.get_fault_asset, name="get_fault_asset"),
     path("media/adverts/<int:advert_id>/<str:filename>", views_adverts.get_advert_asset, name="get_advert_asset"),
 ]
 
