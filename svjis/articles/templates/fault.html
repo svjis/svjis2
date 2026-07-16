@@ -19,7 +19,7 @@
 {% endif %}
 
 {% if perms.articles.svjis_view_fault_menu %}
-    <a class="secondary-button" href="{% url 'faults_fault_logs' slug=obj.slug %}">{% translate 'View log' %}</a>&nbsp;
+    <a class="secondary-button" href="{% url 'faults_fault_logs' pk=obj.pk %}">{% translate 'View log' %}</a>&nbsp;
 {% endif %}
 
 {% if user in obj.watching_users.all %}
