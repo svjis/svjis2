@@ -33,6 +33,10 @@ linux-server = [
   "gunicorn>=26.0.0",
 ]
 
+[tool.uv]
+exclude-newer = "7 days"
+exclude-newer-package = { django = false }
+
 [tool.ruff]
 line-length = 119
 indent-width = 4
