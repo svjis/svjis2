@@ -6,7 +6,6 @@ from django.contrib.auth.models import User, Group, Permission
 from django.db import transaction
 from articles import models
 
-
 from articles.models import ArticleMenu, Preferences, BuildingUnitType, AdvertType
 
 
