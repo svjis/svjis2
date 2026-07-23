@@ -24,7 +24,7 @@ urls.Translations = "https://translate.codeberg.org/engage/svjis/"
 
 [dependency-groups]
 dev = [
-  "django-stubs>=6.0.6",
+  "django-stubs>=6.0.7",
   "factory-boy>=3.3.3",
   "playwright>=1.61.0",
   "pre-commit>=4.6.0",
