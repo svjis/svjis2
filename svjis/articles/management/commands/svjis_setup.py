@@ -4,6 +4,7 @@ import sys
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User, Group, Permission
 from django.db import transaction
+from articles import models
 
 from articles.models import ArticleMenu, Preferences, BuildingUnitType, AdvertType
 
@@ -147,6 +148,7 @@ def create_groups():
 def create_admin_user(password: str):
     print("Creating admin user...")
     u = User.objects.create_superuser(username='admin', email='admin@test.cz', password=password, last_name='admin')
+    models.UserProfile.objects.create(user=u)
     g = Group.objects.get(name='Administrátor')
     u.groups.add(g)
     print("Done")
