@@ -204,7 +204,7 @@ def send_new_fault_notification(user_list, host, fault_report):
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    link = f"<a href='{host}/fault/{fault_report.pk}/'>{fault_report.subject}</a>"
     send_mails(
         [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
@@ -222,7 +222,7 @@ def send_fault_comment_notification(user_list, host, fault_report, comment):
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/fault/{fault_report.slug}/#comment_{comment.pk}'>{fault_report.subject}</a>"
+    link = f"<a href='{host}/fault/{fault_report.pk}/#comment_{comment.pk}'>{fault_report.subject}</a>"
     send_mails(
         [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
@@ -238,7 +238,7 @@ def send_fault_assigned_notification(user, who_assigned_you, host, fault_report)
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    link = f"<a href='{host}/fault/{fault_report.pk}/'>{fault_report.subject}</a>"
     send_mails(
         [user.email],
         f'{subj} - {fault_report.subject}',
@@ -256,7 +256,7 @@ def send_fault_closed_notification(user_list, who_closed, host, fault_report):
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    link = f"<a href='{host}/fault/{fault_report.pk}/'>{fault_report.subject}</a>"
     send_mails(
         [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
@@ -272,7 +272,7 @@ def send_fault_reopened_notification(user_list, who_closed, host, fault_report):
     if template is None:
         return
     subj = models.Company.objects.get(pk=1).internet_domain
-    link = f"<a href='{host}/fault/{fault_report.slug}/'>{fault_report.subject}</a>"
+    link = f"<a href='{host}/fault/{fault_report.pk}/'>{fault_report.subject}</a>"
     send_mails(
         [user.email for user in user_list if user.is_active and user.email != ''],
         f'{subj} - {fault_report.subject}',
