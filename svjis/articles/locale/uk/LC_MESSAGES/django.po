@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-31 14:11+0200\n"
-"PO-Revision-Date: 2026-04-01 11:47+0000\n"
+"PO-Revision-Date: 2026-08-04 08:25+0000\n"
 "Last-Translator: SomeTr <sometr@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/svjis/"
 "svjis2/uk/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > "
 "14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % "
 "100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 2026.7.1\n"
 
 #: articles/forms.py:339 articles/models.py:388 articles/models.py:419
 #: articles/templates/admin_building_unit.html:36
@@ -33,7 +33,7 @@ msgstr "Вхід"
 #: articles/forms.py:348 articles/templates/fault.html:41
 #: articles/templates/fault_log.html:15 articles/templates/faults_list.html:21
 msgid "Resolver"
-msgstr "Розв'язувач"
+msgstr "Розв’язувач"
 
 #: articles/forms.py:354
 msgid "On Behalf Of"
@@ -252,7 +252,7 @@ msgstr "Може редагувати налаштування"
 #: articles/templates/redaction_article_edit.html:69
 #: articles/templates/redaction_menu.html:14
 msgid "Name"
-msgstr "Ім'я"
+msgstr "Ім’я"
 
 #: articles/models.py:314 articles/templates/contact_company.html:42
 msgid "Registration No."
@@ -612,7 +612,7 @@ msgstr "Прізвище"
 #: articles/templates/admin_user_detail.html:16
 #: articles/templates/redaction_article_notifications.html:18
 msgid "First name"
-msgstr "Ім'я"
+msgstr "Ім’я"
 
 #: articles/templates/admin_user.html:52
 #: articles/templates/admin_user_detail.html:66
@@ -808,7 +808,7 @@ msgstr "тут"
 
 #: articles/templates/fault.html:14 articles/tests_playwright/commands.py:745
 msgid "Take ticket"
-msgstr "Взяти заявку на розв'язання"
+msgstr "Взяти заявку на розв’язання"
 
 #: articles/templates/fault.html:18 articles/tests_playwright/commands.py:747
 #: articles/tests_playwright/commands.py:754
@@ -1291,7 +1291,7 @@ msgstr "Коментар більше не можна редагувати"
 
 #: articles/views.py:365
 msgid "Wrong username or password"
-msgstr "Неправильне ім'я користувача або пароль"
+msgstr "Неправильне ім’я користувача або пароль"
 
 #: articles/views.py:366
 msgid "In case you lost your password use Lost Password link"
