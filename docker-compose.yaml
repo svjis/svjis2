@@ -21,7 +21,7 @@ services:
       - ./svjis2-data/local_settings.py:/app/svjis/svjis/local_settings.py
 
   svjis-db:
-    image: postgres:18
+    image: postgres:15
     container_name: postgres_db
     environment:
       POSTGRES_USER: svjis_user
