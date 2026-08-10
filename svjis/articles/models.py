@@ -68,10 +68,13 @@ class ArticleLog(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, null=False, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     user_agent = models.CharField(_("UserAgent"), max_length=1000, blank=True)
+    referer = models.CharField(_("Referer"), max_length=1000, blank=True)
 
     def save(self, *args, **kwargs):
         if self.user_agent:
             self.user_agent = self.user_agent.strip()[:1000]
+        if self.referer:
+            self.referer = self.referer.strip()[:1000]
         super().save(*args, **kwargs)
 
     def __str__(self):
