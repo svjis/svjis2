@@ -28,3 +28,4 @@ updates:
       default-days: 7
       exclude:
         - "django"
+        - "sqlparse"

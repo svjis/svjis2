@@ -35,7 +35,8 @@ linux-server = [
 
 [tool.uv]
 exclude-newer = "7 days"
-exclude-newer-package = { django = false }
+exclude-newer-package.django = false
+exclude-newer-package.sqlparse = false
 
 [tool.ruff]
 line-length = 119
