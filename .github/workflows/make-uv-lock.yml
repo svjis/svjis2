@@ -25,6 +25,7 @@ jobs:
     - name: Install Dependencies
       run: |
         uv sync
+        uv add sqlparse --upgrade
 
     - name: Archive uv.lock
       uses: actions/upload-artifact@v7
