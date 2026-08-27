@@ -64,14 +64,17 @@ def faults_list_view(request):
 
     # Search
     search = request.GET.get('search')
-    if search is not None and len(search) < 3:
+    if search is not None and not str(search).isdigit() and len(search) < 3:
         messages.error(request, _("Search: Keyword '{}' is too short. Type at least 3 characters.").format(search))
         search = None
     if search is not None and len(search) > 100:
         messages.error(request, _("Search: Keyword is too long. Type maximum of 100 characters."))
         search = None
     if search is not None:
-        fault_list = fault_list.filter(Q(subject__icontains=search) | Q(description__icontains=search))
+        query = Q(subject__icontains=search) | Q(description__icontains=search)
+        if str(search).isdigit():
+            query |= Q(id=int(search))
+        fault_list = fault_list.filter(query)
         header = _("Search results") + f": {search}"
     else:
         search = ''
@@ -104,8 +107,8 @@ def faults_list_view(request):
 
 @permission_required(svjis_view_fault_menu)
 @require_GET
-def fault_view(request, slug):
-    fault = get_object_or_404(models.FaultReport, slug=slug)
+def fault_view(request, pk):
+    fault = get_object_or_404(models.FaultReport, pk=pk)
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Fault reporting")
@@ -121,7 +124,7 @@ def fault_view(request, slug):
 @permission_required(svjis_fault_resolver)
 @require_GET
 def faults_fault_edit_view(request, pk):
-    if pk != 0:
+    if pk:
         a = get_object_or_404(models.FaultReport, pk=pk)
         form = forms.FaultReportForm(instance=a)
     else:
@@ -199,7 +202,7 @@ def faults_fault_create_save_view(request):
                 obj.assigned_to_user, request.user, f"{request.scheme}://{request.get_host()}", obj
             )
     messages.info(request, _('Saved'))
-    return redirect(fault_view, slug=obj.slug)
+    return redirect(fault_view, pk=obj.pk)
 
 
 @permission_required(svjis_fault_resolver)
@@ -251,7 +254,7 @@ def faults_fault_update_view(request):
             )
 
     messages.info(request, _('Saved'))
-    return redirect(fault_view, slug=instance.slug)
+    return redirect(fault_view, pk=instance.pk)
 
 
 # Faults - FaultAsset
@@ -269,17 +272,17 @@ def faults_fault_asset_save_view(request):
     else:
         for error in form.errors:
             messages.error(request, error)
-    return redirect(reverse('fault', kwargs={'slug': fault.slug}) + '#assets')
+    return redirect(reverse('fault', kwargs={'pk': fault.pk}) + '#assets')
 
 
 @permission_required(svjis_fault_reporter)
 @require_GET
 def faults_fault_asset_delete_view(request, pk):
     obj = get_object_or_404(models.FaultAsset, pk=pk)
-    fault_slug = obj.fault_report.slug
+    fault_pk = obj.fault_report.pk
     if obj.created_by_user == request.user:
         obj.delete()
-    return redirect(reverse('fault', kwargs={'slug': fault_slug}) + '#assets')
+    return redirect(reverse('fault', kwargs={'pk': fault_pk}) + '#assets')
 
 
 # Faults - FaultComment
@@ -299,7 +302,7 @@ def fault_comment_save_view(request):
         return redirect(reverse(fault_watch_view) + f"?id={fault_pk}&comment_id={obj.pk}&watch=1")
     else:
         messages.error(request, form.errors)
-        return redirect(reverse('fault', kwargs={'slug': fault.slug}))
+        return redirect(reverse('fault', kwargs={'pk': fault.pk}))
 
 
 @permission_required(svjis_add_fault_comment)
@@ -315,7 +318,7 @@ def fault_comment_edit_view(request, pk):
         return render(request, "fault_comment_edit.html", ctx)
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
-        return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
+        return redirect(reverse('fault', kwargs={'pk': comment.fault_report.pk}))
 
 
 @permission_required(svjis_add_fault_comment)
@@ -332,7 +335,7 @@ def fault_comment_modify_view(request):
         return redirect(reverse(fault_watch_view) + f"?id={comment.fault_report.pk}&comment_id={comment.pk}&watch=1")
     else:
         messages.error(request, _('Comment cannot be modified anymore'))
-        return redirect(reverse('fault', kwargs={'slug': comment.fault_report.slug}))
+        return redirect(reverse('fault', kwargs={'pk': comment.fault_report.pk}))
 
 
 # Faults - FaultWatching
@@ -354,7 +357,7 @@ def fault_watch_view(request):
         fault.watching_users.add(request.user)
 
     qs = f'#comment_{comment_pk}' if comment_pk > 0 else ''
-    return redirect(reverse('fault', kwargs={'slug': fault.slug}) + qs)
+    return redirect(reverse('fault', kwargs={'pk': fault.pk}) + qs)
 
 
 # Faults - Take ticket
@@ -366,7 +369,7 @@ def faults_fault_take_ticket_view(request, pk):
     with transaction.atomic():
         fault.save()
         fault.log_taking_ticket(request.user)
-    return redirect(fault_view, slug=fault.slug)
+    return redirect(fault_view, pk=fault.pk)
 
 
 # Faults - Close ticket
@@ -385,14 +388,14 @@ def faults_fault_close_ticket_view(request, pk):
             recipients, request.user, f"{request.scheme}://{request.get_host()}", fault
         )
 
-    return redirect(fault_view, slug=fault.slug)
+    return redirect(fault_view, pk=fault.pk)
 
 
 # Faults - Report Log
 @permission_required(svjis_view_fault_menu)
 @require_GET
-def fault_logs_view(request, slug):
-    fault = get_object_or_404(models.FaultReport, slug=slug)
+def fault_logs_view(request, pk):
+    fault = get_object_or_404(models.FaultReport, pk=pk)
     log = models.FaultReportLog.objects.filter(fault_report=fault).order_by('-entry_time')
 
     ctx = utils.get_context()
@@ -407,12 +410,12 @@ def fault_logs_view(request, slug):
 # Media
 @permission_required(svjis_view_fault_menu)
 @require_GET
-def get_fault_asset(request, slug, filename):
+def get_fault_asset(request, folder, filename):
     # Block path traversal attempts like ../../secret.txt
     safe_name = PurePosixPath(filename).name
     if safe_name != filename:
         raise Http404()
 
     # Get file
-    asset = get_object_or_404(models.FaultAsset, file=f"{models.MEDIA_FAULT_ASSETS_DIR}/{slug}/{safe_name}")
+    asset = get_object_or_404(models.FaultAsset, file=f"{models.MEDIA_FAULT_ASSETS_DIR}/{folder}/{safe_name}")
     return FileResponse(asset.file.open("rb"), as_attachment=False, filename=safe_name)

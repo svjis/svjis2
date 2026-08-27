@@ -6,39 +6,39 @@
 
 <h1 id="about" class="page-title">{% translate 'About application' %}</h1>
 
-<table class="detail full-width" aria-describedby="about">
+<table class="detail full-width fixed-on-mobile" aria-describedby="about">
     <tr>
-        <th class="detail" scope="row">SVJIS</th>
-        <td class="detail" >{{ svjis_version }}</td>
+        <th scope="row">SVJIS</th>
+        <td >{{ svjis_version }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">Django</th>
-        <td class="detail" >{{ django_version }}</td>
+        <th scope="row">Django</th>
+        <td >{{ django_version }}</td>
     </tr>
     <tr>
-        <th class="detail" scope="row">Python</th>
-        <td class="detail">{{ python_version }}</td>
+        <th scope="row">Python</th>
+        <td>{{ python_version }}</td>
     </tr>
 </table>
 
 <h2 id="urls">{% translate 'Project URLs' %}</h2>
 
-<table class="detail full-width" aria-describedby="urls">
+<table class="detail full-width fixed-on-mobile" aria-describedby="urls">
     <tr>
-        <th class="detail" scope="row">{% translate 'Homepage' %}</th>
-        <td class="detail"><a href="{{ svjis_homepage }}" target="_blank">{{ svjis_homepage }}</a></td>
+        <th scope="row">{% translate 'Homepage' %}</th>
+        <td><a href="{{ svjis_homepage }}" target="_blank">{{ svjis_homepage }}</a></td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Source code' %}</th>
-        <td class="detail"><a href="{{ svjis_repository }}" target="_blank">{{ svjis_repository }}</a></td>
+        <th scope="row">{% translate 'Source code' %}</th>
+        <td><a href="{{ svjis_repository }}" target="_blank">{{ svjis_repository }}</a></td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Issues' %}</th>
-        <td class="detail"><a href="{{ svjis_issues }}" target="_blank">{{ svjis_issues }}</a></td>
+        <th scope="row">{% translate 'Issues' %}</th>
+        <td><a href="{{ svjis_issues }}" target="_blank">{{ svjis_issues }}</a></td>
     </tr>
     <tr>
-        <th class="detail" scope="row">{% translate 'Translations' %}</th>
-        <td class="detail"><a href="{{ svjis_translations }}" target="_blank">{{ svjis_translations }}</a></td>
+        <th scope="row">{% translate 'Translations' %}</th>
+        <td><a href="{{ svjis_translations }}" target="_blank">{{ svjis_translations }}</a></td>
     </tr>
 
 </table>

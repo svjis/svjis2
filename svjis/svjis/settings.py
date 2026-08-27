@@ -151,6 +151,7 @@ LOGOUT_URL = '/'
 # TinyMCE
 
 TINYMCE_DEFAULT_CONFIG = {
+    "license_key": "gpl",
     "theme": "silver",
     "height": 500,
     "menubar": "edit view format table help",
@@ -178,7 +179,7 @@ EMAIL_HOST_PASSWORD = ''
 
 SVJIS_ARTICLE_PAGE_SIZE: int = 10
 SVJIS_TOP_ARTICLES_LIST_SIZE: int = 5
-SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS: int = 90
+SVJIS_TOP_ARTICLES_HISTORY_IN_DAYS: int = 30
 SVJIS_NEWS_PAGE_SIZE: int = 10
 SVJIS_USEFUL_LIST_PAGE_SIZE: int = 10
 SVJIS_SURVEY_PAGE_SIZE: int = 10

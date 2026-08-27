@@ -406,7 +406,6 @@ class BuildingUnit(models.Model):
 
 class FaultReport(models.Model):
     subject = models.CharField(_("Subject"), max_length=50)
-    slug = models.CharField(max_length=50, unique=True)
     description = models.TextField(_("Description"))
     created_date = models.DateTimeField(auto_now_add=True)
     created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -447,13 +446,11 @@ class FaultReport(models.Model):
         )
 
     def save(self, **kwargs):
-        if not self.slug:
-            unique_slugify(self, self.subject)
         super().save(**kwargs)
 
 
 def fault_directory_path(instance, filename):
-    return f'{MEDIA_FAULT_ASSETS_DIR}/{instance.fault_report.slug}/{filename}'
+    return f'{MEDIA_FAULT_ASSETS_DIR}/{instance.fault_report.pk}/{filename}'
 
 
 class FaultAsset(models.Model):

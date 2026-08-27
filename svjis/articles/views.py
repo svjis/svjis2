@@ -212,8 +212,9 @@ def article_view(request, slug):
     if user.is_anonymous:
         user = None
 
-    ua = request.headers.get('user-agent', '')
-    models.ArticleLog.objects.create(article=article, user=user, user_agent=ua)
+    if article.published:
+        ua = request.headers.get('user-agent', '')
+        models.ArticleLog.objects.create(article=article, user=user, user_agent=ua)
 
     group_list = [g.name for g in article.visible_for_group.order_by('name')]
     if article.visible_for_all:
@@ -317,14 +318,14 @@ def article_watch_view(request):
 
 # Media
 @require_GET
-def get_article_asset(request, slug, filename):
+def get_article_asset(request, folder, filename):
     # Block path traversal attempts like ../../secret.txt
     safe_name = PurePosixPath(filename).name
     if safe_name != filename:
         raise Http404()
 
     # Get file
-    asset = get_object_or_404(models.ArticleAsset, file=f"{models.MEDIA_ARTICLE_ASSETS_DIR}/{slug}/{safe_name}")
+    asset = get_object_or_404(models.ArticleAsset, file=f"{models.MEDIA_ARTICLE_ASSETS_DIR}/{folder}/{safe_name}")
 
     # Get article to verify access
     article = get_article(asset.article.slug, request.user)

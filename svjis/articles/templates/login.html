@@ -2,7 +2,7 @@
 
 <div class="side-menu__login">
 {% if request.user.is_authenticated %}
-    <div class="side-menu__login_header">{% translate 'User' %}:</div>
+    <div class="side-menu__login_header">{% translate 'User' %}</div>
     <form action="{% url 'user_logout' %}" method="post">
         <div class="side-menu__login_form">
             {% csrf_token %}
@@ -13,7 +13,7 @@
         </div>
     </form>
 {% else %}
-    <div class="side-menu__login_header">{% translate 'Login' %}:</div>
+    <div class="side-menu__login_header">{% translate 'Login' %}</div>
     <form action="{% url 'user_login' %}" method="post">
         <div class="side-menu__login_form">
             <div class="side-menu__login_form_in">

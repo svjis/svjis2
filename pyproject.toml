@@ -1,6 +1,6 @@
 [project]
 name = "svjis2"
-version = "2.26.1"
+version = "2.31.0"
 description = "Information system for homeowners' associations (SVJ)"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
@@ -12,10 +12,10 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "django>=6,<7",
+  "django>=6.0.7,<6.1",
   "django-tinymce>=4.1",
   "openpyxl>=3.1.5",
-  "psycopg>=3.2.10",
+  "psycopg>=3.3.4",
 ]
 urls.Homepage = "https://svjis.github.io/"
 urls.Issues = "https://github.com/svjis/svjis2/issues"
@@ -24,14 +24,18 @@ urls.Translations = "https://translate.codeberg.org/engage/svjis/"
 
 [dependency-groups]
 dev = [
-  "django-stubs>=5.2.5",
+  "django-stubs>=6.0.6",
   "factory-boy>=3.3.3",
-  "playwright>=1.55",
-  "pre-commit>=4.3",
+  "playwright>=1.61.0",
+  "pre-commit>=4.6.0",
 ]
 linux-server = [
-  "gunicorn>=23",
+  "gunicorn>=26.0.0",
 ]
+
+[tool.uv]
+exclude-newer = "7 days"
+exclude-newer-package = { django = false }
 
 [tool.ruff]
 line-length = 119
@@ -46,6 +50,10 @@ lint.per-file-ignores."**/{tests,docs,tools}/*" = [ "E402" ]
 lint.per-file-ignores."__init__.py" = [ "E402" ]
 # Avoid trying to fix flake8-bugbear (`B`) violations.
 lint.unfixable = [ "B" ]
+
+[tool.pyproject-fmt]
+# Keep full version numbers (e.g., 1.0.0 instead of 1.0) in dependency specifiers
+keep_full_version = true
 
 [tool.django-stubs]
 django_settings_module = "svjis.svjis.settings"
