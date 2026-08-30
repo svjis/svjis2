@@ -2,7 +2,22 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .. import models
+from ..model_utils import get_asset_type
 from .testdata import UserDataMixin
+
+
+class AssetTypeTest(TestCase):
+    def test_get_asset_type(self):
+        asset_types = {
+            'picture.JPG': 'PICTURE',
+            'document.pdf': 'DOCUMENT',
+            'movie.mp4': 'MOVIE',
+            'unknown.bin': 'UNKNOWN',
+        }
+
+        for basename, expected_type in asset_types.items():
+            with self.subTest(basename=basename):
+                self.assertEqual(get_asset_type(basename), expected_type)
 
 
 class AdvertsTest(UserDataMixin, TestCase):

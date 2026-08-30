@@ -1,7 +1,7 @@
 import os
 
 from . import managers
-from .model_utils import unique_slugify, get_asset_icon, get_age_in_minutes
+from .model_utils import unique_slugify, get_asset_icon, get_asset_type, get_age_in_minutes
 from datetime import date
 from django.db import models
 from django.conf import settings
@@ -589,6 +589,10 @@ class AdvertAsset(models.Model):
     @property
     def icon(self):
         return get_asset_icon(self.basename)
+
+    @property
+    def type(self):
+        return get_asset_type(self.basename)
 
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
