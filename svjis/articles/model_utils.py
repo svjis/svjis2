@@ -79,6 +79,19 @@ PICTURE_ICONS = ['gif', 'jpeg', 'jpg', 'png', 'webp']
 VIDEO_ICONS = ['mpg', 'mpeg', 'mov', 'mp4', 'avi', 'wmv', 'webm']
 
 
+def get_asset_type(basename):
+    _file_name, file_extension = os.path.splitext(basename)
+    file_extension = file_extension[1:].lower()
+    if file_extension in DOCUMENT_ICONS:
+        return 'DOCUMENT'
+    elif file_extension in PICTURE_ICONS:
+        return 'PICTURE'
+    elif file_extension in VIDEO_ICONS:
+        return 'MOVIE'
+    else:
+        return 'UNKNOWN'
+
+
 def get_asset_icon(basename):
     _file_name, file_extension = os.path.splitext(basename)
     file_extension = file_extension[1:].lower()

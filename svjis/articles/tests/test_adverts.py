@@ -1,10 +1,45 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from .. import models
+from ..model_utils import get_asset_type
 from .testdata import UserDataMixin
 
 
+class AssetTypeTest(TestCase):
+    def test_get_asset_type(self):
+        asset_types = {
+            'picture.JPG': 'PICTURE',
+            'document.pdf': 'DOCUMENT',
+            'movie.mp4': 'MOVIE',
+            'unknown.bin': 'UNKNOWN',
+        }
+
+        for basename, expected_type in asset_types.items():
+            with self.subTest(basename=basename):
+                self.assertEqual(get_asset_type(basename), expected_type)
+
+
 class AdvertsTest(UserDataMixin, TestCase):
+    def create_advert_with_asset(self, filename, description):
+        advert = models.Advert.objects.create(
+            type=self.advert_types[0],
+            header='Advert with asset',
+            body='Advert body',
+            created_by_user=self.u_peter,
+        )
+        file_path = f'adverts/{advert.pk}/{filename}'
+        models.AdvertAsset.objects.create(
+            description=description,
+            file=file_path,
+            advert=advert,
+            created_by_user=self.u_peter,
+        )
+        self.client.force_login(self.u_peter)
+        response = self.client.get(reverse('adverts_list'))
+        self.assertEqual(response.status_code, 200)
+        return response, file_path
+
     def create_advert(self, username, password, advert_form, expected_status):
         logged_in = self.client.login(username=username, password=password)
         self.assertTrue(logged_in)
@@ -131,3 +166,27 @@ class AdvertsTest(UserDataMixin, TestCase):
             },
             404,
         )
+
+    def test_image_asset_renders_linked_preview(self):
+        response, file_path = self.create_advert_with_asset('preview.jpg', 'Image preview')
+
+        self.assertContains(
+            response,
+            f'<a href="/media/{file_path}" class="advert-image-preview-link" aria-haspopup="dialog" '
+            'aria-controls="advert-image-dialog"><img '
+            f'src="/media/{file_path}" class="advert-image-preview" alt="Image preview" loading="lazy"></a>',
+            html=True,
+        )
+        self.assertContains(response, '<dialog id="advert-image-dialog" class="advert-image-dialog">')
+        self.assertContains(response, '<script src="/static/js/Adverts_ImagePreview.js"></script>', html=True)
+
+    def test_non_image_asset_keeps_attachment_link(self):
+        response, file_path = self.create_advert_with_asset('document.pdf', 'Document')
+
+        self.assertContains(
+            response,
+            '<img src="/static/gfx/Files_pdf.gif" class="led" alt="document.pdf">',
+            html=True,
+        )
+        self.assertContains(response, f'<a href="/media/{file_path}">Document</a>', html=True)
+        self.assertNotContains(response, 'advert-image-preview')
