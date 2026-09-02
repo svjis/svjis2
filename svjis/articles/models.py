@@ -18,6 +18,31 @@ MEDIA_COMPANY_ASSETS_DIR = 'company'
 MEDIA_FAULT_ASSETS_DIR = 'faults'
 
 
+# Abstract classes
+#####################
+class AbstractAsset(models.Model):
+    def delete(self, *args, **kwargs):
+        if os.path.isfile(self.file.path):
+            os.remove(self.file.path)
+        super().delete(*args, **kwargs)
+
+    @property
+    def basename(self):
+        return os.path.basename(self.file.path)
+
+    @property
+    def icon(self):
+        return get_asset_icon(self.basename)
+
+    @property
+    def file_type(self):
+        return get_asset_type(self.basename)
+
+    class Meta:
+        abstract = True
+        ordering = ['id']
+
+
 # Article / Redaction
 #####################
 
@@ -82,34 +107,14 @@ def article_directory_path(instance, filename):
     return f'{MEDIA_ARTICLE_ASSETS_DIR}/{instance.article.slug}/{filename}'
 
 
-class ArticleAsset(models.Model):
+class ArticleAsset(AbstractAsset):
     description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=article_directory_path)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name=_("Article"))
     created_date = models.DateTimeField(auto_now_add=True)
 
-    def delete(self, *args, **kwargs):
-        if os.path.isfile(self.file.path):
-            os.remove(self.file.path)
-        super().delete(*args, **kwargs)
-
     def __str__(self):
         return f"ArticleAsset: {self.description}"
-
-    @property
-    def basename(self):
-        return os.path.basename(self.file.path)
-
-    @property
-    def icon(self):
-        return get_asset_icon(self.basename)
-
-    @property
-    def file_type(self):
-        return get_asset_type(self.basename)
-
-    class Meta:
-        ordering = ['id']
 
 
 class ArticleComment(models.Model):
@@ -457,7 +462,7 @@ def fault_directory_path(instance, filename):
     return f'{MEDIA_FAULT_ASSETS_DIR}/{instance.fault_report.pk}/{filename}'
 
 
-class FaultAsset(models.Model):
+class FaultAsset(AbstractAsset):
     description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=fault_directory_path)
     fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, verbose_name=_("Fault report"))
@@ -466,26 +471,6 @@ class FaultAsset(models.Model):
 
     def __str__(self):
         return f"FaultAsset: {self.description}"
-
-    @property
-    def basename(self):
-        return os.path.basename(self.file.path)
-
-    @property
-    def icon(self):
-        return get_asset_icon(self.basename)
-
-    @property
-    def file_type(self):
-        return get_asset_type(self.basename)
-
-    def delete(self, *args, **kwargs):
-        if os.path.isfile(self.file.path):
-            os.remove(self.file.path)
-        super().delete(*args, **kwargs)
-
-    class Meta:
-        ordering = ['id']
 
 
 class FaultComment(models.Model):
@@ -580,7 +565,7 @@ def advert_directory_path(instance, filename):
     return f'{MEDIA_ADVERT_ASSETS_DIR}/{instance.advert.pk}/{filename}'
 
 
-class AdvertAsset(models.Model):
+class AdvertAsset(AbstractAsset):
     description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=advert_directory_path)
     advert = models.ForeignKey(Advert, on_delete=models.CASCADE, verbose_name=_("Advert"))
@@ -589,23 +574,6 @@ class AdvertAsset(models.Model):
 
     def __str__(self):
         return f"AdvertAsset: {self.description}"
-
-    @property
-    def basename(self):
-        return os.path.basename(self.file.path)
-
-    @property
-    def icon(self):
-        return get_asset_icon(self.basename)
-
-    @property
-    def file_type(self):
-        return get_asset_type(self.basename)
-
-    def delete(self, *args, **kwargs):
-        if os.path.isfile(self.file.path):
-            os.remove(self.file.path)
-        super().delete(*args, **kwargs)
 
     class Meta:
         ordering = ['-id']
