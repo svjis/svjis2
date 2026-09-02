@@ -21,6 +21,9 @@ MEDIA_FAULT_ASSETS_DIR = 'faults'
 # Abstract classes
 #####################
 class AbstractAsset(models.Model):
+    description = models.CharField(_("Description"), max_length=100)
+    created_date = models.DateTimeField(auto_now_add=True)
+
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
@@ -108,10 +111,8 @@ def article_directory_path(instance, filename):
 
 
 class ArticleAsset(AbstractAsset):
-    description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=article_directory_path)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name=_("Article"))
-    created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"ArticleAsset: {self.description}"
@@ -463,10 +464,8 @@ def fault_directory_path(instance, filename):
 
 
 class FaultAsset(AbstractAsset):
-    description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=fault_directory_path)
     fault_report = models.ForeignKey(FaultReport, on_delete=models.CASCADE, verbose_name=_("Fault report"))
-    created_date = models.DateTimeField(auto_now_add=True)
     created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -566,10 +565,8 @@ def advert_directory_path(instance, filename):
 
 
 class AdvertAsset(AbstractAsset):
-    description = models.CharField(_("Description"), max_length=100)
     file = models.FileField(_("File"), upload_to=advert_directory_path)
     advert = models.ForeignKey(Advert, on_delete=models.CASCADE, verbose_name=_("Advert"))
-    created_date = models.DateTimeField(auto_now_add=True)
     created_by_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
