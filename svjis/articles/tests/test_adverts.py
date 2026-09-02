@@ -11,7 +11,7 @@ class AssetTypeTest(TestCase):
         asset_types = {
             'picture.JPG': 'PICTURE',
             'document.pdf': 'DOCUMENT',
-            'movie.mp4': 'MOVIE',
+            'movie.mp4': 'VIDEO',
             'unknown.bin': 'UNKNOWN',
         }
 
