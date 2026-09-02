@@ -661,11 +661,11 @@ def redaction_analytics_view(request):
     time_span_info = _("Data for last {} days.").format(history_in_days)
     top_history_from = make_aware(datetime.now() - timedelta(days=history_in_days))
 
-    data = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).exclude(user_agent='')
+    current_data = models.ArticleLog.objects.filter(entry_time__gte=top_history_from).exclude(user_agent='')
     scope = request.GET.get('scope', 'all')
     if scope == 'logged':
-        data = data.exclude(user__isnull=True)
-    data = data.values('user_agent').annotate(total=Count('*'))
+        current_data = current_data.exclude(user__isnull=True)
+    data = current_data.values('user_agent').annotate(total=Count('*'))
 
     human_ua_table = []
     bot_ua_table = []
@@ -702,6 +702,8 @@ def redaction_analytics_view(request):
     bot_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
     human_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
 
+    top_referers_table = current_data.values('referer').annotate(total=Count('*')).order_by('-total')
+
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
     ctx['scope'] = scope
@@ -711,6 +713,7 @@ def redaction_analytics_view(request):
     ctx['bot_chart'] = dict(sorted(bot_chart.items(), key=lambda item: item[1], reverse=True))
     ctx['bot_ua_table'] = bot_ua_table
     ctx['human_ua_table'] = human_ua_table
+    ctx['top_referers_table'] = top_referers_table
     ctx['header'] = header
     ctx['time_span_info'] = time_span_info
     ctx['aside_menu_items'] = get_side_menu('analytics', request.user)
