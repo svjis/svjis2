@@ -74,32 +74,33 @@ def _slug_strip(value, separator='-'):
     return value
 
 
-DOCUMENT_ICONS = ['doc', 'docx', 'htm', 'html', 'pdf', 'pps', 'ppsx', 'txt', 'xls', 'xlsx', 'zip']
-PICTURE_ICONS = ['gif', 'jpeg', 'jpg', 'png', 'webp']
-VIDEO_ICONS = ['mpg', 'mpeg', 'mov', 'mp4', 'avi', 'wmv', 'webm']
-
-
 def get_asset_type(basename):
+    DOCUMENT_EXT = ['doc', 'docx', 'htm', 'html', 'pdf', 'pps', 'ppsx', 'txt', 'xls', 'xlsx', 'zip']
+    PICTURE_EXT = ['gif', 'jpeg', 'jpg', 'png', 'webp']
+    VIDEO_EXT = ['mpg', 'mpeg', 'mov', 'mp4', 'avi', 'wmv', 'webm']
+
     _file_name, file_extension = os.path.splitext(basename)
     file_extension = file_extension[1:].lower()
-    if file_extension in DOCUMENT_ICONS:
+    if file_extension in DOCUMENT_EXT:
         return 'DOCUMENT'
-    elif file_extension in PICTURE_ICONS:
+    elif file_extension in PICTURE_EXT:
         return 'PICTURE'
-    elif file_extension in VIDEO_ICONS:
-        return 'MOVIE'
+    elif file_extension in VIDEO_EXT:
+        return 'VIDEO'
     else:
         return 'UNKNOWN'
 
 
 def get_asset_icon(basename):
-    _file_name, file_extension = os.path.splitext(basename)
-    file_extension = file_extension[1:].lower()
-    if file_extension in DOCUMENT_ICONS:
+    asset_type = get_asset_type(basename)
+
+    if asset_type == 'DOCUMENT':
+        _file_name, file_extension = os.path.splitext(basename)
+        file_extension = file_extension[1:].lower()
         return f'Files_{file_extension.lower()}.gif'
-    elif file_extension in PICTURE_ICONS:
+    elif asset_type == 'PICTURE':
         return 'attach_image.gif'
-    elif file_extension in VIDEO_ICONS:
+    elif asset_type == 'VIDEO':
         return 'attach_video.gif'
     else:
         return 'Files_unknown.gif'
