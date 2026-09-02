@@ -104,6 +104,10 @@ class ArticleAsset(models.Model):
     def icon(self):
         return get_asset_icon(self.basename)
 
+    @property
+    def file_type(self):
+        return get_asset_type(self.basename)
+
     class Meta:
         ordering = ['id']
 
@@ -471,6 +475,10 @@ class FaultAsset(models.Model):
     def icon(self):
         return get_asset_icon(self.basename)
 
+    @property
+    def file_type(self):
+        return get_asset_type(self.basename)
+
     def delete(self, *args, **kwargs):
         if os.path.isfile(self.file.path):
             os.remove(self.file.path)
@@ -591,7 +599,7 @@ class AdvertAsset(models.Model):
         return get_asset_icon(self.basename)
 
     @property
-    def type(self):
+    def file_type(self):
         return get_asset_type(self.basename)
 
     def delete(self, *args, **kwargs):
