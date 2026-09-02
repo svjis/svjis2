@@ -20,6 +20,8 @@ MEDIA_FAULT_ASSETS_DIR = 'faults'
 
 # Abstract classes
 #####################
+
+
 class AbstractAsset(models.Model):
     description = models.CharField(_("Description"), max_length=100)
     created_date = models.DateTimeField(auto_now_add=True)
