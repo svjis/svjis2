@@ -5,7 +5,6 @@ from . import models
 from tinymce.widgets import TinyMCE
 
 
-SELECT_ENTRANCE_TEXT = _("Select the entranance (if makes sense)")
 EMPTY_OPTION_LABEL = _("-- Select an option --")
 
 
@@ -318,7 +317,6 @@ class BuildingUnitForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=SELECT_ENTRANCE_TEXT,
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
         empty_label=EMPTY_OPTION_LABEL,
     )
@@ -344,7 +342,6 @@ class FaultReportForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=SELECT_ENTRANCE_TEXT,
         label=_("Entrance"),
         empty_label=EMPTY_OPTION_LABEL,
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),

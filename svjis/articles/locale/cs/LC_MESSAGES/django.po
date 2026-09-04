@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 23:22+0200\n"
+"POT-Creation-Date: 2026-09-04 23:52+0200\n"
 "PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
@@ -19,11 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 5.15.2\n"
 
-#: articles/forms.py:8
-msgid "Select the entranance (if makes sense)"
-msgstr "Vyberte vchod (pokud to dává smysl)"
-
-#: articles/forms.py:9 articles/templates/admin_building_unit.html:26
+#: articles/forms.py:8 articles/templates/admin_building_unit.html:26
 #: articles/templates/admin_building_unit.html:43
 #: articles/templates/admin_building_unit_owners_edit.html:34
 #: articles/templates/admin_user.html:36
@@ -31,7 +27,7 @@ msgstr "Vyberte vchod (pokud to dává smysl)"
 msgid "-- Select an option --"
 msgstr "-- Vyberte --"
 
-#: articles/forms.py:348 articles/models.py:403 articles/models.py:433
+#: articles/forms.py:345 articles/models.py:403 articles/models.py:433
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -39,12 +35,12 @@ msgstr "-- Vyberte --"
 msgid "Entrance"
 msgstr "Vchod"
 
-#: articles/forms.py:358 articles/templates/fault.html:41
+#: articles/forms.py:355 articles/templates/fault.html:41
 #: articles/templates/fault_log.html:15 articles/templates/faults_list.html:21
 msgid "Resolver"
 msgstr "Řešitel"
 
-#: articles/forms.py:365
+#: articles/forms.py:362
 msgid "On Behalf Of"
 msgstr "Za uživatele"
 
@@ -1381,6 +1377,9 @@ msgstr "Anaýzy"
 #: articles/views_redaction.py:661
 msgid "Data for last {} days."
 msgstr "Data za posledních {} dní."
+
+#~ msgid "Select the entranance (if makes sense)"
+#~ msgstr "Vyberte vchod (pokud to dává smysl)"
 
 #~ msgid "Owner"
 #~ msgstr "Vlastník"

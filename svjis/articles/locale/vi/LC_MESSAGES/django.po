@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 23:22+0200\n"
+"POT-Creation-Date: 2026-09-04 23:52+0200\n"
 "PO-Revision-Date: 2026-01-30 14:25+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Vietnamese <https://translate.codeberg.org/projects/svjis/"
@@ -19,11 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.15.2\n"
 
-#: articles/forms.py:8
-msgid "Select the entranance (if makes sense)"
-msgstr ""
-
-#: articles/forms.py:9 articles/templates/admin_building_unit.html:26
+#: articles/forms.py:8 articles/templates/admin_building_unit.html:26
 #: articles/templates/admin_building_unit.html:43
 #: articles/templates/admin_building_unit_owners_edit.html:34
 #: articles/templates/admin_user.html:36
@@ -31,7 +27,7 @@ msgstr ""
 msgid "-- Select an option --"
 msgstr ""
 
-#: articles/forms.py:348 articles/models.py:403 articles/models.py:433
+#: articles/forms.py:345 articles/models.py:403 articles/models.py:433
 #: articles/templates/admin_building_unit.html:36
 #: articles/templates/admin_building_unit.html:60
 #: articles/templates/admin_entrance_edit.html:13
@@ -39,12 +35,12 @@ msgstr ""
 msgid "Entrance"
 msgstr "Lối vào"
 
-#: articles/forms.py:358 articles/templates/fault.html:41
+#: articles/forms.py:355 articles/templates/fault.html:41
 #: articles/templates/fault_log.html:15 articles/templates/faults_list.html:21
 msgid "Resolver"
 msgstr "Người giải quyết"
 
-#: articles/forms.py:365
+#: articles/forms.py:362
 msgid "On Behalf Of"
 msgstr "Thay mặt người dùng"
 
