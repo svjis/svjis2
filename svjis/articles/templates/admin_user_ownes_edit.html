@@ -35,7 +35,7 @@
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ pk }}" />
     <select class="common-input" id="owner-input" name="owner_id">
-        <option value="0">------</option>
+        <option value="0">{% translate '-- Select an option --' %}</option>
         {% for bu in bu_list %}
         <option value="{{ bu.id }}">{{ bu.type.description }} - {{ bu.registration_id }} - {{ bu.description }}</option>
         {% endfor %}
