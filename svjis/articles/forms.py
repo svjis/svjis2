@@ -5,15 +5,15 @@ from . import models
 from tinymce.widgets import TinyMCE
 
 
-SELECT_ENTRANCE_TEXT = "Select the entranance (if does it make sense)"
-EMPTY_OPTION_LABEL = "-- Select an option --"
+SELECT_ENTRANCE_TEXT = _("Select the entranance (if does it make sense)")
+EMPTY_OPTION_LABEL = _("-- Select an option --")
 
 
 class ArticleMenuForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['parent'].queryset = models.ArticleMenu.objects.exclude(pk=self.instance.pk)
-        self.fields['parent'].empty_label = _(EMPTY_OPTION_LABEL)
+        self.fields['parent'].empty_label = EMPTY_OPTION_LABEL
 
     class Meta:
         model = models.ArticleMenu
@@ -32,7 +32,7 @@ class ArticleMenuForm(forms.ModelForm):
 class ArticleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['menu'].empty_label = _(EMPTY_OPTION_LABEL)
+        self.fields['menu'].empty_label = EMPTY_OPTION_LABEL
 
     class Meta:
         model = models.Article
@@ -265,7 +265,7 @@ class BoardForm(forms.ModelForm):
     member = MemberModelChoiceField(
         queryset=User.objects.filter(is_active=True).order_by('last_name', 'first_name'),
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
-        empty_label=_(EMPTY_OPTION_LABEL),
+        empty_label=EMPTY_OPTION_LABEL,
     )
 
     class Meta:
@@ -313,14 +313,14 @@ class BuildingUnitForm(forms.ModelForm):
     type = BuildingUnitTypeModelChoiceField(
         queryset=models.BuildingUnitType.objects.all().order_by('description'),
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
-        empty_label=_(EMPTY_OPTION_LABEL),
+        empty_label=EMPTY_OPTION_LABEL,
     )
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=_(SELECT_ENTRANCE_TEXT),
+        help_text=SELECT_ENTRANCE_TEXT,
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
-        empty_label=_(EMPTY_OPTION_LABEL),
+        empty_label=EMPTY_OPTION_LABEL,
     )
 
     class Meta:
@@ -344,9 +344,9 @@ class FaultReportForm(forms.ModelForm):
     entrance = BuildingEntranceChoiceField(
         queryset=models.BuildingEntrance.objects.all().order_by('description'),
         required=False,
-        help_text=_(SELECT_ENTRANCE_TEXT),
+        help_text=SELECT_ENTRANCE_TEXT,
         label=_("Entrance"),
-        empty_label=_(EMPTY_OPTION_LABEL),
+        empty_label=EMPTY_OPTION_LABEL,
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
     assigned_to_user = UserChoiceField(
@@ -356,14 +356,14 @@ class FaultReportForm(forms.ModelForm):
         .order_by('last_name', 'first_name'),
         required=False,
         label=_("Resolver"),
-        empty_label=_(EMPTY_OPTION_LABEL),
+        empty_label=EMPTY_OPTION_LABEL,
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
     created_by_user = UserChoiceField(
         queryset=User.objects.exclude(is_active=False).distinct().order_by('last_name', 'first_name'),
         required=False,
         label=_("On Behalf Of"),
-        empty_label=_(EMPTY_OPTION_LABEL),
+        empty_label=EMPTY_OPTION_LABEL,
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
 
@@ -404,7 +404,7 @@ class FaultCommentForm(forms.ModelForm):
 class AdvertForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['type'].empty_label = _(EMPTY_OPTION_LABEL)
+        self.fields['type'].empty_label = EMPTY_OPTION_LABEL
 
     class Meta:
         model = models.Advert
