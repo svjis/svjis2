@@ -6,6 +6,7 @@ from tinymce.widgets import TinyMCE
 
 
 SELECT_ENTRANCE_TEXT = "Select the entranance (if does it make sense)"
+EMPTY_OPTION_LABEL = "- Select an option -"
 
 
 class ArticleMenuForm(forms.ModelForm):
@@ -337,6 +338,7 @@ class FaultReportForm(forms.ModelForm):
         required=False,
         help_text=_(SELECT_ENTRANCE_TEXT),
         label=_("Entrance"),
+        empty_label=_(EMPTY_OPTION_LABEL),
         widget=forms.widgets.Select(attrs={'class': 'common-input'}),
     )
     assigned_to_user = UserChoiceField(
