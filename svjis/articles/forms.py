@@ -5,7 +5,7 @@ from . import models
 from tinymce.widgets import TinyMCE
 
 
-SELECT_ENTRANCE_TEXT = _("Select the entranance (if does it make sense)")
+SELECT_ENTRANCE_TEXT = _("Select the entranance (if makes sense)")
 EMPTY_OPTION_LABEL = _("-- Select an option --")
 
 

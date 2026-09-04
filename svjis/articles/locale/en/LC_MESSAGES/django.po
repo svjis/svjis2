@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 22:55+0200\n"
+"POT-Creation-Date: 2026-09-04 23:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jaroslav Beran <jaroslav.beran@gmail.com>\n"
 "Language-Team: \n"
@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: articles/forms.py:8
-msgid "Select the entranance (if does it make sense)"
-msgstr "Select the entranance (if does it make sense)"
+msgid "Select the entranance (if makes sense)"
+msgstr "Select the entranance (if makes sense)"
 
 #: articles/forms.py:9 articles/templates/admin_building_unit.html:26
 #: articles/templates/admin_building_unit.html:43

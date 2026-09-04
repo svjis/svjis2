@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 22:55+0200\n"
+"POT-Creation-Date: 2026-09-04 23:22+0200\n"
 "PO-Revision-Date: 2026-01-31 16:29+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 5.15.2\n"
 
 #: articles/forms.py:8
-msgid "Select the entranance (if does it make sense)"
+msgid "Select the entranance (if makes sense)"
 msgstr "Vyberte vchod (pokud to dává smysl)"
 
 #: articles/forms.py:9 articles/templates/admin_building_unit.html:26
