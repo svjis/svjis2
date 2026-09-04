@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 22:39+0200\n"
+"POT-Creation-Date: 2026-09-04 22:55+0200\n"
 "PO-Revision-Date: 2026-01-30 14:25+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Vietnamese <https://translate.codeberg.org/projects/svjis/"
@@ -23,7 +23,11 @@ msgstr ""
 msgid "Select the entranance (if does it make sense)"
 msgstr ""
 
-#: articles/forms.py:9
+#: articles/forms.py:9 articles/templates/admin_building_unit.html:26
+#: articles/templates/admin_building_unit.html:43
+#: articles/templates/admin_building_unit_owners_edit.html:34
+#: articles/templates/admin_user.html:36
+#: articles/templates/admin_user_ownes_edit.html:38
 msgid "-- Select an option --"
 msgstr ""
 
