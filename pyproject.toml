@@ -1,6 +1,6 @@
 [project]
 name = "svjis2"
-version = "2.31.0"
+version = "2.32.0"
 description = "Information system for homeowners' associations (SVJ)"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
@@ -12,7 +12,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "django>=6.0.7,<6.1",
+  "django>=6.0.7,<6.2",
   "django-tinymce>=4.1",
   "openpyxl>=3.1.5",
   "psycopg>=3.3.4",

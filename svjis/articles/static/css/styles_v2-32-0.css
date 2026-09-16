@@ -539,6 +539,44 @@ video.article-video {
   background: url("../design/dot.gif") 0 100% repeat-x;
 }
 
+.advert-image-preview {
+  display: block;
+  max-width: min(100%, 480px);
+  max-height: 320px;
+  margin: 8px 0;
+  cursor: zoom-in;
+}
+
+.advert-image-dialog {
+  padding: 0;
+  border: 0;
+}
+
+.advert-image-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.advert-image-dialog-image {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.advert-image-dialog-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #FFF;
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 24px;
+  cursor: pointer;
+}
+
 .advert-desc a {
   color: #5F5F5F;
 }

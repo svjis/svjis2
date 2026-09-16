@@ -111,4 +111,20 @@
 </table>
 {% endif %}
 
+{% if top_referers_table %}
+<h3 id="top_referers_table">{% translate 'Top referers' %}</h3>
+<table class="list full-width" aria-describedby="top_referers_table" style="font-size: 70%;">
+    <tr>
+        <th>{% translate 'Count' %}</th>
+        <th>{% translate 'Referer' %}</th>
+    </tr>
+    {% for obj in top_referers_table %}
+    <tr>
+        <td>{{ obj.total }}</td>
+        <td>{{ obj.referer }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
 {% endblock content %}

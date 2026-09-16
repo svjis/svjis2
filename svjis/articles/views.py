@@ -213,8 +213,9 @@ def article_view(request, slug):
         user = None
 
     if article.published:
-        ua = request.headers.get('user-agent', '')
-        models.ArticleLog.objects.create(article=article, user=user, user_agent=ua)
+        ua = request.headers.get('User-Agent', '')
+        referer = request.headers.get('Referer', '')
+        models.ArticleLog.objects.create(article=article, user=user, user_agent=ua, referer=referer)
 
     group_list = [g.name for g in article.visible_for_group.order_by('name')]
     if article.visible_for_all:
