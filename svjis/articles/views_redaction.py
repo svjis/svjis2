@@ -702,7 +702,7 @@ def redaction_analytics_view(request):
     bot_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
     human_ua_table.sort(key=lambda ua: ua["total"], reverse=True)
 
-    top_referers_table = current_data.values('referer').annotate(total=Count('*')).order_by('-total')
+    top_referers_table = current_data.values('referer').annotate(total=Count('*')).order_by('-total', 'referer')
 
     ctx = utils.get_context()
     ctx['aside_menu_name'] = _("Redaction")
