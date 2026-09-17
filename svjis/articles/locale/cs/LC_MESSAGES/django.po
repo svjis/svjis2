@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: SVJIS2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-04 23:52+0200\n"
-"PO-Revision-Date: 2026-01-31 16:29+0000\n"
+"PO-Revision-Date: 2026-09-17 16:05+0000\n"
 "Last-Translator: berk76 <berk76@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/svjis/svjis2/"
 "cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: articles/forms.py:8 articles/templates/admin_building_unit.html:26
 #: articles/templates/admin_building_unit.html:43
@@ -104,7 +104,7 @@ msgstr "UserAgent"
 
 #: articles/models.py:101 articles/templates/redaction_analytics.html:119
 msgid "Referer"
-msgstr ""
+msgstr "Zdroj návštěvnosti"
 
 #: articles/models.py:119 articles/models.py:472 articles/models.py:573
 #: articles/templates/advert_edit.html:58 articles/templates/article.html:21
@@ -185,7 +185,7 @@ msgstr "Město"
 #: articles/templates/admin_user_detail.html:41
 #: articles/templates/contact_company.html:24
 msgid "Post code"
-msgstr "PSČ"
+msgstr "Směrovací číslo"
 
 #: articles/models.py:277 articles/templates/admin_user_detail.html:45
 msgid "Country"
@@ -730,7 +730,7 @@ msgstr "Autor"
 
 #: articles/templates/adverts_list.html:53
 msgid "Close image preview"
-msgstr ""
+msgstr "Zavřít náhled obrázku"
 
 #: articles/templates/article.html:36 articles/templates/fault.html:107
 msgid "Comments"
@@ -999,10 +999,8 @@ msgid "Human"
 msgstr "Člověk"
 
 #: articles/templates/redaction_analytics.html:115
-#, fuzzy
-#| msgid "Preferences"
 msgid "Top referers"
-msgstr "Nastavení"
+msgstr "Nejčastější zdroje návštěvnosti"
 
 #: articles/templates/redaction_article.html:8
 #: articles/tests_playwright/commands.py:435
