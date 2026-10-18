@@ -84,7 +84,7 @@ def login(cls, page, user, password):
 
 def logout(cls, page):
     show_menu(page)
-    page.wait_for_selector('id=logout-submit')
+    page.wait_for_load_state('load')
     scrshot(page, get_filename(cls, 'logout'))
     page.click('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
