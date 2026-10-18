@@ -84,6 +84,9 @@ def login(cls, page, user, password):
 
 def logout(cls, page):
     show_menu(page)
+    page.wait_for_selector('id=logout-submit-mobile') if page.is_visible(
+        'div.menu-toggle'
+    ) else page.wait_for_selector('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
     page.click('id=logout-submit-mobile') if page.is_visible('div.menu-toggle') else page.click('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
