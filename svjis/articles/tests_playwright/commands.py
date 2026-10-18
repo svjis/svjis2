@@ -86,7 +86,7 @@ def logout(cls, page):
     show_menu(page)
     page.wait_for_selector('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
-    page.locator("#logout-submit:visible").click()
+    page.click('id=logout-submit-mobile') if page.is_visible('div.menu-toggle') else page.click('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
 
 
