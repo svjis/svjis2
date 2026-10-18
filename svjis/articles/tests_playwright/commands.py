@@ -62,13 +62,24 @@ def menu(page, tray_menu_item, side_menu_item, is_exact):
 
 def login(cls, page, user, password):
     show_menu(page)
-    page.wait_for_selector('id=login-submit')
-    scrshot(page, get_filename(cls, f'login-{user}'))
-    page.fill('[id=login-input]', user)
-    page.fill('[id=password-input]', password)
-    scrshot(page, get_filename(cls, f'login-{user}'))
-    page.click('id=login-submit')
-    scrshot(page, get_filename(cls, f'login-{user}'))
+    if page.is_visible('div.menu-toggle'):
+        page.click('text=' + _('Login'))
+        page.wait_for_load_state('load')
+        page.fill('[id=username-input]', user)
+        page.fill('[id=pwd-input]', password)
+        scrshot(page, get_filename(cls, f'login-{user}'))
+        page.click('id=sign-in')
+        page.wait_for_load_state('load')
+        scrshot(page, get_filename(cls, f'login-{user}'))
+    else:
+        page.wait_for_selector('id=login-submit')
+        scrshot(page, get_filename(cls, f'login-{user}'))
+        page.fill('[id=login-input]', user)
+        page.fill('[id=password-input]', password)
+        scrshot(page, get_filename(cls, f'login-{user}'))
+        page.click('id=login-submit')
+        page.wait_for_load_state('load')
+        scrshot(page, get_filename(cls, f'login-{user}'))
 
 
 def logout(cls, page):
