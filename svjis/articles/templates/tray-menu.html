@@ -9,7 +9,7 @@
     <div class="menu-env">
         <div class="menu-user">
             {% if request.user.is_authenticated %}
-            {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}
+            {{ request.user.first_name }}&nbsp;{{ request.user.last_name }} [<a href="{% url 'user_logout' %}">{% translate 'Logout' %}</a>]
             {% else %}
             [<a href="{% url 'login_page' %}">{% translate 'Login' %}</a>]
             {% endif %}

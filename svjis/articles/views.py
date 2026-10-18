@@ -14,7 +14,7 @@ from django.utils.timezone import make_aware
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import gettext as gt
 from django.utils.http import url_has_allowed_host_and_scheme
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from datetime import datetime, timedelta
 from .permissions import svjis_edit_article, svjis_answer_survey, svjis_add_article_comment
 
@@ -370,7 +370,7 @@ def user_login(request):
     return redirect(main_view)
 
 
-@require_POST
+@require_http_methods(["GET", "POST"])
 def user_logout(request):
     logout(request)
     return redirect(main_view)
