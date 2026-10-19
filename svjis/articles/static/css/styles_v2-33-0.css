@@ -353,6 +353,7 @@ nav a:hover {
   display: none;
   color: white;
   font-weight: bold;
+  margin: 2px 2px 20px 2px;
 }
 
 .menu-user a {
