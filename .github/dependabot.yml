@@ -25,6 +25,6 @@ updates:
       time: '21:00'
     # Cooldown new versions for security reasons
     cooldown:
-      default-days: 7
+      default-days: 3
       exclude:
         - "django"
