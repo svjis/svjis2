@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="side-menu__login">
+<div class="side-menu__login hide-on-mobile">
 {% if request.user.is_authenticated %}
     <div class="side-menu__login_header">{% translate 'User' %}</div>
     <form action="{% url 'user_logout' %}" method="post">

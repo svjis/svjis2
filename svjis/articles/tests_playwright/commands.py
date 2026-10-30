@@ -62,20 +62,33 @@ def menu(page, tray_menu_item, side_menu_item, is_exact):
 
 def login(cls, page, user, password):
     show_menu(page)
-    page.wait_for_selector('id=login-submit')
-    scrshot(page, get_filename(cls, f'login-{user}'))
-    page.fill('[id=login-input]', user)
-    page.fill('[id=password-input]', password)
-    scrshot(page, get_filename(cls, f'login-{user}'))
-    page.click('id=login-submit')
-    scrshot(page, get_filename(cls, f'login-{user}'))
+    if page.is_visible('div.menu-toggle'):
+        page.click('text=' + _('Login'))
+        page.wait_for_load_state('load')
+        page.fill('[id=username-input]', user)
+        page.fill('[id=pwd-input]', password)
+        scrshot(page, get_filename(cls, f'login-{user}'))
+        page.click('id=sign-in')
+        page.wait_for_load_state('load')
+        scrshot(page, get_filename(cls, f'login-{user}'))
+    else:
+        page.wait_for_selector('id=login-submit')
+        scrshot(page, get_filename(cls, f'login-{user}'))
+        page.fill('[id=login-input]', user)
+        page.fill('[id=password-input]', password)
+        scrshot(page, get_filename(cls, f'login-{user}'))
+        page.click('id=login-submit')
+        page.wait_for_load_state('load')
+        scrshot(page, get_filename(cls, f'login-{user}'))
 
 
 def logout(cls, page):
     show_menu(page)
-    page.wait_for_selector('id=logout-submit')
+    page.wait_for_selector('id=logout-submit-mobile') if page.is_visible(
+        'div.menu-toggle'
+    ) else page.wait_for_selector('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
-    page.click('id=logout-submit')
+    page.click('id=logout-submit-mobile') if page.is_visible('div.menu-toggle') else page.click('id=logout-submit')
     scrshot(page, get_filename(cls, 'logout'))
 
 
@@ -362,10 +375,13 @@ def fill_user_units(cls, page):
     for e in data:
         menu(page, _('Administration'), _('Users'), False)
         click_link_in_row(page, e['user'], 0)
+        page.wait_for_load_state('load')
         page.get_by_text(_('Modify units')).click()
+        page.wait_for_load_state('load')
         scrshot(page, get_filename(cls, 'admin-user-units'))
         page.select_option('[id=owner-input]', label=e['unit'])
         page.click('id=submit')
+        page.wait_for_load_state('load')
         scrshot(page, get_filename(cls, 'admin-user-units'))
         expect(page.locator('.main-content').get_by_text(e['user'])).to_be_visible()
         expect(page.locator('.main-content').get_by_text(e['description'])).to_be_visible()
