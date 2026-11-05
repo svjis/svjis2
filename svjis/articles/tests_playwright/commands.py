@@ -41,6 +41,7 @@ def click_link_in_row(page, text_to_find, i):
             links = row.query_selector_all("a")
             if len(links) >= i:
                 links[i].click()
+                page.wait_for_load_state('load')
                 break
 
 
