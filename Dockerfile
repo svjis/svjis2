@@ -54,7 +54,7 @@ COPY --chown=root:root --chmod=755 ./uv.lock .
 USER svjisuser
 
 # Install packages.
-RUN uv sync --no-dev --group linux-server --python 3.13
+RUN uv sync --no-dev --group linux-server --python 3.14
 
 # Collect static files.
 RUN python svjis/manage.py collectstatic --noinput --clear
