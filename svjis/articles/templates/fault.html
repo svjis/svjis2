@@ -68,7 +68,7 @@
         </tr>
         {% for a in obj.assets %}
         <tr>
-            <td class="icon"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
+            <td class="icon" title="{{ a.basename }}"><img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}"></td>
             <td id="asset_file_{{ a.pk }}" title="{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}"><a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a></td>
             <td class="w20" id="asset_user_{{ a.pk }}" title="{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}">{{ a.created_by_user.first_name }}&nbsp;{{ a.created_by_user.last_name }}</td>
             <td class="w20 hide-on-mobile" id="asset_time_{{ a.pk }}" title="{{ a.created_date|date:'d.m.Y H:i' }}">{{ a.created_date|date:"d.m.Y H:i" }}</td>
