@@ -185,7 +185,7 @@ class AdvertsTest(UserDataMixin, TestCase):
 
         self.assertContains(
             response,
-            '<img src="/static/gfx/Files_pdf.gif" class="led" alt="document.pdf">',
+            '<img src="/static/gfx/Files_pdf.gif" class="led" alt="document.pdf" title="document.pdf">',
             html=True,
         )
         self.assertContains(response, f'<a href="/media/{file_path}">Document</a>', html=True)
