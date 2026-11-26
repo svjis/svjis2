@@ -33,7 +33,7 @@
                 {% if a.file_type == "PICTURE" %}
                 <a href="/media/{{ a.file }}" class="advert-image-preview-link" aria-haspopup="dialog" aria-controls="advert-image-dialog"><img src="/media/{{ a.file }}" class="advert-image-preview" alt="{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}" loading="lazy"></a>&nbsp;
                 {% else %}
-                <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}">&nbsp;<a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a>&nbsp;
+                <img src="/static/gfx/{{ a.icon }}" class="led" alt="{{ a.basename }}" title="{{ a.basename }}">&nbsp;<a href="/media/{{ a.file }}">{% if a.description %}{{ a.description }}{% else %}{{ a.basename }}{% endif %}</a>&nbsp;
                 {% endif %}
             {% endfor %}
             </p>
